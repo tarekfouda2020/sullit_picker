@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_tdd/core/helpers/global_notification.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/bloc/lang_cubit/lang_cubit.dart';
 import 'core/helpers/di.dart';
@@ -13,6 +14,7 @@ void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  getIt.registerSingleton(SharedPreferences.getInstance());
   await configureDependencies();
   getIt<GlobalNotification>().setupNotification();
   runApp(

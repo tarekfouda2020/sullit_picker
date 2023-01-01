@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
-import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'core/bloc/lang_cubit/lang_cubit.dart';
 import 'core/helpers/app_them.dart';
 import 'core/helpers/firebase_analytics_helper.dart';
@@ -26,7 +25,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    getIt.registerSingleton(SharedPreferences.getInstance());
     getIt<FirebaseAnalyticsHelper>().analytics.setConsent(
         adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
     super.initState();
@@ -60,8 +58,8 @@ class _MyAppState extends State<MyApp> {
                   }),
               routeInformationParser: _appRouter.defaultRouteParser(),
               builder: (ctx, child) {
-                child = FlutterEasyLoading(child: child); //do something
-                return child;
+                ScreenUtil.init(ctx);
+                return FlutterEasyLoading(child: child); //do something
               });
         },
       ),
