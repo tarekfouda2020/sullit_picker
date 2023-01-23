@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/widgets/network_builder_view.dart';
 import 'core/bloc/lang_cubit/lang_cubit.dart';
 import 'core/helpers/app_them.dart';
 import 'core/helpers/firebase_analytics_helper.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  State<StatefulWidget> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -59,7 +60,7 @@ class _MyAppState extends State<MyApp> {
               routeInformationParser: _appRouter.defaultRouteParser(),
               builder: (ctx, child) {
                 ScreenUtil.init(ctx);
-                return FlutterEasyLoading(child: child); //do something
+                return NetworkBuilderView(child: FlutterEasyLoading(child: child));
               });
         },
       ),

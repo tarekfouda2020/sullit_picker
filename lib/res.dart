@@ -10,4 +10,5 @@ class Res {
   static const String marker = "assets/images/marker.png";
   static const String mobile = "assets/images/mobile.svg";
   static const String password = "assets/images/password.svg";
+  static const String offline = "assets/images/offline.png";
 }

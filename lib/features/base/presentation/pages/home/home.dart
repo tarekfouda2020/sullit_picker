@@ -4,33 +4,25 @@ class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  State<StatefulWidget> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> with TickerProviderStateMixin {
+class _HomeState extends State<Home> {
   final HomeController controller = HomeController();
 
   @override
   void initState() {
-    controller.initBottomNavigation(this);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        body: TabBarView(
-          controller: controller.tabController,
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            RepeatedQuestions(),
-            LocationAddress(),
-            Container(),
-          ],
-        ),
-        bottomNavigationBar: BuildBottomNavigationBar(controller: controller),
+    return Scaffold(
+      appBar: const DefaultAppBar(title: "Home"),
+      body: ListView(
+        children: [
+
+        ],
       ),
     );
   }
