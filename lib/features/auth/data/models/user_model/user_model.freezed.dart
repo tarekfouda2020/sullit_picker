@@ -22,8 +22,10 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 mixin _$UserModel {
   @JsonKey(name: "id")
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "name")
-  String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: "first_name")
+  String get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: "last_name")
+  String get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: "email")
   String get email => throw _privateConstructorUsedError;
   @JsonKey(name: "phone")
@@ -42,7 +44,8 @@ abstract class $UserModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") String id,
-      @JsonKey(name: "name") String name,
+      @JsonKey(name: "first_name") String firstName,
+      @JsonKey(name: "last_name") String lastName,
       @JsonKey(name: "email") String email,
       @JsonKey(name: "phone") String phone});
 }
@@ -61,7 +64,8 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? firstName = null,
+    Object? lastName = null,
     Object? email = null,
     Object? phone = null,
   }) {
@@ -70,9 +74,13 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
@@ -95,7 +103,8 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") String id,
-      @JsonKey(name: "name") String name,
+      @JsonKey(name: "first_name") String firstName,
+      @JsonKey(name: "last_name") String lastName,
       @JsonKey(name: "email") String email,
       @JsonKey(name: "phone") String phone});
 }
@@ -112,7 +121,8 @@ class __$$_UserModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
+    Object? firstName = null,
+    Object? lastName = null,
     Object? email = null,
     Object? phone = null,
   }) {
@@ -121,9 +131,13 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
@@ -143,7 +157,8 @@ class __$$_UserModelCopyWithImpl<$Res>
 class _$_UserModel implements _UserModel {
   _$_UserModel(
       {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "name") required this.name,
+      @JsonKey(name: "first_name") required this.firstName,
+      @JsonKey(name: "last_name") required this.lastName,
       @JsonKey(name: "email") required this.email,
       @JsonKey(name: "phone") required this.phone});
 
@@ -154,8 +169,11 @@ class _$_UserModel implements _UserModel {
   @JsonKey(name: "id")
   final String id;
   @override
-  @JsonKey(name: "name")
-  final String name;
+  @JsonKey(name: "first_name")
+  final String firstName;
+  @override
+  @JsonKey(name: "last_name")
+  final String lastName;
   @override
   @JsonKey(name: "email")
   final String email;
@@ -165,7 +183,7 @@ class _$_UserModel implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, phone: $phone)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone)';
   }
 
   @override
@@ -174,14 +192,18 @@ class _$_UserModel implements _UserModel {
         (other.runtimeType == runtimeType &&
             other is _$_UserModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, email, phone);
+  int get hashCode =>
+      Object.hash(runtimeType, id, firstName, lastName, email, phone);
 
   @JsonKey(ignore: true)
   @override
@@ -200,7 +222,8 @@ class _$_UserModel implements _UserModel {
 abstract class _UserModel implements UserModel {
   factory _UserModel(
       {@JsonKey(name: "id") required final String id,
-      @JsonKey(name: "name") required final String name,
+      @JsonKey(name: "first_name") required final String firstName,
+      @JsonKey(name: "last_name") required final String lastName,
       @JsonKey(name: "email") required final String email,
       @JsonKey(name: "phone") required final String phone}) = _$_UserModel;
 
@@ -211,8 +234,11 @@ abstract class _UserModel implements UserModel {
   @JsonKey(name: "id")
   String get id;
   @override
-  @JsonKey(name: "name")
-  String get name;
+  @JsonKey(name: "first_name")
+  String get firstName;
+  @override
+  @JsonKey(name: "last_name")
+  String get lastName;
   @override
   @JsonKey(name: "email")
   String get email;

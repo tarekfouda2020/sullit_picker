@@ -22,7 +22,6 @@ class BuildLoginForm extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: SvgPicture.asset(Res.mobile),
             ),
-            onChange: controller.onChangePhone,
           ),
           GenericTextField(
             fieldTypes: FieldTypes.password,
@@ -30,12 +29,11 @@ class BuildLoginForm extends StatelessWidget {
             action: TextInputAction.done,
             validate: (value) => value?.validatePhone(),
             label: "Password",
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12.0),
               child: SvgPicture.asset(Res.password),
             ),
-            onChange: controller.onChangePassword,
           ),
         ],
       ),

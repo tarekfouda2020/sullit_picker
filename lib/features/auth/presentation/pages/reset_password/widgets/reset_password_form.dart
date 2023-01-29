@@ -19,7 +19,6 @@ class ResetPasswordForm extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: SvgPicture.asset(Res.password),
           ),
-          onChange: controller.onChangePass,
         ),
         GenericTextField(
           fieldTypes: FieldTypes.password,
@@ -27,13 +26,12 @@ class ResetPasswordForm extends StatelessWidget {
           action: TextInputAction.done,
           validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),
           label: "Repeat new password",
-          margin: EdgeInsets.only(top: 20),
+          margin: const EdgeInsets.only(top: 20),
           controller: controller.confirmPassword,
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12.0),
             child: SvgPicture.asset(Res.password),
           ),
-          onChange: controller.onChangeConfirmPass,
         ),
 
       ],

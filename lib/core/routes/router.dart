@@ -5,7 +5,6 @@ part of 'router_imports.dart';
     //auth routes
     AdaptiveRoute(page: Splash, initial: true),
     AdaptiveRoute(page: Login),
-    AdaptiveRoute(page: Register),
     AdaptiveRoute(page: ActiveAccount),
     AdaptiveRoute(page: ResetPassword),
     AdaptiveRoute(page: ForgetPassword),
