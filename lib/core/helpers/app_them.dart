@@ -10,6 +10,7 @@ class AppThem{
   static AppThem instance = AppThem._();
 
   ThemeData get themeData => ThemeData(
+    useMaterial3: true,
     focusColor: MyColors.primary,
     primaryColor: MyColors.primary,
     fontFamily: GoogleFonts.cairo().fontFamily,
