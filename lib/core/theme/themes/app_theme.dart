@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class AppTheme {
-  static var fontFamily = 'vintageRough';
+  static var fontFamily = 'simplyHappy';
 
   ThemeData get theme;
 
