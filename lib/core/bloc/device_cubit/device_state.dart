@@ -15,7 +15,7 @@ class DeviceInitial extends DeviceState {
       isBundle: false,
       isSmallPhone: false,
       locale: const Locale('en', 'US'),
-      themeMode: AdaptiveThemeMode.light,
+      themeMode: AdaptiveThemeMode.dark,
   ));
 }
 

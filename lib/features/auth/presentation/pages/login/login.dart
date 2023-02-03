@@ -13,7 +13,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.colors.white,
+      backgroundColor: context.colors.background,
       appBar: const BuildAuthAppBar(),
       body: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
