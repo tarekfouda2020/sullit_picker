@@ -7,7 +7,8 @@ import 'package:tf_custom_widgets/tf_custom_widgets.dart';
 class BuildAuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final Function()? onBack;
-  const BuildAuthAppBar({Key? key, this.title, this.onBack}) : super(key: key);
+  final bool showBack;
+  const BuildAuthAppBar({Key? key, this.title, this.onBack, this.showBack = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +17,12 @@ class BuildAuthAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: false,
       title:title!=null? MyText(title:title??"", color: context.colors.black, size: 22,):null,
       backgroundColor: Colors.transparent,
-      leading: InkWell(
-        onTap:onBack?? AutoRouter.of(context).pop,
-        child: Icon(Icons.arrow_back, size: 30, color: context.colors.black,),
+      leading: Offstage(
+        offstage: !showBack,
+        child: InkWell(
+          onTap:onBack?? AutoRouter.of(context).pop,
+          child: Icon(Icons.arrow_back, size: 30, color: context.colors.black,),
+        ),
       ),
     );
   }

@@ -1356,6 +1356,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
+  widget_and_text_animator:
+    dependency: "direct main"
+    description:
+      name: widget_and_text_animator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.9"
   win32:
     dependency: transitive
     description:

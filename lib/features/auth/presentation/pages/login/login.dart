@@ -14,7 +14,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: const BuildAuthAppBar(),
+      appBar: const BuildAuthAppBar(showBack: false),
       body: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: ListView(

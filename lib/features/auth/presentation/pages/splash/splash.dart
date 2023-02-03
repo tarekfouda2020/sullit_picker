@@ -27,10 +27,13 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       backgroundColor: context.colors.background,
       body: Center(
-        child: Image.asset(
-          Res.logo,
-          width: 200,
-          height: 200,
+        child: TextAnimator(
+          'Base Structure',
+          initialDelay: const Duration(milliseconds: 1000),
+          style: AppTextStyle.s32_w700(color: context.colors.black),
+          incomingEffect: WidgetTransitionEffects.incomingScaleDown(
+            duration: const Duration(milliseconds: 600),
+          ),
         ),
       ),
     );
