@@ -9,8 +9,8 @@ class ResetPasswordButton extends StatelessWidget {
     return LoadingButton(
         title: "Set Password",
         onTap: () {},
-        color: MyColors.primary,
-        textColor: MyColors.white,
+        color: context.colors.primary,
+        textColor: context.colors.white,
         btnKey: controller.btnKey,
         margin: const EdgeInsets.only(top: 40),
         fontSize: 16,

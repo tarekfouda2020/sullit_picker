@@ -14,10 +14,10 @@ class BuildActiveButton extends StatelessWidget {
           child: LoadingButton(
               title: "Login",
               onTap: () {},
-              color: !state.data? MyColors.offWhite:MyColors.primary,
-              textColor: !state.data? MyColors.black:MyColors.white,
+              color: !state.data? context.colors.greyWhite :context.colors.primary,
+              textColor: !state.data? context.colors.black:context.colors.white,
               btnKey: controller.btnKey,
-              margin: EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 40),
               fontSize: 16,
               height: 55
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/constants/my_colors.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class BuildPinField extends StatelessWidget {
@@ -26,13 +27,13 @@ class BuildPinField extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             fieldHeight: 60,
             fieldWidth: 55,
-            inactiveColor: MyColors.greyWhite,
-            activeColor: MyColors.primary,
-            selectedColor: MyColors.primary,
-            selectedFillColor: MyColors.white,
-            inactiveFillColor: MyColors.white,
-            activeFillColor: MyColors.white,
-            disabledColor: MyColors.black,
+            inactiveColor: context.colors.greyWhite,
+            activeColor: context.colors.primary,
+            selectedColor: context.colors.primary,
+            selectedFillColor: context.colors.white,
+            inactiveFillColor: context.colors.white,
+            activeFillColor: context.colors.white,
+            disabledColor: context.colors.black,
         ),
         animationDuration: Duration(milliseconds: 300),
         enableActiveFill: true,

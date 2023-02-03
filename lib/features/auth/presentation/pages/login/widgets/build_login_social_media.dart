@@ -11,7 +11,7 @@ class BuildLoginSocialMedia extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MyText(title: "Or use one of the following", color: MyColors.blackOpacity, size: 16,),
+          MyText(title: "Or use one of the following", color: context.colors.blackOpacity, size: 16,),
           SizedBox(height: 15),
           BuildSocialItem(icon: Res.facebook, title: "Continue with Facebook"),
           BuildSocialItem(icon: Res.apple, title: "Continue with Apple"),

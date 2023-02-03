@@ -6,20 +6,20 @@ class BuildForgetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25),
+      padding: const EdgeInsets.symmetric(vertical: 25),
       child: Row(
         children: [
           MyText(
             title: "Forget your password?",
-            color: MyColors.black,
+            color: context.colors.black,
             size: 14,
           ),
-          SizedBox(width: 5),
+          const SizedBox(width: 5),
           InkWell(
-            onTap: ()=>AutoRouter.of(context).push(ForgetPasswordRoute()),
+            onTap: ()=>AutoRouter.of(context).push(const ForgetPasswordRoute()),
             child: MyText(
               title: "Tap here",
-              color: MyColors.primary,
+              color: context.colors.primary,
               size: 14,
             ),
           ),

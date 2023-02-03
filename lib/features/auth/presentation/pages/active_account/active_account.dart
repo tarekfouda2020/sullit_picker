@@ -18,12 +18,12 @@ class _ActiveAccountState extends State<ActiveAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.white,
-      appBar: BuildAuthAppBar(),
+      backgroundColor: context.colors.white,
+      appBar: const BuildAuthAppBar(),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         children: [
-          BuildHeaderTitle(
+          const BuildHeaderTitle(
             title: "Enter your security code",
             subTitle: "In order for us to be able to reset your password, please enter your phone number below.",
           ),

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_tdd/core/constants/my_colors.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:tf_custom_widgets/tf_custom_widgets.dart';
 
@@ -30,14 +30,14 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: MyText(
         title: title,
         size: 18,
-        color: MyColors.black,
+        color: context.colors.black,
         fontWeight: FontWeight.w500,
       ),
       centerTitle: centerTitle??true,
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light
       ),
-      backgroundColor: Colors.transparent,
+      backgroundColor: context.colors.appBarColor,
       elevation: 0,
       leadingWidth: showBack == true ? 55 : 10,
       leading: leading ??

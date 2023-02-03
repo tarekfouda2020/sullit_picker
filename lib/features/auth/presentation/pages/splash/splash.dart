@@ -24,11 +24,13 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Image.asset(
-        Res.logo,
-        width: 200,
-        height: 200,
+    return Scaffold(
+      body: Center(
+        child: Image.asset(
+          Res.logo,
+          width: 200,
+          height: 200,
+        ),
       ),
     );
   }

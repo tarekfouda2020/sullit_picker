@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   tf_custom_widgets: ^1.2.11
   flutter_bloc: ^8.1.1
+  bloc: ^8.1.0
   equatable: ^2.0.5
   json_serializable: ^6.6.0
   json_annotation: ^4.8.0
@@ -76,6 +77,7 @@ dependencies:
   flutter_screenutil: ^5.6.0
   internet_connectivity_checker: ^0.1.0
   simple_connection_checker: ^0.2.1
+  adaptive_theme: ^3.1.1
 
 
 
@@ -135,10 +137,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: vintageRough
+      fonts:
+       - asset: assets/fonts/vintageRough.otf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

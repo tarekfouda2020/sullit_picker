@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/input_field_style/custom_input_decoration.dart';
 import 'package:flutter_tdd/core/constants/input_field_style/custom_input_text_style.dart';
-import 'package:flutter_tdd/core/constants/my_colors.dart';
+import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
+import 'package:flutter_tdd/core/theme/themes/app_theme.dart';
 import 'package:tf_custom_widgets/tf_custom_widgets.dart';
 
 class InitCustomPackages{
@@ -14,8 +15,9 @@ class InitCustomPackages{
   void initCustomWidgets({required String language}) {
     WidgetUtils.init(
         style: CustomInputTextStyle(lang: language),
-        primary: MyColors.primary,
+        primary: AppColors.noContextInstance.primary,
         language: language,
+        myTextFontFamily: AppTheme.fontFamily,
         inputStyle: (
             {String? label,
               String? hint,

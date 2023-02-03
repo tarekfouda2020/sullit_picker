@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/constants/my_colors.dart';
+import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 enum ToastType { success, error, info }
@@ -7,9 +7,9 @@ enum ToastType { success, error, info }
 class CustomToast {
 
   static Map<ToastType, Color> toastBgColors = {
-    ToastType.success: MyColors.successColor,
-    ToastType.error: MyColors.errorColor,
-    ToastType.info: MyColors.infoColor,
+    ToastType.success: AppColors.snackBarGreenSuccess,
+    ToastType.error: AppColors.snackBarRedError,
+    ToastType.info: AppColors.snackBarYellowAlert,
   };
 
   static void showSnakeBar(msg,

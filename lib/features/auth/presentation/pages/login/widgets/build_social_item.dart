@@ -19,13 +19,13 @@ class BuildSocialItem extends StatelessWidget {
       margin: EdgeInsets.only(top: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: MyColors.black, width: .5),
+        border: Border.all(color: context.colors.black, width: .5),
       ),
       child: Row(
         children: [
           SvgPicture.asset(icon, width: 20,height: 20,),
           SizedBox(width: 15),
-          MyText(title: title, size: 14, color: MyColors.black,)
+          MyText(title: title, size: 14, color: context.colors.black,)
         ],
       ),
     );

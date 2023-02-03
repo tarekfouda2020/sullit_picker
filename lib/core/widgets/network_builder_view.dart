@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/constants/my_colors.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
 import 'package:tf_custom_widgets/widgets/MyText.dart';
@@ -15,7 +15,7 @@ class NetworkBuilderView extends StatelessWidget {
       (ConnectivityStatus status) {
         if (status == ConnectivityStatus.offine) {
           return Scaffold(
-            backgroundColor: MyColors.white,
+            backgroundColor: context.colors.white,
             body: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Column(
@@ -29,7 +29,7 @@ class NetworkBuilderView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: MyText(
                       title: "No Internet Connected",
-                      color: MyColors.primary,
+                      color: context.colors.primary,
                       size: 20,
                     ),
                   ),
@@ -39,12 +39,12 @@ class NetworkBuilderView extends StatelessWidget {
                       height: 45,
                       width: 200,
                       decoration: BoxDecoration(
-                          border: Border.all(color: MyColors.primary),
+                          border: Border.all(color: context.colors.primary),
                           borderRadius: BorderRadius.circular(20)),
                       alignment: Alignment.center,
                       child: MyText(
                         title: "Try Again",
-                        color: MyColors.primary,
+                        color: context.colors.primary,
                         size: 16,
                       ),
                     ),

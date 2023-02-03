@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../my_colors.dart';
+import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
+import 'package:flutter_tdd/core/theme/themes/app_theme.dart';
 
 class CustomInputTextStyle extends TextStyle{
 
@@ -13,14 +12,12 @@ class CustomInputTextStyle extends TextStyle{
 
 
   @override
-  String get fontFamily => lang =="ar"?GoogleFonts.cairo().fontFamily!:GoogleFonts.roboto().fontFamily!;
+  String get fontFamily => AppTheme.fontFamily;
 
   @override
-  // TODO: implement fontSize
-  double get fontSize => lang =="ar"?16:18;
+  double get fontSize => 16;
 
   @override
-  // TODO: implement color
-  Color get color => textColor??MyColors.black;
+  Color get color => textColor??AppColors.noContextInstance.black;
 
 }

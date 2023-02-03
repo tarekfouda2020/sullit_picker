@@ -21,11 +21,11 @@ class _RepeatedQuestionsState extends State<RepeatedQuestions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: "Repeated Questions",),
-      backgroundColor: MyColors.white,
+      appBar: const DefaultAppBar(title: "Repeated Questions",),
+      backgroundColor: context.colors.white,
       body: SingleChildScrollView(
         child: ExpansionPanelList(
-          animationDuration: Duration(milliseconds: 1000),
+          animationDuration: const Duration(milliseconds: 1000),
           dividerColor: Colors.grey,
           expansionCallback: (panelIndex, isExpanded) {
             if(panelIndex==0){
@@ -43,11 +43,11 @@ class _RepeatedQuestionsState extends State<RepeatedQuestions> {
             ExpansionPanel(
               headerBuilder: (context, isExpanded) {
                 return ListTile(
-                  title: MyText(title: 'Click To Expand', size: 14, color: MyColors.black,),
+                  title: MyText(title: 'Click To Expand', size: 14, color: context.colors.black,),
                 );
               },
               body:ListTile(
-                title: MyText(title: 'this description of ExpansionPanel', size: 14, color: MyColors.blackOpacity,),
+                title: MyText(title: 'this description of ExpansionPanel', size: 14, color: context.colors.blackOpacity,),
               ),
               isExpanded: _expanded,
               canTapOnHeader: true,
@@ -55,11 +55,11 @@ class _RepeatedQuestionsState extends State<RepeatedQuestions> {
             ExpansionPanel(
               headerBuilder: (context, isExpanded) {
                 return ListTile(
-                  title: MyText(title: 'Click To Expand', size: 14, color: MyColors.black,),
+                  title: MyText(title: 'Click To Expand', size: 14, color: context.colors.black,),
                 );
               },
               body:ListTile(
-                title: MyText(title: 'this description of ExpansionPanel', size: 14, color: MyColors.blackOpacity,),
+                title: MyText(title: 'this description of ExpansionPanel', size: 14, color: context.colors.blackOpacity,),
               ),
               isExpanded: _expanded1,
               canTapOnHeader: true,
@@ -67,11 +67,11 @@ class _RepeatedQuestionsState extends State<RepeatedQuestions> {
             ExpansionPanel(
               headerBuilder: (context, isExpanded) {
                 return ListTile(
-                  title: MyText(title: 'Click To Expand', size: 14, color: MyColors.black,),
+                  title: MyText(title: 'Click To Expand', size: 14, color: context.colors.black,),
                 );
               },
               body:ListTile(
-                title: MyText(title: 'this description of ExpansionPanel', size: 14, color: MyColors.blackOpacity,),
+                title: MyText(title: 'this description of ExpansionPanel', size: 14, color: context.colors.blackOpacity,),
               ),
               isExpanded: _expanded2,
               canTapOnHeader: true,

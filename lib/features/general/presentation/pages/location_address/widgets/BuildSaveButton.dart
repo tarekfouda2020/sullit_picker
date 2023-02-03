@@ -18,13 +18,13 @@ class BuildSaveButton extends StatelessWidget {
             height: 45,
             width: MediaQuery.of(context).size.width * .7,
             decoration: BoxDecoration(
-                color: MyColors.primary,
+                color: context.colors.primary,
                 borderRadius: BorderRadius.circular(30)),
             alignment: Alignment.center,
             child: MyText(
               title: tr('saveLocation'),
               size: 12,
-              color: MyColors.white,
+              color: context.colors.white,
             ),
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/constants/my_colors.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+
 import 'package:tf_custom_widgets/widgets/MyText.dart';
 
 class BuildHeaderTitle extends StatelessWidget {
@@ -19,14 +20,14 @@ class BuildHeaderTitle extends StatelessWidget {
       children: [
         MyText(
           title: title,
-          color: MyColors.black,
+          color: context.colors.black,
           size: 22,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 15, bottom: 40),
           child: MyText(
             title: subTitle,
-            color: MyColors.blackOpacity,
+            color: context.colors.blackOpacity,
             size: 16,
             letterSpace: 1.1,
           ),

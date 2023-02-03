@@ -13,23 +13,23 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.white,
-      appBar: BuildAuthAppBar(),
+      backgroundColor: context.colors.white,
+      appBar: const BuildAuthAppBar(),
       body: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           children: [
             MyText(
               title: "Welcome back",
-              color: MyColors.black,
+              color: context.colors.black,
               size: 22,
             ),
-            SizedBox(height: 20),
+            Gaps.vGap20,
             BuildLoginForm(controller: controller),
             BuildLoginButton(controller: controller),
-            BuildForgetPasswordView(),
-            Divider(height: 30),
+            const BuildForgetPasswordView(),
+            const Divider(height: 30),
             BuildLoginSocialMedia(controller: controller),
           ],
         ),

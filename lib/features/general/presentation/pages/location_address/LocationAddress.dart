@@ -29,11 +29,11 @@ class _LocationAddress extends State<LocationAddress> {
             return MyText(
               title: state.model!.address,
               size: 12,
-              color: MyColors.black,
+              color: context.colors.black,
             );
           },
         ),
-        backgroundColor: MyColors.primary,
+        backgroundColor: context.colors.primary,
         automaticallyImplyLeading: false,
         centerTitle: true,
         flexibleSpace: Padding(

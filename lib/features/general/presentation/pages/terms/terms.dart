@@ -24,8 +24,8 @@ class _TermsState extends State<Terms> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MyText(title: "Privacy Policy",size: 24, color: MyColors.black,),
-            SizedBox(height: 20),
+            MyText(title: "Privacy Policy",size: 24, color: context.colors.black,),
+             Gaps.vGap20,
             Expanded(
               child: SingleChildScrollView(
                 child: MyText(
@@ -35,7 +35,7 @@ Fusce ultricies vehicula arcu sed mollis. Fusce molestie vitae quam pretium vene
 
 In semper quam ac metus venenatis consequat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam efficitur non ipsum blandit convallis. Mauris mattis pharetra nibh accumsan lobortis. Ut a consequat augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec orci bibendum, iaculis lectus vel, egestas magna. Ut sit amet tortor maximus, dictum lectus ut, varius est. Ut elit arcu, fermentum id iaculis sit amet, ullamcorper vel turpis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam pellentesque arcu eu erat venenatis consectetur. Vivamus scelerisque gravida erat, in consectetur dolor fermentum nec. Vivamus facilisis dui magna.''',
                   size: 14,
-                  color: MyColors.black,
+                  color: context.colors.black,
                 ),
               ),
             ),

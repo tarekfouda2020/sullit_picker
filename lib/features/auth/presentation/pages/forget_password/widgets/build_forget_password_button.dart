@@ -16,10 +16,10 @@ class BuildForgetPasswordButton extends StatelessWidget {
           child: LoadingButton(
               title: "Continue",
               onTap: () {},
-              color: isEmpty? MyColors.offWhite:MyColors.primary,
-              textColor: isEmpty? MyColors.black:MyColors.white,
+              color: isEmpty? context.colors.greyWhite:context.colors.primary,
+              textColor: isEmpty? context.colors.black:context.colors.white,
               btnKey: controller.btnKey,
-              margin: EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 40),
               fontSize: 16,
               height: 55
           ),
