@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/res.dart';
-import 'package:tf_custom_widgets/tf_custom_widgets.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -27,11 +27,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: MyText(
-        title: title,
-        size: 18,
-        color: context.colors.black,
-        fontWeight: FontWeight.w500,
+      title: Text(
+        title,
+        style: AppTextStyle.s18_w500(color: context.colors.black),
       ),
       centerTitle: centerTitle??true,
       systemOverlayStyle: const SystemUiOverlayStyle(
@@ -53,6 +51,5 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(size ?? 65);
 }

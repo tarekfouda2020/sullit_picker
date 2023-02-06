@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
-import 'package:tf_custom_widgets/widgets/MyText.dart';
 
 class NetworkBuilderView extends StatelessWidget {
   final Widget child;
@@ -27,10 +27,9 @@ class NetworkBuilderView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: MyText(
-                      title: "No Internet Connected",
-                      color: context.colors.primary,
-                      size: 20,
+                    child: Text(
+                       "No Internet Connected",
+                      style: AppTextStyle.s20_w500(color: context.colors.primary),
                     ),
                   ),
                   InkWell(
@@ -42,10 +41,9 @@ class NetworkBuilderView extends StatelessWidget {
                           border: Border.all(color: context.colors.primary),
                           borderRadius: BorderRadius.circular(20)),
                       alignment: Alignment.center,
-                      child: MyText(
-                        title: "Try Again",
-                        color: context.colors.primary,
-                        size: 16,
+                      child: Text(
+                        "Try Again",
+                        style: AppTextStyle.s16_w500(color: context.colors.primary),
                       ),
                     ),
                   ),

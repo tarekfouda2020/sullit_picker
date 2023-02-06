@@ -26,10 +26,9 @@ class _LocationAddress extends State<LocationAddress> {
       appBar: AppBar(
         title: BlocBuilder<LocationCubit,LocationState>(
           builder: (context,state){
-            return MyText(
-              title: state.model!.address,
-              size: 12,
-              color: context.colors.black,
+            return Text(
+              state.model!.address,
+              style: AppTextStyle.s12_w500(color: context.colors.black),
             );
           },
         ),

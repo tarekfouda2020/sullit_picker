@@ -6,7 +6,7 @@ class ActiveAccountController {
   String? code;
   final GenericBloc<bool> codeCubit = GenericBloc(false);
 
-  onComplete(String value){
+  void onComplete(String value){
     codeCubit.onUpdateData(value.length==6);
     code = value;
   }

@@ -21,10 +21,9 @@ class BuildSaveButton extends StatelessWidget {
                 color: context.colors.primary,
                 borderRadius: BorderRadius.circular(30)),
             alignment: Alignment.center,
-            child: MyText(
-              title: tr('saveLocation'),
-              size: 12,
-              color: context.colors.white,
+            child: Text(
+              tr('saveLocation'),
+              style: AppTextStyle.s12_w500(color: context.colors.white),
             ),
           ),
         ),

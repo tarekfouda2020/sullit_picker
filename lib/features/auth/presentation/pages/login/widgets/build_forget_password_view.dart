@@ -9,18 +9,16 @@ class BuildForgetPasswordView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 25),
       child: Row(
         children: [
-          MyText(
-            title: "Forget your password?",
-            color: context.colors.black,
-            size: 14,
+          Text(
+            "Forget your password?",
+            style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
           const SizedBox(width: 5),
           InkWell(
             onTap: ()=>AutoRouter.of(context).push(const ForgetPasswordRoute()),
-            child: MyText(
-              title: "Tap here",
-              color: context.colors.primary,
-              size: 14,
+            child: Text(
+              "Tap here",
+              style: AppTextStyle.s14_w400(color: context.colors.primary),
             ),
           ),
         ],

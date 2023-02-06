@@ -20,10 +20,9 @@ class _LoginState extends State<Login> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           children: [
-            MyText(
-              title: "Welcome back",
-              color: context.colors.black,
-              size: 22,
+            Text(
+               "Welcome back",
+              style: AppTextStyle.s20_w500(color: context.colors.black),
             ),
             Gaps.vGap20,
             BuildLoginForm(controller: controller),

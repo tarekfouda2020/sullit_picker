@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
-import 'package:tf_custom_widgets/widgets/MyText.dart';
 
 class BuildHeaderTitle extends StatelessWidget {
   final String title;
@@ -18,18 +18,15 @@ class BuildHeaderTitle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MyText(
-          title: title,
-          color: context.colors.black,
-          size: 22,
+        Text(
+          title,
+          style: AppTextStyle.s20_w500(color: context.colors.black),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 15, bottom: 40),
-          child: MyText(
-            title: subTitle,
-            color: context.colors.blackOpacity,
-            size: 16,
-            letterSpace: 1.1,
+          child: Text(
+            subTitle,
+            style: AppTextStyle.s16_w500(color: context.colors.blackOpacity),
           ),
         ),
       ],

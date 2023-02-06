@@ -15,8 +15,8 @@ class BuildSocialItem extends StatelessWidget {
     return Container(
       height: 50,
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.only(top: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         border: Border.all(color: context.colors.black, width: .5),
@@ -24,8 +24,8 @@ class BuildSocialItem extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(icon, width: 20,height: 20,),
-          SizedBox(width: 15),
-          MyText(title: title, size: 14, color: context.colors.black,)
+          Gaps.hGap15,
+          Text(title, style: AppTextStyle.s14_w400(color: context.colors.black),)
         ],
       ),
     );

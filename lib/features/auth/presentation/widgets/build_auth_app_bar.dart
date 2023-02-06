@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
-import 'package:tf_custom_widgets/tf_custom_widgets.dart';
 
 class BuildAuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
@@ -15,7 +15,7 @@ class BuildAuthAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 0,
       centerTitle: false,
-      title:title!=null? MyText(title:title??"", color: context.colors.black, size: 22,):null,
+      title:title!=null? Text(title??"",style: AppTextStyle.s20_w500(color: context.colors.black),):null,
       backgroundColor: Colors.transparent,
       leading: Offstage(
         offstage: !showBack,

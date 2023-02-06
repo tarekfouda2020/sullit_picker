@@ -17,7 +17,7 @@ class BuildLoginForm extends StatelessWidget {
             action: TextInputAction.next,
             validate: (value) => value?.validatePhone(),
             label: "Phone Number",
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12.0),
               child: SvgPicture.asset(Res.mobile),
