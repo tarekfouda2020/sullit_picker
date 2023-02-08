@@ -7,6 +7,7 @@ part 'user_model.g.dart';
 
 @freezed
 class UserModel extends BaseApiModel<UserDomainModel>  with _$UserModel{
+
   @JsonSerializable(explicitToJson: true)
   factory UserModel({
     @JsonKey(name: "id") required String id,
@@ -32,3 +33,4 @@ class UserModel extends BaseApiModel<UserDomainModel>  with _$UserModel{
   }
 
 }
+
