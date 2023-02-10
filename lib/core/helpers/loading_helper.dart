@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
+import 'package:flutter_tdd/core/widgets/app_loader_widget.dart';
 import 'package:injectable/injectable.dart';
 
 
@@ -9,24 +12,22 @@ import 'package:injectable/injectable.dart';
 @lazySingleton
 class LoadingHelper {
   void showLoadingDialog() {
-    EasyLoading.show(
-        maskType: EasyLoadingMaskType.black,
+    if(!EasyLoading.isShow) {
+      EasyLoading.show(
+        maskType: EasyLoadingMaskType.clear,
         dismissOnTap: false,
-        indicator: SpinKitCubeGrid(
-          size: 40.0,
-          itemBuilder: (context, index) {
-            return Container(
-              height: 10,
-              width: 10,
-              margin: const EdgeInsets.all(1),
-              decoration: BoxDecoration(
-                color: AppColors.noContextInstance.primary,
-                shape: BoxShape.circle,
-              ),
-            );
-          },
-        ),
-        status: "loading");
+      );
+    }
+  }
+
+  void initConfig(){
+    EasyLoading.instance
+      ..indicatorWidget = const _LoadingDialogOverly()
+      ..backgroundColor = Colors.white
+      ..textColor = Colors.white
+      ..indicatorColor = Colors.white
+      ..loadingStyle = EasyLoadingStyle.light
+      ..contentPadding = EdgeInsets.zero;
   }
 
 
@@ -53,4 +54,33 @@ class LoadingHelper {
   }
 
   void showInvalidSession() {}
+
+
+}
+
+
+class _LoadingDialogOverly extends StatelessWidget {
+  const _LoadingDialogOverly({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      shadowColor: Colors.white,
+      color: Colors.transparent,
+      child: Stack(
+        children: [
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              color: Colors.transparent,
+            ),
+          ),
+          const Material(
+              color: Colors.transparent,
+              child: AppLoaderWidget(),
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -10,7 +10,7 @@ class BuildLoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadingButton(
         title: "Login",
-        onTap: () => AutoRouter.of(context).push(const HomeRoute()),
+        onTap: () => controller.onSubmit(context),
         color: context.colors.primary,
         textColor: context.colors.white,
         btnKey: controller.btnKey,

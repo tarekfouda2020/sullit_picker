@@ -8,9 +8,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
 import 'package:flutter_tdd/core/widgets/network_builder_view.dart';
+
 import 'core/helpers/firebase_analytics_helper.dart';
 import 'core/helpers/general_providers.dart';
 import 'core/localization/set_localization.dart';
@@ -28,8 +30,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    getIt<FirebaseAnalyticsHelper>().analytics.setConsent(
-        adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
+    getIt<FirebaseAnalyticsHelper>()
+        .analytics
+        .setConsent(adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
+    getIt.get<LoadingHelper>().initConfig();
     super.initState();
   }
 
@@ -40,11 +44,11 @@ class _MyAppState extends State<MyApp> {
       child: BlocBuilder<DeviceCubit, DeviceState>(
         builder: (context, state) {
           return AdaptiveTheme(
-            light: AppLightTheme().theme,
-            dark: AppDarkTheme().theme,
-            initial: state.model.themeMode,
-            builder: (theme, darkTheme) {
-              return MaterialApp.router(
+              light: AppLightTheme().theme,
+              dark: AppDarkTheme().theme,
+              initial: state.model.themeMode,
+              builder: (theme, darkTheme) {
+                return MaterialApp.router(
                   debugShowCheckedModeBanner: false,
                   title: "Base TDD",
                   darkTheme: darkTheme,
@@ -66,12 +70,12 @@ class _MyAppState extends State<MyApp> {
                         ];
                       }),
                   routeInformationParser: _appRouter.defaultRouteParser(),
-                  builder: (ctx, child) {
+                  builder: EasyLoading.init(builder: (ctx, child) {
                     ScreenUtil.init(ctx);
-                    return NetworkBuilderView(child: FlutterEasyLoading(child: child));
-                  });
-            }
-          );
+                    return NetworkBuilderView(child: child!);
+                  }),
+                );
+              });
         },
       ),
     );

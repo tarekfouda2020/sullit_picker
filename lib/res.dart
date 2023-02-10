@@ -7,8 +7,10 @@ class Res {
   static const String facebook = "assets/images/facebook.svg";
   static const String icon = "assets/images/icon.png";
   static const String logo = "assets/images/logo.png";
+  static const String logoSvg = "assets/images/logoSvg.svg";
   static const String marker = "assets/images/marker.png";
   static const String mobile = "assets/images/mobile.svg";
   static const String password = "assets/images/password.svg";
   static const String offline = "assets/images/offline.png";
+  static const String appLoaderBg = "assets/images/appLoaderBg.png";
 }
