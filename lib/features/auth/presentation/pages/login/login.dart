@@ -1,5 +1,6 @@
 part of 'login_imports.dart';
 
+@RoutePage()
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -21,7 +22,7 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           children: [
             Text(
-               "Welcome back",
+              "Welcome back",
               style: AppTextStyle.s20_w500(color: context.colors.black),
             ),
             Gaps.vGap20,

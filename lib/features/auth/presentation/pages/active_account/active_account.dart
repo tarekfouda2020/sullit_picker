@@ -1,5 +1,6 @@
 part of 'active_account_imports.dart';
 
+@RoutePage()
 class ActiveAccount extends StatefulWidget {
   const ActiveAccount({Key? key}) : super(key: key);
 

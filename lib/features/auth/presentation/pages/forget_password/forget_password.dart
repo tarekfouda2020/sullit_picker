@@ -1,5 +1,6 @@
 part of'forget_password_imports.dart';
 
+@RoutePage()
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);
 

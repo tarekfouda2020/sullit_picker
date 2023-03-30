@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/CustomButtonAnimation.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/reset_password/widgets/reset_password_widgets_imports.dart';

@@ -1,5 +1,6 @@
 part of 'profile_imports.dart';
 
+@RoutePage()
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
 

@@ -1,5 +1,6 @@
 part of 'terms_imports.dart';
 
+@RoutePage()
 class Terms extends StatefulWidget {
   const Terms({Key? key}) : super(key: key);
 

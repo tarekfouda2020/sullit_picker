@@ -7,8 +7,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/routes/router_imports.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
 import 'package:flutter_tdd/core/widgets/network_builder_view.dart';
@@ -26,7 +26,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _appRouter = AppRouter(getIt<GlobalContext>().navigationKey);
 
   @override
   void initState() {
@@ -61,15 +60,15 @@ class _MyAppState extends State<MyApp> {
                     GlobalCupertinoLocalizations.delegate,
                   ],
                   locale: state.model.locale,
-                  routerDelegate: _appRouter.delegate(
-                      initialRoutes: [const SplashRoute()],
+                  routerDelegate: getIt.get<AppRouter>().delegate(
+                      initialRoutes: [const Splash()],
                       navigatorObservers: () {
                         return [
                           FirebaseAnalyticsObserver(
                               analytics: getIt<FirebaseAnalyticsHelper>().analytics)
                         ];
                       }),
-                  routeInformationParser: _appRouter.defaultRouteParser(),
+                  routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
                   builder: EasyLoading.init(builder: (ctx, child) {
                     ScreenUtil.init(ctx);
                     return NetworkBuilderView(child: child!);

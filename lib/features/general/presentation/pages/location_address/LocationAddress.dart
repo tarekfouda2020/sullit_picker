@@ -1,7 +1,9 @@
 part of 'LocationAddressImports.dart';
 
-
+@RoutePage()
 class LocationAddress extends StatefulWidget {
+  const LocationAddress({super.key});
+
   @override
   State<StatefulWidget> createState() => _LocationAddress();
 }

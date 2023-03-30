@@ -1,17 +1,19 @@
 part of 'router_imports.dart';
 
-@AdaptiveAutoRouter(
-  routes: <AutoRoute>[
-    //auth routes
-    AdaptiveRoute(page: Splash, initial: true),
-    AdaptiveRoute(page: Login),
-    AdaptiveRoute(page: ActiveAccount),
-    AdaptiveRoute(page: ResetPassword),
-    AdaptiveRoute(page: ForgetPassword),
-    AdaptiveRoute(page: Terms),
-    AdaptiveRoute(page: LocationAddress),
-    AutoRoute(page: Home,children: [baseRoute]),
+@AutoRouterConfig()
+class AppRouter extends $AppRouter {
 
-  ],
-)
-class $AppRouter {}
+  @override
+  final List<AutoRoute> routes = [
+    AdaptiveRoute(page: Splash.page),
+    AdaptiveRoute(page: Login.page),
+    AdaptiveRoute(page: ActiveAccount.page),
+    AdaptiveRoute(page: ResetPassword.page),
+    AdaptiveRoute(page: ForgetPassword.page),
+    AdaptiveRoute(page: Terms.page),
+    AdaptiveRoute(page: LocationAddress.page),
+    AutoRoute(page: Home.page),
+    ...baseRoute
+  ];
+}
+

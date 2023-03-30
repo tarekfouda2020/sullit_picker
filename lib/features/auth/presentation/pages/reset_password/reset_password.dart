@@ -1,5 +1,6 @@
 part of'reset_password_imports.dart';
 
+@RoutePage()
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
 
