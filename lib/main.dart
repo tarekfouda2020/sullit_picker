@@ -19,6 +19,7 @@ void main()async{
   getIt.registerSingleton(AppRouter());
   await configureDependencies();
   getIt<GlobalNotification>().setupNotification();
+
   runApp(
     BlocProvider(
       create: (BuildContext context) => DeviceCubit(),
