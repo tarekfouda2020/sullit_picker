@@ -11,7 +11,6 @@ import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
-import 'package:flutter_tdd/core/widgets/network_builder_view.dart';
 
 import 'core/helpers/firebase_analytics_helper.dart';
 import 'core/helpers/general_providers.dart';
@@ -71,7 +70,7 @@ class _MyAppState extends State<MyApp> {
                   routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
                   builder: EasyLoading.init(builder: (ctx, child) {
                     ScreenUtil.init(ctx);
-                    return NetworkBuilderView(child: child!);
+                    return child!;
                   }),
                 );
               });
