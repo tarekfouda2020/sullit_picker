@@ -1,0 +1,6 @@
+{
+  "APP_ID": "system.trace.stage",
+  "APP_BASE_URL": "stage.trace/",
+  "APP_ENV_NAME": "stage",
+  "APP_API": "api/"
+}

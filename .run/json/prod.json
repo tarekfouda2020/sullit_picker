@@ -1,0 +1,6 @@
+{
+  "APP_ID": "system.trace.prod",
+  "APP_BASE_URL": "prod.trace/",
+  "APP_ENV_NAME": "prod",
+  "APP_API": "api/"
+}

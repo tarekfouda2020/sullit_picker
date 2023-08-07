@@ -79,6 +79,35 @@ android {
             }
         }
     }
+
+    flavorDimensions "app"
+    productFlavors {
+        dev {
+            dimension "app"
+            copy {
+                from 'src/dev/'
+                include '*.json'
+                into '.'
+            }
+        }
+        prod {
+            dimension "app"
+            copy {
+                from 'src/prod/'
+                include '*.json'
+                into '.'
+            }
+        }
+        stage {
+            dimension "app"
+            copy {
+                from 'src/stage/'
+                include '*.json'
+                into '.'
+            }
+        }
+    }
+
 }
 
 flutter {
