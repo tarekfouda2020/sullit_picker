@@ -96,7 +96,6 @@ class MultiSelectChipDisplay<V> extends StatelessWidget {
               height: height ?? MediaQuery.of(context).size.height * 0.08,
               child: scrollBar != null
                   ? Scrollbar(
-                      isAlwaysShown: scrollBar!.isAlwaysShown,
                       controller: _scrollController,
                       child: ListView.builder(
                         controller: _scrollController,

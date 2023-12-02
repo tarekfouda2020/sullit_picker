@@ -228,9 +228,7 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
                       }
                       return Scrollbar(
                         controller: widget.scrollbarProps?.controller,
-                        isAlwaysShown: widget.scrollbarProps?.isAlwaysShown,
                         showTrackOnHover: widget.scrollbarProps?.showTrackOnHover,
-                        hoverThickness: widget.scrollbarProps?.hoverThickness,
                         thickness: widget.scrollbarProps?.thickness,
                         radius: widget.scrollbarProps?.radius,
                         notificationPredicate: widget.scrollbarProps?.notificationPredicate,

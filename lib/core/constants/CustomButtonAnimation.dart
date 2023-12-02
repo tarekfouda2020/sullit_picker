@@ -30,11 +30,11 @@ class CustomButtonAnimation extends StatefulWidget {
   const CustomButtonAnimation(
       {required this.height,
         required this.width,
-        this.minWidth: 0,
+        this.minWidth= 0,
         this.loader,
-        this.animationDuration: const Duration(milliseconds: 450),
-        this.curve: Curves.easeInOutCirc,
-        this.reverseCurve: Curves.easeInOutCirc,
+        this.animationDuration= const Duration(milliseconds: 450),
+        this.curve = Curves.easeInOutCirc,
+        this.reverseCurve= Curves.easeInOutCirc,
         required this.child,
         required this.onTap,
         this.color,
@@ -47,13 +47,13 @@ class CustomButtonAnimation extends StatefulWidget {
         // this.focusElevation,
         // this.hoverElevation,
         // this.highlightElevation,
-        this.padding: const EdgeInsets.all(0),
-        this.borderRadius: 0.0,
-        this.clipBehavior: Clip.none,
+        this.padding= const EdgeInsets.all(0),
+        this.borderRadius= 0.0,
+        this.clipBehavior= Clip.none,
         this.focusNode,
         this.materialTapTargetSize,
-        this.roundLoadingShape: true,
-        this.borderSide: const BorderSide(color: Colors.transparent, width: 0),
+        this.roundLoadingShape= true,
+        this.borderSide= const BorderSide(color: Colors.transparent, width: 0),
         this.disabledElevation,
         this.disabledColor,
         this.disabledTextColor,
@@ -117,7 +117,7 @@ class CustomButtonState extends State<CustomButtonAnimation>
     _controller.reverse();
   }
 
-  lerpWidth(a, b, t) {
+  dynamic lerpWidth(a, b, t) {
     if (a == 0.0 || b == 0.0) {
       return null;
     } else {
