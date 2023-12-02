@@ -2,82 +2,69 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
-import 'package:flutter_tdd/core/widgets/app_loader_widget.dart';
+import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
+import 'package:flutter_tdd/core/constants/app_loader_widget.dart';
 import 'package:injectable/injectable.dart';
 
-
-
-@lazySingleton
+@singleton
 class LoadingHelper {
-  void showLoadingDialog() {
-    if(!EasyLoading.isShow) {
+  ObsValue<bool> isShowObs = ObsValue.withInit(false);
+
+  LoadingHelper() {
+    EasyLoading.addStatusCallback((status) {
+      isShowObs.setValue(status == EasyLoadingStatus.show);
+    });
+  }
+
+  final int _loadingTimeOutInSecond = 15;
+
+  void showLoadingDialog({bool dismissOnTap = false}) {
+    if (!EasyLoading.isShow) {
+      EasyLoading().indicatorWidget = const LoadingDialogOverly();
+      EasyLoading().contentPadding = EdgeInsets.zero;
       EasyLoading.show(
         maskType: EasyLoadingMaskType.clear,
-        dismissOnTap: false,
+        dismissOnTap: dismissOnTap,
       );
+      Future.delayed(Duration(seconds: _loadingTimeOutInSecond), () {
+        dismissDialog();
+      });
     }
-  }
-
-  void initConfig(){
-    EasyLoading.instance
-      ..indicatorWidget = const _LoadingDialogOverly()
-      ..backgroundColor = Colors.white
-      ..textColor = Colors.white
-      ..indicatorColor = Colors.white
-      ..loadingStyle = EasyLoadingStyle.light
-      ..contentPadding = EdgeInsets.zero;
-  }
-
-
-  Widget showLoadingView({Color? color}) {
-    return Center(
-      child: SpinKitFoldingCube(
-        color: color ?? AppColors.noContextInstance.primary,
-        size: 40.0,
-      ),
-    );
-  }
-
-  Widget showCatLoadingView({Color? color}) {
-    return Center(
-      child: SpinKitRipple(
-        color: color ?? AppColors.noContextInstance.primary,
-        size: 40.0,
-      ),
-    );
   }
 
   void dismissDialog() {
     EasyLoading.dismiss();
   }
-
-  void showInvalidSession() {}
-
-
 }
 
-
-class _LoadingDialogOverly extends StatelessWidget {
-  const _LoadingDialogOverly({Key? key}) : super(key: key);
+class LoadingDialogOverly extends StatelessWidget {
+  const LoadingDialogOverly({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      shadowColor: Colors.white,
-      color: Colors.transparent,
+    const indicator = AppLoaderWidget.largeLogo();
+    return SizedBox(
+      height: 1,
+      width: 1,
       child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
         children: [
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              color: Colors.transparent,
+          /// This stack for preventing the black rectangle behind the loader indicator
+          Positioned(
+            width: indicator.size.value,
+            height: indicator.size.value,
+            child: Stack(
+              children: [
+                BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Container(
+                    color: Colors.transparent,
+                  ),
+                ),
+                const Material(color: Colors.transparent, child: indicator),
+              ],
             ),
-          ),
-          const Material(
-              color: Colors.transparent,
-              child: AppLoaderWidget(),
           ),
         ],
       ),

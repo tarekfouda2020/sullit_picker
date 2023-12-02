@@ -7,7 +7,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
@@ -15,10 +14,9 @@ import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
 import 'core/helpers/firebase_analytics_helper.dart';
 import 'core/helpers/general_providers.dart';
 import 'core/localization/set_localization.dart';
-import 'core/routes/router_imports.gr.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   State<StatefulWidget> createState() => _MyAppState();
@@ -31,7 +29,6 @@ class _MyAppState extends State<MyApp> {
     getIt<FirebaseAnalyticsHelper>()
         .analytics
         .setConsent(adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
-    getIt.get<LoadingHelper>().initConfig();
     super.initState();
   }
 
@@ -60,7 +57,6 @@ class _MyAppState extends State<MyApp> {
                   ],
                   locale: state.model.locale,
                   routerDelegate: getIt.get<AppRouter>().delegate(
-                      initialRoutes: [const Splash()],
                       navigatorObservers: () {
                         return [
                           FirebaseAnalyticsObserver(

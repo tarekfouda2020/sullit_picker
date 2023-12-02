@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_loader_widget.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 
@@ -467,7 +468,7 @@ class MultiSelectBottomSheetFieldViewState<V>
                       .size
                       .width,
                   alignment: Alignment.center,
-                  child: getIt.get<LoadingHelper>().showLoadingView(),
+                  child: const AppLoaderWidget.mediumProgress(),
                 );
               });
         });
