@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:firebase_analytics/observer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
 
 import 'core/helpers/firebase_analytics_helper.dart';
 import 'core/helpers/general_providers.dart';
-import 'core/localization/set_localization.dart';
+import 'generated/l10n.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -48,14 +49,20 @@ class _MyAppState extends State<MyApp> {
                   title: "Base TDD",
                   darkTheme: darkTheme,
                   theme: theme,
-                  supportedLocales: const [Locale('en', 'US'), Locale('ar', 'EG')],
+                  supportedLocales: S.delegate.supportedLocales,
+                  locale: state.model.locale,
+                  // These delegates make sure that the localization data for the proper language is loaded
                   localizationsDelegates: const [
-                    SetLocalization.localizationsDelegate,
+                    // 1
+                    S.delegate,
+                    // 2
+                    DefaultCupertinoLocalizations.delegate,
+                    // Built-in localization of basic text for Material widgets
                     GlobalMaterialLocalizations.delegate,
+                    // Built-in localization for text direction LTR/RTL
                     GlobalWidgetsLocalizations.delegate,
                     GlobalCupertinoLocalizations.delegate,
                   ],
-                  locale: state.model.locale,
                   routerDelegate: getIt.get<AppRouter>().delegate(
                       navigatorObservers: () {
                         return [

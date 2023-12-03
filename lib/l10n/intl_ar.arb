@@ -1,4 +1,5 @@
 {
+  "@@locale": "ar",
   "selectLang": "قم باختيار لغة التطبيق ",
   "langEn": "English",
   "langAr": " العربية ",
@@ -166,7 +167,7 @@
   "enterInstagram": "ادخل رابط الانستجرام",
   "enterTwitter": "ادخل رابط تويتر",
   "enterYoutube": "ادخل رابط اليوتيوب",
-"enterSnapchat": "ادخل رابط سناب شات",
+  "enterSnapchat": "ادخل رابط سناب شات",
   "enterWhatsapp": "ادخل رقم الواتس اب",
 
 
