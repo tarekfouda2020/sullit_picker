@@ -93,11 +93,11 @@ class _$DeviceModelCopyWithImpl<$Res, $Val extends DeviceModel>
 }
 
 /// @nodoc
-abstract class _$$_DeviceModelCopyWith<$Res>
+abstract class _$$DeviceModelImplCopyWith<$Res>
     implements $DeviceModelCopyWith<$Res> {
-  factory _$$_DeviceModelCopyWith(
-          _$_DeviceModel value, $Res Function(_$_DeviceModel) then) =
-      __$$_DeviceModelCopyWithImpl<$Res>;
+  factory _$$DeviceModelImplCopyWith(
+          _$DeviceModelImpl value, $Res Function(_$DeviceModelImpl) then) =
+      __$$DeviceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -110,11 +110,11 @@ abstract class _$$_DeviceModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DeviceModelCopyWithImpl<$Res>
-    extends _$DeviceModelCopyWithImpl<$Res, _$_DeviceModel>
-    implements _$$_DeviceModelCopyWith<$Res> {
-  __$$_DeviceModelCopyWithImpl(
-      _$_DeviceModel _value, $Res Function(_$_DeviceModel) _then)
+class __$$DeviceModelImplCopyWithImpl<$Res>
+    extends _$DeviceModelCopyWithImpl<$Res, _$DeviceModelImpl>
+    implements _$$DeviceModelImplCopyWith<$Res> {
+  __$$DeviceModelImplCopyWithImpl(
+      _$DeviceModelImpl _value, $Res Function(_$DeviceModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -127,7 +127,7 @@ class __$$_DeviceModelCopyWithImpl<$Res>
     Object? isSmallPhone = null,
     Object? themeMode = null,
   }) {
-    return _then(_$_DeviceModel(
+    return _then(_$DeviceModelImpl(
       locale: null == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
@@ -158,8 +158,8 @@ class __$$_DeviceModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DeviceModel implements _DeviceModel {
-  _$_DeviceModel(
+class _$DeviceModelImpl implements _DeviceModel {
+  _$DeviceModelImpl(
       {required this.locale,
       required this.auth,
       required this.isBundle,
@@ -189,7 +189,7 @@ class _$_DeviceModel implements _DeviceModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DeviceModel &&
+            other is _$DeviceModelImpl &&
             (identical(other.locale, locale) || other.locale == locale) &&
             (identical(other.auth, auth) || other.auth == auth) &&
             (identical(other.isBundle, isBundle) ||
@@ -209,8 +209,8 @@ class _$_DeviceModel implements _DeviceModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeviceModelCopyWith<_$_DeviceModel> get copyWith =>
-      __$$_DeviceModelCopyWithImpl<_$_DeviceModel>(this, _$identity);
+  _$$DeviceModelImplCopyWith<_$DeviceModelImpl> get copyWith =>
+      __$$DeviceModelImplCopyWithImpl<_$DeviceModelImpl>(this, _$identity);
 }
 
 abstract class _DeviceModel implements DeviceModel {
@@ -220,7 +220,7 @@ abstract class _DeviceModel implements DeviceModel {
       required final bool isBundle,
       required final bool isTablet,
       required final bool isSmallPhone,
-      required final AdaptiveThemeMode themeMode}) = _$_DeviceModel;
+      required final AdaptiveThemeMode themeMode}) = _$DeviceModelImpl;
 
   @override
   Locale get locale;
@@ -236,6 +236,6 @@ abstract class _DeviceModel implements DeviceModel {
   AdaptiveThemeMode get themeMode;
   @override
   @JsonKey(ignore: true)
-  _$$_DeviceModelCopyWith<_$_DeviceModel> get copyWith =>
+  _$$DeviceModelImplCopyWith<_$DeviceModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
