@@ -1,4 +1,4 @@
-package du.base.flutter_tdd
+package system.dev
 
 import io.flutter.embedding.android.FlutterActivity
 

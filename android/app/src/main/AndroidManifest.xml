@@ -19,7 +19,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
    <application
-        android:label="flutter_tdd"
+       android:label="@string/APP_APP_NAME"
         android:name="${applicationName}"
         android:exported="true"
         android:icon="@mipmap/launcher_icon">
