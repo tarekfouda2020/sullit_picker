@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_tdd/core/errors/failures.dart';
+import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
@@ -13,7 +13,7 @@ import 'package:injectable/injectable.dart';
 class ImplBaseRepository extends BaseRepository with ModelToDomain {
 
   @override
-  Future<Either<Failure, UserDomainModel>> getUser(bool param)async {
+  Future<Either<BaseError, UserDomainModel>> getUser(bool param)async {
     var result = await getIt.get<HomeRemoteDataSource>().getUser(param);
     return toDomainResult<UserDomainModel, UserModel>(result);
   }

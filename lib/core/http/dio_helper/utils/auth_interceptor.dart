@@ -24,7 +24,7 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(
-    DioError err,
+    DioException err,
     ErrorInterceptorHandler handler,
   ) async {
     if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
@@ -83,24 +83,24 @@ class AuthInterceptor extends Interceptor {
   }
 
   Future<bool> _retry(
-    DioError dioError,
+    DioException DioException,
     ErrorInterceptorHandler handler,
   ) async {
     try {
       final dio = Dio();
       final resistanceAccessToken = pref.getString("token");
 
-      dioError.requestOptions.headers["Authorization"] = "Bearer ${resistanceAccessToken!}";
+      DioException.requestOptions.headers["Authorization"] = "Bearer ${resistanceAccessToken!}";
 
       //create request with new access token
       final opts = Options(
-        method: dioError.requestOptions.method,
-        headers: dioError.requestOptions.headers,
+        method: DioException.requestOptions.method,
+        headers: DioException.requestOptions.headers,
       );
-      final cloneReq = await dio.request(dioError.requestOptions.path,
+      final cloneReq = await dio.request(DioException.requestOptions.path,
           options: opts,
-          data: dioError.requestOptions.data,
-          queryParameters: dioError.requestOptions.queryParameters);
+          data: DioException.requestOptions.data,
+          queryParameters: DioException.requestOptions.queryParameters);
 
       handler.resolve(cloneReq);
       return Future.value(true);

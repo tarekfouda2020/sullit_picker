@@ -2,7 +2,7 @@ part of 'home_imports.dart';
 
 class HomeController {
 
-  final GenericBloc<int> homeTabCubit = GenericBloc(0);
+  final BaseBloc<int> homeTabCubit = BaseBloc(0);
   late AnimationController animationController;
   late TabController tabController;
   late Animation<double> animation;
@@ -20,7 +20,7 @@ class HomeController {
 
   void animateTabsPages(int index, BuildContext context) {
     if (index != homeTabCubit.state.data) {
-      homeTabCubit.onUpdateData(index);
+      homeTabCubit.successState(index);
       tabController.animateTo(index);
     }
   }

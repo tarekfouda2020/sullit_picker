@@ -4,7 +4,8 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tdd/core/bloc/generic_cubit/generic_cubit.dart';
+import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
+import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/search_form_field/search_form_field.dart';
 
@@ -149,7 +150,7 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
     super.dispose();
   }
 
-  final GenericBloc<bool> titleCubit = GenericBloc(true);
+  final BaseBloc<bool> titleCubit = BaseBloc(true);
 
   @override
   Widget build(BuildContext context) {
@@ -174,10 +175,10 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+                   BaseBlocBuilder<bool>(
                     bloc: titleCubit,
-                    builder: (context, state) {
-                      if (!state.data) {
+                    onSuccessWidget: (data) {
+                      if (!data) {
                         return const SizedBox.shrink();
                       }
                       return Text(
@@ -194,7 +195,7 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
                       onSubmit: (f) => _debouncer(() {
                         _onTextChanged(f);
                       }),
-                      onFocus: (val) => titleCubit.onUpdateData(val),
+                      onFocus: (val) => titleCubit.successState(val),
                       searchHint: widget.searchBoxDecoration?.hintText,
                     ),
                   ),

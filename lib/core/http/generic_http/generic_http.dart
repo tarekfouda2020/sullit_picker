@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_tdd/core/errors/failures.dart';
+import 'package:flutter_tdd/core/errors/base_error.dart';
+import 'package:flutter_tdd/core/errors/connection_error.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,7 +16,7 @@ import '../models/http_request_model.dart';
 import '../models/request_body_model.dart';
 
 abstract class GenericHttp<T> {
-  Future<Either<Failure, T>> call(HttpRequestModel model);
+  Future<Either<BaseError, T>> call(HttpRequestModel model);
 }
 
 @lazySingleton
@@ -23,7 +24,7 @@ class GenericHttpImpl<T> extends GenericHttp<T> {
 
   @preResolve
   @override
-  Future<Either<Failure, T>> call(HttpRequestModel model) async {
+  Future<Either<BaseError, T>> call(HttpRequestModel model) async {
     RequestBodyModel params = RequestBodyModel(
       url: model.url,
       showLoader: model.showLoader ?? false,
@@ -33,9 +34,9 @@ class GenericHttpImpl<T> extends GenericHttp<T> {
     );
     final connected = await getIt<NetworkInfoImpl>().isConnected;
     if (!connected) {
-      return Left(NetWorkFailure());
+      return Left(ConnectionError());
     }
-    Either<ServerFailure, Response> response;
+    Either<BaseError, Response> response;
     switch (model.requestMethod) {
       case RequestMethod.get:
         response = await getIt<Get>()(params);

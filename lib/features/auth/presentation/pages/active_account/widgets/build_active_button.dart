@@ -2,25 +2,25 @@ part of 'active_account_widgets_imports.dart';
 
 class BuildActiveButton extends StatelessWidget {
   final ActiveAccountController controller;
-  const BuildActiveButton({Key? key, required this.controller}) : super(key: key);
+
+  const BuildActiveButton({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenericBloc<bool>, GenericState<bool>>(
+    return BaseBlocBuilder(
       bloc: controller.codeCubit,
-      builder: (context, state) {
+      onSuccessWidget: (data) {
         return AbsorbPointer(
-          absorbing: !state.data,
+          absorbing: !data,
           child: LoadingButton(
               title: "Login",
               onTap: () {},
-              color: !state.data? context.colors.greyWhite :context.colors.primary,
-              textColor: !state.data? context.colors.black:context.colors.white,
+              color: !data ? context.colors.greyWhite : context.colors.primary,
+              textColor: !data ? context.colors.black : context.colors.white,
               btnKey: controller.btnKey,
               margin: const EdgeInsets.only(top: 40),
               fontSize: 16,
-              height: 55
-          ),
+              height: 55),
         );
       },
     );

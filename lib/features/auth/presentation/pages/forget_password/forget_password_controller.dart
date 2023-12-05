@@ -4,9 +4,9 @@ class ForgetPasswordController{
   GlobalKey<FormState> formKey = GlobalKey();
   GlobalKey<CustomButtonState> btnKey = GlobalKey();
 
-  final GenericBloc<String> phoneCubit = GenericBloc("");
+  final BaseBloc<String> phoneCubit = BaseBloc("");
 
-  onChangePhone(String value){
-    phoneCubit.onUpdateData(value);
+  void onChangePhone(String value){
+    phoneCubit.successState(value);
   }
 }

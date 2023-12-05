@@ -5,11 +5,13 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:flutter_tdd/core/errors/base_error.dart';
+import 'package:flutter_tdd/core/errors/not_found_error.dart';
+import 'package:flutter_tdd/core/errors/unauthorized_error.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../errors/failures.dart';
 import '../../../helpers/custom_toast.dart';
 
 @lazySingleton
@@ -69,11 +71,12 @@ class HandleErrors {
     }
   }
 
-  Either<ServerFailure, Response> statusError(
+  Either<BaseError, Response> statusError(
       Response response, Function(dynamic) errorFunc) {
-    if (!response.data["message"]) {
-      CustomToast.showSnakeBar(response.data["message"].toString());
-      return Left(ServerFailure());
+    if (response.statusCode == 401) {
+      return Left(UnauthorizedError());
+    }else if (response.statusCode == 404) {
+      return Left(NotFoundError());
     }
     return Right(response);
   }

@@ -2,21 +2,21 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../errors/failures.dart';
 import '../../models/http_request_model.dart';
 
 @lazySingleton
 class HandleJsonResponse<BaseModel> {
 
-  Future<Either<ServerFailure, BaseModel>> call(
-      Either<ServerFailure, Response> response,
+  Future<Either<BaseError, BaseModel>> call(
+      Either<BaseError, Response> response,
       ResType responseType,
       _ToJsonFunc toJsonFunc,
       _ResponseKeyFunc? dataKeyFun,
       ) async {
-    if (response.isLeft()) return Left(ServerFailure());
+    if (response.isLeft()) return Left(response.fold((l) => l, (r) => r.data));
     var responseData = response.fold((l) => null, (r) => r.data);
     switch (responseType) {
       case ResType.type:

@@ -4,10 +4,10 @@ class ActiveAccountController {
 
   final GlobalKey<CustomButtonState> btnKey = GlobalKey();
   String? code;
-  final GenericBloc<bool> codeCubit = GenericBloc(false);
+  final BaseBloc<bool> codeCubit = BaseBloc(false);
 
   void onComplete(String value){
-    codeCubit.onUpdateData(value.length==6);
+    codeCubit.successState(value.length==6);
     code = value;
   }
 

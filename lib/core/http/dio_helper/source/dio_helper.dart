@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_tdd/core/http/dio_helper/utils/auth_interceptor.dart';
-
-import '../../../errors/failures.dart';
+import 'package:flutter_tdd/core/errors/base_error.dart';
 import '../../../helpers/di.dart';
 import '../../generic_http/api_names.dart';
 import '../../models/request_body_model.dart';
@@ -27,5 +25,5 @@ abstract class DioHelper {
           logPrint: (data) => log(data.toString(),
           )));
 
-  Future<Either<ServerFailure, Response>> call(RequestBodyModel params);
+  Future<Either<BaseError, Response>> call(RequestBodyModel params);
 }
