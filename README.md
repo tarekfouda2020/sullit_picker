@@ -1,20 +1,16 @@
-# flutter_tdd
-
-A new Flutter project.
+# Base Flutter Project
+This project is a starting point for a Flutter application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+# the last changes in Base
+- allow multi flavors in one project to determine app name,logo and app id
+- add obs value and obs value consumer to build widget when value changed locally
+- add base bloc for build widget using states
+- add Requester and Requester Consumer to handle Get Requests with status and error handling
+- replace Either with Result
+- 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-To Build Release Version
+# To Build Release Version
 - dart lib/env/env_specific_handlers/flavor_handler.dart
 - flutter build apk --release --no-tree-shake-icons --dart-define-from-file=.run/json/dev.json  --flavor dev
