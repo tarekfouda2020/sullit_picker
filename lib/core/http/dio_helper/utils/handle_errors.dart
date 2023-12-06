@@ -1,14 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:flutter_tdd/core/errors/not_found_error.dart';
 import 'package:flutter_tdd/core/errors/unauthorized_error.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,14 +70,14 @@ class HandleErrors {
     }
   }
 
-  Either<BaseError, Response> statusError(
+  MyResult<Response> statusError(
       Response response, Function(dynamic) errorFunc) {
     if (response.statusCode == 401) {
-      return Left(UnauthorizedError());
+      return MyResult.isError(UnauthorizedError());
     }else if (response.statusCode == 404) {
-      return Left(NotFoundError());
+      return MyResult.isError(NotFoundError());
     }
-    return Right(response);
+    return MyResult.isSuccess(response);
   }
 
   void _tokenExpired() async {

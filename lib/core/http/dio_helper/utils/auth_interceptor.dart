@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/http/dio_helper/actions/post.dart';
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/models/request_body_model.dart';
@@ -64,18 +63,18 @@ class AuthInterceptor extends Interceptor {
       );
       final result = await getIt<Post>()(params);
 
-      if (result.isRight()) {
-        var response = result.fold((l) => null, (r) => r);
+      return result.when(isSuccess: (response) {
         Map<String, dynamic> data = response!.data;
         String? accessToken = data['result'];
         if (accessToken != null && (accessToken.isNotEmpty)) {
           pref.setString("token", accessToken);
           pref.setString("refreshToken", refreshToken ?? "");
-
           return Future.value(true);
         }
-      }
-      return Future.value(false);
+        return Future.value(false);
+      }, isError: (error) {
+        return Future.value(false);
+      });
     } catch (error, s) {
       log('refreshToken in AuthInterceptor error $error | s $s');
       return Future.value(false);

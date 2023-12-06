@@ -1,9 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:flutter_tdd/core/errors/custom_error.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../helpers/loading_helper.dart';
@@ -15,7 +13,7 @@ import '../utils/handle_errors.dart';
 class Delete extends DioHelper {
 
   @override
-  Future<Either<BaseError,Response>> call(
+  Future<MyResult<Response>> call(
       RequestBodyModel params) async {
     if (params.showLoader) getIt<LoadingHelper>().showLoadingDialog();
     try {
@@ -25,7 +23,7 @@ class Delete extends DioHelper {
     } on DioException catch (e) {
       if (params.showLoader) getIt<LoadingHelper>().dismissDialog();
       getIt<HandleErrors>().catchError(errorFunc: params.errorFunc, response: e.response);
-      return Left(CustomError(msg: e.message.toString()));
+      return MyResult.isError(CustomError(msg: e.message.toString()));
     }
   }
 }
