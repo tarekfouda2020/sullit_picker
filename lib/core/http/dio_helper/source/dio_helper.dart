@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:dartz/dartz.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';

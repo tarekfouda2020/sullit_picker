@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:dartz/dartz.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:flutter_tdd/core/errors/custom_error.dart';

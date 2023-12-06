@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/core/models/model_to_domain/model_to_domain.dart';
