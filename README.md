@@ -9,7 +9,11 @@ This project is a starting point for a Flutter application.
 - add base bloc for build widget using states
 - add Requester and Requester Consumer to handle Get Requests with status and error handling
 - replace Either with Result
-- 
+- add shimmer widgets
+- add base option field to replace dropdown field
+- add app bottom sheets
+- add app buttons
+- add app text spans
 
 # To Build Release Version
 - dart lib/env/env_specific_handlers/flavor_handler.dart

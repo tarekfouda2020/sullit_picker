@@ -14,6 +14,8 @@ abstract class AppColors {
   static final AppDarkColors _dark = AppDarkColors();
   static final AppLightColors _light = AppLightColors();
 
+  static AppColors get fixedColors => _light;
+
   static const Color snackBarGreenSuccess = Color(0xff03A89E);
   static const Color snackBarRedError = Color(0xffBF1C00);
   static const Color snackBarYellowAlert = Color(0xfffea632);
