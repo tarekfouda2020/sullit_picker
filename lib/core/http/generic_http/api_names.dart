@@ -3,10 +3,10 @@ class ApiNames{
   //production
   // static const String baseUrl = "https://n10.chain.futiracoin.com/";
   //development
-  static const String baseUrl = "http://sismanage-dev.ddns.net:30/api/";
+  static const String baseUrl = "https://mainstaging.labayh.net/api/";
 
   // auth routes
-  static const String login = "auth/login";
+  static const String login = "auth";
   static const String savePublicKey = "users/";
   static const String updateUser = "users/";
   static const String register = "auth/create_account";
