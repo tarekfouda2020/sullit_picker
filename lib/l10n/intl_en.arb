@@ -41,5 +41,10 @@
   "add_new_item": "Add new item",
   "cancel": "Cancel",
   "save": "Save",
-  "failureActions": "Failure Actions"
+  "failureActions": "Failure Actions",
+  "access_denied": "Access denied",
+  "camera": "Camera",
+  "pick": "Pick",
+  "retry": "Retry",
+  "size_more_than_mg_error": "Files size must be less than {MB} MB, {files}"
 }

@@ -1,37 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import 'custom_toast.dart';
 
 
-class HelperMethods{
 
-  HelperMethods._();
+class StorageHelper{
 
-  static HelperMethods get instance => HelperMethods._();
+  StorageHelper._();
 
-  void launchURL({required String url}) async {
-    if (!url.toString().startsWith("https")) {
-      url = "https://$url";
-    }
-    var uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      CustomToast.showSimpleToast(msg: "من فضلك تآكد من الرابط");
-    }
-  }
-
-  void launchWhatsApp(phone) async {
-    String message = 'مرحبا بك';
-    var whatsUrl = "https://api.whatsapp.com/send?phone=+$phone&text=$message";
-    var uri = Uri.parse(whatsUrl);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      CustomToast.showSimpleToast(msg: 'حدث خطأ ما');
-    }
-  }
+  static StorageHelper get instance => StorageHelper._();
 
   void clearSavedData()async{
     SharedPreferences pref = await SharedPreferences.getInstance();

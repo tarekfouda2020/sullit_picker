@@ -41,7 +41,12 @@
   "add_new_item": "إضافة عنصر جديد",
   "cancel": "إلغاء",
   "save": "حفظ",
-  "failureActions": "إجراءات الفشل"
+  "failureActions": "إجراءات الفشل",
+  "access_denied": "تم رفض الوصول",
+  "camera": "الكاميرا",
+  "pick": "اختيار",
+  "retry": "إعادة المحاولة",
+  "size_more_than_mg_error": "يجب أن تكون حجم الملفات التالية أقل من {MB} ميحابيت, {files}"
 }
 
 

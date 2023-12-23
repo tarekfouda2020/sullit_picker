@@ -469,6 +469,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Access denied`
+  String get access_denied {
+    return Intl.message(
+      'Access denied',
+      name: 'access_denied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick`
+  String get pick {
+    return Intl.message(
+      'Pick',
+      name: 'pick',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Files size must be less than {MB} MB, {files}`
+  String size_more_than_mg_error(Object MB, Object files) {
+    return Intl.message(
+      'Files size must be less than $MB MB, $files',
+      name: 'size_more_than_mg_error',
+      desc: '',
+      args: [MB, files],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

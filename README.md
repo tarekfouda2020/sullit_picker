@@ -22,6 +22,13 @@ This project is a starting point for a Flutter application.
 - use factory constructors when needed
 - use when in multi conditions
 - please separate  package in helper and make it easy to be replaced when needed
+- use isNullEmptyOrWhitespace to check if string is null or empty or whitespace
+- use isNullOrEmpty to check if list is null or empty
+- use SvgIconWrapper to call svg icons
+- use AppSnackBar to show snack bar or toast
+- use file service to handle files
+- use permission service to handle permissions
+- use share service to share data like (open link, call number, send email, share text, share file)
 
 
 # Localizations

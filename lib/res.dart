@@ -13,4 +13,7 @@ class Res {
   static const String password = "assets/images/password.svg";
   static const String offline = "assets/images/offline.png";
   static const String appLoaderBg = "assets/images/appLoaderBg.png";
+  static const String errorSnackBar = "assets/images/error_snack_bar.svg";
+  static const String warningSnackBar = "assets/images/warning_snack_bar.svg";
+  static const String successSnackBar = "assets/images/success_snack_bar.svg";
 }

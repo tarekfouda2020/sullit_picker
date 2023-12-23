@@ -20,13 +20,18 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(MB, files) =>
+      "Files size must be less than ${MB} MB, ${files}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "AddressValidation":
             MessageLookupByLibrary.simpleMessage("Please enter the address"),
+        "access_denied": MessageLookupByLibrary.simpleMessage("Access denied"),
         "add_new_item": MessageLookupByLibrary.simpleMessage("Add new item"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirmValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter the password identical"),
@@ -85,7 +90,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Should have Upper and Lower case, numbers and special characters"),
         "phoneValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid mobile phone"),
+        "pick": MessageLookupByLibrary.simpleMessage("Pick"),
+        "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "size_more_than_mg_error": m0,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("TRY AGAIN")

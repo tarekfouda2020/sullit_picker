@@ -4,14 +4,15 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:flutter_tdd/core/errors/custom_error.dart';
 import 'package:flutter_tdd/core/errors/not_found_error.dart';
 import 'package:flutter_tdd/core/errors/unauthorized_error.dart';
+import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../helpers/custom_toast.dart';
 
 @lazySingleton
 class HandleErrors {
@@ -20,7 +21,7 @@ class HandleErrors {
       required Function(dynamic) errorFunc}) {
     if (response == null) {
       log("failed response Check Server");
-      CustomToast.showSimpleToast(msg: "Check Server");
+      AppSnackBar.showSimpleToast(msg: "Check Server");
     } else {
       log("failed response ${response.statusCode}");
       log("failed response ${response.data}");
@@ -34,16 +35,16 @@ class HandleErrors {
         switch (response.statusCode) {
           case 503:
           case 404:
-            CustomToast.showSnakeBar(message);
+            AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
             if (message == "Not Authorized") {
               _tokenExpired();
             }
             break;
           case 500:
-            CustomToast.showSnakeBar(message.toString());
+            AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
             break;
           case 502:
-            CustomToast.showSnakeBar("check your request");
+            AppSnackBar.showErrorSnackBar(error: CustomError(msg: "check your request"));
             break;
           case 422:
           case 400:
@@ -52,10 +53,10 @@ class HandleErrors {
               log("response errors $errors");
               List<String> lst = List<String>.from(data["errors"].map((e) => e["msg"]));
               for (var e in lst) {
-                CustomToast.showSnakeBar(e);
+                AppSnackBar.showErrorSnackBar(error: CustomError(msg: e));
               }
             } else {
-              CustomToast.showSnakeBar(message);
+              AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
             }
             break;
           case 401:
@@ -65,7 +66,7 @@ class HandleErrors {
             break;
         }
       } catch (e) {
-        CustomToast.showSnakeBar(e.toString());
+        AppSnackBar.showErrorSnackBar(error: CustomError(msg: e.toString()));
       }
     }
   }
