@@ -19,7 +19,7 @@ class ApplicationConstants {
   static String logoPathPng = "assets/images/${ApplicationConstants.logoVarName}.png";
 
   static BoxConstraints get textFieldConstrains =>
-      const BoxConstraints(minHeight: 42, maxHeight: 42);
+      const BoxConstraints(minHeight: 50, maxHeight: 50);
 
   static BoxConstraints? fromHeight(double? height) =>
       height!=null?BoxConstraints(minHeight: height, maxHeight: height):null;

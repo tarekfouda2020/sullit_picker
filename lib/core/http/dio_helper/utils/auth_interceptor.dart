@@ -54,7 +54,7 @@ class AuthInterceptor extends Interceptor {
       final resistanceAccessToken = pref.getString("token");
 
       RequestBodyModel params = RequestBodyModel(
-        url: ApiNames.ITEMS,
+        url: ApiNames.refreshToken,
         body: {
           'accessToken': resistanceAccessToken,
           'refreshToken': refreshToken,
@@ -82,24 +82,24 @@ class AuthInterceptor extends Interceptor {
   }
 
   Future<bool> _retry(
-    DioException DioException,
+    DioException dioException,
     ErrorInterceptorHandler handler,
   ) async {
     try {
       final dio = Dio();
       final resistanceAccessToken = pref.getString("token");
 
-      DioException.requestOptions.headers["Authorization"] = "Bearer ${resistanceAccessToken!}";
+      dioException.requestOptions.headers["Authorization"] = "Bearer ${resistanceAccessToken!}";
 
       //create request with new access token
       final opts = Options(
-        method: DioException.requestOptions.method,
-        headers: DioException.requestOptions.headers,
+        method: dioException.requestOptions.method,
+        headers: dioException.requestOptions.headers,
       );
-      final cloneReq = await dio.request(DioException.requestOptions.path,
+      final cloneReq = await dio.request(dioException.requestOptions.path,
           options: opts,
-          data: DioException.requestOptions.data,
-          queryParameters: DioException.requestOptions.queryParameters);
+          data: dioException.requestOptions.data,
+          queryParameters: dioException.requestOptions.queryParameters);
 
       handler.resolve(cloneReq);
       return Future.value(true);

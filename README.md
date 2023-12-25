@@ -29,6 +29,7 @@ This project is a starting point for a Flutter application.
 - use file service to handle files
 - use permission service to handle permissions
 - use share service to share data like (open link, call number, send email, share text, share file)
+- use AppLoaderWidget to show loader using it's factory constructor
 
 
 # Localizations

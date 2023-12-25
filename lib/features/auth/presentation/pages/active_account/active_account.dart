@@ -2,10 +2,11 @@ part of 'active_account_imports.dart';
 
 @RoutePage()
 class ActiveAccount extends StatefulWidget {
-  const ActiveAccount({Key? key}) : super(key: key);
+  const ActiveAccount({super.key});
 
   @override
-  _ActiveAccountState createState() => _ActiveAccountState();
+  State<StatefulWidget> createState() => _ActiveAccountState();
+
 }
 
 class _ActiveAccountState extends State<ActiveAccount> {
@@ -20,15 +21,15 @@ class _ActiveAccountState extends State<ActiveAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.white,
-      appBar: const BuildAuthAppBar(),
+      appBar: const AuthAppBarWidget(),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         children: [
-          const BuildHeaderTitle(
+          const AuthHeaderTitleWidget(
             title: "Enter your security code",
             subTitle: "In order for us to be able to reset your password, please enter your phone number below.",
           ),
-          BuildPinField(
+          PinFieldWidget(
             onComplete: controller.onComplete,
           ),
           BuildActiveButton(controller: controller),

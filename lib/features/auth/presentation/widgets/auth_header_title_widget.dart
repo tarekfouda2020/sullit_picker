@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
-
-class BuildHeaderTitle extends StatelessWidget {
+class AuthHeaderTitleWidget extends StatelessWidget {
   final String title;
   final String subTitle;
 
-  const BuildHeaderTitle({
-    Key? key,
+  const AuthHeaderTitleWidget({
+    super.key,
     required this.title,
     required this.subTitle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

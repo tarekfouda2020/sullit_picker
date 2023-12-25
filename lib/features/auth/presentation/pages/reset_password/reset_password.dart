@@ -2,10 +2,11 @@ part of'reset_password_imports.dart';
 
 @RoutePage()
 class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+  const ResetPassword({super.key});
 
   @override
-  _ResetPasswordState createState() => _ResetPasswordState();
+  State<StatefulWidget> createState() => _ResetPasswordState();
+
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
@@ -13,11 +14,11 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildAuthAppBar(),
+      appBar: const AuthAppBarWidget(),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
         children: [
-          BuildHeaderTitle(
+          const AuthHeaderTitleWidget(
             title: "Set new password",
             subTitle: "In order for us to be able to reset your password, please Enter your phone number below",
           ),

@@ -3,14 +3,14 @@ import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class BuildPinField extends StatelessWidget {
+class PinFieldWidget extends StatelessWidget {
   final Function(String) onComplete;
   final EdgeInsetsGeometry? margin;
 
-  const BuildPinField({
-    Key? key,
+  const PinFieldWidget({
+    super.key,
     required this.onComplete, this.margin,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

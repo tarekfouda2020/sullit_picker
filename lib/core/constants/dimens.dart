@@ -49,5 +49,5 @@ class Dimens {
   static const double searchBarHeight = 56;
 
   static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(20));
-  static const BorderRadius borderRadius5PX = BorderRadius.all(Radius.circular(5));
+  static const BorderRadius borderRadius5PX = BorderRadius.all(Radius.circular(10));
 }

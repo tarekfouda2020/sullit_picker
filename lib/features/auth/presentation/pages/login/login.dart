@@ -2,10 +2,11 @@ part of 'login_imports.dart';
 
 @RoutePage()
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
-  _LoginState createState() => _LoginState();
+  State<StatefulWidget> createState() => _LoginState();
+
 }
 
 class _LoginState extends State<Login> {
@@ -15,7 +16,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: const BuildAuthAppBar(showBack: false),
+      appBar: const AuthAppBarWidget(showBack: false),
       body: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
         child: ListView(

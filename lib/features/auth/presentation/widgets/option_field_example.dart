@@ -24,7 +24,7 @@ class _OptionFieldExampleState extends State<OptionFieldExample> {
       hintText: Translate.of(context).failureActions,
       bottomSheetTitle: Translate.of(context).failureActions,
       showSearch: false,
-      isMultiple: true,
+      isMultiple: false,
       showDecoration: true,
       optionsRequester: LocalOptionsRequester(
         valueMainTitleGetter: (value) => value?.firstName??"",
@@ -48,13 +48,17 @@ class _OptionFieldExampleState extends State<OptionFieldExample> {
       valueIdGetter: (value) => value?.id,
       valueMainTitleGetter: (value) => value?.firstName,
       onSaveValue: (actions, iMultiple) {
-        selectedUsers = actions??[];
+        setState(() {
+          selectedUsers = actions??[];
+        });
       },
       onClearPressed: () {
-        selectedUsers = [];
+        setState(() {
+          selectedUsers = [];
+        });
       },
     );
   }
 
-  List<UserDomainModel> _getOptions() => [UserDomainModel(email: "", firstName: "",id: "1", lastName: "", phone: ""), UserDomainModel(email: "", firstName: "",id: "2", lastName: "", phone: ""),];
+  List<UserDomainModel> _getOptions() => [UserDomainModel(email: "", firstName: "tarek",id: "1", lastName: "", phone: ""), UserDomainModel(email: "", firstName: "fouda",id: "2", lastName: "", phone: ""),];
 }

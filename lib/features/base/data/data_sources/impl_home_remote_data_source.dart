@@ -13,7 +13,7 @@ class ImplHomeRemoteDataSource extends HomeRemoteDataSource {
   @override
   Future<MyResult<UserModel>> getUser(bool param) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.ADS,
+      url: ApiNames.updateUser,
       requestMethod: RequestMethod.get,
       responseType: ResType.list,
       refresh: param,

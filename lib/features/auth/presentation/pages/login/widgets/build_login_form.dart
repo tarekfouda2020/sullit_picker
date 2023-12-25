@@ -11,6 +11,7 @@ class BuildLoginForm extends StatelessWidget {
       key: controller.formKey,
       child: Column(
         children: [
+          const OptionFieldExample(),
           GenericTextField(
             fieldTypes: FieldTypes.normal,
             type: TextInputType.phone,

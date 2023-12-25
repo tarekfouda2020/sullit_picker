@@ -9,7 +9,7 @@ class HintText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
         hintText,
-        style: AppTextStyle.s12_w400(color: context.colors.blackOpacity)
+        style: AppTextStyle.s14_w400(color: context.colors.blackOpacity)
     );
   }
 }

@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
-
-class BuildAuthAppBar extends StatelessWidget implements PreferredSizeWidget {
+class AuthAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final Function()? onBack;
   final bool showBack;
-  const BuildAuthAppBar({Key? key, this.title, this.onBack, this.showBack = true}) : super(key: key);
+  const AuthAppBarWidget({Key? key, this.title, this.onBack, this.showBack = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

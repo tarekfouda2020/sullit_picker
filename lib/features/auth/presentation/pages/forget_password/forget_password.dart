@@ -2,10 +2,12 @@ part of'forget_password_imports.dart';
 
 @RoutePage()
 class ForgetPassword extends StatefulWidget {
-  const ForgetPassword({Key? key}) : super(key: key);
+  const ForgetPassword({super.key});
 
   @override
-  _ForgetPasswordState createState() => _ForgetPasswordState();
+  State<StatefulWidget> createState() => _ForgetPasswordState();
+
+
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
@@ -13,10 +15,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildAuthAppBar(),
+      appBar: const AuthAppBarWidget(),
       body: ListView(padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
           children: [
-            BuildHeaderTitle(
+            const AuthHeaderTitleWidget(
               title: "Reset your password",
               subTitle: "In order for us to be able to reset your password, please Enter your phone number below",
             ),

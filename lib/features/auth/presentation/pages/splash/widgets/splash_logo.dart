@@ -1,7 +1,6 @@
 part of 'splash_widgets_imports.dart';
-
-class BuildSplashLogo extends StatelessWidget {
-  const BuildSplashLogo({Key? key}) : super(key: key);
+class SplashLogo extends StatelessWidget {
+  const SplashLogo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

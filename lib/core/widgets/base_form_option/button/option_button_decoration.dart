@@ -22,7 +22,7 @@ class OptionButtonDecoration extends StatelessWidget {
           color: context.colors.background,
           borderRadius: Dimens.borderRadius5PX,
           border:border?? Border.all(color: context
-              .colors.greyWhite, width: 1),
+              .colors.greyWhite),
       ),
       child: child,
     );

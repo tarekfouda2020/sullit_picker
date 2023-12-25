@@ -29,7 +29,7 @@ class AppTextSpanWithSeparator extends StatelessWidget {
           },
         ),
         style: style ??
-            AppTextStyle.s12_w400(
+            AppTextStyle.s16_w400(
               color: context.colors.blackOpacity,
             ),
       ),
