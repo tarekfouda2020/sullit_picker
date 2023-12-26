@@ -32,4 +32,7 @@ class AppLightColors extends AppColors {
   @override
   Color get disableGray=> const Color(0xFFCBCBCB);
 
+  @override
+  Color get green=>  Colors.green;
+
 }

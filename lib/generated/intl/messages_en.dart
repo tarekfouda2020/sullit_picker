@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Failure Actions"),
         "fillField":
             MessageLookupByLibrary.simpleMessage("Please enter this field"),
+        "internet_connected":
+            MessageLookupByLibrary.simpleMessage("Internet connected"),
         "label_Login": MessageLookupByLibrary.simpleMessage("Login"),
         "label_app_language": MessageLookupByLibrary.simpleMessage("Language"),
         "label_change_language":
@@ -86,6 +88,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
         "nameValidation": MessageLookupByLibrary.simpleMessage(
             "Should be more than 8 and less than 30"),
+        "no_internet_connection":
+            MessageLookupByLibrary.simpleMessage("No internet connection"),
         "passValidation": MessageLookupByLibrary.simpleMessage(
             "Should have Upper and Lower case, numbers and special characters"),
         "phoneValidation": MessageLookupByLibrary.simpleMessage(

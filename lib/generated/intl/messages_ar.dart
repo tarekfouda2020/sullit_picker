@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكد من إتصالك بالانترنيت"),
         "failureActions": MessageLookupByLibrary.simpleMessage("إجراءات الفشل"),
         "fillField": MessageLookupByLibrary.simpleMessage("الرجاء ملء الحقل"),
+        "internet_connected":
+            MessageLookupByLibrary.simpleMessage("تم الاتصال بالانترنت"),
         "label_Login": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
         "label_app_language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "label_change_language":
@@ -85,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("من فضلك ادخل البريد صحيحا"),
         "nameValidation": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون أكثر من ٨ احرف واقل من ٣٠"),
+        "no_internet_connection":
+            MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالانترنت"),
         "passValidation": MessageLookupByLibrary.simpleMessage(
             "من فضلك ادخل على الاقل 6 حروف او ارقام"),
         "phoneValidation":

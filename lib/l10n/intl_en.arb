@@ -46,5 +46,7 @@
   "camera": "Camera",
   "pick": "Pick",
   "retry": "Retry",
-  "size_more_than_mg_error": "Files size must be less than {MB} MB, {files}"
+  "size_more_than_mg_error": "Files size must be less than {MB} MB, {files}",
+  "no_internet_connection": "No internet connection",
+  "internet_connected": "Internet connected"
 }

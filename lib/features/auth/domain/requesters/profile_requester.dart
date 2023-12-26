@@ -10,14 +10,16 @@ class ProfileRequester extends Requester<UserDomainModel> {
       loadingState();
     }
     var result = await getIt.get<BaseRepository>().getUser(fromRemote);
-    result.when(isSuccess: (data) {
-      successState(data!);
-    }, isError: (error) {
-      failedState(error, () {
-        request(fromRemote: fromRemote);
-      });
-    });
+    result.when(
+      isSuccess: (data) {
+        successState(data!);
+      },
+      isError: (error) {
+        failedState(error, () {
+          request(fromRemote: fromRemote);
+        });
+      },
+    );
   }
-
 
 }

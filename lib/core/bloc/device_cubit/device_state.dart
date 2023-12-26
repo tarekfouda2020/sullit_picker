@@ -14,11 +14,12 @@ class DeviceInitial extends DeviceState {
       isTablet: false,
       isBundle: false,
       isSmallPhone: false,
+      isNetworkConnected: true,
       locale: const Locale('en', 'US'),
       themeMode: AdaptiveThemeMode.light,
   ));
 }
 
 class DeviceUpdateState extends DeviceState {
-  const DeviceUpdateState(DeviceModel model) : super(model);
+  const DeviceUpdateState(super.model);
 }

@@ -1,8 +1,9 @@
 
 import 'package:dio/dio.dart';
-import 'package:flutter_tdd/core/errors/base_error.dart';
-import 'package:flutter_tdd/core/errors/connection_error.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:injectable/injectable.dart';
 
@@ -33,10 +34,9 @@ class GenericHttpImpl<T> extends GenericHttp<T> {
       errorFunc: model.errorFunc ?? (data) => data,
       body: model.requestBody ?? {},
     );
-    final connected = await getIt<NetworkInfoImpl>().isConnected;
-    if (!connected) {
-      return MyResult.isError(ConnectionError());
-    }
+
+    await _checkInternetConnection();
+
     MyResult<Response> response;
     switch (model.requestMethod) {
       case RequestMethod.get:
@@ -64,5 +64,17 @@ class GenericHttpImpl<T> extends GenericHttp<T> {
     return customType;
   }
 
+  Future<void> _checkInternetConnection() async {
+    var context = getIt<GlobalContext>().context();
+    await getIt<NetworkInfoImpl>().isConnected.then((connected) async {
+      context.read<DeviceCubit>().setNetworkStatus(connected);
+      if (!connected) {
+        await Future.delayed(const Duration(seconds: 5), ()async {
+          await _checkInternetConnection();
+        });
+      }
+    });
+
+  }
 
 }

@@ -11,6 +11,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/routes/router_imports.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
 import 'package:flutter_tdd/core/theme/themes/app_light_theme.dart';
+import 'package:flutter_tdd/core/widgets/network_layer/network_layer_widget.dart';
 
 import 'core/helpers/firebase_analytics_helper.dart';
 import 'core/helpers/general_providers.dart';
@@ -24,7 +25,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     getIt<FirebaseAnalyticsHelper>()
@@ -63,17 +63,19 @@ class _MyAppState extends State<MyApp> {
                     GlobalWidgetsLocalizations.delegate,
                     GlobalCupertinoLocalizations.delegate,
                   ],
-                  routerDelegate: getIt.get<AppRouter>().delegate(
-                      navigatorObservers: () {
-                        return [
-                          FirebaseAnalyticsObserver(
-                              analytics: getIt<FirebaseAnalyticsHelper>().analytics)
-                        ];
-                      }),
+                  routerDelegate: getIt.get<AppRouter>().delegate(navigatorObservers: () {
+                    return [
+                      FirebaseAnalyticsObserver(
+                          analytics: getIt<FirebaseAnalyticsHelper>().analytics)
+                    ];
+                  }),
                   routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
                   builder: EasyLoading.init(builder: (ctx, child) {
                     ScreenUtil.init(ctx);
-                    return child!;
+                    return NetworkLayerWidget(
+                      isNetworkConnected: state.model.isNetworkConnected,
+                      child: child!,
+                    );
                   }),
                 );
               });

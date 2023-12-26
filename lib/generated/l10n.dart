@@ -519,6 +519,26 @@ class S {
       args: [MB, files],
     );
   }
+
+  /// `No internet connection`
+  String get no_internet_connection {
+    return Intl.message(
+      'No internet connection',
+      name: 'no_internet_connection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internet connected`
+  String get internet_connected {
+    return Intl.message(
+      'Internet connected',
+      name: 'internet_connected',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
