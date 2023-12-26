@@ -13,13 +13,12 @@ class RequesterConsumer<T> extends StatelessWidget {
   final Widget Function(BuildContext context) loadingBuilder;
 
   const RequesterConsumer(
-      {Key? key,
+      {super.key,
       required this.requester,
       required this.successBuilder,
       required this.failureBuilder,
       required this.loadingBuilder,
-      this.listener})
-      : super(key: key);
+      this.listener});
 
   @override
   Widget build(BuildContext context) {

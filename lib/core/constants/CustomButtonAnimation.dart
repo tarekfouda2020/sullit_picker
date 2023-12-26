@@ -57,9 +57,9 @@ class CustomButtonAnimation extends StatefulWidget {
         this.disabledElevation,
         this.disabledColor,
         this.disabledTextColor,
-        Key? key,
+        super.key,
       }):assert(elevation == null || elevation >= 0.0),
-        assert(disabledElevation == null || disabledElevation >= 0.0),super(key: key);
+        assert(disabledElevation == null || disabledElevation >= 0.0);
 
   @override
   CustomButtonState createState() => CustomButtonState();
@@ -147,7 +147,7 @@ class CustomButtonState extends State<CustomButtonAnimation>
   }
 
   Widget buttonBody() {
-    return Container(
+    return SizedBox(
       height: widget.height,
       width: lerpWidth(widget.width, minWidth, _animation.value),
       child: ButtonTheme(
@@ -162,7 +162,7 @@ class CustomButtonState extends State<CustomButtonAnimation>
         child: ElevatedButton(
             // key: _buttonKey,
           style: ElevatedButton.styleFrom(
-            primary: widget.color,
+            backgroundColor: widget.color,
             elevation: widget.elevation,
             padding: widget.padding,
             shape: RoundedRectangleBorder(

@@ -9,12 +9,12 @@ class SearchFormField extends StatefulWidget {
   final String? searchHint;
 
   const SearchFormField({
-    Key? key,
+    super.key,
     this.onSubmit,
     this.onChange,
     this.onFocus,
     this.searchHint,
-  }) : super(key: key);
+  });
 
   @override
   State<SearchFormField> createState() => _SearchFormFieldState();
@@ -63,7 +63,7 @@ class _SearchFormFieldState extends State<SearchFormField> {
   Widget build(BuildContext context) {
     _expandSearchFieldWidth = MediaQuery.of(context).size.width;
     return AnimatedContainer(
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
       width: _isSearchFieldExpand ? _expandSearchFieldWidth : _collapsedSearchFieldWidth,
       height: _isSearchFieldExpand ? 32.h : 28.h,
       padding: EdgeInsets.zero,
@@ -78,11 +78,11 @@ class _SearchFormFieldState extends State<SearchFormField> {
         decoration: InputDecoration(
             hintText: widget.searchHint??"Search",
             contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
-            fillColor: Color(0xFFF7F7F7),
+            fillColor: const Color(0xFFF7F7F7),
             filled: true,
             hintStyle: TextStyle(
                 fontSize: 12.sp,
-                color: Color.fromRGBO(151, 151, 151, 1),
+                color: const Color.fromRGBO(151, 151, 151, 1),
                 fontWeight: FontWeight.w400),
             prefixIcon: InkWell(
               onTap: () {
@@ -90,7 +90,7 @@ class _SearchFormFieldState extends State<SearchFormField> {
                   widget.onSubmit!(_searchController.text);
                 }
               },
-              child: Icon(Icons.search_rounded, color: Color(0xFF6E6E6E), size: 20),
+              child: const Icon(Icons.search_rounded, color: Color(0xFF6E6E6E), size: 20),
             ),
             border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(99)), borderSide: BorderSide.none)),

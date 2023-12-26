@@ -15,14 +15,14 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool? centerTitle;
 
   const DefaultAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.actions = const [],
     this.leading,
     this.size,
     this.showBack = true,
     this.centerTitle,
-  }):super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

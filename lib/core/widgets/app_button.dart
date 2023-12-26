@@ -13,7 +13,7 @@ enum _AppTextButton {
 
 class AppTextButton extends StatelessWidget {
   const AppTextButton._(
-      {Key? key,
+      {super.key,
       required _AppTextButton appTextButton,
       required this.text,
       required this.enabled,
@@ -26,8 +26,7 @@ class AppTextButton extends StatelessWidget {
         _textColor = txtColor,
         _bgColor = bgColor,
         maxHeight = maxHeight ?? 52,
-        _textSize = textSize,
-        super(key: key);
+        _textSize = textSize;
 
   final _AppTextButton _appTextButton;
   final String text;

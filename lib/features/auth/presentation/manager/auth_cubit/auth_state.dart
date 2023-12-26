@@ -6,14 +6,14 @@ abstract class AuthState extends Equatable {
 }
 
 class AuthInitial extends AuthState {
-  AuthInitial() : super(true);
+  const AuthInitial() : super(true);
 
   @override
   List<Object> get props => [authorized];
 }
 
 class AuthUpdated extends AuthState {
-  AuthUpdated(bool authorized) : super(authorized);
+  const AuthUpdated(super.authorized);
 
   @override
   List<Object> get props => [authorized];

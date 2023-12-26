@@ -87,14 +87,12 @@ class _CustomSnackBar extends SnackBar {
   final String? callbackMessage;
 
   _CustomSnackBar({
-    Key? key,
     required this.color,
     required this.icon,
     required this.message,
     this.callback,
     this.callbackMessage, Color? iconColor,
   }) : super(
-            key: key,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -118,13 +116,12 @@ class _SnackBarWidget extends StatelessWidget {
   final Color? iconColor;
 
   const _SnackBarWidget({
-    Key? key,
     required this.icon,
     required this.message,
     required this.color,
     this.callback,
     this.callbackMessage, required this.iconColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

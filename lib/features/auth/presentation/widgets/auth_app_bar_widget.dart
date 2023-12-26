@@ -7,7 +7,7 @@ class AuthAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final Function()? onBack;
   final bool showBack;
-  const AuthAppBarWidget({Key? key, this.title, this.onBack, this.showBack = true}) : super(key: key);
+  const AuthAppBarWidget({super.key, this.title, this.onBack, this.showBack = true});
 
   @override
   Widget build(BuildContext context) {
@@ -27,5 +27,5 @@ class AuthAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(65);
+  Size get preferredSize => const Size.fromHeight(65);
 }

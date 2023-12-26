@@ -21,7 +21,7 @@ class LoadingButton extends StatelessWidget {
   final FontWeight? fontWeight;
 
 
-  LoadingButton({
+  const LoadingButton({super.key, 
     required this.title,
     required this.onTap,
     this.color,
@@ -54,18 +54,18 @@ class LoadingButton extends StatelessWidget {
             color: color ?? context.colors.primary,
             borderRadius: borderRadius ?? 10,
             borderSide: BorderSide(color: borderColor ?? border, width: 1),
-            child: Text(
-               title,
-              style: AppTextStyle.s12_w500(color: textColor ?? Colors.white).copyWith(
-                fontFamily: fontFamily,
-                fontWeight: fontWeight,
-              ),
-            ),
             loader: Container(
               padding: const EdgeInsets.all(10),
               child: const SpinKitRotatingCircle(
                 color: Colors.white,
                 size: 20,
+              ),
+            ),
+            child: Text(
+               title,
+              style: AppTextStyle.s12_w500(color: textColor ?? Colors.white).copyWith(
+                fontFamily: fontFamily,
+                fontWeight: fontWeight,
               ),
             ),
           ),

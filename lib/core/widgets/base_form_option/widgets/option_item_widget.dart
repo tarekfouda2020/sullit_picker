@@ -13,7 +13,7 @@ class OptionItemWidget extends StatelessWidget {
   final String? suffixText;
 
   const OptionItemWidget({
-    Key? key,
+    super.key,
     required this.title,
     this.prefix,
     this.prefixGap = 8,
@@ -21,7 +21,7 @@ class OptionItemWidget extends StatelessWidget {
     this.onTap,
     this.constraints,
     this.suffixText,
-  }) : super(key: key);
+  });
 
 
   TextStyle  _textStyle(BuildContext context) => titleTextStyle??AppTextStyle.s12_w400(

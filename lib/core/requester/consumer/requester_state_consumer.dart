@@ -9,11 +9,11 @@ class RequesterStateConsumer<T> extends StatelessWidget {
   final Widget Function(BuildContext context, RequesterState<T> state) builder;
 
   const RequesterStateConsumer({
-    Key? key,
+    super.key,
     required this.requester,
     required this.builder,
     this.listener,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -35,7 +35,7 @@ class PinFieldWidget extends StatelessWidget {
             activeFillColor: context.colors.white,
             disabledColor: context.colors.black,
         ),
-        animationDuration: Duration(milliseconds: 300),
+        animationDuration: const Duration(milliseconds: 300),
         enableActiveFill: true,
         onCompleted: onComplete,
       ),

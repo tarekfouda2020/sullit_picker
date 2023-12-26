@@ -101,6 +101,10 @@ dev_dependencies:
   flutter_lints: ^3.0.1
 
 
+flutter_intl:
+  main_locale: en
+  enabled: true
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true

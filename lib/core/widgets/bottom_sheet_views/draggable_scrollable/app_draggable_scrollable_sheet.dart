@@ -5,10 +5,10 @@ class AppDraggableScrollableSheet extends StatelessWidget {
   final double? childSize;
 
   const AppDraggableScrollableSheet({
-    Key? key,
+    super.key,
     required this.builder,
     this.childSize,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -7,12 +7,12 @@ class ObsValueConsumer<T> extends StatelessWidget {
   final bool Function(T, T)? buildWhen;
 
   const ObsValueConsumer({
-    Key? key,
+    super.key,
     required this.observable,
     required this.builder,
     this.listener,
     this.buildWhen,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
