@@ -19,4 +19,6 @@ class UserDomainModel extends BaseDomainModel {
 
   String get getFullName => firstName + lastName;
 
+
+
 }

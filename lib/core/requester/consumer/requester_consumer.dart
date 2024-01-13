@@ -7,7 +7,7 @@ import 'package:flutter_tdd/core/requester/state/requester_state.dart';
 class RequesterConsumer<T> extends StatelessWidget {
   final Requester<T> requester;
   final void Function(BuildContext context, RequesterState<T> state)? listener;
-  final Widget Function(BuildContext context, T data, bool isLoading) successBuilder;
+  final Widget Function(BuildContext context, T data) successBuilder;
   final Widget Function(BuildContext context, BaseError error, VoidCallback callback)
       failureBuilder;
   final Widget Function(BuildContext context) loadingBuilder;
@@ -29,7 +29,7 @@ class RequesterConsumer<T> extends StatelessWidget {
           return state.when(
             init: () => const SizedBox(),
             loading: () => loadingBuilder(context),
-            success: (data, isLoading) => successBuilder(context, data, isLoading ?? false),
+            success: (data, isLoading) => successBuilder(context, data),
             failure: (error, callback) => failureBuilder(context, error, callback),
           );
         });

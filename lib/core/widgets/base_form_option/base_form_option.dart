@@ -199,7 +199,7 @@ class _BaseFormOptionState<T> extends State<BaseFormOption<T>> {
               loadingBuilder: (context) {
                 return const AppLoaderWidget.largeLogo();
               },
-              successBuilder: (context, items, _) {
+              successBuilder: (context, items) {
                 return _itemsBuilder(items);
               },
             );

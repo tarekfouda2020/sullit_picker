@@ -17,7 +17,7 @@ This project is a starting point for a Flutter application.
 - Translation auto generate
 
 # Notes for Developers
-- Widgets should be stateless as possible and start with none and end with keyword widget
+- Widgets should be stateless as possible and start with noun and end with keyword widget
 - use requester instead of use case
 - create domain models if needed only
 - use factory constructors when needed

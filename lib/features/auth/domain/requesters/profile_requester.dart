@@ -4,6 +4,9 @@ import 'package:flutter_tdd/features/auth/domain/models/user_domain_model.dart';
 import 'package:flutter_tdd/features/base/domain/repositories/base_repository.dart';
 
 class ProfileRequester extends Requester<UserDomainModel> {
+  final int userId;
+
+  ProfileRequester({required this.userId});
   @override
   Future<void> request({bool fromRemote = true}) async {
     if (hasNoData) {
@@ -15,11 +18,12 @@ class ProfileRequester extends Requester<UserDomainModel> {
         successState(data!);
       },
       isError: (error) {
-        failedState(error, () {
-          request(fromRemote: fromRemote);
-        });
+        failedState(error, () => request(fromRemote: fromRemote));
       },
     );
   }
+
+
+
 
 }
