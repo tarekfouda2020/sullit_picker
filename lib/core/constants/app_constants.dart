@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class ApplicationConstants {
   static const keyLanguage = 'language';
@@ -18,9 +17,4 @@ class ApplicationConstants {
   static const logoVarName = 'icon_g';
   static String logoPathPng = "assets/images/${ApplicationConstants.logoVarName}.png";
 
-  static BoxConstraints get textFieldConstrains =>
-      const BoxConstraints(minHeight: 50, maxHeight: 50);
-
-  static BoxConstraints? fromHeight(double? height) =>
-      height!=null?BoxConstraints(minHeight: height, maxHeight: height):null;
 }

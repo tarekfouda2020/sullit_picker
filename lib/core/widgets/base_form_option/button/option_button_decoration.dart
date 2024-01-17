@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/constants/app_config.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -15,7 +16,7 @@ class OptionButtonDecoration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: constraints??ApplicationConstants.textFieldConstrains,
+      constraints: constraints??AppConfig.textFieldConstrains,
       padding: EdgeInsetsDirectional.only(top: 10, bottom: 10, start: startPadding ?? 12, end: 12),
       width: double.maxFinite,
       decoration: BoxDecoration(
