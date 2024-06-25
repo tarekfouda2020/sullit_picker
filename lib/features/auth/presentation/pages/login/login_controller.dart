@@ -7,8 +7,9 @@ class LoginController {
 
 
   void onSubmit(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const Home()));
     // AutoRouter.of(context).push(const HomeRoute());
-    getIt.get<LoadingHelper>().showLoadingDialog();
+    // getIt.get<LoadingHelper>().showLoadingDialog();
   }
 
 }

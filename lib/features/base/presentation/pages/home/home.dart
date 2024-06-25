@@ -21,39 +21,51 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: const DefaultAppBar(title: "Home"),
       body: ListView(
+        padding: EdgeInsets.all(20),
         children: [
-          ObsValueConsumer(
-            observable: controller.termsObs,
-            builder: (context, value) {
-              return Checkbox(
-                value: value,
-                onChanged: (value) {
-                  controller.termsObs.setValue(value!);
-                },
-              );
-            },
+          GenericTextField(
+            controller: controller.minutesController,
+            fieldTypes: FieldTypes.normal,
+            type: TextInputType.number,
+            action: TextInputAction.next,
+            validate: (value) {},
+            label: "Minutes",
           ),
-
-          BaseBlocBuilder(
-            bloc: controller.bloc,
-            onSuccessWidget: (data) {
-              return Text(data);
-            },
-            onLoadingWidget: (context) {
-              return const Center(child: CircularProgressIndicator());
-            },
-            onFailedWidget: (context, error, callback) {
-              return Center(
-                child: Column(
-                  children: [
-                    const Text("error"),
-                    ElevatedButton(
-                      onPressed: () {
-                        callback();
-                      },
-                      child: const Text("Retry"),
-                    ),
-                  ],
+          GenericTextField(
+            controller: controller.secondsController,
+            fieldTypes: FieldTypes.normal,
+            type: TextInputType.number,
+            action: TextInputAction.next,
+            validate: (value) {},
+            margin: const EdgeInsets.only(top: 15),
+            label: "Seconds",
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          TextButton(
+            onPressed: ()=> controller.runTimer(),
+            child: const Text(
+              "Start",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            )
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          ObsValueConsumer(
+            observable: controller.secondObs,
+            builder: (context, seconds) {
+              return Text(
+                "${(seconds / 60).floor()} : ${seconds % 60}",
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               );
             },
