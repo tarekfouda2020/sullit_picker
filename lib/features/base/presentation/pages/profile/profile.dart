@@ -22,7 +22,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       body: RequesterConsumer(
         requester: controller._profileRequester,
-        successBuilder: (context, data) {
+        successBuilder: (context, data, isLoading) {
           return Container();
         },
         loadingBuilder: (context) {

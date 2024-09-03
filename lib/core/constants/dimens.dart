@@ -45,6 +45,8 @@ class Dimens {
   static const double dp128 = 128;
   static const double dp256 = 256;
 
+  static const EdgeInsetsGeometry defaultPaddingOfOptionButton =
+  EdgeInsetsDirectional.only(top: 10, bottom: 10, start: 12, end: 12);
   static const double appBarHeight = 62;
   static const double searchBarHeight = 56;
 

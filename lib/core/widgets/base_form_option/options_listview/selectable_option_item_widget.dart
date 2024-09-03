@@ -4,29 +4,31 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/widgets/option_item_widget.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_listview/check_icon.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_listview/option_item_widget.dart';
 class SelectableOptionItemWidget extends StatelessWidget {
   final GestureTapCallback? onTap;
   final bool isSelected;
-  final OptionItemWidget optionItemWidget;
+  final String title;
+  final Widget? prefix;
   final TextStyle? selectedTextStyle;
 
   const SelectableOptionItemWidget({
     super.key,
     this.onTap,
     required this.isSelected,
-    required this.optionItemWidget,
+    required this.title,
+    this.prefix,
     this.selectedTextStyle,
   });
 
-
-  TextStyle  _selectedTextStyle(BuildContext context ) => selectedTextStyle??AppTextStyle
-      .s14_w400(color: context.colors.blackOpacity);
+  TextStyle _selectedTextStyle(BuildContext context) =>
+      selectedTextStyle ?? AppTextStyle.s14_w400(color: context.colors.black);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.only(top: 16),
       child: InkWell(
         onTap: onTap,
         child: Container(
@@ -38,18 +40,20 @@ class SelectableOptionItemWidget extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
+            mainAxisSize: MainAxisSize.max,
             children: [
               Gaps.hGap8,
-              Icon(
-                Icons.check,
+              CheckIcon(
+                size: 24,
                 color: isSelected ? AppColors.of(context).primary : Colors.transparent,
               ),
-              Gaps.hGap8,
-              OptionItemWidget(
-                constraints: const BoxConstraints(maxWidth: 290),
-                title: optionItemWidget.title,
-                prefix: optionItemWidget.prefix,
-                titleTextStyle: isSelected ? _selectedTextStyle(context) : null,
+              Expanded(
+                child: OptionItemWidget(
+                  constraints: const BoxConstraints(maxWidth: 290),
+                  title: title,
+                  prefix: prefix,
+                  titleTextStyle: isSelected ? _selectedTextStyle(context) : null,
+                ),
               )
             ],
           ),

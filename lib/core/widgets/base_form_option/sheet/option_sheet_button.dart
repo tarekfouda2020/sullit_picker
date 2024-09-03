@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/button/option_button.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/controller/option_controller.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/option_controller.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/sheet/option_button.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.dart';
+
+enum OptionSheetMode { clickAndSave, saveButton }
 
 class OptionSheetButton<T> extends StatefulWidget {
   final String hintText;
@@ -27,6 +29,7 @@ class OptionSheetButton<T> extends StatefulWidget {
   final String? addNewOptionButtonText;
   final VoidCallback? onAddNewOptionPressed;
   final bool isViewMode;
+  final OptionSheetMode optionSheetMode;
 
   const OptionSheetButton({
     super.key,
@@ -52,6 +55,7 @@ class OptionSheetButton<T> extends StatefulWidget {
     this.addNewOptionButtonText,
     this.onAddNewOptionPressed,
     this.isViewMode = false,
+    this.optionSheetMode = OptionSheetMode.saveButton,
   });
 
   @override
@@ -59,6 +63,8 @@ class OptionSheetButton<T> extends StatefulWidget {
 }
 
 class OptionSheetButtonState<T> extends State<OptionSheetButton<T>> {
+
+
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
@@ -77,7 +83,8 @@ class OptionSheetButtonState<T> extends State<OptionSheetButton<T>> {
         onPressed: () {
           if (!widget.disable) {
             if (widget.onSearch != null) {
-              widget.onSearch!("");
+              /// TODO Abdelkarim check with Tarek
+              //widget.onSearch!("");
             }
             if (widget.onTap != null) {
               widget.onTap!();
@@ -93,18 +100,21 @@ class OptionSheetButtonState<T> extends State<OptionSheetButton<T>> {
     AppBottomSheets.showOptionsBottomSheet(
             bottomSheetTitle: widget.bottomSheetTitle,
             showSearch: widget.showSearch,
+            contentPadding: const EdgeInsets.only(top: 8, left: 24, right: 24, bottom: 24),
             onSaveTextPressed: () {
               widget.onSaveTextPressed();
             },
+            enableDrag: widget.optionSheetMode != OptionSheetMode.saveButton,
             controller: widget.controller,
             contentBuilder: widget.content,
             customSaveText: widget.customSaveText,
             onSearch: widget.onSearch,
             height: widget.sheetHeight,
-            addNewOptionEnabledObs: widget.addNewOptionEnabledObs?? ObsValue.withInit(false),
+            addNewOptionEnabledObs: widget.addNewOptionEnabledObs ?? ObsValue.withInit(false),
             addNewOptionButtonText: widget.addNewOptionButtonText,
             onAddNewOptionPressed: widget.onAddNewOptionPressed,
             isViewMode: widget.isViewMode,
             context: context);
+
   }
 }

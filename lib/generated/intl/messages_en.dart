@@ -88,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
         "nameValidation": MessageLookupByLibrary.simpleMessage(
             "Should be more than 8 and less than 30"),
+        "noResults": MessageLookupByLibrary.simpleMessage("No Results"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("No internet connection"),
         "passValidation": MessageLookupByLibrary.simpleMessage(

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/core/widgets/base_form_option/base_form_option.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/local_options_requester.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/widgets/base_options_display_widget.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/widgets/option_item_widget.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/widgets/selectable_option_item_widget.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/base_options_display_widget.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/local_options_requester.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/option_matchers/string_option_matcher.dart';
 import 'package:flutter_tdd/features/auth/domain/models/user_domain_model.dart';
 
 class OptionFieldExample extends StatefulWidget {
@@ -15,20 +14,19 @@ class OptionFieldExample extends StatefulWidget {
 }
 
 class _OptionFieldExampleState extends State<OptionFieldExample> {
-
   List<UserDomainModel> selectedUsers = [];
 
   @override
   Widget build(BuildContext context) {
-    return BaseFormOption<UserDomainModel>(
+    return BaseFormOption<UserDomainModel, String>(
       hintText: Translate.of(context).failureActions,
       bottomSheetTitle: Translate.of(context).failureActions,
       showSearch: false,
       isMultiple: false,
       showDecoration: true,
       optionsRequester: LocalOptionsRequester(
-        valueMainTitleGetter: (value) => value?.firstName??"",
         options: _getOptions(),
+        optionMatcher: StringOptionMatcher(stringGetter: (option) => option.id),
       ),
       selectedItems: selectedUsers,
       selectedOptionBuilder: (actions) {
@@ -37,19 +35,11 @@ class _OptionFieldExampleState extends State<OptionFieldExample> {
           selectedOptions: actions,
         );
       },
-      optionItemBuilder: (user, isSelected) {
-        return SelectableOptionItemWidget(
-          isSelected: isSelected,
-          optionItemWidget: OptionItemWidget(
-            title: user.firstName,
-          ),
-        );
-      },
       valueIdGetter: (value) => value?.id,
       valueMainTitleGetter: (value) => value?.firstName,
       onSaveValue: (actions, iMultiple) {
         setState(() {
-          selectedUsers = actions??[];
+          selectedUsers = actions ?? [];
         });
       },
       onClearPressed: () {
@@ -60,5 +50,8 @@ class _OptionFieldExampleState extends State<OptionFieldExample> {
     );
   }
 
-  List<UserDomainModel> _getOptions() => [UserDomainModel(email: "", firstName: "tarek",id: "1", lastName: "", phone: ""), UserDomainModel(email: "", firstName: "fouda",id: "2", lastName: "", phone: ""),];
+  List<UserDomainModel> _getOptions() => [
+        UserDomainModel(email: "", firstName: "tarek", id: "1", lastName: "", phone: ""),
+        UserDomainModel(email: "", firstName: "fouda", id: "2", lastName: "", phone: ""),
+      ];
 }

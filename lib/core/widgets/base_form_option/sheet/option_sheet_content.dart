@@ -7,7 +7,8 @@ import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/app_button.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/controller/option_controller.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/option_controller.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/sheet/option_sheet_button.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheet_views/bottom_sheet_button_widget.dart';
 import 'package:flutter_tdd/core/widgets/search_form_field/search_form_field.dart';
 class OptionSheetContent<T> extends StatefulWidget {
@@ -20,21 +21,24 @@ class OptionSheetContent<T> extends StatefulWidget {
   final WidgetBuilder contentBuilder;
   final double? height;
   final EdgeInsets? contentPadding;
+  final bool Function()? allowLeaveConfirmation;
   final VoidCallback? onCancelPressed;
   final bool? addNewOptionEnabled;
   final String? addNewOptionButtonText;
   final VoidCallback? onAddNewOptionPressed;
+  final OptionSheetMode optionSheetMode;
 
   /// When this param is true the buttons will be hidden
   final bool isViewMode;
 
   const OptionSheetContent(
-      {super.key,
+      {Key? key,
       required this.bottomSheetTitle,
       required this.showSearch,
       this.onSearch,
       required this.onSaveTextPressed,
       this.customSaveText,
+      this.allowLeaveConfirmation,
       required this.controller,
       required this.contentBuilder,
       required this.height,
@@ -43,14 +47,16 @@ class OptionSheetContent<T> extends StatefulWidget {
       this.addNewOptionEnabled,
       this.addNewOptionButtonText,
       this.onAddNewOptionPressed,
-      this.isViewMode = false});
+      this.isViewMode = false,
+      this.optionSheetMode = OptionSheetMode.saveButton})
+      : super(key: key);
 
   @override
   State<OptionSheetContent<T>> createState() => _OptionSheetContentState<T>();
 }
 
 class _OptionSheetContentState<T> extends State<OptionSheetContent<T>> {
-  final ObsValue<bool> _titleObs = ObsValue<bool>.withInit(false);
+  final ObsValue<bool> _titleObs = ObsValue.withInit(false);
   bool _isSaveAction = false;
 
   @override
@@ -64,13 +70,14 @@ class _OptionSheetContentState<T> extends State<OptionSheetContent<T>> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           child: SizedBox(
-            height: widget.height ?? MediaQuery.of(context).size.height * .6,
+            height: widget.height ?? context.bodyHeightWithoutAppBar * .6,
             child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Gaps.vGap16,
                     if (!widget.bottomSheetTitle.isNullEmptyOrWhitespace || widget.showSearch)
                       Padding(
                         padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
@@ -78,10 +85,10 @@ class _OptionSheetContentState<T> extends State<OptionSheetContent<T>> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             if (!widget.bottomSheetTitle.isNullEmptyOrWhitespace)
-                              ObsValueConsumer<bool>(
+                              ObsValueConsumer(
                                 observable: _titleObs,
-                                builder: (context, data) {
-                                  if (data) {
+                                builder: (context, value) {
+                                  if (value) {
                                     return Gaps.empty;
                                   }
                                   return Flexible(
@@ -152,29 +159,35 @@ class _OptionSheetContentState<T> extends State<OptionSheetContent<T>> {
         ),
       );
     } else {
-      return Column(
+      return Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           /// Add new option button
-          if (widget.addNewOptionEnabled ?? false)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-              child: AppTextButton.maxWhite(
-                onPressed: () {
-                  widget.onAddNewOptionPressed?.call();
-                },
-                text: "+ ${widget.addNewOptionButtonText ?? Translate.s.add_new_item}",
-              ),
-            ),
+          widget.addNewOptionEnabled ?? false
+              ? Flexible(
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.only(start: 18),
+                    child: AppTextButton.maxWhite(
+                      onPressed: () {
+                        widget.onAddNewOptionPressed?.call();
+                      },
+                      text: "+ ${widget.addNewOptionButtonText ?? Translate.s.add_new_item}",
+                    ),
+                  ),
+                )
+              : const Spacer(),
 
           /// Save and cancel buttons
-          BottomSheetButtonWidget(
-            onSaveTextPressed: () {
-              _isSaveAction = true;
-              widget.onSaveTextPressed();
-            },
-            onCancelPressed: widget.onCancelPressed,
-            customSaveText: widget.customSaveText,
-          )
+          if (widget.optionSheetMode == OptionSheetMode.saveButton)
+            BottomSheetButtonWidget(
+              onSaveTextPressed: () {
+                _isSaveAction = true;
+                widget.onSaveTextPressed();
+              },
+              onCancelPressed: widget.onCancelPressed,
+              customSaveText: widget.customSaveText,
+              // allowLeaveConfirmation: widget.allowLeaveConfirmation,
+            )
         ],
       );
     }
@@ -184,6 +197,40 @@ class _OptionSheetContentState<T> extends State<OptionSheetContent<T>> {
     if (_isSaveAction) {
       return true;
     }
+    // if (widget.allowLeaveConfirmation != null) {
+    //   if (widget.allowLeaveConfirmation!.call()) {
+    //     var result = await AppBottomSheets.showLeavePageConfirm(context);
+    //     if (result) {
+    //       return true;
+    //     }
+    //   } else {
+    //     return true;
+    //   }
+    // } else {
+    //   return false;
+    // }
     return false;
+  }
+}
+
+extension MediaQueryExtension on BuildContext {
+  double get height => MediaQuery.of(this).size.height;
+
+  double get bodyHeight =>
+      MediaQuery.of(this).size.height -
+          MediaQuery.of(this).viewPadding.top -
+          MediaQuery.of(this).viewInsets.top;
+
+  double get bodyHeightWithoutAppBar => bodyHeight - 53;
+
+  double get width => MediaQuery.of(this).size.width;
+
+  double get px => MediaQuery.of(this).devicePixelRatio;
+
+  double get keyBoardHeight => MediaQuery.of(this).viewInsets.bottom;
+
+  bool get isRTLDirection {
+    final TextDirection currentDirection = Directionality.of(this);
+    return currentDirection == TextDirection.rtl;
   }
 }

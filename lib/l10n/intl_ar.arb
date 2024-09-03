@@ -48,7 +48,8 @@
   "retry": "إعادة المحاولة",
   "size_more_than_mg_error": "يجب أن تكون حجم الملفات التالية أقل من {MB} ميحابيت, {files}",
   "no_internet_connection": "لا يوجد اتصال بالانترنت",
-  "internet_connected": "تم الاتصال بالانترنت"
+  "internet_connected": "تم الاتصال بالانترنت",
+  "noResults": "لا يوجد نتائج"
 }
 
 

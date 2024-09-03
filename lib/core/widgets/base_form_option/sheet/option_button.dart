@@ -3,12 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/constants/app_loader_widget.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:flutter_tdd/core/localization/translate.dart';
+import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/button/hint_text.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/button/option_button_decoration.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/controller/option_controller.dart';
-import 'package:get/get_utils/src/extensions/export.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/option_controller.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/sheet/hint_text.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/sheet/option_button_decoration.dart';
+import 'package:get/utils.dart';
 
 class OptionsButton<T> extends StatefulWidget {
   final String hintText;
@@ -20,9 +23,11 @@ class OptionsButton<T> extends StatefulWidget {
   final bool coloredIconWhenValueFilled;
   final bool showDecoration;
   final bool showClearIcon;
+  final bool showClearIconIfNoValue;
   final Widget? customSuffixIcon;
   final BoxConstraints? constraints;
   final Border? border;
+  final BaseError? error;
 
   const OptionsButton(
       {super.key,
@@ -37,7 +42,9 @@ class OptionsButton<T> extends StatefulWidget {
       this.onClearPressed,
       this.showClearIcon = false,
       this.border,
-      this.constraints});
+      this.showClearIconIfNoValue = false,
+      this.constraints,
+      this.error});
 
   @override
   State<OptionsButton<T>> createState() => _OptionsButtonState<T>();
@@ -61,6 +68,17 @@ class OptionsButton<T> extends StatefulWidget {
     );
   }
 
+  factory OptionsButton.error({required BaseError error, required VoidCallback onPressed}) {
+    return OptionsButton(
+      hintText: '...',
+      controller: OptionController(),
+      error: error,
+      border: Border.all(color: AppColors.snackBarRedError),
+      valueBuilder: (context, item) => const SizedBox(),
+      onPressed: onPressed,
+    );
+  }
+
   factory OptionsButton.loading() {
     return OptionsButton(
       hintText: Translate.s.loadingText,
@@ -76,46 +94,63 @@ class _OptionsButtonState<T> extends State<OptionsButton<T>> {
   Widget build(BuildContext context) {
     if (widget.iconPath != null) assert(widget.iconPath!.toLowerCase().endsWith('svg'));
     if (widget.showDecoration) {
-      return GestureDetector(
-        onTap: widget.onPressed,
-        child: OptionButtonDecoration(
-          constraints: widget.constraints,
-          border: widget.border,
-          child: Row(
-            children: [
-              /// Prefix with width 44 like TextFormField
-              Expanded(
-                child: Row(
-                  children: [
-                    if (widget.iconPath != null)
-                      SizedBox(
-                        width: 20,
-                        child: SizedBox.square(
-                            dimension: 18,
-                            child: SvgPicture.asset(
-                              widget.iconPath!,
-                              color: widget.coloredIconWhenValueFilled &&
-                                      widget.controller.selectedValue != null
-                                  ? context.colors.primary
-                                  : context.colors.blackOpacity,
-                              fit: BoxFit.contain,
-                            )),
-                      ),
-                    if (widget.iconPath != null) Gaps.hGap12,
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: widget.onPressed,
+            child: OptionButtonDecoration(
+              constraints: widget.constraints,
+              border: widget.border,
+              child: Row(
+                children: [
+                  /// Prefix with width 44 like TextFormField
+                  Expanded(
+                    child: Row(
+                      children: [
+                        if (widget.iconPath != null)
+                          SizedBox(
+                            width: 20,
+                            child: SizedBox.square(
+                                dimension: 18,
+                                child: SvgPicture.asset(
+                                  widget.iconPath!,
+                                  color: widget.coloredIconWhenValueFilled &&
+                                          widget.controller.selectedValue != null
+                                      ? context.colors.primary
+                                      : AppColors.noContextInstance.blackOpacity,
+                                  fit: BoxFit.contain,
+                                )),
+                          ),
+                        if (widget.iconPath != null) Gaps.hGap12,
 
-                    /// Value
-                    Expanded(
-                        child: _ValueBuilder(
-                            controller: widget.controller,
-                            hintText: widget.hintText,
-                            valueBuilder: widget.valueBuilder)),
-                    customSuffixIcon(),
-                  ],
-                ),
+                        /// Value
+                        Expanded(
+                            child: _ValueBuilder(
+                                controller: widget.controller,
+                                hintText: widget.hintText,
+                                valueBuilder: widget.valueBuilder)),
+                        customSuffixIcon(),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          if (widget.error != null)
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(top: 4),
+                  child: Text(
+                    widget.error!.message,
+                    style: const AppTextStyle.s10_w400(color: AppColors.snackBarRedError),
+                  ),
+                ),
+              ],
+            ),
+        ],
       );
     } else {
       return GestureDetector(
@@ -138,9 +173,10 @@ class _OptionsButtonState<T> extends State<OptionsButton<T>> {
             : true);
         return Row(
           children: [
-            if (widget.controller.selectedValue != null &&
-                isNotAnEmptyList &&
-                widget.showClearIcon) ...[
+            if ((widget.controller.selectedValue != null &&
+                    isNotAnEmptyList &&
+                    widget.showClearIcon) ||
+                widget.showClearIconIfNoValue) ...[
               /// Clear icon
               if (widget.onClearPressed != null)
                 InkWell(
@@ -151,7 +187,7 @@ class _OptionsButtonState<T> extends State<OptionsButton<T>> {
                   child: Icon(
                     Icons.clear,
                     size: 20,
-                    color: context.colors.blackOpacity,
+                    color: AppColors.noContextInstance.blackOpacity,
                   ),
                 ),
 
@@ -161,7 +197,7 @@ class _OptionsButtonState<T> extends State<OptionsButton<T>> {
 
             /// Suffix
             widget.customSuffixIcon ??
-                Icon(Icons.keyboard_arrow_down_rounded, size: 20, color: context.colors.blackOpacity),
+                Icon(Icons.keyboard_arrow_down_rounded, size: 20, color: AppColors.noContextInstance.blackOpacity),
           ],
         );
       },
@@ -175,7 +211,8 @@ class _ValueBuilder<T> extends StatelessWidget {
   final Function(BuildContext context, T item) valueBuilder;
 
   const _ValueBuilder(
-      {super.key, required this.controller, required this.hintText, required this.valueBuilder});
+      {Key? key, required this.controller, required this.hintText, required this.valueBuilder})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

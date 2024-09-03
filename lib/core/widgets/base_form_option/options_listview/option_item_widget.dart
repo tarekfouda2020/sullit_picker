@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
@@ -11,6 +12,7 @@ class OptionItemWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final BoxConstraints? constraints;
   final String? suffixText;
+  final Widget? suffix;
 
   const OptionItemWidget({
     super.key,
@@ -21,14 +23,17 @@ class OptionItemWidget extends StatelessWidget {
     this.onTap,
     this.constraints,
     this.suffixText,
+    this.suffix,
   });
 
 
-  TextStyle  _textStyle(BuildContext context) => titleTextStyle??AppTextStyle.s12_w400(
-      color: context.colors.blackOpacity);
+
+  TextStyle _textStyle(BuildContext context) =>
+      titleTextStyle ?? AppTextStyle.s14_w400(color: AppColors.noContextInstance.blackOpacity);
 
   @override
   Widget build(BuildContext context) {
+    final hasSuffix = suffix != null;
     return Container(
       constraints: constraints,
       child: InkWell(
@@ -40,6 +45,9 @@ class OptionItemWidget extends StatelessWidget {
             if (prefix != null) prefix!,
             if (prefix != null) Gaps.hGap(prefixGap),
             Flexible(
+              /// This line because we want the txt to take all available space in case there
+              /// is suffix widget (to align the suffix to the end of the line)
+              fit: hasSuffix ? FlexFit.tight : FlexFit.loose,
               child: Text.rich(
                 TextSpan(
                   style: _textStyle(context),
@@ -57,6 +65,7 @@ class OptionItemWidget extends StatelessWidget {
                 ),
               ),
             ),
+            if (hasSuffix) ...[suffix!],
           ],
         ),
       ),

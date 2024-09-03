@@ -87,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("من فضلك ادخل البريد صحيحا"),
         "nameValidation": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون أكثر من ٨ احرف واقل من ٣٠"),
+        "noResults": MessageLookupByLibrary.simpleMessage("لا يوجد نتائج"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالانترنت"),
         "passValidation": MessageLookupByLibrary.simpleMessage(

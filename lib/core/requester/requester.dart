@@ -32,13 +32,26 @@ abstract class Requester<T> extends Cubit<RequesterState<T>> {
     emit(const RequesterState.loading());
   }
 
+  void clear() {
+    emit(const RequesterState.init());
+  }
+
   /// This method will wait result and wait loading to finish
   @nonVirtual
-  Future<void> waitIfLoading() async {
+  Future<void> waitIfLoading({bool ignoreTransparentLoading = true}) async {
     await Future.delayed(const Duration(milliseconds: 20));
-    if (isLoading) {
+    if (isLoading || (ignoreTransparentLoading == false && isLoadingOrTransparentLoading)) {
       await stream.firstWhere((element) {
-        return element.whenOrNull(loading: () => false) ?? true;
+        return element.whenOrNull(
+          loading: () => false,
+          success: (_, isLoading) {
+            if (ignoreTransparentLoading == false) {
+              return isLoading != true;
+            }
+            return true;
+          },
+        ) ??
+            true;
       });
     }
   }
@@ -48,9 +61,9 @@ abstract class Requester<T> extends Cubit<RequesterState<T>> {
   /// DO NOT use the result in the general case
   /// DO NOT use the result in the general case
   @nonVirtual
-  Future<MyResult<T>> requestIfNoDataAndWaitIfLoading({bool fromRemote = true}) async {
+  Future<MyResult<T>> requestIfNoDataAndWaitIfLoading() async {
     if (hasNoData && !isLoading) {
-      request(fromRemote: fromRemote);
+      await request();
     }
     await waitIfLoading();
     return state.maybeWhen(
@@ -59,6 +72,12 @@ abstract class Requester<T> extends Cubit<RequesterState<T>> {
       orElse: () => MyResult.isError(BaseError.unknown()),
     );
   }
+
+  /// TODO TEAM Implement this method
+  // @nonVirtual
+  // Future<MyResult<T>> requestWhileNotSuccess(){
+  //
+  // }
 
   T? get data => state.whenOrNull(success: (data, isLoading) => data);
 
@@ -75,4 +94,7 @@ abstract class Requester<T> extends Cubit<RequesterState<T>> {
   bool get isFail => (state.whenOrNull(failure: (error, callback) => true) ?? false);
 
   bool get isLoading => (state.whenOrNull(loading: () => true) ?? false);
+
+  bool get isLoadingOrTransparentLoading =>
+      (state.whenOrNull(success: (data, isLoading) => isLoading, loading: () => true) ?? false);
 }
