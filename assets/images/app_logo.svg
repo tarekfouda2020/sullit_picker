@@ -1,0 +1,19 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Background circle with correct red color -->
+<circle cx="40" cy="40" r="40" fill="#E84144"/>
+
+<!-- Delivery truck silhouette -->
+<path d="M20 50H30V45C30 43.8954 30.8954 43 32 43H45V40C45 38.8954 45.8954 38 47 38H52C53.1046 38 54 38.8954 54 40V50H60C61.1046 50 62 50.8954 62 52V55C62 56.1046 61.1046 57 60 57H58C58 59.7614 55.7614 62 53 62C50.2386 62 48 59.7614 48 57H34C34 59.7614 31.7614 62 29 62C26.2386 62 24 59.7614 24 57H22C20.8954 57 20 56.1046 20 55V52C20 50.8954 20.8954 50 22 50H20Z" fill="white"/>
+
+<!-- Wheels -->
+<circle cx="29" cy="57" r="3" fill="#F8F9FA"/>
+<circle cx="53" cy="57" r="3" fill="#F8F9FA"/>
+
+<!-- Speed lines -->
+<path d="M15 32L25 32" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+<path d="M12 37L22 37" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.4"/>
+<path d="M17 42L27 42" stroke="white" stroke-width="2" stroke-linecap="round" stroke-opacity="0.3"/>
+
+<!-- Letter S -->
+<text x="40" y="30" text-anchor="middle" font-family="system-ui" font-size="16" font-weight="bold" fill="white">S</text>
+</svg> 

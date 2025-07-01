@@ -5,9 +5,11 @@ class Res {
   static const String arrow = "assets/images/arrow.svg";
   static const String en = "assets/lang/en.json";
   static const String facebook = "assets/images/facebook.svg";
+  static const String google = "assets/images/google.svg";
   static const String icon = "assets/images/icon.png";
   static const String logo = "assets/images/logo.png";
   static const String logoSvg = "assets/images/logoSvg.svg";
+  static const String appLogo = "assets/images/app_logo.svg";
   static const String check = "assets/images/check.svg";
   static const String marker = "assets/images/marker.png";
   static const String mobile = "assets/images/mobile.svg";
@@ -17,4 +19,41 @@ class Res {
   static const String errorSnackBar = "assets/images/error_snack_bar.svg";
   static const String warningSnackBar = "assets/images/warning_snack_bar.svg";
   static const String successSnackBar = "assets/images/success_snack_bar.svg";
+
+  // Home screen assets that already exist in assets/images/
+  static const String headerIcon = "assets/images/header-icon.svg";
+  static const String notificationIconHome = "assets/images/notification-icon.svg";
+  static const String searchIconHome = "assets/images/search-icon.svg";
+  static const String sectionIcon1 = "assets/images/section-icon-1.svg";
+  static const String sectionIcon2 = "assets/images/section-icon-2.svg";
+  static const String sectionIcon3 = "assets/images/section-icon-3.svg";
+  static const String iconMiddleRight = "assets/images/icon-middle-right.svg";
+  static const String iconRight = "assets/images/icon-right.svg";
+  static const String iconFarRight = "assets/images/icon-far-right.svg";
+
+  // New driver app icons
+  static const String deliveryIcon = "assets/images/icons/delivery_icon.svg";
+  static const String walletIcon = "assets/images/icons/wallet_icon.svg";
+  static const String statisticsIcon = "assets/images/icons/statistics_icon.svg";
+  static const String ordersIcon = "assets/images/icons/orders_icon.svg";
+  static const String notificationIcon = "assets/images/icons/notification_icon.svg";
+  static const String contactIcon = "assets/images/icons/contact_icon.svg";
+  static const String termsIcon = "assets/images/icons/terms_icon.svg";
+  static const String privacyIcon = "assets/images/icons/privacy_icon.svg";
+  static const String subscriptionIcon = "assets/images/icons/subscription_icon.svg";
+  static const String logoutIcon = "assets/images/icons/logout_icon.svg";
+  static const String profileIcon = "assets/images/icons/profile_icon.svg";
+  static const String menuIcon = "assets/images/icons/menu_icon.svg";
+
+  // Home screen specific icons
+  static const String homeNotification = "assets/images/icons/home_notification.svg";
+  static const String homeProfile = "assets/images/icons/home_profile.svg";
+  static const String locationIcon = "assets/images/icons/location_icon.svg";
+  static const String phoneIcon = "assets/images/icons/phone_icon.svg";
+  static const String searchIcon = "assets/images/icons/search_icon.svg";
+
+  // Illustrations
+  static const String noOrdersIllustration = "assets/images/illustrations/no_orders.svg";
+  static const String orderAlertIllustration = "assets/images/illustrations/order_alert.svg";
+  static const String welcomeDialogIllustration = "assets/images/illustrations/welcome_dialog_illustration.svg";
 }

@@ -1,22 +1,26 @@
-part of 'login_widgets_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
+import 'package:flutter_tdd/core/widgets/app_button.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
+import '../login_controller.dart';
 
 class BuildLoginButton extends StatelessWidget {
   final LoginController controller;
-
-  const BuildLoginButton({Key? key, required this.controller})
-      : super(key: key);
+  
+  const BuildLoginButton({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return LoadingButton(
-        title: "Login",
-        onTap: () => controller.onSubmit(context),
-        color: context.colors.primary,
-        textColor: context.colors.white,
-        btnKey: controller.btnKey,
-        margin: const EdgeInsets.only(top: 40),
-        fontSize: 16,
-        height: 55,
+    return ObsValueConsumer<bool>(
+      observable: controller.isLoading,
+      builder: (context, isLoading) => AppTextButton.maxPrimary(
+        onPressed: isLoading ? null : () => controller.login(context),
+        text: 'تسجيل الدخول',
+        enabled: !isLoading,
+      ),
     );
   }
 }

@@ -84,6 +84,9 @@ class _$RequesterStateCopyWithImpl<T, $Res, $Val extends RequesterState<T>>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -100,6 +103,9 @@ class __$$InitImplCopyWithImpl<T, $Res>
   __$$InitImplCopyWithImpl(
       _$InitImpl<T> _value, $Res Function(_$InitImpl<T>) _then)
       : super(_value, _then);
+
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -212,6 +218,9 @@ class __$$LoadingImplCopyWithImpl<T, $Res>
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl<T> _value, $Res Function(_$LoadingImpl<T>) _then)
       : super(_value, _then);
+
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -327,6 +336,8 @@ class __$$SuccessImplCopyWithImpl<T, $Res>
       _$SuccessImpl<T> _value, $Res Function(_$SuccessImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -372,7 +383,9 @@ class _$SuccessImpl<T> extends _Success<T> with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('isLoading', isLoading));
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
@@ -462,7 +475,10 @@ abstract class _Success<T> extends RequesterState<T> {
 
   /// True when a transparent loading is occurring
   bool? get isLoading;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<T, _$SuccessImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -484,6 +500,8 @@ class __$$FailureImplCopyWithImpl<T, $Res>
       _$FailureImpl<T> _value, $Res Function(_$FailureImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -527,7 +545,9 @@ class _$FailureImpl<T> extends _Failure<T> with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('callback', callback));
   }
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
@@ -615,7 +635,10 @@ abstract class _Failure<T> extends RequesterState<T> {
 
   BaseError get error;
   VoidCallback get callback;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RequesterState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

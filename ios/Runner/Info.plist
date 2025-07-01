@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>$(APP_APP_NAME_EN)</string>
+	<string>Flutter Tdd</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -45,32 +45,5 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-		<key>NSAppleMusicUsageDescription</key>
-    	<string>Used to demonstrate file picker plugin</string>
-    	<key>NSCameraUsageDescription</key>
-    	<string>Camera permissions are necessary to capture images</string>
-    	<key>NSDocumentDirectory</key>
-    	<string>permissions are necessary to save file in document</string>
-    	<key>NSFaceIDUsageDescription</key>
-    	<string>Why is my app authenticating using face id?</string>
-    	<key>NSLocationAlwaysUsageDescription</key>
-    	<string>Application needs to access your current location</string>
-    	<key>NSLocationWhenInUseUsageDescription</key>
-    	<string>Application needs to access your current location</string>
-    	<key>NSPhotoLibraryAddUsageDescription</key>
-    	<string>Add photo permissions are necessary if you want to save images</string>
-    	<key>NSPhotoLibraryUsageDescription</key>
-    	<string>Photo library permissions are necessary to select images</string>
-    	<key>UIApplicationSupportsIndirectInputEvents</key>
-    	<true/>
-    	<key>UIBackgroundModes</key>
-    	<array>
-    		<string>fetch</string>
-    		<string>remote-notification</string>
-    	</array>
-    	<key>UIFileSharingEnabled</key>
-    	<true/>
-    	<key>UIViewControllerBasedStatusBarAppearance</key>
-    	<false/>
 </dict>
 </plist>

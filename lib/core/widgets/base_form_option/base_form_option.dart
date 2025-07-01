@@ -1,28 +1,25 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
-import 'package:flutter_tdd/core/constants/app_loader_widget.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/extensions/common_extension.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
-import 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
-import 'package:flutter_tdd/core/requester/consumer/requester_state_consumer.dart';
-import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/widgets/base_form_option/collection_helper/collection_helper.dart';
 import 'package:flutter_tdd/core/widgets/base_form_option/form_option_selection_calculator.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/options_listview/display_format_enum.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/options_listview/options_list_view.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/base_options_display_widget.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/base_options_requester.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/local_options_requester.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/option_controller.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/option_matchers/string_option_matcher.dart';
-import 'package:flutter_tdd/core/widgets/base_form_option/sheet/option_sheet_button.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
+import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/widgets/shimmers/base_shimmer_widget.dart';
+import 'package:flutter_tdd/core/requester/consumer/requester_state_consumer.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/local_options_requester.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/option_matchers/string_option_matcher.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/option_controller.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_listview/display_format_enum.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/options_requester/base_options_display_widget.dart';
+import 'package:flutter_tdd/core/widgets/base_form_option/sheet/option_sheet_button.dart';
 
-
+import '../../constants/app_loader_widget.dart';
+import '../../requester/consumer/requester_consumer.dart';
+import 'options_listview/options_list_view.dart';
+import 'options_requester/base_options_requester.dart';
 
 typedef OptionItemBuilder<T> = Widget Function(
     T item, bool Function(T item) isItemSelected, ValueChanged<T> onSelect);

@@ -1,0 +1,20 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Chart bars -->
+<rect x="4" y="12" width="3" height="8" rx="1" fill="currentColor" fill-opacity="0.6"/>
+<rect x="8.5" y="8" width="3" height="12" rx="1" fill="currentColor" fill-opacity="0.8"/>
+<rect x="13" y="10" width="3" height="10" rx="1" fill="currentColor"/>
+<rect x="17.5" y="6" width="3" height="14" rx="1" fill="currentColor" fill-opacity="0.9"/>
+
+<!-- Chart grid lines -->
+<path d="M3 20H21M3 16H21M3 12H21M3 8H21" stroke="currentColor" stroke-width="0.5" stroke-opacity="0.3"/>
+
+<!-- Trend arrow -->
+<path d="M15 4L18 4L18 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18 4L12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+
+<!-- Data points -->
+<circle cx="5.5" cy="14" r="1" fill="white"/>
+<circle cx="10" cy="10" r="1" fill="white"/>
+<circle cx="14.5" cy="12" r="1" fill="white"/>
+<circle cx="19" cy="8" r="1" fill="white"/>
+</svg> 

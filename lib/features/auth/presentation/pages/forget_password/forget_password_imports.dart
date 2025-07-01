@@ -1,12 +1,7 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
-import 'package:flutter_tdd/core/constants/CustomButtonAnimation.dart';
-import 'package:flutter_tdd/features/auth/presentation/pages/forget_password/widgets/forget_password_widgets_imports.dart';
-import 'package:flutter_tdd/features/auth/presentation/widgets/auth_app_bar_widget.dart';
-import 'package:flutter_tdd/features/auth/presentation/widgets/auth_header_title_widget.dart';
-
-
-
-part 'forget_password.dart';
-part 'forget_password_controller.dart';
+export 'forget_password.dart';
+export 'forget_password_controller.dart';
+export 'package:flutter/material.dart';
+export 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+export 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+export 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
+export 'package:auto_route/auto_route.dart';

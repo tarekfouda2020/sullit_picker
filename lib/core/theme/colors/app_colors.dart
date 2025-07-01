@@ -1,5 +1,3 @@
-
-
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,5 +46,39 @@ abstract class AppColors {
   Color get background;
 
   Color get disableGray;
+
+  // New colors for driver app
+  Color get cardBackground;
+
+  Color get textPrimary;
+
+  Color get textSecondary;
+
+  Color get textTertiary;
+
+  Color get borderColor;
+
+  Color get borderLight; // For light borders (0xFFF1F1F1)
+
+  Color get lightBackground; // For light backgrounds like notifications (0xFFFEEAEA)
+
+  Color get errorColor;
+
+  Color get warningColor;
+
+  Color get successColor;
+
+  Color get orangeAccent;
+
+  // Form and UI colors
+  Color get textLabel; // For form labels (0xFF374151)
+  
+  Color get textSubtle; // For subtle text (0xFF6B7280)
+  
+  Color get textDark; // For dark titles (0xFF1F2937)
+  
+  Color get inputBorder; // For input borders (0xFFE5E7EB)
+  
+  Color get hintText; // For hint text and icons (0xFF9CA3AF)
 
 }

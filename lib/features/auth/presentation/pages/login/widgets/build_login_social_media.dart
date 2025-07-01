@@ -1,24 +1,31 @@
-part of 'login_widgets_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/res.dart';
+import '../login_controller.dart';
+import 'build_social_item.dart';
 
 class BuildLoginSocialMedia extends StatelessWidget {
   final LoginController controller;
-
-  const BuildLoginSocialMedia({Key? key, required this.controller}) : super(key: key);
+  
+  const BuildLoginSocialMedia({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Or use one of the following",
-            style: AppTextStyle.s16_w400(color: context.colors.blackOpacity),
+            'أو سجل الدخول باستخدام',
+            style: AppTextStyle.s14_w400(color: Colors.black),
           ),
-          const SizedBox(height: 15),
-          const BuildSocialItem(icon: Res.facebook, title: "Continue with Facebook"),
-          const BuildSocialItem(icon: Res.apple, title: "Continue with Apple"),
+          const SizedBox(height: 16),
+          BuildSocialItem(icon: Res.facebook),
+          BuildSocialItem(icon: Res.apple),
         ],
       ),
     );

@@ -1,0 +1,17 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Background with red theme -->
+<circle cx="60" cy="60" r="60" fill="#E84144" fill-opacity="0.1"/>
+<circle cx="60" cy="60" r="45" fill="#E84144"/>
+
+<!-- Notification bell -->
+<path d="M60 25C63.866 25 67 28.134 67 32V34.5C71.694 36.664 75 41.516 75 47V63L80 68V71H40V68L45 63V47C45 41.516 48.306 36.664 53 34.5V32C53 28.134 56.134 25 60 25Z" fill="white"/>
+<path d="M55 75C55 77.761 57.239 80 60 80C62.761 80 65 77.761 65 75H55Z" fill="white"/>
+
+<!-- Alert badge -->
+<circle cx="72" cy="38" r="8" fill="#FF6B35"/>
+<text x="72" y="42" text-anchor="middle" font-family="system-ui" font-size="10" font-weight="bold" fill="white">!</text>
+
+<!-- Pulse animation rings -->
+<circle cx="60" cy="60" r="55" fill="none" stroke="#E84144" stroke-width="1" stroke-opacity="0.2"/>
+<circle cx="60" cy="60" r="50" fill="none" stroke="#E84144" stroke-width="1" stroke-opacity="0.4"/>
+</svg> 

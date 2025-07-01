@@ -1,9 +1,17 @@
-part of 'login_widgets_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/helpers/validator.dart';
+import 'package:flutter_tdd/res.dart';
+import '../login_controller.dart';
 
 class BuildLoginForm extends StatelessWidget {
   final LoginController controller;
-
-  const BuildLoginForm({Key? key, required this.controller}) : super(key: key);
+  
+  const BuildLoginForm({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,28 +19,29 @@ class BuildLoginForm extends StatelessWidget {
       key: controller.formKey,
       child: Column(
         children: [
-          const OptionFieldExample(),
+          // Email field
           GenericTextField(
             fieldTypes: FieldTypes.normal,
-            type: TextInputType.phone,
+            type: TextInputType.emailAddress,
             action: TextInputAction.next,
-            validate: (value) => value?.validatePhone(),
-            label: "Phone Number",
-            margin: const EdgeInsets.only(top: 20),
-            prefixIcon: Padding(
-              padding: const EdgeInsets.all(12.0),
+            validate: controller.emailValidator,
+            controller: controller.emailController,
+            margin: const EdgeInsets.only(bottom: 16),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.all(12),
               child: SvgPicture.asset(Res.mobile),
             ),
           ),
+          // Password field
           GenericTextField(
             fieldTypes: FieldTypes.password,
-            type: TextInputType.text,
+            type: TextInputType.visiblePassword,
             action: TextInputAction.done,
-            validate: (value) => value?.validatePhone(),
-            label: "Password",
-            margin: const EdgeInsets.only(top: 20),
-            prefixIcon: Padding(
-              padding: const EdgeInsets.all(12.0),
+            validate: controller.passwordValidator,
+            controller: controller.passwordController,
+            margin: const EdgeInsets.only(bottom: 16),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.all(12),
               child: SvgPicture.asset(Res.password),
             ),
           ),

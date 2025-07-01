@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_tdd/core/constants/app_loader_widget.dart';
@@ -61,7 +62,7 @@ class OptionsButton<T> extends StatefulWidget {
 
   factory OptionsButton.empty() {
     return OptionsButton(
-      hintText: '...',
+      hintText: Translate.s.search_hint,
       controller: OptionController(),
       valueBuilder: (context, item) => const SizedBox(),
       onPressed: () {},
@@ -70,7 +71,7 @@ class OptionsButton<T> extends StatefulWidget {
 
   factory OptionsButton.error({required BaseError error, required VoidCallback onPressed}) {
     return OptionsButton(
-      hintText: '...',
+      hintText: Translate.s.search_hint,
       controller: OptionController(),
       error: error,
       border: Border.all(color: AppColors.snackBarRedError),

@@ -1,11 +1,12 @@
-part of 'splash_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 
 class SplashController {
-  void manipulateSaveData(BuildContext context) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    var userStr = preferences.getString("user");
-    await Future.delayed(const Duration(seconds: 4));
-    AutoRouter.of(context).push( const Login());
+  void navigateToLogin(BuildContext context) async {
+    await Future.delayed(const Duration(milliseconds: 2500));
+    if (context.mounted) {
+      AutoRouter.of(context).replaceAll([const LoginRegisterRoute()]);
+    }
   }
-
 }

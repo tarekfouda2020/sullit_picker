@@ -52,4 +52,52 @@ class Dimens {
 
   static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(20));
   static const BorderRadius borderRadius5PX = BorderRadius.all(Radius.circular(10));
+
+  static const double cardBorderRadius8 = 8.0;
+  static const double cardBorderRadius12 = 12.0;
+  static const double cardBorderRadius16 = 16.0;
+  static const double cardBorderRadius20 = 20.0;
+  static const double cardElevation = 2.0;
+  static const double cardPadding = 24.0;
+  
+  static const double iconSizeSmall = 14.0;
+  static const double iconSizeMedium = 18.0;
+  static const double iconSizeLarge = 20.0;
+  static const double iconSizeXLarge = 24.0;
+  
+  static const double iconContainerSmall = 24.0;
+  static const double iconContainerMedium = 32.0;
+  static const double iconContainerLarge = 40.0;
+  static const double iconContainerXLarge = 48.0;
+  
+  static const double buttonHeight = 50.0;
+  static const double buttonHeightSmall = 40.0;
+  static const double buttonHeightLarge = 56.0;
+  static const double buttonBorderRadius = 8.0;
+  static const double buttonPaddingHorizontal = 24.0;
+  static const double buttonPaddingVertical = 16.0;
+  
+  static const EdgeInsetsGeometry paddingScreenHorizontal = EdgeInsets.symmetric(horizontal: 16.0);
+  static const EdgeInsetsGeometry paddingScreenAll = EdgeInsets.all(16.0);
+  static const EdgeInsetsGeometry paddingCardAll = EdgeInsets.all(24.0);
+  static const EdgeInsetsGeometry paddingCardHorizontal = EdgeInsets.symmetric(horizontal: 24.0);
+  static const EdgeInsetsGeometry paddingCardVertical = EdgeInsets.symmetric(vertical: 20.0);
+  
+  static const double sectionSpacingSmall = 16.0;
+  static const double sectionSpacingMedium = 24.0;
+  static const double sectionSpacingLarge = 32.0;
+  static const double sectionSpacingXLarge = 48.0;
+  
+  static const double shadowBlurRadius = 10.0;
+  static const double shadowSpreadRadius = 0.0;
+  static const Offset shadowOffset = Offset(0, 2);
+  static const double shadowOpacity = 0.05;
+  
+  static const double statusBarHeight = 44.0;
+  static const double bottomSafeArea = 34.0;
+  
+  static const EdgeInsetsGeometry paddingH16V10PX = EdgeInsets.symmetric(horizontal: 16, vertical: 10);
+  static const EdgeInsetsGeometry paddingH20V12PX = EdgeInsets.symmetric(horizontal: 20, vertical: 12);
+  static const EdgeInsetsGeometry paddingH24V16PX = EdgeInsets.symmetric(horizontal: 24, vertical: 16);
+  static const EdgeInsetsGeometry paddingH32V12PX = EdgeInsets.symmetric(horizontal: 32, vertical: 12);
 }

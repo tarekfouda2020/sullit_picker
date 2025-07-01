@@ -1,0 +1,13 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- Truck body -->
+<path d="M2 15H4C4 16.1046 4.89543 17 6 17C7.10457 17 8 16.1046 8 15H16C16 16.1046 16.8954 17 18 17C19.1046 17 20 16.1046 20 15H22V12C22 10.8954 21.1046 10 20 10H18V8C18 6.89543 17.1046 6 16 6H4C2.89543 6 2 6.89543 2 8V15Z" fill="currentColor" fill-opacity="0.2"/>
+<path d="M2 15H4C4 16.1046 4.89543 17 6 17C7.10457 17 8 16.1046 8 15H16C16 16.1046 16.8954 17 18 17C19.1046 17 20 16.1046 20 15H22V12C22 10.8954 21.1046 10 20 10H18V8C18 6.89543 17.1046 6 16 6H4C2.89543 6 2 6.89543 2 8V15Z" stroke="currentColor" stroke-width="2"/>
+
+<!-- Wheels -->
+<circle cx="6" cy="15" r="2" fill="currentColor"/>
+<circle cx="18" cy="15" r="2" fill="currentColor"/>
+
+<!-- Cargo area -->
+<rect x="4" y="8" width="10" height="5" fill="currentColor" fill-opacity="0.1"/>
+<path d="M5 9H7M5 11H9" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+</svg> 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -76,24 +77,24 @@ class _SearchFormFieldState extends State<SearchFormField> {
         textInputAction: TextInputAction.search,
         onSubmitted: widget.onSubmit,
         decoration: InputDecoration(
-            hintText: widget.searchHint??"Search",
-            contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
-            fillColor: const Color(0xFFF7F7F7),
-            filled: true,
-            hintStyle: TextStyle(
-                fontSize: 12.sp,
-                color: const Color.fromRGBO(151, 151, 151, 1),
-                fontWeight: FontWeight.w400),
-            prefixIcon: InkWell(
-              onTap: () {
-                if (widget.onSubmit != null) {
-                  widget.onSubmit!(_searchController.text);
-                }
-              },
-              child: const Icon(Icons.search_rounded, color: Color(0xFF6E6E6E), size: 20),
-            ),
-            border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(99)), borderSide: BorderSide.none)),
+          hintText: widget.searchHint ?? Translate.of(context).search,
+          contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+          fillColor: const Color(0xFFF7F7F7),
+          filled: true,
+          hintStyle: TextStyle(
+              fontSize: 12.sp,
+              color: const Color.fromRGBO(151, 151, 151, 1),
+              fontWeight: FontWeight.w400),
+          prefixIcon: InkWell(
+            onTap: () {
+              if (widget.onSubmit != null) {
+                widget.onSubmit!(_searchController.text);
+              }
+            },
+            child: const Icon(Icons.search_rounded, color: Color(0xFF6E6E6E), size: 20),
+          ),
+          border: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(99)), borderSide: BorderSide.none)),
       ),
     );
   }

@@ -1,24 +1,27 @@
-part of 'login_widgets_imports.dart';
+import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
 class BuildForgetPasswordView extends StatelessWidget {
-  const BuildForgetPasswordView({Key? key}) : super(key: key);
+  const BuildForgetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 25),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
           Text(
-            "Forget your password?",
-            style: AppTextStyle.s14_w400(color: context.colors.black),
+            'نسيت كلمة المرور؟',
+            style: AppTextStyle.s14_w400(color: Colors.black),
           ),
-          const SizedBox(width: 5),
+          const SizedBox(width: 8),
           InkWell(
-            onTap: () => AutoRouter.of(context).push(const ForgetPassword()),
+            onTap: () => AutoRouter.of(context).push(const ForgetPasswordRoute()),
             child: Text(
-              "Tap here",
-              style: AppTextStyle.s14_w400(color: context.colors.primary),
+              'اضغط هنا',
+              style: AppTextStyle.s14_w600(color: Colors.blue),
             ),
           ),
         ],

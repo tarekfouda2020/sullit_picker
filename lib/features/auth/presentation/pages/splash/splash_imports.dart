@@ -1,12 +1,9 @@
-
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/res.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:widget_and_text_animator/widget_and_text_animator.dart';
-
-part 'splash.dart';
-part 'splash_controller.dart';
+export 'package:flutter/material.dart';
+export 'package:auto_route/auto_route.dart';
+export 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
+export 'package:flutter_tdd/core/routes/router_imports.dart';
+export 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+export 'package:flutter_tdd/core/constants/app_loader_widget.dart';
+export 'package:flutter_tdd/features/auth/presentation/pages/splash/splash_controller.dart';
+export 'package:flutter_tdd/res.dart';
+export 'package:flutter_tdd/core/localization/translate.dart';
