@@ -44,6 +44,7 @@ class Res {
   static const String logoutIcon = "assets/images/icons/logout_icon.svg";
   static const String profileIcon = "assets/images/icons/profile_icon.svg";
   static const String menuIcon = "assets/images/icons/menu_icon.svg";
+  static const String sulitIcon = "assets/images/icons/sulit_icon.png";
 
   // Home screen specific icons
   static const String homeNotification = "assets/images/icons/home_notification.svg";

@@ -1,3 +1,5 @@
+import 'package:country_phone_validator/country_phone_validator.dart';
+import 'package:flutter_tdd/core/helpers/phone_helper.dart';
 import 'package:flutter_tdd/core/localization/translate.dart';
 
 extension Validator on String {
@@ -36,7 +38,7 @@ extension Validator on String {
 
   String? validateEmail({String? message}) {
     if (trim().isEmpty) {
-      return message ??  Translate.s.fillField;
+      return message ?? Translate.s.fillField;
     } else if (!RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(this)) {
@@ -88,6 +90,19 @@ extension Validator on String {
     }
     return null;
   }
+
+  bool validateOnCode(String dialCode) {
+    var phone = PhoneHelper.handlePhone(this);
+    bool isValid = CountryUtils.validatePhoneNumber(phone, dialCode);
+    if (trim().isEmpty) {
+      return true;
+    } else if (isValid == false) {
+      return false;
+    }
+    return true;
+  }
+
+
 }
 
 String? validateDropDown( dynamic model,{String? message}) {

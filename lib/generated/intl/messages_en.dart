@@ -253,6 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "phoneValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid phone number"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
         "phone_number_required":
             MessageLookupByLibrary.simpleMessage("Phone number is required"),
         "pick": MessageLookupByLibrary.simpleMessage("Pick"),
@@ -300,6 +301,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
+        "select_country":
+            MessageLookupByLibrary.simpleMessage("Select the country"),
         "send_payment_link":
             MessageLookupByLibrary.simpleMessage("Send Payment Link"),
         "send_reset_link":
@@ -334,6 +337,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Vehicle Information"),
         "verify_your_e_mail":
             MessageLookupByLibrary.simpleMessage("Verify Your E-mail"),
+        "verify_your_phone":
+            MessageLookupByLibrary.simpleMessage("Verify Your Phone"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "weideliver": MessageLookupByLibrary.simpleMessage("Weideliver"),
         "welcome_ahmed": MessageLookupByLibrary.simpleMessage("Welcome Ahmed"),

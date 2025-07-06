@@ -80,4 +80,10 @@ class AppLightColors extends AppColors {
 
   @override
   Color get lightBackground => const Color(0xFFFEEAEA);
+
+  @override
+  Color get lightPrimary => const Color(0xFFFFC9CA);
+
+  @override
+  Color get gray58 => const Color(0xFF898989);
 }

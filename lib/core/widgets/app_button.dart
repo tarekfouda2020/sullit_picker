@@ -21,12 +21,14 @@ class AppTextButton extends StatelessWidget {
       Color? bgColor,
       double? textSize,
       double? maxHeight,
+      BorderRadiusGeometry? borderRadius,
       Color? txtColor})
       : _appTextButton = appTextButton,
         _textColor = txtColor,
         _bgColor = bgColor,
         maxHeight = maxHeight ?? 52,
-        _textSize = textSize;
+        _textSize = textSize,
+        _borderRadius = borderRadius;
 
   final _AppTextButton _appTextButton;
   final String text;
@@ -42,6 +44,7 @@ class AppTextButton extends StatelessWidget {
 
   final double minHeight = 40;
   final double maxHeight;
+  final BorderRadiusGeometry? _borderRadius;
 
   factory AppTextButton.minPrimary(
       {Key? key,required String text, bool enabled = true, VoidCallback? onPressed}) {
@@ -93,6 +96,7 @@ class AppTextButton extends StatelessWidget {
     VoidCallback? onPressed,
     double? textSize,
     double? maxHeight,
+    BorderRadiusGeometry? borderRadius,
   }) {
     return AppTextButton._(
       key: key,
@@ -104,6 +108,7 @@ class AppTextButton extends StatelessWidget {
       onPressed: onPressed,
       textSize: textSize,
       maxHeight: maxHeight,
+      borderRadius: borderRadius,
     );
   }
 
@@ -140,13 +145,13 @@ class AppTextButton extends StatelessWidget {
             enable: enabled && onPressed != null,
             child: TextButton(
               style: Theme.of(context).textButtonTheme.style?.copyWith(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    foregroundColor: MaterialStateProperty.resolveWith(
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    foregroundColor: WidgetStateProperty.resolveWith(
                       (_) {
                         return AppColors.of(context).primary;
                       },
                     ),
-                    backgroundColor: MaterialStateProperty.resolveWith(
+                    backgroundColor: WidgetStateProperty.resolveWith(
                       (states) {
                         if (enabled) {
                           return AppColors.of(context).primary;
@@ -177,13 +182,13 @@ class AppTextButton extends StatelessWidget {
             enable: enabled && onPressed != null,
             child: TextButton(
               style: Theme.of(context).textButtonTheme.style?.copyWith(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    foregroundColor: MaterialStateProperty.resolveWith(
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    foregroundColor: WidgetStateProperty.resolveWith(
                       (_) {
                         return Colors.transparent;
                       },
                     ),
-                    backgroundColor: MaterialStateProperty.resolveWith(
+                    backgroundColor: WidgetStateProperty.resolveWith(
                       (states) {
                         return Colors.transparent;
                       },
@@ -208,13 +213,13 @@ class AppTextButton extends StatelessWidget {
             enable: enabled && onPressed != null,
             child: TextButton(
               style: Theme.of(context).textButtonTheme.style?.copyWith(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    foregroundColor: MaterialStateProperty.resolveWith(
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    foregroundColor: WidgetStateProperty.resolveWith(
                       (_) {
                         return AppColors.of(context).primary;
                       },
                     ),
-                    backgroundColor: MaterialStateProperty.resolveWith(
+                    backgroundColor: WidgetStateProperty.resolveWith(
                       (states) {
                         if (enabled) {
                           return AppColors.of(context).primary;
@@ -245,13 +250,13 @@ class AppTextButton extends StatelessWidget {
             enable: enabled && onPressed != null,
             child: TextButton(
               style: Theme.of(context).textButtonTheme.style?.copyWith(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    foregroundColor: MaterialStateProperty.resolveWith(
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    foregroundColor: WidgetStateProperty.resolveWith(
                       (_) {
                         return Colors.transparent;
                       },
                     ),
-                    backgroundColor: MaterialStateProperty.resolveWith(
+                    backgroundColor: WidgetStateProperty.resolveWith(
                       (states) {
                         return Colors.transparent;
                       },
@@ -268,35 +273,38 @@ class AppTextButton extends StatelessWidget {
           ),
         );
       case _AppTextButton.minCustomColor:
-        return SizedBox(
-          width: minWidth,
-          height: maxHeight,
-          child: BouncingWidget(
-            enable: enabled && onPressed != null,
-            child: TextButton(
-              style: Theme.of(context).textButtonTheme.style?.copyWith(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    foregroundColor: MaterialStateProperty.resolveWith(
-                      (_) {
-                        return _bgColor;
-                      },
-                    ),
-                    backgroundColor: MaterialStateProperty.resolveWith(
-                      (states) {
-                        if (enabled) {
+        return ClipRRect(
+          borderRadius: _borderRadius ?? BorderRadius.circular(0),
+          child: SizedBox(
+            width: minWidth,
+            height: maxHeight,
+            child: BouncingWidget(
+              enable: enabled && onPressed != null,
+              child: TextButton(
+                style: Theme.of(context).textButtonTheme.style?.copyWith(
+                      padding: WidgetStateProperty.all(EdgeInsets.zero),
+                      foregroundColor: WidgetStateProperty.resolveWith(
+                        (_) {
                           return _bgColor;
-                        } else {
-                          return AppColors.of(context).black;
-                        }
-                      },
+                        },
+                      ),
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                        (states) {
+                          if (enabled) {
+                            return _bgColor;
+                          } else {
+                            return AppColors.of(context).black;
+                          }
+                        },
+                      ),
                     ),
-                  ),
-              onPressed: onPressed,
-              child: Text(
-                text,
-                style: AppTextStyle.s14_w500(
-                  color: _textColor!,
-                ).copyWith(fontSize: _textSize ?? 14),
+                onPressed: onPressed,
+                child: Text(
+                  text,
+                  style: AppTextStyle.s14_w500(
+                    color: _textColor!,
+                  ).copyWith(fontSize: _textSize ?? 14),
+                ),
               ),
             ),
           ),
@@ -309,13 +317,13 @@ class AppTextButton extends StatelessWidget {
             enable: enabled && onPressed != null,
             child: TextButton(
               style: Theme.of(context).textButtonTheme.style?.copyWith(
-                    padding: MaterialStateProperty.all(EdgeInsets.zero),
-                    foregroundColor: MaterialStateProperty.resolveWith(
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    foregroundColor: WidgetStateProperty.resolveWith(
                       (_) {
                         return _bgColor;
                       },
                     ),
-                    backgroundColor: MaterialStateProperty.resolveWith(
+                    backgroundColor: WidgetStateProperty.resolveWith(
                       (states) {
                         return _bgColor;
                       },

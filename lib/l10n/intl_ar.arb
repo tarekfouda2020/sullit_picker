@@ -72,7 +72,6 @@
   "app_name": "سائق سليط",
   "welcome_message": "مرحباً بك في سائق سليط",
   "enter_your_email": "أدخل بريدك الإلكتروني",
-  "enter_your_password": "أدخل كلمة المرور",
   "enter_your_name": "أدخل اسمك",
   "enter_your_phone": "أدخل رقم هاتفك",
   "confirm_your_password": "أكد كلمة المرور",
@@ -162,7 +161,6 @@
   "password_min_characters": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
   "name_required": "الاسم مطلوب",
   "phone_number_required": "رقم الهاتف مطلوب",
-  "confirm_password_required": "تأكيد كلمة المرور مطلوب",
   "passwords_do_not_match": "كلمات المرور غير متطابقة",
   "report_problem": "الإبلاغ عن مشكلة",
   "complete_order": "إكمال الطلب",
@@ -209,7 +207,10 @@
   "welcome_to_suliit": "مرحباً بك في سليط!",
   "start_receiving_orders": "ابدأ في استقبال الطلبات وابدأ رحلة التوصيل معنا",
   "maybe_later": "ربما لاحقاً",
-  "get_started": "ابدأ الآن"
+  "get_started": "ابدأ الآن",
+  "select_country": "اختر الدولة",
+  "verify_your_phone": "تحقق من هاتفك",
+  "phone_number": "رقم الهاتف"
 }
 
 

@@ -1,11 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
-import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import '../login_register_controller.dart';
+import 'package:flutter_tdd/features/auth/presentation/pages/login_register/login_register_imports.dart';
 
 class LoginFormWidget extends StatelessWidget {
   final LoginRegisterController controller;
@@ -22,91 +16,52 @@ class LoginFormWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Email Field
-          Text(
-            Translate.of(context).e_mail,
-            style: AppTextStyle.s14_w600(color: context.colors.textLabel),
-          ),
-          const SizedBox(height: 8),
+          AuthSectionTitleWidget(title: Translate.of(context).e_mail,),
           GenericTextField(
             controller: controller.loginEmailController,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.emailAddress,
             action: TextInputAction.next,
             fillColor: Colors.white,
-            label: Translate.of(context).e_mail,
-            margin: const EdgeInsets.only(right: 16, left: 16, top: 24),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            validate: (value) => controller.validateEmail(value),
+            margin: const EdgeInsets.only(top: 5),
+            validate: (value) => value?.validateEmail(),
             hint: Translate.of(context).enter_your_e_mail,
           ),
-          
-          const SizedBox(height: 24),
-          
-          // Password Field
-          Text(
-            Translate.of(context).password,
-            style: AppTextStyle.s14_w600(color: context.colors.textLabel),
-          ),
-          const SizedBox(height: 8),
-          GenericTextField(
-            controller: controller.loginPasswordController,
-            fieldTypes: FieldTypes.password,
-            type: TextInputType.text,
-            action: TextInputAction.done,
-            fillColor: Colors.white,
-            label: Translate.of(context).password,
-            margin: const EdgeInsets.only(right: 16, left: 16, top: 24),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            validate: (value) => controller.validatePassword(value),
-            hint: Translate.of(context).enter_your_password,
-            suffixIcon: Icon(
-              Icons.visibility_off_outlined,
-              color: context.colors.hintText,
-              size: 20,
-            ),
-          ),
-          
-          const SizedBox(height: 40),
-          
-          // Login Button
+         Gaps.vGap12,
+          AuthSectionTitleWidget(title:  Translate.of(context).password,),
           ObsValueConsumer(
-            observable: controller.isLoginLoading,
-            builder: (context, isLoading) {
-              return SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
-                  onPressed: isLoading ? null : () => controller.login(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.colors.primary,
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(26),
-                    ),
+            observable: controller.loginPasswordVisibleObs,
+            builder: (context,isVisible) {
+              return GenericTextField(
+                controller: controller.loginPasswordController,
+                fieldTypes: isVisible ? FieldTypes.normal : FieldTypes.password,
+                type: TextInputType.text,
+                action: TextInputAction.done,
+                fillColor: Colors.white,
+                margin: Dimens.paddingTop5 ,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                validate: (value) => value?.validatePassword(),
+                hint: Translate.of(context).enter_your_password,
+                suffixIcon: GestureDetector(
+                  onTap: () => controller.switchPasswordVisibility(controller.loginPasswordVisibleObs),
+                  child: Icon(
+                    isVisible ?Icons.visibility_outlined : Icons.visibility_off_outlined,
+                    color: context.colors.hintText,
+                    size: 20,
                   ),
-                  child: isLoading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                          ),
-                        )
-                      : Text(
-                          Translate.of(context).login,
-                          style: AppTextStyle.s16_w600(color: Colors.white),
-                        ),
                 ),
               );
-            },
+            }
           ),
-          
-          const SizedBox(height: 24),
-          
-          // Forgot Password
+          Center(
+            child: LoadingButton(
+                title: Translate.of(context).login,
+                onTap: () => controller.login(context),
+                btnKey: controller.loadingButtonKey,
+              margin: const EdgeInsets.only(top: 28),
+            ),
+          ),
+          Gaps.vGap24,
           Center(
             child: GestureDetector(
               onTap: () => controller.navigateToForgetPassword(context),
@@ -124,8 +79,6 @@ class LoginFormWidget extends StatelessWidget {
               ),
             ),
           ),
-          
-          const SizedBox(height: 40),
         ],
       ),
     );

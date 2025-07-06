@@ -80,4 +80,10 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get hintText => const Color(0xFF6B7280); // Darker hint text for dark theme
+
+  @override
+  Color get lightPrimary => const Color(0xFFFFC9CA);
+
+  @override
+  Color get gray58 => const Color(0xFF898989);
 }

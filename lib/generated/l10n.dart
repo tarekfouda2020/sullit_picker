@@ -770,16 +770,6 @@ class S {
     );
   }
 
-  /// `Enter Your Password`
-  String get enter_your_password {
-    return Intl.message(
-      'Enter Your Password',
-      name: 'enter_your_password',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Enter your name`
   String get enter_your_name {
     return Intl.message(
@@ -1590,6 +1580,16 @@ class S {
     );
   }
 
+  /// `Enter Your Password`
+  String get enter_your_password {
+    return Intl.message(
+      'Enter Your Password',
+      name: 'enter_your_password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter your details to register`
   String get register_subtitle {
     return Intl.message(
@@ -2125,6 +2125,36 @@ class S {
     return Intl.message(
       'Get Started',
       name: 'get_started',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the country`
+  String get select_country {
+    return Intl.message(
+      'Select the country',
+      name: 'select_country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Your Phone`
+  String get verify_your_phone {
+    return Intl.message(
+      'Verify Your Phone',
+      name: 'verify_your_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number`
+  String get phone_number {
+    return Intl.message(
+      'Phone number',
+      name: 'phone_number',
       desc: '',
       args: [],
     );

@@ -35,22 +35,22 @@ class CustomInputDecoration extends InputDecoration {
   InputBorder get enabledBorder => OutlineInputBorder(
         borderSide:
             BorderSide(color: enableColor ?? AppColors.noContextInstance.greyWhite, width: .7),
-        borderRadius: borderRadius ?? BorderRadius.circular( 10),
+        borderRadius: borderRadius ?? BorderRadius.circular( 30),
       );
 
   @override
   InputBorder get focusedBorder => OutlineInputBorder(
-      borderRadius: borderRadius ?? BorderRadius.circular( 10),
+      borderRadius: borderRadius ?? BorderRadius.circular( 30),
       borderSide: BorderSide(color: focusColor ?? AppColors.noContextInstance.primary, width: 1));
 
   @override
   InputBorder get errorBorder => OutlineInputBorder(
       borderSide: const BorderSide(color: Colors.red, width: .5),
-      borderRadius: borderRadius ?? BorderRadius.circular( 10));
+      borderRadius: borderRadius ?? BorderRadius.circular( 30));
 
   @override
   InputBorder get focusedErrorBorder => OutlineInputBorder(
-      borderRadius: borderRadius ?? BorderRadius.circular( 10),
+      borderRadius: borderRadius ?? BorderRadius.circular( 30),
       borderSide: const BorderSide(color: Colors.red, width: 2));
 
   @override
@@ -58,6 +58,7 @@ class CustomInputDecoration extends InputDecoration {
 
   @override
   String? get hintText => hint;
+
 
   @override
   Widget? get label => labelTxt==null?super.label:Text(labelTxt??"",style: labelStyle,);
@@ -70,7 +71,7 @@ class CustomInputDecoration extends InputDecoration {
 
   @override
   EdgeInsetsGeometry get contentPadding =>
-      padding ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 18);
+      padding ?? const EdgeInsets.symmetric(horizontal: 32, vertical: 16);
 
   @override
   bool get filled => true;

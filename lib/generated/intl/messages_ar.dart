@@ -247,6 +247,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
         "phoneValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم هاتف صالح"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "phone_number_required":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف مطلوب"),
         "pick": MessageLookupByLibrary.simpleMessage("اختيار"),
@@ -294,6 +295,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "search_hint": MessageLookupByLibrary.simpleMessage("بحث..."),
+        "select_country": MessageLookupByLibrary.simpleMessage("اختر الدولة"),
         "send_payment_link":
             MessageLookupByLibrary.simpleMessage("إرسال رابط الدفع"),
         "send_reset_link":
@@ -327,6 +329,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("معلومات المركبة"),
         "verify_your_e_mail":
             MessageLookupByLibrary.simpleMessage("تحقق من بريدك الإلكتروني"),
+        "verify_your_phone":
+            MessageLookupByLibrary.simpleMessage("تحقق من هاتفك"),
         "wallet": MessageLookupByLibrary.simpleMessage("المحفظة"),
         "weideliver": MessageLookupByLibrary.simpleMessage("نحن نوصل"),
         "welcome_ahmed": MessageLookupByLibrary.simpleMessage("مرحباً أحمد"),

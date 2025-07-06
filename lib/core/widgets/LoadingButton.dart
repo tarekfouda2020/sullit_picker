@@ -50,12 +50,13 @@ class LoadingButton extends StatelessWidget {
             onTap: onTap,
             width: width ?? MediaQuery.of(context).size.width,
             minWidth: 45,
-            height: height??45,
+            height: height??50,
             color: color ?? context.colors.primary,
-            borderRadius: borderRadius ?? 10,
+            borderRadius: borderRadius ?? 30,
             borderSide: BorderSide(color: borderColor ?? border, width: 1),
             loader: Container(
               padding: const EdgeInsets.all(10),
+              alignment: Alignment.center,
               child: const SpinKitRotatingCircle(
                 color: Colors.white,
                 size: 20,
@@ -63,7 +64,7 @@ class LoadingButton extends StatelessWidget {
             ),
             child: Text(
                title,
-              style: AppTextStyle.s12_w500(color: textColor ?? Colors.white).copyWith(
+              style: AppTextStyle.s18_w700(color: textColor ?? Colors.white).copyWith(
                 fontFamily: fontFamily,
                 fontWeight: fontWeight,
               ),

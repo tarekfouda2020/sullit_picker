@@ -72,7 +72,6 @@
   "app_name": "Suliit Driver",
   "welcome_message": "Welcome to Suliit Driver",
   "enter_your_email": "Enter your email",
-  "enter_your_password": "Enter your password",
   "enter_your_name": "Enter your name",
   "enter_your_phone": "Enter your phone number",
   "confirm_your_password": "Confirm your password",
@@ -165,7 +164,6 @@
   "password_min_characters": "Password must be at least 6 characters",
   "name_required": "Name is required",
   "phone_number_required": "Phone number is required",
-  "confirm_password_required": "Confirm password is required",
   "passwords_do_not_match": "Passwords do not match",
   "report_problem": "Report Problem",
   "complete_order": "Complete Order",
@@ -212,5 +210,8 @@
   "welcome_to_suliit": "Welcome to Suliit!",
   "start_receiving_orders": "Start receiving orders and begin your delivery journey with us",
   "maybe_later": "Maybe Later",
-  "get_started": "Get Started"
+  "get_started": "Get Started",
+  "select_country": "Select the country",
+  "verify_your_phone": "Verify Your Phone",
+  "phone_number": "Phone number"
 }

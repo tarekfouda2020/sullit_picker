@@ -70,6 +70,10 @@ abstract class AppColors {
 
   Color get orangeAccent;
 
+  Color get lightPrimary;
+
+  Color get gray58;
+
   // Form and UI colors
   Color get textLabel; // For form labels (0xFF374151)
   

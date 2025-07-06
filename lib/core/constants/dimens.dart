@@ -28,16 +28,20 @@ class Dimens {
   static const double dp7 = 7;
   static const double dp8 = 8;
   static const double dp10 = 10;
+  static const double dp11 = 11;
   static const double dp12 = 12;
   static const double dp13 = 13;
   static const double dp14 = 14;
   static const double dp15 = 15;
   static const double dp16 = 16;
   static const double dp20 = 20;
+  static const double dp21 = 21;
   static const double dp22 = 22;
+  static const double dp23 = 23;
   static const double dp24 = 24;
   static const double dp28 = 28;
   static const double dp30 = 30;
+  static const double dp40 = 40;
   static const double dp32 = 32;
   static const double dp50 = 50;
   static const double dp64 = 64;
@@ -52,6 +56,8 @@ class Dimens {
 
   static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(20));
   static const BorderRadius borderRadius5PX = BorderRadius.all(Radius.circular(10));
+  static const BorderRadius borderRadius30PX = BorderRadius.all(Radius.circular(30));
+  static  BorderRadius borderRadius12PX = const BorderRadius.all(Radius.circular(12));
 
   static const double cardBorderRadius8 = 8.0;
   static const double cardBorderRadius12 = 12.0;
@@ -82,7 +88,9 @@ class Dimens {
   static const EdgeInsetsGeometry paddingCardAll = EdgeInsets.all(24.0);
   static const EdgeInsetsGeometry paddingCardHorizontal = EdgeInsets.symmetric(horizontal: 24.0);
   static const EdgeInsetsGeometry paddingCardVertical = EdgeInsets.symmetric(vertical: 20.0);
-  
+
+  static  EdgeInsets paddingTop5 =  const EdgeInsets.only(top: 5).r;
+
   static const double sectionSpacingSmall = 16.0;
   static const double sectionSpacingMedium = 24.0;
   static const double sectionSpacingLarge = 32.0;

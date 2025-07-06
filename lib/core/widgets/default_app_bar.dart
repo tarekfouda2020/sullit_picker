@@ -11,8 +11,10 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final List<Widget> actions;
   final double? size;
+  final double? leadingWidth;
   final bool? showBack;
   final bool? centerTitle;
+  final Color? bgColor;
 
   const DefaultAppBar({
     super.key,
@@ -22,6 +24,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.size,
     this.showBack = true,
     this.centerTitle,
+    this.bgColor,
+    this.leadingWidth,
   });
 
   @override
@@ -35,9 +39,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light
       ),
-      backgroundColor: context.colors.appBarColor,
+      backgroundColor: bgColor ?? context.colors.background,
       elevation: 0,
-      leadingWidth: showBack == true ? 55 : 10,
+      leadingWidth: showBack == true ? leadingWidth ?? 55 : 10,
       leading: leading ??
           Visibility(
             visible: showBack ?? true,

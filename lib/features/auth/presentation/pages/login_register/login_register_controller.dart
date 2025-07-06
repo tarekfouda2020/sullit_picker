@@ -1,55 +1,133 @@
-import 'login_register_imports.dart';
-import 'package:flutter_tdd/generated/l10n.dart';
-import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
+import 'dart:developer';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/file_service.dart';
+
+import '../login_register/login_register_imports.dart';
+
 
 class LoginRegisterController {
   // Tab management
-  final currentTab = ObsValue<int>.withInit(0);
+  final ObsValue<int> currentTabObs = ObsValue<int>.withInit(0);
   
   // Login form
-  final loginEmailController = TextEditingController();
-  final loginPasswordController = TextEditingController();
-  final loginFormKey = GlobalKey<FormState>();
+  final TextEditingController loginEmailController = TextEditingController();
+  final TextEditingController loginPasswordController = TextEditingController();
+  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   
   // Register form
-  final registerNameController = TextEditingController();
-  final registerEmailController = TextEditingController();
-  final registerPhoneController = TextEditingController();
-  final registerPasswordController = TextEditingController();
-  final registerConfirmPasswordController = TextEditingController();
-  final registerFormKey = GlobalKey<FormState>();
+  final TextEditingController registerNameController = TextEditingController();
+  final TextEditingController registerEmailController = TextEditingController();
+  final TextEditingController registerPhoneController = TextEditingController();
+  final TextEditingController registerPasswordController = TextEditingController();
+  final TextEditingController registerConfirmPasswordController = TextEditingController();
+  final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   
-  // Loading states
-  final isLoginLoading = ObsValue<bool>.withInit(false);
-  final isRegisterLoading = ObsValue<bool>.withInit(false);
-  
-  // Work type selection (0: one store, 1: many stores, 2: freelance)
-  final selectedWorkType = ObsValue<int>.withInit(0);
+  // obs
+  final ObsValue<bool> loginPasswordVisibleObs = ObsValue<bool>.withInit(false);
+  final ObsValue<bool> passwordVisibleObs = ObsValue<bool>.withInit(false);
+  final ObsValue<bool> confirmPasswordVisibleObs = ObsValue<bool>.withInit(false);
+  final ObsValue<List<WorkTypeModel>> workTypeListObs = ObsValue<List<WorkTypeModel>>.withInit([]);
+  ObsValue<CountryCode> countryCodeObs = ObsValue<CountryCode>.withInit(
+      const CountryCode(name: "United Arab Emirates", code: "AE", dialCode: "+966")
+  );
+  ObsValue<File?> idFileObs = ObsValue<File?>.withInit(null);
+  ObsValue<File?> licenseFileObs = ObsValue<File?>.withInit(null);
+
+  final GlobalKey<CustomButtonState> loadingButtonKey = GlobalKey<CustomButtonState>();
+  final GlobalKey<CustomButtonState> registerLoadingButtonKey = GlobalKey<CustomButtonState>();
+
+
+
+  final List<WorkTypeModel> workTypesList = [
+    WorkTypeModel(type: WorkTypeEnum.oneStore,isSelected: true),
+    WorkTypeModel(type: WorkTypeEnum.myStore),
+    WorkTypeModel(type: WorkTypeEnum.freelancer),
+  ];
+
+
+  LoginRegisterController(){
+    workTypeListObs.setValue(workTypesList);
+  }
+
+
+  String whileEnterPhone(){
+    bool validateNUmber = registerPhoneController.text.validateOnCode(countryCodeObs.getValue().dialCode);
+    if(registerPhoneController.text.isEmpty){
+      return Translate.s.fillField;
+    }else if(!validateNUmber){
+      return Translate.s.phoneValidation;
+    }
+    return "";
+  }
+
+
+
+
+  Future<void> pickIdFile(BuildContext context)async{
+    var file = await getIt<AppFileService>().pickFile(context,allowMultiple: false,fileType: FileType.image);
+    if(file!=null){
+      idFileObs.setValue(file.first);
+      idFileObs.refresh();
+    }
+  }
+  Future<void> pickLicenseFile(BuildContext context)async{
+    var file = await getIt<AppFileService>().pickFile(context,allowMultiple: false,fileType: FileType.image);
+    if(file!=null){
+      licenseFileObs.setValue(file.first);
+      licenseFileObs.refresh();
+    }
+  }
+
+
+  Future<void> selectCountryCode(BuildContext context)async{
+    // CountryCode? country = countryCodeObs.getValue();
+    CountryCode? selectedCountry = await CountryPicker.selectCountrySheet(context);
+    if(selectedCountry != null){
+      countryCodeObs.setValue(selectedCountry);
+      countryCodeObs.refresh();
+      log("==-=-=-=-==-=-=-==->>>> dial code ${selectedCountry.dialCode}");
+      log("==-=-=-=-==-=-=-==->>>> name ${selectedCountry.name}");
+      log("==-=-=-=-==-=-=-==->>>> code ${selectedCountry.code}");
+      log("==-=-=-=-==-=-=-==->>>> nationalSignificantNumber ${selectedCountry.nationalSignificantNumber}");
+    }
+  }
+
+
+  void onSelectWorkType(WorkTypeModel model) {
+    var list = workTypeListObs.getValue();
+    if(model.isSelected){
+      model.isSelected = false;
+    }else{
+      for(var item in list){
+        item.isSelected = false;
+      }
+      model.isSelected = true;
+    }
+    workTypeListObs.setValue(list);
+    workTypeListObs.refresh();
+  }
   
   void switchTab(int index) {
-    currentTab.setValue(index);
+    currentTabObs.setValue(index);
   }
-  
-  void setWorkType(int workType) {
-    selectedWorkType.setValue(workType);
-  }
-  
-  void login(BuildContext context) async {
-    // Validate form first
-    // if (!loginFormKey.currentState!.validate()) {
-    //   return;
-    // }
-    
-    try {
-      isLoginLoading.setValue(true);
 
+
+  void login(BuildContext context) async {
+    if (!loginFormKey.currentState!.validate()) {
+      return;
+    }
+
+
+    try {
+      loadingButtonKey.currentState?.animateForward();
       // Simulate API call with realistic delay
       await Future.delayed(const Duration(seconds: 2));
 
       // Success - Navigate to home
-      AutoRouter.of(context).replaceAll([const HomeRoute()]);
-      AppSnackBar.showSuccessSnackBar(Translate.of(context).login_successful);
+      // AutoRouter.of(context).replaceAll([const HomeRoute()]);
+      // AppSnackBar.showSuccessSnackBar(Translate.of(context).login_successful);
+      loadingButtonKey.currentState?.animateReverse();
       
     } catch (error) {
       // Handle error
@@ -59,7 +137,8 @@ class LoginRegisterController {
         );
       }
     } finally {
-      isLoginLoading.setValue(false);
+      loadingButtonKey.currentState?.animateReverse();
+
     }
   }
   
@@ -70,7 +149,7 @@ class LoginRegisterController {
     }
     
     try {
-      isRegisterLoading.setValue(true);
+      registerLoadingButtonKey.currentState?.animateForward();
 
       // Simulate API call
       await Future.delayed(const Duration(seconds: 2));
@@ -89,7 +168,7 @@ class LoginRegisterController {
         );
       }
     } finally {
-      isRegisterLoading.setValue(false);
+      registerLoadingButtonKey.currentState?.animateReverse();
     }
   }
   
@@ -97,48 +176,19 @@ class LoginRegisterController {
     AutoRouter.of(context).push(const ForgetPasswordRoute());
   }
   
-  String? validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return S.current.email_required;
-    }
-    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-      return S.current.please_enter_valid_email;
-    }
-    return null;
+
+  void switchPasswordVisibility(ObsValue<bool> obs) {
+    obs.setValue(!obs.getValue());
   }
-  
-  String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return S.current.password_required;
+
+
+
+  Widget currentView(){
+    switch(currentTabObs.getValue()){
+      case 0: return LoginFormWidget(controller: this);
+      case 1: return  RegisterFormWidget(controller: this);
+      default: return LoginFormWidget(controller: this);
     }
-    if (value.length < 6) {
-      return S.current.password_min_characters;
-    }
-    return null;
-  }
-  
-  String? validateName(String? value) {
-    if (value == null || value.isEmpty) {
-      return S.current.name_required;
-    }
-    return null;
-  }
-  
-  String? validatePhone(String? value) {
-    if (value == null || value.isEmpty) {
-      return S.current.phone_number_required;
-    }
-    return null;
-  }
-  
-  String? validateConfirmPassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return S.current.confirm_password_required;
-    }
-    if (value != registerPasswordController.text) {
-      return S.current.passwords_do_not_match;
-    }
-    return null;
   }
   
   void dispose() {
