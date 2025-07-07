@@ -19,6 +19,7 @@ class Res {
   static const String errorSnackBar = "assets/images/error_snack_bar.svg";
   static const String warningSnackBar = "assets/images/warning_snack_bar.svg";
   static const String successSnackBar = "assets/images/success_snack_bar.svg";
+  static const String shortArrow = "assets/images/icons/short_arrow.svg";
 
   // Home screen assets that already exist in assets/images/
   static const String headerIcon = "assets/images/header-icon.svg";
@@ -45,6 +46,9 @@ class Res {
   static const String profileIcon = "assets/images/icons/profile_icon.svg";
   static const String menuIcon = "assets/images/icons/menu_icon.svg";
   static const String sulitIcon = "assets/images/icons/sulit_icon.png";
+
+  //auth
+  static const String forgetPassBackground = "assets/images/forgetpass_background.png";
 
   // Home screen specific icons
   static const String homeNotification = "assets/images/icons/home_notification.svg";

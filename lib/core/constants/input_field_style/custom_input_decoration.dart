@@ -34,7 +34,7 @@ class CustomInputDecoration extends InputDecoration {
   @override
   InputBorder get enabledBorder => OutlineInputBorder(
         borderSide:
-            BorderSide(color: enableColor ?? AppColors.noContextInstance.greyWhite, width: .7),
+            BorderSide(color: enableColor ?? AppColors.noContextInstance.inputBorder, width: .7),
         borderRadius: borderRadius ?? BorderRadius.circular( 30),
       );
 

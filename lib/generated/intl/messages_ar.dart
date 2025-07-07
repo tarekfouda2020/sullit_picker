@@ -296,6 +296,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "search_hint": MessageLookupByLibrary.simpleMessage("بحث..."),
         "select_country": MessageLookupByLibrary.simpleMessage("اختر الدولة"),
+        "send": MessageLookupByLibrary.simpleMessage("إرسال"),
         "send_payment_link":
             MessageLookupByLibrary.simpleMessage("إرسال رابط الدفع"),
         "send_reset_link":

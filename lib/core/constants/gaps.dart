@@ -40,9 +40,12 @@ class Gaps {
   static Widget vGap20 = const SizedBox(height: Dimens.dp20);
   static Widget vGap21 = const SizedBox(height: Dimens.dp21);
   static Widget vGap24 = const SizedBox(height: Dimens.dp24);
+  static Widget vGap28 = const SizedBox(height: Dimens.dp28);
   static Widget vGap30 = const SizedBox(height: Dimens.dp30);
   static Widget vGap32 = const SizedBox(height: Dimens.dp32);
+  static Widget vGap36 = const SizedBox(height: Dimens.dp36);
   static Widget vGap40 = const SizedBox(height: Dimens.dp40);
+  static Widget vGap44 = const SizedBox(height: Dimens.dp44);
   static Widget vGap50 = const SizedBox(height: Dimens.dp50);
   static Widget vGap64 = const SizedBox(height: Dimens.dp64);
   static Widget vGap128 = const SizedBox(height: Dimens.dp128);

@@ -303,6 +303,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
         "select_country":
             MessageLookupByLibrary.simpleMessage("Select the country"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
         "send_payment_link":
             MessageLookupByLibrary.simpleMessage("Send Payment Link"),
         "send_reset_link":

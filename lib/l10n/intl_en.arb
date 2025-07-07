@@ -213,5 +213,6 @@
   "get_started": "Get Started",
   "select_country": "Select the country",
   "verify_your_phone": "Verify Your Phone",
-  "phone_number": "Phone number"
+  "phone_number": "Phone number",
+  "send": "Send"
 }

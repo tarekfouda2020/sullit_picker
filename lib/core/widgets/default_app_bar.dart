@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/res.dart';
+import 'package:auto_route/auto_route.dart';
 
 class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -15,6 +16,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool? showBack;
   final bool? centerTitle;
   final Color? bgColor;
+  final void Function()? onPressBack;
 
   const DefaultAppBar({
     super.key,
@@ -26,6 +28,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle,
     this.bgColor,
     this.leadingWidth,
+    this.onPressBack,
   });
 
   @override
@@ -46,8 +49,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           Visibility(
             visible: showBack ?? true,
             child: IconButton(
-              icon: SvgPicture.asset(Res.arrow),
-              onPressed: () => Navigator.of(context).pop(),
+              icon: SvgPicture.asset(Res.shortArrow),
+              onPressed: onPressBack ?? () => AutoRouter.of(context).maybePop(),
             ),
           ),
       actions: actions,
