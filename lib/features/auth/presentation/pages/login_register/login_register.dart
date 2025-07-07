@@ -13,6 +13,7 @@ class LoginRegisterPage extends StatefulWidget {
 class _LoginRegisterPageState extends State<LoginRegisterPage> {
   final LoginRegisterController controller = LoginRegisterController();
 
+
   @override
   void dispose() {
     controller.dispose();

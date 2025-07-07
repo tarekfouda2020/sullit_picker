@@ -13,7 +13,7 @@ class AppLightColors extends AppColors {
   Color get white => Colors.white;
 
   @override
-  Color get background => const Color(0xFFF8F9FA); // Light background
+  Color get background => const Color(0xFFF6F6F6);
 
   @override
   Color get appBarColor => const Color(0xFFE84144);
@@ -86,4 +86,10 @@ class AppLightColors extends AppColors {
 
   @override
   Color get gray58 => const Color(0xFF898989);
+
+  @override
+  Color get darkRose => const Color(0xFFE84144);
+
+  @override
+  Color get pink => const Color(0xFFFFE1E2);
 }

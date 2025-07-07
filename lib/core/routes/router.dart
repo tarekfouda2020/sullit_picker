@@ -6,13 +6,10 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     // Auth Routes
-    AdaptiveRoute(page: Splash.page, initial: true),
-    AdaptiveRoute(page: LoginRegisterRoute.page),
-    AdaptiveRoute(page: SubscriptionRoute.page),
-    AdaptiveRoute(page: ForgetPasswordRoute.page),
+   ...authRoutes,
     
     // Home Routes
-    AutoRoute(page: HomeRoute.page),
+   ...homeRoutes,
     
     // Profile Routes
     AutoRoute(page: SideMenuRoute.page),

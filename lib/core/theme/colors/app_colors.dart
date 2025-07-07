@@ -85,4 +85,8 @@ abstract class AppColors {
   
   Color get hintText; // For hint text and icons (0xFF9CA3AF)
 
+  Color get darkRose;
+
+  Color get pink;
+
 }

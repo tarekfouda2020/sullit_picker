@@ -13,9 +13,11 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> actions;
   final double? size;
   final double? leadingWidth;
+  final double? elevation;
   final bool? showBack;
   final bool? centerTitle;
   final Color? bgColor;
+  final Color? shadowColor;
   final void Function()? onPressBack;
 
   const DefaultAppBar({
@@ -29,6 +31,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.bgColor,
     this.leadingWidth,
     this.onPressBack,
+    this.elevation,
+    this.shadowColor,
   });
 
   @override
@@ -43,7 +47,8 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         statusBarBrightness: Brightness.light
       ),
       backgroundColor: bgColor ?? context.colors.background,
-      elevation: 0,
+      elevation:elevation ?? 0,
+      shadowColor: shadowColor,
       leadingWidth: showBack == true ? leadingWidth ?? 55 : 10,
       leading: leading ??
           Visibility(

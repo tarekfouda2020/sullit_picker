@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/file_service.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../login_register/login_register_imports.dart';
 
@@ -86,10 +88,6 @@ class LoginRegisterController {
     if(selectedCountry != null){
       countryCodeObs.setValue(selectedCountry);
       countryCodeObs.refresh();
-      log("==-=-=-=-==-=-=-==->>>> dial code ${selectedCountry.dialCode}");
-      log("==-=-=-=-==-=-=-==->>>> name ${selectedCountry.name}");
-      log("==-=-=-=-==-=-=-==->>>> code ${selectedCountry.code}");
-      log("==-=-=-=-==-=-=-==->>>> nationalSignificantNumber ${selectedCountry.nationalSignificantNumber}");
     }
   }
 
@@ -125,10 +123,11 @@ class LoginRegisterController {
       await Future.delayed(const Duration(seconds: 2));
 
       // Success - Navigate to home
-      // AutoRouter.of(context).replaceAll([const HomeRoute()]);
-      // AppSnackBar.showSuccessSnackBar(Translate.of(context).login_successful);
       loadingButtonKey.currentState?.animateReverse();
-      
+      AutoRouter.of(context).replaceAll([const HomeRoute()]);
+      // AppSnackBar.showSuccessSnackBar(Translate.of(context).login_successful);
+
+
     } catch (error) {
       // Handle error
       if (context.mounted) {
@@ -143,37 +142,21 @@ class LoginRegisterController {
   }
   
   void register(BuildContext context) async {
-    // Validate form first
     if (!registerFormKey.currentState!.validate()) {
       return;
     }
-    
-    try {
-      registerLoadingButtonKey.currentState?.animateForward();
 
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
-      
-      // Success - Navigate to subscription
-      if (context.mounted) {
-        AutoRouter.of(context).push(const SubscriptionRoute());
-        AppSnackBar.showSuccessSnackBar(Translate.of(context).registration_successful);
-      }
-      
-    } catch (error) {
-      // Handle error
-      if (context.mounted) {
-        AppSnackBar.showWarningSnackBar(
-          message: error.toString().replaceAll('Exception: ', ''),
-        );
-      }
-    } finally {
-      registerLoadingButtonKey.currentState?.animateReverse();
-    }
+    registerLoadingButtonKey.currentState?.animateForward();
+    await Future.delayed(const Duration(seconds: 2));
+
+    AutoRouter.of(context).push(const SubscriptionRoute());
+    // AutoRouter.of(context).push(const SupportedAreaPageRoute());
+    AppSnackBar.showSuccessSnackBar(Translate.of(context).registration_successful);
+    registerLoadingButtonKey.currentState?.animateReverse();
   }
   
   void navigateToForgetPassword(BuildContext context) {
-    AutoRouter.of(context).push(const ForgetPasswordRoute());
+    AutoRouter.of(context).push(const ForgetPasswordPageRoute());
   }
   
 

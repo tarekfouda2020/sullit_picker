@@ -120,6 +120,7 @@ class AppTextButton extends StatelessWidget {
     Color? txtColor,
     double? textSize,
     double? maxHeight,
+    BorderRadiusGeometry? borderRadius,
   }) {
     return AppTextButton._(
       key: key,
@@ -131,6 +132,7 @@ class AppTextButton extends StatelessWidget {
       onPressed: onPressed,
       textSize: textSize,
       maxHeight: maxHeight,
+      borderRadius: borderRadius,
     );
   }
 
@@ -315,26 +317,29 @@ class AppTextButton extends StatelessWidget {
           height: maxHeight,
           child: BouncingWidget(
             enable: enabled && onPressed != null,
-            child: TextButton(
-              style: Theme.of(context).textButtonTheme.style?.copyWith(
-                    padding: WidgetStateProperty.all(EdgeInsets.zero),
-                    foregroundColor: WidgetStateProperty.resolveWith(
-                      (_) {
-                        return _bgColor;
-                      },
+            child: ClipRRect(
+              borderRadius: _borderRadius?? const BorderRadius.all(Radius.circular(30)),
+              child: TextButton(
+                style: Theme.of(context).textButtonTheme.style?.copyWith(
+                      padding: WidgetStateProperty.all(EdgeInsets.zero),
+                      foregroundColor: WidgetStateProperty.resolveWith(
+                        (_) {
+                          return _bgColor;
+                        },
+                      ),
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                        (states) {
+                          return _bgColor;
+                        },
+                      ),
                     ),
-                    backgroundColor: WidgetStateProperty.resolveWith(
-                      (states) {
-                        return _bgColor;
-                      },
-                    ),
-                  ),
-              onPressed: onPressed,
-              child: Text(
-                text,
-                style: AppTextStyle.s16_w500(
-                  color: _textColor ?? AppColors.fixedColors.white,
-                ).copyWith(fontSize: _textSize ?? 16),
+                onPressed: onPressed,
+                child: Text(
+                  text,
+                  style: AppTextStyle.s18_w700(
+                    color: _textColor ?? AppColors.fixedColors.white,
+                  ).copyWith(fontSize: _textSize ?? 16),
+                ),
               ),
             ),
           ),

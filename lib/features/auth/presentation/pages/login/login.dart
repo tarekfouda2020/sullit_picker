@@ -201,7 +201,7 @@ class _LoginState extends State<Login> {
               Gaps.vGap16,
               GestureDetector(
                 onTap: () {
-                  AutoRouter.of(context).push(const ForgetPasswordRoute());
+                  AutoRouter.of(context).push(const ForgetPasswordPageRoute());
                 },
                 child: RichText(
                   text: TextSpan(

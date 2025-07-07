@@ -18,7 +18,7 @@ class BuildForgetPasswordView extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           InkWell(
-            onTap: () => AutoRouter.of(context).push(const ForgetPasswordRoute()),
+            onTap: () => AutoRouter.of(context).push(const ForgetPasswordPageRoute()),
             child: Text(
               'اضغط هنا',
               style: AppTextStyle.s14_w600(color: Colors.blue),
