@@ -24,7 +24,7 @@ class NewOrderAlertWidget extends StatelessWidget {
             style: AppTextStyle.s28_w800(color: context.colors.primary),
             ),
             Gaps.vGap38,
-            AppTextButton.maxPrimary(text: "View Order"),
+            AppTextButton.maxPrimary(text: "View Order",onPressed: ()=>Navigator.pop(context),),
             Gaps.vGap10
           ],
         ),

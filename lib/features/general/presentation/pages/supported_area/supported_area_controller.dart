@@ -1,4 +1,4 @@
-import 'package:flutter_tdd/features/auth/presentation/pages/supported_area/supported_area_imports.dart';
+import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_imports.dart';
 
 class SupportedAreaController {
 

@@ -355,6 +355,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("work at many stores"),
         "work_at_one_store_only":
             MessageLookupByLibrary.simpleMessage("work at one store only"),
-        "wrong_address": MessageLookupByLibrary.simpleMessage("Wrong address")
+        "wrong_address": MessageLookupByLibrary.simpleMessage("Wrong address"),
+        "yearly_subscription":
+            MessageLookupByLibrary.simpleMessage("Yearly Subscription")
       };
 }

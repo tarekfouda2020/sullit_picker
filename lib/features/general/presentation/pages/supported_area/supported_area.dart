@@ -1,7 +1,11 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
-import 'package:flutter_tdd/features/auth/presentation/pages/supported_area/supported_area_imports.dart';
-import 'package:flutter_tdd/features/auth/presentation/pages/supported_area/widgets/map_app_bar_widget.dart';
+import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_controller.dart';
+import 'package:flutter_tdd/features/general/presentation/pages/supported_area/widgets/map_app_bar_widget.dart';
+import 'supported_area_imports.dart';
+import 'widgets/area_ranges_widget.dart';
+import 'widgets/covered_area_map_widget.dart';
+
 
 @RoutePage(name: "SupportedAreaPageRoute")
 class SupportedAreaPage extends StatefulWidget {

@@ -2179,6 +2179,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Yearly Subscription`
+  String get yearly_subscription {
+    return Intl.message(
+      'Yearly Subscription',
+      name: 'yearly_subscription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

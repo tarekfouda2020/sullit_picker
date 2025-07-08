@@ -1,4 +1,5 @@
 import "package:flutter_tdd/core/theme/colors/colors_extension.dart";
+import "package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_controller.dart";
 import"../supported_area_imports.dart";
 
 class CoveredAreaMapWidget extends StatelessWidget {

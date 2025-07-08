@@ -25,7 +25,7 @@ import 'package:flutter_tdd/features/auth/presentation/pages/splash/splash.dart'
     as _i15;
 import 'package:flutter_tdd/features/auth/presentation/pages/subscription/subscription.dart'
     as _i17;
-import 'package:flutter_tdd/features/auth/presentation/pages/supported_area/supported_area.dart'
+import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area.dart'
     as _i18;
 import 'package:flutter_tdd/features/home/presentation/pages/home/home.dart'
     as _i5;

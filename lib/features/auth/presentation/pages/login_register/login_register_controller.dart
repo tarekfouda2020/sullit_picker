@@ -115,30 +115,15 @@ class LoginRegisterController {
     if (!loginFormKey.currentState!.validate()) {
       return;
     }
+    loadingButtonKey.currentState?.animateForward();
+    // Simulate API call with realistic delay
+    await Future.delayed(const Duration(seconds: 2));
 
-
-    try {
-      loadingButtonKey.currentState?.animateForward();
-      // Simulate API call with realistic delay
-      await Future.delayed(const Duration(seconds: 2));
-
-      // Success - Navigate to home
-      loadingButtonKey.currentState?.animateReverse();
-      AutoRouter.of(context).replaceAll([const HomePageRoute()]);
-      // AppSnackBar.showSuccessSnackBar(Translate.of(context).login_successful);
-
-
-    } catch (error) {
-      // Handle error
-      if (context.mounted) {
-        AppSnackBar.showWarningSnackBar(
-          message: error.toString().replaceAll('Exception: ', ''),
-        );
-      }
-    } finally {
-      loadingButtonKey.currentState?.animateReverse();
-
-    }
+    // Success - Navigate to home
+    loadingButtonKey.currentState?.animateReverse();
+    AutoRouter.of(context).replaceAll([const HomePageRoute()]);
+    // AppSnackBar.showSuccessSnackBar(Translate.of(context).login_successful);
+    loadingButtonKey.currentState?.animateReverse();
   }
   
   void register(BuildContext context) async {
@@ -149,8 +134,7 @@ class LoginRegisterController {
     registerLoadingButtonKey.currentState?.animateForward();
     await Future.delayed(const Duration(seconds: 2));
 
-    AutoRouter.of(context).push(const SubscriptionRoute());
-    // AutoRouter.of(context).push(const SupportedAreaPageRoute());
+    AutoRouter.of(context).push(const SupportedAreaPageRoute());
     AppSnackBar.showSuccessSnackBar(Translate.of(context).registration_successful);
     registerLoadingButtonKey.currentState?.animateReverse();
   }

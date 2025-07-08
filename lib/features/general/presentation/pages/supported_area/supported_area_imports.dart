@@ -1,5 +1,4 @@
 export 'package:google_maps_flutter/google_maps_flutter.dart';
-export 'package:flutter_tdd/features/auth/presentation/pages/supported_area/supported_area_controller.dart';
 export 'package:flutter_tdd/core/widgets/app_button.dart';
 export 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
 export 'package:flutter/material.dart';
@@ -9,8 +8,6 @@ export 'package:flutter_tdd/core/constants/app_constants.dart';
 export 'package:flutter_tdd/core/constants/gaps.dart';
 export 'package:flutter_tdd/core/localization/translate.dart';
 export 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-export 'package:flutter_tdd/features/auth/presentation/pages/supported_area/widgets/area_ranges_widget.dart';
-export 'package:flutter_tdd/features/auth/presentation/pages/supported_area/widgets/covered_area_map_widget.dart';
 export 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 export 'package:flutter_tdd/core/helpers/di.dart';
 export 'package:flutter_tdd/core/helpers/location_service.dart';

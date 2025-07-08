@@ -91,4 +91,8 @@ abstract class AppColors {
 
   Color get stone;
 
+  Color get darkPrimary;
+
+  Color get gold;
+
 }
