@@ -1,153 +1,77 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
-import 'package:flutter_tdd/res.dart';
+import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/driver_calling_widget.dart';
+
+import 'home_widgets_imports.dart';
+
 
 class AddressDetails extends StatelessWidget {
-  const AddressDetails({super.key});
+  final HomeController controller;
+  final OrderStatusEnum orderStatus;
+  const AddressDetails({super.key, required this.controller, required this.orderStatus});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal:22 ,vertical:15 ),
       decoration: BoxDecoration(
         color: context.colors.white,
-        borderRadius: BorderRadius.circular(4),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 2,
-            offset: const Offset(0, 1),
-          ),
-        ],
+        borderRadius: Dimens.borderRadius4PX,
       ),
-      child: Column(
-        children: [
-          Container(
-            height: 44,
-            padding: const EdgeInsets.symmetric(horizontal: 17),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: context.colors.borderLight,
-                  width: 1,
-                ),
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: SvgPicture.asset(
+                Res.markerIcon,
+                width: 14,
+                height: 18,
+                colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),
               ),
             ),
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  Res.sectionIcon3,
-                  width: 14,
-                  height: 18,
-                ),
-                const SizedBox(width: 19),
-                Text(
-                  'United Arab Emirates, Dubai',
-                  style: AppTextStyle.s14_w700(color: context.colors.textPrimary),
-                ),
-              ],
+            Gaps.hGap14,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 6,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 3),
+                    child: Text(
+                      'United Arab Emirates, Dubai',
+                      style: AppTextStyle.s14_w700(color: context.colors.black),
+                    ),
+                  ),
+                  const AddressDetailsItemWidget(title: 'Type', value: 'Business', gaps: 9,),
+                  AddressDetailsItemWidget(title: Translate.s.city, value: 'Al Qusais', gaps: 15,),
+                  AddressDetailsItemWidget(title: Translate.s.street_name, value: 'Jumeirah', gaps: 8,),
+                  AddressDetailsItemWidget(title: Translate.s.building_name, value: 'B 32', gaps: 9,),
+                  AddressDetailsItemWidget(title: Translate.s.flat_no, value: '402', gaps: 7,),
+                  AddressDetailsItemWidget(title: Translate.s.phone, value: '99753583245', gaps: 7,),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 7),
-            child: Row(
+            if(orderStatus!=OrderStatusEnum.start)
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  '${Translate.s.type} :',
-                  style: AppTextStyle.s14_w400(color: context.colors.textPrimary),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: ReturnOrderWidget(controller: controller,),
                 ),
-                Text(
-                  'Business',
-                  style: AppTextStyle.s14_w600(color: context.colors.textPrimary),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 7),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${Translate.s.city} :',
-                  style: AppTextStyle.s14_w400(color: context.colors.textPrimary),
-                ),
-                Text(
-                  'Al Qusais',
-                  style: AppTextStyle.s14_w600(color: context.colors.textPrimary),
+                /// watt this to be in the end
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: DriverCallingWidget(controller: controller),
                 ),
               ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 7),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${Translate.s.street_name} :',
-                  style: AppTextStyle.s14_w400(color: context.colors.textPrimary),
-                ),
-                Text(
-                  'Jumeirah',
-                  style: AppTextStyle.s14_w600(color: context.colors.textPrimary),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 7),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${Translate.s.building_name} :',
-                  style: AppTextStyle.s14_w400(color: context.colors.textPrimary),
-                ),
-                Text(
-                  'B 32',
-                  style: AppTextStyle.s14_w600(color: context.colors.textPrimary),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 7),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${Translate.s.flat_no} :',
-                  style: AppTextStyle.s14_w400(color: context.colors.textPrimary),
-                ),
-                Text(
-                  '402',
-                  style: AppTextStyle.s14_w600(color: context.colors.textPrimary),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 7),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '${Translate.s.phone} :',
-                  style: AppTextStyle.s14_w400(color: context.colors.textPrimary),
-                ),
-                Text(
-                  '+99753583245',
-                  style: AppTextStyle.s14_w600(color: context.colors.textPrimary),
-                ),
-              ],
-            ),
-          ),
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -37,6 +37,7 @@ class GenericTextField extends StatelessWidget {
  final AutovalidateMode? autoValidateMode;
  final String? fontFamily;
  final TextDirection? textDirection;
+  final double? hintSize;
 
   const GenericTextField(
       {super.key,  this.label,
@@ -68,6 +69,7 @@ class GenericTextField extends StatelessWidget {
       required this.action,
       this.enableBorderColor,
       this.focusBorderColor,
+        this.hintSize,
       required this.validate});
 
   @override
@@ -127,6 +129,7 @@ class GenericTextField extends StatelessWidget {
         padding: contentPadding,
         hintColor: hintColor,
         borderRadius: radius,
+        hintSize: hintSize,
         lang: context.watch<DeviceCubit>().state.model.locale.languageCode,
       ),
     );

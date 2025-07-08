@@ -31,7 +31,7 @@ class AppLightColors extends AppColors {
   Color get disableGray => const Color(0xFFDEE2E6);
 
   @override
-  Color get green => const Color(0xFF34C759);
+  Color get green => const Color(0xFF5DBA55);
 
   @override
   Color get cardBackground => Colors.white;
@@ -92,4 +92,8 @@ class AppLightColors extends AppColors {
 
   @override
   Color get pink => const Color(0xFFFFE1E2);
+
+  @override
+  Color get stone => const Color(0xFF595454);
+
 }

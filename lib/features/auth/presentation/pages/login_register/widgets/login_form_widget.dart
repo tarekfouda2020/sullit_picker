@@ -39,7 +39,6 @@ class LoginFormWidget extends StatelessWidget {
                 action: TextInputAction.done,
                 fillColor: Colors.white,
                 margin: Dimens.paddingTop5 ,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 validate: (value) => value?.validatePassword(),
                 hint: Translate.of(context).enter_your_password,
                 suffixIcon: GestureDetector(

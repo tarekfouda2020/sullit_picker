@@ -124,7 +124,7 @@ class LoginRegisterController {
 
       // Success - Navigate to home
       loadingButtonKey.currentState?.animateReverse();
-      AutoRouter.of(context).replaceAll([const HomeRoute()]);
+      AutoRouter.of(context).replaceAll([const HomePageRoute()]);
       // AppSnackBar.showSuccessSnackBar(Translate.of(context).login_successful);
 
 
@@ -142,9 +142,9 @@ class LoginRegisterController {
   }
   
   void register(BuildContext context) async {
-    if (!registerFormKey.currentState!.validate()) {
-      return;
-    }
+    // if (!registerFormKey.currentState!.validate()) {
+    //   return;
+    // }
 
     registerLoadingButtonKey.currentState?.animateForward();
     await Future.delayed(const Duration(seconds: 2));

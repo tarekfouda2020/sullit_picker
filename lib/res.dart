@@ -20,6 +20,10 @@ class Res {
   static const String warningSnackBar = "assets/images/warning_snack_bar.svg";
   static const String successSnackBar = "assets/images/success_snack_bar.svg";
   static const String shortArrow = "assets/images/icons/short_arrow.svg";
+  static const String arrowForward = "assets/images/icons/arrow_forward_icon.svg";
+  static const String personIcon = "assets/images/person_icon.svg";
+  static const String outlineNotification = "assets/images/icons/notification_outline_icon.svg";
+  static const String paymentCards = "assets/images/icons/payment_cards_icon.svg";
 
   // Home screen assets that already exist in assets/images/
   static const String headerIcon = "assets/images/header-icon.svg";
@@ -27,10 +31,12 @@ class Res {
   static const String searchIconHome = "assets/images/search-icon.svg";
   static const String sectionIcon1 = "assets/images/section-icon-1.svg";
   static const String sectionIcon2 = "assets/images/section-icon-2.svg";
-  static const String sectionIcon3 = "assets/images/section-icon-3.svg";
+  static const String markerIcon = "assets/images/marker_icon.svg";
   static const String iconMiddleRight = "assets/images/icon-middle-right.svg";
   static const String iconRight = "assets/images/icon-right.svg";
   static const String iconFarRight = "assets/images/icon-far-right.svg";
+  static const String returnOrderIcon = "assets/images/return_order_icon.svg";
+  static const String notificationBill = "assets/images/illustrations/notification_bill.gif";
 
   // New driver app icons
   static const String deliveryIcon = "assets/images/icons/delivery_icon.svg";
@@ -56,6 +62,8 @@ class Res {
   static const String locationIcon = "assets/images/icons/location_icon.svg";
   static const String phoneIcon = "assets/images/icons/phone_icon.svg";
   static const String searchIcon = "assets/images/icons/search_icon.svg";
+  static const String checkIcon = "assets/images/icons/check_icon.svg";
+  static const String noOrdersAvailable = "assets/images/no_orders_available.png";
 
   // Illustrations
   static const String noOrdersIllustration = "assets/images/illustrations/no_orders.svg";

@@ -192,7 +192,7 @@
   "restaurant_issue": "Restaurant Issue",
   "app_technical_issue": "App Technical Issue",
   "other": "Other",
-  "welcome_ahmed": "Welcome Ahmed",
+  "welcome": "Welcome",
   "out_of_delivery": "Out of Delivery",
   "available_for_receiving_orders": "Available For Receiving Orders",
   "receiving_from": "Receiving From",
@@ -214,5 +214,6 @@
   "select_country": "Select the country",
   "verify_your_phone": "Verify Your Phone",
   "phone_number": "Phone number",
-  "send": "Send"
+  "send": "Send",
+  "available": "Available"
 }

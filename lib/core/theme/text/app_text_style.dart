@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/theme/themes/app_theme.dart';
 
 class AppTextStyle extends TextStyle {
   const AppTextStyle() : super();
@@ -75,6 +76,10 @@ class AppTextStyle extends TextStyle {
       : super(color: color, fontSize: 16, fontWeight: FontWeight.w400, height: fontHeight, fontFamily: 'NotoSans');
 
   // ignore: non_constant_identifier_names
+  const AppTextStyle.s16_w300({required Color color})
+      : super(color: color, fontSize: 16, fontWeight: FontWeight.w300, height: fontHeight, fontFamily: 'NotoSans');
+
+  // ignore: non_constant_identifier_names
   const AppTextStyle.s16_w500({required Color color})
       : super(color: color, fontSize: 16, fontWeight: weight500, height: fontHeight, fontFamily: 'NotoSans');
 
@@ -129,6 +134,10 @@ class AppTextStyle extends TextStyle {
   // ignore: non_constant_identifier_names
   const AppTextStyle.s28_w700({required Color color})
       : super(color: color, fontSize: 28, fontWeight: FontWeight.w700, height: fontHeight, fontFamily: 'NotoSans');
+
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s28_w800({required Color color})
+      : super(color: color, fontSize: 28, fontWeight: FontWeight.w800, height: fontHeight, fontFamily: 'NotoSans');
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s32_w700({required Color color})

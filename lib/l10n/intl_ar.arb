@@ -189,7 +189,7 @@
   "restaurant_issue": "مشكلة المطعم",
   "app_technical_issue": "مشكلة تقنية في التطبيق",
   "other": "أخرى",
-  "welcome_ahmed": "مرحباً أحمد",
+  "welcome": "مرحباً",
   "out_of_delivery": "خارج التوصيل",
   "available_for_receiving_orders": "متاح لاستقبال الطلبات",
   "receiving_from": "استلام من",
@@ -211,7 +211,9 @@
   "select_country": "اختر الدولة",
   "verify_your_phone": "تحقق من هاتفك",
   "phone_number": "رقم الهاتف",
-  "send": "إرسال"
+  "send": "إرسال",
+  "available": "متاح"
+
 }
 
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 
@@ -19,6 +20,7 @@ class AppTextButton extends StatelessWidget {
       required this.enabled,
       this.onPressed,
       Color? bgColor,
+      Color? borderColor,
       double? textSize,
       double? maxHeight,
       BorderRadiusGeometry? borderRadius,
@@ -28,7 +30,8 @@ class AppTextButton extends StatelessWidget {
         _bgColor = bgColor,
         maxHeight = maxHeight ?? 52,
         _textSize = textSize,
-        _borderRadius = borderRadius;
+        _borderRadius = borderRadius,
+  _borderColor = borderColor;
 
   final _AppTextButton _appTextButton;
   final String text;
@@ -36,6 +39,7 @@ class AppTextButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   final Color? _bgColor;
+  final Color? _borderColor;
   final Color? _textColor;
   final double? _textSize;
 
@@ -68,13 +72,16 @@ class AppTextButton extends StatelessWidget {
   }
 
   factory AppTextButton.maxPrimary(
-      {Key? key,required String text, bool enabled = true, VoidCallback? onPressed}) {
+      {Key? key,required String text, bool enabled = true, VoidCallback? onPressed,
+        BorderRadiusGeometry? borderRadius
+      }) {
     return AppTextButton._(
       key: key,
       appTextButton: _AppTextButton.maxPrimaryColor,
       text: text,
       enabled: enabled,
       onPressed: onPressed,
+      borderRadius: borderRadius,
     );
   }
 
@@ -117,6 +124,7 @@ class AppTextButton extends StatelessWidget {
     required String text,
     VoidCallback? onPressed,
     Color? bgColor,
+    Color? borderColor,
     Color? txtColor,
     double? textSize,
     double? maxHeight,
@@ -133,6 +141,7 @@ class AppTextButton extends StatelessWidget {
       textSize: textSize,
       maxHeight: maxHeight,
       borderRadius: borderRadius,
+      borderColor: borderColor,
     );
   }
 
@@ -208,36 +217,39 @@ class AppTextButton extends StatelessWidget {
         );
 
       case _AppTextButton.maxPrimaryColor:
-        return SizedBox(
-          width: maxWidth,
-          height: maxHeight,
-          child: BouncingWidget(
-            enable: enabled && onPressed != null,
-            child: TextButton(
-              style: Theme.of(context).textButtonTheme.style?.copyWith(
-                    padding: WidgetStateProperty.all(EdgeInsets.zero),
-                    foregroundColor: WidgetStateProperty.resolveWith(
-                      (_) {
-                        return AppColors.of(context).primary;
-                      },
-                    ),
-                    backgroundColor: WidgetStateProperty.resolveWith(
-                      (states) {
-                        if (enabled) {
+        return ClipRRect(
+          borderRadius: _borderRadius?? const BorderRadius.all(Radius.circular(Dimens.buttonBorderRadius)),
+          child: SizedBox(
+            width: maxWidth,
+            height: maxHeight,
+            child: BouncingWidget(
+              enable: enabled && onPressed != null,
+              child: TextButton(
+                style: Theme.of(context).textButtonTheme.style?.copyWith(
+                      padding: WidgetStateProperty.all(EdgeInsets.zero),
+                      foregroundColor: WidgetStateProperty.resolveWith(
+                        (_) {
                           return AppColors.of(context).primary;
-                        } else {
-                          return AppColors.of(context).blackOpacity;
-                        }
-                      },
+                        },
+                      ),
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                        (states) {
+                          if (enabled) {
+                            return AppColors.of(context).primary;
+                          } else {
+                            return AppColors.of(context).blackOpacity;
+                          }
+                        },
+                      ),
                     ),
+                onPressed: onPressed,
+                child: Text(
+                  text,
+                  style: AppTextStyle.s16_w500(
+                    color: (enabled
+                        ? AppColors.fixedColors.white
+                        : AppColors.fixedColors.blackOpacity),
                   ),
-              onPressed: onPressed,
-              child: Text(
-                text,
-                style: AppTextStyle.s16_w500(
-                  color: (enabled
-                      ? AppColors.fixedColors.white
-                      : AppColors.fixedColors.blackOpacity),
                 ),
               ),
             ),
@@ -312,13 +324,13 @@ class AppTextButton extends StatelessWidget {
           ),
         );
       case _AppTextButton.maxCustomColor:
-        return SizedBox(
-          width: maxWidth,
-          height: maxHeight,
-          child: BouncingWidget(
-            enable: enabled && onPressed != null,
-            child: ClipRRect(
-              borderRadius: _borderRadius?? const BorderRadius.all(Radius.circular(30)),
+        return ClipRRect(
+          borderRadius: _borderRadius?? const BorderRadius.all(Radius.circular(30)),
+          child: SizedBox(
+            width: maxWidth,
+            height: maxHeight,
+            child: BouncingWidget(
+              enable: enabled && onPressed != null,
               child: TextButton(
                 style: Theme.of(context).textButtonTheme.style?.copyWith(
                       padding: WidgetStateProperty.all(EdgeInsets.zero),
@@ -332,6 +344,14 @@ class AppTextButton extends StatelessWidget {
                           return _bgColor;
                         },
                       ),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: _borderRadius ?? const BorderRadius.all(Radius.circular(Dimens.buttonBorderRadius)),
+                      side: BorderSide(
+                        color: _borderColor ?? Colors.transparent
+                      )
+                    ),
+                  ),
                     ),
                 onPressed: onPressed,
                 child: Text(

@@ -19,7 +19,7 @@ class OptionButtonDecoration extends StatelessWidget {
       width: double.maxFinite,
       decoration: BoxDecoration(
         color: context.colors.background,
-        borderRadius: Dimens.borderRadius5PX,
+        borderRadius: Dimens.borderRadius10PX,
         border: border ?? Border.all(color: context.colors.greyWhite, width: 1),
       ),
       child: child,

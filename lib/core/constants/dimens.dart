@@ -27,6 +27,7 @@ class Dimens {
   static const double dp5 = 5;
   static const double dp7 = 7;
   static const double dp8 = 8;
+  static const double dp9 = 8;
   static const double dp10 = 10;
   static const double dp11 = 11;
   static const double dp12 = 12;
@@ -44,10 +45,13 @@ class Dimens {
   static const double dp30 = 30;
   static const double dp32 = 32;
   static const double dp36 = 36;
+  static const double dp38 = 38;
   static const double dp40 = 40;
+  static const double dp41 = 41;
   static const double dp44 = 44;
   static const double dp50 = 50;
   static const double dp64 = 64;
+  static const double dp65 = 64;
   static const double dp96 = 96;
   static const double dp128 = 128;
   static const double dp256 = 256;
@@ -57,8 +61,11 @@ class Dimens {
   static const double appBarHeight = 62;
   static const double searchBarHeight = 56;
 
-  static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(20));
-  static const BorderRadius borderRadius5PX = BorderRadius.all(Radius.circular(10));
+  static const BorderRadius sheetBorderRadius = BorderRadius.vertical(top: Radius.circular(30));
+  static const BorderRadius borderRadius4PX = BorderRadius.all(Radius.circular(4));
+  static const BorderRadius borderRadius8PX = BorderRadius.all(Radius.circular(8));
+  static const BorderRadius borderRadius10PX = BorderRadius.all(Radius.circular(10));
+  static const BorderRadius borderRadius20PX = BorderRadius.all(Radius.circular(20));
   static const BorderRadius borderRadius30PX = BorderRadius.all(Radius.circular(30));
   static  BorderRadius borderRadius12PX = const BorderRadius.all(Radius.circular(12));
 
@@ -82,7 +89,7 @@ class Dimens {
   static const double buttonHeight = 50.0;
   static const double buttonHeightSmall = 40.0;
   static const double buttonHeightLarge = 56.0;
-  static const double buttonBorderRadius = 8.0;
+  static const double buttonBorderRadius = 30;
   static const double buttonPaddingHorizontal = 24.0;
   static const double buttonPaddingVertical = 16.0;
   
@@ -107,6 +114,7 @@ class Dimens {
   static const double statusBarHeight = 44.0;
   static const double bottomSafeArea = 34.0;
   
+  static const EdgeInsetsGeometry paddingH18V12PX = EdgeInsets.symmetric(vertical: 12,horizontal: 18);
   static const EdgeInsetsGeometry paddingH16V10PX = EdgeInsets.symmetric(horizontal: 16, vertical: 10);
   static const EdgeInsetsGeometry paddingH20V12PX = EdgeInsets.symmetric(horizontal: 20, vertical: 12);
   static const EdgeInsetsGeometry paddingH24V16PX = EdgeInsets.symmetric(horizontal: 24, vertical: 16);

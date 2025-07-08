@@ -36,7 +36,7 @@ class SelectableOptionItemWidget extends StatelessWidget {
             border: Border.all(
               color: isSelected ? AppColors.of(context).primary : AppColors.of(context).blackOpacity,
             ),
-            borderRadius: Dimens.borderRadius5PX,
+            borderRadius: Dimens.borderRadius10PX,
           ),
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(

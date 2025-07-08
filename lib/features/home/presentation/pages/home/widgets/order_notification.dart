@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/localization/translate.dart';
@@ -9,10 +10,8 @@ class OrderNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      padding: const EdgeInsets.symmetric(vertical: 13),
-      width: double.infinity,
-      height: 113,
+      padding: const EdgeInsets.only(top: 13,bottom: 17),
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: context.colors.lightBackground,
         borderRadius: BorderRadius.circular(8),
@@ -23,11 +22,11 @@ class OrderNotification extends StatelessWidget {
             '#6657564',
             style: AppTextStyle.s18_w700(color: context.colors.primary),
           ),
-          const SizedBox(height: 8),
+          Gaps.vGap8,
           RichText(
             text: TextSpan(
               text: '${Translate.s.receiving_from} ',
-              style: AppTextStyle.s16_w400(color: context.colors.textPrimary),
+              style: AppTextStyle.s16_w300(color: context.colors.textPrimary),
               children: [
                 TextSpan(
                   text: 'Sulite Store',
@@ -36,9 +35,9 @@ class OrderNotification extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 9),
+        Gaps.vGap9,
           Text(
-            Translate.s.thirty_minutes_ago,
+           "30 minutes ago",
             style: AppTextStyle.s14_w400(color: context.colors.primary),
           ),
         ],

@@ -92,4 +92,7 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get pink => const Color(0xFFFFE1E2);
+
+  @override
+  Color get stone => const Color(0xFF595454);
 }

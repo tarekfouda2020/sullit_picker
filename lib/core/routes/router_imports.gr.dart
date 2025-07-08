@@ -79,7 +79,7 @@ abstract class $AppRouter extends _i21.RootStackRouter {
         child: const _i4.ForgetPasswordPage(),
       );
     },
-    HomeRoute.name: (routeData) {
+    HomePageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.HomePage(),
@@ -236,14 +236,14 @@ class ForgetPasswordPageRoute extends _i21.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.HomePage]
-class HomeRoute extends _i21.PageRouteInfo<void> {
-  const HomeRoute({List<_i21.PageRouteInfo>? children})
+class HomePageRoute extends _i21.PageRouteInfo<void> {
+  const HomePageRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          HomeRoute.name,
+          HomePageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'HomePageRoute';
 
   static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
 }

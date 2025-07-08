@@ -35,7 +35,7 @@ class LoginController {
       isLoading.setValue(false);
       
       // Navigate to home after successful login
-      AutoRouter.of(context).replaceAll([const HomeRoute()]);
+      AutoRouter.of(context).replaceAll([const HomePageRoute()]);
     }
   }
   

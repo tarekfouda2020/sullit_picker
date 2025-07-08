@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "attach_driving_licensee":
             MessageLookupByLibrary.simpleMessage("Attach Driving licensee"),
         "attach_id": MessageLookupByLibrary.simpleMessage("Attach ID"),
+        "available": MessageLookupByLibrary.simpleMessage("Available"),
         "available_for_delivery":
             MessageLookupByLibrary.simpleMessage("Available for Delivery"),
         "available_for_receiving_orders": MessageLookupByLibrary.simpleMessage(
@@ -342,7 +343,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verify Your Phone"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "weideliver": MessageLookupByLibrary.simpleMessage("Weideliver"),
-        "welcome_ahmed": MessageLookupByLibrary.simpleMessage("Welcome Ahmed"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
         "welcome_message":
             MessageLookupByLibrary.simpleMessage("Welcome to Suliit Driver"),

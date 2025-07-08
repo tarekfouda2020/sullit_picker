@@ -1,33 +1,21 @@
+import 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.dart';
+import 'package:flutter_tdd/features/home/data/enum/report_reason_enum.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/repoer_bottom_sheet_widget.dart';
+
 import 'home_imports.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
-import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
-import 'widgets/home_widgets_imports.dart';
+
 
 class HomeController {
   // Order state management
-  final hasOrders = ObsValue<bool>.withInit(false);
-  final showOrderAlert = ObsValue<bool>.withInit(false);
-  final isOnline = ObsValue<bool>.withInit(true);
-  
-  // Sample order data
-  final currentOrder = ObsValue<Map<String, dynamic>?>.withInit({
-    'id': '#ORD-12345',
-    'customerName': 'أحمد محمد',
-    'customerPhone': '+966 50 123 4567',
-    'address': 'شارع الملك فهد، الرياض',
-    'items': [
-      {'name': 'برجر لحم', 'quantity': 2},
-      {'name': 'بطاطس مقلية', 'quantity': 1},
-      {'name': 'مشروب غازي', 'quantity': 2},
-    ],
-    'total': 85.50,
-    'paymentMethod': 'نقدي',
-    'distance': '2.5 كم',
-    'estimatedTime': '15 دقيقة',
-  });
-  
+  final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
+  final ObsValue<bool> showOrderAlert = ObsValue<bool>.withInit(false);
+  final ObsValue<bool> isOnline = ObsValue<bool>.withInit(true);
+  final ObsValue<OrderStatusEnum> orderStatusObs = ObsValue<OrderStatusEnum>.withInit(OrderStatusEnum.start);
+  final ObsValue<ReportReasonEnum> reportReasonObs = ObsValue<ReportReasonEnum>.withInit(ReportReasonEnum.other);
+  final TextEditingController reasonController = TextEditingController();
+
+
   void initializeHome(BuildContext context) {
-    // Show welcome dialog after 500ms
     Future.delayed(const Duration(milliseconds: 500), () {
       if (context.mounted) {
         showWelcomeDialog(context);
@@ -73,43 +61,56 @@ class HomeController {
   
   void completeOrder(BuildContext context) {
     hasOrders.setValue(false);
-    currentOrder.setValue(null);
-    
-    // Show success message
+
     AppSnackBar.showSuccessSnackBar(Translate.of(context).order_completed_successfully);
   }
   
   void navigateToSideMenu(BuildContext context) {
-    // TODO: Implement side menu navigation
-    // AutoRouter.of(context).push(const SideMenuRoute());
+    AutoRouter.of(context).push(const SideMenuRoute());
   }
   
   void navigateToNotifications(BuildContext context) {
-    // TODO: Implement notifications navigation
-    // AutoRouter.of(context).push(const NotificationsRoute());
+    AutoRouter.of(context).push(const NotificationsRoute());
   }
   
   void showWelcomeDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: true,
-      builder: (context) => const WelcomeDialogWidget(),
+      builder: (context) => const NewOrderAlertWidget(),
     );
   }
   
   void showNewOrderDialog(BuildContext context) {
-    // TODO: Implement new order dialog
-    // This would show a dialog for new incoming orders
     showOrderAlert.setValue(true);
   }
   
   void showReportProblemDialog(BuildContext context) {
-    // TODO: Implement report problem dialog
-    // This would show a bottom sheet for reporting problems
     _showProblemReportedSuccess(context);
   }
   
   void _showProblemReportedSuccess(BuildContext context) {
     AppSnackBar.showSuccessSnackBar(Translate.of(context).problem_reported_successfully);
   }
+
+
+  void updateOrderStatus(OrderStatusEnum newStatus) {
+    orderStatusObs.setValue(newStatus);
+    orderStatusObs.refresh();
+  }
+
+  void updateReasonObs(ReportReasonEnum newValue){
+    reportReasonObs.setValue(newValue);
+    reportReasonObs.refresh();
+  }
+
+  void showReportSheet(BuildContext context){
+    AppBottomSheets.showScrollableBody(
+      context: context,
+      builder: (context) {
+      return ReportBottomSheetWidget(controller: this) ;
+    },);
+  }
+
+
 } 

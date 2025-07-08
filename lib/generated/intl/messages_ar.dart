@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "attach_driving_licensee":
             MessageLookupByLibrary.simpleMessage("إرفاق رخصة القيادة"),
         "attach_id": MessageLookupByLibrary.simpleMessage("إرفاق الهوية"),
+        "available": MessageLookupByLibrary.simpleMessage("متاح"),
         "available_for_delivery":
             MessageLookupByLibrary.simpleMessage("متاح للتوصيل"),
         "available_for_receiving_orders":
@@ -334,7 +335,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تحقق من هاتفك"),
         "wallet": MessageLookupByLibrary.simpleMessage("المحفظة"),
         "weideliver": MessageLookupByLibrary.simpleMessage("نحن نوصل"),
-        "welcome_ahmed": MessageLookupByLibrary.simpleMessage("مرحباً أحمد"),
+        "welcome": MessageLookupByLibrary.simpleMessage("مرحباً"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("مرحباً بعودتك!"),
         "welcome_message":
             MessageLookupByLibrary.simpleMessage("مرحباً بك في سائق سليط"),

@@ -89,4 +89,6 @@ abstract class AppColors {
 
   Color get pink;
 
+  Color get stone;
+
 }

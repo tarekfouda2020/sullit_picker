@@ -1940,11 +1940,11 @@ class S {
     );
   }
 
-  /// `Welcome Ahmed`
-  String get welcome_ahmed {
+  /// `Welcome`
+  String get welcome {
     return Intl.message(
-      'Welcome Ahmed',
-      name: 'welcome_ahmed',
+      'Welcome',
+      name: 'welcome',
       desc: '',
       args: [],
     );
@@ -2165,6 +2165,16 @@ class S {
     return Intl.message(
       'Send',
       name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available`
+  String get available {
+    return Intl.message(
+      'Available',
+      name: 'available',
       desc: '',
       args: [],
     );
