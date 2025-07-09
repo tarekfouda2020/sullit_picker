@@ -2,6 +2,7 @@ import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/subscription/widgets/agree_terms_conditions.dart';
+import 'package:flutter_tdd/features/auth/presentation/widgets/app_slogan_widget.dart';
 
 import 'subscription_imports.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
@@ -32,12 +33,8 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-            children: [
-          Text(
-            Translate.s.weideliver,
-            style: AppTextStyle.s32_w700(color: context.colors.primary),
-          ),
+        child: Column(children: [
+          const AppSloganWidget(),
           Gaps.vGap64,
           Text(
             Translate.s.yearly_subscription,
@@ -49,11 +46,11 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
           const PlanBenefitsWidget(),
           Gaps.vGap16,
           AgreeTermsConditions(controller: controller),
-        Gaps.vGap41,
-        AppTextButton.maxPrimary(
-          text: "Pay",
-          onPressed: ()=> controller.paySubscription(context),
-        )
+          Gaps.vGap41,
+          AppTextButton.maxPrimary(
+            text: "Pay",
+            onPressed: () => controller.paySubscription(context),
+          )
         ]),
       ),
     );

@@ -140,7 +140,8 @@ class LoginRegisterController {
   }
   
   void navigateToForgetPassword(BuildContext context) {
-    AutoRouter.of(context).push(const ForgetPasswordPageRoute());
+    // AutoRouter.of(context).push(const ForgetPasswordPageRoute());
+    AutoRouter.of(context).push(const ChangePasswordPageRoute());
   }
   
 

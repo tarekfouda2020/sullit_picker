@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/login_register/login_register_imports.dart';
+import 'package:flutter_tdd/features/auth/presentation/widgets/app_slogan_widget.dart';
 
 class AuthPageLogoWidget extends StatelessWidget {
   const AuthPageLogoWidget({super.key});
@@ -9,10 +10,7 @@ class AuthPageLogoWidget extends StatelessWidget {
     return  Center(
       child: Column(
         children: [
-          Text(
-            Translate.s.weideliver,
-            style: AppTextStyle.s32_w700(color: context.colors.primary),
-          ),
+          const AppSloganWidget(),
           Gaps.vGap32,
           Text(
             Translate.s.hello_welcome,

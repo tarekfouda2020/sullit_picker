@@ -50,6 +50,7 @@ class Dimens {
   static const double dp40 = 40;
   static const double dp41 = 41;
   static const double dp44 = 44;
+  static const double dp47 = 47;
   static const double dp50 = 50;
   static const double dp64 = 64;
   static const double dp65 = 64;
@@ -101,6 +102,7 @@ class Dimens {
   static const EdgeInsetsGeometry paddingCardVertical = EdgeInsets.symmetric(vertical: 20.0);
 
   static  EdgeInsets paddingTop5 =  const EdgeInsets.only(top: 5).r;
+  static  EdgeInsets paddingBottom12 =  const EdgeInsets.only(bottom: 12).r;
 
   static const double sectionSpacingSmall = 16.0;
   static const double sectionSpacingMedium = 24.0;

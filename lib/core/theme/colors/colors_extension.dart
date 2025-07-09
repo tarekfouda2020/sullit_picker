@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 
-extension ThemeExtension on BuildContext {
+extension AppThemeExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
 
   TextTheme get textTheme => theme.textTheme;
