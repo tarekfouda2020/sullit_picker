@@ -1,6 +1,9 @@
+import 'package:flutter/services.dart';
+import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.dart';
 import 'package:flutter_tdd/features/home/data/enum/report_reason_enum.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/repoer_bottom_sheet_widget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'home_imports.dart';
 
@@ -15,6 +18,8 @@ class HomeController {
   final TextEditingController reasonController = TextEditingController();
 
 
+  bool popOut = false;
+
   void initializeHome(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 500), () {
       if (context.mounted) {
@@ -28,6 +33,23 @@ class HomeController {
         showNewOrderDialog(context);
       }
     });
+  }
+
+
+  void onPop() {
+    if(popOut){
+      SystemNavigator.pop();
+    }else{
+      popOut = true;
+      AppSnackBar.showSimpleToast(
+        msg: "back again to exit",
+        type: ToastType.info,
+        color: AppColors.fixedColors.gray58,
+          textColor: AppColors.fixedColors.white,
+        gravity: ToastGravity.BOTTOM
+      );
+      Future.delayed(const Duration(seconds: 7)).then((value) =>popOut = false );
+    }
   }
   
   void dispose() {
@@ -66,11 +88,11 @@ class HomeController {
   }
   
   void navigateToSideMenu(BuildContext context) {
-    AutoRouter.of(context).push(const SideMenuRoute());
+    AutoRouter.of(context).push(const ProfilePageRoute());
   }
   
   void navigateToNotifications(BuildContext context) {
-    AutoRouter.of(context).push(const NotificationsRoute());
+    AutoRouter.of(context).push(const NotificationsPageRoute());
   }
   
   void showWelcomeDialog(BuildContext context) {

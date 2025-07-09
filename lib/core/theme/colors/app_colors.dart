@@ -95,4 +95,6 @@ abstract class AppColors {
 
   Color get gold;
 
+  Color get softRose;
+
 }

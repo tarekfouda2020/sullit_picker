@@ -19,4 +19,7 @@ export 'package:flutter_tdd/core/constants/dimens.dart';
 export 'package:flutter_tdd/features/home/presentation/pages/home/widgets/address_details_item_widget.dart';
 export 'package:flutter_tdd/features/home/presentation/pages/home/widgets/return_order_widget.dart';
 export 'package:flutter_tdd/core/widgets/app_button.dart';
+export 'package:flutter_tdd/features/home/presentation/widgets/notification_icon.dart';
+export 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+export 'driver_status_widget.dart';
 

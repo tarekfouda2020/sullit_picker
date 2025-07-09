@@ -23,6 +23,7 @@ class AppTextButton extends StatelessWidget {
       Color? borderColor,
       double? textSize,
       double? maxHeight,
+        FontWeight? fontWeight,
       BorderRadiusGeometry? borderRadius,
       Color? txtColor})
       : _appTextButton = appTextButton,
@@ -31,6 +32,7 @@ class AppTextButton extends StatelessWidget {
         maxHeight = maxHeight ?? 52,
         _textSize = textSize,
         _borderRadius = borderRadius,
+        _textFontWeight = fontWeight,
   _borderColor = borderColor;
 
   final _AppTextButton _appTextButton;
@@ -42,6 +44,7 @@ class AppTextButton extends StatelessWidget {
   final Color? _borderColor;
   final Color? _textColor;
   final double? _textSize;
+  final FontWeight? _textFontWeight;
 
   final double minWidth = 100;
   final double maxWidth = double.maxFinite;
@@ -104,6 +107,7 @@ class AppTextButton extends StatelessWidget {
     double? textSize,
     double? maxHeight,
     BorderRadiusGeometry? borderRadius,
+    FontWeight? textFontWeight,
   }) {
     return AppTextButton._(
       key: key,
@@ -116,6 +120,7 @@ class AppTextButton extends StatelessWidget {
       textSize: textSize,
       maxHeight: maxHeight,
       borderRadius: borderRadius,
+      fontWeight: textFontWeight,
     );
   }
 
@@ -288,7 +293,7 @@ class AppTextButton extends StatelessWidget {
         );
       case _AppTextButton.minCustomColor:
         return ClipRRect(
-          borderRadius: _borderRadius ?? BorderRadius.circular(0),
+          borderRadius: _borderRadius ?? const BorderRadius.all(Radius.circular(30)),
           child: SizedBox(
             width: minWidth,
             height: maxHeight,
@@ -317,7 +322,7 @@ class AppTextButton extends StatelessWidget {
                   text,
                   style: AppTextStyle.s14_w500(
                     color: _textColor!,
-                  ).copyWith(fontSize: _textSize ?? 14),
+                  ).copyWith(fontSize: _textSize ?? 14,fontWeight: _textFontWeight),
                 ),
               ),
             ),

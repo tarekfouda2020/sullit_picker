@@ -12,15 +12,13 @@ class AppRouter extends $AppRouter {
    ...homeRoutes,
     
     // Profile Routes
-    AutoRoute(page: SideMenuRoute.page),
-    AutoRoute(page: ChangePasswordRoute.page),
     AutoRoute(page: OrdersHistoryRoute.page),
     AutoRoute(page: WalletRoute.page),
     AutoRoute(page: StatisticsRoute.page),
     AutoRoute(page: ContactUsRoute.page),
     AutoRoute(page: TermsConditionsRoute.page),
     AutoRoute(page: PrivacyPolicyRoute.page),
-    AutoRoute(page: NotificationsRoute.page),
+    AutoRoute(page: NotificationsPageRoute.page),
     AutoRoute(page: MySubscriptionRoute.page),
   ];
 }

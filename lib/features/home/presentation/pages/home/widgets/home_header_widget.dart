@@ -1,13 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
-import 'package:flutter_tdd/res.dart';
 
-import 'driver_status_widget.dart';
+import 'home_widgets_imports.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
   final HomeController controller;
@@ -24,20 +16,23 @@ class HomeHeaderWidget extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  padding: const EdgeInsets.only(bottom: 2),
-                  alignment: Alignment.bottomCenter,
-                  decoration:  BoxDecoration(
-                    color: context.colors.white,
-                    shape: BoxShape.circle,
+                GestureDetector(
+                  onTap: () => controller.navigateToSideMenu(context),
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    padding: const EdgeInsets.only(bottom: 2),
+                    alignment: Alignment.bottomCenter,
+                    decoration:  BoxDecoration(
+                      color: context.colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(
+                        Res.personIcon,
+                      width: 30, height: 30,
+                    )
+                    ,
                   ),
-                  child: SvgPicture.asset(
-                      Res.personIcon,
-                    width: 30, height: 30,
-                  )
-                  ,
                 ),
                 Gaps.hGap12,
                 Expanded(
@@ -69,12 +64,8 @@ class HomeHeaderWidget extends StatelessWidget {
               ],
             ),
           ),
-          GestureDetector(
-            // onTap: () => controller.navigateToSideMenu(context),
-            child:  Padding(
-              padding: const EdgeInsets.only(top: 8, right: 16),
-              child: SvgPicture.asset(Res.outlineNotification),
-            ),
+          NotificationIconWidget(
+            onTap: () => controller.navigateToNotifications(context),
           ),
         ],
       ),

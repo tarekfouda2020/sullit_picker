@@ -134,14 +134,13 @@ class LoginRegisterController {
     registerLoadingButtonKey.currentState?.animateForward();
     await Future.delayed(const Duration(seconds: 2));
 
-    AutoRouter.of(context).push(const SupportedAreaPageRoute());
+    AutoRouter.of(context).push( SupportedAreaPageRoute(fromProfile: false));
     AppSnackBar.showSuccessSnackBar(Translate.of(context).registration_successful);
     registerLoadingButtonKey.currentState?.animateReverse();
   }
   
   void navigateToForgetPassword(BuildContext context) {
-    // AutoRouter.of(context).push(const ForgetPasswordPageRoute());
-    AutoRouter.of(context).push(const ChangePasswordPageRoute());
+    AutoRouter.of(context).push(const ForgetPasswordPageRoute());
   }
   
 

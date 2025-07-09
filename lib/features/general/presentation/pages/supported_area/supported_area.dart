@@ -9,7 +9,8 @@ import 'widgets/covered_area_map_widget.dart';
 
 @RoutePage(name: "SupportedAreaPageRoute")
 class SupportedAreaPage extends StatefulWidget {
-  const SupportedAreaPage({super.key});
+  final bool fromProfile;
+  const SupportedAreaPage({super.key, required this.fromProfile});
 
   @override
   State<SupportedAreaPage> createState() => _SupportedAreaPageState();
@@ -17,7 +18,13 @@ class SupportedAreaPage extends StatefulWidget {
 
 class _SupportedAreaPageState extends State<SupportedAreaPage> {
 
-  final SupportedAreaController controller = SupportedAreaController();
+  late final SupportedAreaController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = SupportedAreaController(widget.fromProfile);
+  }
 
 
   @override

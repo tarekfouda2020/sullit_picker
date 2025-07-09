@@ -1,0 +1,12 @@
+export 'profile_page.dart';
+export 'profile_page_controller.dart';
+export 'package:flutter/material.dart';
+export 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+export 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+export 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
+export 'package:auto_route/auto_route.dart';
+export 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+export 'widgets/profile_header_widget.dart';
+export 'widgets/menu_items_list_widget.dart';
+export 'package:flutter_svg/svg.dart';
+export 'package:flutter_tdd/res.dart';

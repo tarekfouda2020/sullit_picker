@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/constants/duration_constants.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import '../login_register/login_register_imports.dart';
@@ -28,6 +29,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
       appBar: const DefaultAppBar(
         title: "",
         showBack: false,
+        size: 30,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -43,17 +45,18 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
                 width: 38,
                 height: 37,
               ),
+              Gaps.vGap40,
               const AuthPageLogoWidget(),
               Gaps.vGap24,
               AuthPageTitle(controller: controller),
               Gaps.vGap21,
               LoginRegisterTabBarWidget(controller: controller),
-              Gaps.vGap40,
+              Gaps.vGap32,
               ObsValueConsumer(
                 observable: controller.currentTabObs,
                 builder: (context, currentTab) {
                   return AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
+                    duration:DurationConstants.shortAnimationDuration,
                     child: controller.currentView(),
                   );
                 },

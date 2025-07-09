@@ -79,7 +79,7 @@ class AppLightColors extends AppColors {
   Color get hintText => const Color(0xFF9CA3AF);
 
   @override
-  Color get lightBackground => const Color(0xFFFEEAEA);
+  Color get lightBackground => const Color(0xFFFFEAEB);
 
   @override
   Color get lightPrimary => const Color(0xFFFFC9CA);
@@ -101,5 +101,8 @@ class AppLightColors extends AppColors {
 
   @override
   Color get gold => const Color(0xFFFFD800);
+
+  @override
+  Color get softRose => const Color(0xFFFBC6C7);
 
 }

@@ -31,7 +31,7 @@ class AreaRangesWidget extends StatelessWidget {
                 return GestureDetector(
                   onTap: () => controller.updateRange(range),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12,horizontal:18),
+                    padding: const EdgeInsets.symmetric(vertical: 12,horizontal:16),
                     margin: const EdgeInsetsDirectional.only(end: 10),
                     decoration: BoxDecoration(
                       borderRadius: Dimens.borderRadius30PX,
@@ -63,8 +63,10 @@ class AreaRangesWidget extends StatelessWidget {
           ),
           Gaps.vGap24,
           AppTextButton.maxCustom(
-            text: 'Confirm',
-            onPressed: () =>  AutoRouter.of(context).replaceAll([const LoginRegisterRoute()]),
+            text: controller.fromProfile
+                ?"Save"
+                :'Confirm',
+            onPressed: () =>  controller.confirmSaveRanges(context),
           ),
           Gaps.vGap26,
         ],

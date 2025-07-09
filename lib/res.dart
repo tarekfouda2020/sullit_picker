@@ -24,6 +24,16 @@ class Res {
   static const String personIcon = "assets/images/person_icon.svg";
   static const String outlineNotification = "assets/images/icons/notification_outline_icon.svg";
   static const String paymentCards = "assets/images/icons/payment_cards_icon.svg";
+  static const String pencilIcon = "assets/images/icons/pencil_icon.svg";
+  static const String walletImage = "assets/images/wallet_image.png";
+  static const String contactUs = "assets/images/icons/contact_us.svg";
+  static const String globalIcon = "assets/images/icons/global_icon.svg";
+  static const String lockIcon = "assets/images/icons/lock_icon.svg";
+  static const String mapIcon = "assets/images/icons/map_icon.svg";
+  static const String orderHistory = "assets/images/icons/order_history_icon.svg";
+  static const String ordersStatistics = "assets/images/icons/orders_statistics_icon.svg";
+  static const String privacyPolicy = "assets/images/icons/privacy_policy.svg";
+  static const String termsConditions = "assets/images/icons/terms_conditions_icon.svg";
 
   // Home screen assets that already exist in assets/images/
   static const String headerIcon = "assets/images/header-icon.svg";

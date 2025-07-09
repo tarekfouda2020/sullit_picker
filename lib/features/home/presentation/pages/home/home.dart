@@ -31,23 +31,27 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 20,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) => controller.onPop(),
+      child: Scaffold(
+        backgroundColor: context.colors.background,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          toolbarHeight: 20,
+        ),
+        body: ObsValueConsumer(
+          observable: controller.orderStatusObs,
+          builder: (context, status) {
+            return Visibility(
+              visible: true,
+              replacement:  NoOrdersWidget(controller: controller),
+              child: PageContentWidget(controller: controller, status: status),
+            );
+          },
+        ),
+        bottomNavigationBar: BottomNavWidget(controller: controller),
       ),
-      body: ObsValueConsumer(
-        observable: controller.orderStatusObs,
-        builder: (context, status) {
-          return Visibility(
-            visible: true,
-            replacement:  NoOrdersWidget(controller: controller),
-            child: PageContentWidget(controller: controller, status: status),
-          );
-        },
-      ),
-      bottomNavigationBar: BottomNavWidget(controller: controller),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_imports.dart';
 
 class SupportedAreaController {
@@ -9,6 +10,12 @@ class SupportedAreaController {
   final ObsValue<int> selectedRange = ObsValue<int>.withInit(20);
   final ObsValue<bool> showMap = ObsValue<bool>.withInit(false);
   late final ObsValue<LatLng> latLongObs;
+  late final bool fromProfile;
+
+  SupportedAreaController(bool enterFromProfile){
+     fromProfile = enterFromProfile;
+  }
+
 
   void getCurrentLocation(BuildContext context)async{
     var currentLocation = await getIt<LocationService>().getCurrentLocationWithPermission(context);
@@ -33,5 +40,15 @@ class SupportedAreaController {
   void updateRange(int range){
     selectedRange.setValue(range);
   }
+
+
+  void confirmSaveRanges(BuildContext context)async{
+    if(fromProfile){
+      AutoRouter.of(context).maybePop();
+    }else{
+      AutoRouter.of(context).replaceAll([const LoginRegisterRoute()]);
+    }
+  }
+
 
 }
