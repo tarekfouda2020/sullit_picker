@@ -34,6 +34,15 @@ class Res {
   static const String ordersStatistics = "assets/images/icons/orders_statistics_icon.svg";
   static const String privacyPolicy = "assets/images/icons/privacy_policy.svg";
   static const String termsConditions = "assets/images/icons/terms_conditions_icon.svg";
+  static const String invertedTriangle = "assets/images/icons/inveirted_triangle_icon.svg";
+  static const String filterIcon = "assets/images/icons/filter_icon.svg";
+  static const String sulitLogo = "assets/images/sulit_logo.png";
+  static const String boxIcon = "assets/images/box_icon.svg";
+  static const String closeIcon = "assets/images/icons/close_icon.svg";
+  static const String tikTokIcon = "assets/images/icons/tik_tok_icon.svg";
+  static const String twitterIcon = "assets/images/icons/twitter_icon.svg";
+  static const String instagramIcon = "assets/images/icons/instagram.png";
+  static const String whatsappIcon = "assets/images/icons/whatsapp_icon.svg";
 
   // Home screen assets that already exist in assets/images/
   static const String headerIcon = "assets/images/header-icon.svg";

@@ -47,9 +47,11 @@ class Dimens {
   static const double dp30 = 30;
   static const double dp32 = 32;
   static const double dp36 = 36;
+  static const double dp37 = 36;
   static const double dp38 = 38;
   static const double dp40 = 40;
   static const double dp41 = 41;
+  static const double dp43 = 43;
   static const double dp44 = 44;
   static const double dp47 = 47;
   static const double dp50 = 50;
@@ -68,9 +70,9 @@ class Dimens {
   static const BorderRadius borderRadius4PX = BorderRadius.all(Radius.circular(4));
   static const BorderRadius borderRadius8PX = BorderRadius.all(Radius.circular(8));
   static const BorderRadius borderRadius10PX = BorderRadius.all(Radius.circular(10));
+  static const BorderRadius borderRadius12PX =  BorderRadius.all(Radius.circular(12));
   static const BorderRadius borderRadius20PX = BorderRadius.all(Radius.circular(20));
   static const BorderRadius borderRadius30PX = BorderRadius.all(Radius.circular(30));
-  static  BorderRadius borderRadius12PX = const BorderRadius.all(Radius.circular(12));
 
   static const double cardBorderRadius8 = 8.0;
   static const double cardBorderRadius12 = 12.0;
@@ -117,6 +119,8 @@ class Dimens {
   
   static const double statusBarHeight = 44.0;
   static const double bottomSafeArea = 34.0;
+  
+  static const EdgeInsetsGeometry paddingH20Px = EdgeInsets.symmetric(horizontal: 20);
   
   static const EdgeInsetsGeometry paddingH18V12PX = EdgeInsets.symmetric(vertical: 12,horizontal: 18);
   static const EdgeInsetsGeometry paddingH16V10PX = EdgeInsets.symmetric(horizontal: 16, vertical: 10);

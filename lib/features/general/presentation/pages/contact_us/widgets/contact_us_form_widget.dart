@@ -1,0 +1,107 @@
+
+import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
+import 'package:flutter_tdd/features/general/presentation/pages/contact_us/contact_us_controller.dart';
+
+
+class ContactUsFormWidget extends StatelessWidget {
+  final ContactUsController controller;
+  const ContactUsFormWidget({super.key, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const AuthSectionTitleWidget(title: "Name"),
+        GenericTextField(
+          controller: controller.nameController,
+          fieldTypes: FieldTypes.normal,
+          type: TextInputType.name,
+          action: TextInputAction.next,
+          fillColor: context.colors.white,
+          enableBorderColor: context.colors.inputBorder,
+          hint: 'Your Name',
+          margin: const EdgeInsets.only(bottom: 12),
+          validate: (value) => value?.validateName(),
+        ),
+        const AuthSectionTitleWidget(title: "mmm@info.com"),
+        GenericTextField(
+          controller: controller.emailController,
+          fieldTypes: FieldTypes.normal,
+          type: TextInputType.emailAddress,
+          action: TextInputAction.next,
+          fillColor: context.colors.white,
+          enableBorderColor: context.colors.inputBorder,
+          hint: 'Your Email',
+          margin: const EdgeInsets.only(bottom: 12),
+          validate: (value) => value?.validateEmail(),
+        ),
+        AuthSectionTitleWidget(title: Translate.s.phone_number),
+        GenericTextField(
+          controller: controller.phoneController,
+          validate: (value) => controller.whileEnterPhone(),
+          fieldTypes: FieldTypes.normal,
+          type: TextInputType.text,
+          action: TextInputAction.next,
+          hint: "0000000",
+          fillColor: Colors.white,
+          enableBorderColor: context.colors.inputBorder,
+          prefixIcon: prefixIcon(),
+          margin: const EdgeInsets.only(bottom: 12),
+        ),
+        const AuthSectionTitleWidget(title: "Title"),
+        GenericTextField(
+          controller: controller.emailController,
+          fieldTypes: FieldTypes.normal,
+          type: TextInputType.text,
+          action: TextInputAction.next,
+          fillColor: context.colors.white,
+          hint: 'Enter Title',
+          enableBorderColor: context.colors.inputBorder,
+          validate: (value) => value?.validateEmpty(),
+          margin: const EdgeInsets.only(bottom: 12),
+        ),
+        const AuthSectionTitleWidget(title: "Message"),
+        GenericTextField(
+          controller: controller.messageController,
+          fieldTypes: FieldTypes.rich,
+          type: TextInputType.text,
+          action: TextInputAction.done,
+          fillColor: context.colors.white,
+          enableBorderColor: context.colors.inputBorder,
+          hint: 'Enter Your Message',
+          margin: EdgeInsets.zero,
+          validate: (value) => value?.validateEmpty(),
+        ),
+      ],
+    ));
+  }
+  Widget prefixIcon() {
+    return ObsValueConsumer(
+      observable: controller.countryCodeObs,
+      builder: (context, value) {
+        return GestureDetector(
+          onTap: () async=> await controller.selectCountryCode(context),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Gaps.hGap23,
+              SizedBox(
+                  height: 20, width: 20,
+                  child: value.flagImage()
+              ),
+              Gaps.hGap5,
+              Text(value.dialCode,
+                style: AppTextStyle.s14_w400(color: context.colors.black),),
+              Gaps.hGap5,
+              Icon(Icons.keyboard_arrow_down_outlined,size: 15,color: context.colors.black,),
+              Gaps.hGap5,
+            ],
+          ),
+        );
+      },);
+  }
+
+
+}

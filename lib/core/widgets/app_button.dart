@@ -76,7 +76,8 @@ class AppTextButton extends StatelessWidget {
 
   factory AppTextButton.maxPrimary(
       {Key? key,required String text, bool enabled = true, VoidCallback? onPressed,
-        BorderRadiusGeometry? borderRadius
+        BorderRadiusGeometry? borderRadius,
+        Color? bgColor
       }) {
     return AppTextButton._(
       key: key,
@@ -85,6 +86,7 @@ class AppTextButton extends StatelessWidget {
       enabled: enabled,
       onPressed: onPressed,
       borderRadius: borderRadius,
+      bgColor: bgColor,
     );
   }
 
@@ -234,7 +236,7 @@ class AppTextButton extends StatelessWidget {
                       padding: WidgetStateProperty.all(EdgeInsets.zero),
                       foregroundColor: WidgetStateProperty.resolveWith(
                         (_) {
-                          return AppColors.of(context).primary;
+                          return _bgColor ?? AppColors.of(context).primary;
                         },
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(

@@ -48,7 +48,7 @@ class RegisterController {
       isLoading.setValue(false);
       
       // Navigate to subscription page
-      AutoRouter.of(context).push(const SubscriptionRoute());
+      AutoRouter.of(context).push(const SubscriptionPageRoute());
     }
   }
   

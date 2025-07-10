@@ -1,0 +1,4 @@
+enum WalletTransactionType {
+  collected,
+  deposited;
+}

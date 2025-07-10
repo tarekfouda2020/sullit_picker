@@ -3,7 +3,7 @@
   "APP_BASE_URL": "dev/",
   "APP_ENV_NAME": "dev",
   "APP_API": "api/",
-  "APP_APP_NAME_EN": "Dev Name",
-  "APP_APP_NAME_AR": "ديف",
-  "APP_LOCAL_LOGO": "assets/images/icon.png"
+  "APP_APP_NAME_EN": "weideliver",
+  "APP_APP_NAME_AR": "weideliver",
+  "APP_LOCAL_LOGO": "assets/images/application_icon.jpg"
 }

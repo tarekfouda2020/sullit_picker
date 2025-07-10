@@ -21,7 +21,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       child: Scaffold(
         appBar: const DefaultAppBar(title: "",),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: Dimens.paddingH20Px,
           child: Column(
             spacing: 40,
             children: [

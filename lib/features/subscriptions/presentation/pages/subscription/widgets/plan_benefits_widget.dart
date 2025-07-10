@@ -14,7 +14,12 @@ class PlanBenefitsWidget extends StatelessWidget {
         border: Border.all(color: context.colors.borderLight)
       ),
       child: Column(
-        children: List.generate(3, (index) {
+        children: [
+          Text("Benefits&Policy :",
+          style: AppTextStyle.s12_w600(color: context.colors.black),
+          ),
+          Gaps.vGap8,
+          ...List.generate(3, (index) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 5),
             child: Row(
@@ -32,7 +37,8 @@ class PlanBenefitsWidget extends StatelessWidget {
                 )
             ],),
           );
-        },),
+        },)
+        ],
       ),
     );
   }

@@ -1,29 +1,56 @@
-import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'widgets/orders_widgets_imports.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tdd/core/constants/duration_constants.dart';
+import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+import 'package:flutter_tdd/res.dart';
 
-@RoutePage()
-class OrdersHistoryPage extends StatelessWidget {
+import 'orders_history_imports.dart';
+import 'widgets/order_history_tabs_widget.dart';
+
+@RoutePage(name: "OrdersHistoryPageRoute")
+class OrdersHistoryPage extends StatefulWidget {
   const OrdersHistoryPage({super.key});
+
+  @override
+  State<OrdersHistoryPage> createState() => _OrdersHistoryPageState();
+}
+
+class _OrdersHistoryPageState extends State<OrdersHistoryPage> {
+
+
+  final OrdersHistoryController controller = OrdersHistoryController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () => AutoRouter.of(context).pop(),
-          icon: Icon(Icons.arrow_back, color: context.colors.textPrimary),
-        ),
-      ),
-      body: const SingleChildScrollView(
+      appBar:  DefaultAppBar(title: "Orders History",bgColor: context.colors.background,),
+      body: Padding(
+        padding:  Dimens.paddingH20Px,
         child: Column(
           children: [
-            OrdersHeaderWidget(),
-            OrdersListWidget(),
+            Gaps.vGap16,
+            OrderHistoryTabsWidget(controller: controller,),
+            Gaps.vGap16,
+            Row(
+              children: [
+                Text(
+                  'Last Week',
+                  style: AppTextStyle.s14_w400(color: context.colors.gray3),
+                ),
+                Gaps.hGap6,
+                SvgPicture.asset(Res.invertedTriangle)
+              ],
+            ),
+            Gaps.vGap12,
+            ObsValueConsumer(observable: controller.currentTabObs,
+              builder: (context, value) {
+              return Expanded(
+                child: AnimatedSwitcher(
+                  duration: DurationConstants.normalAnimationDuration,
+                  child: controller.currentView(),
+                ),
+              );
+            },),
           ],
         ),
       ),

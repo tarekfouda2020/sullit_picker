@@ -97,4 +97,8 @@ abstract class AppColors {
 
   Color get softRose;
 
+  Color get gray3;
+
+  Color get red;
+
 }

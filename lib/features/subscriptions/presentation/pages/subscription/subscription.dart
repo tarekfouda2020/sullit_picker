@@ -1,6 +1,6 @@
 import 'subscription_imports.dart';
 
-@RoutePage()
+@RoutePage(name: "SubscriptionPageRoute")
 class SubscriptionPage extends StatefulWidget {
   const SubscriptionPage({super.key});
 
@@ -22,7 +22,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
         showBack: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: Dimens.paddingH20Px,
         child: Column(children: [
           const AppSloganWidget(),
           Gaps.vGap64,

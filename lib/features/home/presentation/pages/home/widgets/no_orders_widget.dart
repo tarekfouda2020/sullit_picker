@@ -10,7 +10,7 @@ class NoOrdersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: Dimens.paddingH20Px,
       child: Column(
         children: [
           HomeHeaderWidget(controller: controller),

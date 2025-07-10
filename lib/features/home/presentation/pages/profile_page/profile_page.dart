@@ -24,11 +24,11 @@ class _ProfilePageState extends State<ProfilePage> {
         title: "",
         size: 50,
         actions: [
-          NotificationIconWidget(onTap: (){})
+          NotificationIconWidget(onTap: ()=>AutoRouter.of(context).push(const NotificationsPageRoute()))
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: Dimens.paddingH20Px,
         children: [
           const ProfileHeaderWidget(),
            DriverWorkInfo(controller: controller),

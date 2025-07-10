@@ -1,0 +1,12 @@
+export 'statistics_page.dart';
+export 'statistics_page_controller.dart';
+export 'package:flutter/material.dart';
+export 'package:flutter_svg/flutter_svg.dart';
+export 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+export 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+export 'package:flutter_tdd/core/constants/gaps.dart';
+export 'package:flutter_tdd/core/constants/dimens.dart';
+export 'package:flutter_tdd/core/localization/translate.dart';
+export 'package:auto_route/auto_route.dart';
+export 'package:flutter_tdd/core/widgets/default_app_bar.dart';
+export 'package:flutter_tdd/res.dart'; 

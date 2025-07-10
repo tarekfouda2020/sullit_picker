@@ -8,27 +8,27 @@ class ProfilePageController {
   }
   
   void navigateToOrdersHistory(BuildContext context) {
-    AutoRouter.of(context).push(const OrdersHistoryRoute());
+    AutoRouter.of(context).push(const OrdersHistoryPageRoute());
   }
   
   void navigateToWallet(BuildContext context) {
-    AutoRouter.of(context).push(const WalletRoute());
+    AutoRouter.of(context).push(const WalletPageRoute());
   }
   
   void navigateToStatistics(BuildContext context) {
-    AutoRouter.of(context).push(const StatisticsRoute());
+    AutoRouter.of(context).push(const StatisticsPageRoute());
   }
   
   void navigateToContactUs(BuildContext context) {
-    AutoRouter.of(context).push(const ContactUsRoute());
+    AutoRouter.of(context).push(const ContactUsPageRoute());
   }
   
   void navigateToTermsConditions(BuildContext context) {
-    AutoRouter.of(context).push(const TermsConditionsRoute());
+    AutoRouter.of(context).push(const TermsConditionsPageRoute());
   }
   
   void navigateToPrivacyPolicy(BuildContext context) {
-    AutoRouter.of(context).push(const PrivacyPolicyRoute());
+    AutoRouter.of(context).push(const PrivacyPolicyPageRoute());
   }
   
   void navigateToNotifications(BuildContext context) {
@@ -36,7 +36,7 @@ class ProfilePageController {
   }
   
   void navigateToMySubscription(BuildContext context) {
-    AutoRouter.of(context).push(const MySubscriptionRoute());
+    AutoRouter.of(context).push(const MySubscriptionPageRoute());
   }
   
   void logout(BuildContext context) async {
@@ -45,7 +45,7 @@ class ProfilePageController {
   }
   
   void goBack(BuildContext context) {
-    AutoRouter.of(context).pop();
+    AutoRouter.of(context).maybePop();
   }
 
   void routeToSupportedArea(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -15,7 +16,7 @@ class PinFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-       margin:margin?? const EdgeInsets.symmetric(horizontal: 20),
+       margin:margin?? Dimens.paddingH20Px,
       child: PinCodeTextField(
         length: 6,
         appContext: context,

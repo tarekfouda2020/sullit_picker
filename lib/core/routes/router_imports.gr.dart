@@ -20,33 +20,33 @@ import 'package:flutter_tdd/features/auth/presentation/pages/login/login.dart'
 import 'package:flutter_tdd/features/auth/presentation/pages/login_register/login_register.dart'
     as _i7;
 import 'package:flutter_tdd/features/auth/presentation/pages/register/register_imports.dart'
-    as _i13;
-import 'package:flutter_tdd/features/auth/presentation/pages/reset_password/reset_password_imports.dart'
     as _i14;
-import 'package:flutter_tdd/features/auth/presentation/pages/splash/splash.dart'
+import 'package:flutter_tdd/features/auth/presentation/pages/reset_password/reset_password_imports.dart'
     as _i15;
+import 'package:flutter_tdd/features/auth/presentation/pages/splash/splash.dart'
+    as _i16;
+import 'package:flutter_tdd/features/general/presentation/pages/contact_us/contact_us.dart'
+    as _i3;
+import 'package:flutter_tdd/features/general/presentation/pages/privacy_policy/privacy_policy.dart'
+    as _i12;
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area.dart'
     as _i18;
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_imports.dart'
     as _i22;
+import 'package:flutter_tdd/features/general/presentation/pages/terms_conditions/terms_conditions.dart'
+    as _i19;
 import 'package:flutter_tdd/features/home/presentation/pages/home/home.dart'
     as _i5;
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page.dart'
-    as _i12;
-import 'package:flutter_tdd/features/notifications/presentation/pages/notification_page/notifications.dart'
-    as _i9;
-import 'package:flutter_tdd/features/orders/presentation/pages/orders_history/orders_history.dart'
+    as _i13;
+import 'package:flutter_tdd/features/notifications/presentation/pages/notification_page/notification_page.dart'
     as _i10;
-import 'package:flutter_tdd/features/profile/presentation/pages/contact_us/contact_us.dart'
-    as _i3;
-import 'package:flutter_tdd/features/profile/presentation/pages/privacy_policy/privacy_policy.dart'
+import 'package:flutter_tdd/features/orders/presentation/pages/orders_history/orders_history.dart'
     as _i11;
-import 'package:flutter_tdd/features/profile/presentation/pages/statistics/statistics.dart'
-    as _i16;
-import 'package:flutter_tdd/features/profile/presentation/pages/terms_conditions/terms_conditions.dart'
-    as _i19;
-import 'package:flutter_tdd/features/subscriptions/presentation/pages/my_subscription/my_subscription.dart'
+import 'package:flutter_tdd/features/orders/presentation/pages/statistics/statistics_page.dart'
     as _i8;
+import 'package:flutter_tdd/features/subscriptions/presentation/pages/my_subscription/my_subscription.dart'
+    as _i9;
 import 'package:flutter_tdd/features/subscriptions/presentation/pages/subscription/subscription.dart'
     as _i17;
 import 'package:flutter_tdd/features/wallet/presentation/pages/wallet_page/wallet.dart'
@@ -69,7 +69,7 @@ abstract class $AppRouter extends _i21.RootStackRouter {
         child: const _i2.ChangePassword(),
       );
     },
-    ContactUsRoute.name: (routeData) {
+    ContactUsPageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.ContactUsPage(),
@@ -99,61 +99,61 @@ abstract class $AppRouter extends _i21.RootStackRouter {
         child: const _i7.LoginRegisterPage(),
       );
     },
-    MySubscriptionRoute.name: (routeData) {
+    StatisticsPageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.MySubscriptionPage(),
+        child: const _i8.MyStatisticsPage(),
+      );
+    },
+    MySubscriptionPageRoute.name: (routeData) {
+      return _i21.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i9.MySubscriptionPage(),
       );
     },
     NotificationsPageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.NotificationsPage(),
+        child: const _i10.NotificationsPage(),
       );
     },
-    OrdersHistoryRoute.name: (routeData) {
+    OrdersHistoryPageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.OrdersHistoryPage(),
+        child: const _i11.OrdersHistoryPage(),
       );
     },
-    PrivacyPolicyRoute.name: (routeData) {
+    PrivacyPolicyPageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i11.PrivacyPolicyPage(),
+        child: const _i12.PrivacyPolicy(),
       );
     },
     ProfilePageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i12.ProfilePage(),
+        child: const _i13.ProfilePage(),
       );
     },
     Register.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i13.Register(),
+        child: const _i14.Register(),
       );
     },
     ResetPassword.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i14.ResetPassword(),
+        child: const _i15.ResetPassword(),
       );
     },
     Splash.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i15.Splash(),
+        child: const _i16.Splash(),
       );
     },
-    StatisticsRoute.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i16.StatisticsPage(),
-      );
-    },
-    SubscriptionRoute.name: (routeData) {
+    SubscriptionPageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i17.SubscriptionPage(),
@@ -169,13 +169,13 @@ abstract class $AppRouter extends _i21.RootStackRouter {
         ),
       );
     },
-    TermsConditionsRoute.name: (routeData) {
+    TermsConditionsPageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i19.TermsConditionsPage(),
+        child: const _i19.TermsConditions(),
       );
     },
-    WalletRoute.name: (routeData) {
+    WalletPageRoute.name: (routeData) {
       return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i20.WalletPage(),
@@ -214,14 +214,14 @@ class ChangePasswordPageRoute extends _i21.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.ContactUsPage]
-class ContactUsRoute extends _i21.PageRouteInfo<void> {
-  const ContactUsRoute({List<_i21.PageRouteInfo>? children})
+class ContactUsPageRoute extends _i21.PageRouteInfo<void> {
+  const ContactUsPageRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          ContactUsRoute.name,
+          ContactUsPageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ContactUsRoute';
+  static const String name = 'ContactUsPageRoute';
 
   static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
 }
@@ -283,21 +283,35 @@ class LoginRegisterRoute extends _i21.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.MySubscriptionPage]
-class MySubscriptionRoute extends _i21.PageRouteInfo<void> {
-  const MySubscriptionRoute({List<_i21.PageRouteInfo>? children})
+/// [_i8.MyStatisticsPage]
+class StatisticsPageRoute extends _i21.PageRouteInfo<void> {
+  const StatisticsPageRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          MySubscriptionRoute.name,
+          StatisticsPageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'MySubscriptionRoute';
+  static const String name = 'StatisticsPageRoute';
 
   static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.NotificationsPage]
+/// [_i9.MySubscriptionPage]
+class MySubscriptionPageRoute extends _i21.PageRouteInfo<void> {
+  const MySubscriptionPageRoute({List<_i21.PageRouteInfo>? children})
+      : super(
+          MySubscriptionPageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MySubscriptionPageRoute';
+
+  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i10.NotificationsPage]
 class NotificationsPageRoute extends _i21.PageRouteInfo<void> {
   const NotificationsPageRoute({List<_i21.PageRouteInfo>? children})
       : super(
@@ -311,35 +325,35 @@ class NotificationsPageRoute extends _i21.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.OrdersHistoryPage]
-class OrdersHistoryRoute extends _i21.PageRouteInfo<void> {
-  const OrdersHistoryRoute({List<_i21.PageRouteInfo>? children})
+/// [_i11.OrdersHistoryPage]
+class OrdersHistoryPageRoute extends _i21.PageRouteInfo<void> {
+  const OrdersHistoryPageRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          OrdersHistoryRoute.name,
+          OrdersHistoryPageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'OrdersHistoryRoute';
+  static const String name = 'OrdersHistoryPageRoute';
 
   static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i11.PrivacyPolicyPage]
-class PrivacyPolicyRoute extends _i21.PageRouteInfo<void> {
-  const PrivacyPolicyRoute({List<_i21.PageRouteInfo>? children})
+/// [_i12.PrivacyPolicy]
+class PrivacyPolicyPageRoute extends _i21.PageRouteInfo<void> {
+  const PrivacyPolicyPageRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          PrivacyPolicyRoute.name,
+          PrivacyPolicyPageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'PrivacyPolicyRoute';
+  static const String name = 'PrivacyPolicyPageRoute';
 
   static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i12.ProfilePage]
+/// [_i13.ProfilePage]
 class ProfilePageRoute extends _i21.PageRouteInfo<void> {
   const ProfilePageRoute({List<_i21.PageRouteInfo>? children})
       : super(
@@ -353,7 +367,7 @@ class ProfilePageRoute extends _i21.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i13.Register]
+/// [_i14.Register]
 class Register extends _i21.PageRouteInfo<void> {
   const Register({List<_i21.PageRouteInfo>? children})
       : super(
@@ -367,7 +381,7 @@ class Register extends _i21.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i14.ResetPassword]
+/// [_i15.ResetPassword]
 class ResetPassword extends _i21.PageRouteInfo<void> {
   const ResetPassword({List<_i21.PageRouteInfo>? children})
       : super(
@@ -381,7 +395,7 @@ class ResetPassword extends _i21.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i15.Splash]
+/// [_i16.Splash]
 class Splash extends _i21.PageRouteInfo<void> {
   const Splash({List<_i21.PageRouteInfo>? children})
       : super(
@@ -395,29 +409,15 @@ class Splash extends _i21.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.StatisticsPage]
-class StatisticsRoute extends _i21.PageRouteInfo<void> {
-  const StatisticsRoute({List<_i21.PageRouteInfo>? children})
-      : super(
-          StatisticsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'StatisticsRoute';
-
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
-}
-
-/// generated route for
 /// [_i17.SubscriptionPage]
-class SubscriptionRoute extends _i21.PageRouteInfo<void> {
-  const SubscriptionRoute({List<_i21.PageRouteInfo>? children})
+class SubscriptionPageRoute extends _i21.PageRouteInfo<void> {
+  const SubscriptionPageRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          SubscriptionRoute.name,
+          SubscriptionPageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'SubscriptionRoute';
+  static const String name = 'SubscriptionPageRoute';
 
   static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
 }
@@ -462,29 +462,29 @@ class SupportedAreaPageRouteArgs {
 }
 
 /// generated route for
-/// [_i19.TermsConditionsPage]
-class TermsConditionsRoute extends _i21.PageRouteInfo<void> {
-  const TermsConditionsRoute({List<_i21.PageRouteInfo>? children})
+/// [_i19.TermsConditions]
+class TermsConditionsPageRoute extends _i21.PageRouteInfo<void> {
+  const TermsConditionsPageRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          TermsConditionsRoute.name,
+          TermsConditionsPageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'TermsConditionsRoute';
+  static const String name = 'TermsConditionsPageRoute';
 
   static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i20.WalletPage]
-class WalletRoute extends _i21.PageRouteInfo<void> {
-  const WalletRoute({List<_i21.PageRouteInfo>? children})
+class WalletPageRoute extends _i21.PageRouteInfo<void> {
+  const WalletPageRoute({List<_i21.PageRouteInfo>? children})
       : super(
-          WalletRoute.name,
+          WalletPageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'WalletRoute';
+  static const String name = 'WalletPageRoute';
 
   static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
 }

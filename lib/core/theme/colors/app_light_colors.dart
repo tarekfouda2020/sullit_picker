@@ -105,4 +105,10 @@ class AppLightColors extends AppColors {
   @override
   Color get softRose => const Color(0xFFFBC6C7);
 
+  @override
+  Color get gray3 => const Color(0xFF919191);
+
+  @override
+  Color get red => const Color(0xFFFF0000);
+
 }

@@ -1,32 +1,56 @@
-import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'widgets/wallet_widgets_imports.dart';
+import 'wallet_imports.dart';
 
-@RoutePage()
+@RoutePage(name: "WalletPageRoute")
 class WalletPage extends StatelessWidget {
   const WalletPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = WalletController();
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () => AutoRouter.of(context).pop(),
-          icon: Icon(Icons.arrow_back, color: context.colors.textPrimary),
-        ),
+      appBar: DefaultAppBar(
+        title: "Wallet",
+        bgColor: context.colors.background,
       ),
-      body: const SingleChildScrollView(
+      body: Padding(
+        padding: Dimens.paddingH20Px,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            WalletHeaderWidget(),
-            WalletTransactionsWidget(),
+            Gaps.vGap16,
+            WalletFilterWidget(controller: controller),
+            Gaps.vGap16,
+            WalletBalanceWidget(controller: controller),
+            Gaps.vGap20,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Transactions",
+                    style: AppTextStyle.s20_w700(color: context.colors.textPrimary),
+                  ),
+                ),
+                Text(
+                  "Last Week",
+                  style: AppTextStyle.s14_w400(color: context.colors.gray3),
+                ),
+                Gaps.hGap6,
+                SvgPicture.asset(Res.invertedTriangle),
+              ],
+            ),
+            Gaps.vGap12,
+            Expanded(
+              child: ListView.builder(
+                itemCount: controller.transactions.length,
+                itemBuilder: (context, index) => WalletTransactionCard(
+                  type: controller.transactions[index],
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-}
+} 

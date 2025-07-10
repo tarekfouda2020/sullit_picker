@@ -30,7 +30,7 @@ class LoginRegisterController {
   final ObsValue<bool> passwordVisibleObs = ObsValue<bool>.withInit(false);
   final ObsValue<bool> confirmPasswordVisibleObs = ObsValue<bool>.withInit(false);
   final ObsValue<List<WorkTypeModel>> workTypeListObs = ObsValue<List<WorkTypeModel>>.withInit([]);
-  ObsValue<CountryCode> countryCodeObs = ObsValue<CountryCode>.withInit(
+  final ObsValue<CountryCode> countryCodeObs = ObsValue<CountryCode>.withInit(
       const CountryCode(name: "United Arab Emirates", code: "AE", dialCode: "+966")
   );
   ObsValue<File?> idFileObs = ObsValue<File?>.withInit(null);
