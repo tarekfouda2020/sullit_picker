@@ -8,18 +8,19 @@ class ApiNames{
   static const String refreshToken = "auth";
   static const String savePublicKey = "users/";
   static const String updateUser = "users/";
+
   static const String register = "register";
   static const String workTypes = "work-types";
   static const String verifyPhone = "register/send-phone-verification";
   static const String verifyEmail = "register/send-email-verification";
+  static const String confirmResetPassword = "password/reset";
 
   static const String activeAccount = "otp/verify";
   static const String resendCode = "ResendCode";
   static const String switchNotify = "SwitchNotify";
   static const String forgetPassword = "cabaf46ee69d7b8445a5d791";
   static const String resetPassword = "A2q4mG84Z9rE2B38In4HALSWTwt9eQ5Slzq56Cod";
-
-
+  static const String passwordForgot = "password/forgot";
 
 
 }

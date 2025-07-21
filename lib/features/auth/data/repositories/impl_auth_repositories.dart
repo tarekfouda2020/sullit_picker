@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/data_source/auth_data_source.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_model.dart';
+import 'package:flutter_tdd/features/auth/domain/entity/confirm_reset_password_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
@@ -31,5 +32,15 @@ class ImplAuthRepositories  extends AuthRepositories{
   @override
   Future<MyResult<String>> verifyEmail(VerifyParams params)async{
     return  await dataSource.verifyEmail(params);
+  }
+
+  @override
+  Future<MyResult<String>> forgotPassword(VerifyParams params) async {
+    return await dataSource.forgotPassword(params);
+  }
+
+  @override
+  Future<MyResult<String>> confirmResetPassword(ConfirmResetPasswordParams params) async {
+    return await dataSource.confirmResetPassword(params);
   }
 }

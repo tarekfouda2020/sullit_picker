@@ -51,7 +51,7 @@ class SupportedAreaController {
     }
   }
 
-  /// value is in meters >> * 1000 to be in km
+  /// value is in meters >> *1000 to be in km
   double get rangeArea => (selectedRange.getValue() * 1000);
 
   Future<void> confirmLocation(BuildContext context) async {
@@ -63,7 +63,7 @@ class SupportedAreaController {
     result.when(
       isSuccess: (data) {
         AppSnackBar.showSuccessSnackBar(Translate.of(context).registration_successful);
-        AutoRouter.of(context).replaceAll([const LoginRegisterRoute()]);
+        AutoRouter.of(context).pushAndPopUntil(const LoginRegisterRoute(), predicate: (route) => false,);
       },
       isError: (error) {
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: "Something went wrong"));
