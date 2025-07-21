@@ -20,7 +20,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    controller.navigateToLogin(context);
+    controller.manipulateSaveData(context);
   }
 
   @override

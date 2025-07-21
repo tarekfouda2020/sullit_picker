@@ -62,7 +62,7 @@ abstract class $AppRouter extends _i21.RootStackRouter {
   final Map<String, _i21.PageFactory> pagesMap = {
     ActiveAccountPageRoute.name: (routeData) {
       final args = routeData.argsAs<ActiveAccountPageRouteArgs>();
-      return _i21.AutoRoutePage<String>(
+      return _i21.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i1.ActiveAccount(
           key: args.key,

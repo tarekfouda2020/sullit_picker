@@ -7,6 +7,7 @@ import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/data_source/auth_data_source.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_model.dart';
+import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
 import 'package:injectable/injectable.dart';
@@ -66,6 +67,20 @@ class ImplAuthDataSource extends AuthDataSource{
         showLoader: true
     );
     return GenericHttpImpl<String>().call(model);
+  }
+
+  @override
+  Future<MyResult<UserModel>> sendLogin(LoginParams params)async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.login,
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      responseKey: (data) => data['data'],
+      requestBody: params.toJson(),
+      showLoader: false,
+      toJsonFunc: (json) => UserModel.fromJson(json),
+    );
+    return await GenericHttpImpl<UserModel>()(model);
   }
 
 }
