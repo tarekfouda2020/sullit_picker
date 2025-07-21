@@ -17,12 +17,12 @@ class Put extends DioHelper {
   @override
   Future<MyResult<Response>> call(RequestBodyModel params) async {
     if (params.showLoader) getIt<LoadingHelper>().showLoadingDialog();
-    FormData? formData = getIt<HandleRequestBody>()(params.body);
+    FormData? formData = getIt<HandleRequestBody>()(params);
     //create multipart request for POST or PATCH method
 
     try {
       var response =
-          await dio.put(params.url, data: formData ?? json.encode(params.body));
+      await dio.put(params.url, data: formData ?? json.encode(params.body));
       if (params.showLoader) getIt<LoadingHelper>().dismissDialog();
       return getIt<HandleErrors>().statusError(response, params.errorFunc);
     } on DioException catch (e) {

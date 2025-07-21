@@ -6,4 +6,5 @@ final List<AutoRoute>  authRoutes = [
   AdaptiveRoute(page: LoginRegisterRoute.page),
   AdaptiveRoute(page: ForgetPasswordPageRoute.page),
   AdaptiveRoute(page: ChangePasswordPageRoute.page),
+  AdaptiveRoute(page: ActiveAccountPageRoute.page),
 ];

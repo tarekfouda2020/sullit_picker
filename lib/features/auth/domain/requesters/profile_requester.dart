@@ -18,16 +18,16 @@ class ProfileRequester extends Requester<UserDomainModel> {
       // Simulate API call
       await Future.delayed(const Duration(seconds: 1));
       
-      // Mock user data
-      final userData = UserDomainModel(
-        id: userId.toString(),
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john@example.com',
-        phone: '+1234567890',
-      );
+      // // Mock user data
+      // final userData = UserDomainModel(
+      //   id: userId.toString(),
+      //   firstName: 'John',
+      //   lastName: 'Doe',
+      //   email: 'john@example.com',
+      //   phone: '+1234567890',
+      // );
       
-      successState(userData);
+      // successState(userData);
     } catch (e) {
       failedState(
         BaseError.unknown(),

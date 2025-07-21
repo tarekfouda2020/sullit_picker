@@ -5,11 +5,13 @@ import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 class AuthHeaderTitleWidget extends StatelessWidget {
   final String title;
   final String subTitle;
+  final TextStyle? titleStyle;
 
   const AuthHeaderTitleWidget({
     super.key,
     required this.title,
     required this.subTitle,
+    this.titleStyle,
   });
 
   @override
@@ -19,7 +21,7 @@ class AuthHeaderTitleWidget extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextStyle.s20_w500(color: context.colors.black),
+          style: titleStyle ?? AppTextStyle.s20_w500(color: context.colors.black),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 15, bottom: 40),

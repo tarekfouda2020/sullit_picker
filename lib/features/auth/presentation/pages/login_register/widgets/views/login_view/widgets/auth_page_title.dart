@@ -1,6 +1,6 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
-import '../login_register_imports.dart';
+import '../../../../login_register_imports.dart';
 
 
 class AuthPageTitle extends StatelessWidget {

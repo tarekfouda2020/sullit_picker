@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
 
-import '../login_register_imports.dart';
+import '../register_imports.dart';
 
 
 class VerifyTextWidget extends StatelessWidget {
@@ -10,7 +11,8 @@ class VerifyTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      splashColor: Colors.transparent,
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsetsDirectional.only(top: 17,end: 20),

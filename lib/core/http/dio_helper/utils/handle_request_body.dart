@@ -1,13 +1,15 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_tdd/core/http/models/request_body_model.dart';
 import 'package:injectable/injectable.dart';
 
 
 @lazySingleton
 class HandleRequestBody {
 
-  FormData? call(Map<String, dynamic> body){
+  FormData? call(RequestBodyModel model){
+    var body = model.body;
     FormData formData = FormData.fromMap(body);
     bool haveFile = false;
     body.forEach((key, value) async {

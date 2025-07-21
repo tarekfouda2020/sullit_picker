@@ -13,14 +13,15 @@ class BuildActiveButton extends StatelessWidget {
         return AbsorbPointer(
           absorbing: !data,
           child: LoadingButton(
-              title: "Login",
-              onTap: () {},
+              title: "Submit",
+              onTap: () => controller.onPress(context),
               color: !data ? context.colors.greyWhite : context.colors.primary,
               textColor: !data ? context.colors.black : context.colors.white,
               btnKey: controller.btnKey,
               margin: const EdgeInsets.only(top: 40),
               fontSize: 16,
-              height: 55),
+              height: 55
+          ),
         );
       },
     );

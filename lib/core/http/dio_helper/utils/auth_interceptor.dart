@@ -59,6 +59,7 @@ class AuthInterceptor extends Interceptor {
           'accessToken': resistanceAccessToken,
           'refreshToken': refreshToken,
         },
+        isFormData: true,
         errorFunc: (data) => data,
       );
       final result = await getIt<Post>()(params);

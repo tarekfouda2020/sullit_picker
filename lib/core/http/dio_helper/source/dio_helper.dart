@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_tdd/core/http/dio_helper/utils/auth_interceptor.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
 import '../../../helpers/di.dart';
 import '../../generic_http/api_names.dart';

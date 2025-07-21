@@ -1,23 +1,39 @@
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/widgets/LoadingButton.dart';
-import 'package:flutter_tdd/features/auth/presentation/pages/login_register/login_register_imports.dart';
+import 'package:flutter_tdd/features/auth/presentation/pages/login_register/widgets/views/regeister/widgets/driver_id_and_licensee_widget.dart';
+
+import 'register_imports.dart';
+import 'widgets/driver_passwords_widget.dart';
+import 'widgets/driver_private_fields_widget.dart';
+import 'widgets/select_work_type_widget.dart';
 
 
-class RegisterFormWidget extends StatelessWidget {
-  final LoginRegisterController controller;
+class RegisterView extends StatefulWidget {
+  final LoginRegisterController loginRegisterController;
+  const RegisterView({super.key, required this.loginRegisterController});
 
-  const RegisterFormWidget({super.key, required this.controller});
+  @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends State<RegisterView> {
+
+  final RegisterController controller = RegisterController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.loginRegisterCtr = widget.loginRegisterController;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: controller.registerFormKey,
+      key: controller.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DriverPrivateFieldsWidget(controller: controller),
           Gaps.vGap24,
-           DriverIdAndLicenseeWidget(controller: controller),
+          DriverIdAndLicenseeWidget(controller: controller),
           Gaps.vGap12,
           AuthSectionTitleWidget(title: Translate.s.how_you_want_to_work),
           SelectWorkTypeWidget(controller: controller),

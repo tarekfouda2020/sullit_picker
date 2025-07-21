@@ -13,4 +13,4 @@ export 'package:flutter_tdd/features/auth/presentation/pages/forget_password/wid
 export 'package:flutter_tdd/res.dart';
 export '../../../../../core/constants/gaps.dart';
 export 'package:flutter_tdd/core/widgets/LoadingButton.dart';
-export '../login_register/widgets/auth_section_title_widget.dart';
+export '../login_register/widgets/views/login_view/widgets/auth_section_title_widget.dart';

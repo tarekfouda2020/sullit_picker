@@ -40,7 +40,7 @@ class ContactUsFormWidget extends StatelessWidget {
         AuthSectionTitleWidget(title: Translate.s.phone_number),
         GenericTextField(
           controller: controller.phoneController,
-          validate: (value) => controller.whileEnterPhone(),
+          validate: (value) => value?.validateOnCode(controller.countryCodeObs.getValue().dialCode),
           fieldTypes: FieldTypes.normal,
           type: TextInputType.text,
           action: TextInputAction.next,

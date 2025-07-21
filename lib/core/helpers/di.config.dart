@@ -8,6 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter_tdd/core/helpers/country_picker.dart' as _i297;
 import 'package:flutter_tdd/core/helpers/file_service.dart' as _i323;
 import 'package:flutter_tdd/core/helpers/firebase_analytics_helper.dart'
     as _i279;
@@ -35,6 +36,16 @@ import 'package:flutter_tdd/core/http/dio_helper/utils/handle_request_body.dart'
     as _i45;
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart' as _i798;
 import 'package:flutter_tdd/core/network/network_info.dart' as _i407;
+import 'package:flutter_tdd/features/auth/data/data_source/auth_data_source.dart'
+    as _i662;
+import 'package:flutter_tdd/features/auth/data/data_source/impl_auth_data_source.dart'
+    as _i23;
+import 'package:flutter_tdd/features/auth/data/repositories/impl_auth_repositories.dart'
+    as _i988;
+import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart'
+    as _i674;
+import 'package:flutter_tdd/features/auth/domain/usecases/get_work_types_usecase.dart'
+    as _i840;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -53,6 +64,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i940.ShareServices>(() => _i940.ShareServices());
     gh.factory<_i323.AppFileService>(() => _i323.AppFileService());
     gh.factory<_i577.PermissionServices>(() => _i577.PermissionServices());
+    gh.factory<_i840.GetWorkTypesUseCase>(() => _i840.GetWorkTypesUseCase());
     gh.singleton<_i934.LoadingHelper>(() => _i934.LoadingHelper());
     gh.lazySingleton<_i407.NetworkInfoImpl>(() => _i407.NetworkInfoImpl());
     gh.lazySingleton<_i466.DioOptions>(() => _i466.DioOptions());
@@ -71,9 +83,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i769.GlobalContext>(() => _i769.GlobalContext());
     gh.lazySingleton<_i443.GlobalNotification>(
         () => _i443.GlobalNotification());
+    gh.lazySingleton<_i297.CountryPickerHelper>(
+        () => _i297.CountryPickerHelper());
     gh.lazySingleton<_i652.Utilities>(() => _i652.Utilities());
     gh.lazySingleton<_i279.FirebaseAnalyticsHelper>(
         () => _i279.FirebaseAnalyticsHelper());
+    gh.factory<_i674.AuthRepositories>(() => _i988.ImplAuthRepositories());
+    gh.factory<_i662.AuthDataSource>(() => _i23.ImplAuthDataSource());
     return this;
   }
 }

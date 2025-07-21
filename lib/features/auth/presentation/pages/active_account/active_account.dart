@@ -1,8 +1,9 @@
 part of 'active_account_imports.dart';
 
-@RoutePage()
+@RoutePage(name: "ActiveAccountPageRoute")
 class ActiveAccount extends StatefulWidget {
-  const ActiveAccount({super.key});
+  final String emailOrPhone;
+  const ActiveAccount({super.key, required this.emailOrPhone});
 
   @override
   State<StatefulWidget> createState() => _ActiveAccountState();
@@ -21,16 +22,33 @@ class _ActiveAccountState extends State<ActiveAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.white,
-      appBar: const AuthAppBarWidget(),
+      appBar:  DefaultAppBar(title: "",
+      bgColor: Colors.transparent,
+      leading: GestureDetector(
+        onTap: () => AutoRouter.of(context).maybePop(),
+        child: Icon(
+          Icons.arrow_back_ios_new_outlined,
+          color: context.colors.black,
+        ),
+      ),
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         children: [
-          const AuthHeaderTitleWidget(
-            title: "Enter your security code",
-            subTitle: "In order for us to be able to reset your password, please enter your phone number below.",
-          ),
+          RichText(text: TextSpan(
+            children: [
+              TextSpan(text:"A code has been sent to ",
+                style: AppTextStyle.s16_w400(color: context.colors.black),
+              ),
+              TextSpan(text:widget.emailOrPhone,
+                style: AppTextStyle.s14_w500(color: context.colors.gray58),
+              ),
+            ]
+          )),
+          Gaps.vGap30,
           PinFieldWidget(
             onComplete: controller.onComplete,
+            controller: controller.pinController,
           ),
           BuildActiveButton(controller: controller),
         ],

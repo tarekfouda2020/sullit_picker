@@ -20,16 +20,41 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  @JsonKey(name: "id")
-  String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "first_name")
-  String get firstName => throw _privateConstructorUsedError;
-  @JsonKey(name: "last_name")
-  String get lastName => throw _privateConstructorUsedError;
-  @JsonKey(name: "email")
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  @JsonKey(name: "phone")
+  String get token => throw _privateConstructorUsedError;
+  String get lat => throw _privateConstructorUsedError;
+  String get lng => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "token_type")
+  String get tokenType => throw _privateConstructorUsedError;
+  @JsonKey(name: "email_is_active")
+  bool get emailIsActive => throw _privateConstructorUsedError;
+  @JsonKey(name: "country_code")
+  String get countryCode => throw _privateConstructorUsedError;
+  @JsonKey(name: "full_phone")
+  String get fullPhone => throw _privateConstructorUsedError;
+  @JsonKey(name: "work_type")
+  String get workType => throw _privateConstructorUsedError;
+  @JsonKey(name: "map_desc")
+  String get mapDesc => throw _privateConstructorUsedError;
+  @JsonKey(name: "coverage_radius_km")
+  int get coverageRadiusKm => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_available")
+  bool get isAvailable => throw _privateConstructorUsedError;
+  @JsonKey(name: "id_image_front")
+  String get idImageFront => throw _privateConstructorUsedError;
+  @JsonKey(name: "id_image_back")
+  String get idImageBack => throw _privateConstructorUsedError;
+  @JsonKey(name: "license_image_front")
+  String get licenseImageFront => throw _privateConstructorUsedError;
+  @JsonKey(name: "license_image_back")
+  String get licenseImageBack => throw _privateConstructorUsedError;
+  @JsonKey(name: "has_subscription")
+  bool get hasSubscription => throw _privateConstructorUsedError;
+  @JsonKey(name: "has_active_subscription")
+  bool get hasActiveSubscription => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,11 +72,27 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "first_name") String firstName,
-      @JsonKey(name: "last_name") String lastName,
-      @JsonKey(name: "email") String email,
-      @JsonKey(name: "phone") String phone});
+      {int id,
+      String name,
+      String email,
+      String token,
+      String lat,
+      String lng,
+      String phone,
+      @JsonKey(name: "token_type") String tokenType,
+      @JsonKey(name: "email_is_active") bool emailIsActive,
+      @JsonKey(name: "country_code") String countryCode,
+      @JsonKey(name: "full_phone") String fullPhone,
+      @JsonKey(name: "work_type") String workType,
+      @JsonKey(name: "map_desc") String mapDesc,
+      @JsonKey(name: "coverage_radius_km") int coverageRadiusKm,
+      @JsonKey(name: "is_available") bool isAvailable,
+      @JsonKey(name: "id_image_front") String idImageFront,
+      @JsonKey(name: "id_image_back") String idImageBack,
+      @JsonKey(name: "license_image_front") String licenseImageFront,
+      @JsonKey(name: "license_image_back") String licenseImageBack,
+      @JsonKey(name: "has_subscription") bool hasSubscription,
+      @JsonKey(name: "has_active_subscription") bool hasActiveSubscription});
 }
 
 /// @nodoc
@@ -70,32 +111,112 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? name = null,
     Object? email = null,
+    Object? token = null,
+    Object? lat = null,
+    Object? lng = null,
     Object? phone = null,
+    Object? tokenType = null,
+    Object? emailIsActive = null,
+    Object? countryCode = null,
+    Object? fullPhone = null,
+    Object? workType = null,
+    Object? mapDesc = null,
+    Object? coverageRadiusKm = null,
+    Object? isAvailable = null,
+    Object? idImageFront = null,
+    Object? idImageBack = null,
+    Object? licenseImageFront = null,
+    Object? licenseImageBack = null,
+    Object? hasSubscription = null,
+    Object? hasActiveSubscription = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as String,
+      lng: null == lng
+          ? _value.lng
+          : lng // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      tokenType: null == tokenType
+          ? _value.tokenType
+          : tokenType // ignore: cast_nullable_to_non_nullable
+              as String,
+      emailIsActive: null == emailIsActive
+          ? _value.emailIsActive
+          : emailIsActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullPhone: null == fullPhone
+          ? _value.fullPhone
+          : fullPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      workType: null == workType
+          ? _value.workType
+          : workType // ignore: cast_nullable_to_non_nullable
+              as String,
+      mapDesc: null == mapDesc
+          ? _value.mapDesc
+          : mapDesc // ignore: cast_nullable_to_non_nullable
+              as String,
+      coverageRadiusKm: null == coverageRadiusKm
+          ? _value.coverageRadiusKm
+          : coverageRadiusKm // ignore: cast_nullable_to_non_nullable
+              as int,
+      isAvailable: null == isAvailable
+          ? _value.isAvailable
+          : isAvailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      idImageFront: null == idImageFront
+          ? _value.idImageFront
+          : idImageFront // ignore: cast_nullable_to_non_nullable
+              as String,
+      idImageBack: null == idImageBack
+          ? _value.idImageBack
+          : idImageBack // ignore: cast_nullable_to_non_nullable
+              as String,
+      licenseImageFront: null == licenseImageFront
+          ? _value.licenseImageFront
+          : licenseImageFront // ignore: cast_nullable_to_non_nullable
+              as String,
+      licenseImageBack: null == licenseImageBack
+          ? _value.licenseImageBack
+          : licenseImageBack // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasSubscription: null == hasSubscription
+          ? _value.hasSubscription
+          : hasSubscription // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasActiveSubscription: null == hasActiveSubscription
+          ? _value.hasActiveSubscription
+          : hasActiveSubscription // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -109,11 +230,27 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "id") String id,
-      @JsonKey(name: "first_name") String firstName,
-      @JsonKey(name: "last_name") String lastName,
-      @JsonKey(name: "email") String email,
-      @JsonKey(name: "phone") String phone});
+      {int id,
+      String name,
+      String email,
+      String token,
+      String lat,
+      String lng,
+      String phone,
+      @JsonKey(name: "token_type") String tokenType,
+      @JsonKey(name: "email_is_active") bool emailIsActive,
+      @JsonKey(name: "country_code") String countryCode,
+      @JsonKey(name: "full_phone") String fullPhone,
+      @JsonKey(name: "work_type") String workType,
+      @JsonKey(name: "map_desc") String mapDesc,
+      @JsonKey(name: "coverage_radius_km") int coverageRadiusKm,
+      @JsonKey(name: "is_available") bool isAvailable,
+      @JsonKey(name: "id_image_front") String idImageFront,
+      @JsonKey(name: "id_image_back") String idImageBack,
+      @JsonKey(name: "license_image_front") String licenseImageFront,
+      @JsonKey(name: "license_image_back") String licenseImageBack,
+      @JsonKey(name: "has_subscription") bool hasSubscription,
+      @JsonKey(name: "has_active_subscription") bool hasActiveSubscription});
 }
 
 /// @nodoc
@@ -130,32 +267,112 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? name = null,
     Object? email = null,
+    Object? token = null,
+    Object? lat = null,
+    Object? lng = null,
     Object? phone = null,
+    Object? tokenType = null,
+    Object? emailIsActive = null,
+    Object? countryCode = null,
+    Object? fullPhone = null,
+    Object? workType = null,
+    Object? mapDesc = null,
+    Object? coverageRadiusKm = null,
+    Object? isAvailable = null,
+    Object? idImageFront = null,
+    Object? idImageBack = null,
+    Object? licenseImageFront = null,
+    Object? licenseImageBack = null,
+    Object? hasSubscription = null,
+    Object? hasActiveSubscription = null,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as String,
+      lng: null == lng
+          ? _value.lng
+          : lng // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      tokenType: null == tokenType
+          ? _value.tokenType
+          : tokenType // ignore: cast_nullable_to_non_nullable
+              as String,
+      emailIsActive: null == emailIsActive
+          ? _value.emailIsActive
+          : emailIsActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullPhone: null == fullPhone
+          ? _value.fullPhone
+          : fullPhone // ignore: cast_nullable_to_non_nullable
+              as String,
+      workType: null == workType
+          ? _value.workType
+          : workType // ignore: cast_nullable_to_non_nullable
+              as String,
+      mapDesc: null == mapDesc
+          ? _value.mapDesc
+          : mapDesc // ignore: cast_nullable_to_non_nullable
+              as String,
+      coverageRadiusKm: null == coverageRadiusKm
+          ? _value.coverageRadiusKm
+          : coverageRadiusKm // ignore: cast_nullable_to_non_nullable
+              as int,
+      isAvailable: null == isAvailable
+          ? _value.isAvailable
+          : isAvailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      idImageFront: null == idImageFront
+          ? _value.idImageFront
+          : idImageFront // ignore: cast_nullable_to_non_nullable
+              as String,
+      idImageBack: null == idImageBack
+          ? _value.idImageBack
+          : idImageBack // ignore: cast_nullable_to_non_nullable
+              as String,
+      licenseImageFront: null == licenseImageFront
+          ? _value.licenseImageFront
+          : licenseImageFront // ignore: cast_nullable_to_non_nullable
+              as String,
+      licenseImageBack: null == licenseImageBack
+          ? _value.licenseImageBack
+          : licenseImageBack // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasSubscription: null == hasSubscription
+          ? _value.hasSubscription
+          : hasSubscription // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasActiveSubscription: null == hasActiveSubscription
+          ? _value.hasActiveSubscription
+          : hasActiveSubscription // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -165,35 +382,93 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$UserModelImpl extends _UserModel {
   const _$UserModelImpl(
-      {@JsonKey(name: "id") required this.id,
-      @JsonKey(name: "first_name") required this.firstName,
-      @JsonKey(name: "last_name") required this.lastName,
-      @JsonKey(name: "email") required this.email,
-      @JsonKey(name: "phone") required this.phone})
+      {required this.id,
+      required this.name,
+      required this.email,
+      required this.token,
+      required this.lat,
+      required this.lng,
+      required this.phone,
+      @JsonKey(name: "token_type") required this.tokenType,
+      @JsonKey(name: "email_is_active") required this.emailIsActive,
+      @JsonKey(name: "country_code") required this.countryCode,
+      @JsonKey(name: "full_phone") required this.fullPhone,
+      @JsonKey(name: "work_type") required this.workType,
+      @JsonKey(name: "map_desc") required this.mapDesc,
+      @JsonKey(name: "coverage_radius_km") required this.coverageRadiusKm,
+      @JsonKey(name: "is_available") required this.isAvailable,
+      @JsonKey(name: "id_image_front") required this.idImageFront,
+      @JsonKey(name: "id_image_back") required this.idImageBack,
+      @JsonKey(name: "license_image_front") required this.licenseImageFront,
+      @JsonKey(name: "license_image_back") required this.licenseImageBack,
+      @JsonKey(name: "has_subscription") required this.hasSubscription,
+      @JsonKey(name: "has_active_subscription")
+      required this.hasActiveSubscription})
       : super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  @JsonKey(name: "id")
-  final String id;
+  final int id;
   @override
-  @JsonKey(name: "first_name")
-  final String firstName;
+  final String name;
   @override
-  @JsonKey(name: "last_name")
-  final String lastName;
-  @override
-  @JsonKey(name: "email")
   final String email;
   @override
-  @JsonKey(name: "phone")
+  final String token;
+  @override
+  final String lat;
+  @override
+  final String lng;
+  @override
   final String phone;
+  @override
+  @JsonKey(name: "token_type")
+  final String tokenType;
+  @override
+  @JsonKey(name: "email_is_active")
+  final bool emailIsActive;
+  @override
+  @JsonKey(name: "country_code")
+  final String countryCode;
+  @override
+  @JsonKey(name: "full_phone")
+  final String fullPhone;
+  @override
+  @JsonKey(name: "work_type")
+  final String workType;
+  @override
+  @JsonKey(name: "map_desc")
+  final String mapDesc;
+  @override
+  @JsonKey(name: "coverage_radius_km")
+  final int coverageRadiusKm;
+  @override
+  @JsonKey(name: "is_available")
+  final bool isAvailable;
+  @override
+  @JsonKey(name: "id_image_front")
+  final String idImageFront;
+  @override
+  @JsonKey(name: "id_image_back")
+  final String idImageBack;
+  @override
+  @JsonKey(name: "license_image_front")
+  final String licenseImageFront;
+  @override
+  @JsonKey(name: "license_image_back")
+  final String licenseImageBack;
+  @override
+  @JsonKey(name: "has_subscription")
+  final bool hasSubscription;
+  @override
+  @JsonKey(name: "has_active_subscription")
+  final bool hasActiveSubscription;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, email: $email, phone: $phone)';
+    return 'UserModel(id: $id, name: $name, email: $email, token: $token, lat: $lat, lng: $lng, phone: $phone, tokenType: $tokenType, emailIsActive: $emailIsActive, countryCode: $countryCode, fullPhone: $fullPhone, workType: $workType, mapDesc: $mapDesc, coverageRadiusKm: $coverageRadiusKm, isAvailable: $isAvailable, idImageFront: $idImageFront, idImageBack: $idImageBack, licenseImageFront: $licenseImageFront, licenseImageBack: $licenseImageBack, hasSubscription: $hasSubscription, hasActiveSubscription: $hasActiveSubscription)';
   }
 
   @override
@@ -202,18 +477,67 @@ class _$UserModelImpl extends _UserModel {
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lng, lng) || other.lng == lng) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.tokenType, tokenType) ||
+                other.tokenType == tokenType) &&
+            (identical(other.emailIsActive, emailIsActive) ||
+                other.emailIsActive == emailIsActive) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode) &&
+            (identical(other.fullPhone, fullPhone) ||
+                other.fullPhone == fullPhone) &&
+            (identical(other.workType, workType) ||
+                other.workType == workType) &&
+            (identical(other.mapDesc, mapDesc) || other.mapDesc == mapDesc) &&
+            (identical(other.coverageRadiusKm, coverageRadiusKm) ||
+                other.coverageRadiusKm == coverageRadiusKm) &&
+            (identical(other.isAvailable, isAvailable) ||
+                other.isAvailable == isAvailable) &&
+            (identical(other.idImageFront, idImageFront) ||
+                other.idImageFront == idImageFront) &&
+            (identical(other.idImageBack, idImageBack) ||
+                other.idImageBack == idImageBack) &&
+            (identical(other.licenseImageFront, licenseImageFront) ||
+                other.licenseImageFront == licenseImageFront) &&
+            (identical(other.licenseImageBack, licenseImageBack) ||
+                other.licenseImageBack == licenseImageBack) &&
+            (identical(other.hasSubscription, hasSubscription) ||
+                other.hasSubscription == hasSubscription) &&
+            (identical(other.hasActiveSubscription, hasActiveSubscription) ||
+                other.hasActiveSubscription == hasActiveSubscription));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, email, phone);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        email,
+        token,
+        lat,
+        lng,
+        phone,
+        tokenType,
+        emailIsActive,
+        countryCode,
+        fullPhone,
+        workType,
+        mapDesc,
+        coverageRadiusKm,
+        isAvailable,
+        idImageFront,
+        idImageBack,
+        licenseImageFront,
+        licenseImageBack,
+        hasSubscription,
+        hasActiveSubscription
+      ]);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -233,31 +557,91 @@ class _$UserModelImpl extends _UserModel {
 
 abstract class _UserModel extends UserModel {
   const factory _UserModel(
-      {@JsonKey(name: "id") required final String id,
-      @JsonKey(name: "first_name") required final String firstName,
-      @JsonKey(name: "last_name") required final String lastName,
-      @JsonKey(name: "email") required final String email,
-      @JsonKey(name: "phone") required final String phone}) = _$UserModelImpl;
+      {required final int id,
+      required final String name,
+      required final String email,
+      required final String token,
+      required final String lat,
+      required final String lng,
+      required final String phone,
+      @JsonKey(name: "token_type") required final String tokenType,
+      @JsonKey(name: "email_is_active") required final bool emailIsActive,
+      @JsonKey(name: "country_code") required final String countryCode,
+      @JsonKey(name: "full_phone") required final String fullPhone,
+      @JsonKey(name: "work_type") required final String workType,
+      @JsonKey(name: "map_desc") required final String mapDesc,
+      @JsonKey(name: "coverage_radius_km") required final int coverageRadiusKm,
+      @JsonKey(name: "is_available") required final bool isAvailable,
+      @JsonKey(name: "id_image_front") required final String idImageFront,
+      @JsonKey(name: "id_image_back") required final String idImageBack,
+      @JsonKey(name: "license_image_front")
+      required final String licenseImageFront,
+      @JsonKey(name: "license_image_back")
+      required final String licenseImageBack,
+      @JsonKey(name: "has_subscription") required final bool hasSubscription,
+      @JsonKey(name: "has_active_subscription")
+      required final bool hasActiveSubscription}) = _$UserModelImpl;
   const _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
-  String get id;
+  int get id;
   @override
-  @JsonKey(name: "first_name")
-  String get firstName;
+  String get name;
   @override
-  @JsonKey(name: "last_name")
-  String get lastName;
-  @override
-  @JsonKey(name: "email")
   String get email;
   @override
-  @JsonKey(name: "phone")
+  String get token;
+  @override
+  String get lat;
+  @override
+  String get lng;
+  @override
   String get phone;
+  @override
+  @JsonKey(name: "token_type")
+  String get tokenType;
+  @override
+  @JsonKey(name: "email_is_active")
+  bool get emailIsActive;
+  @override
+  @JsonKey(name: "country_code")
+  String get countryCode;
+  @override
+  @JsonKey(name: "full_phone")
+  String get fullPhone;
+  @override
+  @JsonKey(name: "work_type")
+  String get workType;
+  @override
+  @JsonKey(name: "map_desc")
+  String get mapDesc;
+  @override
+  @JsonKey(name: "coverage_radius_km")
+  int get coverageRadiusKm;
+  @override
+  @JsonKey(name: "is_available")
+  bool get isAvailable;
+  @override
+  @JsonKey(name: "id_image_front")
+  String get idImageFront;
+  @override
+  @JsonKey(name: "id_image_back")
+  String get idImageBack;
+  @override
+  @JsonKey(name: "license_image_front")
+  String get licenseImageFront;
+  @override
+  @JsonKey(name: "license_image_back")
+  String get licenseImageBack;
+  @override
+  @JsonKey(name: "has_subscription")
+  bool get hasSubscription;
+  @override
+  @JsonKey(name: "has_active_subscription")
+  bool get hasActiveSubscription;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

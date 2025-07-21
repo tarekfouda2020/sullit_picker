@@ -28,7 +28,7 @@ class CoveredAreaMapWidget extends StatelessWidget {
                           Circle(
                             circleId: const CircleId('range'),
                             center: value,
-                            radius: (controller.selectedRange.getValue() * 1000),
+                            radius: controller.rangeArea,
                             fillColor: context.colors.darkRose.withValues(alpha: 0.2),
                             strokeColor: context.colors.darkRose,
                             strokeWidth: 1,

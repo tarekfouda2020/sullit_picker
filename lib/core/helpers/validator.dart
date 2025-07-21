@@ -18,7 +18,7 @@ extension Validator on String {
   String? validateName({String? message}) {
     if (trim().isEmpty) {
       return message ??  Translate.s.fillField;
-    }else if(length<8 || length>30){
+    }else if(length<3 || length>30){
       return  message ??  Translate.s.nameValidation;
     }
     return null;
@@ -91,15 +91,15 @@ extension Validator on String {
     return null;
   }
 
-  bool validateOnCode(String dialCode) {
+  String? validateOnCode(String dialCode) {
     var phone = PhoneHelper.handlePhone(this);
     bool isValid = CountryUtils.validatePhoneNumber(phone, dialCode);
     if (trim().isEmpty) {
-      return true;
+      return Translate.s.fillField;
     } else if (isValid == false) {
-      return false;
+      return Translate.s.phoneValidation;
     }
-    return true;
+    return null;
   }
 
 

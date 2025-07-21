@@ -9,6 +9,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i21;
+import 'package:flutter/material.dart' as _i22;
+import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart'
+    as _i24;
 import 'package:flutter_tdd/features/auth/presentation/pages/active_account/active_account_imports.dart'
     as _i1;
 import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password.dart'
@@ -32,7 +35,7 @@ import 'package:flutter_tdd/features/general/presentation/pages/privacy_policy/p
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area.dart'
     as _i18;
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_imports.dart'
-    as _i22;
+    as _i23;
 import 'package:flutter_tdd/features/general/presentation/pages/terms_conditions/terms_conditions.dart'
     as _i19;
 import 'package:flutter_tdd/features/home/presentation/pages/home/home.dart'
@@ -57,10 +60,14 @@ abstract class $AppRouter extends _i21.RootStackRouter {
 
   @override
   final Map<String, _i21.PageFactory> pagesMap = {
-    ActiveAccount.name: (routeData) {
-      return _i21.AutoRoutePage<dynamic>(
+    ActiveAccountPageRoute.name: (routeData) {
+      final args = routeData.argsAs<ActiveAccountPageRouteArgs>();
+      return _i21.AutoRoutePage<String>(
         routeData: routeData,
-        child: const _i1.ActiveAccount(),
+        child: _i1.ActiveAccount(
+          key: args.key,
+          emailOrPhone: args.emailOrPhone,
+        ),
       );
     },
     ChangePasswordPageRoute.name: (routeData) {
@@ -166,6 +173,7 @@ abstract class $AppRouter extends _i21.RootStackRouter {
         child: _i18.SupportedAreaPage(
           key: args.key,
           fromProfile: args.fromProfile,
+          registerParams: args.registerParams,
         ),
       );
     },
@@ -186,16 +194,41 @@ abstract class $AppRouter extends _i21.RootStackRouter {
 
 /// generated route for
 /// [_i1.ActiveAccount]
-class ActiveAccount extends _i21.PageRouteInfo<void> {
-  const ActiveAccount({List<_i21.PageRouteInfo>? children})
-      : super(
-          ActiveAccount.name,
+class ActiveAccountPageRoute
+    extends _i21.PageRouteInfo<ActiveAccountPageRouteArgs> {
+  ActiveAccountPageRoute({
+    _i22.Key? key,
+    required String emailOrPhone,
+    List<_i21.PageRouteInfo>? children,
+  }) : super(
+          ActiveAccountPageRoute.name,
+          args: ActiveAccountPageRouteArgs(
+            key: key,
+            emailOrPhone: emailOrPhone,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'ActiveAccount';
+  static const String name = 'ActiveAccountPageRoute';
 
-  static const _i21.PageInfo<void> page = _i21.PageInfo<void>(name);
+  static const _i21.PageInfo<ActiveAccountPageRouteArgs> page =
+      _i21.PageInfo<ActiveAccountPageRouteArgs>(name);
+}
+
+class ActiveAccountPageRouteArgs {
+  const ActiveAccountPageRouteArgs({
+    this.key,
+    required this.emailOrPhone,
+  });
+
+  final _i22.Key? key;
+
+  final String emailOrPhone;
+
+  @override
+  String toString() {
+    return 'ActiveAccountPageRouteArgs{key: $key, emailOrPhone: $emailOrPhone}';
+  }
 }
 
 /// generated route for
@@ -427,14 +460,16 @@ class SubscriptionPageRoute extends _i21.PageRouteInfo<void> {
 class SupportedAreaPageRoute
     extends _i21.PageRouteInfo<SupportedAreaPageRouteArgs> {
   SupportedAreaPageRoute({
-    _i22.Key? key,
+    _i23.Key? key,
     required bool fromProfile,
+    _i24.RegisterParams? registerParams,
     List<_i21.PageRouteInfo>? children,
   }) : super(
           SupportedAreaPageRoute.name,
           args: SupportedAreaPageRouteArgs(
             key: key,
             fromProfile: fromProfile,
+            registerParams: registerParams,
           ),
           initialChildren: children,
         );
@@ -449,15 +484,18 @@ class SupportedAreaPageRouteArgs {
   const SupportedAreaPageRouteArgs({
     this.key,
     required this.fromProfile,
+    this.registerParams,
   });
 
-  final _i22.Key? key;
+  final _i23.Key? key;
 
   final bool fromProfile;
 
+  final _i24.RegisterParams? registerParams;
+
   @override
   String toString() {
-    return 'SupportedAreaPageRouteArgs{key: $key, fromProfile: $fromProfile}';
+    return 'SupportedAreaPageRouteArgs{key: $key, fromProfile: $fromProfile, registerParams: $registerParams}';
   }
 }
 

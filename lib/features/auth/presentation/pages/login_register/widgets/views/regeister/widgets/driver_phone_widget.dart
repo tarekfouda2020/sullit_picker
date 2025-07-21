@@ -1,27 +1,35 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/login_register/login_register_imports.dart';
+import 'package:flutter_tdd/features/auth/presentation/pages/login_register/widgets/views/regeister/widgets/verify_text_widget.dart';
+
+import '../register_controller.dart';
+
+
 class DriverPhoneWidget extends StatelessWidget {
-  final LoginRegisterController controller;
+  final RegisterController controller;
   const DriverPhoneWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AuthSectionTitleWidget(title: Translate.s.phone_number),
         GenericTextField(
-          controller: controller.registerPhoneController,
-          validate: (value) => controller.whileEnterPhone(),
+          controller: controller.phoneController,
+          validate: (value) => value?.validateOnCode(controller.countryCodeObs.getValue().dialCode),
           fieldTypes: FieldTypes.normal,
-          type: TextInputType.text,
+          type: TextInputType.phone,
           action: TextInputAction.next,
           hint: "0000000",
-          fillColor: Colors.white,
+          fillColor: context.colors.white,
           enableBorderColor: context.colors.inputBorder,
           hintColor: context.colors.hintText,
           prefixIcon: prefixIcon(),
-          suffixIcon: VerifyTextWidget(title: Translate.s.verify_your_phone, onTap: () {  },),
+          suffixIcon: VerifyTextWidget(
+            title: Translate.s.verify_your_phone,
+            onTap: () => controller.verifyPhone(context),
+          ),
         ),
       ],
     );
@@ -53,6 +61,7 @@ class DriverPhoneWidget extends StatelessWidget {
        );
      },);
   }
+
 
 
 }

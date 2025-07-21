@@ -22,6 +22,7 @@
        android:label="@string/APP_APP_NAME"
         android:name="${applicationName}"
         android:exported="true"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/launcher_icon">
        <meta-data
                android:name="com.google.android.geo.API_KEY"

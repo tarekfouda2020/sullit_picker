@@ -6,9 +6,10 @@ import 'package:injectable/injectable.dart';
 
 import '../theme/text/app_text_style.dart';
 
-class CountryPicker {
+@lazySingleton
+class CountryPickerHelper {
 
-  static FlCountryCodePicker _countryCodePicker(BuildContext context){
+   FlCountryCodePicker _countryCodePicker(BuildContext context){
     return FlCountryCodePicker(
         title: Padding(padding: const EdgeInsets.all(15),
           child: Text(Translate.s.select_country,
@@ -19,6 +20,8 @@ class CountryPicker {
         dialCodeTextStyle: AppTextStyle.s14_w400(color: context.colors.black) ,
         searchBarTextStyle: AppTextStyle.s14_w400(color: context.colors.black),
         searchBarDecoration:  InputDecoration(
+          hintText: "Search for a country",
+            hintStyle: AppTextStyle.s14_w400(color: context.colors.black),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: context.colors.black),
               borderRadius: const BorderRadius.all(Radius.circular(15)),
@@ -26,15 +29,20 @@ class CountryPicker {
             border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(15)),
             )
-        )
+        ),
     );
   }
 
-
-  static Future<CountryCode?> selectCountrySheet(BuildContext context) async {
-    final selectedCountry = await _countryCodePicker(context).showPicker(context: context,
+   Future<CountryCode?> selectCountrySheet(BuildContext context) async {
+    final selectedCountry = await _countryCodePicker(context).showPicker(
+      context: context,
       backgroundColor: context.colors.white,
+     pickerMaxHeight: 700
     );
     return selectedCountry;
   }
+
+  CountryCode get defaultCountry => const CountryCode(name: "United Arab Emirates", code: "AE", dialCode: "+966");
+
+
 }

@@ -1,13 +1,20 @@
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/features/auth/presentation/pages/login_register/login_register_imports.dart';
+import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
+import 'package:flutter_tdd/features/auth/presentation/pages/login_register/widgets/views/login_view/login_view_controller.dart';
 
-class LoginFormWidget extends StatelessWidget {
-  final LoginRegisterController controller;
 
-  const LoginFormWidget({
-    super.key,
-    required this.controller,
-  });
+
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+
+
+  final LoginViewController controller = LoginViewController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,36 +34,36 @@ class LoginFormWidget extends StatelessWidget {
             validate: (value) => value?.validateEmail(),
             hint: Translate.of(context).enter_your_e_mail,
           ),
-         Gaps.vGap12,
+          Gaps.vGap12,
           AuthSectionTitleWidget(title:  Translate.of(context).password,),
           ObsValueConsumer(
-            observable: controller.loginPasswordVisibleObs,
-            builder: (context,isVisible) {
-              return GenericTextField(
-                controller: controller.loginPasswordController,
-                fieldTypes: isVisible ? FieldTypes.normal : FieldTypes.password,
-                type: TextInputType.text,
-                action: TextInputAction.done,
-                fillColor: Colors.white,
-                margin: Dimens.paddingTop5 ,
-                validate: (value) => value?.validatePassword(),
-                hint: Translate.of(context).enter_your_password,
-                suffixIcon: GestureDetector(
-                  onTap: () => controller.switchPasswordVisibility(controller.loginPasswordVisibleObs),
-                  child: Icon(
-                    isVisible ?Icons.visibility_outlined : Icons.visibility_off_outlined,
-                    color: context.colors.hintText,
-                    size: 20,
+              observable: controller.loginPasswordVisibleObs,
+              builder: (context,isVisible) {
+                return GenericTextField(
+                  controller: controller.loginPasswordController,
+                  fieldTypes: isVisible ? FieldTypes.normal : FieldTypes.password,
+                  type: TextInputType.text,
+                  action: TextInputAction.done,
+                  fillColor: Colors.white,
+                  margin: Dimens.paddingTop5 ,
+                  validate: (value) => value?.validatePassword(),
+                  hint: Translate.of(context).enter_your_password,
+                  suffixIcon: GestureDetector(
+                    onTap: () => controller.switchPasswordVisibility(),
+                    child: Icon(
+                      isVisible ?Icons.visibility_outlined : Icons.visibility_off_outlined,
+                      color: context.colors.hintText,
+                      size: 20,
+                    ),
                   ),
-                ),
-              );
-            }
+                );
+              }
           ),
           Center(
             child: LoadingButton(
-                title: Translate.of(context).login,
-                onTap: () => controller.login(context),
-                btnKey: controller.loadingButtonKey,
+              title: Translate.of(context).login,
+              onTap: () => controller.login(context),
+              btnKey: controller.loadingButtonKey,
               margin: const EdgeInsets.only(top: 28),
             ),
           ),
@@ -82,4 +89,4 @@ class LoginFormWidget extends StatelessWidget {
       ),
     );
   }
-} 
+}

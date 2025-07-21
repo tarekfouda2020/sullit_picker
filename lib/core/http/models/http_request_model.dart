@@ -11,6 +11,7 @@ class HttpRequestModel {
   final Function(dynamic data)? toJsonFunc;
   bool? showLoader;
   bool refresh;
+  final bool isFormData;
 
   HttpRequestModel(
       {required this.url,
@@ -21,5 +22,6 @@ class HttpRequestModel {
       this.toJsonFunc,
       this.showLoader,
       this.errorFunc,
+      this.isFormData = true,
       this.refresh = true});
 }

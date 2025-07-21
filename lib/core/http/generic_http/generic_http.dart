@@ -27,12 +27,14 @@ class GenericHttpImpl<T> extends GenericHttp<T> {
   @preResolve
   @override
   Future<MyResult<T>> call(HttpRequestModel model) async {
+    print("=====>>>>>>>>>>>>>..model  is formData ${model.isFormData}");
     RequestBodyModel params = RequestBodyModel(
       url: model.url,
       showLoader: model.showLoader ?? false,
       forceRefresh: model.refresh,
       errorFunc: model.errorFunc ?? (data) => data,
       body: model.requestBody ?? {},
+      isFormData: model.isFormData
     );
 
     await _checkInternetConnection();
