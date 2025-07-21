@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter_tdd/core/helpers/country_picker.dart' as _i297;
+import 'package:flutter_tdd/core/helpers/device_id_helper.dart' as _i177;
 import 'package:flutter_tdd/core/helpers/file_service.dart' as _i323;
 import 'package:flutter_tdd/core/helpers/firebase_analytics_helper.dart'
     as _i279;
@@ -18,6 +19,7 @@ import 'package:flutter_tdd/core/helpers/loading_helper.dart' as _i934;
 import 'package:flutter_tdd/core/helpers/location_service.dart' as _i320;
 import 'package:flutter_tdd/core/helpers/psermission_services.dart' as _i577;
 import 'package:flutter_tdd/core/helpers/share_services.dart' as _i940;
+import 'package:flutter_tdd/core/helpers/user_services_helper.dart' as _i690;
 import 'package:flutter_tdd/core/helpers/utilities.dart' as _i652;
 import 'package:flutter_tdd/core/http/dio_helper/actions/delete.dart' as _i146;
 import 'package:flutter_tdd/core/http/dio_helper/actions/get.dart' as _i687;
@@ -88,6 +90,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i652.Utilities>(() => _i652.Utilities());
     gh.lazySingleton<_i279.FirebaseAnalyticsHelper>(
         () => _i279.FirebaseAnalyticsHelper());
+    gh.lazySingleton<_i690.UserServicesHelper>(
+        () => _i690.UserServicesHelper());
+    gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
     gh.factory<_i674.AuthRepositories>(() => _i988.ImplAuthRepositories());
     gh.factory<_i662.AuthDataSource>(() => _i23.ImplAuthDataSource());
     return this;

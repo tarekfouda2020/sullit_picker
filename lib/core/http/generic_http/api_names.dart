@@ -4,7 +4,7 @@ class ApiNames{
   static String baseUrl = AppConfig.instance.baseUrl;
 
   // auth routes
-  static const String login = "auth";
+  static const String login = "login";
   static const String refreshToken = "auth";
   static const String savePublicKey = "users/";
   static const String updateUser = "users/";

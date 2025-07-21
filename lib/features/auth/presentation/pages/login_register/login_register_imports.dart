@@ -20,7 +20,6 @@ export 'package:fl_country_code_picker/fl_country_code_picker.dart';
 export 'package:flutter_tdd/core/constants/CustomButtonAnimation.dart';
 export 'package:flutter_tdd/core/helpers/country_picker.dart';
 export 'package:flutter_tdd/features/auth/data/enum/work_type_enum.dart';
-export 'widgets/views/login_view/widgets/login_form_widget.dart';
 export  'dart:io';
 export 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 export 'package:flutter_tdd/features/auth/presentation/pages/login_register/widgets/views/login_view/widgets/auth_page_logo_widget.dart';

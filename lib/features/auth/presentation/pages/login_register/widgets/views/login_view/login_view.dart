@@ -62,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
           Center(
             child: LoadingButton(
               title: Translate.of(context).login,
-              onTap: () => controller.login(context),
+              onTap: () => controller.callLogin(context),
               btnKey: controller.loadingButtonKey,
               margin: const EdgeInsets.only(top: 28),
             ),

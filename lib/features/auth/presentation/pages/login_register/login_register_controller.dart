@@ -17,7 +17,6 @@ class LoginRegisterController {
   }
 
 
-  
   void switchTab(int index) {
     currentTabObs.setValue(index);
   }
