@@ -1,7 +1,8 @@
-import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/widgets/app_button.dart';
-
+import 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
+import 'package:flutter_tdd/features/subscriptions/data/models/current_subscription_model/current_subscription_model.dart';
+import 'package:flutter_tdd/features/subscriptions/presentation/pages/my_subscription/widgets/my_subscription_shimmer_widget.dart';
 import 'my_subscription_imports.dart';
+import 'widgets/my_subscription_body_widget.dart';
 
 @RoutePage(name: "MySubscriptionPageRoute")
 class MySubscriptionPage extends StatefulWidget {
@@ -20,24 +21,13 @@ class _MySubscriptionPageState extends State<MySubscriptionPage> {
     return Scaffold(
       backgroundColor: context.colors.background,
       appBar: const DefaultAppBar(title: "My Subscription",),
-      body:  SingleChildScrollView(
-        padding: Dimens.paddingH20Px,
-        child: Column(
-          children: [
-            Gaps.vGap20,
-            const SubscriptionContentWidget(),
-            Gaps.vGap20,
-            AbsorbPointer(
-              absorbing: true,
-              child: AppTextButton.maxCustom(
-                text: "Renew",
-                bgColor: context.colors.primary.withValues(alpha: 0.4),
-                txtColor: context.colors.white.withValues(alpha: 0.5),
-                onPressed: (){},
-              ),
-            )
-          ],
-        ),
+      body: RequesterConsumer<CurrentSubscriptionModel>(
+          requester: controller.currentPlanRequester,
+          successBuilder: (context, data, isLoading) {
+            return MySubscriptionBodyWidget(controller: controller, model: data);
+          },
+          failureBuilder: (context, error, callback) => const SizedBox(),
+          loadingBuilder: (context) =>  const MySubscriptionShimmerWidget()
       ),
     );
   }

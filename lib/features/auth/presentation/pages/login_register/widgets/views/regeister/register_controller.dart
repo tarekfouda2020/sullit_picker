@@ -119,6 +119,9 @@ class RegisterController {
       if(!isWorkTypeSelected()){
         return ;
       }
+      if(!isEmailAndPhoneVerified()){
+        return ;
+      }
       registerLoadingButtonKey.currentState?.animateForward();
       await Future.delayed(const Duration(seconds: 1));
       AutoRouter.of(context).push(SupportedAreaPageRoute(fromProfile: false,registerParams: _registerParams()));
@@ -154,6 +157,18 @@ class RegisterController {
     return isOneSelected;
   }
 
+  bool isEmailAndPhoneVerified(){
+    if(phoneVerifyCode==null){
+      AppSnackBar.showSimpleToast(msg: "Please Verify your phone number");
+      return false;
+    }
+    if(emailVerifyCode==null){
+      AppSnackBar.showSimpleToast(msg: "Please Verify your Email");
+      return false;
+    }
+    return true;
+  }
+
   /// params
   VerifyParams _verifyPhoneParams() {
     return VerifyParams(
@@ -174,8 +189,8 @@ class RegisterController {
       email: emailController.text,
       phone: phoneController.text,
       countryCode: countryCodeObs.getValue().dialCode,
-      phoneVerificationCode: phoneVerifyCode ?? 1234,
-      emailVerificationCode: emailVerifyCode ?? 1234,
+      phoneVerificationCode: phoneVerifyCode!,
+      emailVerificationCode: emailVerifyCode!,
       workType: selectedType.key,
       idImageFront: idFileObs.getValue()!,
       idImageBack: backIdFileObs.getValue()!,

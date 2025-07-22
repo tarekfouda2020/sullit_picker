@@ -23,4 +23,5 @@ abstract class AuthRepositories {
 
   Future<MyResult<String>> confirmResetPassword(ConfirmResetPasswordParams params);
 
+  Future<MyResult<String>> logout();
 }

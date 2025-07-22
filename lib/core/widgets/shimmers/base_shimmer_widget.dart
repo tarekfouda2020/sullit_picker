@@ -9,7 +9,7 @@ class BaseShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: context.colors.background,
+      baseColor: context.colors.disableGray,
       highlightColor: context.colors.greyWhite,
       period: const Duration(milliseconds: 1000),
       child: child,

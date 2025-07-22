@@ -21,7 +21,6 @@ class SplashController {
   void manipulateSaveData(BuildContext context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     var cachedUserData = preferences.getString("user");
-    print("------------->${cachedUserData}");
     if (cachedUserData != null) {
       _setUserData(context, UserModel.fromJson(json.decode(cachedUserData)));
     } else {
@@ -31,7 +30,7 @@ class SplashController {
 
 
   void _handleCachedData(BuildContext context) async {
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 2));
     context.read<DeviceCubit>().updateUserAuth(false);
     AutoRouter.of(context).push(const LoginRegisterRoute());
   }
@@ -43,12 +42,11 @@ class SplashController {
 
 
   void _setUserData(BuildContext context, UserModel? data) async {
-    print("d,cld,cld,cld,c");
     context.read<DeviceCubit>().updateUserAuth(true);
     context.read<UserCubit>().onUpdateUserData(data!);
     GlobalState.instance.set('token', data.token);
     await Future.delayed(const Duration(seconds: 4));
-    AutoRouter.of(context).push(const HomePageRoute());
+    AutoRouter.of(context).push( const HomePageRoute());
   }
 
 

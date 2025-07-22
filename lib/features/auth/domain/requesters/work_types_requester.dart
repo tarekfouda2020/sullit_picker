@@ -7,6 +7,7 @@ class WorkTypesRequester extends Requester<List<WorkTypeModel>> {
 
   @override
   Future<void> request({bool fromRemote = true}) async {
+
     if (hasNoData) {
       loadingState();
     }

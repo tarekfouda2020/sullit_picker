@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_tdd/features/subscriptions/data/models/current_subscription_model/current_subscription_model.dart';
+
+import 'subscription_widgets_imports.dart';
 
 class SubscriptionContentWidget extends StatelessWidget {
-  const SubscriptionContentWidget({super.key});
+  final CurrentSubscriptionModel model;
+  const SubscriptionContentWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +21,10 @@ class SubscriptionContentWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Text("100.00 ",
+              Text(model.price,
                 style: AppTextStyle.s22_w600(color: context.colors.primary),
               ),
-              Text("AED/Year",
+              Text(" /${model.duration}",
                 style: AppTextStyle.s22_w300(color: context.colors.primary),
               ),
             ],
@@ -35,6 +34,17 @@ class SubscriptionContentWidget extends StatelessWidget {
             style: AppTextStyle.s12_w600(color: context.colors.black),
           ),
           Gaps.vGap8,
+          if(model.description!=null)
+            Html(data: model.description,
+            style: {
+              "body" : Style(
+                  color: context.colors.gray58,
+                  fontSize: FontSize(12),
+                  fontWeight: FontWeight.w400
+              )
+            }
+            ),
+          if(model.description==null)
           ...List.generate(3, (index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 5),
@@ -57,7 +67,7 @@ class SubscriptionContentWidget extends StatelessWidget {
           Gaps.vGap10,
           Divider(color: context.colors.gray58,),
           Gaps.vGap10,
-          Text("Expired with in 30 Days",
+          Text("Expired with in ${model.daysRemaining} Days",
           style: AppTextStyle.s12_w400(color: context.colors.gray58),
           )
         ],

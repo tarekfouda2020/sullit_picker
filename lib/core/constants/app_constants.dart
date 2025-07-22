@@ -2,7 +2,7 @@
 class ApplicationConstants {
   static const keyLanguage = 'language';
   static const keyToken = 'token';
-  static const headerBearer = 'bearer';
+  static const headerBearer = 'Bearer';
   static const maxFileCount = 500;
 
 

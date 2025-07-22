@@ -48,6 +48,22 @@ import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.
     as _i674;
 import 'package:flutter_tdd/features/auth/domain/usecases/get_work_types_usecase.dart'
     as _i840;
+import 'package:flutter_tdd/features/home/data/data_source/home_data_source.dart'
+    as _i973;
+import 'package:flutter_tdd/features/home/data/data_source/impl_home_data_source.dart'
+    as _i409;
+import 'package:flutter_tdd/features/home/data/repositories/impl_home_repositories.dart'
+    as _i200;
+import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart'
+    as _i141;
+import 'package:flutter_tdd/features/subscriptions/data/data_source/impl_subscription_data_source.dart'
+    as _i267;
+import 'package:flutter_tdd/features/subscriptions/data/data_source/subscription_data_source.dart'
+    as _i201;
+import 'package:flutter_tdd/features/subscriptions/data/repositories/impl_subscription_repositories.dart'
+    as _i96;
+import 'package:flutter_tdd/features/subscriptions/domain/repositories/subscription_repositories.dart'
+    as _i104;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -93,7 +109,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i690.UserServicesHelper>(
         () => _i690.UserServicesHelper());
     gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
+    gh.factory<_i104.SubscriptionRepositories>(
+        () => _i96.ImplSubscriptionRepositories());
     gh.factory<_i674.AuthRepositories>(() => _i988.ImplAuthRepositories());
+    gh.factory<_i201.SubscriptionDataSource>(
+        () => _i267.ImplSubscriptionDataSource());
+    gh.factory<_i973.HomeDataSource>(() => _i409.ImplHomeDataSource());
+    gh.factory<_i141.HomeRepositories>(() => _i200.ImplHomeRepositories());
     gh.factory<_i662.AuthDataSource>(() => _i23.ImplAuthDataSource());
     return this;
   }

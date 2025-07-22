@@ -1,5 +1,8 @@
 import 'package:flutter_tdd/core/errors/base_error.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
+import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_imports.dart';
@@ -52,23 +55,36 @@ class SupportedAreaController {
   }
 
   /// value is in meters >> *1000 to be in km
+  /// back end take it in meters and convert it to km
   double get rangeArea => (selectedRange.getValue() * 1000);
 
   Future<void> confirmLocation(BuildContext context) async {
-    /// back end take it in meters and convert it to km
-    registerParams?.coverageArea = (rangeArea / 1000).toInt();
-    registerParams?.lat = latLongObs.getValue().latitude;
-    registerParams?.lng = latLongObs.getValue().longitude;
+    updateLocationParams();
+    getIt<LoadingHelper>().showLoadingDialog();
     var result = await getIt<AuthRepositories>().registerUser(registerParams!);
     result.when(
-      isSuccess: (data) {
-        AppSnackBar.showSuccessSnackBar(Translate.of(context).registration_successful);
-        AutoRouter.of(context).pushAndPopUntil(const LoginRegisterRoute(), predicate: (route) => false,);
+      isSuccess: (data) async {
+        saveDataAndRouteToSubscription(context,data);
       },
       isError: (error) {
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: "Something went wrong"));
         AutoRouter.of(context).maybePop();
       },
     );
+    getIt<LoadingHelper>().dismissDialog();
   }
+
+
+  void updateLocationParams(){
+    registerParams?.coverageArea = (rangeArea / 1000).toInt();
+    registerParams?.lat = latLongObs.getValue().latitude;
+    registerParams?.lng = latLongObs.getValue().longitude;
+  }
+
+  Future<void> saveDataAndRouteToSubscription(BuildContext context, UserModel? data) async{
+    await getIt<UserServicesHelper>().updateUserData(context,data);
+    AppSnackBar.showSuccessSnackBar(Translate.of(context).registration_successful);
+    AutoRouter.of(context).push( SubscriptionPageRoute(fromAuth: true));
+  }
+
 }

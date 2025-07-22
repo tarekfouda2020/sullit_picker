@@ -1,8 +1,12 @@
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_tdd/features/subscriptions/data/models/subscription_model/subscription_model.dart';
+
 import 'subscription_widgets_imports.dart';
 
 
 class PlanBenefitsWidget extends StatelessWidget {
-  const PlanBenefitsWidget({super.key});
+  final SubscriptionModel model;
+  const PlanBenefitsWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -14,30 +18,42 @@ class PlanBenefitsWidget extends StatelessWidget {
         border: Border.all(color: context.colors.borderLight)
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Benefits&Policy :",
           style: AppTextStyle.s12_w600(color: context.colors.black),
           ),
           Gaps.vGap8,
+        if(model.description!=null)
+        Html(data: model.description,
+        style: {
+          "body" : Style(
+            color: context.colors.gray58,
+            fontSize: FontSize(12),
+            fontWeight: FontWeight.w400
+          )
+        }
+        ),
+          if(model.description==null)
           ...List.generate(3, (index) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 5),
-            child: Row(
-              children: [
-             Container(
-               width: 2, height: 2,
-               decoration:  BoxDecoration(
-                 shape: BoxShape.circle,
-                 color: context.colors.gray58
-               ),
-             ),
-                Gaps.hGap8,
-                Text("Lorem Ipsum is simply dummy text of the printing ",
-                style: AppTextStyle.s12_w400(color: context.colors.gray58),
-                )
-            ],),
-          );
-        },)
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 5),
+              child: Row(
+                children: [
+                  Container(
+                    width: 2, height: 2,
+                    decoration:  BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: context.colors.gray58
+                    ),
+                  ),
+                  Gaps.hGap8,
+                  Text("Lorem Ipsum is simply dummy text of the printing ",
+                    style: AppTextStyle.s12_w400(color: context.colors.gray58),
+                  )
+                ],),
+            );
+          },)
         ],
       ),
     );

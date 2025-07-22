@@ -49,4 +49,9 @@ class ImplAuthRepositories  extends AuthRepositories{
   Future<MyResult<UserModel>> sendLogin(LoginParams params)async {
     return await dataSource.sendLogin(params);
   }
+
+  @override
+  Future<MyResult<String>> logout() async {
+    return await dataSource.logout();
+  }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
 import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.dart';
 import 'package:flutter_tdd/features/home/data/enum/report_reason_enum.dart';
+import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/repoer_bottom_sheet_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -20,7 +23,7 @@ class HomeController {
 
   bool popOut = false;
 
-  void initializeHome(BuildContext context) {
+  void initializeOrderDialog(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 500), () {
       if (context.mounted) {
         showWelcomeDialog(context);
@@ -51,11 +54,7 @@ class HomeController {
       Future.delayed(const Duration(seconds: 7)).then((value) =>popOut = false );
     }
   }
-  
-  void dispose() {
-    // Clean up observables if needed
-  }
-  
+
   void toggleOrderState() {
     hasOrders.setValue(!hasOrders.getValue());
   }
@@ -133,6 +132,7 @@ class HomeController {
       return ReportBottomSheetWidget(controller: this) ;
     },);
   }
+
 
 
 } 

@@ -11,7 +11,7 @@
 import 'package:auto_route/auto_route.dart' as _i22;
 import 'package:flutter/material.dart' as _i23;
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart'
-    as _i26;
+    as _i27;
 import 'package:flutter_tdd/features/auth/presentation/pages/active_account/active_account_imports.dart'
     as _i1;
 import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password.dart'
@@ -39,7 +39,7 @@ import 'package:flutter_tdd/features/general/presentation/pages/privacy_policy/p
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area.dart'
     as _i19;
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_imports.dart'
-    as _i25;
+    as _i26;
 import 'package:flutter_tdd/features/general/presentation/pages/terms_conditions/terms_conditions.dart'
     as _i20;
 import 'package:flutter_tdd/features/home/presentation/pages/home/home.dart'
@@ -56,6 +56,8 @@ import 'package:flutter_tdd/features/subscriptions/presentation/pages/my_subscri
     as _i10;
 import 'package:flutter_tdd/features/subscriptions/presentation/pages/subscription/subscription.dart'
     as _i18;
+import 'package:flutter_tdd/features/subscriptions/presentation/pages/subscription/subscription_imports.dart'
+    as _i25;
 import 'package:flutter_tdd/features/wallet/presentation/pages/wallet_page/wallet.dart'
     as _i21;
 
@@ -175,9 +177,13 @@ abstract class $AppRouter extends _i22.RootStackRouter {
       );
     },
     SubscriptionPageRoute.name: (routeData) {
+      final args = routeData.argsAs<SubscriptionPageRouteArgs>();
       return _i22.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i18.SubscriptionPage(),
+        child: _i18.SubscriptionPage(
+          key: args.key,
+          fromAuth: args.fromAuth,
+        ),
       );
     },
     SupportedAreaPageRoute.name: (routeData) {
@@ -496,16 +502,41 @@ class Splash extends _i22.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.SubscriptionPage]
-class SubscriptionPageRoute extends _i22.PageRouteInfo<void> {
-  const SubscriptionPageRoute({List<_i22.PageRouteInfo>? children})
-      : super(
+class SubscriptionPageRoute
+    extends _i22.PageRouteInfo<SubscriptionPageRouteArgs> {
+  SubscriptionPageRoute({
+    _i25.Key? key,
+    required bool fromAuth,
+    List<_i22.PageRouteInfo>? children,
+  }) : super(
           SubscriptionPageRoute.name,
+          args: SubscriptionPageRouteArgs(
+            key: key,
+            fromAuth: fromAuth,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SubscriptionPageRoute';
 
-  static const _i22.PageInfo<void> page = _i22.PageInfo<void>(name);
+  static const _i22.PageInfo<SubscriptionPageRouteArgs> page =
+      _i22.PageInfo<SubscriptionPageRouteArgs>(name);
+}
+
+class SubscriptionPageRouteArgs {
+  const SubscriptionPageRouteArgs({
+    this.key,
+    required this.fromAuth,
+  });
+
+  final _i25.Key? key;
+
+  final bool fromAuth;
+
+  @override
+  String toString() {
+    return 'SubscriptionPageRouteArgs{key: $key, fromAuth: $fromAuth}';
+  }
 }
 
 /// generated route for
@@ -513,9 +544,9 @@ class SubscriptionPageRoute extends _i22.PageRouteInfo<void> {
 class SupportedAreaPageRoute
     extends _i22.PageRouteInfo<SupportedAreaPageRouteArgs> {
   SupportedAreaPageRoute({
-    _i25.Key? key,
+    _i26.Key? key,
     required bool fromProfile,
-    _i26.RegisterParams? registerParams,
+    _i27.RegisterParams? registerParams,
     List<_i22.PageRouteInfo>? children,
   }) : super(
           SupportedAreaPageRoute.name,
@@ -540,11 +571,11 @@ class SupportedAreaPageRouteArgs {
     this.registerParams,
   });
 
-  final _i25.Key? key;
+  final _i26.Key? key;
 
   final bool fromProfile;
 
-  final _i26.RegisterParams? registerParams;
+  final _i27.RegisterParams? registerParams;
 
   @override
   String toString() {

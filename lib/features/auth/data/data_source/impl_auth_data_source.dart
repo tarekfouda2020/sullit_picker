@@ -7,8 +7,8 @@ import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/data_source/auth_data_source.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_model.dart';
-import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/confirm_reset_password_params.dart';
+import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
 import 'package:injectable/injectable.dart';
@@ -25,7 +25,7 @@ class ImplAuthDataSource extends AuthDataSource{
        responseKey: (data) => data['data'],
        requestBody: params.toJson(),
        isFormData: true,
-       showLoader: true
+       showLoader: false
      );
     return GenericHttpImpl<UserModel>()(model);
   }
@@ -111,4 +111,16 @@ class ImplAuthDataSource extends AuthDataSource{
     return await GenericHttpImpl<UserModel>()(model);
   }
 
+  @override
+  Future<MyResult<String>> logout() {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.logout,
+      responseType: ResType.type,
+      requestMethod: RequestMethod.post,
+      responseKey: (data) => data['msg'],
+      showLoader: true,
+      isFormData: false
+    );
+    return GenericHttpImpl<String>()(model);
+  }
 }

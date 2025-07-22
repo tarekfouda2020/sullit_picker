@@ -22,6 +22,6 @@ class HttpRequestModel {
       this.toJsonFunc,
       this.showLoader,
       this.errorFunc,
-      this.isFormData = true,
+      this.isFormData = false,
       this.refresh = true});
 }

@@ -1,47 +1,53 @@
+import 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
+import 'package:flutter_tdd/features/subscriptions/data/models/subscription_model/subscription_model.dart';
+import 'package:flutter_tdd/features/subscriptions/presentation/pages/subscription/widgets/subscription_shimmer_widget.dart';
+
 import 'subscription_imports.dart';
+import 'widgets/subscription_body_widget.dart';
 
 @RoutePage(name: "SubscriptionPageRoute")
 class SubscriptionPage extends StatefulWidget {
-  const SubscriptionPage({super.key});
+  final bool fromAuth;
+  const SubscriptionPage({super.key, required this.fromAuth});
 
   @override
   State<SubscriptionPage> createState() => _SubscriptionPageState();
 }
 
 class _SubscriptionPageState extends State<SubscriptionPage> {
-  final SubscriptionController controller = SubscriptionController();
+
+  late final SubscriptionController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =SubscriptionController(widget.fromAuth);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colors.white,
-      appBar: DefaultAppBar(
-        title: "",
-        bgColor: context.colors.background,
-        size: 20,
-        showBack: true,
-      ),
-      body: Padding(
-        padding: Dimens.paddingH20Px,
-        child: Column(children: [
-          const AppSloganWidget(),
-          Gaps.vGap64,
-          Text(
-            Translate.s.yearly_subscription,
-            style: AppTextStyle.s22_w700(color: context.colors.black),
-          ),
-          Gaps.vGap30,
-          const PlanBudgetWidget(),
-          Gaps.vGap17,
-          const PlanBenefitsWidget(),
-          Gaps.vGap16,
-          AgreeTermsConditions(controller: controller),
-          Gaps.vGap41,
-          AppTextButton.maxPrimary(
-            text: "Pay",
-            onPressed: () => controller.paySubscription(context),
-          )
-        ]),
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) => controller.onPressBack( context),
+      child: Scaffold(
+        backgroundColor: context.colors.background,
+        appBar: DefaultAppBar(
+          title: "",
+          bgColor: context.colors.background,
+          showBack: true,
+          onPressBack: () => controller.onPressBack(context),
+        ),
+        body: RequesterConsumer(
+            requester: controller.planRequester,
+            successBuilder: (context, data, isLoading) {
+              return SubscriptionBodyWidget(controller: controller, model: data);
+            },
+            failureBuilder: (context, error, callback) {
+              return Text("No Plans Found",
+              style: AppTextStyle.s18_w500(color: context.colors.primary),
+              );
+            },
+            loadingBuilder: (context) => const SubscriptionShimmerWidget(),
+        ),
       ),
     );
   }

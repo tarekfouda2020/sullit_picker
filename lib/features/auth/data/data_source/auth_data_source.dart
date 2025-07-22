@@ -20,4 +20,6 @@ abstract class AuthDataSource {
   Future<MyResult<String>> forgotPassword(VerifyParams params);
 
   Future<MyResult<String>> confirmResetPassword(ConfirmResetPasswordParams params);
+
+  Future<MyResult<String>> logout();
 }

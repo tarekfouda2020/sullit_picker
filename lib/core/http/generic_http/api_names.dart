@@ -21,6 +21,20 @@ class ApiNames{
   static const String forgetPassword = "cabaf46ee69d7b8445a5d791";
   static const String resetPassword = "A2q4mG84Z9rE2B38In4HALSWTwt9eQ5Slzq56Cod";
   static const String passwordForgot = "password/forgot";
+  static const String logout = "logout";
+
+
+  /// subscriptions
+  static const String paymentMethods = "payment-methods";
+  static const String subscriptionPlan = "subscription/plan";
+  static const String subscribe = "subscription/subscribe";
+  static const String currentSubscription = "subscription/current";
+
+  ///profile
+  static const String profile = "profile";
+
+
+
 
 
 }

@@ -1,6 +1,5 @@
 import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-
 import '../confirm_reset_password_imports.dart';
 
 
@@ -23,6 +22,7 @@ class ResetPasswordFormWidget extends StatelessWidget {
             action: TextInputAction.next,
             hint: "Enter code",
             validate: (value) => value?.validateEmpty(),
+            fillColor: context.colors.white,
           ),
           Gaps.vGap16,
           const AuthSectionTitleWidget(title: "Password"),

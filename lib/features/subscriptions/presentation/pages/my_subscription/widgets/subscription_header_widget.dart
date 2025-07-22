@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'subscription_widgets_imports.dart';
 
 class SubscriptionHeaderWidget extends StatelessWidget {
   const SubscriptionHeaderWidget({super.key});
@@ -33,13 +29,13 @@ class SubscriptionHeaderWidget extends StatelessWidget {
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.2),
+              color: context.colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const Icon(
+            child:  Icon(
               Icons.card_membership,
               size: 40,
-              color: Colors.white,
+              color: context.colors.white,
             ),
           ),
           
@@ -48,7 +44,7 @@ class SubscriptionHeaderWidget extends StatelessWidget {
           // Title
           Text(
             Translate.of(context).my_subscription,
-            style: AppTextStyle.s24_w700(color: Colors.white),
+            style: AppTextStyle.s24_w700(color: context.colors.white),
             textAlign: TextAlign.center,
           ),
           
@@ -57,7 +53,7 @@ class SubscriptionHeaderWidget extends StatelessWidget {
           // Subtitle
           Text(
             'Manage your subscription plan',
-            style: AppTextStyle.s14_w400(color: Colors.white.withValues(alpha: 0.9)),
+            style: AppTextStyle.s14_w400(color: context.colors.white.withValues(alpha: 0.9)),
             textAlign: TextAlign.center,
           ),
         ],

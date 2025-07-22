@@ -12,6 +12,7 @@ import 'package:flutter_tdd/res.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 enum ToastType { success, error, info }
+
 abstract class AppSnackBar {
   const AppSnackBar._();
 
@@ -24,8 +25,7 @@ abstract class AppSnackBar {
   };
 
   static void showSuccessSnackBar(String message) {
-    _showSnackBar(_CustomSnackBar(
-        color: AppColors.snackBarGreenSuccess, icon: Res.successSnackBar, message: message));
+    _showSnackBar(_CustomSnackBar(color: AppColors.snackBarGreenSuccess, icon: Res.successSnackBar, message: message));
   }
 
   static void showErrorSnackBar({
@@ -33,10 +33,7 @@ abstract class AppSnackBar {
     VoidCallback? callback,
   }) {
     _showSnackBar(_CustomSnackBar(
-        color: AppColors.snackBarRedError,
-        icon: Res.errorSnackBar,
-        callback: callback,
-        message: error.message));
+        color: AppColors.snackBarRedError, icon: Res.errorSnackBar, callback: callback, message: error.message));
   }
 
   static void showUnknownErrorSnackBar({VoidCallback? callback}) {
@@ -63,17 +60,12 @@ abstract class AppSnackBar {
     });
   }
 
-
   static void showSimpleToast(
-      {required String msg,
-        Color? color,
-        Color? textColor,
-        ToastGravity? gravity,
-        ToastType type = ToastType.error}) {
+      {required String msg, Color? color, Color? textColor, ToastGravity? gravity, ToastType type = ToastType.error}) {
     Fluttertoast.showToast(
         msg: msg,
         toastLength: Toast.LENGTH_SHORT,
-        gravity:gravity ?? ToastGravity.CENTER,
+        gravity: gravity ?? ToastGravity.CENTER,
         backgroundColor: color ?? toastBgColors[type],
         textColor: textColor ?? Colors.white,
         fontSize: 16.0);
@@ -92,7 +84,8 @@ class _CustomSnackBar extends SnackBar {
     required this.icon,
     required this.message,
     this.callback,
-    this.callbackMessage, Color? iconColor,
+    this.callbackMessage,
+    Color? iconColor,
   }) : super(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             backgroundColor: Colors.transparent,
@@ -121,7 +114,8 @@ class _SnackBarWidget extends StatelessWidget {
     required this.message,
     required this.color,
     this.callback,
-    this.callbackMessage, required this.iconColor,
+    this.callbackMessage,
+    required this.iconColor,
   });
 
   @override
@@ -151,8 +145,7 @@ class _SnackBarWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(callbackMessage ?? Translate.s.retry,
-                      style: AppTextStyle.s14_w400(color: AppColors.fixedColors.white)
-                  ),
+                      style: AppTextStyle.s14_w400(color: AppColors.fixedColors.white)),
                   SizedBox(
                     width: callbackMessage!.length * 10,
                     child: Divider(

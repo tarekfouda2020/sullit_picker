@@ -8,6 +8,7 @@ import 'home_imports.dart';
 
 @RoutePage(name: "HomePageRoute")
 class HomePage extends StatefulWidget {
+  // final bool fromLogin;
   const HomePage({super.key});
 
   @override
@@ -20,14 +21,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    controller.initializeHome(context);
+    controller.initializeOrderDialog(context);
+    // controller.getUserData(context);
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {

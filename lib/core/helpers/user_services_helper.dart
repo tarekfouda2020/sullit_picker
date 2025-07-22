@@ -8,10 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/splash/splash_imports.dart';
+import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,13 +33,37 @@ class UserServicesHelper {
     AutoRouter.of(context).replaceAll([const HomePageRoute()]);
   }
 
-
-  void clearCashAndRoute(BuildContext context)async {
+  Future<void> clearCashAndRoute(BuildContext context)async {
     context.read<DeviceCubit>().updateUserAuth(false);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.clear();
     GlobalState.instance.set('token',null);
     context.read<UserCubit>().onUpdateUserData(null);
-    AutoRouter.of(context).pushAndPopUntil( const Splash(), predicate: (route) => false);
+    // AutoRouter.of(context).pushAndPopUntil( const Splash(), predicate: (route) => false);
+    AutoRouter.of(context).push(const Splash());
 }
+
+
+Future<void> updateUserData(BuildContext context, UserModel? data,{bool isAuth = true}) async {
+  context.read<DeviceCubit>().updateUserAuth(isAuth);
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  preferences.setString("user", json.encode(data?.toJson()));
+  preferences.setString(ApplicationConstants.keyToken, data!.token);
+  GlobalState.instance.set(ApplicationConstants.keyToken, data.token);
+  context.read<UserCubit>().onUpdateUserData(data);
+}
+
+
+  // Future<void> getUserData()async{
+  //   BuildContext context = getIt<GlobalContext>().context();
+  //   var result = await getIt<HomeRepositories>().getProfile();
+  //   result.when(
+  //     isSuccess: (data) async{
+  //       await updateUserData(context, data);
+  //     },
+  //     isError: (error) {},
+  //   );
+  // }
+
+
 }
