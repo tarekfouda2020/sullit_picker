@@ -46,7 +46,8 @@ class ChangePasswordController {
     await getIt.get<AuthRepositories>().sendChangePassword(params).then((result) {
       result.when(
         isSuccess: (data) {
-          AppSnackBar.showSimpleToast(msg: 'the password is reset successfully');
+          AppSnackBar.showSimpleToast(msg: 'the password is reset successfully',type: ToastType.success);
+          AutoRouter.of(context).pop();
 
         },
         isError: (error) {
