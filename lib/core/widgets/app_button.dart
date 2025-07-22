@@ -248,6 +248,14 @@ class AppTextButton extends StatelessWidget {
                           }
                         },
                       ),
+                    shape: WidgetStateProperty.all(
+                      RoundedRectangleBorder(
+                          borderRadius: _borderRadius ?? const BorderRadius.all(Radius.circular(Dimens.buttonBorderRadius)),
+                          side: BorderSide(
+                              color: _borderColor ?? Colors.transparent
+                          )
+                      ),
+                    )
                     ),
                 onPressed: onPressed,
                 child: Text(

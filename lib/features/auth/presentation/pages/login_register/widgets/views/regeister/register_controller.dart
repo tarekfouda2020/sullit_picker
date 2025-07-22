@@ -65,7 +65,6 @@ class RegisterController {
       AppSnackBar.showSimpleToast(msg: Translate.s.mailValidation);
       return;
     }
-    routeAndGetEmailVerifyCode(context);
     var params = _verifyEmailParams();
     var result = await getIt<AuthRepositories>().verifyEmail(params);
     result.when(
@@ -85,7 +84,6 @@ class RegisterController {
       AppSnackBar.showSimpleToast(msg: Translate.s.phoneValidation, type: ToastType.error);
       return;
     }
-    routeAndGetPhoneVerifyCode(context);
     var params = _verifyPhoneParams();
     var result = await getIt<AuthRepositories>().verifyPhone(params);
     result.when(

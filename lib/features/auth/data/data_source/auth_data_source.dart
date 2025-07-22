@@ -5,6 +5,7 @@ import 'package:flutter_tdd/features/auth/domain/entity/change_password_params.d
 import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
+import 'package:flutter_tdd/features/auth/domain/entity/confirm_reset_password_params.dart';
 
 abstract class AuthDataSource {
   Future<MyResult<UserModel>> registerUser(RegisterParams params);
@@ -19,4 +20,8 @@ abstract class AuthDataSource {
 
   Future<MyResult<String>> sendChangePassword(ChangePasswordParams params);
 
+
+  Future<MyResult<String>> forgotPassword(VerifyParams params);
+
+  Future<MyResult<String>> confirmResetPassword(ConfirmResetPasswordParams params);
 }

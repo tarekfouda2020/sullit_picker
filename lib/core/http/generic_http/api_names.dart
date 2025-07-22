@@ -8,10 +8,12 @@ class ApiNames{
   static const String refreshToken = "auth";
   static const String savePublicKey = "users/";
   static const String updateUser = "users/";
+
   static const String register = "register";
   static const String workTypes = "work-types";
   static const String verifyPhone = "register/send-phone-verification";
   static const String verifyEmail = "register/send-email-verification";
+  static const String confirmResetPassword = "password/reset";
 
   static const String activeAccount = "otp/verify";
   static const String resendCode = "ResendCode";
@@ -23,6 +25,7 @@ class ApiNames{
   static const String updatePassword = "update-password?_method=patch";
 
 
+  static const String passwordForgot = "password/forgot";
 
 
 }

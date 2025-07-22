@@ -1,9 +1,7 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/widgets/custom_radio_widget.dart';
-import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_model.dart';
 
 import '../register_imports.dart';
-
 
 
 class WorkTypeWidget extends StatelessWidget {

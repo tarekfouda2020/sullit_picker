@@ -56,9 +56,9 @@ class RegisterParams {
     "map_desc": mapDesc,
     if(lat != null)"lat": lat,
     if(lng != null)"lng": lng,
-    if(coverageArea != null)"coverage_area": coverageArea,
+    if(coverageArea != null)"coverage_radius_km": coverageArea,
     "password": password,
-    "confirm_password": confirmPassword
+    "password_confirmation": confirmPassword
   };
 
 
