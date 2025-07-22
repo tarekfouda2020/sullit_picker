@@ -44,19 +44,7 @@ class LoginViewController {
     }
     
     loadingButtonKey.currentState?.animateForward();
-    
-    try {
-      // Simulate API call with realistic delay
-      await Future.delayed(const Duration(seconds: 2));
 
-      // Success - Navigate to home
-      loadingButtonKey.currentState?.animateReverse();
-      AutoRouter.of(context).replaceAll([const HomePageRoute()]);
-      AppSnackBar.showSuccessSnackBar(Translate.of(context).login_successful);
-    } catch (e) {
-      loadingButtonKey.currentState?.animateReverse();
-      AppSnackBar.showErrorSnackBar(error:BaseError.unknown(msg: "Login Failed"));
-    }
   }
 
   // Navigate to forget password

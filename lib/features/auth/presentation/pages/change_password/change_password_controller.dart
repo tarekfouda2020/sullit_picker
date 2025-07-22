@@ -1,5 +1,11 @@
 
 
+import 'dart:developer';
+
+import 'package:flutter_tdd/features/auth/domain/entity/change_password_params.dart';
+
+import '../../../../../core/helpers/di.dart';
+import '../../../domain/repositories/auth_repositories.dart';
 import 'change_password_imports.dart';
 
 class ChangePasswordController {
@@ -31,6 +37,31 @@ class ChangePasswordController {
      AutoRouter.of(context).maybePop();
      }
    }
+  }
+
+  Future<void> callChangePassword(
+      BuildContext context) async {
+    ChangePasswordParams params = _changePasswordParams();
+    log(">>>>>>>>>>>>>>>>>>>>>>>>${params.toJson()}");
+    await getIt.get<AuthRepositories>().sendChangePassword(params).then((result) {
+      result.when(
+        isSuccess: (data) {
+          AppSnackBar.showSimpleToast(msg: 'the password is reset successfully');
+
+        },
+        isError: (error) {
+          AppSnackBar.showSimpleToast(msg: error.message);
+        },
+      );
+    });
+  }
+
+  ChangePasswordParams _changePasswordParams() {
+    return ChangePasswordParams(
+      currentPassword: oldPasswordController.text,
+      password: newPasswordController.text,
+      passwordConfirmation: confirmPasswordController.text,
+    );
   }
 
 }

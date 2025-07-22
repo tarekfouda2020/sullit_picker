@@ -46,6 +46,14 @@ import 'package:flutter_tdd/features/auth/data/repositories/impl_auth_repositori
     as _i988;
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart'
     as _i674;
+import 'package:flutter_tdd/features/general/data/data_source/general_data_source.dart'
+    as _i503;
+import 'package:flutter_tdd/features/general/data/data_source/impl_general_data_source.dart'
+    as _i69;
+import 'package:flutter_tdd/features/general/data/repositories/impl_general_repositories.dart'
+    as _i782;
+import 'package:flutter_tdd/features/general/domain/repositories/general_repositories.dart'
+    as _i1033;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -68,6 +76,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i934.LoadingHelper>(() => _i934.LoadingHelper());
     gh.lazySingleton<_i297.CountryPickerHelper>(
         () => _i297.CountryPickerHelper());
+    gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
     gh.lazySingleton<_i279.FirebaseAnalyticsHelper>(
         () => _i279.FirebaseAnalyticsHelper());
     gh.lazySingleton<_i769.GlobalContext>(() => _i769.GlobalContext());
@@ -88,8 +97,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i798.GenericHttpImpl<dynamic>>(
         () => _i798.GenericHttpImpl<dynamic>());
     gh.lazySingleton<_i407.NetworkInfoImpl>(() => _i407.NetworkInfoImpl());
-    gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
     gh.factory<_i674.AuthRepositories>(() => _i988.ImplAuthRepositories());
+    gh.factory<_i503.GeneralDataSource>(() => _i69.ImlGeneralDataSource());
+    gh.factory<_i1033.GeneralRepositories>(
+        () => _i782.ImplGeneralRepositories());
     gh.factory<_i662.AuthDataSource>(() => _i23.ImplAuthDataSource());
     return this;
   }

@@ -33,7 +33,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               ChangePasswordFormWidget(controller: controller),
               AppTextButton.maxPrimary(
                 text: "Save",
-                onPressed: ()=> controller.saveNewPassword(context),
+                onPressed: ()=> controller.callChangePassword(context),
               ),
               Gaps.vGap30,
             ],

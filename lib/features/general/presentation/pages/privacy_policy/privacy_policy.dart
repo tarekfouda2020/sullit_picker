@@ -1,6 +1,12 @@
 
 
 
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
+import 'package:flutter_tdd/core/widgets/shimmers/text_shimmer.dart';
+
+import '../../../../../res.dart';
 import 'privacy_policy_imports.dart';
 
 
@@ -14,7 +20,14 @@ class PrivacyPolicy extends StatefulWidget {
 
 class _PrivacyPolicyState extends State<PrivacyPolicy> {
 
-  final PrivacyPolicyController controller = PrivacyPolicyController();
+  late PrivacyPolicyController controller;
+
+  @override
+  void initState() {
+    controller = PrivacyPolicyController();
+    controller.getPrivacyPolicy();
+    super.initState();
+  }
 
 
   @override
@@ -34,11 +47,40 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             ],
           ),
           Gaps.vGap37,
-          Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it.",
-          style: AppTextStyle.s16_w400(color: context.colors.black).copyWith(
-            height: 1.5
+          RequesterConsumer(
+            requester: controller.privacyPolicyRequester,
+            successBuilder: (context, data, isLoading) {
+              return Html(
+                data: data.content,
+                style: {
+                  "body": Style(
+                    fontSize: FontSize(16),
+                    fontWeight: FontWeight.w400,
+                    color: context.colors.black,
+                  )
+                },
+              );
+            },
+            loadingBuilder: (context) {
+              return Column(
+                children: List.generate(20, (index) =>  const TextShimmer(lineWidthPercent: 1,)),
+              );
+            },
+            failureBuilder: (context, error, callback) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      Res.logo,
+                      height: 100.r,
+                      width: 200.r,
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
-          )
         ],
       ),
     );
