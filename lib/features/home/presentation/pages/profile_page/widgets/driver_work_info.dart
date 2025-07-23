@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
 
 import 'driver_wallet_balance_widget.dart';
 import 'profile_page_widgets_imports.dart';
@@ -9,12 +11,13 @@ class DriverWorkInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userData = context.read<UserCubit>().state.model;
     return Column(
       children: [
         Gaps.vGap20,
         _buildContainer(
           context,
-        child: Text("ID : #5647843",
+        child: Text("ID : #${userData!.id}",
         style: AppTextStyle.s16_w700(color: context.colors.primary),
         )
         ),

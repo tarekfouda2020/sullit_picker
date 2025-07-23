@@ -1,9 +1,11 @@
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 
 import '../../../../../auth/presentation/pages/login_register/login_register_imports.dart';
+import '../../profile_page/profile_page_imports.dart';
 
 class SwitchNotificationWidget extends StatelessWidget {
   final HomeController controller;
@@ -12,7 +14,7 @@ class SwitchNotificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ObsValueConsumer(
-      observable: controller.isOnline,
+      observable: controller.availableForOrdersObs,
       builder: (context, online) {
         return FlutterSwitch(
           inactiveColor: context.colors.gray58,
@@ -24,7 +26,7 @@ class SwitchNotificationWidget extends StatelessWidget {
           height: 18,
           padding: 1,
           value: online,
-          onToggle: (newValue)=> controller.isOnline.setValue(newValue),
+          onToggle: (newValue)=> controller.updateAvailabilityStatus(context),
         );
       },
     );

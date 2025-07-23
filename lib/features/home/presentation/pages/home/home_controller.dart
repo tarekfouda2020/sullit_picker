@@ -1,12 +1,6 @@
-import 'package:flutter/services.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
-import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
-import 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.dart';
-import 'package:flutter_tdd/features/home/data/enum/report_reason_enum.dart';
-import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/repoer_bottom_sheet_widget.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
+import 'dart:developer';
 
 import 'home_imports.dart';
 
@@ -15,7 +9,7 @@ class HomeController {
   // Order state management
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
   final ObsValue<bool> showOrderAlert = ObsValue<bool>.withInit(false);
-  final ObsValue<bool> isOnline = ObsValue<bool>.withInit(true);
+  late final ObsValue<bool>  availableForOrdersObs = ObsValue<bool>.withInit(false);
   final ObsValue<OrderStatusEnum> orderStatusObs = ObsValue<OrderStatusEnum>.withInit(OrderStatusEnum.start);
   final ObsValue<ReportReasonEnum> reportReasonObs = ObsValue<ReportReasonEnum>.withInit(ReportReasonEnum.other);
   final TextEditingController reasonController = TextEditingController();
@@ -23,19 +17,11 @@ class HomeController {
 
   bool popOut = false;
 
-  void initializeOrderDialog(BuildContext context) {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      if (context.mounted) {
-        showWelcomeDialog(context);
-      }
-    });
-    
-    // Show new order dialog after 2 seconds if online
-    Future.delayed(const Duration(seconds: 2), () {
-      if (isOnline.getValue() && !hasOrders.getValue()) {
-        showNewOrderDialog(context);
-      }
-    });
+  Future<void> initializeOrderDialog(BuildContext context) async{
+    await getDataAndUpdateAvailabilityStatus(context);
+    if (availableForOrdersObs.getValue() && !hasOrders.getValue()) {
+      showNewOrderDialog(context);
+    }
   }
 
 
@@ -60,10 +46,10 @@ class HomeController {
   }
   
   void toggleOnlineStatus() {
-    isOnline.setValue(!isOnline.getValue());
-    
+    availableForOrdersObs.setValue(!availableForOrdersObs.getValue());
+
     // If going offline, clear any existing orders
-    if (!isOnline.getValue()) {
+    if (!availableForOrdersObs.getValue()) {
       hasOrders.setValue(false);
     }
   }
@@ -133,6 +119,28 @@ class HomeController {
     },);
   }
 
+
+
+  Future<void> updateAvailabilityStatus(BuildContext context)async{
+    var result = await getIt<HomeRepositories>().updateAvailability();
+    result.when(
+        isSuccess: (data) async{
+          availableForOrdersObs.setValue(data!.data.isAvailable);
+          AppSnackBar.showSuccessSnackBar(data.msg,forceShow: true);
+        },
+        isError: (error) {
+          AppSnackBar.showErrorSnackBar(error: error);
+        },
+    );
+     await getDataAndUpdateAvailabilityStatus(context);
+  }
+
+  Future<void> getDataAndUpdateAvailabilityStatus(BuildContext context)async{
+    await getIt<UserServicesHelper>().getUserData();
+    await Future.delayed(const Duration(milliseconds: 10));
+    bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
+    availableForOrdersObs.setValue(isAvailable);
+  }
 
 
 } 

@@ -20,6 +20,7 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
     required String lat,
     required String lng,
     required String phone,
+     String? avatar,
     @JsonKey(name: "token_type") required String tokenType,
     @JsonKey(name: "email_is_active") required bool emailIsActive,
     @JsonKey(name: "country_code") required String countryCode,

@@ -1,17 +1,24 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tdd/core/helpers/global_context.dart';
-import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
-import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
-import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'profile_page_imports.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
-import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
-import 'package:flutter_tdd/core/errors/base_error.dart';
+
 
 class ProfilePageController {
+
+
+  final ObsValue<String> profileImageObs = ObsValue<String>.withInit("");
+  File? pickedImage;
+
+  Future<void> selectImage(BuildContext context) async{
+    List<File>? result = await getIt<AppFileService>().pickFile(context,fileType: FileType.image,allowMultiple: false);
+    if(result!=null){
+      pickedImage = result.first;
+      updateUserImage(context);
+    }else{
+      pickedImage = pickedImage;
+    }
+  }
+
+
   void navigateToChangePassword(BuildContext context) {
     AutoRouter.of(context).push(const ChangePasswordPageRoute());
   }
@@ -83,10 +90,7 @@ class ProfilePageController {
     AutoRouter.of(context).push( SupportedAreaPageRoute(fromProfile: true));
   }
 
-
-
-
-Future<void> getUserData()async{
+  Future<void> getUserData()async{
   BuildContext context = getIt<GlobalContext>().context();
   var result = await getIt<HomeRepositories>().getProfile();
   result.when(
@@ -96,6 +100,23 @@ Future<void> getUserData()async{
     isError: (error) {},
   );
 }
+
+
+Future<void> updateUserImage(BuildContext context)async{
+    var params = _updateParams();
+    var result = await getIt<HomeRepositories>().updateProfileImage(params);
+    result.when(
+        isSuccess: (data) {
+          getIt<UserServicesHelper>().updateUserData(context, data);
+        },
+        isError: (error) {},
+    );
+}
+
+
+  UpdateProfileImageParams _updateParams(){
+    return UpdateProfileImageParams(image: pickedImage!);
+  }
 
 
 } 

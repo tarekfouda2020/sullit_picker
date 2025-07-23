@@ -30,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: ListView(
         padding: Dimens.paddingH20Px,
         children: [
-          const ProfileHeaderWidget(),
+           ProfileHeaderWidget(controller: controller),
            DriverWorkInfo(controller: controller),
           MenuItemsListWidget(controller: controller),
         ],

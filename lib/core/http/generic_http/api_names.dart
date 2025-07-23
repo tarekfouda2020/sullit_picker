@@ -20,11 +20,9 @@ class ApiNames{
   static const String switchNotify = "SwitchNotify";
   static const String forgetPassword = "cabaf46ee69d7b8445a5d791";
   static const String resetPassword = "A2q4mG84Z9rE2B38In4HALSWTwt9eQ5Slzq56Cod";
-  static const String terms = "terms";
   static const String privacyPolicy = "privacy-policy";
   static const String updatePassword = "update-password?_method=patch";
-  static const String updateCoverage = "update-coverage?_method=patch";
-  static const String contactUs = "contact-us";
+
 
 
   static const String passwordForgot = "password/forgot";
@@ -37,9 +35,17 @@ class ApiNames{
   static const String subscribe = "subscription/subscribe";
   static const String currentSubscription = "subscription/current";
 
-  ///profile
+  ///home
   static const String profile = "profile";
+  static const String updateProfileImage = "update-avatar?_method=patch";
+  static const String toggleAvailability = "toggle-availability?_method=patch";
+
+  ///general
   static const String socials = "socials";
+  static const String updateCoverage = "update-coverage?_method=patch";
+  static const String contactUs = "contact-us";
+  static const String terms = "terms";
+
 
 
 

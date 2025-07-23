@@ -24,15 +24,18 @@ abstract class AppSnackBar {
     ToastType.info: AppColors.snackBarYellowAlert,
   };
 
-  static void showSuccessSnackBar(String message) {
-    _showSnackBar(_CustomSnackBar(color: AppColors.snackBarGreenSuccess, icon: Res.successSnackBar, message: message));
+  static void showSuccessSnackBar(String message, {bool forceShow = false}) {
+    _showSnackBar(
+        forceShow: forceShow ,
+        _CustomSnackBar(color: AppColors.snackBarGreenSuccess, icon: Res.successSnackBar, message: message));
   }
 
   static void showErrorSnackBar({
     required BaseError error,
     VoidCallback? callback,
   }) {
-    _showSnackBar(_CustomSnackBar(
+    _showSnackBar(
+        _CustomSnackBar(
         color: AppColors.snackBarRedError, icon: Res.errorSnackBar, callback: callback, message: error.message));
   }
 
