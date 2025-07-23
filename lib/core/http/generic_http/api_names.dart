@@ -23,6 +23,8 @@ class ApiNames{
   static const String terms = "terms";
   static const String privacyPolicy = "privacy-policy";
   static const String updatePassword = "update-password?_method=patch";
+  static const String updateCoverage = "update-coverage?_method=patch";
+  static const String contactUs = "contact-us";
 
 
   static const String passwordForgot = "password/forgot";
@@ -37,6 +39,7 @@ class ApiNames{
 
   ///profile
   static const String profile = "profile";
+  static const String socials = "socials";
 
 
 

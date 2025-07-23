@@ -1,7 +1,27 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 @lazySingleton
 class Utilities {
+
+  Future<void> changeLanguage(String lang, BuildContext context) async {
+    context.read<DeviceCubit>().updateLanguage(Locale(lang));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("lang", lang);
+    GlobalState.instance.set("lang", lang);
+  }
+
+  void launchURL({required String url}) async {
+    var uri = Uri.parse(url);
+    await launchUrl(uri);
+  }
+
+
 
   String convertDigitsToLatin(String s) {
     var sb = StringBuffer();

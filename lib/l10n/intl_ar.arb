@@ -87,6 +87,7 @@
   "payment_successful": "تم الدفع بنجاح",
   "login_successful": "تم تسجيل الدخول بنجاح! مرحباً بعودتك.",
   "registration_successful": "تم التسجيل بنجاح! يرجى إكمال اشتراكك.",
+  "location_updated_successfully": "تم تحديث الموقع بنجاح",
   "order_number": "رقم الطلب:",
   "amount": "المبلغ:",
   "distance": "المسافة:",

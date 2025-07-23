@@ -87,6 +87,7 @@
   "payment_successful": "Payment completed successfully",
   "login_successful": "Login successful! Welcome back.",
   "registration_successful": "Registration successful! Please complete your subscription.",
+  "location_updated_successfully": "Location updated successfully",
   "order_number": "Order Number:",
   "amount": "Amount:",
   "distance": "Distance:",

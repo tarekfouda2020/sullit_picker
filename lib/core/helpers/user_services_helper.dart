@@ -54,16 +54,16 @@ Future<void> updateUserData(BuildContext context, UserModel? data,{bool isAuth =
 }
 
 
-  // Future<void> getUserData()async{
-  //   BuildContext context = getIt<GlobalContext>().context();
-  //   var result = await getIt<HomeRepositories>().getProfile();
-  //   result.when(
-  //     isSuccess: (data) async{
-  //       await updateUserData(context, data);
-  //     },
-  //     isError: (error) {},
-  //   );
-  // }
+  Future<void> getUserData()async{
+    BuildContext context = getIt<GlobalContext>().context();
+    var result = await getIt<HomeRepositories>().getProfile();
+    result.when(
+      isSuccess: (data) async{
+        await updateUserData(context, data);
+      },
+      isError: (error) {},
+    );
+  }
 
 
 }

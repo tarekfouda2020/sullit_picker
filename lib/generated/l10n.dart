@@ -920,6 +920,16 @@ class S {
     );
   }
 
+  /// `Location updated successfully`
+  String get location_updated_successfully {
+    return Intl.message(
+      'Location updated successfully',
+      name: 'location_updated_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Order Number:`
   String get order_number {
     return Intl.message(

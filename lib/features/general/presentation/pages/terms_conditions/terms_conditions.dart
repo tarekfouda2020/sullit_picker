@@ -1,6 +1,7 @@
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
+import 'package:flutter_tdd/core/widgets/shimmers/base_shimmer_widget.dart';
 import 'package:flutter_tdd/core/widgets/shimmers/text_shimmer.dart';
 import 'package:flutter_tdd/res.dart';
 
@@ -60,7 +61,7 @@ class _TermsConditionsState extends State<TermsConditions> {
             },
             loadingBuilder: (context) {
               return Column(
-                children: List.generate(20, (index) =>  const TextShimmer(lineWidthPercent: 1,)),
+                children: List.generate(20, (index) =>  const TextShimmer(lineWidthPercent: 1.85,)),
               );
             },
             failureBuilder: (context, error, callback) {

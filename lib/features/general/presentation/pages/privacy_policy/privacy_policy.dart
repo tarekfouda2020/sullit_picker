@@ -63,7 +63,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
             },
             loadingBuilder: (context) {
               return Column(
-                children: List.generate(20, (index) =>  const TextShimmer(lineWidthPercent: 1,)),
+                children: List.generate(20, (index) =>  const TextShimmer(lineWidthPercent: 1.85,)),
               );
             },
             failureBuilder: (context, error, callback) {

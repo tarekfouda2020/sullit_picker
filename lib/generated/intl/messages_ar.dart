@@ -184,6 +184,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "label_phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
         "label_register": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "loadingText": MessageLookupByLibrary.simpleMessage("جاري التحميل…"),
+        "location_updated_successfully":
+            MessageLookupByLibrary.simpleMessage("تم تحديث الموقع بنجاح"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "login_successful": MessageLookupByLibrary.simpleMessage(
             "تم تسجيل الدخول بنجاح! مرحباً بعودتك."),

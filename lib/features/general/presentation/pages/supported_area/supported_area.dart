@@ -27,14 +27,9 @@ class _SupportedAreaPageState extends State<SupportedAreaPage> {
     super.initState();
     controller = SupportedAreaController(widget.fromProfile);
     controller.registerParams = widget.registerParams;
+    controller. getLocation(context);
   }
 
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    controller. getCurrentLocation(context);
-  }
 
   @override
   Widget build(BuildContext context) {

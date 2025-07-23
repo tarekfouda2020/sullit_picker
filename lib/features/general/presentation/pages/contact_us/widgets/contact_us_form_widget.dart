@@ -10,6 +10,7 @@ class ContactUsFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: controller.formKey,
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -25,7 +26,7 @@ class ContactUsFormWidget extends StatelessWidget {
           margin: const EdgeInsets.only(bottom: 12),
           validate: (value) => value?.validateName(),
         ),
-        const AuthSectionTitleWidget(title: "mmm@info.com"),
+        const AuthSectionTitleWidget(title: "E-mail"),
         GenericTextField(
           controller: controller.emailController,
           fieldTypes: FieldTypes.normal,
@@ -33,7 +34,7 @@ class ContactUsFormWidget extends StatelessWidget {
           action: TextInputAction.next,
           fillColor: context.colors.white,
           enableBorderColor: context.colors.inputBorder,
-          hint: 'Your Email',
+          hint: 'mmm@info.com',
           margin: const EdgeInsets.only(bottom: 12),
           validate: (value) => value?.validateEmail(),
         ),
@@ -42,17 +43,17 @@ class ContactUsFormWidget extends StatelessWidget {
           controller: controller.phoneController,
           validate: (value) => value?.validateOnCode(controller.countryCodeObs.getValue().dialCode),
           fieldTypes: FieldTypes.normal,
-          type: TextInputType.text,
+          type: TextInputType.number,
           action: TextInputAction.next,
           hint: "0000000",
-          fillColor: Colors.white,
+          fillColor: context.colors.white,
           enableBorderColor: context.colors.inputBorder,
           prefixIcon: prefixIcon(),
           margin: const EdgeInsets.only(bottom: 12),
         ),
         const AuthSectionTitleWidget(title: "Title"),
         GenericTextField(
-          controller: controller.emailController,
+          controller: controller.titleController,
           fieldTypes: FieldTypes.normal,
           type: TextInputType.text,
           action: TextInputAction.next,

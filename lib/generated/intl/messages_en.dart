@@ -186,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "label_phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "label_register": MessageLookupByLibrary.simpleMessage("Register"),
         "loadingText": MessageLookupByLibrary.simpleMessage("Loading…"),
+        "location_updated_successfully": MessageLookupByLibrary.simpleMessage(
+            "Location updated successfully"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "login_successful": MessageLookupByLibrary.simpleMessage(
             "Login successful! Welcome back."),
