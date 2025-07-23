@@ -16,7 +16,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     return Scaffold(
       backgroundColor: context.colors.background,
       appBar: DefaultAppBar(
-        title: "Notifications",
+        title: Translate.of(context).notifications,
         bgColor: context.colors.background,
       ),
       body: ListView.builder(

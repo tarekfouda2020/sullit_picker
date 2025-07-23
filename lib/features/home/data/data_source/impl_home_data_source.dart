@@ -7,6 +7,7 @@ import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/home/data/data_source/home_data_source.dart';
 import 'package:flutter_tdd/features/home/data/model/available_for_order_model/available_for_order_model.dart';
+import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:injectable/injectable.dart';
 
@@ -50,5 +51,18 @@ class ImplHomeDataSource extends HomeDataSource{
       showLoader: true
     );
     return GenericHttpImpl<AvailableForOrderModel>()(model);
+  }
+
+  @override
+  Future<MyResult<List<LangModel>>> getLanguages(bool params) {
+    HttpRequestModel model = HttpRequestModel(
+        url: ApiNames.getLanguages,
+        responseType: ResType.list,
+        requestMethod: RequestMethod.get,
+      responseKey: (data) => data["data"],
+      toJsonFunc: (data) => List<LangModel>.from(data.map((e) => LangModel.fromJson(e))),
+      showLoader: true
+    );
+    return GenericHttpImpl<List<LangModel>>()(model);
   }
 }

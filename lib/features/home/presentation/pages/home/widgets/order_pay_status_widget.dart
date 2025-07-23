@@ -24,7 +24,7 @@ class OrderPayStatusWidget extends StatelessWidget {
             borderRadius: const BorderRadius.vertical(bottom: Radius.circular(8)),
           ),
           child: Text(
-           isPaid ? "Paid" : Translate.s.unpaid,
+           isPaid ? Translate.s.paid : Translate.s.unpaid,
             style: AppTextStyle.s16_w800(color: context.colors.white),
           ),
         ),

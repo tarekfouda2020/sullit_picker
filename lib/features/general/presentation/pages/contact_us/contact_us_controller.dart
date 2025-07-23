@@ -1,6 +1,5 @@
 import 'contact_us_imports.dart';
 import 'package:flutter_tdd/features/general/domain/requesters/socials_requester.dart';
-import 'package:flutter_tdd/features/general/data/models/social_contact_us_model/social_contact_us_model.dart';
 
 class ContactUsController {
 
@@ -37,7 +36,7 @@ class ContactUsController {
     final result = await getIt<GeneralRepositories>().contactUs(params);
     result.when(
       isSuccess: (msg) {
-        AppSnackBar.showSuccessSnackBar(msg ?? 'Message sent successfully');
+        AppSnackBar.showSuccessSnackBar(msg ?? Translate.s.message_sent_successfully);
         AutoRouter.of(context).maybePop();
       },
       isError: (error) {

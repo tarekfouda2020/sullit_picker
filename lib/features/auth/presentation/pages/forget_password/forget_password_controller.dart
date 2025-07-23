@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 
 import '../../../../../core/routes/router_imports.gr.dart';
 
@@ -24,7 +25,7 @@ class ForgetPasswordController {
       var result = await getIt<AuthRepositories>().forgotPassword(params);
       result.when(
           isSuccess: (data) {
-           AppSnackBar.showSuccessSnackBar("Password reset code sent to your email");
+           AppSnackBar.showSuccessSnackBar(Translate.of(context).password_reset_code_sent);
            AutoRouter.of(context).push(ConfirmResetPasswordPageRoute(email: emailController.text));
           },
           isError: (error) {

@@ -14,7 +14,14 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final controller = ProfilePageController();
+  final ProfilePageController controller = ProfilePageController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getLanguages();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: "",
         size: 50,
         actions: [
-          NotificationIconWidget(onTap: ()=>AutoRouter.of(context).push(const NotificationsPageRoute()))
+          NotificationIconWidget(onTap: ()=>AutoRouter.of(context).push(const NotificationsPageRoute())),
         ],
       ),
       body: ListView(

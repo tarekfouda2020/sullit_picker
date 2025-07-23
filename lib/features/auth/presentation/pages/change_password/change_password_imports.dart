@@ -12,3 +12,4 @@ export 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 export 'package:flutter_tdd/features/auth/presentation/widgets/app_slogan_widget.dart';
 export 'widgets/change_password_widgets_imports.dart';
 export 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
+export 'package:flutter_tdd/core/localization/translate.dart';

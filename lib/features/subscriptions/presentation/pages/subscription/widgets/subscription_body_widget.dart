@@ -26,7 +26,7 @@ class SubscriptionBodyWidget extends StatelessWidget {
             AgreeTermsConditions(controller: controller),
             Gaps.vGap41,
             AppTextButton.maxPrimary(
-              text: "Pay",
+              text: Translate.of(context).pay,
               onPressed: () => controller.paySubscription(context),
             )
           ]),

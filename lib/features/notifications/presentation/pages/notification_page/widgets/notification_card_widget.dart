@@ -34,7 +34,7 @@ class NotificationCardWidget extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: 'New Order ',
+                            text: '${Translate.of(context).new_order} ',
                             style: AppTextStyle.s14_w400(color: context.colors.textPrimary),
                           ),
                           TextSpan(

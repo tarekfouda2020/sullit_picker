@@ -11,7 +11,7 @@ class UserImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var userImage = context.select<UserCubit,String>((cubit) => cubit.state.model!.avatar ?? "");
+    var userImage = context.select<UserCubit,String>((cubit) => cubit.state.model?.avatar ?? "");
     return  GestureDetector(
       onTap: ()=> controller.selectImage(context),
       child: Visibility(

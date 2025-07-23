@@ -83,5 +83,4 @@ class ImlGeneralDataSource extends GeneralDataSource{
     );
     return await GenericHttpImpl<List<SocialContactUsModel>>()(model);
   }
-  
 }

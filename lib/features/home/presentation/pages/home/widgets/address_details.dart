@@ -42,11 +42,11 @@ class AddressDetails extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 3),
                     child: Text(
-                      'United Arab Emirates, Dubai',
+                      Translate.of(context).united_arab_emirates_dubai,
                       style: AppTextStyle.s14_w700(color: context.colors.black),
                     ),
                   ),
-                  const AddressDetailsItemWidget(title: 'Type', value: 'Business', gaps: 9,),
+                  AddressDetailsItemWidget(title: Translate.of(context).type, value: Translate.of(context).business, gaps: 9,),
                   AddressDetailsItemWidget(title: Translate.s.city, value: 'Al Qusais', gaps: 15,),
                   AddressDetailsItemWidget(title: Translate.s.street_name, value: 'Jumeirah', gaps: 8,),
                   AddressDetailsItemWidget(title: Translate.s.building_name, value: 'B 32', gaps: 9,),

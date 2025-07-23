@@ -20,7 +20,7 @@ class PlanBenefitsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Benefits&Policy :",
+          Text(Translate.of(context).benefits_policy,
           style: AppTextStyle.s12_w600(color: context.colors.black),
           ),
           Gaps.vGap8,

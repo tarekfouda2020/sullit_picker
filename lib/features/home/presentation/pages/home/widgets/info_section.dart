@@ -1,11 +1,15 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/home_sections_title_widget.dart';
 import 'package:flutter_tdd/res.dart';
 
@@ -27,6 +31,7 @@ class InfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String lang = context.select<DeviceCubit,String>((cubit) => cubit.state.model.locale.languageCode);
     return Column(
       children: [
         HomeSectionsTitleWidget(title: title),
@@ -58,11 +63,14 @@ class InfoSection extends StatelessWidget {
                 onTap: sendPaymentLink,
                 child: Row(
                   children: [
-                    Text("Send Payment Link",
+                    Text(Translate.of(context).send_payment_link,
                     style: AppTextStyle.s12_w700(color: context.colors.primary),
                     ),
                    Gaps.hGap5,
-                   SvgPicture.asset(Res.arrowForward)
+                   Transform.rotate(
+                     angle: lang==ApplicationConstants.langAR ? pi : 0,
+                       child: SvgPicture.asset(Res.arrowForward)
+                   )
                   ],
                 ),
               )

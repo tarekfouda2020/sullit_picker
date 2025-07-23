@@ -10,7 +10,7 @@ class WalletPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.colors.background,
       appBar: DefaultAppBar(
-        title: "Wallet",
+        title: Translate.of(context).wallet,
         bgColor: context.colors.background,
       ),
       body: Padding(
@@ -27,12 +27,12 @@ class WalletPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    "Transactions",
+                    Translate.of(context).transactions,
                     style: AppTextStyle.s20_w700(color: context.colors.textPrimary),
                   ),
                 ),
                 Text(
-                  "Last Week",
+                  Translate.of(context).last_week,
                   style: AppTextStyle.s14_w400(color: context.colors.gray3),
                 ),
                 Gaps.hGap6,

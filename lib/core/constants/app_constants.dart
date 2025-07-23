@@ -1,6 +1,7 @@
 
 class ApplicationConstants {
-  static const keyLanguage = 'language';
+  // static const keyLanguage = 'language';
+  static const langKey = 'lang';
   static const keyToken = 'token';
   static const headerBearer = 'Bearer';
   static const maxFileCount = 500;
@@ -9,6 +10,7 @@ class ApplicationConstants {
 // Languages
   static const langEN = 'en';
   static const langAR = 'ar';
+  static const langBN = 'bn';
 
   /// Pagination
   static const paginationLimit = 16;

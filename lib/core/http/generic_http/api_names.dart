@@ -2,49 +2,50 @@ import 'package:flutter_tdd/core/constants/app_config.dart';
 
 class ApiNames{
   static String baseUrl = AppConfig.instance.baseUrl;
+  static String appApi = AppConfig.instance.appApi;
 
   // auth routes
-  static const String login = "login";
-  static const String refreshToken = "auth";
-  static const String savePublicKey = "users/";
-  static const String updateUser = "users/";
+  static  String login = "${appApi}login";
+  static  String refreshToken = "${appApi}auth";
+  static  String savePublicKey = "${appApi}users/";
+  static  String updateUser = "${appApi}users/";
 
-  static const String register = "register";
-  static const String workTypes = "work-types";
-  static const String verifyPhone = "register/send-phone-verification";
-  static const String verifyEmail = "register/send-email-verification";
-  static const String confirmResetPassword = "password/reset";
+  static  String register = "${appApi}register";
+  static  String workTypes = "${appApi}work-types";
+  static  String verifyPhone = "${appApi}register/send-phone-verification";
+  static  String verifyEmail = "${appApi}register/send-email-verification";
+  static  String confirmResetPassword = "${appApi}password/reset";
 
-  static const String activeAccount = "otp/verify";
-  static const String resendCode = "ResendCode";
-  static const String switchNotify = "SwitchNotify";
-  static const String forgetPassword = "cabaf46ee69d7b8445a5d791";
-  static const String resetPassword = "A2q4mG84Z9rE2B38In4HALSWTwt9eQ5Slzq56Cod";
-  static const String privacyPolicy = "privacy-policy";
-  static const String updatePassword = "update-password?_method=patch";
-
+  static  String activeAccount = "${appApi}otp/verify";
+  static  String resendCode = "${appApi}ResendCode";
+  static  String switchNotify = "${appApi}SwitchNotify";
+  static  String resetPassword = "${appApi}A2q4mG84Z9rE2B38In4HALSWTwt9eQ5Slzq56Cod";
+  static  String privacyPolicy = "${appApi}privacy-policy";
+  static  String updatePassword = "u${appApi}pdate-password?_method=patch";
 
 
-  static const String passwordForgot = "password/forgot";
-  static const String logout = "logout";
+
+  static  String passwordForgot = "${appApi}password/forgot";
+  static  String logout = "${appApi}logout";
 
 
   /// subscriptions
-  static const String paymentMethods = "payment-methods";
-  static const String subscriptionPlan = "subscription/plan";
-  static const String subscribe = "subscription/subscribe";
-  static const String currentSubscription = "subscription/current";
+  static  String paymentMethods = "${appApi}payment-methods";
+  static  String subscriptionPlan = "${appApi}subscription/plan";
+  static  String subscribe = "${appApi}subscription/subscribe";
+  static  String currentSubscription = "${appApi}subscription/current";
 
   ///home
-  static const String profile = "profile";
-  static const String updateProfileImage = "update-avatar?_method=patch";
-  static const String toggleAvailability = "toggle-availability?_method=patch";
+  static  String profile = "${appApi}profile";
+  static  String updateProfileImage = "${appApi}update-avatar?_method=patch";
+  static  String toggleAvailability = "${appApi}toggle-availability?_method=patch";
 
   ///general
-  static const String socials = "socials";
-  static const String updateCoverage = "update-coverage?_method=patch";
-  static const String contactUs = "contact-us";
-  static const String terms = "terms";
+  static  const String socials = "socials";
+  static  String updateCoverage = "${appApi}update-coverage?_method=patch";
+  static  String contactUs = "${appApi}contact-us";
+  static  String terms = "${appApi}terms";
+  static const String getLanguages = "settings/languages";
 
 
 

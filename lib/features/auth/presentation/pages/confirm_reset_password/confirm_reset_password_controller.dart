@@ -28,11 +28,8 @@ class ConfirmResetPasswordController {
       final result = await getIt<AuthRepositories>().confirmResetPassword(_params);
       result.when(
         isSuccess: (msg) {
-          AppSnackBar.showSimpleToast(msg:msg ?? "Your password is reset.Please login",type: ToastType.success);
-          AutoRouter.of(context).pushAndPopUntil(
-            const LoginRegisterRoute(),
-            predicate: (route) => false
-          );
+          AppSnackBar.showSimpleToast(msg:msg ?? Translate.of(context).your_password_reset_please_login,type: ToastType.success);
+          AutoRouter.of(context).push(const LoginRegisterRoute());
         },
         isError: (error) {
           AppSnackBar.showErrorSnackBar( error: BaseError.unknown(msg: error.message));

@@ -1,13 +1,12 @@
 import 'package:flutter_tdd/core/errors/base_error.dart';
 import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.dart';
 import 'package:flutter_tdd/features/subscriptions/domain/entity/plan_payment_params.dart';
 import 'package:flutter_tdd/features/subscriptions/domain/repositories/subscription_repositories.dart';
 import 'package:flutter_tdd/features/subscriptions/domain/requester/current_subscription_requester.dart';
 import 'package:flutter_tdd/features/subscriptions/domain/requester/pay_methods_requester.dart';
-import 'package:flutter_tdd/features/subscriptions/presentation/pages/subscription/widgets/subscription_pay_sheet_widget.dart';
+import 'package:flutter_tdd/features/subscriptions/presentation/widgets/subscription_pay_sheet_widget.dart';
 
 import 'my_subscription_imports.dart';
 

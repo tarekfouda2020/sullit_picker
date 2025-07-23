@@ -11,7 +11,7 @@ class NotificationIconWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child:  Padding(
-        padding: const EdgeInsets.only(top: 8, right: 16),
+        padding: const EdgeInsetsDirectional.only(top: 8, end: 16),
         child: SvgPicture.asset(Res.outlineNotification),
       ),
     );

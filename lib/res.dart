@@ -72,6 +72,7 @@ class Res {
   static const String profileIcon = "assets/images/icons/profile_icon.svg";
   static const String menuIcon = "assets/images/icons/menu_icon.svg";
   static const String sulitIcon = "assets/images/icons/sulit_icon.png";
+  static const String appSlogan = "assets/images/Weideliver.svg";
 
   //auth
   static const String forgetPassBackground = "assets/images/forgetpass_background.png";

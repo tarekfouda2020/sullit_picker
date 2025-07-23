@@ -19,7 +19,7 @@ class WalletFilterWidget extends StatelessWidget {
           Gaps.hGap16,
           Expanded(
             child: Text(
-              'Filter By working store',
+              Translate.of(context).filter_by_working_store,
               style: AppTextStyle.s14_w400(color: context.colors.primary),
             ),
           ),

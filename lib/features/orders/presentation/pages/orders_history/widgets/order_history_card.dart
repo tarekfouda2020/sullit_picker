@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/features/orders/presentation/pages/orders_history/widgets/order_history_info_widget.dart';
 
 class OrderHistoryCardWidget extends StatelessWidget {
@@ -30,7 +31,7 @@ class OrderHistoryCardWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Receiving From ',
+                '${Translate.of(context).receiving_from} ',
                 style: AppTextStyle.s14_w400(color: context.colors.textSecondary),
               ),
               Text(
@@ -44,31 +45,31 @@ class OrderHistoryCardWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  'Total : 394 AED',
+                  '${Translate.of(context).total} : 394 AED',
                   style: AppTextStyle.s16_w700(color: context.colors.primary),
                 ),
               ),
               Text(
-                'Cash',
+                Translate.of(context).cash,
                 style: AppTextStyle.s14_w500(color: context.colors.textPrimary),
               ),
             ],
           ),
           Gaps.vGap12,
-          const OrderHistoryInfoWidget(
-            label: 'Acceptance Time :',
+          OrderHistoryInfoWidget(
+            label: Translate.of(context).acceptance_time,
             value: '12 May 2025 - 03:54 PM',
           ),
           Gaps.vGap4,
           if (!isFailed)
-            const OrderHistoryInfoWidget(
-              label: 'Delivered Time :',
+            OrderHistoryInfoWidget(
+              label: Translate.of(context).delivered_time,
               value: '12 May 2025 - 03:54 PM',
             ),
           if (isFailed)
-            const OrderHistoryInfoWidget(
-              label: 'Failed Reason :',
-              value: "User didn't respond",
+            OrderHistoryInfoWidget(
+              label: Translate.of(context).failed_reason,
+              value: Translate.of(context).user_didnt_respond,
             ),
         ],
       ),

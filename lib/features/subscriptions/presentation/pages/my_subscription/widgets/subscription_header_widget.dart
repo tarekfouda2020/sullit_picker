@@ -52,7 +52,7 @@ class SubscriptionHeaderWidget extends StatelessWidget {
           
           // Subtitle
           Text(
-            'Manage your subscription plan',
+            Translate.of(context).manage_subscription_plan,
             style: AppTextStyle.s14_w400(color: context.colors.white.withValues(alpha: 0.9)),
             textAlign: TextAlign.center,
           ),

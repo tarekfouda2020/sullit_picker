@@ -1,5 +1,6 @@
 
-import 'home_widgets_imports.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/home_imports.dart';
+
 
 class HomeHeaderWidget extends StatelessWidget {
   final HomeController controller;
@@ -7,6 +8,7 @@ class HomeHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userData = context.read<UserCubit>().state.model!;
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: Row(
@@ -39,21 +41,22 @@ class HomeHeaderWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${Translate.s.welcome} tarek",
+                        "${Translate.of(context).welcome} ${userData.name}",
                         style:  AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                       Gaps.vGap4,
                       Row(
                         children: [
                            Text(
-                            '#5647843',
+                            '#${userData.id}',
                             style: AppTextStyle.s14_w700(color: context.colors.primary),
                           ),
                           Gaps.hGap13,
-                         const Visibility(
-                           visible: true,
-                             replacement: DriverStatusWidget(isActive: false),
-                             child: DriverStatusWidget(isActive: true)
+                         ObsValueConsumer(
+                           observable: controller.availableForOrdersObs,
+                           builder: (context,value) {
+                             return DriverStatusWidget(isActive: value);
+                           }
                          )
                         ],
                       ),

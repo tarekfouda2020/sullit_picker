@@ -31,9 +31,9 @@ class ChangePasswordController {
   void saveNewPassword(BuildContext context){
    if(formKey.currentState!.validate()){
      if(oldPasswordController.text == newPasswordController.text){
-       AppSnackBar.showSimpleToast(msg:  "Current password and New password are same");
+       AppSnackBar.showSimpleToast(msg: Translate.of(context).current_and_new_password_same);
      }else{
-     AppSnackBar.showSuccessSnackBar("Password changed successfully");
+     AppSnackBar.showSuccessSnackBar(Translate.of(context).password_changed_successfully);
      AutoRouter.of(context).maybePop();
      }
    }
@@ -42,11 +42,10 @@ class ChangePasswordController {
   Future<void> callChangePassword(
       BuildContext context) async {
     ChangePasswordParams params = _changePasswordParams();
-    log(">>>>>>>>>>>>>>>>>>>>>>>>${params.toJson()}");
     await getIt.get<AuthRepositories>().sendChangePassword(params).then((result) {
       result.when(
         isSuccess: (data) {
-          AppSnackBar.showSimpleToast(msg: 'the password is reset successfully',type: ToastType.success);
+          AppSnackBar.showSimpleToast(msg: Translate.of(context).password_reset_successfully,type: ToastType.success);
           AutoRouter.of(context).maybePop();
 
         },

@@ -20,11 +20,11 @@ class NewOrderAlertWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(Res.notificationBill),
-            Text("New Order Alert",
+            Text(Translate.of(context).new_order_alert,
             style: AppTextStyle.s28_w800(color: context.colors.primary),
             ),
             Gaps.vGap38,
-            AppTextButton.maxPrimary(text: "View Order",onPressed: ()=>Navigator.pop(context),),
+            AppTextButton.maxPrimary(text: Translate.of(context).view_order,onPressed: ()=>Navigator.pop(context),),
             Gaps.vGap10
           ],
         ),

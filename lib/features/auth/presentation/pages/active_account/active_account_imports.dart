@@ -10,6 +10,7 @@ import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/auth/presentation/widgets/auth_app_bar_widget.dart';
 import 'package:flutter_tdd/features/auth/presentation/widgets/auth_header_title_widget.dart';
 import 'package:flutter_tdd/features/auth/presentation/widgets/pin_field_widget.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 
 import 'widgets/active_account_widgets_imports.dart';
 

@@ -13,7 +13,7 @@ class ChangePasswordFormWidget extends StatelessWidget {
           spacing: 5,
           crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AuthSectionTitleWidget(title: "Current Password"),
+        AuthSectionTitleWidget(title: Translate.of(context).current_password),
         ObsValueConsumer(
             observable: controller.oldPasswordVisibleObs,
             builder: (context,isVisible) {
@@ -37,7 +37,7 @@ class ChangePasswordFormWidget extends StatelessWidget {
               );
             }
         ),
-        const AuthSectionTitleWidget(title: "New Password"),
+        AuthSectionTitleWidget(title: Translate.of(context).new_password),
         ObsValueConsumer(
             observable: controller.newPasswordVisibleObs,
             builder: (context,isVisible) {
@@ -61,7 +61,7 @@ class ChangePasswordFormWidget extends StatelessWidget {
               );
             }
         ),
-        const AuthSectionTitleWidget(title: "Confirm New Password"),
+        AuthSectionTitleWidget(title: Translate.of(context).confirm_new_password),
         ObsValueConsumer(
             observable: controller.confirmPasswordVisibleObs,
             builder: (context,isVisible) {

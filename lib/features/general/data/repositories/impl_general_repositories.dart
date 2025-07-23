@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
@@ -40,6 +39,5 @@ class ImplGeneralRepositories extends GeneralRepositories {
   Future<MyResult<List<SocialContactUsModel>>> getSocials(bool param) async {
     return await dataSource.getSocials(param);
   }
-
 
 }

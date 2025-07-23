@@ -1,10 +1,10 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 
-import '../../../../../auth/presentation/pages/login_register/login_register_imports.dart';
 import '../../profile_page/profile_page_imports.dart';
 
 class SwitchNotificationWidget extends StatelessWidget {
@@ -13,22 +13,25 @@ class SwitchNotificationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ObsValueConsumer(
-      observable: controller.availableForOrdersObs,
-      builder: (context, online) {
-        return FlutterSwitch(
-          inactiveColor: context.colors.gray58,
-          activeColor: context.colors.primary,
-          toggleColor: context.colors.lightPrimary,
-          inactiveToggleColor: context.colors.white,
-          toggleSize: 16,
-          width: 30,
-          height: 18,
-          padding: 1,
-          value: online,
-          onToggle: (newValue)=> controller.updateAvailabilityStatus(context),
-        );
-      },
+    String lang = context.select<DeviceCubit,String>((cubit) => cubit.state.model.locale.languageCode);
+    return Directionality(
+      textDirection:  TextDirection.rtl,
+      child: FlutterSwitch(
+        inactiveColor: context.colors.gray58,
+        activeColor: context.colors.primary,
+        toggleColor: context.colors.lightPrimary,
+        inactiveToggleColor: context.colors.white,
+        toggleSize: 16,
+        width: 30,
+        height: 18,
+        padding: 1,
+        value: controller.availableForOrdersObs.getValue(),
+        onToggle: (newValue)=> controller.updateAvailabilityStatus(context),
+      ),
     );
   }
+
+
+
+
 }

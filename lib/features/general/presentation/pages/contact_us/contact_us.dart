@@ -24,7 +24,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: context.colors.background,
-        appBar: const DefaultAppBar(title: "Contact Us"),
+        appBar: DefaultAppBar(title: Translate.of(context).contact_us),
         body: SingleChildScrollView(
           padding: Dimens.paddingH20Px,
           child: Column(
@@ -33,7 +33,7 @@ class _ContactUsPageState extends State<ContactUsPage> {
               ContactUsFormWidget(controller: controller),
               Gaps.vGap28,
               AppTextButton.maxPrimary(
-                text: "Send",
+                text: Translate.of(context).send,
                 onPressed: () => controller.sendContactUs(context),
               ),
               Gaps.vGap64,

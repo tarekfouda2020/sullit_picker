@@ -1,6 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
 
 import 'driver_wallet_balance_widget.dart';
 import 'profile_page_widgets_imports.dart';
@@ -26,8 +24,8 @@ class DriverWorkInfo extends StatelessWidget {
             context,
             child: Row(
               children: [
-                const Text("Work For :",
-                style: AppTextStyle.s12_w400(color: Color(0xff2E353A)),
+                Text(Translate.of(context).work_for,
+                style: const AppTextStyle.s12_w400(color: Color(0xff2E353A)),
                 ),
                 Gaps.hGap7,
                 Expanded(

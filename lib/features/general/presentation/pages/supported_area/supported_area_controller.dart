@@ -1,15 +1,6 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tdd/core/errors/base_error.dart';
-import 'package:flutter_tdd/core/helpers/loading_helper.dart';
-import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
-import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
-import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
-import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
-import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
-import 'package:flutter_tdd/features/general/domain/entity/update_coverage_area_params.dart';
-import 'package:flutter_tdd/features/general/domain/repositories/general_repositories.dart';
-import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_imports.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'supported_area_imports.dart';
 
 class SupportedAreaController {
   late final GoogleMapController mapController;
@@ -43,7 +34,7 @@ class SupportedAreaController {
       showMap.setValue(true);
     } else {
       AutoRouter.of(context).maybePop();
-      AppSnackBar.showSimpleToast(type: ToastType.error, msg: 'Please enable location permission');
+      AppSnackBar.showSimpleToast(type: ToastType.error, msg: Translate.of(context).please_enable_location_permission);
     }
   }
 
@@ -90,7 +81,7 @@ class SupportedAreaController {
         saveDataAndRouteToSubscription(context,data);
       },
       isError: (error) {
-        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: "Something went wrong"));
+        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).something_went_wrong));
         AutoRouter.of(context).maybePop();
       },
     );
@@ -120,7 +111,7 @@ class SupportedAreaController {
         AutoRouter.of(context).maybePop();
       },
       isError: (error) {
-        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: "Failed to update location"));
+        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).failed_to_update_location));
       },
     );
   }

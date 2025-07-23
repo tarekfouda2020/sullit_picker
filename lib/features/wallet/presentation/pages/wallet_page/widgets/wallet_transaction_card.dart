@@ -24,7 +24,7 @@ class WalletTransactionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            type == WalletTransactionType.collected ? 'Collected' : 'Deposited',
+            type == WalletTransactionType.collected ? Translate.of(context).collected : Translate.of(context).deposited,
             style: AppTextStyle.s14_w600(
               color: type == WalletTransactionType.collected ? context.colors.green : context.colors.primary,
             ),
@@ -41,12 +41,12 @@ class WalletTransactionCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  type == WalletTransactionType.collected ? 'Order no : #545757' : 'Transaction no : #545757',
+                  type == WalletTransactionType.collected ? '${Translate.of(context).order_no} : #545757' : '${Translate.of(context).transaction_no} : #545757',
                   style: AppTextStyle.s14_w700(color: context.colors.textPrimary),
                 ),
               ),
               Text(
-                "1 Hour Ago",
+                Translate.of(context).one_hour_ago,
                 style: AppTextStyle.s13_w400(color: context.colors.gray3),
               ),
             ],

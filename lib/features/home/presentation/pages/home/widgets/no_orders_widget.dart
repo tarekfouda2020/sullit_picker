@@ -27,7 +27,7 @@ class NoOrdersWidget extends StatelessWidget {
                   width: 123, height: 152,
                   ),
                   Text(
-                      "You Have No Orders Now",
+                      Translate.of(context).you_have_no_orders_now,
                       style: AppTextStyle.s16_w400(color: context.colors.primary)
                   )
                 ],

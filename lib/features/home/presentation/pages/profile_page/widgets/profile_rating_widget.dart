@@ -8,9 +8,10 @@ class ProfileRatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userData = context.read<UserCubit>().state.model;
     return RatingBar.builder(
-      initialRating: 3,
-      minRating: 1,
+      initialRating: userData!.rate ?? 0.0,
+      minRating: 0,
       glow: false,
       ignoreGestures: true,
       direction: Axis.horizontal,

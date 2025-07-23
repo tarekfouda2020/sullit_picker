@@ -1,9 +1,15 @@
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -37,6 +43,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    String lang = context.select<DeviceCubit,String>((cubit) => cubit.state.model.locale.languageCode);
     return AppBar(
       title: Text(
         title,
@@ -54,7 +61,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
           Visibility(
             visible: showBack ?? true,
             child: IconButton(
-              icon: SvgPicture.asset(Res.shortArrow),
+              icon: Transform.rotate(
+                angle: lang == ApplicationConstants.langAR ? pi : 0,
+                  child: SvgPicture.asset(Res.shortArrow)),
               onPressed: onPressBack ?? () => AutoRouter.of(context).maybePop(),
             ),
           ),

@@ -30,7 +30,7 @@ class ReportBottomSheetWidget extends StatelessWidget {
               children: [
                 Gaps.hGap15,
                 Text(
-                  "Report a problem",
+                  Translate.of(context).report_a_problem,
                   style: AppTextStyle.s20_w700(color: context.colors.black),
                 ),
                 GestureDetector(
@@ -62,7 +62,7 @@ class ReportBottomSheetWidget extends StatelessWidget {
                           validate: (value) => value?.noValidate(),
                           radius: Dimens.borderRadius20PX,
                           fillColor: context.colors.white,
-                          hint: "Write Reason here",
+                          hint: Translate.of(context).write_reason_here,
                           hintColor: context.colors.stone,
                           enableBorderColor: context.colors.borderLight,
                           hintSize: 12,
@@ -75,7 +75,7 @@ class ReportBottomSheetWidget extends StatelessWidget {
                             child: Gaps.vGap26
                         ),
                         AppTextButton.maxPrimary(
-                          text: "Send",
+                          text: Translate.of(context).send,
                         onPressed: ()=> Navigator.pop(context),
                         )
                       ],

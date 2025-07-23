@@ -1,12 +1,29 @@
 
+import 'package:flutter_tdd/core/constants/app_constants.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/helpers/utilities.dart';
+import 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.dart';
+import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
+import 'package:flutter_tdd/features/home/domain/requester/languages_requester.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/lang_bottom_sheet_widget.dart';
+
 import 'profile_page_imports.dart';
 
 
 class ProfilePageController {
 
+  final LanguagesRequester langRequester = LanguagesRequester();
 
   final ObsValue<String> profileImageObs = ObsValue<String>.withInit("");
   File? pickedImage;
+
+
+  Future<void> getLanguages() async{
+    langRequester.request(fromRemote: false);
+    await langRequester.request();
+    setDefaultLang();
+  }
+
 
   Future<void> selectImage(BuildContext context) async{
     List<File>? result = await getIt<AppFileService>().pickFile(context,fileType: FileType.image,allowMultiple: false);
@@ -69,7 +86,7 @@ class ProfilePageController {
       isSuccess: (msg) async{
         await getIt<UserServicesHelper>().clearCashAndRoute(context);
         AppSnackBar.showSimpleToast(
-          msg: msg ?? "Logged out successfully",
+          msg: msg ?? Translate.s.logged_out_successfully,
           type: ToastType.success,
           gravity: ToastGravity.BOTTOM
         );
@@ -111,6 +128,45 @@ Future<void> updateUserImage(BuildContext context)async{
         },
         isError: (error) {},
     );
+}
+
+
+  void showLangSheet(BuildContext context){
+    AppBottomSheets.showScrollableBody(
+      context: context,
+      builder: (context) {
+        return LangBottomSheetWidget(controller: this);
+      },
+    );
+  }
+
+
+void changeLang(LangModel model,BuildContext context){
+    String code = model.code;
+    if(model.code == "sa"){
+      code = ApplicationConstants.langAR;
+    }
+    if(model.code == "bd"){
+      code = ApplicationConstants.langBN;
+    }
+    List<LangModel> languages = langRequester.data!;
+    for(var item in languages){
+      item.isDefault = false;
+    }
+    model.isDefault = true;
+    getIt<Utilities>().changeLanguage(code,context);
+    Navigator.pop(context);
+}
+
+void setDefaultLang()async{
+    String? currentLang = GlobalState.instance.get(ApplicationConstants.langKey);
+    List<LangModel> languages = langRequester.data!;
+    for(var lang in languages){
+      if(lang.code == (currentLang ?? "en")){
+        lang.isDefault = true;
+      }
+    }
+    langRequester.refresh();
 }
 
 

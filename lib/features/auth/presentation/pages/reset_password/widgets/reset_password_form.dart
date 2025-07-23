@@ -2,7 +2,7 @@ part of'reset_password_widgets_imports.dart';
 
 class ResetPasswordForm extends StatelessWidget {
   final ResetPasswordController controller;
-  const ResetPasswordForm({Key? key,required this.controller}) : super(key: key);
+  const ResetPasswordForm({super.key,required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ResetPasswordForm extends StatelessWidget {
           action: TextInputAction.next,
           controller: controller.password,
           validate: (value) => value?.validatePassword(),
-          label: "New password",
+          label: Translate.of(context).new_password,
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12.0),
             child: SvgPicture.asset(Res.password),
@@ -25,7 +25,7 @@ class ResetPasswordForm extends StatelessWidget {
           type: TextInputType.text,
           action: TextInputAction.done,
           validate: (value) => value?.validatePasswordConfirm(pass: controller.password.text),
-          label: "Repeat new password",
+          label: Translate.of(context).repeat_new_password,
           margin: const EdgeInsets.only(top: 20),
           controller: controller.confirmPassword,
           prefixIcon: Padding(

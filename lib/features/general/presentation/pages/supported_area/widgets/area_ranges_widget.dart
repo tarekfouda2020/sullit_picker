@@ -1,6 +1,5 @@
 
 import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/general/presentation/pages/supported_area/supported_area_controller.dart';
 
@@ -18,7 +17,7 @@ class AreaRangesWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Cover Range around the pin',
+            Translate.of(context).cover_range_around_pin,
             style: AppTextStyle.s16_w500(color: context.colors.black),
           ),
           Gaps.vGap16,
@@ -49,7 +48,13 @@ class AreaRangesWidget extends StatelessWidget {
                         CustomRadioWidget(selected: selected,size: 19,),
                         Gaps.hGap8,
                         Text(
-                          '$range KM',
+                          '$range ',
+                          style: AppTextStyle.s14_w600(
+                            color: selected ? context.colors.primary : context.colors.gray58,
+                          ),
+                        ),
+                        Text(
+                          Translate.of(context).km,
                           style: AppTextStyle.s14_w600(
                             color: selected ? context.colors.primary : context.colors.gray58,
                           ),
@@ -64,8 +69,8 @@ class AreaRangesWidget extends StatelessWidget {
           Gaps.vGap24,
           AppTextButton.maxCustom(
             text: controller.fromProfile
-                ?"Save"
-                :'Confirm',
+                ? Translate.of(context).save
+                : Translate.of(context).confirm,
             onPressed: () =>  controller.confirmSaveRanges(context),
           ),
           Gaps.vGap26,

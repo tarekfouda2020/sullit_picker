@@ -20,7 +20,7 @@ class PageContentWidget extends StatelessWidget {
         OrderPayStatusWidget(isPaid: status == OrderStatusEnum.delivered),
         Gaps.vGap20,
         InfoSection(
-          title: Translate.s.customer_name,
+          title: Translate.of(context).customer_name,
           content: 'Mahmoud Mohamed',
           iconPath: Res.personIcon,
         ),

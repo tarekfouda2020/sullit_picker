@@ -23,7 +23,7 @@ class _OrdersHistoryPageState extends State<OrdersHistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar:  DefaultAppBar(title: "Orders History",bgColor: context.colors.background,),
+      appBar:  DefaultAppBar(title: Translate.of(context).orders_history,bgColor: context.colors.background,),
       body: Padding(
         padding:  Dimens.paddingH20Px,
         child: Column(
@@ -34,7 +34,7 @@ class _OrdersHistoryPageState extends State<OrdersHistoryPage> {
             Row(
               children: [
                 Text(
-                  'Last Week',
+                  Translate.of(context).last_week,
                   style: AppTextStyle.s14_w400(color: context.colors.gray3),
                 ),
                 Gaps.hGap6,

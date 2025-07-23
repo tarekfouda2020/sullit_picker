@@ -37,7 +37,7 @@ class _ActiveAccountState extends State<ActiveAccount> {
         children: [
           RichText(text: TextSpan(
             children: [
-              TextSpan(text:"A code has been sent to ",
+              TextSpan(text: Translate.of(context).code_sent_to + " ",
                 style: AppTextStyle.s16_w400(color: context.colors.black),
               ),
               TextSpan(text:widget.emailOrPhone,

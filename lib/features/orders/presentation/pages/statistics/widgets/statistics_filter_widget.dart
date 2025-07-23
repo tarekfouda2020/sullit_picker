@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/features/orders/presentation/pages/statistics/statistics_page_controller.dart';
 import 'package:flutter_tdd/res.dart';
 
@@ -27,7 +28,7 @@ class StatisticsFilterWidget extends StatelessWidget {
           Gaps.hGap8,
           Expanded(
             child: Text(
-              'Filter By working store',
+              Translate.of(context).filter_by_working_store,
               style: AppTextStyle.s14_w400(color: context.colors.primary),
             ),
           ),

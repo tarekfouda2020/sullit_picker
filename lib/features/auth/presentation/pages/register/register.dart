@@ -62,17 +62,17 @@ class _RegisterState extends State<Register> {
                   ),
                   Gaps.vGap16,
                   Text(
-                    'Weideliver',
+                    Translate.of(context).weideliver,
                     style: AppTextStyle.s24_w700(color: context.colors.primary),
                   ),
                   Gaps.vGap8,
                   Text(
-                    'Register',
+                    Translate.of(context).label_register,
                     style: AppTextStyle.s18_w700(color: Colors.black),
                   ),
                   Gaps.vGap8,
                   Text(
-                    'Enter your details to register',
+                    Translate.of(context).register_subtitle,
                     style: AppTextStyle.s14_w400(color: Colors.grey),
                   ),
                 ],
@@ -99,7 +99,7 @@ class _RegisterState extends State<Register> {
                       ),
                       child: Center(
                         child: Text(
-                          'Login',
+                          Translate.of(context).label_Login,
                           style: AppTextStyle.s16_w400(color: Colors.grey),
                         ),
                       ),
@@ -118,10 +118,10 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     child: Center(
-                      child: Text(
-                        'Register',
-                        style: AppTextStyle.s16_w700(color: context.colors.primary),
-                      ),
+                                              child: Text(
+                          Translate.of(context).label_register,
+                          style: AppTextStyle.s16_w700(color: context.colors.primary),
+                        ),
                     ),
                   ),
                 ),
@@ -132,16 +132,16 @@ class _RegisterState extends State<Register> {
             
             // Form Fields
             RegisterTextFieldWidget(
-              label: 'User Name',
-              hint: 'Enter User Name',
+              label: Translate.of(context).user_name,
+              hint: Translate.of(context).enter_user_name,
               controller: controller.userNameController,
             ),
             
             Gaps.vGap16,
             
             RegisterTextFieldWidget(
-              label: 'E-mail',
-              hint: 'Enter Your E-mail',
+              label: Translate.of(context).e_mail,
+              hint: Translate.of(context).enter_your_e_mail,
               controller: controller.emailController,
               keyboardType: TextInputType.emailAddress,
             ),
@@ -149,8 +149,8 @@ class _RegisterState extends State<Register> {
             Gaps.vGap16,
             
             RegisterTextFieldWidget(
-              label: 'Verify Your E-mail',
-              hint: 'Verify Your E-mail',
+              label: Translate.of(context).verify_your_e_mail,
+              hint: Translate.of(context).verify_your_e_mail,
               controller: controller.verifyEmailController,
               keyboardType: TextInputType.emailAddress,
             ),
@@ -165,7 +165,7 @@ class _RegisterState extends State<Register> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'ID',
+                        Translate.of(context).id,
                         style: AppTextStyle.s14_w400(color: Colors.black),
                       ),
                       Gaps.vGap8,
@@ -185,7 +185,7 @@ class _RegisterState extends State<Register> {
                       ),
                       Gaps.vGap4,
                       Text(
-                        'ADD ID',
+                        Translate.of(context).attach_id,
                         style: AppTextStyle.s12_w400(color: Colors.grey),
                         textAlign: TextAlign.center,
                       ),
@@ -198,7 +198,7 @@ class _RegisterState extends State<Register> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Driving license',
+                        Translate.of(context).driving_licensee,
                         style: AppTextStyle.s14_w400(color: Colors.black),
                       ),
                       Gaps.vGap8,
@@ -218,7 +218,7 @@ class _RegisterState extends State<Register> {
                       ),
                       Gaps.vGap4,
                       Text(
-                        'ADD Driving license',
+                        Translate.of(context).attach_driving_licensee,
                         style: AppTextStyle.s12_w400(color: Colors.grey),
                         textAlign: TextAlign.center,
                       ),
@@ -232,7 +232,7 @@ class _RegisterState extends State<Register> {
             
             // Work Type Selection
             Text(
-              'How you want to work ?',
+              Translate.of(context).how_you_want_to_work,
               style: AppTextStyle.s16_w700(color: Colors.black),
             ),
             
@@ -243,21 +243,21 @@ class _RegisterState extends State<Register> {
               builder: (context, workTypeValue) => Column(
                 children: [
                   RegisterWorkTypeOptionWidget(
-                    type: 'work at one store only',
+                    type: Translate.of(context).work_at_one_store_only,
                     selectedType: workTypeValue,
-                    onTap: () => controller.selectWorkType('work at one store only'),
+                    onTap: () => controller.selectWorkType(Translate.of(context).work_at_one_store_only),
                   ),
                   Gaps.vGap12,
                   RegisterWorkTypeOptionWidget(
-                    type: 'work at many stores',
+                    type: Translate.of(context).work_at_many_stores,
                     selectedType: workTypeValue,
-                    onTap: () => controller.selectWorkType('work at many stores'),
+                    onTap: () => controller.selectWorkType(Translate.of(context).work_at_many_stores),
                   ),
                   Gaps.vGap12,
                   RegisterWorkTypeOptionWidget(
-                    type: 'work as a freelance',
+                    type: Translate.of(context).work_as_a_freelance,
                     selectedType: workTypeValue,
-                    onTap: () => controller.selectWorkType('work as a freelance'),
+                    onTap: () => controller.selectWorkType(Translate.of(context).work_as_a_freelance),
                   ),
                 ],
               ),
@@ -266,31 +266,31 @@ class _RegisterState extends State<Register> {
             Gaps.vGap24,
             
             // Password Fields
-            ObsValueConsumer(
-              observable: controller.passwordVisible,
-              builder: (context, isVisible) => RegisterTextFieldWidget(
-                label: 'Password',
-                hint: 'Enter Your Password',
-                controller: controller.passwordController,
-                isPassword: true,
-                isPasswordVisible: isVisible,
-                onTogglePassword: controller.togglePasswordVisibility,
+                          ObsValueConsumer(
+                observable: controller.passwordVisible,
+                builder: (context, isVisible) => RegisterTextFieldWidget(
+                  label: Translate.of(context).password,
+                  hint: Translate.of(context).enter_your_password,
+                  controller: controller.passwordController,
+                  isPassword: true,
+                  isPasswordVisible: isVisible,
+                  onTogglePassword: controller.togglePasswordVisibility,
+                ),
               ),
-            ),
             
             Gaps.vGap16,
             
-            ObsValueConsumer(
-              observable: controller.confirmPasswordVisible,
-              builder: (context, isVisible) => RegisterTextFieldWidget(
-                label: 'Confirm Password',
-                hint: 'Enter Your Password',
-                controller: controller.confirmPasswordController,
-                isPassword: true,
-                isPasswordVisible: isVisible,
-                onTogglePassword: controller.toggleConfirmPasswordVisibility,
+                          ObsValueConsumer(
+                observable: controller.confirmPasswordVisible,
+                builder: (context, isVisible) => RegisterTextFieldWidget(
+                  label: Translate.of(context).confirm_password,
+                  hint: Translate.of(context).enter_your_password,
+                  controller: controller.confirmPasswordController,
+                  isPassword: true,
+                  isPasswordVisible: isVisible,
+                  onTogglePassword: controller.toggleConfirmPasswordVisibility,
+                ),
               ),
-            ),
             
             Gaps.vGap32,
             
@@ -310,10 +310,10 @@ class _RegisterState extends State<Register> {
                   ),
                   child: loading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : Text(
-                          'Register',
-                          style: AppTextStyle.s16_w700(color: Colors.white),
-                        ),
+                                              : Text(
+                            Translate.of(context).label_register,
+                            style: AppTextStyle.s16_w700(color: Colors.white),
+                          ),
                 ),
               ),
             ),

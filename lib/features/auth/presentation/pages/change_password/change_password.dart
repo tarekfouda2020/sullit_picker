@@ -29,10 +29,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                 padding: EdgeInsets.only(bottom: 20),
                 child: AppSloganWidget(),
               ),
-              Text("Change Password",style: AppTextStyle.s22_w700(color: context.colors.black),),
+              Text(Translate.of(context).change_password,style: AppTextStyle.s22_w700(color: context.colors.black),),
               ChangePasswordFormWidget(controller: controller),
               AppTextButton.maxPrimary(
-                text: "Save",
+                text: Translate.of(context).save,
                 onPressed: ()=> controller.callChangePassword(context),
               ),
               Gaps.vGap30,

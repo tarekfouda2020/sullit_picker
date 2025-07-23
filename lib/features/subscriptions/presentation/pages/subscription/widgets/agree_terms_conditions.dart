@@ -15,7 +15,7 @@ class AgreeTermsConditions extends StatelessWidget {
                 onTap: () => controller.toggleTermsAcceptance(),
                 child: Container(
                   width: 20, height: 20,
-                  padding: EdgeInsetsDirectional.all(2),
+                  padding: const EdgeInsetsDirectional.all(2),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
@@ -38,12 +38,12 @@ class AgreeTermsConditions extends StatelessWidget {
             },
         ),
         Gaps.hGap6,
-        Text("Agree",
+        Text(Translate.of(context).agree,
         style: AppTextStyle.s14_w400(color: context.colors.gray58),
         ),
         GestureDetector(
-          onTap: (){},
-          child: Text("Terms & Conditions",
+          onTap: ()=>AutoRouter.of(context).push(const TermsConditionsPageRoute()),
+          child: Text(Translate.of(context).terms_conditions,
             style: AppTextStyle.s14_w400(color: context.colors.black),
           ),
         ),

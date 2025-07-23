@@ -24,3 +24,4 @@ export 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_c
 export 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 export 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 export 'package:fluttertoast/fluttertoast.dart';
+export 'package:flutter_tdd/core/localization/translate.dart';

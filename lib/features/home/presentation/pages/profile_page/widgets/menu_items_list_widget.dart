@@ -1,3 +1,6 @@
+import 'package:flutter_tdd/core/constants/app_constants.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
+
 import 'profile_page_widgets_imports.dart';
 
 class MenuItemsListWidget extends StatelessWidget {
@@ -15,57 +18,60 @@ class MenuItemsListWidget extends StatelessWidget {
         Gaps.vGap20,
         MenuItemWidget(
           icon: Res.lockIcon,
-          title: 'Change Password',
+          title: Translate.of(context).change_password,
           onTap: () => controller.navigateToChangePassword(context),
         ),
         MenuItemWidget(
           icon: Res.orderHistory,
-          title: 'Orders History',
+          title: Translate.of(context).orders_history,
           onTap: () => controller.navigateToOrdersHistory(context),
         ),
         MenuItemWidget(
           icon: Res.mapIcon,
-          title: 'Supported Geographical area',
+          title: Translate.of(context).supported_geographical_area,
           onTap: () => controller.routeToSupportedArea(context),
         ),
         MenuItemWidget(
           icon: Res.ordersStatistics,
-          title: 'My Statistics',
+          title: Translate.of(context).my_statistics,
           onTap: () => controller.navigateToStatistics(context),
         ),
         MenuItemWidget(
           icon: Res.subscriptionIcon,
-          title: 'My subscription',
+          title: Translate.of(context).my_subscription,
           onTap: () => controller.navigateToMySubscription(context),
         ),
         MenuItemWidget(
           icon: Res.globalIcon,
-          title: 'Language',
-          onTap: () {},
-          endTitle: "EN",
+          title: Translate.of(context).language,
+          onTap: () => controller.showLangSheet(context),
+          endTitle: currentLang.toUpperCase(),
         ),
         MenuItemWidget(
           icon: Res.contactUs,
-          title: "Contact Us",
+          title: Translate.of(context).contact_us,
           onTap: () => controller.navigateToContactUs(context),
         ),
         MenuItemWidget(
           icon: Res.termsConditions,
-          title: 'Terms&Conditions',
+          title: Translate.of(context).terms_conditions,
           onTap: () => controller.navigateToTermsConditions(context),
         ),
         Gaps.vGap4,
         MenuItemWidget(
           icon: Res.privacyPolicy,
-          title: 'Privacy Policy',
+          title: Translate.of(context).privacy_policy,
           onTap: () => controller.navigateToPrivacyPolicy(context),
         ),
         Gaps.vGap22,
-        AppTextButton.maxPrimary(text: "Logout",
+        AppTextButton.maxPrimary(text: Translate.of(context).logout,
         onPressed: () => controller.logout(context),
         ),
         Gaps.vGap20
       ],
     );
   }
+
+  String get currentLang => GlobalState.instance.get(ApplicationConstants.langKey);
+
 } 

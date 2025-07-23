@@ -25,7 +25,7 @@ class DriverStatusWidget extends StatelessWidget {
        ),
        Gaps.hGap6,
        Text(
-        isActive ? Translate.s.available : Translate.s.out_of_delivery,
+        isActive ? Translate.of(context).available : Translate.s.out_of_delivery,
          style:  AppTextStyle.s12_w400(
              color: isActive
              ?context.colors.green

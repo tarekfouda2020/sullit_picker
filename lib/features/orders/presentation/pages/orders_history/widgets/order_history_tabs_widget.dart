@@ -24,7 +24,7 @@ class OrderHistoryTabsWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: AppTextButton.minCustom(
-                    text: "Completed Orders",
+                    text: Translate.of(context).completed_orders,
                     onPressed: ()=> controller.switchTab(0),
                     maxHeight: 34,
                     borderRadius: Dimens.borderRadius30PX,
@@ -38,7 +38,7 @@ class OrderHistoryTabsWidget extends StatelessWidget {
               ),
               Expanded(
                 child: AppTextButton.minCustom(
-                    text: "Failed Orders",
+                    text: Translate.of(context).failed_orders,
                     borderRadius: Dimens.borderRadius30PX,
                     maxHeight: 34,
                     onPressed: ()=> controller.switchTab(1),

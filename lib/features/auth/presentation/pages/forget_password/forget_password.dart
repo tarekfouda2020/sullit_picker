@@ -31,7 +31,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               ),
               Gaps.vGap12,
               Text(
-                "Enter your e-mail to recover the password",
+                Translate.of(context).enter_email_to_recover,
                 style: AppTextStyle.s16_w400(color: context.colors.gray58),
               ),
               Gaps.vGap44,
@@ -43,7 +43,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               ForgetFormWidget(controller: controller),
               Gaps.vGap28,
               LoadingButton(
-                  title: Translate.s.send,
+                  title: Translate.of(context).send,
                   onTap: ()=> controller.resetCode(context),
                   btnKey: controller.loadingButtonKey,
                 margin: EdgeInsets.zero,
@@ -52,7 +52,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               GestureDetector(
                 onTap: () => AutoRouter.of(context).maybePop(),
                 child: Text(
-                  Translate.s.back_to_login,
+                  Translate.of(context).back_to_login,
                   style: AppTextStyle.s16_w700(color: context.colors.primary),
                 ),
               ),

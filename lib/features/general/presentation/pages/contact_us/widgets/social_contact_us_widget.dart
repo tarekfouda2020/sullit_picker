@@ -23,7 +23,7 @@ class SocialContactUsWidget extends StatelessWidget {
                   if(socials[index].url.isNotEmpty) {
                     getIt<Utilities>().launchURL( url:socials[index].url);
                   }else{
-                    AppSnackBar.showWarningSnackBar(message: "Not available yet");
+                    AppSnackBar.showWarningSnackBar(message: Translate.of(context).not_available_yet);
                   }
                 },
                 child: Container(

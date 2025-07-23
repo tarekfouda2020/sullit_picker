@@ -20,7 +20,7 @@ class _MySubscriptionPageState extends State<MySubscriptionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: const DefaultAppBar(title: "My Subscription",),
+      appBar: DefaultAppBar(title: Translate.of(context).my_subscription,),
       body: RequesterConsumer<CurrentSubscriptionModel>(
           requester: controller.currentPlanRequester,
           successBuilder: (context, data, isLoading) {

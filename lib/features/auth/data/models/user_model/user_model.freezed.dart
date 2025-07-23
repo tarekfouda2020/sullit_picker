@@ -28,6 +28,8 @@ mixin _$UserModel {
   String get lng => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
+  @JsonKey(name: "avg_rate")
+  double? get rate => throw _privateConstructorUsedError;
   @JsonKey(name: "token_type")
   String get tokenType => throw _privateConstructorUsedError;
   @JsonKey(name: "email_is_active")
@@ -81,6 +83,7 @@ abstract class $UserModelCopyWith<$Res> {
       String lng,
       String phone,
       String? avatar,
+      @JsonKey(name: "avg_rate") double? rate,
       @JsonKey(name: "token_type") String tokenType,
       @JsonKey(name: "email_is_active") bool emailIsActive,
       @JsonKey(name: "country_code") String countryCode,
@@ -120,6 +123,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? lng = null,
     Object? phone = null,
     Object? avatar = freezed,
+    Object? rate = freezed,
     Object? tokenType = null,
     Object? emailIsActive = null,
     Object? countryCode = null,
@@ -168,6 +172,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      rate: freezed == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double?,
       tokenType: null == tokenType
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
@@ -245,6 +253,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String lng,
       String phone,
       String? avatar,
+      @JsonKey(name: "avg_rate") double? rate,
       @JsonKey(name: "token_type") String tokenType,
       @JsonKey(name: "email_is_active") bool emailIsActive,
       @JsonKey(name: "country_code") String countryCode,
@@ -282,6 +291,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? lng = null,
     Object? phone = null,
     Object? avatar = freezed,
+    Object? rate = freezed,
     Object? tokenType = null,
     Object? emailIsActive = null,
     Object? countryCode = null,
@@ -330,6 +340,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      rate: freezed == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double?,
       tokenType: null == tokenType
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
@@ -403,6 +417,7 @@ class _$UserModelImpl extends _UserModel {
       required this.lng,
       required this.phone,
       this.avatar,
+      @JsonKey(name: "avg_rate") this.rate,
       @JsonKey(name: "token_type") required this.tokenType,
       @JsonKey(name: "email_is_active") required this.emailIsActive,
       @JsonKey(name: "country_code") required this.countryCode,
@@ -439,6 +454,9 @@ class _$UserModelImpl extends _UserModel {
   final String phone;
   @override
   final String? avatar;
+  @override
+  @JsonKey(name: "avg_rate")
+  final double? rate;
   @override
   @JsonKey(name: "token_type")
   final String tokenType;
@@ -484,7 +502,7 @@ class _$UserModelImpl extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, token: $token, lat: $lat, lng: $lng, phone: $phone, avatar: $avatar, tokenType: $tokenType, emailIsActive: $emailIsActive, countryCode: $countryCode, fullPhone: $fullPhone, workType: $workType, mapDesc: $mapDesc, coverageRadiusKm: $coverageRadiusKm, isAvailable: $isAvailable, idImageFront: $idImageFront, idImageBack: $idImageBack, licenseImageFront: $licenseImageFront, licenseImageBack: $licenseImageBack, hasSubscription: $hasSubscription, hasActiveSubscription: $hasActiveSubscription)';
+    return 'UserModel(id: $id, name: $name, email: $email, token: $token, lat: $lat, lng: $lng, phone: $phone, avatar: $avatar, rate: $rate, tokenType: $tokenType, emailIsActive: $emailIsActive, countryCode: $countryCode, fullPhone: $fullPhone, workType: $workType, mapDesc: $mapDesc, coverageRadiusKm: $coverageRadiusKm, isAvailable: $isAvailable, idImageFront: $idImageFront, idImageBack: $idImageBack, licenseImageFront: $licenseImageFront, licenseImageBack: $licenseImageBack, hasSubscription: $hasSubscription, hasActiveSubscription: $hasActiveSubscription)';
   }
 
   @override
@@ -500,6 +518,7 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.lng, lng) || other.lng == lng) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.rate, rate) || other.rate == rate) &&
             (identical(other.tokenType, tokenType) ||
                 other.tokenType == tokenType) &&
             (identical(other.emailIsActive, emailIsActive) ||
@@ -541,6 +560,7 @@ class _$UserModelImpl extends _UserModel {
         lng,
         phone,
         avatar,
+        rate,
         tokenType,
         emailIsActive,
         countryCode,
@@ -583,6 +603,7 @@ abstract class _UserModel extends UserModel {
       required final String lng,
       required final String phone,
       final String? avatar,
+      @JsonKey(name: "avg_rate") final double? rate,
       @JsonKey(name: "token_type") required final String tokenType,
       @JsonKey(name: "email_is_active") required final bool emailIsActive,
       @JsonKey(name: "country_code") required final String countryCode,
@@ -621,6 +642,9 @@ abstract class _UserModel extends UserModel {
   String get phone;
   @override
   String? get avatar;
+  @override
+  @JsonKey(name: "avg_rate")
+  double? get rate;
   @override
   @JsonKey(name: "token_type")
   String get tokenType;

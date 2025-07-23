@@ -1,4 +1,3 @@
-import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import '../confirm_reset_password_imports.dart';
 
@@ -14,18 +13,18 @@ class ResetPasswordFormWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AuthSectionTitleWidget(title: "Code"),
+          AuthSectionTitleWidget(title: Translate.of(context).code),
           GenericTextField(
             controller: controller.codeController,
             fieldTypes: FieldTypes.normal,
             type: TextInputType.text,
             action: TextInputAction.next,
-            hint: "Enter code",
+            hint: Translate.of(context).enter_code,
             validate: (value) => value?.validateEmpty(),
             fillColor: context.colors.white,
           ),
           Gaps.vGap16,
-          const AuthSectionTitleWidget(title: "Password"),
+          AuthSectionTitleWidget(title: Translate.of(context).password),
           ObsValueConsumer(
               observable: controller.passwordVisibleObs,
               builder: (context,value) {
@@ -53,7 +52,7 @@ class ResetPasswordFormWidget extends StatelessWidget {
               }
           ),
           Gaps.vGap16,
-          const AuthSectionTitleWidget(title: "Confirm Password"),
+          AuthSectionTitleWidget(title: Translate.of(context).confirm_password),
           ObsValueConsumer(
               observable: controller.confirmPasswordVisibleObs ,
               builder: (context,value) {

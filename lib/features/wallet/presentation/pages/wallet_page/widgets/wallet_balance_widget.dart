@@ -23,7 +23,7 @@ class WalletBalanceWidget extends StatelessWidget {
               spacing: 20,
               children: [
                 Text(
-                  'Total Wallet Balance',
+                  Translate.of(context).total_wallet_balance,
                   style: AppTextStyle.s16_w400(color: context.colors.white),
                 ),
                 Text(

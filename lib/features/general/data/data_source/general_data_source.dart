@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/general/data/models/privacy_policy_model/privacy_policy_model.dart';
 import 'package:flutter_tdd/features/general/data/models/terms_model/terms_model.dart';
@@ -20,5 +18,7 @@ abstract class GeneralDataSource {
   Future<MyResult<String>> contactUs (ContactUsParams params);
 
   Future<MyResult<List<SocialContactUsModel>>> getSocials(bool param);
+
+
 
 }

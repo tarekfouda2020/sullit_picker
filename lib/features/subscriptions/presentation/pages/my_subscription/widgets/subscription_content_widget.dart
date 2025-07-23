@@ -30,7 +30,7 @@ class SubscriptionContentWidget extends StatelessWidget {
             ],
           ),
           Gaps.vGap12,
-          Text("Benefits :",
+          Text(Translate.of(context).benefits,
             style: AppTextStyle.s12_w600(color: context.colors.black),
           ),
           Gaps.vGap8,
@@ -67,7 +67,7 @@ class SubscriptionContentWidget extends StatelessWidget {
           Gaps.vGap10,
           Divider(color: context.colors.gray58,),
           Gaps.vGap10,
-          Text("Expired with in ${model.daysRemaining} Days",
+          Text(Translate.of(context).expired_within_days(model.daysRemaining.toString()),
           style: AppTextStyle.s12_w400(color: context.colors.gray58),
           )
         ],

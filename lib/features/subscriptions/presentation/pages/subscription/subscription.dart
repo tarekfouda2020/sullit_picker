@@ -42,7 +42,7 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
               return SubscriptionBodyWidget(controller: controller, model: data);
             },
             failureBuilder: (context, error, callback) {
-              return Text("No Plans Found",
+              return Text(Translate.of(context).no_plans_found,
               style: AppTextStyle.s18_w500(color: context.colors.primary),
               );
             },

@@ -18,7 +18,9 @@ class HomeController {
   bool popOut = false;
 
   Future<void> initializeOrderDialog(BuildContext context) async{
-    await getDataAndUpdateAvailabilityStatus(context);
+    bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
+    availableForOrdersObs.setValue(isAvailable);
+     getUserData();
     if (availableForOrdersObs.getValue() && !hasOrders.getValue()) {
       showNewOrderDialog(context);
     }
@@ -31,7 +33,7 @@ class HomeController {
     }else{
       popOut = true;
       AppSnackBar.showSimpleToast(
-        msg: "back again to exit",
+        msg: Translate.s.back_again_to_exit,
         type: ToastType.info,
         color: AppColors.fixedColors.gray58,
           textColor: AppColors.fixedColors.white,
@@ -132,14 +134,14 @@ class HomeController {
           AppSnackBar.showErrorSnackBar(error: error);
         },
     );
-     await getDataAndUpdateAvailabilityStatus(context);
+      getUserData();
   }
 
-  Future<void> getDataAndUpdateAvailabilityStatus(BuildContext context)async{
-    await getIt<UserServicesHelper>().getUserData();
-    await Future.delayed(const Duration(milliseconds: 10));
-    bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
-    availableForOrdersObs.setValue(isAvailable);
+  void getUserData(){
+     getIt<UserServicesHelper>().getUserData();
+    // await Future.delayed(const Duration(milliseconds: 10));
+    // bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
+    // availableForOrdersObs.setValue(isAvailable);
   }
 
 

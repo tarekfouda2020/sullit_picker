@@ -17,10 +17,10 @@ class MySubscriptionBodyWidget extends StatelessWidget {
           Gaps.vGap20,
            SubscriptionContentWidget(model: model),
           Gaps.vGap20,
-          AbsorbPointer(
+                      AbsorbPointer(
             absorbing: model.subscribed,
             child: AppTextButton.maxCustom(
-              text: "Renew",
+              text: Translate.of(context).renew,
               bgColor: model.subscribed
                   ?context.colors.primary.withValues(alpha: 0.4)
                   :context.colors.primary,

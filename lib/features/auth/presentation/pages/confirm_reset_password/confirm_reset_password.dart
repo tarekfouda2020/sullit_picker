@@ -40,19 +40,19 @@ class _ConfirmResetPasswordState extends State<ConfirmResetPassword> {
             children: [
               Image.asset(Res.forgetPassBackground,height: 250,width: 250,),
               Text(
-               "Reset your password",
+               Translate.of(context).reset_your_password,
                 style: AppTextStyle.s22_w700(color: context.colors.black),
               ),
               Gaps.vGap12,
               Text(
-                "Enter your code to reset your password",
+                Translate.of(context).enter_code_to_reset,
                 style: AppTextStyle.s16_w400(color: context.colors.gray58),
               ),
               Gaps.vGap44,
               ResetPasswordFormWidget(controller: controller),
               Gaps.vGap32,
               AppTextButton.maxPrimary(
-                text: "Send",
+                text: Translate.of(context).send,
                 onPressed: () => controller.onPressSend(context),
               ),
               Gaps.vGap28,

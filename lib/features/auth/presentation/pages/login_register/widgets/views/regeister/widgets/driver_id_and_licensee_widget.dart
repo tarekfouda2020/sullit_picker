@@ -18,16 +18,16 @@ class DriverIdAndLicenseeWidget extends StatelessWidget {
           children: [
             DriverLicenseeWidget(
               fileObs: controller.idFileObs,
-              title: Translate.s.id,
-              subTitle: Translate.s.attach_id,
+              title: Translate.of(context).id,
+              subTitle: Translate.of(context).attach_id,
               pickFile: () => controller.pickIdLicenseFile(context,controller.idFileObs),
             ),
             Gaps.hGap7,
             DriverLicenseeWidget(
               fileObs: controller.licenseFileObs,
-              title: Translate.s.driving_licensee,
+              title: Translate.of(context).driving_licensee,
               pickFile: () => controller.pickIdLicenseFile(context,controller.licenseFileObs),
-              subTitle: Translate.s.attach_driving_licensee,
+              subTitle: Translate.of(context).attach_driving_licensee,
             ),
           ],
         ),
@@ -36,16 +36,16 @@ class DriverIdAndLicenseeWidget extends StatelessWidget {
           children: [
             DriverLicenseeWidget(
               fileObs: controller.backIdFileObs,
-              title: Translate.s.id,
-              subTitle: "Attach Back ID",
+              title: Translate.of(context).id,
+              subTitle: Translate.of(context).attach_back_id,
               pickFile: () => controller.pickIdLicenseFile(context,controller.backIdFileObs),
             ),
             Gaps.hGap7,
             DriverLicenseeWidget(
               fileObs: controller.backLicenseFileObs,
-              title: Translate.s.driving_licensee,
+              title: Translate.of(context).driving_licensee,
               pickFile: () => controller.pickIdLicenseFile(context,controller.backLicenseFileObs),
-              subTitle: "Attach Back Driving Licensee",
+              subTitle: Translate.of(context).attach_back_driving_licensee,
             ),
           ],
         ),

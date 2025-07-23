@@ -1,5 +1,4 @@
 import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
 
 import 'home_widgets_imports.dart';
@@ -25,7 +24,7 @@ class BottomNavWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 12),
                   child: AppTextButton.maxCustom(
                     onPressed: () => controller.showReportSheet(context),
-                    text: "Report a problem",
+                    text: Translate.of(context).report_a_problem,
                     bgColor: context.colors.white,
                     txtColor: context.colors.primary,
                     borderColor: context.colors.primary,
@@ -61,11 +60,11 @@ class BottomNavWidget extends StatelessWidget {
   String _buttonText(OrderStatusEnum status) {
     switch ( status) {
       case OrderStatusEnum.start:
-        return "Start Delivering";
+        return Translate.s.start_delivering;
       case OrderStatusEnum.arrived:
-        return "Arrived";
+        return Translate.s.arrived;
       case OrderStatusEnum.delivered:
-        return "Delivered";
+        return Translate.s.delivered;
     }
   }
 

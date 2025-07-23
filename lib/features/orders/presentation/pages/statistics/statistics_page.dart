@@ -18,7 +18,7 @@ class _MyStatisticsPageState extends State<MyStatisticsPage> {
     return Scaffold(
       backgroundColor: context.colors.background,
       appBar: DefaultAppBar(
-        title: "My Statistics",
+        title: Translate.of(context).my_statistics,
         bgColor: context.colors.background,
       ),
       body: Padding(
@@ -29,19 +29,19 @@ class _MyStatisticsPageState extends State<MyStatisticsPage> {
             Gaps.vGap16,
             StatisticsFilterWidget(controller: controller),
             Gaps.vGap16,
-            const StatisticsCardWidget(
-              title: "Total Orders",
+            StatisticsCardWidget(
+              title: Translate.of(context).total_orders,
               value: "24",
               icon: Res.boxIcon,
             ),
-            const StatisticsCardWidget(
-              title: "Total Completed Orders",
+            StatisticsCardWidget(
+              title: Translate.of(context).total_completed_orders,
               value: "23",
               icon: Res.boxIcon,
               showSuccess: true,
             ),
-            const StatisticsCardWidget(
-              title: "Total Failed Orders",
+            StatisticsCardWidget(
+              title: Translate.of(context).total_failed_orders,
               value: "2",
               icon: Res.boxIcon,
               showFailed: true,

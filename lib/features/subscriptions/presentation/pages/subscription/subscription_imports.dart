@@ -25,4 +25,4 @@ export 'package:flutter_tdd/features/subscriptions/domain/entity/plan_payment_pa
 export 'package:flutter_tdd/features/subscriptions/domain/repositories/subscription_repositories.dart';
 export 'package:flutter_tdd/features/subscriptions/domain/requester/pay_methods_requester.dart';
 export 'package:flutter_tdd/features/subscriptions/domain/requester/plan_requester.dart';
-export 'widgets/subscription_pay_sheet_widget.dart';
+export '../../widgets/subscription_pay_sheet_widget.dart';

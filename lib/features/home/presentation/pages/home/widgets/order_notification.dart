@@ -25,7 +25,7 @@ class OrderNotification extends StatelessWidget {
           Gaps.vGap8,
           RichText(
             text: TextSpan(
-              text: '${Translate.s.receiving_from} ',
+              text: '${Translate.of(context).receiving_from} ',
               style: AppTextStyle.s16_w300(color: context.colors.textPrimary),
               children: [
                 TextSpan(
@@ -37,7 +37,7 @@ class OrderNotification extends StatelessWidget {
           ),
         Gaps.vGap9,
           Text(
-           "30 minutes ago",
+           "${30} minutes ago",
             style: AppTextStyle.s14_w400(color: context.colors.primary),
           ),
         ],

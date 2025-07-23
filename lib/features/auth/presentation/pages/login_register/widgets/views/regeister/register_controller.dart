@@ -113,13 +113,13 @@ class RegisterController {
 
   void register(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      if (!allFilesUploaded()) {
+      if (!allFilesUploaded(context)) {
         return;
       }
-      if(!isWorkTypeSelected()){
+      if(!isWorkTypeSelected(context)){
         return ;
       }
-      if(!isEmailAndPhoneVerified()){
+      if(!isEmailAndPhoneVerified(context)){
         return ;
       }
       registerLoadingButtonKey.currentState?.animateForward();
@@ -129,41 +129,41 @@ class RegisterController {
     }
   }
 
-  bool allFilesUploaded() {
+  bool allFilesUploaded(BuildContext context) {
     if (idFileObs.getValue() == null) {
-      AppSnackBar.showSimpleToast(msg: "Please Select you ID card Image");
+      AppSnackBar.showSimpleToast(msg: Translate.of(context).please_select_id_card_image);
       return false;
     }
     if (backIdFileObs.getValue() == null) {
-      AppSnackBar.showSimpleToast(msg: "Please Select your Back ID card Image");
+      AppSnackBar.showSimpleToast(msg: Translate.of(context).please_select_back_id_card_image);
       return false;
     }
     if (licenseFileObs.getValue() == null) {
-      AppSnackBar.showSimpleToast(msg: "Please Select you License Image");
+      AppSnackBar.showSimpleToast(msg: Translate.of(context).please_select_license_image);
       return false;
     }
     if (backLicenseFileObs.getValue() == null) {
-      AppSnackBar.showSimpleToast(msg: "Please Select you Back License Image");
+      AppSnackBar.showSimpleToast(msg: Translate.of(context).please_select_back_license_image);
       return false;
     }
     return true;
   }
 
-  bool isWorkTypeSelected() {
+  bool isWorkTypeSelected(BuildContext context) {
     var isOneSelected = loginRegisterCtr.workTypesRequester.data!.any((element) => element.selected!);
     if(!isOneSelected){
-      AppSnackBar.showSimpleToast(msg: "Please Define your Work Type");
+      AppSnackBar.showSimpleToast(msg: Translate.of(context).please_define_work_type);
     }
     return isOneSelected;
   }
 
-  bool isEmailAndPhoneVerified(){
+  bool isEmailAndPhoneVerified(BuildContext context){
     if(phoneVerifyCode==null){
-      AppSnackBar.showSimpleToast(msg: "Please Verify your phone number");
+      AppSnackBar.showSimpleToast(msg: Translate.of(context).please_verify_phone_number);
       return false;
     }
     if(emailVerifyCode==null){
-      AppSnackBar.showSimpleToast(msg: "Please Verify your Email");
+      AppSnackBar.showSimpleToast(msg: Translate.of(context).please_verify_email);
       return false;
     }
     return true;
@@ -196,7 +196,7 @@ class RegisterController {
       idImageBack: backIdFileObs.getValue()!,
       licenseImageFront: licenseFileObs.getValue()!,
       licenseImageBack: backLicenseFileObs.getValue()!,
-      mapDesc: "Map Description",
+      mapDesc: " ",
       password: passwordController.text,
       confirmPassword: passwordController.text,
     );
