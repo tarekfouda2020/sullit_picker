@@ -24,7 +24,7 @@ class UserServicesHelper {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString("user", json.encode(data?.toJson()));
     preferences.setString(ApplicationConstants.keyToken, data!.token);
-    GlobalState.instance.set('token', data.token);
+    GlobalState.instance.set(ApplicationConstants.keyToken, data.token);
     context.read<UserCubit>().onUpdateUserData(data);
     AppSnackBar.showSimpleToast(msg: msg, type: ToastType.success);
     AutoRouter.of(context).replaceAll([const HomePageRoute()]);
@@ -35,7 +35,7 @@ class UserServicesHelper {
     context.read<DeviceCubit>().updateUserAuth(false);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.clear();
-    GlobalState.instance.set('token',null);
+    GlobalState.instance.set(ApplicationConstants.keyToken,null);
     context.read<UserCubit>().onUpdateUserData(null);
     AutoRouter.of(context).pushAndPopUntil( const Splash(), predicate: (route) => false);
 }

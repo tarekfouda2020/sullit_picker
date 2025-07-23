@@ -27,9 +27,11 @@ class _TermsConditionsState extends State<TermsConditions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.colors.background,
       appBar: const DefaultAppBar(
         title: "Terms&Conditions",
         size: 40,
+        bgColor: Colors.transparent,
       ),
       body: ListView(
         padding: Dimens.paddingH20Px,

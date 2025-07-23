@@ -47,7 +47,7 @@ class ChangePasswordController {
       result.when(
         isSuccess: (data) {
           AppSnackBar.showSimpleToast(msg: 'the password is reset successfully',type: ToastType.success);
-          AutoRouter.of(context).pop();
+          AutoRouter.of(context).maybePop();
 
         },
         isError: (error) {
