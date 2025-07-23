@@ -15,9 +15,9 @@ class LoginViewController {
   final TextEditingController loginEmailController = TextEditingController();
   final TextEditingController loginPasswordController = TextEditingController();
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
-  
+
   final ObsValue<bool> loginPasswordVisibleObs = ObsValue<bool>.withInit(false);
-  
+
   final GlobalKey<CustomButtonState> loadingButtonKey = GlobalKey<CustomButtonState>();
 
   void navigateToForgetPassword(BuildContext context) {
