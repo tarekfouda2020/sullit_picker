@@ -28,10 +28,11 @@ abstract class AppBottomSheets {
   static Future<T?> showScrollableBody<T>(
       {required BuildContext context,
       required WidgetBuilder builder,
+        Color? backgroundColor,
       BoxConstraints? constraints}) {
     return showModalBottomSheet<T>(
       context: context,
-      backgroundColor: context.colors.white,
+      backgroundColor: backgroundColor ?? context.colors.white,
       isDismissible: false,
       isScrollControlled: true,
       enableDrag: false,

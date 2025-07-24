@@ -24,7 +24,7 @@ class BottomSheetHeaderWidget extends StatelessWidget {
                 color: context.colors.disableGray,
                 shape: BoxShape.circle
             ),
-            child: const Icon(CupertinoIcons.xmark,color: CupertinoColors.quaternaryLabel,size: 15,),
+            child: const Icon(CupertinoIcons.xmark,color: CupertinoColors.systemGrey,size: 17,),
           ),
         )
       ],

@@ -6,25 +6,33 @@ class WalletFilterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: context.colors.white,
-        borderRadius: Dimens.borderRadius30PX,
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: Row(
-        children: [
-          SvgPicture.asset(Res.filterIcon, height: 20),
-          Gaps.hGap16,
-          Expanded(
-            child: Text(
-              Translate.of(context).filter_by_working_store,
-              style: AppTextStyle.s14_w400(color: context.colors.primary),
+    return GestureDetector(
+      onTap: () => controller.showStoresSheet(context),
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          color: context.colors.white,
+          borderRadius: Dimens.borderRadius30PX,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Row(
+          children: [
+            SvgPicture.asset(Res.filterIcon, height: 20),
+            Gaps.hGap16,
+            Expanded(
+              child: ObsValueConsumer(
+                observable: controller.selectedStoreObs,
+                builder: (context,value) {
+                  return Text(
+                    value?.name ?? Translate.of(context).filter_by_working_store,
+                    style: AppTextStyle.s14_w400(color: context.colors.primary),
+                  );
+                }
+              ),
             ),
-          ),
-          SvgPicture.asset(Res.invertedTriangle, height: 9,width: 11,),
-        ],
+            SvgPicture.asset(Res.invertedTriangle, height: 9,width: 11,),
+          ],
+        ),
       ),
     );
   }

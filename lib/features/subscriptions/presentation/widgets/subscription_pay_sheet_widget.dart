@@ -16,10 +16,10 @@ class SubscriptionPaySheetWidget extends StatelessWidget {
       requester: requester,
       successBuilder: (context, data, isLoading) {
         return Container(
-          padding: const EdgeInsets.all(20),
+          padding:  Dimens.paddingAll20Px,
           decoration: BoxDecoration(
               color: context.colors.white,
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(30))
+              borderRadius: Dimens.sheetBorderRadius
           ),
           child:Column(
             mainAxisSize: MainAxisSize.min,

@@ -274,6 +274,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا توجد طلبات متاحة"),
         "no_plans_found":
             MessageLookupByLibrary.simpleMessage("لم يتم العثور على خطط"),
+        "no_transactions_description": MessageLookupByLibrary.simpleMessage(
+            "ليس لديك أي معاملات بعد. سيظهر تاريخ معاملاتك هنا بمجرد بدء إجراء المعاملات."),
+        "no_transactions_found":
+            MessageLookupByLibrary.simpleMessage("لم يتم العثور على معاملات"),
         "not_available_for_receiving_orders":
             MessageLookupByLibrary.simpleMessage("غير متاح لاستقبال الطلبات"),
         "not_available_yet":

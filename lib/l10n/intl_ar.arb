@@ -297,7 +297,9 @@
   "confirm": "تأكيد",
   "please_enable_location_permission": "يرجى تفعيل إذن الموقع",
   "failed_to_update_location": "فشل في تحديث الموقع",
-  "km": "كم"
+  "km": "كم",
+  "no_transactions_found": "لم يتم العثور على معاملات",
+  "no_transactions_description": "ليس لديك أي معاملات بعد. سيظهر تاريخ معاملاتك هنا بمجرد بدء إجراء المعاملات."
 }
 
 

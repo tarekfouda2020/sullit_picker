@@ -1,13 +1,11 @@
-import 'package:flutter_tdd/features/wallet/data/enum/wallet_transaction_type.dart';
 
 import '../wallet_imports.dart';
 
 class WalletTransactionCard extends StatelessWidget {
-  final WalletTransactionType type;
-
+  final TransactionsModel model;
   const WalletTransactionCard({
     super.key,
-    required this.type,
+    required this.model,
   });
 
   @override
@@ -24,14 +22,14 @@ class WalletTransactionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            type == WalletTransactionType.collected ? Translate.of(context).collected : Translate.of(context).deposited,
+            model.typeLabel,
             style: AppTextStyle.s14_w600(
-              color: type == WalletTransactionType.collected ? context.colors.green : context.colors.primary,
+              color: model.isCollected ? context.colors.green : context.colors.primary,
             ),
           ),
           Gaps.vGap12,
           Text(
-            type == WalletTransactionType.collected ? '${250} AED' : '${-250} AED',
+            model.isCollected ? model.amount : '-${model.amount}',
             style: AppTextStyle.s22_w600(
               color: context.colors.primary,
             ),
@@ -41,12 +39,12 @@ class WalletTransactionCard extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  type == WalletTransactionType.collected ? '${Translate.of(context).order_no} : #545757' : '${Translate.of(context).transaction_no} : #545757',
+                  model.referenceNo,
                   style: AppTextStyle.s14_w700(color: context.colors.textPrimary),
                 ),
               ),
               Text(
-                Translate.of(context).one_hour_ago,
+                model.createdAt,
                 style: AppTextStyle.s13_w400(color: context.colors.gray3),
               ),
             ],

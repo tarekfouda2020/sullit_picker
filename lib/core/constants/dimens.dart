@@ -121,8 +121,12 @@ class Dimens {
   static const double statusBarHeight = 44.0;
   static const double bottomSafeArea = 34.0;
   
+  static const EdgeInsetsGeometry paddingAll20Px = EdgeInsets.all(20);
+
   static const EdgeInsetsGeometry paddingH20Px = EdgeInsets.symmetric(horizontal: 20);
-  
+
+  static const EdgeInsetsGeometry paddingStart31End27Px =  EdgeInsetsDirectional.only(start: 31, end: 27);
+
   static const EdgeInsetsGeometry paddingH18V12PX = EdgeInsets.symmetric(vertical: 12,horizontal: 18);
   static const EdgeInsetsGeometry paddingH16V10PX = EdgeInsets.symmetric(horizontal: 16, vertical: 10);
   static const EdgeInsetsGeometry paddingH20V12PX = EdgeInsets.symmetric(horizontal: 20, vertical: 12);

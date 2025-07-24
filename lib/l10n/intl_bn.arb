@@ -211,5 +211,7 @@
   "please_enable_location_permission": "অনুগ্রহ করে অবস্থানের অনুমতি সক্রিয় করুন",
   "something_went_wrong": "কিছু ভুল হয়েছে",
   "failed_to_update_location": "অবস্থান আপডেট করতে ব্যর্থ",
-  "km": "কিমি"
+  "km": "কিমি",
+  "no_transactions_found": "কোন লেনদেন পাওয়া যায়নি",
+  "no_transactions_description": "আপনার এখনও কোন লেনদেন নেই। আপনি লেনদেন শুরু করার সাথে সাথে আপনার লেনদেনের ইতিহাস এখানে দেখা যাবে।"
 } 

@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheet_header_widget.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheet_item_widget.dart';
@@ -13,7 +14,7 @@ class LangBottomSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: Dimens.paddingAll20Px ,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

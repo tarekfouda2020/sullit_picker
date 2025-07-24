@@ -278,6 +278,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No Orders Available"),
         "no_plans_found":
             MessageLookupByLibrary.simpleMessage("No Plans Found"),
+        "no_transactions_description": MessageLookupByLibrary.simpleMessage(
+            "You don\'t have any transactions yet. Your transaction history will appear here once you start making transactions."),
+        "no_transactions_found":
+            MessageLookupByLibrary.simpleMessage("No Transactions Found"),
         "not_available_for_receiving_orders":
             MessageLookupByLibrary.simpleMessage(
                 "Not available for receiving orders"),

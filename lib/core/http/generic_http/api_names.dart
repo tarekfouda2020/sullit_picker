@@ -35,6 +35,11 @@ class ApiNames{
   static  String subscribe = "${appApi}subscription/subscribe";
   static  String currentSubscription = "${appApi}subscription/current";
 
+
+  ///orders
+  static  String stores = "${appApi}stores";
+  static  String statistics = "${appApi}statistics/orders";
+
   ///home
   static  String profile = "${appApi}profile";
   static  String updateProfileImage = "${appApi}update-avatar?_method=patch";
@@ -46,6 +51,9 @@ class ApiNames{
   static  String contactUs = "${appApi}contact-us";
   static  String terms = "${appApi}terms";
   static const String getLanguages = "settings/languages";
+
+  ///wallet
+  static  String transactions = "${appApi}wallet/transactions";
 
 
 

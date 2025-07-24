@@ -2999,6 +2999,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No Transactions Found`
+  String get no_transactions_found {
+    return Intl.message(
+      'No Transactions Found',
+      name: 'no_transactions_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have any transactions yet. Your transaction history will appear here once you start making transactions.`
+  String get no_transactions_description {
+    return Intl.message(
+      'You don\'t have any transactions yet. Your transaction history will appear here once you start making transactions.',
+      name: 'no_transactions_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

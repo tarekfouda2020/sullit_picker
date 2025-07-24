@@ -23,7 +23,7 @@ class ReportItemWidget extends StatelessWidget {
         height: 44,
         margin: const EdgeInsets.only(bottom: 12),
         alignment: Alignment.center,
-        padding: const EdgeInsetsDirectional.only(start: 31, end: 27),
+        padding: Dimens.paddingStart31End27Px,
         decoration: BoxDecoration(
             color: isSelected ? context.colors.lightPrimary : context.colors.white,
             borderRadius: Dimens.borderRadius30PX,

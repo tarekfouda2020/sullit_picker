@@ -294,5 +294,7 @@
   "confirm": "Confirm",
   "please_enable_location_permission": "Please enable location permission",
   "failed_to_update_location": "Failed to update location",
-  "km": "KM"
+  "km": "KM",
+  "no_transactions_found": "No Transactions Found",
+  "no_transactions_description": "You don't have any transactions yet. Your transaction history will appear here once you start making transactions."
 }

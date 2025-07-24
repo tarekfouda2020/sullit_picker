@@ -178,6 +178,14 @@ class AppTextButton extends StatelessWidget {
                         }
                       },
                     ),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: _borderRadius ?? const BorderRadius.all(Radius.circular(Dimens.buttonBorderRadius)),
+                      side: BorderSide(
+                          color: _borderColor ?? Colors.transparent
+                      )
+                  ),
+                )
                   ),
               onPressed: onPressed,
               child: Text(
@@ -211,6 +219,14 @@ class AppTextButton extends StatelessWidget {
                         return Colors.transparent;
                       },
                     ),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: _borderRadius ?? const BorderRadius.all(Radius.circular(Dimens.buttonBorderRadius)),
+                      side: BorderSide(
+                          color: _borderColor ?? Colors.transparent
+                      )
+                  ),
+                )
                   ),
               onPressed: onPressed,
               child: Text(
@@ -290,6 +306,14 @@ class AppTextButton extends StatelessWidget {
                         return Colors.transparent;
                       },
                     ),
+                shape: WidgetStateProperty.all(
+                  RoundedRectangleBorder(
+                      borderRadius: _borderRadius ?? const BorderRadius.all(Radius.circular(Dimens.buttonBorderRadius)),
+                      side: BorderSide(
+                          color: _borderColor ?? Colors.transparent
+                      )
+                  ),
+                )
                   ),
               onPressed: onPressed,
               child: Text(
@@ -302,38 +326,43 @@ class AppTextButton extends StatelessWidget {
           ),
         );
       case _AppTextButton.minCustomColor:
-        return ClipRRect(
-          borderRadius: _borderRadius ?? const BorderRadius.all(Radius.circular(30)),
-          child: SizedBox(
-            width: minWidth,
-            height: maxHeight,
-            child: BouncingWidget(
-              enable: enabled && onPressed != null,
-              child: TextButton(
-                style: Theme.of(context).textButtonTheme.style?.copyWith(
-                      padding: WidgetStateProperty.all(EdgeInsets.zero),
-                      foregroundColor: WidgetStateProperty.resolveWith(
-                        (_) {
-                          return _bgColor;
-                        },
-                      ),
-                      backgroundColor: WidgetStateProperty.resolveWith(
-                        (states) {
-                          if (enabled) {
-                            return _bgColor;
-                          } else {
-                            return AppColors.of(context).black;
-                          }
-                        },
-                      ),
+        return SizedBox(
+          width: minWidth,
+          height: maxHeight,
+          child: BouncingWidget(
+            enable: enabled && onPressed != null,
+            child: TextButton(
+              style: Theme.of(context).textButtonTheme.style?.copyWith(
+                    padding: WidgetStateProperty.all(EdgeInsets.zero),
+                    foregroundColor: WidgetStateProperty.resolveWith(
+                      (_) {
+                        return _bgColor;
+                      },
                     ),
-                onPressed: onPressed,
-                child: Text(
-                  text,
-                  style: AppTextStyle.s14_w500(
-                    color: _textColor!,
-                  ).copyWith(fontSize: _textSize ?? 14,fontWeight: _textFontWeight),
-                ),
+                    backgroundColor: WidgetStateProperty.resolveWith(
+                      (states) {
+                        if (enabled) {
+                          return _bgColor;
+                        } else {
+                          return AppColors.of(context).black;
+                        }
+                      },
+                    ),
+                   shape:WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                        borderRadius: _borderRadius ?? const BorderRadius.all(Radius.circular(Dimens.buttonBorderRadius)),
+                        side: BorderSide(
+                            color: _borderColor ?? Colors.transparent
+                        )
+                    ),
+                  )
+                  ),
+              onPressed: onPressed,
+              child: Text(
+                text,
+                style: AppTextStyle.s14_w500(
+                  color: _textColor!,
+                ).copyWith(fontSize: _textSize ?? 14,fontWeight: _textFontWeight),
               ),
             ),
           ),

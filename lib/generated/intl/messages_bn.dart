@@ -217,6 +217,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("কোন ইন্টারনেট সংযোগ নেই"),
         "no_plans_found":
             MessageLookupByLibrary.simpleMessage("কোন পরিকল্পনা পাওয়া যায়নি"),
+        "no_transactions_description": MessageLookupByLibrary.simpleMessage(
+            "আপনার এখনও কোন লেনদেন নেই। আপনি লেনদেন শুরু করার সাথে সাথে আপনার লেনদেনের ইতিহাস এখানে দেখা যাবে।"),
+        "no_transactions_found":
+            MessageLookupByLibrary.simpleMessage("কোন লেনদেন পাওয়া যায়নি"),
         "not_available_for_receiving_orders":
             MessageLookupByLibrary.simpleMessage(
                 "অর্ডার গ্রহণের জন্য উপলব্ধ নয়"),
