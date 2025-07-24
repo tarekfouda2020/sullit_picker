@@ -1,6 +1,6 @@
+import 'package:flutter_tdd/features/orders/data/models/statistics_model/statistics_model.dart';
 import 'statistics_page_imports.dart';
-import 'widgets/statistics_card_widget.dart';
-import 'widgets/statistics_filter_widget.dart';
+import 'widgets/statistics_list_widget.dart';
 
 @RoutePage(name: "StatisticsPageRoute")
 class MyStatisticsPage extends StatefulWidget {
@@ -23,32 +23,24 @@ class _MyStatisticsPageState extends State<MyStatisticsPage> {
       ),
       body: Padding(
         padding: Dimens.paddingH20Px,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Gaps.vGap16,
-            StatisticsFilterWidget(controller: controller),
-            Gaps.vGap16,
-            StatisticsCardWidget(
-              title: Translate.of(context).total_orders,
-              value: "24",
-              icon: Res.boxIcon,
-            ),
-            StatisticsCardWidget(
-              title: Translate.of(context).total_completed_orders,
-              value: "23",
-              icon: Res.boxIcon,
-              showSuccess: true,
-            ),
-            StatisticsCardWidget(
-              title: Translate.of(context).total_failed_orders,
-              value: "2",
-              icon: Res.boxIcon,
-              showFailed: true,
-            ),
-          ],
+        child: RequesterConsumer<StatisticsModel>(
+          requester: controller.statisticsRequester,
+          successBuilder: (context, data, isLoading) {
+            return StatisticsListWidget(controller: controller, model: data);
+          },
+          failureBuilder: (context, error, callback) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("No Statistics Found",
+                style: AppTextStyle.s16_w500(color: context.colors.black),
+                )
+              ],
+            );
+          },
+          loadingBuilder: (context) => const StatisticsShimmerWidget(),
         ),
       ),
     );
   }
-} 
+}

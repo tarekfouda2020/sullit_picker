@@ -1,16 +1,10 @@
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/res.dart';
+
 
 import 'statistics_widgets_imports.dart';
 
 class StatisticsCardWidget extends StatelessWidget {
   final String title;
   final String value;
-  final String icon;
   final bool showSuccess;
   final bool showFailed;
 
@@ -18,7 +12,6 @@ class StatisticsCardWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.value,
-    required this.icon,
     this.showSuccess = false,
     this.showFailed = false,
   });
@@ -26,7 +19,6 @@ class StatisticsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
         color: context.colors.white,
@@ -54,7 +46,7 @@ class StatisticsCardWidget extends StatelessWidget {
           Stack(
             clipBehavior: Clip.none,
             children: [
-              SvgPicture.asset(icon, width: 48, height: 48),
+              SvgPicture.asset(Res.boxIcon, width: 48, height: 48),
               if (showSuccess)
                 Positioned(
                   right: -4.5,

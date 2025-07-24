@@ -1,12 +1,11 @@
 class StatisticsParams {
 
-  final bool refresh;
   final int? sellerId;
 
-  StatisticsParams({required this.refresh,this.sellerId});
+  StatisticsParams({this.sellerId});
 
   String get url {
-    return sellerId !=null? "?seller_id=$sellerId" : "";
+    return sellerId !=null ? "?seller_id=$sellerId" : "";
   }
 
 
