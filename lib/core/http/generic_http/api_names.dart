@@ -21,12 +21,14 @@ class ApiNames{
   static  String switchNotify = "${appApi}SwitchNotify";
   static  String resetPassword = "${appApi}A2q4mG84Z9rE2B38In4HALSWTwt9eQ5Slzq56Cod";
   static  String privacyPolicy = "${appApi}privacy-policy";
-  static  String updatePassword = "u${appApi}pdate-password?_method=patch";
+  static  String updatePassword = "${appApi}update-password?_method=patch";
 
 
 
   static  String passwordForgot = "${appApi}password/forgot";
   static  String logout = "${appApi}logout";
+  static  String freelancerInstructions = "${appApi}freelancer-instructions";
+  static  String appInstructionsAgree = "${appApi}app-instructions/agree";
 
 
   /// subscriptions

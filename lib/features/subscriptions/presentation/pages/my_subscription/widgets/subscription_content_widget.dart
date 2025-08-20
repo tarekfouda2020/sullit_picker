@@ -40,7 +40,7 @@ class SubscriptionContentWidget extends StatelessWidget {
               "body" : Style(
                   color: context.colors.gray58,
                   fontSize: FontSize(12),
-                  fontWeight: FontWeight.w400
+                  fontWeight: FontWeight.w400,
               )
             }
             ),
@@ -58,8 +58,11 @@ class SubscriptionContentWidget extends StatelessWidget {
                     ),
                   ),
                   Gaps.hGap8,
-                  Text("Lorem Ipsum is simply dummy text of the printing ",
-                    style: AppTextStyle.s12_w400(color: context.colors.gray58),
+                  Expanded(
+                    child: Text("Lorem Ipsum is simply dummy text of the printing ",
+                      style: AppTextStyle.s12_w400(color: context.colors.gray58),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   )
                 ],),
             );

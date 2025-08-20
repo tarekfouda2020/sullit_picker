@@ -98,6 +98,10 @@ class SupportedAreaController {
   Future<void> saveDataAndRouteToSubscription(BuildContext context, UserModel? data) async{
     await getIt<UserServicesHelper>().updateUserData(context,data);
     AppSnackBar.showSuccessSnackBar(Translate.of(context).registration_successful);
+    if(data!.workType== "freelancer"){
+      AutoRouter.of(context).push(const AppInstructionsRoute());
+      return;
+    }
     AutoRouter.of(context).push( SubscriptionPageRoute(fromAuth: true));
   }
 

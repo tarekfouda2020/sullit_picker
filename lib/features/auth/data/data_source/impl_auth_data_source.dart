@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/data_source/auth_data_source.dart';
+import 'package:flutter_tdd/features/auth/data/models/instructions_model/instructions_model.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_model.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/change_password_params.dart';
@@ -137,6 +138,31 @@ class ImplAuthDataSource extends AuthDataSource{
         showLoader: true
     );
     return GenericHttpImpl<String>().call(model);
+  }
+
+  @override
+  Future<MyResult<InstructionsModel>> getInstructions() {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.freelancerInstructions,
+      responseType: ResType.model,
+      requestMethod: RequestMethod.get,
+      toJsonFunc: (data) => InstructionsModel.fromJson(data),
+      responseKey: (data) => data['data'],
+    );
+    return GenericHttpImpl<InstructionsModel>()(model);
+  }
+
+  @override
+  Future<MyResult<String>> appInstructionsAgree() {
+    HttpRequestModel model = HttpRequestModel(
+        url: ApiNames.appInstructionsAgree,
+        responseType: ResType.type,
+        requestMethod: RequestMethod.post,
+        responseKey: (data) => data['msg'],
+        showLoader: true,
+        isFormData: false
+    );
+    return GenericHttpImpl<String>()(model);
   }
 
 }

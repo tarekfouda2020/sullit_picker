@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/data_source/auth_data_source.dart';
+import 'package:flutter_tdd/features/auth/data/models/instructions_model/instructions_model.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_model.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/change_password_params.dart';
@@ -59,5 +60,15 @@ class ImplAuthRepositories  extends AuthRepositories{
   @override
   Future<MyResult<String>> sendChangePassword(ChangePasswordParams params)async {
     return await dataSource.sendChangePassword(params);
+  }
+
+  @override
+  Future<MyResult<InstructionsModel>> getInstructions()async {
+    return await dataSource.getInstructions();
+  }
+
+  @override
+  Future<MyResult<String>> appInstructionsAgree()async {
+    return await dataSource.appInstructionsAgree();
   }
 }
