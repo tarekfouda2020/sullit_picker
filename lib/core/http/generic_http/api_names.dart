@@ -56,6 +56,7 @@ class ApiNames{
 
   ///wallet
   static  String transactions = "${appApi}wallet/transactions";
+  static  String walletRecharge = "${appApi}wallet/recharge";
 
 
 

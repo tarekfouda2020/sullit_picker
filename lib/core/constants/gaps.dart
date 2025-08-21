@@ -24,6 +24,8 @@ class Gaps {
   static Widget hGap25 = const SizedBox(width: Dimens.dp25);
   static Widget hGap28 = const SizedBox(width: Dimens.dp28);
   static Widget hGap32 = const SizedBox(width: Dimens.dp32);
+  static Widget hGap40 = const SizedBox(width: Dimens.dp40);
+  static Widget hGap50 = const SizedBox(width: Dimens.dp50);
 
   static Widget hGap(int value) => SizedBox(width: value.w);
 

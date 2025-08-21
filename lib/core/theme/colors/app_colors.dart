@@ -101,4 +101,6 @@ abstract class AppColors {
 
   Color get red;
 
+  Color get darkRed;
+
 }

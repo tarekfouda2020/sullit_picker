@@ -2,6 +2,8 @@ import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/auth/domain/models/user_domain_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../enum/work_type_enum.dart';
+
 part 'user_model.freezed.dart';
 
 part 'user_model.g.dart';
@@ -39,6 +41,21 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+
+  WorkTypeEnum getDriverType(){
+    switch(workType){
+      case "single_store":
+        return WorkTypeEnum.oneStore;
+      case "multi_store":
+        return WorkTypeEnum.myStore;
+      case "freelancer":
+        return WorkTypeEnum.freelancer;
+      default:
+        return WorkTypeEnum.freelancer;
+    }
+  }
+
+  bool get isFreelancer => getDriverType() == WorkTypeEnum.freelancer;
 
   @override
   UserDomainModel toDomainModel() {

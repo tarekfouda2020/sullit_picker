@@ -1,4 +1,3 @@
-import 'package:flutter_tdd/core/widgets/gradient_container_widget.dart';
 
 import '../wallet_imports.dart';
 
@@ -8,31 +7,80 @@ class WalletBalanceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isFreelancer = context.read<UserCubit>().state.model!.isFreelancer;
     return GradientContainerWidget(
-      padding: const EdgeInsetsDirectional.only(start: 17,bottom: 19,top: 25),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      padding: const EdgeInsetsDirectional.only(start: 17,bottom: 19,top: 25,end: 17),
+        child: Column(
           children: [
-            Image.asset(
-              Res.walletImage,
-              width: 56,
-              height: 41,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 20,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  Translate.of(context).total_wallet_balance,
-                  style: AppTextStyle.s16_w400(color: context.colors.white),
+                Image.asset(
+                  Res.walletImage,
+                  width: 56,
+                  height: 41,
                 ),
-                Text(
-                  '${377} AED',
-                  style: AppTextStyle.s28_w800(color: context.colors.gold),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 20,
+                  children: [
+                    Text(
+                      Translate.of(context).total_wallet_balance,
+                      style: AppTextStyle.s16_w400(color: context.colors.white),
+                    ),
+                    Text(
+                      '${377} AED',
+                      style: AppTextStyle.s28_w800(color: context.colors.gold),
+                    ),
+                  ],
                 ),
+                Gaps.hGap32,
               ],
             ),
-            Gaps.hGap32,
+            Gaps.vGap10,
+            Visibility(
+              visible: isFreelancer,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                decoration: BoxDecoration(
+                  color: context.colors.white.withAlpha(30),
+                  borderRadius: Dimens.borderRadius12PX,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Your Commission',
+                            style: AppTextStyle.s13_w400(color: context.colors.white),
+                          ),
+                          Gaps.vGap6,
+                          Text(
+                            '${367} AED',
+                            style: AppTextStyle.s20_w800(color: context.colors.gold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: ()=> controller.balanceWithdrawSheet(context),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 12),
+                        decoration: BoxDecoration(
+                          color: context.colors.darkRed,
+                          borderRadius: Dimens.borderRadius30PX,
+                        ),
+                        child: Text(
+                          'Withdraw Request',
+                          style: AppTextStyle.s14_w600(color: context.colors.white),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         )
     );

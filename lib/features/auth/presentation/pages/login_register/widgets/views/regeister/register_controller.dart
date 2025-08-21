@@ -1,4 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:collection/collection.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
+import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
+import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
+
+import '../../../../../../../../core/helpers/loading_helper.dart';
 import 'register_imports.dart';
 
 class RegisterController {
@@ -111,6 +118,22 @@ class RegisterController {
     }
   }
 
+  Future<void> callRegister(BuildContext context) async {
+    var params = _registerParams();
+    getIt<LoadingHelper>().showLoadingDialog();
+    var result = await getIt<AuthRepositories>().registerUser(params);
+    result.when(
+      isSuccess: (data) async {
+        await getIt<UserServicesHelper>().updateUserData(context,data);
+        AutoRouter.of(context).push(SubscriptionPageRoute(fromAuth: true));
+      },
+      isError: (error) {
+        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).something_went_wrong));
+      },
+    );
+    getIt<LoadingHelper>().dismissDialog();
+  }
+
   void register(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       if (!allFilesUploaded(context)) {
@@ -124,9 +147,19 @@ class RegisterController {
       }
       registerLoadingButtonKey.currentState?.animateForward();
       await Future.delayed(const Duration(seconds: 1));
-      AutoRouter.of(context).push(SupportedAreaPageRoute(fromProfile: false,registerParams: _registerParams()));
+
+      if(isFreeLance()) {
+        AutoRouter.of(context).push(SupportedAreaPageRoute(fromProfile: false, registerParams: _registerParams()));
+      }else{
+        callRegister(context);
+      }
       registerLoadingButtonKey.currentState?.animateReverse();
     }
+  }
+
+
+  bool isFreeLance(){
+    return loginRegisterCtr.workTypesRequester.data!.firstWhere((element) => element.selected!).isFreelancer;
   }
 
   bool allFilesUploaded(BuildContext context) {

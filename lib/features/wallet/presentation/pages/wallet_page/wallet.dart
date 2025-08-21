@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/features/wallet/presentation/pages/wallet_page/widgets/transactions_list_widget.dart';
+import 'package:flutter_tdd/features/wallet/presentation/pages/wallet_page/widgets/wallet_button_widget.dart';
 
 import 'wallet_imports.dart';
 
@@ -14,11 +15,7 @@ class _WalletPageState extends State<WalletPage> {
 
   final WalletController controller = WalletController();
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +26,7 @@ class _WalletPageState extends State<WalletPage> {
         bgColor: context.colors.background,
       ),
       body: Padding(
-        padding: Dimens.paddingH20Px,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -69,6 +66,8 @@ class _WalletPageState extends State<WalletPage> {
             ),
             Gaps.vGap12,
             TransactionsListWidget(controller: controller),
+            const Spacer(),
+            WalletButtonWidget(controller: controller,),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/features/wallet/domain/entity/charge_wallet_params.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
@@ -13,5 +14,10 @@ class ImplWalletRepositories extends WalletRepositories {
   @override
   Future<MyResult<List<TransactionsModel>>> transactions(TransactionsParams params) {
     return _dataSource.transactions(params);
+  }
+
+  @override
+  Future<MyResult<String>> chargeWallet(ChargeWalletParams params) {
+    return _dataSource.chargeWallet(params);
   }
 } 

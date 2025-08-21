@@ -1,5 +1,6 @@
 
 
+import 'package:flutter_tdd/features/auth/data/enum/work_type_enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'work_type_model.freezed.dart';
@@ -18,4 +19,20 @@ class WorkTypeModel with _$WorkTypeModel{
 
   factory WorkTypeModel.fromJson(Map<String, dynamic> json) =>
       _$WorkTypeModelFromJson(json);
+
+   WorkTypeEnum getDriverType(){
+     switch(key){
+       case "single_store":
+         return WorkTypeEnum.oneStore;
+       case "multi_store":
+         return WorkTypeEnum.myStore;
+       case "freelancer":
+         return WorkTypeEnum.freelancer;
+       default:
+         return WorkTypeEnum.freelancer;
+     }
+   }
+
+   bool get isFreelancer => getDriverType() == WorkTypeEnum.freelancer;
+
 }
