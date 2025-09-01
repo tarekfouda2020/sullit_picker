@@ -1,6 +1,6 @@
 {
   "APP_ID": "system.stage",
-  "APP_BASE_URL": "https://staging.suliit.com/",
+  "APP_BASE_URL": "https://staging.suliit.com/api/v3/",
   "APP_ENV_NAME": "stage",
   "APP_API": "driver/",
   "APP_APP_NAME_EN": "weideliver",
