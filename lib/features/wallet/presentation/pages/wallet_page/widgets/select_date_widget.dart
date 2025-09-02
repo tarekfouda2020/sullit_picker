@@ -48,7 +48,7 @@ class SelectDateWidget extends StatelessWidget {
       monthViewSettings:  DateRangePickerMonthViewSettings(
         dayFormat: 'E',
         viewHeaderStyle: DateRangePickerViewHeaderStyle(
-          textStyle: AppTextStyle.s14_w500(color: context.colors.gray58), // customize color here
+          textStyle: AppTextStyle.s12_w400(color: context.colors.gray58), // customize color here
         ),
       ),
     );

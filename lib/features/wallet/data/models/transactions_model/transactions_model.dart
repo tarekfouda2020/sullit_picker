@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/features/wallet/data/enum/wallet_transaction_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -26,6 +27,7 @@ class TransactionsModel with _$TransactionsModel {
 
   bool get isDeposited => getTransactionType() == WalletTransactionType.deposited;
   bool get isCollected => getTransactionType() == WalletTransactionType.collected;
+  String get getAmount => amount.parseCurrency;
 
   WalletTransactionType getTransactionType() {
     switch(type){

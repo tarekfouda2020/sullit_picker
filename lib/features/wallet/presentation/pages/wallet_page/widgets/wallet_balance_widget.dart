@@ -1,4 +1,6 @@
 
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
+
 import '../wallet_imports.dart';
 
 class WalletBalanceWidget extends StatelessWidget {
@@ -89,7 +91,7 @@ class WalletBalanceWidget extends StatelessWidget {
   Widget _walletBalance(BuildContext context){
     String walletBalance = context.select<UserCubit,String>((value) =>value.state.model?.walletBalance ?? "");
     return Text(
-      '$walletBalance ',
+      walletBalance.parseCurrency,
       style: AppTextStyle.s28_w800(color: context.colors.gold),
     );
   }

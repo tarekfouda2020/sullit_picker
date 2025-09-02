@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/widgets/gradient_container_widget.dart';
 
 import 'profile_page_widgets_imports.dart';
@@ -54,7 +55,7 @@ class DriverWalletBalanceWidget extends StatelessWidget {
   Widget _walletBalance(BuildContext context){
     String walletBalance = context.select<UserCubit,String>((value) =>value.state.model?.walletBalance ?? "");
    return Text(
-     walletBalance,
+     walletBalance.parseCurrency,
      style: AppTextStyle.s28_w800(color: context.colors.gold),
    );
   }

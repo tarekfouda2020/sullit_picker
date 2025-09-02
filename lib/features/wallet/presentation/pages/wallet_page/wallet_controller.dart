@@ -17,6 +17,7 @@ class WalletController {
   final DateRangePickerController roomDateRangeController = DateRangePickerController();
   final ObsValue<int> differenceInDaysObs = ObsValue<int>.withInit(0);
    PickerDateRange? selectedRangeDates;
+   bool haseDateAppliedBefore = false;
 
   PickerDateRange initDateRange() => PickerDateRange(
     DateTime.now().subtract(const Duration(days: 1)),
@@ -50,14 +51,15 @@ class WalletController {
     selectedRangeDates = roomDateRangeController.selectedRange;
     setDifferenceInDays();
     refreshTransactions();
+    haseDateAppliedBefore = true;
   }
 
   void cancelDateRanges(BuildContext context){
     Navigator.of(context).pop();
-    Future.delayed(const Duration(milliseconds: 100),(){
-      selectedRangeDates =_previousRange ?? initDateRange();
-      roomDateRangeController.selectedRange = _previousRange ?? initDateRange();
-    });
+    // Future.delayed(const Duration(milliseconds: 100),(){
+    //   selectedRangeDates = _previousRange ?? initDateRange();
+    //   roomDateRangeController.selectedRange = _previousRange ?? initDateRange();
+    // });
   }
 
   void resetDateRanges(BuildContext context){
@@ -65,12 +67,15 @@ class WalletController {
     selectedRangeDates = null;
     roomDateRangeController.selectedRange = initDateRange();
     setDifferenceInDays();
-    refreshTransactions();
+    if(haseDateAppliedBefore){
+      refreshTransactions();
+    }
+    haseDateAppliedBefore = false;
   }
 
-  late PickerDateRange? _previousRange;
+  // late PickerDateRange? _previousRange;
   void showDateRangeBottomSheet(BuildContext context) {
-    _previousRange = selectedRangeDates ;
+    // _previousRange = selectedRangeDates ;
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,

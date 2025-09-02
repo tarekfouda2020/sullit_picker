@@ -1,7 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
@@ -26,6 +29,68 @@ class Utilities {
   void launchURL({required String url}) async {
     var uri = Uri.parse(url);
     await launchUrl(uri);
+  }
+
+
+  String parseCurrency(String text) {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
+
+    final Map<String, String> currencyMap = {
+      "د.إ": "AED",
+      "ر.س": "SAR",
+      "ج.م": "EGP",
+      "د.ك": "KWD",
+    };
+
+    final regExp = RegExp(r"([^\d\s]+)\s*([\d.,]+)");
+
+    return text.replaceAllMapped(regExp, (match) {
+      String currencyPart = match.group(1)!.trim();
+      String numberPart = match.group(2)!.trim();
+
+      if ((lang == ApplicationConstants.langEN || lang == ApplicationConstants.langBN ) && currencyMap.containsKey(currencyPart)) {
+        currencyPart = currencyMap[currencyPart]!;
+      }
+
+      final double value = num.parse(numberPart.replaceAll(',', '')).toDouble();
+      final formattedNumber = NumberFormat("#,##0.00", lang).format(value);
+
+      return "$formattedNumber $currencyPart";
+    });
+  }
+
+  String getPrice(String text) {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    // String lang = GlobalState.instance.get("lang");
+    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
+    final RegExp regExp = RegExp(r"^([^\d]+)?([\d.,]+)$");
+    final match = regExp.firstMatch(text);
+    if (match == null) return "0.00";
+    String numberPart = match.group(2)!.replaceAll(",", "").trim();
+    double value = double.tryParse(numberPart) ?? 0.0;
+
+    return NumberFormat("#,##0.00", lang).format(value);
+  }
+
+  String getCurrency(String text) {
+    BuildContext ctx = getIt<GlobalContext>().context();
+    // String lang = GlobalState.instance.get("lang");
+    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
+    final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
+    final match = regExp.firstMatch(text);
+    if (match == null) return "";
+    String currencyPart = match.group(1)!.trim();
+    final Map<String, String> currencyMap = {
+      "د.إ": "AED",
+      "ر.س": "SAR",
+      "ج.م": "EGP",
+      "د.ك": "KWD",
+    };
+    if (lang == "en" && currencyMap.containsKey(currencyPart)) {
+      return currencyMap[currencyPart]!;
+    }
+    return currencyPart;
   }
 
 

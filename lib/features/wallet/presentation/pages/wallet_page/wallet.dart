@@ -45,6 +45,7 @@ class _WalletPageState extends State<WalletPage> {
             TransactionHeaderWidget(controller: controller),
             Gaps.vGap12,
             TransactionsListWidget(controller: controller),
+            Gaps.vGap12,
             WalletButtonWidget(controller: controller,),
           ],
         ),

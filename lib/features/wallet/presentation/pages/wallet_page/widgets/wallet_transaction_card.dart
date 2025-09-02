@@ -29,7 +29,7 @@ class WalletTransactionCard extends StatelessWidget {
           ),
           Gaps.vGap12,
           Text(
-            model.isDeposited ? model.amount : '-${model.amount}',
+            model.isDeposited ? model.getAmount : '-${model.getAmount}',
             style: AppTextStyle.s22_w600(
               color: context.colors.primary,
             ),
