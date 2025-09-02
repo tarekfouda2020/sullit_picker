@@ -29,10 +29,7 @@ class DriverWalletBalanceWidget extends StatelessWidget {
                     Translate.of(context).total_wallet_balance,
                     style: AppTextStyle.s16_w400(color: context.colors.white),
                   ),
-                  Text(
-                    "500 AED",
-                    style: AppTextStyle.s28_w800(color: context.colors.gold),
-                  ),
+                  _walletBalance(context),
                   SizedBox(
                     width: 190,
                     child: AppTextButton.minCustom(
@@ -52,4 +49,15 @@ class DriverWalletBalanceWidget extends StatelessWidget {
           ],
         ));
   }
+
+
+  Widget _walletBalance(BuildContext context){
+    String walletBalance = context.select<UserCubit,String>((value) =>value.state.model?.walletBalance ?? "");
+   return Text(
+     walletBalance,
+     style: AppTextStyle.s28_w800(color: context.colors.gold),
+   );
+  }
+
+
 }

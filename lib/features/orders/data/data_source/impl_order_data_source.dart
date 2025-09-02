@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/orders/data/data_source/orders_data_source.dart';
 import 'package:flutter_tdd/features/orders/data/models/statistics_model/statistics_model.dart';
 import 'package:flutter_tdd/features/orders/data/models/store_model/store_model.dart';
+import 'package:flutter_tdd/features/orders/domain/entity/generic_pagin_params.dart';
 import 'package:flutter_tdd/features/orders/domain/entity/statistics_params.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,20 +16,20 @@ import 'package:injectable/injectable.dart';
 class ImplOrderDataSource extends OrdersDataSource{
 
   @override
-  Future<MyResult<List<StoreModel>>> getStores() {
+  Future<MyResult<List<StoreModel>>> getStores(GenericPaginateParams params) {
     HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.stores,
+        url: ApiNames.stores+params.paramsToQuery(),
         responseType:ResType.list ,
         requestMethod: RequestMethod.get,
+      refresh: params.refresh,
       toJsonFunc: (data) => List<StoreModel>.from(data.map((e) => StoreModel.fromJson(e))),
-      responseKey: (data) => data['data'],
+      responseKey: (data) => data['data']["stores"],
     );
     return GenericHttpImpl<List<StoreModel>>()(model);
   }
 
   @override
   Future<MyResult<StatisticsModel>> getStatistics(StatisticsParams params) {
-    print("========+  ${params.url}  ======");
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.statistics+params.url,
       responseType:ResType.model ,

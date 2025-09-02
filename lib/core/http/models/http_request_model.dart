@@ -11,17 +11,17 @@ class HttpRequestModel {
   final Function(dynamic data)? toJsonFunc;
   bool? showLoader;
   bool refresh;
-  final bool isFormData;
+  bool isFormData;
 
   HttpRequestModel(
       {required this.url,
-      required this.responseType,
-      required this.requestMethod,
-      this.requestBody,
-      this.responseKey,
-      this.toJsonFunc,
-      this.showLoader,
-      this.errorFunc,
-      this.isFormData = false,
-      this.refresh = true});
+        required this.responseType,
+        required this.requestMethod,
+        this.requestBody,
+        this.responseKey,
+        this.toJsonFunc,
+        this.showLoader,
+        this.errorFunc,
+        this.isFormData = false,
+        this.refresh = true});
 }

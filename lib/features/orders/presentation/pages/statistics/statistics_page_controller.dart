@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.dart';
 import 'package:flutter_tdd/core/widgets/stores_bottom_sheet_widget.dart';
 import 'package:flutter_tdd/features/orders/domain/entity/statistics_params.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import 'statistics_page_imports.dart';
 
@@ -16,6 +17,9 @@ class StatisticsPageController {
 
   final BaseBloc<bool> refreshCubit = BaseBloc<bool>(false);
 
+  final PagingController<int, StoreModel> storePagingController = PagingController(firstPageKey: 1);
+
+
   StatisticsPageController(){
     initStatistics();
   }
@@ -24,7 +28,6 @@ class StatisticsPageController {
   void initStatistics(){
     var params = _params();
     statisticsRequester = StatisticsRequester(params: params);
-    storesRequester.request();
 
     statisticsRequester.setLoadingState();
     statisticsRequester.request(fromRemote: false);
@@ -37,7 +40,7 @@ class StatisticsPageController {
       context: context,
       builder: (context) {
         return StoresBottomSheetWidget(
-          requester: storesRequester,
+          pagingController: storePagingController,
           callBack: (store) {
             saveSelectedStore(context,store);
             refreshData();

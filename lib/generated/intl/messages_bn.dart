@@ -49,8 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("অর্ডার গ্রহণের জন্য উপলব্ধ"),
         "available_for_rides":
             MessageLookupByLibrary.simpleMessage("রাইডের জন্য উপলব্ধ"),
-        "back_again_to_exit": MessageLookupByLibrary.simpleMessage(
-            "প্রস্থান করতে আবার ট্যাপ করুন"),
+        "back_again_to_exit":
+            MessageLookupByLibrary.simpleMessage("প্রস্থান করতে আবার টিপুন"),
         "back_to_login": MessageLookupByLibrary.simpleMessage("লগইনে ফিরে যান"),
         "benefits": MessageLookupByLibrary.simpleMessage("সুবিধা :"),
         "benefits_policy":

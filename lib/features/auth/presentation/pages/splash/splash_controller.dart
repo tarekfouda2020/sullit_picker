@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -12,26 +13,27 @@ import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_c
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashController {
-  void navigateToLogin(BuildContext context) async {
-    await Future.delayed(const Duration(milliseconds: 2000));
-    if (context.mounted) {
-      AutoRouter.of(context).replaceAll([const LoginRegisterRoute()]);
-    }
-  }
+  // void navigateToLogin(BuildContext context) async {
+  //   await Future.delayed(const Duration(milliseconds: 2000));
+  //   if (context.mounted) {
+  //     AutoRouter.of(context).replaceAll([const LoginRegisterRoute()]);
+  //   }
+  // }
 
   void manipulateSaveData(BuildContext context) async {
     updateLang(context);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     var cachedUserData = preferences.getString("user");
     if (cachedUserData != null) {
+      log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<==========================use data not equal null===============>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       _setUserData(context, UserModel.fromJson(json.decode(cachedUserData)));
     } else {
-      _handleCachedData(context);
+      _routeToLogin(context);
     }
   }
 
 
-  void _handleCachedData(BuildContext context) async {
+  void _routeToLogin(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 2));
     context.read<DeviceCubit>().updateUserAuth(false);
     AutoRouter.of(context).push(const LoginRegisterRoute());

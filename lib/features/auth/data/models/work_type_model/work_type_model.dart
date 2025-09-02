@@ -25,7 +25,7 @@ class WorkTypeModel with _$WorkTypeModel{
        case "single_store":
          return WorkTypeEnum.oneStore;
        case "multi_store":
-         return WorkTypeEnum.myStore;
+         return WorkTypeEnum.multiStores;
        case "freelancer":
          return WorkTypeEnum.freelancer;
        default:

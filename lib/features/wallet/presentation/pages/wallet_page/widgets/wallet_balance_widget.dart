@@ -7,7 +7,7 @@ class WalletBalanceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isFreelancer = context.read<UserCubit>().state.model!.isFreelancer;
+    var userData = context.read<UserCubit>().state.model!;
     return GradientContainerWidget(
       padding: const EdgeInsetsDirectional.only(start: 17,bottom: 19,top: 25,end: 17),
         child: Column(
@@ -28,10 +28,7 @@ class WalletBalanceWidget extends StatelessWidget {
                       Translate.of(context).total_wallet_balance,
                       style: AppTextStyle.s16_w400(color: context.colors.white),
                     ),
-                    Text(
-                      '${377} AED',
-                      style: AppTextStyle.s28_w800(color: context.colors.gold),
-                    ),
+                    _walletBalance(context),
                   ],
                 ),
                 Gaps.hGap32,
@@ -39,7 +36,8 @@ class WalletBalanceWidget extends StatelessWidget {
             ),
             Gaps.vGap10,
             Visibility(
-              visible: isFreelancer,
+              // visible: userData.isFreelancer,
+              visible: false,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 15),
                 decoration: BoxDecoration(
@@ -85,4 +83,16 @@ class WalletBalanceWidget extends StatelessWidget {
         )
     );
   }
+
+
+
+  Widget _walletBalance(BuildContext context){
+    String walletBalance = context.select<UserCubit,String>((value) =>value.state.model?.walletBalance ?? "");
+    return Text(
+      '$walletBalance ',
+      style: AppTextStyle.s28_w800(color: context.colors.gold),
+    );
+  }
+
+
 } 

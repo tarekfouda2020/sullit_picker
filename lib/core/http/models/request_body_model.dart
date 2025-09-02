@@ -4,14 +4,14 @@ class RequestBodyModel{
   final Map<String, dynamic> body;
   final bool showLoader;
   final bool forceRefresh;
-  final bool isFormData;
+  bool isFormData;
 
   RequestBodyModel({
     required this.url,
     this.body=const<String,dynamic>{},
     this.showLoader = true,
     this.forceRefresh = true,
-    this.isFormData = false,
     required this.errorFunc,
+    required this.isFormData,
   });
 }

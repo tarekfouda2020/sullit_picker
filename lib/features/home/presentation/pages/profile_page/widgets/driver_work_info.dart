@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/constants/dimens.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/driver_stores_widget.dart';
 
 import 'driver_wallet_balance_widget.dart';
 import 'profile_page_widgets_imports.dart';
@@ -22,19 +23,7 @@ class DriverWorkInfo extends StatelessWidget {
         Gaps.vGap8,
         _buildContainer(
             context,
-            child: Row(
-              children: [
-                Text(Translate.of(context).work_for,
-                style: const AppTextStyle.s12_w400(color: Color(0xff2E353A)),
-                ),
-                Gaps.hGap7,
-                Expanded(
-                  child: Text("Sulite Store , Ali’s Store",
-                    style: AppTextStyle.s14_w700(color: context.colors.primary),
-                  ),
-                ),
-              ],
-            )
+            child:  DriverStoresWidget(controller: controller)
         ),
         Gaps.vGap16,
          DriverWalletBalanceWidget(controller: controller)

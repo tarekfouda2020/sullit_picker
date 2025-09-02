@@ -81,7 +81,7 @@ class RegisterController {
           routeAndGetEmailVerifyCode(context);
         }
       },
-      isError: (error) => AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: error.message)),
+      isError: (error) {},
     );
   }
 
@@ -98,7 +98,7 @@ class RegisterController {
         AppSnackBar.showSuccessSnackBar(data!);
         routeAndGetPhoneVerifyCode(context);
       },
-      isError: (error) => AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: error.message)),
+      isError: (error) {},
     );
   }
 
@@ -128,7 +128,7 @@ class RegisterController {
         AutoRouter.of(context).push(SubscriptionPageRoute(fromAuth: true));
       },
       isError: (error) {
-        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).something_went_wrong));
+        // AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).something_went_wrong));
       },
     );
     getIt<LoadingHelper>().dismissDialog();

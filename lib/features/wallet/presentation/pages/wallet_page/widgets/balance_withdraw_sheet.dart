@@ -1,4 +1,6 @@
 
+import 'package:flutter_tdd/core/widgets/bottom_sheet_header_widget.dart';
+
 import '../wallet_imports.dart';
 
 
@@ -18,21 +20,7 @@ class BalanceWithdrawSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Gaps.hGap32,
-              Text(
-                'Balance Withdraw',
-                style: AppTextStyle.s20_w700(color: context.colors.black),
-              ),
-              InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(Icons.close, size: 30, color: context.colors.black,)),
-            ],
-          ),
+          const BottomSheetHeaderWidget(title: "Balance Withdraw"),
           Gaps.vGap40,
           GenericTextField(
             fieldTypes: FieldTypes.normal,
@@ -41,7 +29,6 @@ class BalanceWithdrawSheet extends StatelessWidget {
             fillColor: context.colors.white,
             validate: (value) => value?.validateEmpty(),
             hint: "Enter the Balance",
-            textColor: context.colors.gray3,
             hintColor: context.colors.gray3,
             radius: BorderRadius.circular(30),
             suffixIcon: Padding(

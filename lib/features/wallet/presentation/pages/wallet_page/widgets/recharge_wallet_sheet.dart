@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/core/widgets/bottom_sheet_header_widget.dart';
 
 import 'wallet_widgets_imports.dart';
 
@@ -21,25 +22,7 @@ class RechargeWalletSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Gaps.hGap32,
-                Text(
-                  'Charge wallet Balance',
-                  style: AppTextStyle.s20_w700(color: context.colors.black),
-                ),
-                InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.close,
-                      size: 30,
-                      color: context.colors.black,
-                    )),
-              ],
-            ),
+            const BottomSheetHeaderWidget(title: "Charge wallet Balance"),
             Gaps.vGap40,
             const AuthSectionTitleWidget(title: 'Amount'),
             GenericTextField(
@@ -50,7 +33,6 @@ class RechargeWalletSheet extends StatelessWidget {
               fillColor: context.colors.white,
               validate: (value) => value?.validateEmpty(),
               hint: "Enter Amount",
-              textColor: context.colors.gray3,
               hintColor: context.colors.gray3,
               radius: BorderRadius.circular(30),
             ),
@@ -110,7 +92,7 @@ class RechargeWalletSheet extends StatelessWidget {
                 }),
             Gaps.vGap32,
             AppTextButton.maxPrimary(
-              text: 'Continue To Payment',
+              text: 'Confirm',
               onPressed: ()=> controller.chargeWallet(context),
             ),
           ],

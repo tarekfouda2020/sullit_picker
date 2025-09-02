@@ -58,7 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "available_for_rides":
             MessageLookupByLibrary.simpleMessage("Available for rides"),
         "back_again_to_exit":
-            MessageLookupByLibrary.simpleMessage("back again to exit"),
+            MessageLookupByLibrary.simpleMessage("Press Back again to exit"),
         "back_to_login": MessageLookupByLibrary.simpleMessage("Back to Login"),
         "benefits": MessageLookupByLibrary.simpleMessage("Benefits :"),
         "benefits_policy":

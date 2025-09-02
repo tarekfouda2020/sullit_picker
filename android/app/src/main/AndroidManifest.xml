@@ -20,6 +20,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
    <application
        android:label="@string/APP_APP_NAME"
+       android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:exported="true"
         android:enableOnBackInvokedCallback="true"

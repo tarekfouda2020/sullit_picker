@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
 import 'package:flutter_tdd/features/auth/domain/models/user_domain_model.dart';
+import 'package:flutter_tdd/features/orders/data/models/store_model/store_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../enum/work_type_enum.dart';
@@ -23,7 +24,10 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
     required String lng,
     required String phone,
     String? avatar,
+    required List<StoreModel>? stores,
     @JsonKey(name: "avg_rate")  double? rate,
+    @JsonKey(name: "approve_status") required String approveStatus,
+    @JsonKey(name: "approve_status_label") required String approveStatusLabel,
     @JsonKey(name: "token_type") required String tokenType,
     @JsonKey(name: "email_is_active") required bool emailIsActive,
     @JsonKey(name: "country_code") required String countryCode,
@@ -36,6 +40,7 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
     @JsonKey(name: "id_image_back") required String idImageBack,
     @JsonKey(name: "license_image_front") required String licenseImageFront,
     @JsonKey(name: "license_image_back") required String licenseImageBack,
+    @JsonKey(name: "wallet_balance") required String walletBalance,
     @JsonKey(name: "has_subscription") required bool hasSubscription,
     @JsonKey(name: "has_active_subscription") required bool hasActiveSubscription,
   }) = _UserModel;
@@ -47,15 +52,19 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
       case "single_store":
         return WorkTypeEnum.oneStore;
       case "multi_store":
-        return WorkTypeEnum.myStore;
+        return WorkTypeEnum.multiStores;
       case "freelancer":
         return WorkTypeEnum.freelancer;
       default:
-        return WorkTypeEnum.freelancer;
+        return WorkTypeEnum.oneStore;
     }
   }
 
   bool get isFreelancer => getDriverType() == WorkTypeEnum.freelancer;
+
+  bool get workWithOneStore => getDriverType() == WorkTypeEnum.oneStore;
+
+  bool get workWithMultiStore => getDriverType() == WorkTypeEnum.multiStores;
 
   @override
   UserDomainModel toDomainModel() {
@@ -81,6 +90,10 @@ class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
       licenseImageBack: licenseImageBack,
       hasSubscription: hasSubscription,
       hasActiveSubscription: hasActiveSubscription,
+      stores: stores,
+      approveStatus: approveStatus,
+      approveStatusLabel: approveStatusLabel,
+      walletBalance: walletBalance
     );
   }
 }

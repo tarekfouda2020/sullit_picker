@@ -4,6 +4,7 @@ import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/orders/data/data_source/orders_data_source.dart';
 import 'package:flutter_tdd/features/orders/data/models/statistics_model/statistics_model.dart';
 import 'package:flutter_tdd/features/orders/data/models/store_model/store_model.dart';
+import 'package:flutter_tdd/features/orders/domain/entity/generic_pagin_params.dart';
 import 'package:flutter_tdd/features/orders/domain/entity/statistics_params.dart';
 import 'package:flutter_tdd/features/orders/domain/repositories/orders_repositories.dart';
 import 'package:injectable/injectable.dart';
@@ -13,8 +14,8 @@ class ImplOrdersRepositories extends OrdersRepositories{
   var dataSource = getIt<OrdersDataSource>();
 
   @override
-  Future<MyResult<List<StoreModel>>> getStores() {
-    return dataSource.getStores();
+  Future<MyResult<List<StoreModel>>> getStores(GenericPaginateParams params) {
+    return dataSource.getStores(params);
   }
 
   @override

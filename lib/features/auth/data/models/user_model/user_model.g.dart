@@ -16,7 +16,12 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       lng: json['lng'] as String,
       phone: json['phone'] as String,
       avatar: json['avatar'] as String?,
+      stores: (json['stores'] as List<dynamic>?)
+          ?.map((e) => StoreModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       rate: (json['avg_rate'] as num?)?.toDouble(),
+      approveStatus: json['approve_status'] as String,
+      approveStatusLabel: json['approve_status_label'] as String,
       tokenType: json['token_type'] as String,
       emailIsActive: json['email_is_active'] as bool,
       countryCode: json['country_code'] as String,
@@ -29,6 +34,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       idImageBack: json['id_image_back'] as String,
       licenseImageFront: json['license_image_front'] as String,
       licenseImageBack: json['license_image_back'] as String,
+      walletBalance: json['wallet_balance'] as String,
       hasSubscription: json['has_subscription'] as bool,
       hasActiveSubscription: json['has_active_subscription'] as bool,
     );
@@ -43,7 +49,10 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'lng': instance.lng,
       'phone': instance.phone,
       'avatar': instance.avatar,
+      'stores': instance.stores?.map((e) => e.toJson()).toList(),
       'avg_rate': instance.rate,
+      'approve_status': instance.approveStatus,
+      'approve_status_label': instance.approveStatusLabel,
       'token_type': instance.tokenType,
       'email_is_active': instance.emailIsActive,
       'country_code': instance.countryCode,
@@ -56,6 +65,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'id_image_back': instance.idImageBack,
       'license_image_front': instance.licenseImageFront,
       'license_image_back': instance.licenseImageBack,
+      'wallet_balance': instance.walletBalance,
       'has_subscription': instance.hasSubscription,
       'has_active_subscription': instance.hasActiveSubscription,
     };

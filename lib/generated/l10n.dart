@@ -2440,10 +2440,10 @@ class S {
     );
   }
 
-  /// `back again to exit`
+  /// `Press Back again to exit`
   String get back_again_to_exit {
     return Intl.message(
-      'back again to exit',
+      'Press Back again to exit',
       name: 'back_again_to_exit',
       desc: '',
       args: [],

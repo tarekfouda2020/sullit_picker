@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/features/wallet/presentation/pages/wallet_page/widgets/transaction_header_widget.dart';
 import 'package:flutter_tdd/features/wallet/presentation/pages/wallet_page/widgets/transactions_list_widget.dart';
 import 'package:flutter_tdd/features/wallet/presentation/pages/wallet_page/widgets/wallet_button_widget.dart';
 
@@ -13,7 +14,13 @@ class WalletPage extends StatefulWidget {
 
 class _WalletPageState extends State<WalletPage> {
 
-  final WalletController controller = WalletController();
+  late WalletController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = WalletController(context);
+  }
 
 
 
@@ -35,38 +42,9 @@ class _WalletPageState extends State<WalletPage> {
             Gaps.vGap16,
             WalletBalanceWidget(controller: controller),
             Gaps.vGap20,
-            ObsValueConsumer(
-              observable: controller.selectedTransactionObs,
-              builder: (context,value) {
-                return Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        Translate.of(context).transactions,
-                        style: AppTextStyle.s20_w700(color: context.colors.textPrimary),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: ()=> controller.showTransactionsPeriodSheet(context),
-                      child: Row(
-                        children: [
-                          Text(
-                            value.getTitle,
-                            style: AppTextStyle.s14_w400(color: context.colors.gray3),
-                          ),
-                          Gaps.hGap6,
-                          SvgPicture.asset(Res.invertedTriangle),
-                        ],
-                      ),
-                    ),
-
-                  ],
-                );
-              }
-            ),
+            TransactionHeaderWidget(controller: controller),
             Gaps.vGap12,
             TransactionsListWidget(controller: controller),
-            const Spacer(),
             WalletButtonWidget(controller: controller,),
           ],
         ),

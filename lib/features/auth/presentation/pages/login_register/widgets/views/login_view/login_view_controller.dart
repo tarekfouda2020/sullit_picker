@@ -40,7 +40,7 @@ class LoginViewController {
             getIt<UserServicesHelper>().cashAndRoute(context, data, 'Success Login', false);
           },
           isError: (error) {
-            AppSnackBar.showSimpleToast(msg: 'Re enter The Data', type: ToastType.error);
+
           },
         );
         loadingButtonKey.currentState?.animateReverse();

@@ -26,6 +26,7 @@ class ImplAuthDataSource extends AuthDataSource{
          requestMethod: RequestMethod.post,
        toJsonFunc: (data) => UserModel.fromJson(data),
        responseKey: (data) => data['data'],
+       errorFunc: (data) => data['msg'],
        requestBody: params.toJson(),
        isFormData: true,
        showLoader: false
@@ -110,6 +111,7 @@ class ImplAuthDataSource extends AuthDataSource{
       requestBody: params.toJson(),
       showLoader: false,
       toJsonFunc: (json) => UserModel.fromJson(json),
+      isFormData: true
     );
     return await GenericHttpImpl<UserModel>()(model);
   }
@@ -120,7 +122,6 @@ class ImplAuthDataSource extends AuthDataSource{
       url: ApiNames.logout,
       responseType: ResType.type,
       requestMethod: RequestMethod.post,
-      responseKey: (data) => data['msg'],
       showLoader: true,
       isFormData: false
     );

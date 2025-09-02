@@ -23,9 +23,9 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onError(
-    DioException err,
-    ErrorInterceptorHandler handler,
-  ) async {
+      DioException err,
+      ErrorInterceptorHandler handler,
+      ) async {
     if (err.response?.statusCode == 403 || err.response?.statusCode == 401) {
       final result = await refreshToken();
       if (result) {
@@ -83,9 +83,9 @@ class AuthInterceptor extends Interceptor {
   }
 
   Future<bool> _retry(
-    DioException dioException,
-    ErrorInterceptorHandler handler,
-  ) async {
+      DioException dioException,
+      ErrorInterceptorHandler handler,
+      ) async {
     try {
       final dio = Dio();
       final resistanceAccessToken = pref.getString("token");

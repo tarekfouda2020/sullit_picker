@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
@@ -31,9 +30,9 @@ class GenericHttpImpl<T> extends GenericHttp<T> {
       url: model.url,
       showLoader: model.showLoader ?? false,
       forceRefresh: model.refresh,
-      errorFunc: model.errorFunc ?? (data) => data,
+      errorFunc: model.errorFunc ?? (data) => data["msg"],
       body: model.requestBody ?? {},
-      isFormData: model.isFormData
+      isFormData: model.isFormData,
     );
 
     await _checkInternetConnection();

@@ -11,13 +11,13 @@ class StoresRequester extends Requester<List<StoreModel>>{
     if(hasNoData){
       loadingState();
     }
-    var result = await getIt<OrdersRepositories>().getStores();
-    result.when(isSuccess: (data) {
-      successState(data??[]);
-    }, isError: (error) {
-      failedState(error, () {},);
-    },
-    );
+    // var result = await getIt<OrdersRepositories>().getStores();
+    // result.when(isSuccess: (data) {
+    //   successState(data??[]);
+    // }, isError: (error) {
+    //   failedState(error, () {},);
+    // },
+    // );
   }
 
   void refresh(){

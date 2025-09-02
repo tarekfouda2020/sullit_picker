@@ -15,6 +15,8 @@ class ProfilePageController {
   final LanguagesRequester langRequester = LanguagesRequester();
 
   final ObsValue<String> profileImageObs = ObsValue<String>.withInit("");
+
+  final ObsValue<bool> showAllStores = ObsValue<bool>.withInit(false);
   File? pickedImage;
 
 

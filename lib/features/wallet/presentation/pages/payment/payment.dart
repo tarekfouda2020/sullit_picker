@@ -11,20 +11,18 @@ class Payment extends StatefulWidget {
 class _PaymentState extends State<Payment> {
    final PaymentController  controller = PaymentController();
 
-
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // controller.initWebView(widget.transactionUrl,context);
+   @override
+  void initState() {
+    super.initState();
+    controller.initWebView(widget.transactionUrl,context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Payment")),
-      // body: WebViewWidget(controller: controller.webViewController),
-      body: Gaps.empty,
+      body: WebViewWidget(controller: controller.webViewController),
+      // body: Gaps.empty,
     );
   }
 }

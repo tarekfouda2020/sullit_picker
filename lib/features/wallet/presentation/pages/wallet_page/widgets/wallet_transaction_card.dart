@@ -24,12 +24,12 @@ class WalletTransactionCard extends StatelessWidget {
           Text(
             model.typeLabel,
             style: AppTextStyle.s14_w600(
-              color: model.isCollected ? context.colors.green : context.colors.primary,
+              color: model.isDeposited ? context.colors.green : context.colors.primary,
             ),
           ),
           Gaps.vGap12,
           Text(
-            model.isCollected ? model.amount : '-${model.amount}',
+            model.isDeposited ? model.amount : '-${model.amount}',
             style: AppTextStyle.s22_w600(
               color: context.colors.primary,
             ),

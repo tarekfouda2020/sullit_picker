@@ -13,7 +13,7 @@ class ApplicationConstants {
   static const langBN = 'bn';
 
   /// Pagination
-  static const paginationLimit = 16;
+  static const paginationLimit = 10;
   static const paginationSkip = 0;
 
   static const logoVarName = 'icon_g';

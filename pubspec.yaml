@@ -95,8 +95,8 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_html: ^3.0.0
   infinite_scroll_pagination: ^4.1.0
-  flutter_webview_plugin: ^0.4.0
-#  webview_flutter: ^4.13.0
+  webview_flutter: 4.7.0
+  syncfusion_flutter_datepicker: ^29.1.38
 #  webview_flutter_wkwebview: ^3.10.3
 
 

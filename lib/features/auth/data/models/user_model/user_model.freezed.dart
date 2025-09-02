@@ -28,8 +28,13 @@ mixin _$UserModel {
   String get lng => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
+  List<StoreModel>? get stores => throw _privateConstructorUsedError;
   @JsonKey(name: "avg_rate")
   double? get rate => throw _privateConstructorUsedError;
+  @JsonKey(name: "approve_status")
+  String get approveStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: "approve_status_label")
+  String get approveStatusLabel => throw _privateConstructorUsedError;
   @JsonKey(name: "token_type")
   String get tokenType => throw _privateConstructorUsedError;
   @JsonKey(name: "email_is_active")
@@ -54,6 +59,8 @@ mixin _$UserModel {
   String get licenseImageFront => throw _privateConstructorUsedError;
   @JsonKey(name: "license_image_back")
   String get licenseImageBack => throw _privateConstructorUsedError;
+  @JsonKey(name: "wallet_balance")
+  String get walletBalance => throw _privateConstructorUsedError;
   @JsonKey(name: "has_subscription")
   bool get hasSubscription => throw _privateConstructorUsedError;
   @JsonKey(name: "has_active_subscription")
@@ -83,7 +90,10 @@ abstract class $UserModelCopyWith<$Res> {
       String lng,
       String phone,
       String? avatar,
+      List<StoreModel>? stores,
       @JsonKey(name: "avg_rate") double? rate,
+      @JsonKey(name: "approve_status") String approveStatus,
+      @JsonKey(name: "approve_status_label") String approveStatusLabel,
       @JsonKey(name: "token_type") String tokenType,
       @JsonKey(name: "email_is_active") bool emailIsActive,
       @JsonKey(name: "country_code") String countryCode,
@@ -96,6 +106,7 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: "id_image_back") String idImageBack,
       @JsonKey(name: "license_image_front") String licenseImageFront,
       @JsonKey(name: "license_image_back") String licenseImageBack,
+      @JsonKey(name: "wallet_balance") String walletBalance,
       @JsonKey(name: "has_subscription") bool hasSubscription,
       @JsonKey(name: "has_active_subscription") bool hasActiveSubscription});
 }
@@ -123,7 +134,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? lng = null,
     Object? phone = null,
     Object? avatar = freezed,
+    Object? stores = freezed,
     Object? rate = freezed,
+    Object? approveStatus = null,
+    Object? approveStatusLabel = null,
     Object? tokenType = null,
     Object? emailIsActive = null,
     Object? countryCode = null,
@@ -136,6 +150,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? idImageBack = null,
     Object? licenseImageFront = null,
     Object? licenseImageBack = null,
+    Object? walletBalance = null,
     Object? hasSubscription = null,
     Object? hasActiveSubscription = null,
   }) {
@@ -172,10 +187,22 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      stores: freezed == stores
+          ? _value.stores
+          : stores // ignore: cast_nullable_to_non_nullable
+              as List<StoreModel>?,
       rate: freezed == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as double?,
+      approveStatus: null == approveStatus
+          ? _value.approveStatus
+          : approveStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      approveStatusLabel: null == approveStatusLabel
+          ? _value.approveStatusLabel
+          : approveStatusLabel // ignore: cast_nullable_to_non_nullable
+              as String,
       tokenType: null == tokenType
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
@@ -224,6 +251,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.licenseImageBack
           : licenseImageBack // ignore: cast_nullable_to_non_nullable
               as String,
+      walletBalance: null == walletBalance
+          ? _value.walletBalance
+          : walletBalance // ignore: cast_nullable_to_non_nullable
+              as String,
       hasSubscription: null == hasSubscription
           ? _value.hasSubscription
           : hasSubscription // ignore: cast_nullable_to_non_nullable
@@ -253,7 +284,10 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String lng,
       String phone,
       String? avatar,
+      List<StoreModel>? stores,
       @JsonKey(name: "avg_rate") double? rate,
+      @JsonKey(name: "approve_status") String approveStatus,
+      @JsonKey(name: "approve_status_label") String approveStatusLabel,
       @JsonKey(name: "token_type") String tokenType,
       @JsonKey(name: "email_is_active") bool emailIsActive,
       @JsonKey(name: "country_code") String countryCode,
@@ -266,6 +300,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       @JsonKey(name: "id_image_back") String idImageBack,
       @JsonKey(name: "license_image_front") String licenseImageFront,
       @JsonKey(name: "license_image_back") String licenseImageBack,
+      @JsonKey(name: "wallet_balance") String walletBalance,
       @JsonKey(name: "has_subscription") bool hasSubscription,
       @JsonKey(name: "has_active_subscription") bool hasActiveSubscription});
 }
@@ -291,7 +326,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? lng = null,
     Object? phone = null,
     Object? avatar = freezed,
+    Object? stores = freezed,
     Object? rate = freezed,
+    Object? approveStatus = null,
+    Object? approveStatusLabel = null,
     Object? tokenType = null,
     Object? emailIsActive = null,
     Object? countryCode = null,
@@ -304,6 +342,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? idImageBack = null,
     Object? licenseImageFront = null,
     Object? licenseImageBack = null,
+    Object? walletBalance = null,
     Object? hasSubscription = null,
     Object? hasActiveSubscription = null,
   }) {
@@ -340,10 +379,22 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
+      stores: freezed == stores
+          ? _value._stores
+          : stores // ignore: cast_nullable_to_non_nullable
+              as List<StoreModel>?,
       rate: freezed == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as double?,
+      approveStatus: null == approveStatus
+          ? _value.approveStatus
+          : approveStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      approveStatusLabel: null == approveStatusLabel
+          ? _value.approveStatusLabel
+          : approveStatusLabel // ignore: cast_nullable_to_non_nullable
+              as String,
       tokenType: null == tokenType
           ? _value.tokenType
           : tokenType // ignore: cast_nullable_to_non_nullable
@@ -392,6 +443,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.licenseImageBack
           : licenseImageBack // ignore: cast_nullable_to_non_nullable
               as String,
+      walletBalance: null == walletBalance
+          ? _value.walletBalance
+          : walletBalance // ignore: cast_nullable_to_non_nullable
+              as String,
       hasSubscription: null == hasSubscription
           ? _value.hasSubscription
           : hasSubscription // ignore: cast_nullable_to_non_nullable
@@ -417,7 +472,10 @@ class _$UserModelImpl extends _UserModel {
       required this.lng,
       required this.phone,
       this.avatar,
+      required final List<StoreModel>? stores,
       @JsonKey(name: "avg_rate") this.rate,
+      @JsonKey(name: "approve_status") required this.approveStatus,
+      @JsonKey(name: "approve_status_label") required this.approveStatusLabel,
       @JsonKey(name: "token_type") required this.tokenType,
       @JsonKey(name: "email_is_active") required this.emailIsActive,
       @JsonKey(name: "country_code") required this.countryCode,
@@ -430,10 +488,12 @@ class _$UserModelImpl extends _UserModel {
       @JsonKey(name: "id_image_back") required this.idImageBack,
       @JsonKey(name: "license_image_front") required this.licenseImageFront,
       @JsonKey(name: "license_image_back") required this.licenseImageBack,
+      @JsonKey(name: "wallet_balance") required this.walletBalance,
       @JsonKey(name: "has_subscription") required this.hasSubscription,
       @JsonKey(name: "has_active_subscription")
       required this.hasActiveSubscription})
-      : super._();
+      : _stores = stores,
+        super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -454,9 +514,25 @@ class _$UserModelImpl extends _UserModel {
   final String phone;
   @override
   final String? avatar;
+  final List<StoreModel>? _stores;
+  @override
+  List<StoreModel>? get stores {
+    final value = _stores;
+    if (value == null) return null;
+    if (_stores is EqualUnmodifiableListView) return _stores;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: "avg_rate")
   final double? rate;
+  @override
+  @JsonKey(name: "approve_status")
+  final String approveStatus;
+  @override
+  @JsonKey(name: "approve_status_label")
+  final String approveStatusLabel;
   @override
   @JsonKey(name: "token_type")
   final String tokenType;
@@ -494,6 +570,9 @@ class _$UserModelImpl extends _UserModel {
   @JsonKey(name: "license_image_back")
   final String licenseImageBack;
   @override
+  @JsonKey(name: "wallet_balance")
+  final String walletBalance;
+  @override
   @JsonKey(name: "has_subscription")
   final bool hasSubscription;
   @override
@@ -502,7 +581,7 @@ class _$UserModelImpl extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, token: $token, lat: $lat, lng: $lng, phone: $phone, avatar: $avatar, rate: $rate, tokenType: $tokenType, emailIsActive: $emailIsActive, countryCode: $countryCode, fullPhone: $fullPhone, workType: $workType, mapDesc: $mapDesc, coverageRadiusKm: $coverageRadiusKm, isAvailable: $isAvailable, idImageFront: $idImageFront, idImageBack: $idImageBack, licenseImageFront: $licenseImageFront, licenseImageBack: $licenseImageBack, hasSubscription: $hasSubscription, hasActiveSubscription: $hasActiveSubscription)';
+    return 'UserModel(id: $id, name: $name, email: $email, token: $token, lat: $lat, lng: $lng, phone: $phone, avatar: $avatar, stores: $stores, rate: $rate, approveStatus: $approveStatus, approveStatusLabel: $approveStatusLabel, tokenType: $tokenType, emailIsActive: $emailIsActive, countryCode: $countryCode, fullPhone: $fullPhone, workType: $workType, mapDesc: $mapDesc, coverageRadiusKm: $coverageRadiusKm, isAvailable: $isAvailable, idImageFront: $idImageFront, idImageBack: $idImageBack, licenseImageFront: $licenseImageFront, licenseImageBack: $licenseImageBack, walletBalance: $walletBalance, hasSubscription: $hasSubscription, hasActiveSubscription: $hasActiveSubscription)';
   }
 
   @override
@@ -518,7 +597,12 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.lng, lng) || other.lng == lng) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            const DeepCollectionEquality().equals(other._stores, _stores) &&
             (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.approveStatus, approveStatus) ||
+                other.approveStatus == approveStatus) &&
+            (identical(other.approveStatusLabel, approveStatusLabel) ||
+                other.approveStatusLabel == approveStatusLabel) &&
             (identical(other.tokenType, tokenType) ||
                 other.tokenType == tokenType) &&
             (identical(other.emailIsActive, emailIsActive) ||
@@ -542,6 +626,8 @@ class _$UserModelImpl extends _UserModel {
                 other.licenseImageFront == licenseImageFront) &&
             (identical(other.licenseImageBack, licenseImageBack) ||
                 other.licenseImageBack == licenseImageBack) &&
+            (identical(other.walletBalance, walletBalance) ||
+                other.walletBalance == walletBalance) &&
             (identical(other.hasSubscription, hasSubscription) ||
                 other.hasSubscription == hasSubscription) &&
             (identical(other.hasActiveSubscription, hasActiveSubscription) ||
@@ -560,7 +646,10 @@ class _$UserModelImpl extends _UserModel {
         lng,
         phone,
         avatar,
+        const DeepCollectionEquality().hash(_stores),
         rate,
+        approveStatus,
+        approveStatusLabel,
         tokenType,
         emailIsActive,
         countryCode,
@@ -573,6 +662,7 @@ class _$UserModelImpl extends _UserModel {
         idImageBack,
         licenseImageFront,
         licenseImageBack,
+        walletBalance,
         hasSubscription,
         hasActiveSubscription
       ]);
@@ -603,7 +693,11 @@ abstract class _UserModel extends UserModel {
       required final String lng,
       required final String phone,
       final String? avatar,
+      required final List<StoreModel>? stores,
       @JsonKey(name: "avg_rate") final double? rate,
+      @JsonKey(name: "approve_status") required final String approveStatus,
+      @JsonKey(name: "approve_status_label")
+      required final String approveStatusLabel,
       @JsonKey(name: "token_type") required final String tokenType,
       @JsonKey(name: "email_is_active") required final bool emailIsActive,
       @JsonKey(name: "country_code") required final String countryCode,
@@ -618,6 +712,7 @@ abstract class _UserModel extends UserModel {
       required final String licenseImageFront,
       @JsonKey(name: "license_image_back")
       required final String licenseImageBack,
+      @JsonKey(name: "wallet_balance") required final String walletBalance,
       @JsonKey(name: "has_subscription") required final bool hasSubscription,
       @JsonKey(name: "has_active_subscription")
       required final bool hasActiveSubscription}) = _$UserModelImpl;
@@ -643,8 +738,16 @@ abstract class _UserModel extends UserModel {
   @override
   String? get avatar;
   @override
+  List<StoreModel>? get stores;
+  @override
   @JsonKey(name: "avg_rate")
   double? get rate;
+  @override
+  @JsonKey(name: "approve_status")
+  String get approveStatus;
+  @override
+  @JsonKey(name: "approve_status_label")
+  String get approveStatusLabel;
   @override
   @JsonKey(name: "token_type")
   String get tokenType;
@@ -681,6 +784,9 @@ abstract class _UserModel extends UserModel {
   @override
   @JsonKey(name: "license_image_back")
   String get licenseImageBack;
+  @override
+  @JsonKey(name: "wallet_balance")
+  String get walletBalance;
   @override
   @JsonKey(name: "has_subscription")
   bool get hasSubscription;
