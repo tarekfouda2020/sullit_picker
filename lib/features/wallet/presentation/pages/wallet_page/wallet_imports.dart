@@ -24,7 +24,6 @@ export 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.da
 export 'package:flutter_tdd/core/widgets/stores_bottom_sheet_widget.dart';
 export 'package:flutter_tdd/features/orders/data/models/store_model/store_model.dart';
 export 'package:flutter_tdd/features/orders/domain/requester/stores_requester.dart';
-export 'package:flutter_tdd/features/wallet/presentation/pages/wallet_page/widgets/transactions_period_bottom_sheet_widget.dart';
 export 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 export 'package:flutter_tdd/core/constants/app_constants.dart';
 export 'package:collection/collection.dart';

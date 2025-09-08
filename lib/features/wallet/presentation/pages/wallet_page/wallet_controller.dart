@@ -10,12 +10,12 @@ class WalletController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final StoresRequester storesRequester = StoresRequester();
   final ObsValue<StoreModel?> selectedStoreObs = ObsValue<StoreModel?>.withInit(null);
-  final ObsValue<TransactionPeriodEnum> selectedTransactionObs =
-      ObsValue<TransactionPeriodEnum>.withInit(TransactionPeriodEnum.today);
   final PagingController<int, TransactionsModel> pagingController = PagingController(firstPageKey: 1);
   final PagingController<int, StoreModel> storePagingController = PagingController(firstPageKey: 1);
   final DateRangePickerController roomDateRangeController = DateRangePickerController();
   final ObsValue<int> differenceInDaysObs = ObsValue<int>.withInit(0);
+
+  /// have value when save the date
    PickerDateRange? selectedRangeDates;
    bool haseDateAppliedBefore = false;
 
@@ -33,6 +33,7 @@ class WalletController {
     // selectedRangeDatesCubit.setValue(initDateRange());
     _getPayMethods(context);
     _setupPagination(context);
+    context.read<UserCubit>().removeSelectedStores();
   }
 
   void setDifferenceInDays(){
@@ -47,7 +48,6 @@ class WalletController {
   }
 
   void saveDateRanges(BuildContext context){
-    Navigator.of(context).pop();
     selectedRangeDates = roomDateRangeController.selectedRange;
     setDifferenceInDays();
     refreshTransactions();
@@ -63,7 +63,6 @@ class WalletController {
   }
 
   void resetDateRanges(BuildContext context){
-    Navigator.of(context).pop();
     selectedRangeDates = null;
     roomDateRangeController.selectedRange = initDateRange();
     setDifferenceInDays();
@@ -85,7 +84,7 @@ class WalletController {
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
       builder: (context) {
-        return RangeDatePickerSheetWidget(controller: this);
+        return DateSheetWidget(controller: this);
       },
     );
   }
@@ -101,13 +100,16 @@ class WalletController {
 
   void _setupPagination(BuildContext context) {
     var userData = context.read<UserCubit>().state.model;
+    getWalletHistory(1,refresh: false);
+    getWalletHistory(1,refresh: true);
     pagingController.addPageRequestListener((pageKey) {
       getWalletHistory(pageKey);
     });
 
     if(userData!.isFreelancer || userData.workWithMultiStore){
+      getStores(1,refresh: false);
+      getStores(1);
       storePagingController.addPageRequestListener((pageKey) {
-        getStores(pageKey,refresh: false);
         getStores(pageKey);
       },);
     }
@@ -182,13 +184,6 @@ class WalletController {
   }
 
 
-  void showTransactionsPeriodSheet(BuildContext context) {
-    AppBottomSheets.showScrollableBody(
-        context: context,
-        builder: (context) {
-          return TransactionsPeriodBottomSheetWidget(controller: this);
-        });
-  }
 
   void showStoresSheet(BuildContext context) {
     var userData = context.read<UserCubit>().state.model;
@@ -209,10 +204,11 @@ class WalletController {
         }else{
           return  StoreListWidget(
             onRefresh: (item) {
-              Navigator.pop(context);
+              // Navigator.pop(context);
               selectedStoreObs.setValue(item);
               selectedStoreObs.refresh();
               refreshTransactions();
+              Navigator.pop(context);
             },
           );
         }
@@ -220,11 +216,6 @@ class WalletController {
     );
   }
 
-  void updateTransactionPeriod(TransactionPeriodEnum period, BuildContext context) {
-    selectedTransactionObs.setValue(period);
-    Navigator.pop(context);
-    refreshTransactions();
-  }
 
   void refreshTransactions() {
     pagingController.refresh();

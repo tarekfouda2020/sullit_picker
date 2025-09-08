@@ -58,11 +58,10 @@ class StoresBottomSheetWidget extends StatelessWidget {
                 },
                 newPageProgressIndicatorBuilder: (context) => Center(
                   child: SizedBox(
-                    child: SizedBox(
-                      width: 30, height: 30,
-                      child: CircularProgressIndicator.adaptive(
-                        backgroundColor: context.colors.primary,
-                      ),
+                    width: Dimens.dp30,
+                    height: Dimens.dp30,
+                    child: CircularProgressIndicator.adaptive(
+                      backgroundColor: context.colors.primary,
                     ),
                   ),
                 ),
@@ -83,7 +82,4 @@ class StoresBottomSheetWidget extends StatelessWidget {
       ),
     );
   }
-
-
-
 }

@@ -22,6 +22,7 @@ abstract class AppBottomSheets {
         isDismissible: true,
         isScrollControlled: true,
         enableDrag: true,
+        useRootNavigator: true,
         builder: builder);
   }
 
@@ -32,9 +33,10 @@ abstract class AppBottomSheets {
       BoxConstraints? constraints}) {
     return showModalBottomSheet<T>(
       context: context,
-      backgroundColor: backgroundColor ?? context.colors.white,
+      backgroundColor: backgroundColor ?? Colors.transparent,
       isDismissible: false,
       isScrollControlled: true,
+      useRootNavigator: true,
       enableDrag: false,
       constraints: constraints,
       shape: const OutlineInputBorder(

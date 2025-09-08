@@ -21,7 +21,7 @@ class ProfileHeaderWidget extends StatelessWidget {
             PositionedDirectional(
               end: -5, bottom: -3,
               child: GestureDetector(
-                onTap: (){},
+                onTap: ()=> controller.selectImage(context),
                 child: Container(
                   width: 32,height: 32,
                   decoration: BoxDecoration(

@@ -46,6 +46,7 @@ class _LoginViewState extends State<LoginView> {
                   action: TextInputAction.done,
                   fillColor: Colors.white,
                   margin: Dimens.paddingTop5 ,
+                  onSubmit: () => controller.callLogin(context),
                   validate: (value) => value?.validatePassword(),
                   hint: Translate.of(context).enter_your_password,
                   suffixIcon: GestureDetector(

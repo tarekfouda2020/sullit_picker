@@ -11,30 +11,46 @@ class NoOrdersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: Dimens.paddingH20Px,
-      child: Column(
-        children: [
-          HomeHeaderWidget(controller: controller),
-          Gaps.vGap14,
-          CustomSearchBar(controller: controller),
-          Gaps.vGap16,
-          /// want image and text to be in center
-          Expanded(
-            child: Center(
+      child: RefreshIndicator.adaptive(
+        backgroundColor: context.colors.white,
+        onRefresh: () async => controller.getCurrentOrder(fromRemote: true),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
+            ),
+            child: IntrinsicHeight(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Image.asset(Res.noOrdersAvailable,
-                  width: 123, height: 152,
+                  HomeHeaderWidget(controller: controller),
+                  Gaps.vGap14,
+                  CustomSearchBar(controller: controller),
+                  /// this Expanded makes the "No orders" block centered
+                  Expanded(
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            Res.noOrdersAvailable,
+                            width: 123,
+                            height: 152,
+                          ),
+                          Text(
+                            Translate.of(context).you_have_no_orders_now,
+                            style: AppTextStyle.s16_w400(color: context.colors.primary),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                  Text(
-                      Translate.of(context).you_have_no_orders_now,
-                      style: AppTextStyle.s16_w400(color: context.colors.primary)
-                  )
                 ],
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

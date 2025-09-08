@@ -20,7 +20,7 @@ class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Payment")),
+      appBar: const DefaultAppBar(title: 'Payment',),
       body: WebViewWidget(controller: controller.webViewController),
       // body: Gaps.empty,
     );

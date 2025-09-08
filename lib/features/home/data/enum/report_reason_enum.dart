@@ -2,15 +2,19 @@ import 'package:flutter_tdd/core/localization/translate.dart';
 
 enum ReportReasonEnum {
 
- noUserResponse,
+  noUserResponse,
   problemInMotor,
   other;
 
+  String get getTitle {
+    switch (this) {
+      case noUserResponse:
+        return Translate.s.user_didnt_respond;
+      case problemInMotor:
+        return Translate.s.malfunction_in_motor;
+      case other:
+        return Translate.s.other;
+    }
+  }
 
-
- String get getTitle => switch(this){
-   noUserResponse => Translate.s.user_didnt_respond,
-   problemInMotor => Translate.s.malfunction_in_motor,
-   other => Translate.s.other,
- };
 }

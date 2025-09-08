@@ -1,4 +1,3 @@
-import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/driver_work_info.dart';
 
@@ -21,6 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     controller.getLanguages();
+    controller.initStores(context);
   }
 
   @override

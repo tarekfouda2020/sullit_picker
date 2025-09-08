@@ -64,6 +64,14 @@ import 'package:flutter_tdd/features/home/data/repositories/impl_home_repositori
     as _i200;
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart'
     as _i141;
+import 'package:flutter_tdd/features/notifications/data/data_source/impl_notification_data_source.dart'
+    as _i603;
+import 'package:flutter_tdd/features/notifications/data/data_source/notification_data_source.dart'
+    as _i1071;
+import 'package:flutter_tdd/features/notifications/data/repositories/impl_notification_repositories.dart'
+    as _i739;
+import 'package:flutter_tdd/features/notifications/domain/repositories/notification_repositories.dart'
+    as _i872;
 import 'package:flutter_tdd/features/orders/data/data_source/impl_order_data_source.dart'
     as _i372;
 import 'package:flutter_tdd/features/orders/data/data_source/orders_data_source.dart'
@@ -136,6 +144,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i104.SubscriptionRepositories>(
         () => _i96.ImplSubscriptionRepositories());
     gh.factory<_i305.WalletRepositories>(() => _i832.ImplWalletRepositories());
+    gh.factory<_i1071.NotificationDataSource>(
+        () => _i603.ImplNotificationDataSource());
     gh.factory<_i674.AuthRepositories>(() => _i988.ImplAuthRepositories());
     gh.factory<_i201.SubscriptionDataSource>(
         () => _i267.ImplSubscriptionDataSource());
@@ -147,6 +157,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i973.HomeDataSource>(() => _i409.ImplHomeDataSource());
     gh.factory<_i141.HomeRepositories>(() => _i200.ImplHomeRepositories());
     gh.factory<_i260.WalletDataSource>(() => _i72.ImplWalletDataSource());
+    gh.factory<_i872.NotificationRepositories>(
+        () => _i739.ImplNotificationRepositories());
     gh.factory<_i662.AuthDataSource>(() => _i23.ImplAuthDataSource());
     return this;
   }

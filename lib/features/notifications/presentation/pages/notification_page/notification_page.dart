@@ -1,3 +1,7 @@
+import 'package:flutter_tdd/core/widgets/shimmers/base_shimmer_widget.dart';
+import 'package:flutter_tdd/features/notifications/data/models/notification_model/notification_model.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
 import 'notification_page_imports.dart';
 
 @RoutePage(name: "NotificationsPageRoute")
@@ -19,10 +23,52 @@ class _NotificationsPageState extends State<NotificationsPage> {
         title: Translate.of(context).notifications,
         bgColor: context.colors.background,
       ),
-      body: ListView.builder(
-        padding: Dimens.paddingH20Px,
-        itemCount: 4,
-        itemBuilder: (context, index) => const NotificationCardWidget(),
+      body: RefreshIndicator.adaptive(
+        onRefresh: () async => controller.getNotifications(1),
+        backgroundColor: context.colors.white,
+        child: PagedListView<int, NotificationModel>(
+          padding: Dimens.paddingH20Px,
+          pagingController: controller.notifyPagingController,
+          builderDelegate: PagedChildBuilderDelegate<NotificationModel>(
+            itemBuilder: (context, notify, index) =>  NotificationCardWidget(model:notify),
+            firstPageProgressIndicatorBuilder: (context) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: List.generate(4, (index) {
+                    return BaseShimmerWidget(
+                        child: Container(
+                          width: 200,
+                          decoration: const BoxDecoration(
+                              borderRadius: Dimens.borderRadius30PX
+                          ),
+                        )
+                    );
+                  },),
+                ),
+              );
+            },
+            newPageProgressIndicatorBuilder: (context) => Center(
+              child: SizedBox(
+                child: SizedBox(
+                  width: 30, height: 30,
+                  child: CircularProgressIndicator.adaptive(
+                    backgroundColor: context.colors.primary,
+                  ),
+                ),
+              ),
+            ),
+            firstPageErrorIndicatorBuilder: (context) => Gaps.empty,
+            newPageErrorIndicatorBuilder: (context) => Gaps.empty,
+            noItemsFoundIndicatorBuilder: (context) => Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("No Notifications received yet!",
+                  style: AppTextStyle.s20_w500(color: context.colors.black),
+                )
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

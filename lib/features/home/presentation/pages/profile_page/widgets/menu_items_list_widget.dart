@@ -1,6 +1,3 @@
-import 'package:flutter_tdd/core/constants/app_constants.dart';
-import 'package:flutter_tdd/core/helpers/global_state.dart';
-
 import 'profile_page_widgets_imports.dart';
 
 class MenuItemsListWidget extends StatelessWidget {
@@ -13,6 +10,7 @@ class MenuItemsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isFreelancer = context.read<UserCubit>().state.model?.isFreelancer;
     return Column(
       children: [
         Gaps.vGap20,
@@ -26,6 +24,13 @@ class MenuItemsListWidget extends StatelessWidget {
           title: Translate.of(context).orders_history,
           onTap: () => controller.navigateToOrdersHistory(context),
         ),
+        if(isFreelancer == true)
+        MenuItemWidget(
+          icon: Res.orderHistory,
+          title: "New Orders",
+          onTap: () => controller.navigateToNewOrders(context),
+        ),
+        if(isFreelancer == true)
         MenuItemWidget(
           icon: Res.mapIcon,
           title: Translate.of(context).supported_geographical_area,
@@ -67,7 +72,7 @@ class MenuItemsListWidget extends StatelessWidget {
         AppTextButton.maxPrimary(text: Translate.of(context).logout,
         onPressed: () => controller.logout(context),
         ),
-        Gaps.vGap20
+        Gaps.vGap30
       ],
     );
   }

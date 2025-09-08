@@ -22,4 +22,5 @@ export 'package:flutter_tdd/core/widgets/app_button.dart';
 export 'package:flutter_tdd/features/home/presentation/widgets/notification_icon.dart';
 export 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 export 'driver_status_widget.dart';
+export 'page_content_shimmer.dart';
 

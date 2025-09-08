@@ -3,9 +3,11 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/localization/translate.dart';
+import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
 
 class OrderNotification extends StatelessWidget {
-  const OrderNotification({super.key});
+  final OrderModel model;
+  const OrderNotification({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class OrderNotification extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            '#6657564',
+            '#${model.code}',
             style: AppTextStyle.s18_w700(color: context.colors.primary),
           ),
           Gaps.vGap8,
@@ -29,7 +31,7 @@ class OrderNotification extends StatelessWidget {
               style: AppTextStyle.s16_w300(color: context.colors.textPrimary),
               children: [
                 TextSpan(
-                  text: 'Sulite Store',
+                  text: model.store!.storeName,
                   style: AppTextStyle.s16_w700(color: context.colors.textPrimary),
                 ),
               ],
@@ -37,7 +39,8 @@ class OrderNotification extends StatelessWidget {
           ),
         Gaps.vGap9,
           Text(
-           "${30} minutes ago",
+           // "${30} minutes ago",
+           model.assignedAt,
             style: AppTextStyle.s14_w400(color: context.colors.primary),
           ),
         ],

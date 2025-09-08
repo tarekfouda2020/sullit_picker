@@ -120,6 +120,8 @@ class SupportedAreaController {
     );
   }
 
+  // "lat": "31.42932226",
+  // "lng": "31.67249702",
 
   UpdateCoverageAreaParams _params() => UpdateCoverageAreaParams(
     lat: latLongObs.getValue().latitude,

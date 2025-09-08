@@ -122,6 +122,7 @@ class ImplAuthDataSource extends AuthDataSource{
       url: ApiNames.logout,
       responseType: ResType.type,
       requestMethod: RequestMethod.post,
+      responseKey: (data) => data['msg'],
       showLoader: true,
       isFormData: false
     );

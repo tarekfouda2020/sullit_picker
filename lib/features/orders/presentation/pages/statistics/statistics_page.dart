@@ -11,7 +11,13 @@ class MyStatisticsPage extends StatefulWidget {
 }
 
 class _MyStatisticsPageState extends State<MyStatisticsPage> {
-  final StatisticsPageController controller = StatisticsPageController();
+  late final StatisticsPageController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = StatisticsPageController(context);
+  }
 
   @override
   Widget build(BuildContext context) {

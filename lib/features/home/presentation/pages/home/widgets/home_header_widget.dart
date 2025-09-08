@@ -1,5 +1,7 @@
 
+import 'package:flutter_tdd/core/widgets/CachedImage.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_imports.dart';
+import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
 
 
 class HomeHeaderWidget extends StatelessWidget {
@@ -17,24 +19,7 @@ class HomeHeaderWidget extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                GestureDetector(
-                  onTap: () => controller.navigateToSideMenu(context),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    padding: const EdgeInsets.only(bottom: 2),
-                    alignment: Alignment.bottomCenter,
-                    decoration:  BoxDecoration(
-                      color: context.colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: SvgPicture.asset(
-                        Res.personIcon,
-                      width: 30, height: 30,
-                    )
-                    ,
-                  ),
-                ),
+                _imageWidget(context),
                 Gaps.hGap12,
                 Expanded(
                   child: Column(
@@ -73,4 +58,39 @@ class HomeHeaderWidget extends StatelessWidget {
       ),
     );
   }
+
+  Widget _imageWidget(BuildContext context){
+    var avatar = context.select<UserCubit,String?>((value) => value.state.model?.avatar);
+    return  GestureDetector(
+      onTap: () => controller.navigateToSideMenu(context),
+      child: Visibility(
+        visible: avatar==null || avatar == "",
+        replacement: CachedImage(
+          url: avatar ?? "",
+          width: Dimens.dp40,
+          height: Dimens.dp40,
+          haveRadius: false,
+          boxShape: BoxShape.circle,
+          fit: BoxFit.cover,
+        ),
+        child: Container(
+          width: Dimens.dp40,
+          height: Dimens.dp40,
+          padding: const EdgeInsets.only(bottom: 2),
+          alignment: Alignment.bottomCenter,
+          decoration:  BoxDecoration(
+            color: context.colors.white,
+            shape: BoxShape.circle,
+          ),
+          child: SvgPicture.asset(
+            Res.personIcon,
+            width: 30, height: 30,
+          )
+          ,
+        ),
+      ),
+    );
+  }
+
+
 } 

@@ -8,19 +8,25 @@ class DriverStoresWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var stores = context.read<UserCubit>().state.model!.stores;
-    if(stores!=null){
-      return DriverStoresListWidget(stores: stores, controller: controller);
-    }else{
-   return  Row(
-     mainAxisAlignment: MainAxisAlignment.center,
-     children: [
-       Text("No Stores you work for ",
-         style: AppTextStyle.s14_w700(color: context.colors.primary),
-       ),
-     ],
-   );
+    return BaseBlocBuilder(
+      bloc: controller.storesListCubit,
+      onSuccessWidget: (data) {
+      return DriverStoresListWidget(
+          stores: data ,
+          controller: controller
+      );
+    },
+    onFailedWidget: (context, error, callback) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("No Stores you work for ",
+            style: AppTextStyle.s14_w700(color: context.colors.primary),
+          ),
+        ],
+      );
+    },
+    );
     }
 
   }
-}

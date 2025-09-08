@@ -22,8 +22,6 @@ class _WalletPageState extends State<WalletPage> {
     controller = WalletController(context);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

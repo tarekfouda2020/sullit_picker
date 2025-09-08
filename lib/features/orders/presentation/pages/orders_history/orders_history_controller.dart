@@ -1,7 +1,7 @@
 
 import 'orders_history_imports.dart';
-import 'widgets/completed_orders_list_widget.dart';
-import 'widgets/failed_orders_list_widget.dart';
+import 'widgets/views/complete_orders/complete_orders.dart';
+import 'widgets/views/faild_orders/failed_orders.dart';
 
 class OrdersHistoryController {
 

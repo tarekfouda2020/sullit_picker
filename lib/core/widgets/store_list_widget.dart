@@ -24,20 +24,34 @@ class StoreListWidget extends StatelessWidget {
         children: [
           const BottomSheetHeaderWidget(title: "Stores"),
           Gaps.vGap20,
-          BlocBuilder<UserCubit, UserState>(
-            builder: (context, state) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return StoresItemWidget(
-                      data: state.model!.stores!,
-                      onRefresh: (StoreModel? item) {
-                        context.read<UserCubit>().onUpdateUserData(state.model);
-                        onRefresh?.call(item);
-                      },
-                      index: index
-                  );
-                },);
-            },
+          Expanded(
+            child: BlocBuilder<UserCubit, UserState>(
+              builder: (context, state) {
+                return Visibility(
+                  visible: state.model!.stores!.isNotEmpty,
+                  replacement: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("No stores found!",
+                      style: AppTextStyle.s18_w700(color: context.colors.black),
+                      )
+                    ],
+                  ),
+                  child: ListView.builder(
+                    itemCount: state.model!.stores!.length,
+                    itemBuilder: (context, index) {
+                      return StoresItemWidget(
+                          data: state.model!.stores!,
+                          onRefresh: (StoreModel? item) {
+                            context.read<UserCubit>().onUpdateUserData(state.model);
+                            onRefresh?.call(item);
+                          },
+                          index: index
+                      );
+                    },),
+                );
+              },
+            ),
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 
 
 import 'package:flutter_tdd/core/http/models/result.dart';
+import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
 import 'package:flutter_tdd/features/orders/data/models/statistics_model/statistics_model.dart';
 import 'package:flutter_tdd/features/orders/data/models/store_model/store_model.dart';
 import 'package:flutter_tdd/features/orders/domain/entity/generic_pagin_params.dart';
@@ -10,5 +11,7 @@ abstract class OrdersRepositories {
   Future<MyResult<List<StoreModel>>> getStores(GenericPaginateParams params);
 
   Future<MyResult<StatisticsModel>> getStatistics(StatisticsParams params);
+
+  Future<MyResult<OrderModel>> getCurrentOrder(bool params);
 
 }

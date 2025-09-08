@@ -7,10 +7,15 @@ enum WorkTypeEnum {
   freelancer;
 
 
- String getTitle() => switch(this){
-  oneStore => Translate.s.work_at_one_store_only,
-  multiStores => Translate.s.work_at_many_stores,
-  freelancer => Translate.s.work_as_a_freelance,
- };
+ String getTitle() {
+  switch (this) {
+   case oneStore:
+    return Translate.s.work_at_one_store_only;
+   case multiStores:
+    return Translate.s.work_at_many_stores;
+   case freelancer:
+    return Translate.s.work_as_a_freelance;
+  }
+ }
 
 }

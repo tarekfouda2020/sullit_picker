@@ -19,7 +19,6 @@ class SelectDateWidget extends StatelessWidget {
         if (args.value is PickerDateRange) {
           controller.selectedRangeDates = args.value;
           controller.roomDateRangeController.selectedRange = args.value;
-          print("==========>>>>>>>>>>${controller.selectedRangeDates?.startDate}<<<<<<<<<<<<<,");
         }
       },
       backgroundColor: context.colors.white,

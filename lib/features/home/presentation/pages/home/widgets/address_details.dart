@@ -3,14 +3,16 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/driver_calling_widget.dart';
+import 'package:flutter_tdd/features/orders/data/enum/order_status.dart';
+import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
 
 import 'home_widgets_imports.dart';
 
 
 class AddressDetails extends StatelessWidget {
   final HomeController controller;
-  final OrderStatusEnum orderStatus;
-  const AddressDetails({super.key, required this.controller, required this.orderStatus});
+  final OrderModel model;
+  const AddressDetails({super.key, required this.controller, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +48,25 @@ class AddressDetails extends StatelessWidget {
                       style: AppTextStyle.s14_w700(color: context.colors.black),
                     ),
                   ),
-                  AddressDetailsItemWidget(title: Translate.of(context).type, value: Translate.of(context).business, gaps: 9,),
-                  AddressDetailsItemWidget(title: Translate.s.city, value: 'Al Qusais', gaps: 15,),
-                  AddressDetailsItemWidget(title: Translate.s.street_name, value: 'Jumeirah', gaps: 8,),
-                  AddressDetailsItemWidget(title: Translate.s.building_name, value: 'B 32', gaps: 9,),
-                  AddressDetailsItemWidget(title: Translate.s.flat_no, value: '402', gaps: 7,),
-                  AddressDetailsItemWidget(title: Translate.s.phone, value: '99753583245', gaps: 7,),
+                  // AddressDetailsItemWidget(title: Translate.of(context).type, value: Translate.of(context).business, gaps: 9,),
+                  AddressDetailsItemWidget(title: Translate.s.city, value: model.customerAddress!.city, gaps: 15,),
+                  AddressDetailsItemWidget(title: Translate.s.street_name, value: model.customerAddress!.streetName, gaps: 8,),
+                  AddressDetailsItemWidget(title: Translate.s.building_name, value: model.customerAddress!.buildingName, gaps: 9,),
+                  AddressDetailsItemWidget(title: Translate.s.flat_no, value: model.customerAddress!.flatNo, gaps: 7,),
+                  AddressDetailsItemWidget(title: Translate.s.phone, value: model.customerAddress!.phone, gaps: 7,),
                 ],
               ),
             ),
-            if(orderStatus!=OrderStatusEnum.start)
+            // if(model.getOrderStatus()!=OrderStatus.assigned)
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: ReturnOrderWidget(controller: controller,),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(bottom: 4),
+                //   child: ReturnOrderWidget(controller: controller,),
+                // ),
                 /// watt this to be in the end
+                if(!model.isReported)
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: DriverCallingWidget(controller: controller),

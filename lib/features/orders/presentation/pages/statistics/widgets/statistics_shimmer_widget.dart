@@ -32,6 +32,7 @@ class StatisticsShimmerWidget extends StatelessWidget {
               ),
               Gaps.hGap8,
               const TextShimmer(lineWidthPercent: 0.7,),
+              const Spacer(),
               BaseShimmerWidget(
                   child: Container(
                     width: 11, height: 9,

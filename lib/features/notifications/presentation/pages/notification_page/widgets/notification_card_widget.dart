@@ -1,7 +1,10 @@
+import 'package:flutter_tdd/features/notifications/data/models/notification_model/notification_model.dart';
+
 import '../notification_page_imports.dart';
 
 class NotificationCardWidget extends StatelessWidget {
-  const NotificationCardWidget({super.key,});
+  final NotificationModel model;
+  const NotificationCardWidget({super.key, required this.model,});
 
   @override
   Widget build(BuildContext context) {
@@ -25,32 +28,21 @@ class NotificationCardWidget extends StatelessWidget {
                 height: 25,
               ),
               Gaps.hGap8,
-              Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: '${Translate.of(context).new_order} ',
-                            style: AppTextStyle.s14_w400(color: context.colors.textPrimary),
-                          ),
-                          TextSpan(
-                            text: "#5465746",
-                            style: AppTextStyle.s14_w600(color: context.colors.textPrimary),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Gaps.vGap10,
-                    Text(
-                     "10 feb 2025 - 09:55 PM",
-                      style: AppTextStyle.s12_w400(color: context.colors.gray3),
-                    ),
-                  ],
-                ),
+              Column(
+                spacing: 10,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${model.title} ',
+                    style: AppTextStyle.s14_w400(color: context.colors.black),
+                  ),
+                  Text( "#${model.data.orderCode}",
+                  style: AppTextStyle.s14_w600(color: context.colors.black),
+                  ),
+                  Text(
+                   model.createdAt,
+                    style: AppTextStyle.s12_w400(color: context.colors.gray3),
+                  ),
+                ],
               ),
             ],
           ),

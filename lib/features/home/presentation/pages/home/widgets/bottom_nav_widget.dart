@@ -1,42 +1,46 @@
 import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
+import 'package:flutter_tdd/features/orders/data/enum/order_status.dart';
+import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
 
 import 'home_widgets_imports.dart';
 
 class BottomNavWidget extends StatelessWidget {
   final HomeController controller;
-
-  const BottomNavWidget({super.key, required this.controller,});
+  final OrderModel model;
+  const BottomNavWidget({
+    super.key,
+    required this.controller,
+    required this.model,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return ObsValueConsumer(
-      observable: controller.orderStatusObs,
-      builder: (context,status) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Visibility(
-                visible: status != OrderStatusEnum.start,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 12),
-                  child: AppTextButton.maxCustom(
-                    onPressed: () => controller.showReportSheet(context),
-                    text: Translate.of(context).report_a_problem,
-                    bgColor: context.colors.white,
-                    txtColor: context.colors.primary,
-                    borderColor: context.colors.primary,
-                  ),
-                ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Visibility(
+            visible: model.isAssigned == false && model.isPending == false,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: AppTextButton.maxCustom(
+                onPressed: () => controller.showReportSheet(context),
+                text: Translate.of(context).report_a_problem,
+                bgColor: context.colors.white,
+                txtColor: context.colors.primary,
+                borderColor: context.colors.primary,
               ),
-              ActionButtonWidget(text: _buttonText(status), onTap: () =>_onTap(status) ),
-              Gaps.vGap10,
-            ],
+            ),
           ),
-        );
-      }
+          ActionButtonWidget(
+            text: _buttonText(controller.getNextStatusForUpdate()),
+            onTap: () => controller.changeOrderStatus(),
+          ),
+          Gaps.vGap10,
+        ],
+      ),
     );
   }
 
@@ -57,25 +61,20 @@ class BottomNavWidget extends StatelessWidget {
   //       }
   // }
 
-  String _buttonText(OrderStatusEnum status) {
-    switch ( status) {
-      case OrderStatusEnum.start:
-        return Translate.s.start_delivering;
-      case OrderStatusEnum.arrived:
-        return Translate.s.arrived;
-      case OrderStatusEnum.delivered:
-        return Translate.s.delivered;
-    }
-  }
-
-  void _onTap(OrderStatusEnum status) {
+  String _buttonText(OrderStatus status) {
     switch (status) {
-      case OrderStatusEnum.start:
-        controller.updateOrderStatus(OrderStatusEnum.arrived);
-      case OrderStatusEnum.arrived:
-         controller.updateOrderStatus(OrderStatusEnum.delivered);
-      case OrderStatusEnum.delivered:
-         controller.updateOrderStatus(OrderStatusEnum.start);
+      case OrderStatus.assigned:
+        return Translate.s.start_delivering;
+      case OrderStatus.arrived:
+        return Translate.s.arrived;
+      case OrderStatus.delivered:
+        return Translate.s.delivered;
+      case OrderStatus.pending:
+        return "";
+      case OrderStatus.inDelivery:
+        return "in Delivery";
+      case OrderStatus.driverReported:
+        return "reported";
     }
   }
 }

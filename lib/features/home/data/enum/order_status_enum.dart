@@ -1,5 +1,5 @@
 enum OrderStatusEnum {
-  start,
+  assigned,
   arrived,
   delivered;
 }

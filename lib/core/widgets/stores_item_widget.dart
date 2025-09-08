@@ -16,7 +16,6 @@ class StoresItemWidget extends StatelessWidget {
         isSelected: data[index].isSelected!,
         onTap: () {
           onSelectItem(data, data[index]);
-          onRefresh.call(_selectedItem(data));
         });
   }
 

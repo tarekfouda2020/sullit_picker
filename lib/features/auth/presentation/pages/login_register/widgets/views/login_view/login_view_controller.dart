@@ -32,6 +32,7 @@ class LoginViewController {
   Future<void> callLogin(BuildContext context) async {
     if(loginFormKey.currentState!.validate()){
       loadingButtonKey.currentState?.animateForward();
+      FocusScope.of(context).unfocus();
       final deviceId = await getIt<DeviceIdHelper>().getDeviceId();
       LoginParams params = _userParams(deviceId!);
       await getIt.get<AuthRepositories>().sendLogin(params).then((result) {

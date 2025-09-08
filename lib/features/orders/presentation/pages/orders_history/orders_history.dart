@@ -31,17 +31,6 @@ class _OrdersHistoryPageState extends State<OrdersHistoryPage> {
             Gaps.vGap16,
             OrderHistoryTabsWidget(controller: controller,),
             Gaps.vGap16,
-            Row(
-              children: [
-                Text(
-                  Translate.of(context).last_week,
-                  style: AppTextStyle.s14_w400(color: context.colors.gray3),
-                ),
-                Gaps.hGap6,
-                SvgPicture.asset(Res.invertedTriangle)
-              ],
-            ),
-            Gaps.vGap12,
             ObsValueConsumer(observable: controller.currentTabObs,
               builder: (context, value) {
               return Expanded(

@@ -1,17 +1,18 @@
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
-import 'package:flutter_tdd/features/orders/presentation/pages/orders_history/widgets/order_history_info_widget.dart';
+import 'orders_history_widgets_imports.dart';
 
 class OrderHistoryCardWidget extends StatelessWidget {
+  final OrderModel order;
   final bool isFailed;
-  const OrderHistoryCardWidget({super.key, required this.isFailed});
+  
+  const OrderHistoryCardWidget({
+    super.key, 
+    required this.order,
+    required this.isFailed,
+  });
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       padding: const EdgeInsetsDirectional.fromSTEB(19, 16, 24, 16),
       margin: const EdgeInsets.only(bottom: 8),
@@ -24,7 +25,7 @@ class OrderHistoryCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '#6657564',
+            '#${order.code}',
             style: AppTextStyle.s16_w700(color: context.colors.primary),
           ),
           Gaps.vGap5,
@@ -34,9 +35,12 @@ class OrderHistoryCardWidget extends StatelessWidget {
                 '${Translate.of(context).receiving_from} ',
                 style: AppTextStyle.s14_w400(color: context.colors.textSecondary),
               ),
-              Text(
-                'Sulite Store',
-                style: AppTextStyle.s14_w700(color: context.colors.textPrimary),
+              Expanded(
+                child: Text(
+                  order.recivingFrom,
+                  style: AppTextStyle.s14_w700(color: context.colors.textPrimary),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
@@ -45,12 +49,12 @@ class OrderHistoryCardWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  '${Translate.of(context).total} : 394 AED',
+                  '${Translate.of(context).total} : ${order.orderAmount}',
                   style: AppTextStyle.s16_w700(color: context.colors.primary),
                 ),
               ),
               Text(
-                Translate.of(context).cash,
+                order.paymentMethodLabel,
                 style: AppTextStyle.s14_w500(color: context.colors.textPrimary),
               ),
             ],
@@ -58,21 +62,45 @@ class OrderHistoryCardWidget extends StatelessWidget {
           Gaps.vGap12,
           OrderHistoryInfoWidget(
             label: Translate.of(context).acceptance_time,
-            value: '12 May 2025 - 03:54 PM',
+            value: _formatDateTime(order.assignedAt),
           ),
           Gaps.vGap4,
-          if (!isFailed)
+          if (!isFailed && order.deliveredAt.isNotEmpty)
             OrderHistoryInfoWidget(
               label: Translate.of(context).delivered_time,
-              value: '12 May 2025 - 03:54 PM',
+              value: _formatDateTime(order.deliveredAt),
             ),
-          if (isFailed)
+          if (isFailed && order.reportReason.isNotEmpty)
             OrderHistoryInfoWidget(
               label: Translate.of(context).failed_reason,
-              value: Translate.of(context).user_didnt_respond,
+              value: order.reportReason,
             ),
+          Gaps.vGap4,
+          OrderHistoryInfoWidget(
+            label: 'Status',
+            value: order.statusLabel,
+          ),
+          Gaps.vGap4,
+          OrderHistoryInfoWidget(
+            label: 'Customer',
+            value: order.customerName,
+          ),
         ],
       ),
     );
+  }
+
+
+  String _formatDateTime(String dateTimeString) {
+    if (dateTimeString.isEmpty) return 'N/A';
+    try {
+      final dateTime = DateTime.parse(dateTimeString);
+      return DateTimeHelper.formatDate(
+        date: dateTime,
+        formatType: 'dd MMM yyyy - hh:mm a',
+      );
+    } catch (e) {
+      return dateTimeString;
+    }
   }
 }

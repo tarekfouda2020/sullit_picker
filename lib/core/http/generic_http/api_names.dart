@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/constants/app_config.dart';
 
 class ApiNames{
+
   static String baseUrl = AppConfig.instance.baseUrl;
   static String appApi = AppConfig.instance.appApi;
 
@@ -41,6 +42,12 @@ class ApiNames{
   ///orders
   static  String stores = "${appApi}stores";
   static  String statistics = "${appApi}statistics/orders";
+  static  String currentOrder = "${appApi}orders/current";
+  static  String updateOrderStatus(int id) => "${appApi}orders/$id/status";
+  static  String reportReasons = "${appApi}orders/report/reasons";
+  static  String completedOrders = "${appApi}orders/delivered";
+  static  String failedOrders = "${appApi}orders/canceled";
+  static  String newOrders = "${appApi}orders/new";
 
   ///home
   static  String profile = "${appApi}profile";
@@ -57,6 +64,10 @@ class ApiNames{
   ///wallet
   static  String transactions = "${appApi}wallet/transactions";
   static  String walletRecharge = "${appApi}wallet/recharge";
+
+
+  /// notifications
+static  String notifications = "${appApi}notifications";
 
 
 
