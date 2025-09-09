@@ -9,7 +9,7 @@ class DriverCallingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: () => controller.callCustomerPhone(context),
       child: Container(
         width: 40, height: 40,
         padding: const EdgeInsets.all(10),

@@ -41,7 +41,9 @@ class ReportReasonDialog extends StatelessWidget {
           // Title
           Text(
              "Report Submitted Successfully",
-            style: AppTextStyle.s18_w700(color: context.colors.textPrimary),
+            style: AppTextStyle.s18_w700(color: context.colors.textPrimary).copyWith(
+              height: 1.35
+            ),
             textAlign: TextAlign.center,
           ),
           Gaps.vGap16,
@@ -107,9 +109,9 @@ class ReportReasonDialog extends StatelessWidget {
                 ),
                 Gaps.vGap10,
                 Text(
-                  "Your report has been submitted. Please wait for the store or employee to review and accept your report.",
+                  "Your report has been submitted. Please wait for the store or employee to review and accept or reject your report.",
                   style: AppTextStyle.s14_w400(color: context.colors.textSecondary).copyWith(
-                    height: 1.3
+                    height: 1.35
                   ),
                   textAlign: TextAlign.center,
                 ),

@@ -9,15 +9,8 @@ class ReturnOrderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: ()=> controller.openMap(),
         child: SvgPicture.asset(Res.returnOrderIcon)
     );
-    // return Container(
-    //   width: 34, height: 34,
-    //   decoration: BoxDecoration(
-    //     color: context.colors.green,
-    //   ),
-    //   child: Icon(Icons.),
-    // );
   }
 }

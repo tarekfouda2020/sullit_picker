@@ -32,7 +32,6 @@ class PageContentShimmer extends StatelessWidget {
           ),
         ),
         _buildBottomNavShimmer(context),
-        Gaps.vGap10,
       ],
     );
   }
@@ -47,7 +46,7 @@ class PageContentShimmer extends StatelessWidget {
             child: Row(
               children: [
                 // Profile image shimmer
-                const CircleShimmer(radius: 20),
+                const CircleShimmer(radius: 40),
                 Gaps.hGap12,
                 Expanded(
                   child: Column(
@@ -99,7 +98,7 @@ class PageContentShimmer extends StatelessWidget {
             ),
           ),
           // Notification icon shimmer
-          const CircleShimmer(radius: 20),
+          const CircleShimmer(radius: 25),
         ],
       ),
     );
@@ -115,20 +114,18 @@ class PageContentShimmer extends StatelessWidget {
         border: Border.all(color: context.colors.inputBorder),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            child: BaseShimmerWidget(
-              child: Container(
-                height: 12,
-                decoration: BoxDecoration(
-                  color: context.colors.white,
-                  borderRadius: BorderRadius.circular(4),
-                ),
+          BaseShimmerWidget(
+            child: Container(
+              height: 12,
+              width: 120,
+              decoration: BoxDecoration(
+                color: context.colors.white,
+                borderRadius: BorderRadius.circular(4),
               ),
             ),
           ),
-          Gaps.hGap8,
-          // Switch shimmer
           BaseShimmerWidget(
             child: Container(
               width: 50,
@@ -149,7 +146,7 @@ class PageContentShimmer extends StatelessWidget {
       padding: const EdgeInsets.only(top: 13, bottom: 17),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: context.colors.lightBackground,
+        color: context.colors.white,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -228,6 +225,7 @@ class PageContentShimmer extends StatelessWidget {
 
   Widget _buildInfoSectionShimmer(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Title shimmer
         BaseShimmerWidget(
@@ -336,7 +334,7 @@ class PageContentShimmer extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Address details shimmer
+                  Gaps.vGap12,
                     ...List.generate(5, (index) {
                       return Row(
                         children: [
@@ -368,7 +366,7 @@ class PageContentShimmer extends StatelessWidget {
                   ],
                 ),
               ),
-              // Action buttons shimmer
+              Gaps.hGap28,
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -382,7 +380,7 @@ class PageContentShimmer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  Gaps.vGap20,
                   BaseShimmerWidget(
                     child: Container(
                       width: 30,
@@ -404,27 +402,25 @@ class PageContentShimmer extends StatelessWidget {
 
   Widget _buildBottomNavShimmer(BuildContext context) {
     return Container(
-      height: 60,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding:  Dimens.paddingAll20Px,
       decoration: BoxDecoration(
         color: context.colors.white,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      child: Row(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List.generate(3, (index) {
-          return BaseShimmerWidget(
+        children: [
+          BaseShimmerWidget(
             child: Container(
-              width: 60,
-              height: 40,
+              height: 55,
               decoration: BoxDecoration(
                 color: context.colors.white,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: Dimens.borderRadius30PX,
               ),
             ),
-          );
-        }),
+          )
+        ],
       ),
     );
   }
 }
+

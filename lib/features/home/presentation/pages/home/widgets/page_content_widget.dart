@@ -17,37 +17,46 @@ class PageContentWidget extends StatelessWidget {
       spacing: 15,
       children: [
         Expanded(
-          child: ListView(
-            padding: Dimens.paddingH20Px,
-            children: [
-              HomeHeaderWidget(controller: controller),
-              Gaps.vGap14,
-              CustomSearchBar(controller: controller),
-              Gaps.vGap16,
-              OrderNotification(model: model),
-              OrderPayStatusWidget(
-                model: model,
-              ),
-              Gaps.vGap20,
-              InfoSection(
-                title: Translate.of(context).customer_name,
-                content: model.customerName,
-                iconPath: Res.personIcon,
-              ),
-              Gaps.vGap12,
-              InfoSection(
-                title: Translate.s.payment_method,
-                content: model.paymentMethodLabel,
-                iconPath: Res.paymentCards,
-                isPaymentLink: false,
-                sendPaymentLink: () {},
-              ),
-              Gaps.vGap12,
-              HomeSectionsTitleWidget(title: Translate.s.address),
-              Gaps.vGap6,
-              AddressDetails(controller: controller, model: model),
-              Gaps.vGap50,
-            ],
+          child: RefreshIndicator.adaptive(
+            backgroundColor: context.colors.white,
+            notificationPredicate: (_) => model.isReported,
+            onRefresh: () async {
+              if(model.isReported){
+                await controller.getCurrentOrder(setLoading: false);
+              }
+            } ,
+            child: ListView(
+              padding: Dimens.paddingH20Px,
+              children: [
+                HomeHeaderWidget(controller: controller),
+                Gaps.vGap14,
+                CustomSearchBar(controller: controller),
+                Gaps.vGap16,
+                OrderNotification(model: model),
+                OrderPayStatusWidget(
+                  model: model,
+                ),
+                Gaps.vGap20,
+                InfoSection(
+                  title: Translate.of(context).customer_name,
+                  content: model.customerName,
+                  iconPath: Res.personIcon,
+                ),
+                Gaps.vGap12,
+                InfoSection(
+                  title: Translate.s.payment_method,
+                  content: model.paymentMethodLabel,
+                  iconPath: Res.paymentCards,
+                  isPaymentLink: false,
+                  sendPaymentLink: () {},
+                ),
+                Gaps.vGap12,
+                HomeSectionsTitleWidget(title: Translate.s.address),
+                Gaps.vGap6,
+                AddressDetails(controller: controller, model: model),
+                Gaps.vGap50,
+              ],
+            ),
           ),
         ),
         Visibility(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class AppTheme {
-  static var fontFamily = 'NotoSans';
+  static var fontFamily = 'OpenSans';
 
   ThemeData get theme;
 

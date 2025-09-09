@@ -1,5 +1,7 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
 import 'package:flutter_tdd/core/bloc/base_bloc/base_state.dart';
+import 'package:flutter_tdd/core/helpers/location_service.dart';
+import 'package:flutter_tdd/core/helpers/phone_helper.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_order_params.dart';
 import 'package:flutter_tdd/features/orders/data/enum/order_status.dart';
 import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
@@ -20,10 +22,14 @@ class HomeController {
   bool popOut = false;
 
   HomeController() {
+    getUserData();
     getCurrentOrder();
   }
 
-  Future<void> getCurrentOrder({bool fromRemote = true}) async {
+  Future<void> getCurrentOrder({bool fromRemote = true, bool setLoading = true}) async {
+    if(setLoading){
+      currentOrderCubit.loadingState();
+    }
     var result = await getIt<OrdersRepositories>().getCurrentOrder(fromRemote);
     result.when(
       isSuccess: (data) {
@@ -41,12 +47,12 @@ class HomeController {
 
   void _initializeReportReasons() {
     var data = currentOrderCubit.data;
-    // if (data?.isAssigned == true
-    //     || data?.isPending == true
-    //     || reportReasonsRequester.hasData
-    //     || data == null) {
-    //   return;
-    // }
+    if (data?.isAssigned == true
+        || data?.isPending == true
+        || reportReasonsRequester.hasData
+        || data == null) {
+      return;
+    }
     reportReasonsRequester.request(fromRemote: false);
     reportReasonsRequester.request();
   }
@@ -54,7 +60,7 @@ class HomeController {
   Future<void> initializeOrderDialog(BuildContext context) async {
     bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
     availableForOrdersObs.setValue(isAvailable);
-    getUserData();
+    // getUserData();
     if (availableForOrdersObs.getValue() && !hasOrders.getValue()) {
       showNewOrderDialog(context);
     }
@@ -134,11 +140,6 @@ class HomeController {
     AppSnackBar.showSuccessSnackBar(Translate.of(context).problem_reported_successfully);
   }
 
-  void updateOrderStatus(OrderStatusEnum newStatus) {
-    // currentOrderRequester.data.getOrderStatus() = newStatus;
-    // orderStatusObs.refresh();
-  }
-
   void showReportSheet(BuildContext context) {
     AppBottomSheets.showScrollableBody(
       context: context,
@@ -191,7 +192,7 @@ class HomeController {
     return UpdateOrderParams(
       id: currentOrderCubit.data!.id,
       status: status ?? getNextStatusForUpdate(),
-      reasonKey: _reasonKey(),
+      reasonKey: _reasonKey(status: status),
       reasonText: _getReasonText(),
     );
   }
@@ -230,10 +231,9 @@ class HomeController {
     }
   }
 
-  String? _reasonKey() {
-    if (getNextStatusForUpdate() == OrderStatus.driverReported) {
-      var selectedReportReason = reportReasonsRequester.selectedReason;
-      return selectedReportReason?.key;
+  String? _reasonKey({OrderStatus? status}) {
+    if (status == OrderStatus.driverReported) {
+      return reportReasonsRequester.selectedReason?.key;
     } else {
       return null;
     }
@@ -249,9 +249,23 @@ class HomeController {
     }
     if(model.isReported){
       AppSnackBar.showSuccessSnackBar("Your report has been submitted successfully");
-      currentOrderCubit.successState(null);
+      // currentOrderCubit.successState(null);
       return ;
     }
+  }
+
+
+  void callCustomerPhone(BuildContext context){
+    PhoneHelper.callPhone(currentOrderCubit.data!.customerPhone,context);
+    // PhoneHelper.callPhone("+201069219565",context);
+  }
+
+
+  void openMap(){
+    var customerAddress = currentOrderCubit.data!.customerAddress!;
+    var lat = double.parse(customerAddress.lat);
+    var long = double.parse(customerAddress.lng);
+    LocationService.instance.openGoogleMaps(lat, long);
   }
 
 

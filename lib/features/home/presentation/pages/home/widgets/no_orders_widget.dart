@@ -1,5 +1,6 @@
 
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/driver_calling_widget.dart';
 
 import 'home_widgets_imports.dart';
 
@@ -13,7 +14,7 @@ class NoOrdersWidget extends StatelessWidget {
       padding: Dimens.paddingH20Px,
       child: RefreshIndicator.adaptive(
         backgroundColor: context.colors.white,
-        onRefresh: () async => controller.getCurrentOrder(fromRemote: true),
+        onRefresh: () async => controller.getCurrentOrder(fromRemote: true,setLoading: false),
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: ConstrainedBox(
@@ -27,7 +28,6 @@ class NoOrdersWidget extends StatelessWidget {
                   HomeHeaderWidget(controller: controller),
                   Gaps.vGap14,
                   CustomSearchBar(controller: controller),
-                  /// this Expanded makes the "No orders" block centered
                   Expanded(
                     child: Center(
                       child: Column(

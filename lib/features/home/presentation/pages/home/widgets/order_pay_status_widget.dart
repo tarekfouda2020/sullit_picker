@@ -27,7 +27,7 @@ class OrderPayStatusWidget extends StatelessWidget {
           ),
           child: Text(
            // isPaid ? Translate.s.paid : Translate.s.unpaid,
-           model.paymentStatusLabel,
+           model.paymentStatusLabel.replaceAll("-", ""),
             style: AppTextStyle.s16_w800(color: context.colors.white),
           ),
         ),

@@ -61,11 +61,11 @@ class AddressDetails extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Padding(
-                //   padding: const EdgeInsets.only(bottom: 4),
-                //   child: ReturnOrderWidget(controller: controller,),
-                // ),
-                /// watt this to be in the end
+               if(!model.isReported)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: ReturnOrderWidget(controller: controller,),
+                ),
                 if(!model.isReported)
                 Padding(
                   padding: const EdgeInsets.only(top: 5),

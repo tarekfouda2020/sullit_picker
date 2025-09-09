@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
+import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
 
 class OrderNotification extends StatelessWidget {
   final OrderModel model;
@@ -37,11 +39,15 @@ class OrderNotification extends StatelessWidget {
               ],
             ),
           ),
-        Gaps.vGap9,
-          Text(
-           // "${30} minutes ago",
-           model.assignedAt,
-            style: AppTextStyle.s14_w400(color: context.colors.primary),
+          Gaps.vGap9,
+          ObsValueConsumer(
+            observable: DateTimeHelper.getDifferenceFromCurrentDate(model.assignedAt),
+            builder: (context, timeAgo) {
+              return Text(
+                timeAgo,
+                style: AppTextStyle.s14_w400(color: context.colors.primary),
+              );
+            },
           ),
         ],
       ),

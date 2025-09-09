@@ -105,7 +105,7 @@ class AppTextStyle extends TextStyle {
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s16_w800({required Color color})
-      : super(color: color, fontSize: 16, fontWeight: FontWeight.w800, height: fontHeight, fontFamily: 'NotoSans');
+      : super(color: color, fontSize: 16, fontWeight: FontWeight.w800, height: fontHeight, fontFamily: 'OpenSans');
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s18_w400({required Color color})

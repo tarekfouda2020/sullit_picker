@@ -38,7 +38,6 @@ class BottomNavWidget extends StatelessWidget {
             text: _buttonText(controller.getNextStatusForUpdate()),
             onTap: () => controller.changeOrderStatus(),
           ),
-          Gaps.vGap10,
         ],
       ),
     );
