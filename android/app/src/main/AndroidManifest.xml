@@ -33,6 +33,8 @@
         </intent>
     </queries>
    <application
+       android:allowBackup="false"
+       android:fullBackupContent="false"
        android:label="@string/APP_APP_NAME"
        android:usesCleartextTraffic="true"
         android:name="${applicationName}"

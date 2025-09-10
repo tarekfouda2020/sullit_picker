@@ -6,7 +6,15 @@ import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_im
 
 class DateTimeHelper {
   static String formatDate({required DateTime date, required String formatType}) {
-    String formatted = DateFormat(formatType).format(date);
+    final DateTime utcTime = DateTime.utc(
+      date.year,
+      date.month,
+      date.day,
+      date.hour,
+      date.minute,
+      date.second,
+    );
+    final String formatted = DateFormat(formatType).format(utcTime);
     return formatted;
   }
 
