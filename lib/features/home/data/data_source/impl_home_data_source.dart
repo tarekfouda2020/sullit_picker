@@ -63,7 +63,7 @@ class ImplHomeDataSource extends HomeDataSource{
         responseType: ResType.list,
         requestMethod: RequestMethod.get,
       responseKey: (data) => data["data"],
-      toJsonFunc: (data) => List<LangModel>.from(data.map((e) => LangModel.fromJson(e))),
+      toJsonFunc: (data) => List<LangModel>.from(data.map((e) => LangModel.fromJson(e))).toList(),
       showLoader: true
     );
     return GenericHttpImpl<List<LangModel>>()(model);

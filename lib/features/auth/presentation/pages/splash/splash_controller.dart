@@ -25,7 +25,6 @@ class SplashController {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     var cachedUserData = preferences.getString("user");
     if (cachedUserData != null) {
-      log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<==========================use data not equal null===============>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       _setUserData(context, UserModel.fromJson(json.decode(cachedUserData)));
     } else {
       _routeToLogin(context);

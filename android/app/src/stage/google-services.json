@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1041079975484",
-    "project_id": "base-ffada",
-    "storage_bucket": "base-ffada.appspot.com"
+    "project_number": "644512695362",
+    "project_id": "suliit-c5356",
+    "storage_bucket": "suliit-c5356.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1041079975484:android:67e25507c70737ddc18d39",
+        "mobilesdk_app_id": "1:644512695362:android:f3586a4dbe0234fd0a99db",
         "android_client_info": {
-          "package_name": "system.dev"
+          "package_name": "ae.business.driver"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA1cDjLf6239l4fpNlrWPHkIFFKR4dRNzE"
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
         }
       ],
       "services": {
@@ -26,15 +26,53 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1041079975484:android:54176979f927418cc18d39",
+        "mobilesdk_app_id": "1:644512695362:android:13131edb48bcd3090a99db",
         "android_client_info": {
-          "package_name": "system.stage"
+          "package_name": "ae.business.store"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA1cDjLf6239l4fpNlrWPHkIFFKR4dRNzE"
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:4063be41bed9a7900a99db",
+        "android_client_info": {
+          "package_name": "ua.suliit.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:8a76983c12bf96890a99db",
+        "android_client_info": {
+          "package_name": "ua.suliitdriver.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
         }
       ],
       "services": {

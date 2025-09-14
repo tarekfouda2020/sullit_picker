@@ -153,7 +153,7 @@ class ProfilePageController {
     String? currentLang = GlobalState.instance.get(ApplicationConstants.langKey);
     List<LangModel> languages = langRequester.data!;
     for (var lang in languages) {
-      if (lang.code == (currentLang ?? "en")) {
+      if (lang.code == (currentLang ?? ApplicationConstants.langEN)) {
         lang.isDefault = true;
       }
     }
