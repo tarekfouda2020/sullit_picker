@@ -4,6 +4,8 @@ import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/storage_helper.dart';
 import 'package:injectable/injectable.dart';
 
@@ -38,10 +40,12 @@ class GlobalNotification {
         log("_____________________notification:${message.notification?.title}");
         _showLocalNotification(message);
         _onMessageStreamController.add(message.data);
-        if (int.parse(message.data["type"]??"0") == -1) {
+        var orderId = int.parse(message.data["id"]??"0");
+        if ( orderId == -1) {
           StorageHelper.instance.clearSavedData();
           // AutoRouter.of(context).push(const LoginRoute());
         }
+        _handleNotificationResponse(orderId);
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
         log('AonMessageOpenedApp event was published!');
@@ -82,8 +86,18 @@ class GlobalNotification {
 
   static Future flutterNotificationClick(String? details) async {
 
+   log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
+
+
     // final _data = json.decode("$payload");
 
   }
+
+
+  static void _handleNotificationResponse(int orderId){
+   getIt<OrdersHelper>().showNewOrderAlert(orderId);
+  }
+
+
 
 }

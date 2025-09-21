@@ -1,11 +1,10 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
-import 'package:flutter_tdd/core/bloc/base_bloc/base_state.dart';
 import 'package:flutter_tdd/core/helpers/location_service.dart';
+import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/phone_helper.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_order_params.dart';
 import 'package:flutter_tdd/features/orders/data/enum/order_status.dart';
 import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
-import 'package:flutter_tdd/features/orders/domain/repositories/orders_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/report_reasons_requester.dart';
 
 import 'home_imports.dart';
@@ -16,34 +15,25 @@ class HomeController {
   final ObsValue<bool> showOrderAlert = ObsValue<bool>.withInit(false);
   late final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
   final TextEditingController reasonController = TextEditingController();
-  final BaseBloc<OrderModel?> currentOrderCubit = BaseBloc<OrderModel?>();
   final ReportReasonsRequester reportReasonsRequester = ReportReasonsRequester();
 
   bool popOut = false;
 
   HomeController() {
     getUserData();
-    getCurrentOrder();
+    getIt<OrdersHelper>().getCurrentOrder(fromRemote: false);
+    getIt<OrdersHelper>().getCurrentOrder(afterSuccess: () => _initializeReportReasons(),);
   }
 
+  BaseBloc<OrderModel?> get  currentOrderCubit => getIt<OrdersHelper>().currentOrderCubit;
+
+
+
   Future<void> getCurrentOrder({bool fromRemote = true, bool setLoading = true}) async {
-    if(setLoading){
-      currentOrderCubit.loadingState();
-    }
-    var result = await getIt<OrdersRepositories>().getCurrentOrder(fromRemote);
-    result.when(
-      isSuccess: (data) {
-        currentOrderCubit.successState(data);
-        _initializeReportReasons();
-      },
-      isError: (error) {
-        currentOrderCubit.failedState(
-          error,
-          () {},
-        );
-      },
-    );
+   await getIt<OrdersHelper>().getCurrentOrder(fromRemote: fromRemote,setLoading: setLoading);
   }
+
+
 
   void _initializeReportReasons() {
     var data = currentOrderCubit.data;
@@ -81,18 +71,6 @@ class HomeController {
     }
   }
 
-  void toggleOrderState() {
-    hasOrders.setValue(!hasOrders.getValue());
-  }
-
-  void toggleOnlineStatus() {
-    availableForOrdersObs.setValue(!availableForOrdersObs.getValue());
-
-    // If going offline, clear any existing orders
-    if (!availableForOrdersObs.getValue()) {
-      hasOrders.setValue(false);
-    }
-  }
 
   void acceptOrder(BuildContext context) {
     showOrderAlert.setValue(false);
@@ -120,13 +98,7 @@ class HomeController {
     AutoRouter.of(context).push(const NotificationsPageRoute());
   }
 
-  void showWelcomeDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (context) => const NewOrderAlertWidget(),
-    );
-  }
+
 
   void showNewOrderDialog(BuildContext context) {
     showOrderAlert.setValue(true);
@@ -267,14 +239,6 @@ class HomeController {
     var long = double.parse(customerAddress.lng);
     LocationService.instance.openGoogleMaps(lat, long);
   }
-
-
-  ///TODO will be removed later
-  Future<void> refresh()async{
-    // currentOrderCubit.loadingState();
-    await getCurrentOrder(fromRemote: true);
-  }
-
 
 
   void showReportReasonSheet(BuildContext context){

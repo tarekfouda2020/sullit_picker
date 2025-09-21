@@ -1,8 +1,8 @@
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'home_widgets_imports.dart';
 
 class NewOrderAlertWidget extends StatelessWidget {
-  const NewOrderAlertWidget({super.key});
+  final void Function() onPressApply;
+  const NewOrderAlertWidget({super.key, required this.onPressApply});
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +24,24 @@ class NewOrderAlertWidget extends StatelessWidget {
             style: AppTextStyle.s28_w800(color: context.colors.primary),
             ),
             Gaps.vGap38,
-            AppTextButton.maxPrimary(text: Translate.of(context).view_order,onPressed: ()=>Navigator.pop(context),),
+            AppTextButton.maxPrimary(
+              text: Translate.of(context).view_order,
+              onPressed: ()=> _onPressApply(context)
+            ),
             Gaps.vGap10
           ],
         ),
       ),
     );
   }
+
+  void _onPressApply(BuildContext context) {
+     Navigator.pop(context);
+     onPressApply.call();
+  }
+
+
+
+
+
 } 

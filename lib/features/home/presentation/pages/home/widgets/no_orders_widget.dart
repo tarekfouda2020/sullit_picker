@@ -1,7 +1,3 @@
-
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/driver_calling_widget.dart';
-
 import 'home_widgets_imports.dart';
 
 class NoOrdersWidget extends StatelessWidget {
@@ -12,7 +8,7 @@ class NoOrdersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: Dimens.paddingH20Px,
-      child: RefreshIndicator.adaptive(
+      child: RefreshIndicator(
         backgroundColor: context.colors.white,
         onRefresh: () async => controller.getCurrentOrder(fromRemote: true,setLoading: false),
         child: SingleChildScrollView(

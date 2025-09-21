@@ -29,26 +29,30 @@ class _NewOrdersState extends State<NewOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const DefaultAppBar(title: "New Orders"),
-      body: PagedListView<int, OrderModel>(
-        pagingController: controller.pagingController,
-        padding: Dimens.paddingH20V16Px,
-        builderDelegate: PagedChildBuilderDelegate<OrderModel>(
-          itemBuilder: (context, order, index) => OrderHistoryCardWidget(
-            order: order,
-            isFailed: false,
+      body: RefreshIndicator(
+        onRefresh: () async => controller.getNewOrders(1),
+        backgroundColor: context.colors.white,
+        child: PagedListView<int, OrderModel>(
+          pagingController: controller.pagingController,
+          padding: Dimens.paddingH20V16Px,
+          builderDelegate: PagedChildBuilderDelegate<OrderModel>(
+            itemBuilder: (context, order, index) => OrderHistoryCardWidget(
+              order: order,
+              isFailed: false,
+            ),
+            firstPageErrorIndicatorBuilder: (context) => _buildErrorWidget(
+              context,
+              'Failed to load new orders',
+              () => controller.refreshOrders(),
+            ),
+            noItemsFoundIndicatorBuilder: (context) => _buildEmptyWidget(
+              context,
+              'No new orders available',
+              'Check back later for new delivery opportunities.',
+            ),
+            firstPageProgressIndicatorBuilder: (context) => _buildShimmerList(),
+            newPageProgressIndicatorBuilder: (context) => _buildShimmerList(),
           ),
-          firstPageErrorIndicatorBuilder: (context) => _buildErrorWidget(
-            context,
-            'Failed to load new orders',
-            () => controller.refreshOrders(),
-          ),
-          noItemsFoundIndicatorBuilder: (context) => _buildEmptyWidget(
-            context,
-            'No new orders available',
-            'Check back later for new delivery opportunities.',
-          ),
-          firstPageProgressIndicatorBuilder: (context) => _buildShimmerList(),
-          newPageProgressIndicatorBuilder: (context) => _buildShimmerList(),
         ),
       ),
     );

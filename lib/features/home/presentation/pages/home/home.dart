@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/bottom_nav_widget.dart';
@@ -41,11 +43,11 @@ class _HomePageState extends State<HomePage> {
         body: BaseBlocBuilder(
             bloc: controller.currentOrderCubit,
             onSuccessWidget: (data) {
-              return controller.currentOrderCubit.hasNoData
+              return data == null
                   ? NoOrdersWidget(controller: controller)
                   :  PageContentWidget(
                   controller: controller,
-                  model: data!
+                  model: data
               );
             },
           onFailedWidget: (context, error, callback) {

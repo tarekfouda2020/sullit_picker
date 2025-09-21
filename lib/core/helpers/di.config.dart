@@ -17,6 +17,7 @@ import 'package:flutter_tdd/core/helpers/global_context.dart' as _i769;
 import 'package:flutter_tdd/core/helpers/global_notification.dart' as _i443;
 import 'package:flutter_tdd/core/helpers/loading_helper.dart' as _i934;
 import 'package:flutter_tdd/core/helpers/location_service.dart' as _i320;
+import 'package:flutter_tdd/core/helpers/orders_helper.dart' as _i752;
 import 'package:flutter_tdd/core/helpers/psermission_services.dart' as _i577;
 import 'package:flutter_tdd/core/helpers/share_services.dart' as _i940;
 import 'package:flutter_tdd/core/helpers/user_services_helper.dart' as _i690;
@@ -140,6 +141,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i279.FirebaseAnalyticsHelper());
     gh.lazySingleton<_i690.UserServicesHelper>(
         () => _i690.UserServicesHelper());
+    gh.lazySingleton<_i752.OrdersHelper>(() => _i752.OrdersHelper());
     gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
     gh.factory<_i104.SubscriptionRepositories>(
         () => _i96.ImplSubscriptionRepositories());

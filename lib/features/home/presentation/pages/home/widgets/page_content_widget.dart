@@ -17,7 +17,7 @@ class PageContentWidget extends StatelessWidget {
       spacing: 15,
       children: [
         Expanded(
-          child: RefreshIndicator.adaptive(
+          child: RefreshIndicator(
             backgroundColor: context.colors.white,
             notificationPredicate: (_) => model.isReported,
             onRefresh: () async {
