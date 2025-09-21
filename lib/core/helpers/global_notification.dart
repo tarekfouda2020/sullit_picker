@@ -3,11 +3,16 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/storage_helper.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../features/auth/presentation/manager/user_cubit/user_cubit.dart';
+import '../../features/auth/presentation/pages/login_register/login_register_imports.dart';
 
 @lazySingleton
 class GlobalNotification {
@@ -87,15 +92,26 @@ class GlobalNotification {
   static Future flutterNotificationClick(String? details) async {
 
    log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
+   var data = json.decode(details??"");
 
-
-    // final _data = json.decode("$payload");
+   _whenNotificationClickedInBackground();
 
   }
 
 
   static void _handleNotificationResponse(int orderId){
    getIt<OrdersHelper>().showNewOrderAlert(orderId);
+  }
+
+
+  static void _whenNotificationClickedInBackground(){
+    BuildContext context = getIt<GlobalContext>().context();
+    var user = context.read<UserCubit>().state.model;
+    if(user?.isFreelancer ?? false){
+      AutoRouter.of(context).push(const NewOrdersPageRoute());
+    }else{
+      getIt<OrdersHelper>().getCurrentOrder();
+    }
   }
 
 
