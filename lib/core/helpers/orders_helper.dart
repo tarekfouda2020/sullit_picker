@@ -37,7 +37,7 @@ class OrdersHelper {
   }
 
 
-  Future<void> showNewOrderAlert(int orderId) async {
+  Future<void> showNewOrderAlert({int? orderId}) async {
     BuildContext context = getIt<GlobalContext>().context();
     bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
     if (isAvailable && currentOrderCubit.hasNoData) {
@@ -45,7 +45,7 @@ class OrdersHelper {
         context: context,
         barrierDismissible: true,
         builder: (context) => NewOrderAlertWidget(
-          onPressApply: () => onPressApply(context,orderId),
+          onPressApply: () => onPressApply(context,orderId: orderId),
         ),
       );
     }
@@ -53,7 +53,7 @@ class OrdersHelper {
 
 
 
-  void onPressApply(BuildContext context,int orderId){
+  void onPressApply(BuildContext context,{int? orderId}){
     var user = context.read<UserCubit>().state.model;
     if(user?.isFreelancer ?? false){
       AutoRouter.of(context).push(const NewOrdersPageRoute());

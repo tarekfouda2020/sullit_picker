@@ -50,7 +50,7 @@ class GlobalNotification {
           StorageHelper.instance.clearSavedData();
           // AutoRouter.of(context).push(const LoginRoute());
         }
-        _handleNotificationResponse(orderId);
+        _handleNotificationResponse(orderId: orderId);
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
         log('AonMessageOpenedApp event was published!');
@@ -92,24 +92,25 @@ class GlobalNotification {
   static Future flutterNotificationClick(String? details) async {
 
    log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
-   var data = json.decode(details??"");
-
+   var message = json.decode(details??"");
+   // int orderId = int.parse(message.data["id"]??"0");
    _whenNotificationClickedInBackground();
 
   }
 
 
-  static void _handleNotificationResponse(int orderId){
-   getIt<OrdersHelper>().showNewOrderAlert(orderId);
+  static void _handleNotificationResponse({int? orderId}){
+   getIt<OrdersHelper>().showNewOrderAlert(orderId: orderId);
   }
 
 
-  static void _whenNotificationClickedInBackground(){
+  static void _whenNotificationClickedInBackground({int? orderId}){
     BuildContext context = getIt<GlobalContext>().context();
     var user = context.read<UserCubit>().state.model;
-    if(user?.isFreelancer ?? false){
+    if(user?.isFreelancer == false){
       AutoRouter.of(context).push(const NewOrdersPageRoute());
     }else{
+      // _handleNotificationResponse(orderId: orderId);
       getIt<OrdersHelper>().getCurrentOrder();
     }
   }
