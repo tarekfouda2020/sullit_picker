@@ -38,7 +38,6 @@ class HandleRequestBody {
         formData.files.addAll(files);
       }
     });
-    return haveFile || model.isFormData?formData:null;
+    return haveFile || model.isFormData ?formData:null;
   }
-
 }

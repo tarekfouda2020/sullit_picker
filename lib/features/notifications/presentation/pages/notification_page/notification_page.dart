@@ -23,7 +23,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         title: Translate.of(context).notifications,
         bgColor: context.colors.background,
       ),
-      body: RefreshIndicator.adaptive(
+      body: RefreshIndicator(
         onRefresh: () async => controller.getNotifications(1),
         backgroundColor: context.colors.white,
         child: PagedListView<int, NotificationModel>(
@@ -34,12 +34,14 @@ class _NotificationsPageState extends State<NotificationsPage> {
             firstPageProgressIndicatorBuilder: (context) {
               return SingleChildScrollView(
                 child: Column(
+                  spacing: 15,
                   children: List.generate(4, (index) {
                     return BaseShimmerWidget(
                         child: Container(
-                          width: 200,
-                          decoration: const BoxDecoration(
-                              borderRadius: Dimens.borderRadius30PX
+                          height: 80,
+                          decoration:  BoxDecoration(
+                              borderRadius: Dimens.borderRadius30PX,
+                              color:  context.colors.white
                           ),
                         )
                     );
@@ -53,6 +55,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   width: 30, height: 30,
                   child: CircularProgressIndicator.adaptive(
                     backgroundColor: context.colors.primary,
+                    valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                   ),
                 ),
               ),

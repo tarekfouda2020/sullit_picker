@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_tdd/core/constants/duration_constants.dart';
+import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
+import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/utilities.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 
 import '../login_register/login_register_imports.dart';
@@ -18,6 +23,7 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceToken = getIt<DeviceIdHelper>().getDeviceId();
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) => SystemNavigator.pop(),

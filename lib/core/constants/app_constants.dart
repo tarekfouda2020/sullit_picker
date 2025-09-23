@@ -11,6 +11,7 @@ class ApplicationConstants {
   static const langEN = 'en';
   static const langAR = 'ar';
   static const langBN = 'bn';
+  static const langUR = 'ur';
 
   /// Pagination
   static const paginationLimit = 10;

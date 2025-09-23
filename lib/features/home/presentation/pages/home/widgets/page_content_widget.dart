@@ -19,11 +19,12 @@ class PageContentWidget extends StatelessWidget {
         Expanded(
           child: RefreshIndicator(
             backgroundColor: context.colors.white,
-            notificationPredicate: (_) => model.isReported,
+            // notificationPredicate: (_) => model.isReported,
             onRefresh: () async {
-              if(model.isReported){
-                await controller.getCurrentOrder(setLoading: false);
-              }
+              await controller.getCurrentOrder(setLoading: false);
+              // if(model.isReported){
+              //   await controller.getCurrentOrder(setLoading: false);
+              // }
             } ,
             child: ListView(
               padding: Dimens.paddingH20Px,

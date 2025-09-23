@@ -55,6 +55,9 @@ class SplashController {
         if(value == ApplicationConstants.langBN){
           value = "bd";
         }
+        if(value == ApplicationConstants.langUR){
+          value = "pk";
+        }
         GlobalState.instance.set(ApplicationConstants.langKey, value ?? ApplicationConstants.langEN);
 
       },
@@ -85,7 +88,8 @@ class SplashController {
     switch(code){
       case ApplicationConstants.langAR: return "SA";
       case ApplicationConstants.langEN: return "US";
-      case ApplicationConstants.langBN:return "BD" ;
+      case ApplicationConstants.langBN: return "BD";
+      case ApplicationConstants.langUR: return "PK";
       default: return "US";
     }
   }

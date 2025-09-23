@@ -23,6 +23,13 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     controller.manipulateSaveData(context);
   }
 
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(const AssetImage(Res.newOrderSound), context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_dynamic_calls
 
+import 'dart:developer';
+
 import 'package:flutter_tdd/core/http/generic_http/api_names.dart';
 import 'package:flutter_tdd/core/http/generic_http/generic_http.dart';
 import 'package:flutter_tdd/core/http/models/http_request_model.dart';
@@ -11,7 +13,6 @@ import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_
 import 'package:flutter_tdd/features/auth/domain/entity/change_password_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/confirm_reset_password_params.dart';
-import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
 import 'package:injectable/injectable.dart';
@@ -103,6 +104,7 @@ class ImplAuthDataSource extends AuthDataSource{
   }
   @override
   Future<MyResult<UserModel>> sendLogin(LoginParams params)async {
+    log("sendLogin${params.toJson()}");
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.login,
       requestMethod: RequestMethod.post,
@@ -110,8 +112,9 @@ class ImplAuthDataSource extends AuthDataSource{
       responseKey: (data) => data['data'],
       requestBody: params.toJson(),
       showLoader: false,
+      refresh: true,
       toJsonFunc: (json) => UserModel.fromJson(json),
-      isFormData: true
+      isFormData: true,
     );
     return await GenericHttpImpl<UserModel>()(model);
   }

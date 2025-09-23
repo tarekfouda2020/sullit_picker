@@ -13,17 +13,17 @@ class UserInfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(userData!.name,
+        Text(userData?.name ?? "",
           style: AppTextStyle.s18_w700(color: context.colors.black),
         ),
         Gaps.vGap5,
         const ProfileRatingWidget(),
         Gaps.vGap8,
-        Text(userData.fullPhone,
+        Text(userData?.fullPhone ?? "",
           style: AppTextStyle.s14_w400(color: context.colors.black),
         ),
         Gaps.vGap7,
-        Text(userData.email,
+        Text(userData?.email ?? "",
             style: AppTextStyle.s14_w400(color: context.colors.black)
         ),
       ],

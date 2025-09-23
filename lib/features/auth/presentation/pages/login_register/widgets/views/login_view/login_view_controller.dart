@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:flutter_tdd/core/constants/CustomButtonAnimation.dart';
 import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
@@ -35,6 +37,7 @@ class LoginViewController {
       FocusScope.of(context).unfocus();
       final deviceId = await getIt<DeviceIdHelper>().getDeviceId();
       LoginParams params = _userParams(deviceId!);
+      log("======>>>>>>>>>>>>> driver device token ${params.deviceToken}<<<<<<<<<<<<<<<<<<");
       await getIt.get<AuthRepositories>().sendLogin(params).then((result) {
         result.when(
           isSuccess: (data) {

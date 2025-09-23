@@ -1,13 +1,18 @@
+import 'package:flutter_tdd/core/widgets/app_button.dart';
+
 import 'orders_history_widgets_imports.dart';
 
 class OrderHistoryCardWidget extends StatelessWidget {
   final OrderModel order;
   final bool isFailed;
-  
+  final bool showAccept;
+  final void Function()? pressAccept;
   const OrderHistoryCardWidget({
     super.key, 
     required this.order,
     required this.isFailed,
+     this.showAccept= false,
+     this.pressAccept,
   });
 
   @override
@@ -85,6 +90,14 @@ class OrderHistoryCardWidget extends StatelessWidget {
             label: 'Customer',
             value: order.customerName,
           ),
+          if(showAccept)
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: AppTextButton.maxCustom(
+                text: "Accept Order",
+              onPressed: pressAccept,
+              ),
+            )
         ],
       ),
     );
@@ -92,11 +105,10 @@ class OrderHistoryCardWidget extends StatelessWidget {
 
 
   String _formatDateTime(String dateTimeString) {
-    if (dateTimeString.isEmpty) return 'N/A';
+    if (dateTimeString.isEmpty) return '';
     try {
-      final dateTime = DateTime.parse(dateTimeString);
-      return DateTimeHelper.formatDate(
-        date: dateTime,
+      return DateTimeHelper.getDate(
+        dateTimeString,
         formatType: 'dd MMM yyyy - hh:mm a',
       );
     } catch (e) {

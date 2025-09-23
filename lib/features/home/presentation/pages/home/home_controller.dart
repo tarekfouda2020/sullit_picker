@@ -47,13 +47,9 @@ class HomeController {
     reportReasonsRequester.request();
   }
 
-  Future<void> initializeOrderDialog(BuildContext context) async {
+  Future<void> initializeAvailableStatus(BuildContext context) async {
     bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
     availableForOrdersObs.setValue(isAvailable);
-    // getUserData();
-    if (availableForOrdersObs.getValue() && !hasOrders.getValue()) {
-      showNewOrderDialog(context);
-    }
   }
 
   void onPop() {
@@ -90,8 +86,9 @@ class HomeController {
     AppSnackBar.showSuccessSnackBar(Translate.of(context).order_completed_successfully);
   }
 
-  void navigateToSideMenu(BuildContext context) {
-    AutoRouter.of(context).push(const ProfilePageRoute());
+  Future<void> navigateToSideMenu(BuildContext context)async {
+    await AutoRouter.of(context).push(const ProfilePageRoute());
+    getCurrentOrder(setLoading: false);
   }
 
   void navigateToNotifications(BuildContext context) {

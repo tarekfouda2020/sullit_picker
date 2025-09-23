@@ -16,7 +16,7 @@ class DriverWorkInfo extends StatelessWidget {
         Gaps.vGap20,
         _buildContainer(
           context,
-        child: Text("ID : #${userData!.id}",
+        child: Text("ID : #${userData?.id ?? ""}",
         style: AppTextStyle.s16_w700(color: context.colors.primary),
         )
         ),

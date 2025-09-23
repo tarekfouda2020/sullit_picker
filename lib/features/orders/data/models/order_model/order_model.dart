@@ -26,6 +26,7 @@ class OrderModel with _$OrderModel {
     @JsonKey(name: 'delivered_at') required String deliveredAt,
     @JsonKey(name: 'assigned_at') required String assignedAt,
     @JsonKey(name: 'report_reason') required String reportReason,
+     /// store distance return in newOrder for freelancer driver
     @JsonKey(name: 'store_disctance')  String? storeDistance,
      /// last three keys be nullable  when calling the orders history api
      @JsonKey(name: 'customer_address')  CustomerAddress? customerAddress,

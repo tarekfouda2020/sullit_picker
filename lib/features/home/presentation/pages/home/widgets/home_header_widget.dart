@@ -10,7 +10,7 @@ class HomeHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var userData = context.read<UserCubit>().state.model!;
+    var userData = context.read<UserCubit>().state.model;
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: Row(
@@ -26,14 +26,14 @@ class HomeHeaderWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${Translate.of(context).welcome} ${userData.name}",
+                        "${Translate.of(context).welcome} ${userData?.name ?? ""}",
                         style:  AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                       Gaps.vGap4,
                       Row(
                         children: [
                            Text(
-                            '#${userData.id}',
+                            '#${userData?.id ?? ""}',
                             style: AppTextStyle.s14_w700(color: context.colors.primary),
                           ),
                           Gaps.hGap13,

@@ -140,6 +140,9 @@ class ProfilePageController {
     if (model.code == "bd") {
       code = ApplicationConstants.langBN;
     }
+    if (model.code == "pk") {
+      code = ApplicationConstants.langUR;
+    }
     List<LangModel> languages = langRequester.data!;
     for (var item in languages) {
       item.isDefault = false;

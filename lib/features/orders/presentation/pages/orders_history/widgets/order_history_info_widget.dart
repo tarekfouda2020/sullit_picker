@@ -14,14 +14,17 @@ class OrderHistoryInfoWidget extends StatelessWidget {
         borderRadius: Dimens.borderRadius10PX,
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "$label: ",
+            "$label : ",
             style: AppTextStyle.s12_w400(color: context.colors.black),
           ),
-          Text(
-            value,
-            style: AppTextStyle.s12_w400(color: context.colors.black),
+          Flexible(
+            child: Text(
+              value,
+              style: AppTextStyle.s12_w400(color: context.colors.black),
+            ),
           ),
         ],
       ),

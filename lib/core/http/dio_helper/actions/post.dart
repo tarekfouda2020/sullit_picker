@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_tdd/core/errors/custom_error.dart';
+import 'package:flutter_tdd/core/http/dio_helper/utils/dio_options.dart';
 import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:injectable/injectable.dart';
 
@@ -21,6 +22,7 @@ class Post extends DioHelper {
     try {
       var response = await dio.post(
         params.url,
+        options:  getIt<DioOptions>()(forceRefresh: params.forceRefresh),
         data: formData ?? json.encode(params.body),
       );
       if (params.showLoader) getIt<LoadingHelper>().dismissDialog();

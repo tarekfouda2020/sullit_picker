@@ -8,6 +8,9 @@ enum OrderStatus {
   driverReported;
 
 
+
+
+  /// keys from back-end
   String get getStatusKey {
     switch(this){
       case OrderStatus.pending:

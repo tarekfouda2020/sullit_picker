@@ -91,4 +91,7 @@ class Res {
   static const String orderAlertIllustration = "assets/images/illustrations/order_alert.svg";
   static const String welcomeDialogIllustration = "assets/images/illustrations/welcome_dialog_illustration.svg";
   static const String doneImage = "assets/images/done_image.svg";
+
+  // sounds
+  static const String newOrderSound = "assets/sounds/bell_ring.mp3";
 }

@@ -9,6 +9,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/storage_helper.dart';
+import 'package:flutter_tdd/features/notifications/data/enum/notification_type.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../features/auth/presentation/manager/user_cubit/user_cubit.dart';
@@ -34,23 +35,37 @@ class GlobalNotification {
       // onDidReceiveNotificationResponse: (details)=> flutterNotificationClick( details.payload),
     );
     await Firebase.initializeApp();
-    final settings = await messaging.requestPermission(provisional: true);
+    final settings = await messaging.requestPermission(
+        provisional: true,
+      alert: true,
+      badge: true,
+      sound: true,
+    );
     if(settings.authorizationStatus==AuthorizationStatus.authorized){
       messaging.getToken().then((token) {
         log("$token");
       });
-      messaging.setForegroundNotificationPresentationOptions();
+      messaging.setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        log("_____________________Message data:${message.data}");
-        log("_____________________notification:${message.notification?.title}");
+        // log("_____________________Message data:${message.data}");
+        // log("_____________________notification:${message.notification?.title}");
         _showLocalNotification(message);
         _onMessageStreamController.add(message.data);
-        var orderId = int.parse(message.data["id"]??"0");
+
+
+        var orderId = int.parse(message.data["item_type_id"]??"0");
+        var notifyType = message.data["item_type"];
+
+
         if ( orderId == -1) {
           StorageHelper.instance.clearSavedData();
           // AutoRouter.of(context).push(const LoginRoute());
         }
-        _handleNotificationResponse(orderId: orderId);
+        _handleNotificationResponse(notifyType);
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
         log('AonMessageOpenedApp event was published!');
@@ -87,34 +102,44 @@ class GlobalNotification {
         payload: json.encode(message.data));
   }
 
-
-
-  static Future flutterNotificationClick(String? details) async {
-
-   log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
-   var message = json.decode(details??"");
-   // int orderId = int.parse(message.data["id"]??"0");
-   _whenNotificationClickedInBackground();
+  static void _handleNotificationResponse(String notifyType){
+   var type = NotificationType.notifyType(notifyType);
+   var currentOrder = getIt<OrdersHelper>().currentOrderCubit;
+   if(currentOrder.hasNoData && type.isNewOrder){
+     getIt<OrdersHelper>().showNewOrderAlert();
+   }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted){
+     getIt<OrdersHelper>().getCurrentOrder();
+   }
 
   }
 
-
-  static void _handleNotificationResponse({int? orderId}){
-   getIt<OrdersHelper>().showNewOrderAlert(orderId: orderId);
-  }
-
-
-  static void _whenNotificationClickedInBackground({int? orderId}){
+  static void _whenNotificationClickedInBackground(String notifyType){
+    var type = NotificationType.notifyType(notifyType);
     BuildContext context = getIt<GlobalContext>().context();
     var user = context.read<UserCubit>().state.model;
-    if(user?.isFreelancer == false){
+    if( type.isNewOrder && user?.isFreelancer == true){
       AutoRouter.of(context).push(const NewOrdersPageRoute());
-    }else{
-      // _handleNotificationResponse(orderId: orderId);
+    }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted || type.isNewOrder){
       getIt<OrdersHelper>().getCurrentOrder();
+    }else{
+      AutoRouter.of(context).push(const NotificationsPageRoute());
     }
   }
 
+  static Future flutterNotificationClick(String? details) async {
+    // log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
+    var message = json.decode(details??"");
+    // log("==========>>>>>> message when click from out side $message details <<<<<<<<<<============");
+    var notifyType = message["item_type"];
+    _whenNotificationClickedInBackground(notifyType);
 
-
+  }
 }
+
+
+/// message body
+// {item_type_id: 31,
+// item_type: order >> see NotificationType enum,
+// body: "A new order with code #20250923-00312084 is available for you",
+// title: "New order available",
+// click_action: "FLUTTER_NOTIFICATION_CLICK"}

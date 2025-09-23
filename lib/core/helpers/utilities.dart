@@ -23,6 +23,9 @@ class Utilities {
     if(lang == ApplicationConstants.langBN){
       lang = "bd";
     }
+    if(lang == ApplicationConstants.langUR){
+      lang = "pk";
+    }
     GlobalState.instance.set(ApplicationConstants.langKey, lang);
   }
 

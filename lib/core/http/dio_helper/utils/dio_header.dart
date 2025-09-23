@@ -11,7 +11,7 @@ class DioHeader {
     return {
       "Content-Type": "application/json",
       'Accept': 'application/json',
-      'Authorization': '${ApplicationConstants.headerBearer} $token',
+      'Authorization': token.toString() != "null" ? '${ApplicationConstants.headerBearer} $token' : "",
       "App-Language": lang
     };
   }
