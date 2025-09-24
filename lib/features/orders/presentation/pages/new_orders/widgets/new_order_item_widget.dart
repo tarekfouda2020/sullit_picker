@@ -49,10 +49,10 @@ class NewOrderItemWidget extends StatelessWidget {
             'Payment type: ${order.paymentMethodLabel}',
             style: AppTextStyle.s14_w500(color: context.colors.textPrimary),
           ),
-          OrderHistoryInfoWidget(
-            label: 'Status',
-            value: order.statusLabel,
-          ),
+          // OrderHistoryInfoWidget(
+          //   label: 'Status',
+          //   value: order.statusLabel,
+          // ),
           OrderHistoryInfoWidget(
             label: 'Customer',
             value: order.customerName,
