@@ -13,7 +13,6 @@ class SwitchNotificationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String lang = context.select<DeviceCubit,String>((cubit) => cubit.state.model.locale.languageCode);
     return Directionality(
       textDirection:  TextDirection.rtl,
       child: FlutterSwitch(

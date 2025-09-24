@@ -59,11 +59,12 @@ class NewOrderItemWidget extends StatelessWidget {
           ),
           OrderHistoryInfoWidget(
             label: 'Distance to store',
-            value: order.storeDistance ?? "",
+            // value: order.storeDistance ?? "",
+            value: "${order.distanceKm} km",
           ),
           OrderHistoryInfoWidget(
-            label: 'Distance to Customer',
-            value: "${order.distanceKm} km" ,
+            label: 'Distance from store to Customer',
+            value: order.storeDistance ?? "" ,
           ),
             Padding(
               padding: const EdgeInsets.only(top: 5),

@@ -12,12 +12,13 @@ class RegisterParams {
   final File idImageBack;
   final File licenseImageFront;
   final File licenseImageBack;
-  final String mapDesc;
+   String? mapDesc;
    double? lat;
    double? lng;
    int? coverageArea;
   final String password;
   final String confirmPassword;
+  final String deviceToken;
 
   RegisterParams({
     required this.name,
@@ -31,12 +32,13 @@ class RegisterParams {
     required this.idImageBack,
     required this.licenseImageFront,
     required this.licenseImageBack,
-    required this.mapDesc,
+     this.mapDesc,
      this.lat,
      this.lng,
      this.coverageArea,
     required this.password,
     required this.confirmPassword,
+    required this.deviceToken,
   });
 
 
@@ -53,12 +55,13 @@ class RegisterParams {
     "id_image_back": idImageBack,
     "license_image_front": licenseImageFront,
     "license_image_back": licenseImageBack,
-    "map_desc": mapDesc,
+    if(mapDesc!=null)"map_desc": mapDesc,
     if(lat != null)"lat": lat,
     if(lng != null)"lng": lng,
     if(coverageArea != null)"coverage_radius_km": coverageArea,
     "password": password,
-    "password_confirmation": confirmPassword
+    "password_confirmation": confirmPassword,
+    "device_token":deviceToken,
   };
 
 

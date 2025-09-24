@@ -110,7 +110,6 @@ class GlobalNotification {
    }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted){
      getIt<OrdersHelper>().getCurrentOrder();
    }
-
   }
 
   static void _whenNotificationClickedInBackground(String notifyType){
@@ -120,7 +119,9 @@ class GlobalNotification {
     if( type.isNewOrder && user?.isFreelancer == true){
       AutoRouter.of(context).push(const NewOrdersPageRoute());
     }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted || type.isNewOrder){
-      getIt<OrdersHelper>().getCurrentOrder();
+      getIt<OrdersHelper>().getCurrentOrder(
+        setLoading: type.isNewOrder
+      );
     }else{
       AutoRouter.of(context).push(const NotificationsPageRoute());
     }

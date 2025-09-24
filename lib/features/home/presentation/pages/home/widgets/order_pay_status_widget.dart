@@ -33,7 +33,8 @@ class OrderPayStatusWidget extends StatelessWidget {
         ),
         Text(
           // '${Translate.s.total} : 394 AED',
-          model.orderAmount.parseCurrency,
+          // model.orderAmount.parseCurrency,
+          model.orderAmount,
           style: AppTextStyle.s18_w700(color: model.isPaid ? context.colors.green : context.colors.primary),
         )
       ],

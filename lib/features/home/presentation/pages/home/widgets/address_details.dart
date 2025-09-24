@@ -61,12 +61,13 @@ class AddressDetails extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-               if(!model.isReported)
+
+               if(!model.isReported && !model.isAssigned)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: ReturnOrderWidget(controller: controller,),
                 ),
-                if(!model.isReported)
+                if(!model.isReported && !model.isAssigned)
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: DriverCallingWidget(controller: controller),

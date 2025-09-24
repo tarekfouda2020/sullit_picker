@@ -55,7 +55,8 @@ class DriverWalletBalanceWidget extends StatelessWidget {
   Widget _walletBalance(BuildContext context){
     String walletBalance = context.select<UserCubit,String>((value) =>value.state.model?.walletBalance ?? "");
    return Text(
-     walletBalance.parseCurrency,
+     // walletBalance.parseCurrency,
+     walletBalance,
      style: AppTextStyle.s28_w800(color: context.colors.gold),
    );
   }

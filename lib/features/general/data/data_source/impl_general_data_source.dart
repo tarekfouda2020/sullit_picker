@@ -52,7 +52,6 @@ class ImlGeneralDataSource extends GeneralDataSource{
       responseKey: (data) => data['data'],
       requestBody: params.toJson(),
       isFormData: true,
-      showLoader: true,
     );
     return await GenericHttpImpl<UserModel>()(model);
   }

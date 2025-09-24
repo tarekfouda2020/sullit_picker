@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
@@ -119,8 +120,8 @@ class RegisterController {
   }
 
   Future<void> callRegister(BuildContext context) async {
-    var params = _registerParams();
     getIt<LoadingHelper>().showLoadingDialog();
+    var params = await _registerParams();
     var result = await getIt<AuthRepositories>().registerUser(params);
     result.when(
       isSuccess: (data) async {
@@ -149,7 +150,10 @@ class RegisterController {
       await Future.delayed(const Duration(seconds: 1));
 
       if(isFreeLance()) {
-        AutoRouter.of(context).push(SupportedAreaPageRoute(fromProfile: false, registerParams: _registerParams()));
+        AutoRouter.of(context).push(SupportedAreaPageRoute(
+            fromProfile: false,
+            registerParams: await _registerParams())
+        );
       }else{
         callRegister(context);
       }
@@ -214,7 +218,8 @@ class RegisterController {
     return VerifyParams(email: emailController.text);
   }
 
-  RegisterParams _registerParams() {
+  Future<RegisterParams> _registerParams( ) async{
+    final deviceId = await getIt<DeviceIdHelper>().getDeviceId();
     var workTypes = loginRegisterCtr.workTypesRequester.data;
     var selectedType = workTypes!.firstWhere((element) => element.selected!);
     return RegisterParams(
@@ -229,9 +234,9 @@ class RegisterController {
       idImageBack: backIdFileObs.getValue()!,
       licenseImageFront: licenseFileObs.getValue()!,
       licenseImageBack: backLicenseFileObs.getValue()!,
-      mapDesc: " ",
       password: passwordController.text,
       confirmPassword: passwordController.text,
+      deviceToken: deviceId!
     );
   }
 }

@@ -21,8 +21,13 @@ class HomeController {
 
   HomeController() {
     getUserData();
-    getIt<OrdersHelper>().getCurrentOrder(fromRemote: false);
-    getIt<OrdersHelper>().getCurrentOrder(afterSuccess: () => _initializeReportReasons(),);
+    getIt<OrdersHelper>().getCurrentOrder(fromRemote: false,
+      afterSuccess: () {
+      if(currentOrderCubit.hasData){
+        availableForOrdersObs.setValue(false);
+      }
+    },);
+    getIt<OrdersHelper>().getCurrentOrder(afterSuccess: () => _initializeReportReasons());
   }
 
   BaseBloc<OrderModel?> get  currentOrderCubit => getIt<OrdersHelper>().currentOrderCubit;
@@ -47,9 +52,10 @@ class HomeController {
     reportReasonsRequester.request();
   }
 
-  Future<void> initializeAvailableStatus(BuildContext context) async {
-    bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
-    availableForOrdersObs.setValue(isAvailable);
+  Future<void> initializeAvailableStatus(BuildContext context,{bool value = false}) async {
+    bool? isAvailable = context.read<UserCubit>().state.model?.isAvailable;
+    availableForOrdersObs.setValue(isAvailable ?? value);
+    availableForOrdersObs.refresh();
   }
 
   void onPop() {
@@ -135,8 +141,8 @@ class HomeController {
     getUserData();
   }
 
-  void getUserData() {
-    getIt<UserServicesHelper>().getUserData();
+  void getUserData() async{
+     getIt<UserServicesHelper>().getUserData();
     // await Future.delayed(const Duration(milliseconds: 10));
     // bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
     // availableForOrdersObs.setValue(isAvailable);

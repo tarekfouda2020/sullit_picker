@@ -71,7 +71,7 @@ class BottomNavWidget extends StatelessWidget {
       case OrderStatus.pending:
         return "";
       case OrderStatus.inDelivery:
-        return "in Delivery";
+        return "Start Delivering";
       case OrderStatus.driverReported:
         return "reported";
     }

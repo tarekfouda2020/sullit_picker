@@ -24,7 +24,8 @@ class OrdersHelper {
   final BaseBloc<OrderModel?> currentOrderCubit = BaseBloc<OrderModel?>();
 
   Future<void> getCurrentOrder({void Function()? afterSuccess, bool fromRemote = true,bool setLoading = true}) async {
-    if(setLoading){
+    // if(setLoading){
+    if(currentOrderCubit.hasNoData){
       currentOrderCubit.loadingState();
     }
     var result = await getIt<OrdersRepositories>().getCurrentOrder(fromRemote);
@@ -71,7 +72,7 @@ class OrdersHelper {
     }
   }
 
-   Future<void> _startSound({Duration interval = const Duration(seconds: 1)}) async {
+   Future<void> _startSound({Duration interval = const Duration(seconds: 2)}) async {
     if (_timer != null) return;
     await _player.initialize();
     await _player.load("effect", Res.newOrderSound);

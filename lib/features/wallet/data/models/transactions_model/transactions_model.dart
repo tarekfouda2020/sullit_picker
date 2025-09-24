@@ -27,7 +27,8 @@ class TransactionsModel with _$TransactionsModel {
 
   bool get isDeposited => getTransactionType() == WalletTransactionType.deposited;
   bool get isCollected => getTransactionType() == WalletTransactionType.collected;
-  String get getAmount => amount.parseCurrency;
+  // String get getAmount => amount.parseCurrency;
+  String get getAmount => amount;
 
   WalletTransactionType getTransactionType() {
     switch(type){

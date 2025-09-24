@@ -73,8 +73,8 @@ class SupportedAreaController {
   double get rangeArea => (selectedRange.getValue() * 1000);
 
   Future<void> confirmLocation(BuildContext context) async {
-    updateLocationParams();
     getIt<LoadingHelper>().showLoadingDialog();
+    await updateLocationParams();
     var result = await getIt<AuthRepositories>().registerUser(registerParams!);
     result.when(
       isSuccess: (data) async {
@@ -89,10 +89,11 @@ class SupportedAreaController {
   }
 
 
-  void updateLocationParams(){
+  Future<void> updateLocationParams()async{
     registerParams?.coverageArea = (rangeArea / 1000).toInt();
     registerParams?.lat = latLongObs.getValue().latitude;
-    registerParams?.lng = latLongObs.getValue().longitude;
+    var address = await LocationService.instance.getAddress(latLongObs.getValue());
+    registerParams?.mapDesc = address;
   }
 
   Future<void> saveDataAndRouteToSubscription(BuildContext context, UserModel? data) async{
@@ -106,7 +107,8 @@ class SupportedAreaController {
   }
 
   Future<void> updateDriverLocation(BuildContext context) async {
-   var params = _params();
+    getIt<LoadingHelper>().showLoadingDialog();
+   var params = await _params();
     var result = await getIt<GeneralRepositories>().updateDriverLocation(params);
     result.when(
       isSuccess: (data) async {
@@ -118,13 +120,14 @@ class SupportedAreaController {
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).failed_to_update_location));
       },
     );
+    getIt<LoadingHelper>().dismissDialog();
   }
 
-  UpdateCoverageAreaParams _params() => UpdateCoverageAreaParams(
+  Future<UpdateCoverageAreaParams> _params() async => UpdateCoverageAreaParams(
     lat: latLongObs.getValue().latitude,
     lng: latLongObs.getValue().longitude,
     coverageRadius: (rangeArea / 1000).toInt(),
-    mapDesc: registerParams?.mapDesc,
+    mapDesc: await LocationService.instance.getAddress(latLongObs.getValue()),
   );
 
 }

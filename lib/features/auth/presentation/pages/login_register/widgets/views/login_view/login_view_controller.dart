@@ -37,7 +37,6 @@ class LoginViewController {
       FocusScope.of(context).unfocus();
       final deviceId = await getIt<DeviceIdHelper>().getDeviceId();
       LoginParams params = _userParams(deviceId!);
-      log("======>>>>>>>>>>>>> driver device token ${params.deviceToken}<<<<<<<<<<<<<<<<<<");
       await getIt.get<AuthRepositories>().sendLogin(params).then((result) {
         result.when(
           isSuccess: (data) {
