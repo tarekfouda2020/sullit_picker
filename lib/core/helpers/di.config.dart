@@ -47,8 +47,6 @@ import 'package:flutter_tdd/features/auth/data/repositories/impl_auth_repositori
     as _i988;
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart'
     as _i674;
-import 'package:flutter_tdd/features/auth/domain/usecases/get_work_types_usecase.dart'
-    as _i840;
 import 'package:flutter_tdd/features/general/data/data_source/general_data_source.dart'
     as _i503;
 import 'package:flutter_tdd/features/general/data/data_source/impl_general_data_source.dart'
@@ -115,7 +113,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i940.ShareServices>(() => _i940.ShareServices());
     gh.factory<_i323.AppFileService>(() => _i323.AppFileService());
     gh.factory<_i577.PermissionServices>(() => _i577.PermissionServices());
-    gh.factory<_i840.GetWorkTypesUseCase>(() => _i840.GetWorkTypesUseCase());
     gh.singleton<_i934.LoadingHelper>(() => _i934.LoadingHelper());
     gh.lazySingleton<_i407.NetworkInfoImpl>(() => _i407.NetworkInfoImpl());
     gh.lazySingleton<_i466.DioOptions>(() => _i466.DioOptions());

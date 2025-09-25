@@ -8,7 +8,6 @@ import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.
 import 'package:flutter_tdd/features/home/domain/requester/report_reasons_requester.dart';
 
 import 'home_imports.dart';
-import 'widgets/report_reason_dialog.dart';
 
 class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
@@ -115,14 +114,7 @@ class HomeController {
     AppSnackBar.showSuccessSnackBar(Translate.of(context).problem_reported_successfully);
   }
 
-  void showReportSheet(BuildContext context) {
-    AppBottomSheets.showScrollableBody(
-      context: context,
-      builder: (context) {
-        return ReportBottomSheetWidget(controller: this);
-      },
-    );
-  }
+
 
   Future<void> updateAvailabilityStatus(BuildContext context) async {
     if (currentOrderCubit.hasData) {
@@ -244,12 +236,5 @@ class HomeController {
   }
 
 
-  void showReportReasonSheet(BuildContext context){
-    showDialog(
-      context: context,
-      builder: (context) {
-      return ReportReasonDialog(controller: this);
-    });
-  }
 
 }

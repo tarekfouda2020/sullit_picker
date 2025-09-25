@@ -17,6 +17,5 @@ export 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.da
 export 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
 export 'package:flutter_tdd/features/home/data/enum/report_reason_enum.dart';
 export 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
-export 'package:flutter_tdd/features/home/presentation/pages/home/widgets/repoer_bottom_sheet_widget.dart';
 export 'package:fluttertoast/fluttertoast.dart';
 export 'package:flutter_tdd/core/localization/translate.dart';

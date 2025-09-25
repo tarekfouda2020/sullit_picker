@@ -53,6 +53,8 @@ mixin _$OrderModel {
   String get assignedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'report_reason')
   String get reportReason => throw _privateConstructorUsedError;
+
+  /// store distance return in newOrder for freelancer driver
   @JsonKey(name: 'store_disctance')
   String? get storeDistance => throw _privateConstructorUsedError;
 
@@ -515,6 +517,8 @@ class _$OrderModelImpl extends _OrderModel {
   @override
   @JsonKey(name: 'report_reason')
   final String reportReason;
+
+  /// store distance return in newOrder for freelancer driver
   @override
   @JsonKey(name: 'store_disctance')
   final String? storeDistance;
@@ -714,6 +718,8 @@ abstract class _OrderModel extends OrderModel {
   @override
   @JsonKey(name: 'report_reason')
   String get reportReason;
+
+  /// store distance return in newOrder for freelancer driver
   @override
   @JsonKey(name: 'store_disctance')
   String? get storeDistance;

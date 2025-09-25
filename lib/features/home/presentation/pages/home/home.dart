@@ -1,10 +1,5 @@
-import 'dart:developer';
 
-import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
-import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/bottom_nav_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/no_orders_widget.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/page_content_widget.dart';
 import 'package:flutter_tdd/features/orders/presentation/pages/statistics/statistics_page_imports.dart';
 
 import 'home_imports.dart';
@@ -40,36 +35,9 @@ class _HomePageState extends State<HomePage> {
           bgColor: Colors.transparent,
           size: 20,
         ),
-        body: BaseBlocBuilder(
-            bloc: controller.currentOrderCubit,
-            onSuccessWidget: (data) {
-              return data == null
-                  ? NoOrdersWidget(controller: controller)
-                  :  PageContentWidget(
-                  controller: controller,
-                  model: data
-              );
-            },
-          onFailedWidget: (context, error, callback) {
-            return NoOrdersWidget(controller: controller);
-          },
-          onLoadingWidget: (context) {
-            return const PageContentShimmer();
-          },
-        ),
+        body:  NoOrdersWidget(controller: controller),
       ),
     );
   }
 }
 
-
-// ObsValueConsumer(
-// observable: controller.orderStatusObs,
-// builder: (context, status) {
-// return Visibility(
-// visible: false,
-// replacement:  NoOrdersWidget(controller: controller),
-// child: PageContentWidget(controller: controller, status: status),
-// );
-// },
-// )
