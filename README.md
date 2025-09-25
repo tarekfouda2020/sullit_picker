@@ -39,7 +39,3 @@ This project is a starting point for a Flutter application.
 # To Build Release Version
 - dart run lib/env/env_specific_handlers/dev_handler.dart
 - flutter build apk --release --no-tree-shake-icons --dart-define-from-file=.run/json/dev.json  --flavor dev
-
-
-
-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
