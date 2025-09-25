@@ -66,7 +66,7 @@ class OrdersHelper {
     _stopSound();
     var user = context.read<UserCubit>().state.model;
     if(user?.isFreelancer ?? false){
-      AutoRouter.of(context).push(const NewOrdersPageRoute());
+
     }else{
       getCurrentOrder();
     }

@@ -1,4 +1,0 @@
-enum WalletTransactionType {
-  collected,
-  deposited;
-}

@@ -20,7 +20,6 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     controller.getLanguages();
-    controller.initStores(context);
   }
 
   @override

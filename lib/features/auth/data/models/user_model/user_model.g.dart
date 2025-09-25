@@ -16,9 +16,6 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       lng: json['lng'] as String,
       phone: json['phone'] as String,
       avatar: json['avatar'] as String?,
-      stores: (json['stores'] as List<dynamic>?)
-          ?.map((e) => StoreModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
       rate: (json['avg_rate'] as num?)?.toDouble(),
       approveStatus: json['approve_status'] as String,
       approveStatusLabel: json['approve_status_label'] as String,
@@ -49,7 +46,6 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'lng': instance.lng,
       'phone': instance.phone,
       'avatar': instance.avatar,
-      'stores': instance.stores?.map((e) => e.toJson()).toList(),
       'avg_rate': instance.rate,
       'approve_status': instance.approveStatus,
       'approve_status_label': instance.approveStatusLabel,

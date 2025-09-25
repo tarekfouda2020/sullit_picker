@@ -1,5 +1,4 @@
 import 'package:flutter_tdd/core/models/domain_model/base_domain_model.dart';
-import 'package:flutter_tdd/features/orders/data/models/store_model/store_model.dart';
 
 class UserDomainModel extends BaseDomainModel {
   final String id;
@@ -23,7 +22,6 @@ class UserDomainModel extends BaseDomainModel {
   final String licenseImageBack;
   final bool hasSubscription;
   final bool hasActiveSubscription;
-  final List<StoreModel>? stores;
   final String approveStatus;
   final String approveStatusLabel;
   final String walletBalance;
@@ -50,7 +48,6 @@ class UserDomainModel extends BaseDomainModel {
     required this.licenseImageBack,
     required this.hasSubscription,
     required this.hasActiveSubscription,
-    required this.stores,
     required this.approveStatus,
     required this.approveStatusLabel,
     required this.walletBalance,

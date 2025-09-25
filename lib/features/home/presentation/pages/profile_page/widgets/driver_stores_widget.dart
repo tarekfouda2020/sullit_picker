@@ -8,25 +8,7 @@ class DriverStoresWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseBlocBuilder(
-      bloc: controller.storesListCubit,
-      onSuccessWidget: (data) {
-      return DriverStoresListWidget(
-          stores: data ,
-          controller: controller
-      );
-    },
-    onFailedWidget: (context, error, callback) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("No Stores you work for ",
-            style: AppTextStyle.s14_w700(color: context.colors.primary),
-          ),
-        ],
-      );
-    },
-    );
+    return Gaps.empty;
     }
 
   }

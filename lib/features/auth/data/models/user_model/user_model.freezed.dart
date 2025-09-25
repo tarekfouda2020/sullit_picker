@@ -28,7 +28,6 @@ mixin _$UserModel {
   String get lng => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
-  List<StoreModel>? get stores => throw _privateConstructorUsedError;
   @JsonKey(name: "avg_rate")
   double? get rate => throw _privateConstructorUsedError;
   @JsonKey(name: "approve_status")
@@ -90,7 +89,6 @@ abstract class $UserModelCopyWith<$Res> {
       String lng,
       String phone,
       String? avatar,
-      List<StoreModel>? stores,
       @JsonKey(name: "avg_rate") double? rate,
       @JsonKey(name: "approve_status") String approveStatus,
       @JsonKey(name: "approve_status_label") String approveStatusLabel,
@@ -134,7 +132,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? lng = null,
     Object? phone = null,
     Object? avatar = freezed,
-    Object? stores = freezed,
     Object? rate = freezed,
     Object? approveStatus = null,
     Object? approveStatusLabel = null,
@@ -187,10 +184,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
-      stores: freezed == stores
-          ? _value.stores
-          : stores // ignore: cast_nullable_to_non_nullable
-              as List<StoreModel>?,
       rate: freezed == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
@@ -284,7 +277,6 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String lng,
       String phone,
       String? avatar,
-      List<StoreModel>? stores,
       @JsonKey(name: "avg_rate") double? rate,
       @JsonKey(name: "approve_status") String approveStatus,
       @JsonKey(name: "approve_status_label") String approveStatusLabel,
@@ -326,7 +318,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? lng = null,
     Object? phone = null,
     Object? avatar = freezed,
-    Object? stores = freezed,
     Object? rate = freezed,
     Object? approveStatus = null,
     Object? approveStatusLabel = null,
@@ -379,10 +370,6 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String?,
-      stores: freezed == stores
-          ? _value._stores
-          : stores // ignore: cast_nullable_to_non_nullable
-              as List<StoreModel>?,
       rate: freezed == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
@@ -472,7 +459,6 @@ class _$UserModelImpl extends _UserModel {
       required this.lng,
       required this.phone,
       this.avatar,
-      required final List<StoreModel>? stores,
       @JsonKey(name: "avg_rate") this.rate,
       @JsonKey(name: "approve_status") required this.approveStatus,
       @JsonKey(name: "approve_status_label") required this.approveStatusLabel,
@@ -492,8 +478,7 @@ class _$UserModelImpl extends _UserModel {
       @JsonKey(name: "has_subscription") required this.hasSubscription,
       @JsonKey(name: "has_active_subscription")
       required this.hasActiveSubscription})
-      : _stores = stores,
-        super._();
+      : super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -514,16 +499,6 @@ class _$UserModelImpl extends _UserModel {
   final String phone;
   @override
   final String? avatar;
-  final List<StoreModel>? _stores;
-  @override
-  List<StoreModel>? get stores {
-    final value = _stores;
-    if (value == null) return null;
-    if (_stores is EqualUnmodifiableListView) return _stores;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   @override
   @JsonKey(name: "avg_rate")
   final double? rate;
@@ -581,7 +556,7 @@ class _$UserModelImpl extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, email: $email, token: $token, lat: $lat, lng: $lng, phone: $phone, avatar: $avatar, stores: $stores, rate: $rate, approveStatus: $approveStatus, approveStatusLabel: $approveStatusLabel, tokenType: $tokenType, emailIsActive: $emailIsActive, countryCode: $countryCode, fullPhone: $fullPhone, workType: $workType, mapDesc: $mapDesc, coverageRadiusKm: $coverageRadiusKm, isAvailable: $isAvailable, idImageFront: $idImageFront, idImageBack: $idImageBack, licenseImageFront: $licenseImageFront, licenseImageBack: $licenseImageBack, walletBalance: $walletBalance, hasSubscription: $hasSubscription, hasActiveSubscription: $hasActiveSubscription)';
+    return 'UserModel(id: $id, name: $name, email: $email, token: $token, lat: $lat, lng: $lng, phone: $phone, avatar: $avatar, rate: $rate, approveStatus: $approveStatus, approveStatusLabel: $approveStatusLabel, tokenType: $tokenType, emailIsActive: $emailIsActive, countryCode: $countryCode, fullPhone: $fullPhone, workType: $workType, mapDesc: $mapDesc, coverageRadiusKm: $coverageRadiusKm, isAvailable: $isAvailable, idImageFront: $idImageFront, idImageBack: $idImageBack, licenseImageFront: $licenseImageFront, licenseImageBack: $licenseImageBack, walletBalance: $walletBalance, hasSubscription: $hasSubscription, hasActiveSubscription: $hasActiveSubscription)';
   }
 
   @override
@@ -597,7 +572,6 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.lng, lng) || other.lng == lng) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
-            const DeepCollectionEquality().equals(other._stores, _stores) &&
             (identical(other.rate, rate) || other.rate == rate) &&
             (identical(other.approveStatus, approveStatus) ||
                 other.approveStatus == approveStatus) &&
@@ -646,7 +620,6 @@ class _$UserModelImpl extends _UserModel {
         lng,
         phone,
         avatar,
-        const DeepCollectionEquality().hash(_stores),
         rate,
         approveStatus,
         approveStatusLabel,
@@ -693,7 +666,6 @@ abstract class _UserModel extends UserModel {
       required final String lng,
       required final String phone,
       final String? avatar,
-      required final List<StoreModel>? stores,
       @JsonKey(name: "avg_rate") final double? rate,
       @JsonKey(name: "approve_status") required final String approveStatus,
       @JsonKey(name: "approve_status_label")
@@ -737,8 +709,6 @@ abstract class _UserModel extends UserModel {
   String get phone;
   @override
   String? get avatar;
-  @override
-  List<StoreModel>? get stores;
   @override
   @JsonKey(name: "avg_rate")
   double? get rate;

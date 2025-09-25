@@ -2,7 +2,6 @@ import 'package:flutter_tdd/features/auth/domain/requesters/work_types_requester
 
 import '../login_register/login_register_imports.dart';
 import 'widgets/views/login_view/login_view.dart';
-import 'widgets/views/regeister/register.dart';
 
 
 class LoginRegisterController {
@@ -31,13 +30,4 @@ class LoginRegisterController {
     obs.setValue(!obs.getValue());
   }
 
-
-
-  Widget currentView(){
-    switch(currentTabObs.getValue()){
-      case 0: return const LoginView();
-      case 1: return   RegisterView(loginRegisterController: this);
-      default: return const LoginView();
-    }
-  }
 } 

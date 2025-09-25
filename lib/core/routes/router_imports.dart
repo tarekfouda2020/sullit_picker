@@ -4,7 +4,5 @@ import 'package:flutter_tdd/features/auth/presentation/manager/routes/auth_route
 import 'package:flutter_tdd/features/general/presentation/manager/routes/general_routes.dart';
 import 'package:flutter_tdd/features/home/presentation/manager/routes/home_routes.dart';
 import 'package:flutter_tdd/features/orders/presentation/manager/routes/routes.dart';
-import 'package:flutter_tdd/features/subscriptions/presentation/manager/routes/subscriptions_routes.dart';
-import 'package:flutter_tdd/features/wallet/presentation/manager/routes/wallet_routes.dart';
 
 part 'router.dart';

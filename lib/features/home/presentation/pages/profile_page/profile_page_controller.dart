@@ -7,7 +7,6 @@ class ProfilePageController {
 
   final ObsValue<bool> showAllStores = ObsValue<bool>.withInit(false);
 
-  final BaseBloc<List<StoreModel>> storesListCubit = BaseBloc<List<StoreModel>>();
 
   File? pickedImage;
 
@@ -32,21 +31,7 @@ class ProfilePageController {
     AutoRouter.of(context).push(const ChangePasswordPageRoute());
   }
 
-  void navigateToOrdersHistory(BuildContext context) {
-    AutoRouter.of(context).push(const OrdersHistoryPageRoute());
-  }
 
-  void navigateToNewOrders(BuildContext context) {
-    AutoRouter.of(context).push(const NewOrdersPageRoute());
-  }
-
-  void navigateToWallet(BuildContext context) {
-    AutoRouter.of(context).push(const WalletPageRoute());
-  }
-
-  void navigateToStatistics(BuildContext context) {
-    AutoRouter.of(context).push(const StatisticsPageRoute());
-  }
 
   void navigateToContactUs(BuildContext context) {
     AutoRouter.of(context).push(const ContactUsPageRoute());
@@ -64,17 +49,6 @@ class ProfilePageController {
     AutoRouter.of(context).push(const NotificationsPageRoute());
   }
 
-  Future<void> navigateToMySubscription(BuildContext context) async {
-    bool hasSubscription = context.read<UserCubit>().state.model!.hasSubscription;
-    if (hasSubscription) {
-      var result = await AutoRouter.of(context).push(const MySubscriptionPageRoute());
-      if (result == true) {
-        getUserData();
-      }
-    } else {
-      AutoRouter.of(context).push(SubscriptionPageRoute(fromAuth: false));
-    }
-  }
 
   Future<void> logout(BuildContext context) async {
     final result = await getIt<AuthRepositories>().logout();
@@ -163,28 +137,8 @@ class ProfilePageController {
     langRequester.refresh();
   }
 
-  void initStores(BuildContext context){
-    var userData = context.read<UserCubit>().state.model;
-    if(userData?.workWithOneStore == true){
-      storesListCubit.successState(userData?.stores);
-    }else{
-      getStores(refresh: false);
-      getStores();
-    }
-  }
 
-  Future<void> getStores({bool refresh = true}) async {
-    var params = _storesParams(refresh);
-    final result = await getIt<OrdersDataSource>().getStores(params);
-    result.when(
-      isSuccess: (data) {
-        storesListCubit.successState(data);
-      },
-      isError: (error) {
-        storesListCubit.failedState(error, () {},);
-      },
-    );
-  }
+
 
   GenericPaginateParams _storesParams(bool refresh) {
     return GenericPaginateParams(pageSize: ApplicationConstants.paginationLimit, refresh: refresh, currentPage: 1);

@@ -35,7 +35,7 @@ class DriverWalletBalanceWidget extends StatelessWidget {
                     width: 190,
                     child: AppTextButton.minCustom(
                       text: Translate.of(context).view_wallet_details,
-                      onPressed: () => controller.navigateToWallet(context) ,
+                      onPressed: () {} ,
                       bgColor: context.colors.white,
                       txtColor: context.colors.primary,
                       textSize: 14,

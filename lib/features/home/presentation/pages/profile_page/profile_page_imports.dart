@@ -35,5 +35,4 @@ export 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart'
 export 'package:flutter_tdd/features/home/domain/requester/languages_requester.dart';
 export 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/lang_bottom_sheet_widget.dart';
 export 'package:flutter_tdd/features/orders/data/data_source/orders_data_source.dart';
-export 'package:flutter_tdd/features/orders/data/models/store_model/store_model.dart';
 export 'package:flutter_tdd/features/orders/domain/entity/generic_pagin_params.dart';

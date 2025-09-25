@@ -9,8 +9,6 @@ class AppRouter extends $AppRouter {
     ...homeRoutes,
     ...generalRoutes,
     ...ordersRoutes,
-    ...walletRoutes,
-    ...subscriptionsRoutes,
 
     // Profile Routes
     AutoRoute(page: NotificationsPageRoute.page),

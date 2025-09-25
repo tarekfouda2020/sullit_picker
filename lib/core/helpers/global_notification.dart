@@ -117,7 +117,7 @@ class GlobalNotification {
     BuildContext context = getIt<GlobalContext>().context();
     var user = context.read<UserCubit>().state.model;
     if( type.isNewOrder && user?.isFreelancer == true){
-      AutoRouter.of(context).push(const NewOrdersPageRoute());
+
     }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted || type.isNewOrder){
       getIt<OrdersHelper>().getCurrentOrder(
         setLoading: type.isNewOrder

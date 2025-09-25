@@ -22,13 +22,13 @@ class MenuItemsListWidget extends StatelessWidget {
         MenuItemWidget(
           icon: Res.orderHistory,
           title: Translate.of(context).orders_history,
-          onTap: () => controller.navigateToOrdersHistory(context),
+          onTap: () {},
         ),
         if(isFreelancer == true)
         MenuItemWidget(
           icon: Res.orderHistory,
           title: "New Orders",
-          onTap: () => controller.navigateToNewOrders(context),
+          onTap: () {},
         ),
         if(isFreelancer == true)
         MenuItemWidget(
@@ -39,12 +39,12 @@ class MenuItemsListWidget extends StatelessWidget {
         MenuItemWidget(
           icon: Res.ordersStatistics,
           title: Translate.of(context).my_statistics,
-          onTap: () => controller.navigateToStatistics(context),
+          onTap: () {},
         ),
         MenuItemWidget(
           icon: Res.subscriptionIcon,
           title: Translate.of(context).my_subscription,
-          onTap: () => controller.navigateToMySubscription(context),
+          onTap: () {},
         ),
         MenuItemWidget(
           icon: Res.globalIcon,
