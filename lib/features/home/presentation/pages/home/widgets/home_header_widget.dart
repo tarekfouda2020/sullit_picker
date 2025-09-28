@@ -27,23 +27,25 @@ class HomeHeaderWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${Translate.of(context).welcome} ${userData?.name ?? ""}",
+                        // "${Translate.of(context).welcome} ${userData?.name ?? ""}",
+                        'Welcome Ahmed',
                         style:  AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                       Gaps.vGap4,
                       Row(
                         children: [
                            Text(
-                            '#${userData?.id ?? ""}',
+                            // '#${userData?.id ?? ""}',
+                             '##5647843',
                             style: AppTextStyle.s14_w700(color: context.colors.primary),
                           ),
-                          Gaps.hGap13,
-                         ObsValueConsumer(
-                           observable: controller.availableForOrdersObs,
-                           builder: (context,value) {
-                             return DriverStatusWidget(isActive: value);
-                           }
-                         )
+                          // Gaps.hGap13,
+                         // ObsValueConsumer(
+                         //   observable: controller.availableForOrdersObs,
+                         //   builder: (context,value) {
+                         //     return DriverStatusWidget(isActive: value);
+                         //   }
+                         // )
                         ],
                       ),
                     ],
@@ -68,24 +70,24 @@ class HomeHeaderWidget extends StatelessWidget {
         visible: avatar==null || avatar == "",
         replacement: CachedImage(
           url: avatar ?? "",
-          width: Dimens.dp40,
-          height: Dimens.dp40,
+          width: 60,
+          height: 60,
           haveRadius: false,
           boxShape: BoxShape.circle,
           fit: BoxFit.cover,
         ),
         child: Container(
-          width: Dimens.dp40,
-          height: Dimens.dp40,
+          width: 60,
+          height: 60,
           padding: const EdgeInsets.only(bottom: 2),
-          alignment: Alignment.bottomCenter,
+          alignment: Alignment.center,
           decoration:  BoxDecoration(
             color: context.colors.white,
             shape: BoxShape.circle,
           ),
           child: SvgPicture.asset(
             Res.personIcon,
-            width: 30, height: 30,
+            width: 45, height: 45,
           )
           ,
         ),

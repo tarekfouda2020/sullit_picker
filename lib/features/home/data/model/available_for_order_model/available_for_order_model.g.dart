@@ -9,16 +9,18 @@ part of 'available_for_order_model.dart';
 _$AvailableForOrderModelImpl _$$AvailableForOrderModelImplFromJson(
         Map<String, dynamic> json) =>
     _$AvailableForOrderModelImpl(
-      msg: json['msg'] as String,
-      data: ToggleAvailableForOrderModel.fromJson(
-          json['data'] as Map<String, dynamic>),
+      msg: json['msg'] as String?,
+      data: json['data'] == null
+          ? null
+          : ToggleAvailableForOrderModel.fromJson(
+              json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AvailableForOrderModelImplToJson(
         _$AvailableForOrderModelImpl instance) =>
     <String, dynamic>{
       'msg': instance.msg,
-      'data': instance.data.toJson(),
+      'data': instance.data?.toJson(),
     };
 
 _$ToggleAvailableForOrderModelImpl _$$ToggleAvailableForOrderModelImplFromJson(

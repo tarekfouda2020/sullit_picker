@@ -21,8 +21,8 @@ AvailableForOrderModel _$AvailableForOrderModelFromJson(
 
 /// @nodoc
 mixin _$AvailableForOrderModel {
-  String get msg => throw _privateConstructorUsedError;
-  ToggleAvailableForOrderModel get data => throw _privateConstructorUsedError;
+  String? get msg => throw _privateConstructorUsedError;
+  ToggleAvailableForOrderModel? get data => throw _privateConstructorUsedError;
 
   /// Serializes this AvailableForOrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,9 +40,9 @@ abstract class $AvailableForOrderModelCopyWith<$Res> {
           $Res Function(AvailableForOrderModel) then) =
       _$AvailableForOrderModelCopyWithImpl<$Res, AvailableForOrderModel>;
   @useResult
-  $Res call({String msg, ToggleAvailableForOrderModel data});
+  $Res call({String? msg, ToggleAvailableForOrderModel? data});
 
-  $ToggleAvailableForOrderModelCopyWith<$Res> get data;
+  $ToggleAvailableForOrderModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -61,18 +61,18 @@ class _$AvailableForOrderModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? msg = null,
-    Object? data = null,
+    Object? msg = freezed,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
-      msg: null == msg
+      msg: freezed == msg
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: null == data
+              as String?,
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as ToggleAvailableForOrderModel,
+              as ToggleAvailableForOrderModel?,
     ) as $Val);
   }
 
@@ -80,8 +80,12 @@ class _$AvailableForOrderModelCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ToggleAvailableForOrderModelCopyWith<$Res> get data {
-    return $ToggleAvailableForOrderModelCopyWith<$Res>(_value.data, (value) {
+  $ToggleAvailableForOrderModelCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $ToggleAvailableForOrderModelCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -96,10 +100,10 @@ abstract class _$$AvailableForOrderModelImplCopyWith<$Res>
       __$$AvailableForOrderModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String msg, ToggleAvailableForOrderModel data});
+  $Res call({String? msg, ToggleAvailableForOrderModel? data});
 
   @override
-  $ToggleAvailableForOrderModelCopyWith<$Res> get data;
+  $ToggleAvailableForOrderModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -117,18 +121,18 @@ class __$$AvailableForOrderModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? msg = null,
-    Object? data = null,
+    Object? msg = freezed,
+    Object? data = freezed,
   }) {
     return _then(_$AvailableForOrderModelImpl(
-      msg: null == msg
+      msg: freezed == msg
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
-              as String,
-      data: null == data
+              as String?,
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as ToggleAvailableForOrderModel,
+              as ToggleAvailableForOrderModel?,
     ));
   }
 }
@@ -137,16 +141,15 @@ class __$$AvailableForOrderModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$AvailableForOrderModelImpl extends _AvailableForOrderModel {
-  _$AvailableForOrderModelImpl({required this.msg, required this.data})
-      : super._();
+  _$AvailableForOrderModelImpl({this.msg, this.data}) : super._();
 
   factory _$AvailableForOrderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AvailableForOrderModelImplFromJson(json);
 
   @override
-  final String msg;
+  final String? msg;
   @override
-  final ToggleAvailableForOrderModel data;
+  final ToggleAvailableForOrderModel? data;
 
   @override
   String toString() {
@@ -185,18 +188,17 @@ class _$AvailableForOrderModelImpl extends _AvailableForOrderModel {
 
 abstract class _AvailableForOrderModel extends AvailableForOrderModel {
   factory _AvailableForOrderModel(
-          {required final String msg,
-          required final ToggleAvailableForOrderModel data}) =
-      _$AvailableForOrderModelImpl;
+      {final String? msg,
+      final ToggleAvailableForOrderModel? data}) = _$AvailableForOrderModelImpl;
   _AvailableForOrderModel._() : super._();
 
   factory _AvailableForOrderModel.fromJson(Map<String, dynamic> json) =
       _$AvailableForOrderModelImpl.fromJson;
 
   @override
-  String get msg;
+  String? get msg;
   @override
-  ToggleAvailableForOrderModel get data;
+  ToggleAvailableForOrderModel? get data;
 
   /// Create a copy of AvailableForOrderModel
   /// with the given fields replaced by the non-null parameter values.

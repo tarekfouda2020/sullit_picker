@@ -52,6 +52,8 @@ abstract class AppColors {
 
   Color get textPrimary;
 
+  Color get textColor;
+
   Color get textSecondary;
 
   Color get textTertiary;

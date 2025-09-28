@@ -107,6 +107,9 @@ class AppTextStyle extends TextStyle {
   const AppTextStyle.s16_w800({required Color color})
       : super(color: color, fontSize: 16, fontWeight: FontWeight.w800, height: fontHeight, fontFamily: 'OpenSans');
 
+  const AppTextStyle.s18_w300({required Color color})
+      : super(color: color, fontSize: 18, fontWeight: FontWeight.w300, height: fontHeight, fontFamily: 'NotoSans');
+
   // ignore: non_constant_identifier_names
   const AppTextStyle.s18_w400({required Color color})
       : super(color: color, fontSize: 18, fontWeight: FontWeight.w400, height: fontHeight, fontFamily: 'NotoSans');
@@ -122,6 +125,9 @@ class AppTextStyle extends TextStyle {
   // ignore: non_constant_identifier_names
   const AppTextStyle.s18_w700({required Color color})
       : super(color: color, fontSize: 18, fontWeight: FontWeight.w700, height: fontHeight, fontFamily: 'NotoSans');
+
+  const AppTextStyle.s18_w800({required Color color})
+      : super(color: color, fontSize: 18, fontWeight: FontWeight.w800, height: fontHeight, fontFamily: 'NotoSans');
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s20_w400({required Color color})

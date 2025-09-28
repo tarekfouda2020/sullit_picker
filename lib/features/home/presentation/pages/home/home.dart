@@ -1,7 +1,5 @@
-
 import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/no_orders_widget.dart';
-
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/orders_widget.dart';
 import 'home_imports.dart';
 
 @RoutePage(name: "HomePageRoute")
@@ -35,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           bgColor: Colors.transparent,
           size: 20,
         ),
-        body:  NoOrdersWidget(controller: controller),
+        body: OrdersWidget(controller: controller),
       ),
     );
   }

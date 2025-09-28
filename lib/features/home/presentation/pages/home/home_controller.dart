@@ -116,22 +116,6 @@ class HomeController {
 
 
 
-  Future<void> updateAvailabilityStatus(BuildContext context) async {
-    if (currentOrderCubit.hasData) {
-      return;
-    }
-    var result = await getIt<HomeRepositories>().updateAvailability();
-    result.when(
-      isSuccess: (data) async {
-        availableForOrdersObs.setValue(data!.data.isAvailable);
-        AppSnackBar.showSuccessSnackBar(data.msg, forceShow: true);
-      },
-      isError: (error) {
-        AppSnackBar.showErrorSnackBar(error: error);
-      },
-    );
-    getUserData();
-  }
 
   void getUserData() async{
      getIt<UserServicesHelper>().getUserData();

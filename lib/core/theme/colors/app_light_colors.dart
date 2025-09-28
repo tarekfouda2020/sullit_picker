@@ -40,6 +40,9 @@ class AppLightColors extends AppColors {
   Color get textPrimary => const Color(0xFF212529);
 
   @override
+  Color get textColor => const Color(0xFF515151);
+
+  @override
   Color get textSecondary => const Color(0xFF6C757D);
 
   @override

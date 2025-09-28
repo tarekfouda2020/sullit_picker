@@ -40,6 +40,9 @@ class AppDarkColors extends AppColors {
   Color get textPrimary => Colors.white;
 
   @override
+  Color get textColor => const Color(0xFF515151);
+
+  @override
   Color get textSecondary => const Color(0xFF8E8E93);
 
   @override
