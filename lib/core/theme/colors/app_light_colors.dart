@@ -4,7 +4,7 @@ import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 class AppLightColors extends AppColors {
 
   @override
-  Color get primary => const Color(0xFFE84144); // Correct red primary from Figma
+  Color get primary => const Color(0xFFC6161D); // Correct red primary from Figma
 
   @override
   Color get secondary => const Color(0xFF34C759); // Green secondary
@@ -16,6 +16,9 @@ class AppLightColors extends AppColors {
   Color get background => const Color(0xFFF6F6F6);
 
   @override
+  Color get simiGray => const Color(0xFF1E1E1E);
+
+  @override
   Color get appBarColor => const Color(0xFFE84144);
 
   @override
@@ -23,6 +26,9 @@ class AppLightColors extends AppColors {
 
   @override
   Color get blackOpacity => const Color(0xFF6C757D);
+
+  @override
+  Color get catCardColor => const Color(0xFFCECECE);
 
   @override
   Color get greyWhite => const Color(0xFFF8F9FA);

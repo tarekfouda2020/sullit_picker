@@ -4,7 +4,7 @@ import 'package:flutter_tdd/core/theme/colors/app_colors.dart';
 class AppDarkColors extends AppColors {
 
   @override
-  Color get primary => const Color(0xFFE84144);
+  Color get primary => const Color(0xFFC6161D);
 
   @override
   Color get secondary => const Color(0xFF34C759);
@@ -34,7 +34,13 @@ class AppDarkColors extends AppColors {
   Color get green => const Color(0xFF34C759);
 
   @override
+  Color get catCardColor => const Color(0xFFCECECE);
+
+  @override
   Color get cardBackground => const Color(0xFF1C1C1E);
+
+  @override
+  Color get simiGray => const Color(0xFF1E1E1E);
 
   @override
   Color get textPrimary => Colors.white;

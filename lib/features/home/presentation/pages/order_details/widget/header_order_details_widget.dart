@@ -1,0 +1,42 @@
+import 'package:flutter_svg/svg.dart';
+import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/res.dart';
+
+import 'widgets_imports.dart';
+
+class HeaderOrderDetailsWidget extends StatelessWidget {
+  const HeaderOrderDetailsWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: SvgPicture.asset(
+                Res.arrow,
+                colorFilter:
+                    ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
+                width: 24,
+                height: 24,
+              ),
+            ),
+            Gaps.hGap14,
+            Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.simiGray),),
+            Text('3253646',style: AppTextStyle.s18_w600(color: context.colors.primary),),
+          ],
+        ),
+        Gaps.vGap8,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 38),
+          child: Text('Assigned 2 min ago',style: AppTextStyle.s14_w300(color: context.colors.textColor),),
+        )
+      ],
+    );
+  }
+}

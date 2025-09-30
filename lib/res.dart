@@ -44,6 +44,10 @@ class Res {
   static const String twitterIcon = "assets/images/icons/twitter_icon.svg";
   static const String instagramIcon = "assets/images/icons/instagram.png";
   static const String whatsappIcon = "assets/images/icons/whatsapp_icon.svg";
+  static const String beefImage = "assets/images/beef.jpg";
+  static const String chickenImage = "assets/images/chicken.jpg";
+  static const String milk = "assets/images/milk.jpg";
+  static const String organicMilk = "assets/images/organic_milk.jpg";
 
   // Home screen assets that already exist in assets/images/
   static const String headerIcon = "assets/images/header-icon.svg";

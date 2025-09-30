@@ -105,4 +105,8 @@ abstract class AppColors {
 
   Color get darkRed;
 
+  Color get simiGray;
+
+  Color get catCardColor;
+
 }

@@ -1,9 +1,9 @@
 import 'home_widgets_imports.dart';
 
-class CardPickedRateWidget extends StatelessWidget {
+class CardPickedRatioWidget extends StatelessWidget {
   final Color? color;
-  final String rate;
-  const CardPickedRateWidget({super.key, required this.rate, this.color,});
+  final String ratio;
+  const CardPickedRatioWidget({super.key, required this.ratio, this.color,});
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +32,11 @@ class CardPickedRateWidget extends StatelessWidget {
             children: [
               Expanded(
                   child: Text(
-                'No. of Items : 2',
+                'No. of Items : 4',
                 style: AppTextStyle.s16_w300(color: context.colors.black),
               )),
               Text(
-                'Picked $rate%',
+                'Picked $ratio%',
                 style: AppTextStyle.s14_w400(color: context.colors.black),
               )
             ],
