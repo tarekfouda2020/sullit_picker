@@ -112,7 +112,7 @@ abstract class $AppRouter extends _i18.RootStackRouter {
         child: const _i8.NotificationsPage(),
       );
     },
-    OrderDetailsRoute.name: (routeData) {
+    OrderDetailsRouteName.name: (routeData) {
       return _i18.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i9.OrderDetails(),
@@ -342,14 +342,14 @@ class NotificationsPageRoute extends _i18.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.OrderDetails]
-class OrderDetailsRoute extends _i18.PageRouteInfo<void> {
-  const OrderDetailsRoute({List<_i18.PageRouteInfo>? children})
+class OrderDetailsRouteName extends _i18.PageRouteInfo<void> {
+  const OrderDetailsRouteName({List<_i18.PageRouteInfo>? children})
       : super(
-          OrderDetailsRoute.name,
+          OrderDetailsRouteName.name,
           initialChildren: children,
         );
 
-  static const String name = 'OrderDetailsRoute';
+  static const String name = 'OrderDetailsRouteName';
 
   static const _i18.PageInfo<void> page = _i18.PageInfo<void>(name);
 }

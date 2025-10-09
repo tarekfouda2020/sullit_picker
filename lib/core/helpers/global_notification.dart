@@ -8,7 +8,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
-import 'package:flutter_tdd/core/helpers/storage_helper.dart';
 import 'package:flutter_tdd/features/notifications/data/enum/notification_type.dart';
 import 'package:injectable/injectable.dart';
 
@@ -24,57 +23,57 @@ class GlobalNotification {
 
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
 
- Future<void> setupNotification()async{
-    _flutterLocalNotificationsPlugin =FlutterLocalNotificationsPlugin();
-    const android = AndroidInitializationSettings("@mipmap/launcher_icon");
-    const ios =DarwinInitializationSettings();
-    const initSettings =InitializationSettings(android: android, iOS: ios);
-    _flutterLocalNotificationsPlugin.initialize(
-      initSettings,
-      // onDidReceiveBackgroundNotificationResponse:(details)=> flutterNotificationClick( details.payload),
-      // onDidReceiveNotificationResponse: (details)=> flutterNotificationClick( details.payload),
-    );
-    await Firebase.initializeApp();
-    final settings = await messaging.requestPermission(
-        provisional: true,
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-    if(settings.authorizationStatus==AuthorizationStatus.authorized){
-      messaging.getToken().then((token) {
-        log("$token");
-      });
-      messaging.setForegroundNotificationPresentationOptions(
-        alert: true,
-        badge: true,
-        sound: true,
-      );
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        // log("_____________________Message data:${message.data}");
-        // log("_____________________notification:${message.notification?.title}");
-        _showLocalNotification(message);
-        _onMessageStreamController.add(message.data);
-
-
-        var orderId = int.parse(message.data["item_type_id"]??"0");
-        var notifyType = message.data["item_type"];
-
-
-        if ( orderId == -1) {
-          StorageHelper.instance.clearSavedData();
-          // AutoRouter.of(context).push(const LoginRoute());
-        }
-        _handleNotificationResponse(notifyType);
-      });
-      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        log('AonMessageOpenedApp event was published!');
-        flutterNotificationClick(json.encode(message.data));
-      });
-      FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    }
-
-  }
+ // Future<void> setupNotification()async{
+ //    _flutterLocalNotificationsPlugin =FlutterLocalNotificationsPlugin();
+ //    const android = AndroidInitializationSettings("@mipmap/launcher_icon");
+ //    const ios =DarwinInitializationSettings();
+ //    const initSettings =InitializationSettings(android: android, iOS: ios);
+ //    _flutterLocalNotificationsPlugin.initialize(
+ //      initSettings,
+ //      // onDidReceiveBackgroundNotificationResponse:(details)=> flutterNotificationClick( details.payload),
+ //      // onDidReceiveNotificationResponse: (details)=> flutterNotificationClick( details.payload),
+ //    );
+ //    await Firebase.initializeApp();
+ //    final settings = await messaging.requestPermission(
+ //        provisional: true,
+ //      alert: true,
+ //      badge: true,
+ //      sound: true,
+ //    );
+ //    if(settings.authorizationStatus==AuthorizationStatus.authorized){
+ //      messaging.getToken().then((token) {
+ //        log("$token");
+ //      });
+ //      messaging.setForegroundNotificationPresentationOptions(
+ //        alert: true,
+ //        badge: true,
+ //        sound: true,
+ //      );
+ //      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+ //        // log("_____________________Message data:${message.data}");
+ //        // log("_____________________notification:${message.notification?.title}");
+ //        _showLocalNotification(message);
+ //        _onMessageStreamController.add(message.data);
+ //
+ //
+ //        var orderId = int.parse(message.data["item_type_id"]??"0");
+ //        var notifyType = message.data["item_type"];
+ //
+ //
+ //        if ( orderId == -1) {
+ //          StorageHelper.instance.clearSavedData();
+ //          // AutoRouter.of(context).push(const LoginRoute());
+ //        }
+ //        _handleNotificationResponse(notifyType);
+ //      });
+ //      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+ //        log('AonMessageOpenedApp event was published!');
+ //        flutterNotificationClick(json.encode(message.data));
+ //      });
+ //      FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+ //    }
+ //
+ //  }
 
   static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     log("Handling a background message: ${message.messageId}");
@@ -102,15 +101,15 @@ class GlobalNotification {
         payload: json.encode(message.data));
   }
 
-  static void _handleNotificationResponse(String notifyType){
-   var type = NotificationType.notifyType(notifyType);
-   var currentOrder = getIt<OrdersHelper>().currentOrderCubit;
-   if(currentOrder.hasNoData && type.isNewOrder){
-     getIt<OrdersHelper>().showNewOrderAlert();
-   }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted){
-     getIt<OrdersHelper>().getCurrentOrder();
-   }
-  }
+  // static void _handleNotificationResponse(String notifyType){
+  //  var type = NotificationType.notifyType(notifyType);
+  //  var currentOrder = getIt<OrdersHelper>().currentOrderCubit;
+  //  if(currentOrder.hasNoData && type.isNewOrder){
+  //    getIt<OrdersHelper>().showNewOrderAlert();
+  //  }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted){
+  //    getIt<OrdersHelper>().getCurrentOrder();
+  //  }
+  // }
 
   static void _whenNotificationClickedInBackground(String notifyType){
     var type = NotificationType.notifyType(notifyType);

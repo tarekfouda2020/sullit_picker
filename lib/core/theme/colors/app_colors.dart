@@ -109,4 +109,6 @@ abstract class AppColors {
 
   Color get catCardColor;
 
+  Color get appGreen;
+
 }

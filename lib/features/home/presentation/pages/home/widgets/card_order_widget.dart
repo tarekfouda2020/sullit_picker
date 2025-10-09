@@ -1,6 +1,8 @@
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/time_picking_widget.dart';
-import 'card_picked_ratio_widget.dart';
+
 import 'home_widgets_imports.dart';
+
 class CardOrderWidget extends StatelessWidget {
   const CardOrderWidget({super.key});
 

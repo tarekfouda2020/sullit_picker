@@ -12,6 +12,7 @@ class TimerCardDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: Dimens.paddingH20Px,
       padding: Dimens.paddingAll20Px,
       decoration: BoxDecoration(
         color: context.colors.white,

@@ -1,9 +1,9 @@
-import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/driver_work_info.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/menu_items_list_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/profile_header_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/widgets/notification_icon.dart';
 
 import 'profile_page_imports.dart';
-
-
 @RoutePage(name: "ProfilePageRoute")
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

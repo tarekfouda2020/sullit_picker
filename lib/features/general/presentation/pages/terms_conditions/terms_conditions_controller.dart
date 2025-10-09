@@ -3,7 +3,7 @@ import 'package:flutter_tdd/features/general/domain/requesters/terms_requester.d
 
 class TermsConditionsController {
 
-  late  final TermsRequester termsRequester;
+  late final TermsRequester termsRequester;
 
   Future<void> getTerms() async {
     termsRequester = TermsRequester();

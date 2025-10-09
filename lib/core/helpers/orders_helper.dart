@@ -1,12 +1,10 @@
 
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/new_order_alert_dialog_widget.dart';
 import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
@@ -46,21 +44,21 @@ class OrdersHelper {
   }
 
 
-  Future<void> showNewOrderAlert() async {
-    BuildContext context = getIt<GlobalContext>().context();
-    bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
-    if (isAvailable && currentOrderCubit.hasNoData) {
-      _startSound();
-     await showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context) => NewOrderAlertWidget(
-          onPressApply: () => onPressApply(context),
-        ),
-      );
-     _stopSound();
-    }
-  }
+  // Future<void> showNewOrderAlert() async {
+  //   BuildContext context = getIt<GlobalContext>().context();
+  //   bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
+  //   if (isAvailable && currentOrderCubit.hasNoData) {
+  //     _startSound();
+  //    await showDialog(
+  //       context: context,
+  //       barrierDismissible: true,
+  //       builder: (context) => NewOrderAlertWidget(
+  //         onPressApply: () => onPressApply(context),
+  //       ),
+  //     );
+  //    _stopSound();
+  //   }
+  // }
 
   void onPressApply(BuildContext context){
     _stopSound();

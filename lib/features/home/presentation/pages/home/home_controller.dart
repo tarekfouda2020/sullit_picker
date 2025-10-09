@@ -1,12 +1,10 @@
-import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
 import 'package:flutter_tdd/core/helpers/location_service.dart';
-import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/phone_helper.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_order_params.dart';
+import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
+import 'package:flutter_tdd/features/home/domain/requester/report_reasons_requester.dart';
 import 'package:flutter_tdd/features/orders/data/enum/order_status.dart';
 import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
-import 'package:flutter_tdd/features/home/domain/requester/report_reasons_requester.dart';
-
 import 'home_imports.dart';
 
 class HomeController {
@@ -113,9 +111,6 @@ class HomeController {
   void _showProblemReportedSuccess(BuildContext context) {
     AppSnackBar.showSuccessSnackBar(Translate.of(context).problem_reported_successfully);
   }
-
-
-
 
   void getUserData() async{
      getIt<UserServicesHelper>().getUserData();

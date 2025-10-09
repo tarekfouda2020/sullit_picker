@@ -1,8 +1,7 @@
-
-import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/user_image_widget.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/user_info_widget.dart';
-
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page_controller.dart';
 import 'profile_page_widgets_imports.dart';
+import 'user_image_widget.dart';
+import 'user_info_widget.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   final ProfilePageController controller;
@@ -34,7 +33,7 @@ class ProfileHeaderWidget extends StatelessWidget {
             )
           ],
         ),
-        Gaps.hGap22,
+        Gaps.hGap11,
         const Expanded(
           child: UserInfoWidget() ,
         )

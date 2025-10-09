@@ -1,7 +1,5 @@
-import 'package:flutter_tdd/core/widgets/default_app_bar.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/orders_widget.dart';
 import 'home_imports.dart';
-
 @RoutePage(name: "HomePageRoute")
 class HomePage extends StatefulWidget {
   // final bool fromLogin;
