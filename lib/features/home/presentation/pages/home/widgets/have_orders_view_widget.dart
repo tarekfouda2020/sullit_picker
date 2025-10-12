@@ -3,14 +3,15 @@ import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_o
 import 'home_widgets_imports.dart';
 
 class HaveOrdersViewWidget extends StatelessWidget {
-  const HaveOrdersViewWidget({super.key});
+  final HomeController controller;
+  const HaveOrdersViewWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
-          return const CardOrderWidget();
+          return  CardOrderWidget(controller: controller);
         },
         itemCount: 3,
         separatorBuilder: (BuildContext context, int index) => Gaps.vGap12,

@@ -19,35 +19,10 @@ class OrdersWidget extends StatelessWidget {
           HomeHeaderWidget(controller: controller),
           Gaps.vGap14,
           CustomSearchBar(controller: controller),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 12),
-            padding: const EdgeInsets.symmetric(
-                horizontal: 32, vertical: 10),
-            decoration: BoxDecoration(
-              color: context.colors.lightPrimary.withOpacity(0.3),
-              borderRadius: Dimens.borderRadius30PX,
-            ),
-            child: Row(
-              children: [
-                Text(
-                  "Assigned Orders : ",
-                  style: AppTextStyle.s18_w300(
-                      color: context.colors.primary),
-                ),
-                Gaps.hGap4,
-                Text(
-                  '2',
-                  style: AppTextStyle.s18_w800(
-                      color: context.colors.primary),
-                )
-              ],
-            ),
-          ),
-
           Visibility(
               visible: noData,
-              replacement: HaveOrdersViewWidget(),
-              child: NoOrdersViewWidget()),
+              replacement:  HaveOrdersViewWidget(controller: controller),
+              child: const NoOrdersViewWidget()),
         ],
       ),
     );

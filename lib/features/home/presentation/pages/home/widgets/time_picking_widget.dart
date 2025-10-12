@@ -87,7 +87,6 @@ class TimePickingWidget extends StatelessWidget {
               style: AppTextStyle.s14_w300(color: context.colors.primary),
             ),
             Gaps.hGap50,
-            // Gaps.hGap10,
             Gaps.hGap8,
             Text(
               'Seconds',
@@ -99,9 +98,6 @@ class TimePickingWidget extends StatelessWidget {
         AppTextButton.maxCustom(
           text: 'Continue Picking',
           maxHeight: 44,
-          borderRadius: BorderRadius.circular(40),
-          bgColor: context.colors.primary,
-          txtColor: context.colors.white,
           textSize: 18,
           onPressed: () {
             AutoRouter.of(context).push(const OrderDetailsRoute());

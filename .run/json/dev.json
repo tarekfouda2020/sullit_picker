@@ -3,7 +3,7 @@
   "APP_BASE_URL": "https://staging.suliit.com/api/v3/",
   "APP_ENV_NAME": "dev",
   "APP_API": "driver/",
-  "APP_APP_NAME_EN": "weideliver",
-  "APP_APP_NAME_AR": "weideliver",
+  "APP_APP_NAME_EN": "Suliit Picker",
+  "APP_APP_NAME_AR": "Suliit Picker",
   "APP_LOCAL_LOGO": "assets/images/application_icon.png"
 }

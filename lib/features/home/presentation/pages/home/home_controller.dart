@@ -1,55 +1,22 @@
-import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
-import 'package:flutter_tdd/core/helpers/location_service.dart';
-import 'package:flutter_tdd/core/helpers/orders_helper.dart';
-import 'package:flutter_tdd/core/helpers/phone_helper.dart';
-import 'package:flutter_tdd/features/home/domain/entity/update_order_params.dart';
-import 'package:flutter_tdd/features/orders/data/enum/order_status.dart';
-import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
-import 'package:flutter_tdd/features/home/domain/requester/report_reasons_requester.dart';
+
+import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
 
 import 'home_imports.dart';
 
 class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
-  final ObsValue<bool> showOrderAlert = ObsValue<bool>.withInit(false);
-  late final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
-  final TextEditingController reasonController = TextEditingController();
-  final ReportReasonsRequester reportReasonsRequester = ReportReasonsRequester();
+   final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
+   final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
+
+
 
   bool popOut = false;
 
   HomeController() {
     getUserData();
-    getIt<OrdersHelper>().getCurrentOrder(fromRemote: false,
-      afterSuccess: () {
-      if(currentOrderCubit.hasData){
-        availableForOrdersObs.setValue(false);
-      }
-    },);
-    getIt<OrdersHelper>().getCurrentOrder(afterSuccess: () => _initializeReportReasons());
-  }
-
-  BaseBloc<OrderModel?> get  currentOrderCubit => getIt<OrdersHelper>().currentOrderCubit;
-
-
-
-  Future<void> getCurrentOrder({bool fromRemote = true, bool setLoading = true}) async {
-   await getIt<OrdersHelper>().getCurrentOrder(fromRemote: fromRemote,setLoading: setLoading);
   }
 
 
-
-  void _initializeReportReasons() {
-    var data = currentOrderCubit.data;
-    if (data?.isAssigned == true
-        || data?.isPending == true
-        || reportReasonsRequester.hasData
-        || data == null) {
-      return;
-    }
-    reportReasonsRequester.request(fromRemote: false);
-    reportReasonsRequester.request();
-  }
 
   Future<void> initializeAvailableStatus(BuildContext context,{bool value = false}) async {
     bool? isAvailable = context.read<UserCubit>().state.model?.isAvailable;
@@ -74,13 +41,11 @@ class HomeController {
 
 
   void acceptOrder(BuildContext context) {
-    showOrderAlert.setValue(false);
     hasOrders.setValue(true);
     Navigator.of(context).pop();
   }
 
   void rejectOrder(BuildContext context) {
-    showOrderAlert.setValue(false);
     hasOrders.setValue(false);
     Navigator.of(context).pop();
   }
@@ -93,7 +58,6 @@ class HomeController {
 
   Future<void> navigateToSideMenu(BuildContext context)async {
     await AutoRouter.of(context).push(const ProfilePageRoute());
-    getCurrentOrder(setLoading: false);
   }
 
   void navigateToNotifications(BuildContext context) {
@@ -101,10 +65,6 @@ class HomeController {
   }
 
 
-
-  void showNewOrderDialog(BuildContext context) {
-    showOrderAlert.setValue(true);
-  }
 
   void showReportProblemDialog(BuildContext context) {
     _showProblemReportedSuccess(context);
@@ -119,105 +79,40 @@ class HomeController {
 
   void getUserData() async{
      getIt<UserServicesHelper>().getUserData();
-    // await Future.delayed(const Duration(milliseconds: 10));
-    // bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
-    // availableForOrdersObs.setValue(isAvailable);
   }
 
-  Future<void> changeOrderStatus({OrderStatus? status}) async {
-    var params = _updateOrderParams(status: status);
-    var result = await getIt<HomeRepositories>().updateOrderStatus(params);
-    result.when(
-      isSuccess: (data) {
-        currentOrderCubit.successState(data);
-        _setNoOrdersView(data!);
-        _initializeReportReasons();
-      },
-      isError: (error) {
-        currentOrderCubit.successState(currentOrderCubit.data);
-      },
-    );
-  }
 
-  UpdateOrderParams _updateOrderParams({OrderStatus? status}) {
-    return UpdateOrderParams(
-      id: currentOrderCubit.data!.id,
-      status: status ?? getNextStatusForUpdate(),
-      reasonKey: _reasonKey(status: status),
-      reasonText: _getReasonText(),
-    );
-  }
 
-  OrderStatus getNextStatusForUpdate() {
-    var currentStatus = currentOrderCubit.data!.getOrderStatus();
-    // var currentStatus = currentOrderCubit.data!.histories!.last.getOrderStatus();
-
-    switch (currentStatus) {
-      case OrderStatus.pending:
-        return OrderStatus.assigned;
-
-      case OrderStatus.assigned:
-        return OrderStatus.inDelivery;
-
-      case OrderStatus.inDelivery:
-        return OrderStatus.arrived;
-
-      case OrderStatus.arrived:
-        return OrderStatus.delivered;
-
-      case OrderStatus.delivered:
-        return OrderStatus.delivered;
-
-      case OrderStatus.driverReported:
-        return OrderStatus.driverReported;
+  String getDigit(Duration duration, String unit, int index) {
+    int value;
+    switch (unit) {
+      case 'days':
+        value = duration.inDays;
+        break;
+      case 'hours':
+        value = duration.inHours % 24;
+        break;
+      case 'minutes':
+        value = duration.inMinutes % 60;
+        break;
+      case 'seconds':
+        value = duration.inSeconds % 60;
+        break;
+      default:
+        throw ArgumentError('Invalid time unit: $unit');
     }
-  }
 
-  String? _getReasonText() {
-    var selectedReportReason = reportReasonsRequester.selectedReason;
-    if (selectedReportReason?.isOther == true) {
-      return reasonController.text;
-    } else {
-      return null;
-    }
-  }
-
-  String? _reasonKey({OrderStatus? status}) {
-    if (status == OrderStatus.driverReported) {
-      return reportReasonsRequester.selectedReason?.key;
-    } else {
-      return null;
-    }
-  }
-
-  void _setNoOrdersView(OrderModel model) {
-    /// when order is delivered or reported
-    /// show the view of no orders for now
-    if (model.isDelivered) {
-      AppSnackBar.showSuccessSnackBar("You have completed Your order");
-      currentOrderCubit.successState(null);
-      return ;
-    }
-    if(model.isReported){
-      AppSnackBar.showSuccessSnackBar("Your report has been submitted successfully");
-      // currentOrderCubit.successState(null);
-      return ;
-    }
+    return value.toString().padLeft(2, '0')[index];
   }
 
 
-  void callCustomerPhone(BuildContext context){
-    PhoneHelper.callPhone(currentOrderCubit.data!.customerPhone,context);
-    // PhoneHelper.callPhone("+201069219565",context);
-  }
 
 
-  void openMap(){
-    var customerAddress = currentOrderCubit.data!.customerAddress!;
-    var lat = double.parse(customerAddress.lat);
-    var long = double.parse(customerAddress.lng);
-    LocationService.instance.openGoogleMaps(lat, long);
-  }
+
+
+
+
+
 
 
 

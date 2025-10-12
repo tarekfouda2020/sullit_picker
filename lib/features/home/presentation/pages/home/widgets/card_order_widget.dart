@@ -1,8 +1,10 @@
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/order_count_down_timer_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/time_picking_widget.dart';
 import 'card_picked_ratio_widget.dart';
 import 'home_widgets_imports.dart';
 class CardOrderWidget extends StatelessWidget {
-  const CardOrderWidget({super.key});
+  final HomeController controller;
+  const CardOrderWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class CardOrderWidget extends StatelessWidget {
           Gaps.vGap12,
           const CardPickedRatioWidget(ratio: '100',color: Color(0xFF009900),),
           Gaps.vGap12,
-          const TimePickingWidget()
+           OrderCountDownTimerWidget(controller: controller)
         ],
       ),
     );
