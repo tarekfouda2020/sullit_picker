@@ -74,9 +74,6 @@ class HomeController {
     AppSnackBar.showSuccessSnackBar(Translate.of(context).problem_reported_successfully);
   }
 
-
-
-
   void getUserData() async{
      getIt<UserServicesHelper>().getUserData();
   }

@@ -1,3 +1,6 @@
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page_controller.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/menu_item_widget.dart';
+
 import 'profile_page_widgets_imports.dart';
 
 class MenuItemsListWidget extends StatelessWidget {
@@ -19,33 +22,33 @@ class MenuItemsListWidget extends StatelessWidget {
           title: Translate.of(context).change_password,
           onTap: () => controller.navigateToChangePassword(context),
         ),
-        MenuItemWidget(
-          icon: Res.orderHistory,
-          title: Translate.of(context).orders_history,
-          onTap: () {},
-        ),
-        if(isFreelancer == true)
-        MenuItemWidget(
-          icon: Res.orderHistory,
-          title: "New Orders",
-          onTap: () {},
-        ),
-        if(isFreelancer == true)
-        MenuItemWidget(
-          icon: Res.mapIcon,
-          title: Translate.of(context).supported_geographical_area,
-          onTap: () => controller.routeToSupportedArea(context),
-        ),
-        MenuItemWidget(
-          icon: Res.ordersStatistics,
-          title: Translate.of(context).my_statistics,
-          onTap: () {},
-        ),
-        MenuItemWidget(
-          icon: Res.subscriptionIcon,
-          title: Translate.of(context).my_subscription,
-          onTap: () {},
-        ),
+        // MenuItemWidget(
+        //   icon: Res.orderHistory,
+        //   title: Translate.of(context).orders_history,
+        //   onTap: () {},
+        // ),
+        // if(isFreelancer == true)
+        // MenuItemWidget(
+        //   icon: Res.orderHistory,
+        //   title: "New Orders",
+        //   onTap: () {},
+        // ),
+        // if(isFreelancer == true)
+        // MenuItemWidget(
+        //   icon: Res.mapIcon,
+        //   title: Translate.of(context).supported_geographical_area,
+        //   onTap: () => controller.routeToSupportedArea(context),
+        // ),
+        // MenuItemWidget(
+        //   icon: Res.ordersStatistics,
+        //   title: Translate.of(context).my_statistics,
+        //   onTap: () {},
+        // ),
+        // MenuItemWidget(
+        //   icon: Res.subscriptionIcon,
+        //   title: Translate.of(context).my_subscription,
+        //   onTap: () {},
+        // ),
         MenuItemWidget(
           icon: Res.globalIcon,
           title: Translate.of(context).language,

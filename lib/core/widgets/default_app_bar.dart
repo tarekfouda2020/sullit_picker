@@ -24,6 +24,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool? centerTitle;
   final Color? bgColor;
   final Color? shadowColor;
+  final bool? removeBgColorInScroll;
   final void Function()? onPressBack;
 
   const DefaultAppBar({
@@ -38,6 +39,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingWidth,
     this.onPressBack,
     this.elevation,
+    this.removeBgColorInScroll,
     this.shadowColor,
   });
 
@@ -49,10 +51,11 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: AppTextStyle.s18_w500(color: context.colors.black),
       ),
-      centerTitle: centerTitle??true,
+      centerTitle: centerTitle ?? true,
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light
       ),
+      forceMaterialTransparency: removeBgColorInScroll ?? false,
       backgroundColor: bgColor ?? context.colors.background,
       elevation:elevation ?? 0,
       shadowColor: shadowColor,

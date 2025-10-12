@@ -22,7 +22,7 @@ void main()async{
   getIt.registerSingleton(SharedPreferences.getInstance());
   getIt.registerSingleton(AppRouter());
   await configureDependencies();
-  getIt<GlobalNotification>().setupNotification();
+  // getIt<GlobalNotification>().setupNotification();
 
   runApp(
     BlocProvider(

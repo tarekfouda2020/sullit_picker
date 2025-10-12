@@ -1,8 +1,9 @@
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bottom_nav_bar_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/header_order_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/pick_category_widget.dart';
-import '../../../../auth/presentation/pages/change_password/change_password_imports.dart';
-import 'widget/timer_card_details_widget.dart';
-@RoutePage(name: "OrderDetailsRoute")
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/timer_card_details_widget.dart';
+import 'order_details_imports.dart';
+@RoutePage(name: "OrderDetailsRouteName")
 class OrderDetails extends StatefulWidget {
   const OrderDetails({super.key});
 
@@ -11,6 +12,8 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
+  OrderDetailsController controller = OrderDetailsController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,19 +22,18 @@ class _OrderDetailsState extends State<OrderDetails> {
         title: "",
         bgColor: Colors.transparent,
         size: 20,
+        removeBgColorInScroll: true,
       ),
-      body: Padding(
-        padding: Dimens.paddingH20Px,
-        child: Column(
-          children: [
-            const HeaderOrderDetailsWidget(),
-            Gaps.vGap12,
-            const TimerCardDetailsWidget(),
-            Gaps.vGap12,
-            const PickCategoryWidget(catTitle: 'Fresh Food & Deli',)
-          ],
-        ),
+      body: Column(
+        children: [
+          const HeaderOrderDetailsWidget(),
+          Gaps.vGap12,
+          const TimerCardDetailsWidget(),
+          Gaps.vGap12,
+          PickCategoryWidget(controller: controller),
+        ],
       ),
+      bottomNavigationBar: const BottomNavBarDetailsWidget(),
     );
   }
 }

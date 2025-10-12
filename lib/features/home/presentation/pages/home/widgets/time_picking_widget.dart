@@ -1,8 +1,4 @@
-import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
-
-import '../../../../../auth/presentation/pages/change_password/change_password_imports.dart';
 import 'home_widgets_imports.dart';
-
 class TimePickingWidget extends StatelessWidget {
   const TimePickingWidget({super.key});
 
@@ -100,7 +96,7 @@ class TimePickingWidget extends StatelessWidget {
           maxHeight: 44,
           textSize: 18,
           onPressed: () {
-            AutoRouter.of(context).push(const OrderDetailsRoute());
+            AutoRouter.of(context).push(OrderDetailsRouteName());
           },
         )
       ],

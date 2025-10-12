@@ -1,10 +1,7 @@
-import 'package:flutter_tdd/core/helpers/utilities.dart';
-import 'package:flutter_tdd/core/widgets/CachedImage.dart';
+import 'package:flutter_tdd/features/general/data/models/social_contact_us_model/social_contact_us_model.dart';
+import 'package:flutter_tdd/features/general/presentation/pages/contact_us/contact_us_controller.dart';
 
 import 'contact_widgets_imports.dart';
-import 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
-import 'package:flutter_tdd/features/general/data/models/social_contact_us_model/social_contact_us_model.dart';
-
 class SocialContactUsWidget extends StatelessWidget {
   final ContactUsController controller;
   const SocialContactUsWidget({super.key, required this.controller});

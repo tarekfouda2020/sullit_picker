@@ -4,5 +4,5 @@ import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 final List<AutoRoute>  homeRoutes = [
   AutoRoute(page: HomePageRoute.page),
   AutoRoute(page: ProfilePageRoute.page),
-  AutoRoute(page: OrderDetailsRoute.page),
+  AutoRoute(page: OrderDetailsRouteName.page),
 ];

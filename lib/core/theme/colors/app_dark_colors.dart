@@ -34,6 +34,9 @@ class AppDarkColors extends AppColors {
   Color get green => const Color(0xFF34C759);
 
   @override
+  Color get appGreen => const Color(0xFF009900);
+
+  @override
   Color get catCardColor => const Color(0xFFCECECE);
 
   @override

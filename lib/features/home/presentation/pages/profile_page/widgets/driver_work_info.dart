@@ -1,46 +1,33 @@
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/driver_stores_widget.dart';
-
-import 'driver_wallet_balance_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page_controller.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/driver_wallet_balance_widget.dart';
 import 'profile_page_widgets_imports.dart';
 
 class DriverWorkInfo extends StatelessWidget {
   final ProfilePageController controller;
+
   const DriverWorkInfo({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     var userData = context.read<UserCubit>().state.model;
-    return Column(
-      children: [
-        Gaps.vGap20,
-        _buildContainer(
-          context,
-        child: Text("ID : #${userData?.id ?? ""}",
-        style: AppTextStyle.s16_w700(color: context.colors.primary),
-        )
-        ),
-        Gaps.vGap8,
-        _buildContainer(
-            context,
-            child:  DriverStoresWidget(controller: controller)
-        ),
-        Gaps.vGap16,
-         DriverWalletBalanceWidget(controller: controller)
-      ],
-    );
+    return _buildContainer(context, child: Text(
+      // "ID : #${userData?.id ?? ""}",
+      'ID : #5647843 - Munch Corner',
+      style: AppTextStyle.s16_w700(color: context.colors.primary),
+    ));
   }
 
-  Container _buildContainer(BuildContext context,{required Widget child}) {
+  Container _buildContainer(BuildContext context, {required Widget child}) {
     return Container(
-        height: 42,
-        padding: const EdgeInsetsDirectional.only(start: 18),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: context.colors.lightBackground,
-          borderRadius: Dimens.borderRadius30PX,
-        ),
+      margin: const EdgeInsets.only(top: 10),
+      height: 42,
+      padding: const EdgeInsetsDirectional.only(start: 18),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: context.colors.lightBackground,
+        borderRadius: Dimens.borderRadius30PX,
+      ),
       child: child,
-      );
+    );
   }
 }

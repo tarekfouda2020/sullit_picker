@@ -46,41 +46,44 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               AppSloganWidget(),
             ],
           ),
-          Gaps.vGap37,
-          RequesterConsumer(
-            requester: controller.privacyPolicyRequester,
-            successBuilder: (context, data, isLoading) {
-              return Html(
-                data: data.content,
-                style: {
-                  "body": Style(
-                    fontSize: FontSize(16),
-                    fontWeight: FontWeight.w400,
-                    color: context.colors.black,
-                  )
-                },
-              );
-            },
-            loadingBuilder: (context) {
-              return Column(
-                children: List.generate(20, (index) =>  const TextShimmer(lineWidthPercent: 1.85,)),
-              );
-            },
-            failureBuilder: (context, error, callback) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      Res.logo,
-                      height: 100.r,
-                      width: 200.r,
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
+          Gaps.vGap50,
+          Center(
+            child: Text('No Data Yet',style: AppTextStyle.s16_w400(color: context.colors.black),),
+          )
+          // RequesterConsumer(
+          //   requester: controller.privacyPolicyRequester,
+          //   successBuilder: (context, data, isLoading) {
+          //     return Html(
+          //       data: data.content,
+          //       style: {
+          //         "body": Style(
+          //           fontSize: FontSize(16),
+          //           fontWeight: FontWeight.w400,
+          //           color: context.colors.black,
+          //         )
+          //       },
+          //     );
+          //   },
+          //   loadingBuilder: (context) {
+          //     return Column(
+          //       children: List.generate(20, (index) =>  const TextShimmer(lineWidthPercent: 1.85,)),
+          //     );
+          //   },
+          //   failureBuilder: (context, error, callback) {
+          //     return Center(
+          //       child: Column(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           Image.asset(
+          //             Res.logo,
+          //             height: 100.r,
+          //             width: 200.r,
+          //           ),
+          //         ],
+          //       ),
+          //     );
+          //   },
+          // ),
         ],
       ),
     );

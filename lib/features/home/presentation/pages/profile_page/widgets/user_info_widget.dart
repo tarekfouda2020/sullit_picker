@@ -1,7 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
-
 import 'profile_page_widgets_imports.dart';
+import 'profile_rating_widget.dart';
 
 
 class UserInfoWidget extends StatelessWidget {
@@ -13,19 +11,24 @@ class UserInfoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(userData?.name ?? "",
+        Gaps.vGap10,
+        Text(userData?.name ?? "Ahmed Mohamed",
           style: AppTextStyle.s18_w700(color: context.colors.black),
         ),
         Gaps.vGap5,
-        const ProfileRatingWidget(),
-        Gaps.vGap8,
-        Text(userData?.fullPhone ?? "",
+        Text("@Ahmed32",
           style: AppTextStyle.s14_w400(color: context.colors.black),
         ),
-        Gaps.vGap7,
-        Text(userData?.email ?? "",
-            style: AppTextStyle.s14_w400(color: context.colors.black)
-        ),
+
+        // const ProfileRatingWidget(),
+        // Gaps.vGap8,
+        // Text(userData?.fullPhone ?? "",
+        //   style: AppTextStyle.s14_w400(color: context.colors.black),
+        // ),
+        // Gaps.vGap7,
+        // Text(userData?.email ?? "",
+        //     style: AppTextStyle.s14_w400(color: context.colors.black)
+        // ),
       ],
     );
   }

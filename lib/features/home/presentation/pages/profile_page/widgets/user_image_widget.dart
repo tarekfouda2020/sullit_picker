@@ -1,6 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/widgets/CachedImage.dart';
-import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page_controller.dart';
 
 import 'profile_page_widgets_imports.dart';
 
@@ -24,6 +23,7 @@ class UserImageWidget extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         child: Container(
+          
           width: 63,height: 63,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(

@@ -1,6 +1,6 @@
+import 'package:flutter_tdd/features/general/presentation/pages/contact_us/widgets/contact_us_form_widget.dart';
+import 'package:flutter_tdd/features/general/presentation/pages/contact_us/widgets/social_contact_us_widget.dart';
 import 'contact_us_imports.dart';
-import 'widgets/social_contact_us_widget.dart';
-
 @RoutePage(name: "ContactUsPageRoute")
 class ContactUsPage extends StatefulWidget {
   const ContactUsPage({super.key});

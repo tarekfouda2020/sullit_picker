@@ -1,10 +1,7 @@
+import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
+import 'package:flutter_tdd/features/home/presentation/widgets/notification_icon.dart';
 
-import 'package:flutter_tdd/core/widgets/CachedImage.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/home_imports.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/driver_status_widget.dart';
-import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
-
-
+import 'home_widgets_imports.dart';
 class HomeHeaderWidget extends StatelessWidget {
   final HomeController controller;
   const HomeHeaderWidget({super.key, required this.controller});
@@ -39,13 +36,6 @@ class HomeHeaderWidget extends StatelessWidget {
                              '##5647843',
                             style: AppTextStyle.s14_w700(color: context.colors.primary),
                           ),
-                          // Gaps.hGap13,
-                         // ObsValueConsumer(
-                         //   observable: controller.availableForOrdersObs,
-                         //   builder: (context,value) {
-                         //     return DriverStatusWidget(isActive: value);
-                         //   }
-                         // )
                         ],
                       ),
                     ],
