@@ -43,6 +43,9 @@ class AppLightColors extends AppColors {
   Color get appGreen => const Color(0xFF009900);
 
   @override
+  Color get phosphorousGreen => const Color(0xFF758D00);
+
+  @override
   Color get cardBackground => Colors.white;
 
   @override

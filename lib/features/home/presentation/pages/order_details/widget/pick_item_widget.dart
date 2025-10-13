@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/helpers/export.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/status_view_widget.dart';
 
 import 'dialog_action_widget.dart';
 
@@ -39,19 +40,6 @@ class PickItemWidget extends StatelessWidget {
         Gaps.vGap7,
         Stack(
           children: [
-            // Positioned(
-            //     child: Container(
-            //   height: 161,
-            //   decoration: const BoxDecoration(
-            //     color: Color(0xFF009900),
-            //     borderRadius: BorderRadius.only(
-            //       bottomRight: Radius.circular(15),
-            //       bottomLeft: Radius.circular(15),
-            //       topLeft: Radius.circular(10),
-            //       topRight: Radius.circular(10),
-            //     ),
-            //   ),
-            // )),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
               decoration: BoxDecoration(
@@ -158,36 +146,8 @@ class PickItemWidget extends StatelessWidget {
               replacement: Positioned(
                   top: 18,
                   right: 20,
-                  /// ToDo replace Dialogs Here
                   child: GestureDetector(
-                    onTap: () => showDialog(
-                        context: context,
-                        builder: (context) => DialogActionWidget(
-                              description:
-                                  'Are you sure you want replace this product ?',
-                              buttonGreenTitle: 'Yes Replace',
-                              buttonRedTitle: 'Cancel',
-                              greenOnTap: () => showDialog(
-                                context: context,
-                                builder: (context) => DialogActionWidget(
-                                  description:
-                                      'User didn’t give access to replace the product , you can just remove it from order',
-                                  buttonGreenTitle: 'Yes Remove',
-                                  buttonRedTitle: 'Cancel',
-                                  greenOnTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                  },
-                                  redOnTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ),
-                              redOnTap: () {
-                                Navigator.pop(context);
-                              },
-                            )),
+                    onTap: () => controller.showReplaceDialog(context),
                     child: Icon(
                       Icons.repeat_outlined,
                       color: context.colors.primary,
@@ -195,23 +155,7 @@ class PickItemWidget extends StatelessWidget {
                     ),
                   )),
               child: Positioned(
-                right: 0,
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 113,
-                  height: 33,
-                  decoration: BoxDecoration(
-                      color: context.colors.background,
-                      // border: const Border(top: BorderSide(color: Colors.black12,width:0.5)),
-                      borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(10),
-                          bottomLeft: Radius.circular(12))),
-                  child: Text(
-                    status ?? '',
-                    style: const AppTextStyle.s14_w700(color: Color(0xFF758D00)),
-                  ),
-                ),
-              ),
+                  right: 0, child: StatusViewWidget(status: status ?? '')),
             ),
           ],
         )

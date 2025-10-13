@@ -1,6 +1,35 @@
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
 
-import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
+import 'order_details_imports.dart';
 
 class OrderDetailsController {
   final ObsValue<bool> isPicked = ObsValue.withInit(false);
+
+  void showReplaceDialog(BuildContext context) {
+    showDialog(context: context,builder: (context) => DialogActionWidget(
+              description: 'Are you sure you want replace this product ?',
+              buttonGreenTitle: 'Yes Replace',
+              buttonRedTitle: 'Cancel',
+              greenOnTap: () => showDialog(
+                context: context,
+                builder: (context) => DialogActionWidget(
+                  description:
+                      'User didn’t give access to replace the product , you can just remove it from order',
+                  buttonGreenTitle: 'Yes Remove',
+                  buttonRedTitle: 'Cancel',
+                  greenOnTap: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  redOnTap: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              redOnTap: () {
+                Navigator.pop(context);
+              },
+            ));
+  }
 }

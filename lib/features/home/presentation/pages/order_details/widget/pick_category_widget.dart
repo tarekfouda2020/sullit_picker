@@ -1,13 +1,6 @@
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
-import 'package:flutter_tdd/core/widgets/app_button.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/pick_item_widget.dart';
-import 'package:flutter_tdd/res.dart';
-
 import 'dialog_new_weight_widget.dart';
 import 'widgets_imports.dart';
 
