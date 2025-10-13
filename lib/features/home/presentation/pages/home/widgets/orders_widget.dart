@@ -45,7 +45,6 @@ class OrdersWidget extends StatelessWidget {
               ],
             ),
           ),
-
           Visibility(
               visible: noData,
               replacement: HaveOrdersViewWidget(),

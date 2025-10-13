@@ -14,13 +14,14 @@ import 'login_view_imports.dart';
 
 class LoginViewController {
   // Login form controllers
-  final TextEditingController loginEmailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController loginPasswordController = TextEditingController();
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   final ObsValue<bool> loginPasswordVisibleObs = ObsValue<bool>.withInit(false);
 
-  final GlobalKey<CustomButtonState> loadingButtonKey = GlobalKey<CustomButtonState>();
+  final GlobalKey<CustomButtonState> loadingButtonKey =
+      GlobalKey<CustomButtonState>();
 
   void navigateToForgetPassword(BuildContext context) {
     AutoRouter.of(context).push(const ForgetPasswordPageRoute());
@@ -30,9 +31,8 @@ class LoginViewController {
     loginPasswordVisibleObs.setValue(!loginPasswordVisibleObs.getValue());
   }
 
-
   Future<void> callLogin(BuildContext context) async {
-    if(loginFormKey.currentState!.validate()){
+    if (loginFormKey.currentState!.validate()) {
       loadingButtonKey.currentState?.animateForward();
       FocusScope.of(context).unfocus();
       final deviceId = await getIt<DeviceIdHelper>().getDeviceId();
@@ -40,11 +40,10 @@ class LoginViewController {
       await getIt.get<AuthRepositories>().sendLogin(params).then((result) {
         result.when(
           isSuccess: (data) {
-            getIt<UserServicesHelper>().cashAndRoute(context, data, 'Success Login', false);
+            getIt<UserServicesHelper>()
+                .cashAndRoute(context, data, 'Success Login', false);
           },
-          isError: (error) {
-
-          },
+          isError: (error) {},
         );
         loadingButtonKey.currentState?.animateReverse();
       });
@@ -53,12 +52,10 @@ class LoginViewController {
 
   LoginParams _userParams(String deviceId) {
     return LoginParams(
-      email: loginEmailController.text,
+      userName: usernameController.text,
       password: loginPasswordController.text,
       deviceToken: deviceId,
+      // userName: usernameController.text,
     );
   }
-
-
-
 }

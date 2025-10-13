@@ -1,5 +1,4 @@
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page_controller.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/driver_wallet_balance_widget.dart';
 import 'profile_page_widgets_imports.dart';
 
 class DriverWorkInfo extends StatelessWidget {
@@ -11,12 +10,11 @@ class DriverWorkInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     var userData = context.read<UserCubit>().state.model;
     return _buildContainer(context, child: Text(
-      // "ID : #${userData?.id ?? ""}",
-      'ID : #5647843 - Munch Corner',
+      "ID : #${userData?.id ?? ""} - ${userData?.name ?? ""}",
+      // 'ID : #5647843 - Munch Corner',
       style: AppTextStyle.s16_w700(color: context.colors.primary),
     ));
   }
-
   Container _buildContainer(BuildContext context, {required Widget child}) {
     return Container(
       margin: const EdgeInsets.only(top: 10),

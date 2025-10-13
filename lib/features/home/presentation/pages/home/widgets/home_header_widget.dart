@@ -24,16 +24,14 @@ class HomeHeaderWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        // "${Translate.of(context).welcome} ${userData?.name ?? ""}",
-                        'Welcome Ahmed',
+                        "${Translate.of(context).welcome} ${userData?.name ?? ""}",
                         style:  AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                       Gaps.vGap4,
                       Row(
                         children: [
                            Text(
-                            // '#${userData?.id ?? ""}',
-                             '##5647843',
+                            '#${userData?.id ?? ""}',
                             style: AppTextStyle.s14_w700(color: context.colors.primary),
                           ),
                         ],

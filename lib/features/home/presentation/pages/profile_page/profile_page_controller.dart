@@ -76,9 +76,6 @@ class ProfilePageController {
     AutoRouter.of(context).maybePop();
   }
 
-  void routeToSupportedArea(BuildContext context) {
-    AutoRouter.of(context).push(SupportedAreaPageRoute(fromProfile: true));
-  }
 
   Future<void> getUserData() async {
     BuildContext context = getIt<GlobalContext>().context();
