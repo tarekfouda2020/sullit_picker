@@ -60,15 +60,15 @@ class OrdersHelper {
   //   }
   // }
 
-  void onPressApply(BuildContext context){
-    _stopSound();
-    var user = context.read<UserCubit>().state.model;
-    if(user?.isFreelancer ?? false){
-
-    }else{
-      getCurrentOrder();
-    }
-  }
+  // void onPressApply(BuildContext context){
+  //   _stopSound();
+  //   var user = context.read<UserCubit>().state.model;
+  //   if(user?.isFreelancer ?? false){
+  //
+  //   }else{
+  //     getCurrentOrder();
+  //   }
+  // }
 
    Future<void> _startSound({Duration interval = const Duration(seconds: 2)}) async {
     if (_timer != null) return;

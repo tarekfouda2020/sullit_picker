@@ -23,16 +23,16 @@ class _LoginViewState extends State<LoginView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AuthSectionTitleWidget(title: Translate.of(context).e_mail,),
+          AuthSectionTitleWidget(title: Translate.of(context).user_name,),
           GenericTextField(
-            controller: controller.loginEmailController,
+            controller: controller.usernameController,
             fieldTypes: FieldTypes.normal,
-            type: TextInputType.emailAddress,
+            type: TextInputType.name,
             action: TextInputAction.next,
             fillColor: Colors.white,
             margin: const EdgeInsets.only(top: 5),
-            validate: (value) => value?.validateEmail(),
-            hint: Translate.of(context).enter_your_e_mail,
+            validate: (value) => value?.validateName(),
+            hint: Translate.of(context).enter_your_name
           ),
           Gaps.vGap12,
           AuthSectionTitleWidget(title:  Translate.of(context).password,),
@@ -63,8 +63,8 @@ class _LoginViewState extends State<LoginView> {
           Center(
             child: LoadingButton(
               title: Translate.of(context).login,
-              // onTap: () => controller.callLogin(context),
-              onTap: () => AutoRouter.of(context).push(const HomePageRoute()),
+              onTap: () => controller.callLogin(context),
+              // onTap: () => AutoRouter.of(context).push(const HomePageRoute()),
               btnKey: controller.loadingButtonKey,
               margin: const EdgeInsets.only(top: 28),
             ),

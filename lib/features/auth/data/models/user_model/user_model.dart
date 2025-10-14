@@ -1,97 +1,21 @@
-import 'package:flutter_tdd/core/models/api_model/base_api_model.dart';
-import 'package:flutter_tdd/features/auth/domain/models/user_domain_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../enum/work_type_enum.dart';
-
 part 'user_model.freezed.dart';
-
 part 'user_model.g.dart';
 
 @freezed
-@immutable
-class UserModel extends BaseApiModel<UserDomainModel> with _$UserModel {
-  const UserModel._();
-
-  @JsonSerializable(explicitToJson: true)
+class UserModel with _$UserModel {
   const factory UserModel({
     required int id,
+    required String username,
     required String name,
     required String email,
     required String token,
-    required String lat,
-    required String lng,
-    required String phone,
-    String? avatar,
-    @JsonKey(name: "avg_rate")  double? rate,
-    @JsonKey(name: "approve_status") required String approveStatus,
-    @JsonKey(name: "approve_status_label") required String approveStatusLabel,
-    @JsonKey(name: "token_type") required String tokenType,
-    @JsonKey(name: "email_is_active") required bool emailIsActive,
-    @JsonKey(name: "country_code") required String countryCode,
-    @JsonKey(name: "full_phone") required String fullPhone,
-    @JsonKey(name: "work_type") required String workType,
-    @JsonKey(name: "map_desc") required String mapDesc,
-    @JsonKey(name: "coverage_radius_km") required int coverageRadiusKm,
-    @JsonKey(name: "is_available") required bool isAvailable,
-    @JsonKey(name: "id_image_front") required String idImageFront,
-    @JsonKey(name: "id_image_back") required String idImageBack,
-    @JsonKey(name: "license_image_front") required String licenseImageFront,
-    @JsonKey(name: "license_image_back") required String licenseImageBack,
-    @JsonKey(name: "wallet_balance") required String walletBalance,
-    @JsonKey(name: "has_subscription") required bool hasSubscription,
-    @JsonKey(name: "has_active_subscription") required bool hasActiveSubscription,
+    @JsonKey(name: 'token_type') required String tokenType,
+    required String avatar,
+    @JsonKey(name: 'is_available') required bool isAvailable,
+    @JsonKey(name: 'seller_name') required String sellerName,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
-
-  WorkTypeEnum getDriverType(){
-    switch(workType){
-      case "single_store":
-        return WorkTypeEnum.oneStore;
-      case "multi_store":
-        return WorkTypeEnum.multiStores;
-      case "freelancer":
-        return WorkTypeEnum.freelancer;
-      default:
-        return WorkTypeEnum.oneStore;
-    }
-  }
-
-  bool get isFreelancer => getDriverType() == WorkTypeEnum.freelancer;
-
-  bool get workWithOneStore => getDriverType() == WorkTypeEnum.oneStore;
-
-  bool get workWithMultiStore => getDriverType() == WorkTypeEnum.multiStores;
-
-  @override
-  UserDomainModel toDomainModel() {
-    return UserDomainModel(
-      id: id.toString(),
-      name: name,
-      email: email,
-      token: token,
-      tokenType: tokenType,
-      emailIsActive: emailIsActive,
-      countryCode: countryCode,
-      phone: phone,
-      fullPhone: fullPhone,
-      workType: workType,
-      mapDesc: mapDesc,
-      lat: lat,
-      lng: lng,
-      coverageRadiusKm: coverageRadiusKm,
-      isAvailable: isAvailable,
-      idImageFront: idImageFront,
-      idImageBack: idImageBack,
-      licenseImageFront: licenseImageFront,
-      licenseImageBack: licenseImageBack,
-      hasSubscription: hasSubscription,
-      hasActiveSubscription: hasActiveSubscription,
-      approveStatus: approveStatus,
-      approveStatusLabel: approveStatusLabel,
-      walletBalance: walletBalance
-    );
-  }
 }
-

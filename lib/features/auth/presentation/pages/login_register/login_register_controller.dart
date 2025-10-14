@@ -7,7 +7,6 @@ import 'widgets/views/login_view/login_view.dart';
 class LoginRegisterController {
   // Tab management
   final ObsValue<int> currentTabObs = ObsValue<int>.withInit(0);
-
   final WorkTypesRequester workTypesRequester = WorkTypesRequester();
 
   LoginRegisterController() {

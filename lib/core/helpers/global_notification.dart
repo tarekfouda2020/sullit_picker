@@ -111,29 +111,29 @@ class GlobalNotification {
   //  }
   // }
 
-  static void _whenNotificationClickedInBackground(String notifyType){
-    var type = NotificationType.notifyType(notifyType);
-    BuildContext context = getIt<GlobalContext>().context();
-    var user = context.read<UserCubit>().state.model;
-    if( type.isNewOrder && user?.isFreelancer == true){
+  // static void _whenNotificationClickedInBackground(String notifyType){
+  //   var type = NotificationType.notifyType(notifyType);
+  //   BuildContext context = getIt<GlobalContext>().context();
+  //   var user = context.read<UserCubit>().state.model;
+  //   if( type.isNewOrder && user?.isFreelancer == true){
+  //
+  //   }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted || type.isNewOrder){
+  //     getIt<OrdersHelper>().getCurrentOrder(
+  //       setLoading: type.isNewOrder
+  //     );
+  //   }else{
+  //     AutoRouter.of(context).push(const NotificationsPageRoute());
+  //   }
+  // }
 
-    }else if(type.isOrderCanceled || type.isReportRejected|| type.isReportAccepted || type.isNewOrder){
-      getIt<OrdersHelper>().getCurrentOrder(
-        setLoading: type.isNewOrder
-      );
-    }else{
-      AutoRouter.of(context).push(const NotificationsPageRoute());
-    }
-  }
-
-  static Future flutterNotificationClick(String? details) async {
-    // log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
-    var message = json.decode(details??"");
-    // log("==========>>>>>> message when click from out side $message details <<<<<<<<<<============");
-    var notifyType = message["item_type"];
-    _whenNotificationClickedInBackground(notifyType);
-
-  }
+  // static Future flutterNotificationClick(String? details) async {
+  //   // log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
+  //   var message = json.decode(details??"");
+  //   // log("==========>>>>>> message when click from out side $message details <<<<<<<<<<============");
+  //   var notifyType = message["item_type"];
+  //   _whenNotificationClickedInBackground(notifyType);
+  //
+  // }
 }
 
 

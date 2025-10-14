@@ -1,5 +1,4 @@
 import 'profile_page_widgets_imports.dart';
-import 'profile_rating_widget.dart';
 
 
 class UserInfoWidget extends StatelessWidget {
@@ -16,7 +15,7 @@ class UserInfoWidget extends StatelessWidget {
           style: AppTextStyle.s18_w700(color: context.colors.black),
         ),
         Gaps.vGap5,
-        Text("@Ahmed32",
+        Text(userData!.email,
           style: AppTextStyle.s14_w400(color: context.colors.black),
         ),
 
