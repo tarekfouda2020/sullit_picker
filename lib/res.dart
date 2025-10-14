@@ -48,6 +48,8 @@ class Res {
   static const String chickenImage = "assets/images/chicken.jpg";
   static const String milk = "assets/images/milk.jpg";
   static const String organicMilk = "assets/images/organic_milk.jpg";
+  static const String appPickerSvg = "assets/images/app_picker.svg";
+  static const String sulitTitleImage = "assets/images/suliit_title_image.png";
 
   // Home screen assets that already exist in assets/images/
   static const String headerIcon = "assets/images/header-icon.svg";
@@ -75,7 +77,7 @@ class Res {
   static const String logoutIcon = "assets/images/icons/logout_icon.svg";
   static const String profileIcon = "assets/images/icons/profile_icon.svg";
   static const String menuIcon = "assets/images/icons/menu_icon.svg";
-  static const String sulitIcon = "assets/images/icons/sulit_icon.png";
+  // static const String sulitIcon = "assets/images/icons/sulit_icon.png";
   static const String appSlogan = "assets/images/Weideliver.svg";
   static const String warningIcon = "assets/images/warning_icon.svg";
 

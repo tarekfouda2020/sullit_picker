@@ -33,6 +33,8 @@ export 'package:flutter_svg/svg.dart';
 export 'package:flutter_tdd/core/widgets/CachedImage.dart';
 export 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
 export 'package:flutter_tdd/core/widgets/bottom_sheet_item_widget.dart';
+export 'package:flutter_tdd/core/widgets/shimmers/text_shimmer.dart';
+
 
 
 

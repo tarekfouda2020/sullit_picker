@@ -7,7 +7,7 @@ class AppConfig {
 
   String get defaultLanguage => 'en';
 
-  String get baseUrl => const String.fromEnvironment('APP_BASE_URL') + appApi;
+  String get baseUrl => const String.fromEnvironment('APP_BASE_URL');
   String get appApi => const String.fromEnvironment('APP_API');
 
   static BoxConstraints get textFieldConstrains =>

@@ -108,7 +108,7 @@ class PickItemWidget extends StatelessWidget {
                                 ? const Color(0xFFE3FFE3)
                                 : context.colors.primary,
                             txtColor: isPicked
-                                ? const Color(0xFF009900)
+                                ? context.colors.appGreen
                                 : context.colors.white,
                             textSize: 16,
                             maxHeight: 40,

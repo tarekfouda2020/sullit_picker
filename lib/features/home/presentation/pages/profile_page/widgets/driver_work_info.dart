@@ -10,7 +10,7 @@ class DriverWorkInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     var userData = context.read<UserCubit>().state.model;
     return _buildContainer(context, child: Text(
-      "ID : #${userData?.id ?? ""} - ${userData?.name ?? ""}",
+      "ID : #${userData?.id ?? ""} - ${userData?.sellerName ?? ""}",
       // 'ID : #5647843 - Munch Corner',
       style: AppTextStyle.s16_w700(color: context.colors.primary),
     ));

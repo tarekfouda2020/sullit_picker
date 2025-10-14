@@ -45,7 +45,7 @@ class _LoginViewState extends State<LoginView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    Res.sulitIcon,
+                    Res.appIcon,
                     width: 38,
                     height: 37,
                   ),

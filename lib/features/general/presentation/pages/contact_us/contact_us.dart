@@ -10,11 +10,12 @@ class ContactUsPage extends StatefulWidget {
 }
 
 class _ContactUsPageState extends State<ContactUsPage> {
-  final ContactUsController controller = ContactUsController();
+  late final ContactUsController controller;
 
   @override
   void initState() {
     super.initState();
+    controller = ContactUsController(context);
     controller.getSocials();
   }
 

@@ -1,4 +1,5 @@
 
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
 import 'package:flutter_tdd/features/auth/presentation/widgets/auth_section_title_widget.dart';
 import 'package:flutter_tdd/features/general/presentation/pages/contact_us/contact_us_controller.dart';
@@ -10,6 +11,7 @@ class ContactUsFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userData = context.read<UserCubit>().state.model;
     return Form(
       key: controller.formKey,
         child: Column(

@@ -63,6 +63,22 @@ class Utilities {
     });
   }
 
+
+  String cleanHtml(String html) {
+    return html
+        .replaceAll(RegExp(r'<span[^>]*>|</span>'), '')
+        .replaceAll(RegExp(r'<o:p>.*?</o:p>', dotAll: true), '')
+        .replaceAll(RegExp(r'style="[^"]*"'), '')
+        .replaceAll(RegExp(r'class="[^"]*"'), '')
+        .replaceAll(RegExp(r'mso-[^:]+:[^;"]+;?'), '')
+        .replaceAll(RegExp(r'&nbsp;'), ' ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .replaceAll(RegExp(r'margin(-left|-right)?\s*:\s*\d+(\.\d+)?(px|pt|em)?;?'), '')
+        .replaceAll(RegExp(r'padding(-left|-right)?\s*:\s*\d+(\.\d+)?(px|pt|em)?;?'), '')
+        .trim();
+  }
+
+
   String getPrice(String text) {
     BuildContext ctx = getIt<GlobalContext>().context();
     // String lang = GlobalState.instance.get("lang");

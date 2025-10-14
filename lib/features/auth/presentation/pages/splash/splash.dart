@@ -2,8 +2,7 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/features/auth/presentation/widgets/app_slogan_widget.dart';
 
 import 'splash_imports.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+
 
 @RoutePage()
 class Splash extends StatefulWidget {
@@ -41,10 +40,15 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
           children: [
             Image.asset(
               Res.appIcon,
-              height: 91,
-              width: 93,
+              height: 141,
+              width: 124,
             ),
-            Gaps.vGap24,
+            Image.asset(
+              Res.sulitTitleImage,
+              height: 67,
+              width: 147,
+            ),
+            Gaps.vGap7,
             const AppSloganWidget(),
           ],
         ),

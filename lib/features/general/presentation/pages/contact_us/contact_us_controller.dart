@@ -10,6 +10,10 @@ class ContactUsController {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  ContactUsController(BuildContext context){
+    initData(context);
+  }
+
   final TextEditingController messageController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -28,6 +32,11 @@ class ContactUsController {
       countryCodeObs.setValue(selectedCountry);
       countryCodeObs.refresh();
     }
+  }
+
+  void initData(BuildContext context){
+    nameController.text = context.read<UserCubit>().state.model!.name;
+    emailController.text = context.read<UserCubit>().state.model!.email;
   }
 
   void getSocials() {

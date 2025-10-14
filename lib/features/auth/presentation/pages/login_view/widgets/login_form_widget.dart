@@ -54,6 +54,7 @@ class LoginFormWidget extends StatelessWidget {
                 );
               }
           ),
+          Gaps.vGap24,
           Center(
             child: AppTextButton.maxCustom(
               text: Translate.of(context).login,
