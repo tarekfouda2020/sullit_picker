@@ -17,25 +17,6 @@ class ImplAuthRepositories  extends AuthRepositories{
 
   final AuthDataSource dataSource = getIt<AuthDataSource>();
 
-  @override
-  Future<MyResult<UserModel>> registerUser(RegisterParams params) async{
-    return await dataSource.registerUser(params);
-  }
-
-  @override
-  Future<MyResult<List<WorkTypeModel>>> getWorkTypes() async {
-    return await dataSource.getWorkTypes();
-  }
-
-  @override
-  Future<MyResult<String>> verifyPhone(VerifyParams params)async{
-    return await dataSource.verifyPhone(params);
-  }
-
-  @override
-  Future<MyResult<String>> verifyEmail(VerifyParams params)async{
-    return  await dataSource.verifyEmail(params);
-  }
 
   @override
   Future<MyResult<String>> forgotPassword(VerifyParams params) async {

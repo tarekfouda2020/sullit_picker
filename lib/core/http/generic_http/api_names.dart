@@ -8,13 +8,9 @@ class ApiNames{
   // auth routes
   static  String login = "${appApi}login";
   static  String refreshToken = "${appApi}auth";
-  static  String savePublicKey = "${appApi}users/";
   static  String updateUser = "${appApi}users/";
 
-  static  String register = "${appApi}register";
-  static  String workTypes = "${appApi}work-types";
-  static  String verifyPhone = "${appApi}register/send-phone-verification";
-  static  String verifyEmail = "${appApi}register/send-email-verification";
+
   static  String confirmResetPassword = "${appApi}password/reset";
 
   static  String activeAccount = "${appApi}otp/verify";
@@ -26,37 +22,25 @@ class ApiNames{
 
 
 
-  static  String passwordForgot = "${appApi}password/forgot";
-  static  String logout = "${appApi}logout";
-  static  String freelancerInstructions = "${appApi}freelancer-instructions";
-  static  String appInstructionsAgree = "${appApi}app-instructions/agree";
+  static const String passwordForgot = "password/forgot";
+  static const String logout = "logout";
+  static const String freelancerInstructions = "freelancer-instructions";
+  static const String appInstructionsAgree = "app-instructions/agree";
 
 
-  /// subscriptions
-  static  String paymentMethods = "${appApi}payment-methods";
-  static  String subscriptionPlan = "${appApi}subscription/plan";
-  static  String subscribe = "${appApi}subscription/subscribe";
-  static  String currentSubscription = "${appApi}subscription/current";
 
 
   ///orders
-  static  String stores = "${appApi}stores";
-  static  String statistics = "${appApi}statistics/orders";
   static  String currentOrder = "${appApi}orders/current";
   static  String updateOrderStatus(int id) => "${appApi}orders/$id/status";
-  static  String reportReasons = "${appApi}orders/report/reasons";
-  static  String completedOrders = "${appApi}orders/delivered";
-  static  String failedOrders = "${appApi}orders/canceled";
-  static  String newOrders = "${appApi}orders/new";
 
   ///home
-  static  String profile = "${appApi}profile";
-  static  String updateProfileImage = "${appApi}update-avatar?_method=patch";
-  static  String toggleAvailability = "${appApi}toggle-availability?_method=patch";
+  static  String profile = "profile";
+  static  String updateProfileImage = "update-avatar?_method=patch";
+  static  String toggleAvailability = "toggle-availability?_method=patch";
 
   ///general
   static  const String socials = "socials";
-  static  String updateCoverage = "${appApi}update-coverage?_method=patch";
   static  String contactUs = "${appApi}contact-us";
   static  String terms = "${appApi}terms";
   static const String getLanguages = "settings/languages";
@@ -67,7 +51,7 @@ class ApiNames{
 
 
   /// notifications
-static  String notifications = "${appApi}notifications";
+static  String notifications = "notifications";
 
 
 

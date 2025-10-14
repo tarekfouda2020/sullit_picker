@@ -13,8 +13,6 @@ abstract class GeneralDataSource {
 
   Future<MyResult<PrivacyPolicyModel>> getPrivacyPolicy (bool param);
 
-  Future<MyResult<UserModel>> updateDriverLocation (UpdateCoverageAreaParams params);
-
   Future<MyResult<String>> contactUs (ContactUsParams params);
 
   Future<MyResult<List<SocialContactUsModel>>> getSocials(bool param);

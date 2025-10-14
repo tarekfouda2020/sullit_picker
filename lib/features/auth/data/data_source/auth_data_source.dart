@@ -9,15 +9,8 @@ import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/confirm_reset_password_params.dart';
 
 abstract class AuthDataSource {
-  Future<MyResult<UserModel>> registerUser(RegisterParams params);
 
   Future<MyResult<UserModel>> sendLogin(LoginParams params);
-
-  Future<MyResult<List<WorkTypeModel>>> getWorkTypes();
-
-  Future<MyResult<String>> verifyPhone(VerifyParams params);
-
-  Future<MyResult<String>> verifyEmail(VerifyParams params);
 
   Future<MyResult<String>> sendChangePassword(ChangePasswordParams params);
 

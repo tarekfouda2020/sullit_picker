@@ -25,10 +25,6 @@ class ImplGeneralRepositories extends GeneralRepositories {
     return await dataSource.getPrivacyPolicy(param);
   }
 
-  @override
-  Future<MyResult<UserModel>> updateDriverLocation(UpdateCoverageAreaParams params) async {
-    return await dataSource.updateDriverLocation(params);
-  }
 
   @override
   Future<MyResult<String>> contactUs(ContactUsParams params) async {

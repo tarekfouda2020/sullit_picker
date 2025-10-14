@@ -19,8 +19,4 @@ abstract class HomeRepositories {
 
   Future<MyResult<List<LangModel>>> getLanguages(bool params);
 
-  Future<MyResult<List<ReportReasonModel>>> getReportReasons();
-
-  Future<MyResult<OrderModel>> updateOrderStatus(UpdateOrderParams params);
-
 }

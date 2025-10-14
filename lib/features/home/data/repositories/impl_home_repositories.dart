@@ -37,14 +37,5 @@ class ImplHomeRepositories extends HomeRepositories{
    return dataSource.getLanguages(params);
   }
 
-  @override
-  Future<MyResult<List<ReportReasonModel>>> getReportReasons() {
-   return dataSource.getReportReasons();
-  }
-
-  @override
-  Future<MyResult<OrderModel>> updateOrderStatus(UpdateOrderParams params){
-   return dataSource.updateOrderStatus(params);
-  }
 
 }

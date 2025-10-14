@@ -42,19 +42,6 @@ class ImlGeneralDataSource extends GeneralDataSource{
     return await GenericHttpImpl<PrivacyPolicyModel>()(model);
   }
 
-  @override
-  Future<MyResult<UserModel>> updateDriverLocation(UpdateCoverageAreaParams params) async {
-    HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.updateCoverage,
-      responseType: ResType.model,
-      requestMethod: RequestMethod.post,
-      toJsonFunc: (json) => UserModel.fromJson(json),
-      responseKey: (data) => data['data'],
-      requestBody: params.toJson(),
-      isFormData: true,
-    );
-    return await GenericHttpImpl<UserModel>()(model);
-  }
 
   @override
   Future<MyResult<String>> contactUs(ContactUsParams params) async {

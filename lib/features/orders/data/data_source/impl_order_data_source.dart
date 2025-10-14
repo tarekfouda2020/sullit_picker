@@ -39,7 +39,7 @@ class ImplOrderDataSource extends OrdersDataSource{
   @override
   Future<MyResult<List<OrderModel>>> getCompletedOrders(OrderHistoryParams params) {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.completedOrders + params.url,
+      url:" ApiNames.completedOrders + params.url",
       responseType: ResType.list,
       requestMethod: RequestMethod.get,
       refresh: params.paginateParams.refresh,
@@ -54,7 +54,7 @@ class ImplOrderDataSource extends OrdersDataSource{
   @override
   Future<MyResult<List<OrderModel>>> getFailedOrders(OrderHistoryParams params) {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.failedOrders + params.url,
+      url: "ApiNames.failedOrders + params.url",
       responseType: ResType.list,
       requestMethod: RequestMethod.get,
       refresh: params.paginateParams.refresh,
@@ -69,7 +69,7 @@ class ImplOrderDataSource extends OrdersDataSource{
   @override
   Future<MyResult<List<OrderModel>>> getNewOrders(GenericPaginateParams params) {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.newOrders + params.paramsToQuery(),
+      url: "ApiNames.newOrders + params.paramsToQuery()",
       responseType: ResType.list,
       requestMethod: RequestMethod.get,
       refresh: params.refresh,

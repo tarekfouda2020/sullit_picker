@@ -19,61 +19,7 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthDataSource)
 class ImplAuthDataSource extends AuthDataSource{
-  @override
-  Future<MyResult<UserModel>> registerUser(RegisterParams params) {
-     HttpRequestModel model = HttpRequestModel(
-         url: ApiNames.register,
-         responseType: ResType.model,
-         requestMethod: RequestMethod.post,
-       toJsonFunc: (data) => UserModel.fromJson(data),
-       responseKey: (data) => data['data'],
-       errorFunc: (data) => data['msg'],
-       requestBody: params.toJson(),
-       isFormData: true,
-       showLoader: false
-     );
-    return GenericHttpImpl<UserModel>()(model);
-  }
 
-  @override
-  Future<MyResult<List<WorkTypeModel>>> getWorkTypes() {
-    HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.workTypes,
-      responseType: ResType.list,
-      requestMethod: RequestMethod.get,
-      toJsonFunc: (data) => List<WorkTypeModel>.from(data.map((e) => WorkTypeModel.fromJson(e))),
-      responseKey: (data) => data['data'],
-    );
-    return GenericHttpImpl<List<WorkTypeModel>>()(model);
-  }
-
-  @override
-  Future<MyResult<String>> verifyEmail(VerifyParams params) {
-    HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.verifyEmail,
-        responseType: ResType.type,
-        requestMethod: RequestMethod.post,
-        responseKey: (data) => data['msg'],
-        requestBody: params.emailToJson(),
-        isFormData: true,
-      showLoader: true
-    );
-    return GenericHttpImpl<String>()(model);
-  }
-
-  @override
-  Future<MyResult<String>> verifyPhone(VerifyParams params) {
-    HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.verifyPhone,
-        responseType: ResType.type,
-        requestMethod: RequestMethod.post,
-        responseKey: (data) => data['msg'],
-        requestBody: params.phoneToJson(),
-        isFormData: true,
-        showLoader: true
-    );
-    return GenericHttpImpl<String>().call(model);
-  }
 
   @override
   Future<MyResult<String>> forgotPassword(VerifyParams params) {

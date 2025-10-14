@@ -17,7 +17,7 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: HomeDataSource)
 class ImplHomeDataSource extends HomeDataSource{
   @override
-  Future<MyResult<UserModel>> getProfile() {
+  Future<MyResult<UserModel>> getProfile() async{
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.profile,
         responseType: ResType.model,
@@ -25,11 +25,11 @@ class ImplHomeDataSource extends HomeDataSource{
       toJsonFunc: (data) => UserModel.fromJson(data),
       responseKey: (data) => data['data'],
     );
-    return GenericHttpImpl<UserModel>()(model);
+    return await GenericHttpImpl<UserModel>()(model);
   }
 
   @override
-  Future<MyResult<UserModel>> updateProfileImage(UpdateProfileImageParams params) {
+  Future<MyResult<UserModel>> updateProfileImage(UpdateProfileImageParams params) async{
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.updateProfileImage,
         responseType: ResType.model,
@@ -40,11 +40,11 @@ class ImplHomeDataSource extends HomeDataSource{
       isFormData: true,
       showLoader: true
     );
-    return GenericHttpImpl<UserModel>()(model);
+    return await GenericHttpImpl<UserModel>()(model);
   }
 
   @override
-  Future<MyResult<AvailableForOrderModel>> updateAvailability() {
+  Future<MyResult<AvailableForOrderModel>> updateAvailability()async {
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.toggleAvailability,
         responseType: ResType.model,
@@ -53,48 +53,18 @@ class ImplHomeDataSource extends HomeDataSource{
       toJsonFunc: (data) => AvailableForOrderModel.fromJson(data),
       showLoader: true
     );
-    return GenericHttpImpl<AvailableForOrderModel>()(model);
+    return await GenericHttpImpl<AvailableForOrderModel>()(model);
   }
 
   @override
-  Future<MyResult<List<LangModel>>> getLanguages(bool params) {
+  Future<MyResult<List<LangModel>>> getLanguages(bool params) async{
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.getLanguages,
         responseType: ResType.list,
         requestMethod: RequestMethod.get,
       responseKey: (data) => data["data"],
       toJsonFunc: (data) => List<LangModel>.from(data.map((e) => LangModel.fromJson(e))).toList(),
-      showLoader: true
     );
-    return GenericHttpImpl<List<LangModel>>()(model);
-  }
-
-  @override
-  Future<MyResult<OrderModel>> updateOrderStatus(UpdateOrderParams params) {
-    HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.updateOrderStatus(params.id),
-        responseType: ResType.model,
-        requestMethod: RequestMethod.post,
-      responseKey: (data) => data["data"],
-      toJsonFunc: (data) => OrderModel.fromJson(data),
-      showLoader: true,
-      requestBody: params.toJson(),
-      isFormData: false
-    );
-    return GenericHttpImpl<OrderModel>()(model);
-  }
-
-  @override
-  Future<MyResult<List<ReportReasonModel>>> getReportReasons() {
-    HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.reportReasons,
-      responseType: ResType.list,
-      requestMethod: RequestMethod.get,
-      toJsonFunc: (data) => List<ReportReasonModel>.from(
-        data.map((e) => ReportReasonModel.fromJson(e))
-      ),
-      responseKey: (data) => data['data'],
-    );
-    return GenericHttpImpl<List<ReportReasonModel>>()(model);
+    return await GenericHttpImpl<List<LangModel>>()(model);
   }
 }

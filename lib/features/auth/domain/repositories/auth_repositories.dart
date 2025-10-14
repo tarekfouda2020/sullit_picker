@@ -11,15 +11,8 @@ import 'package:flutter_tdd/features/auth/domain/entity/confirm_reset_password_p
 
 abstract class AuthRepositories {
 
-  Future<MyResult<UserModel>> registerUser(RegisterParams params);
 
   Future<MyResult<UserModel>> sendLogin(LoginParams params);
-
-  Future<MyResult<List<WorkTypeModel>>> getWorkTypes();
-
-  Future<MyResult<String>> verifyPhone(VerifyParams params);
-
-  Future<MyResult<String>> verifyEmail(VerifyParams params);
 
   Future<MyResult<String>> sendChangePassword(ChangePasswordParams params);
 
