@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget.dart';
 
 import 'widgets_imports.dart';
 
@@ -22,44 +23,10 @@ class TimerCardDetailsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Positioned(
-                  child: Container(
-                height: 40,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF009900),
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(15),
-                    bottomLeft: Radius.circular(15),
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
-                ),
-              )),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
-                decoration: BoxDecoration(
-                  color: context.colors.background,
-                  borderRadius: Dimens.borderRadius10PX,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: Text(
-                      'No. of Items : 4',
-                      style: AppTextStyle.s16_w300(color: context.colors.black),
-                    )),
-                    Text(
-                      '4 items left',
-                      style:
-                          AppTextStyle.s14_w400(color: context.colors.simiGray),
-                    )
-                  ],
-                ),
-              ),
-            ],
+          const CardPickedRatioWidget(
+              pickedPercentage: 20,
+              numberOfItems: 5,
+              child: LeftItemsWidget(numberOfItems: 4, pickedPercent: 20,)
           ),
           Gaps.vGap12,
           Column(

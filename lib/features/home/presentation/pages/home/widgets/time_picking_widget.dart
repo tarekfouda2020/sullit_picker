@@ -91,14 +91,7 @@ class TimePickingWidget extends StatelessWidget {
           ],
         ),
         Gaps.vGap16,
-        AppTextButton.maxCustom(
-          text: 'Continue Picking',
-          maxHeight: 44,
-          textSize: 18,
-          onPressed: () {
-            AutoRouter.of(context).push(OrderDetailsRouteName());
-          },
-        )
+
       ],
     );
   }

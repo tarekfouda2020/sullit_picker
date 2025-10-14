@@ -35,7 +35,8 @@ class SplashController {
   void _routeToLogin(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 2));
     context.read<DeviceCubit>().updateUserAuth(false);
-    AutoRouter.of(context).push(const LoginRegisterRoute());
+    // AutoRouter.of(context).push(const LoginRegisterRoute());
+    AutoRouter.of(context).push(const HomePageRoute());
   }
 
 

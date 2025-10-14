@@ -1,7 +1,7 @@
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/time_picking_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/order_count_down_timer_widget.dart';
+import '../../../widgets/left_items_widget.dart';
+import '../home_imports.dart';
 import 'card_picked_ratio_widget.dart';
-import 'home_widgets_imports.dart';
-
 class CardOrderWidget extends StatelessWidget {
   final HomeController controller;
   const CardOrderWidget({super.key, required this.controller});
@@ -26,10 +26,29 @@ class CardOrderWidget extends StatelessWidget {
           ),
           Gaps.vGap8,
           Text('Assigned 2 min ago',style: AppTextStyle.s14_w300(color: context.colors.textColor)),
-          Gaps.vGap12,
-          const CardPickedRatioWidget(ratio: '100',color: Color(0xFF009900),),
-          Gaps.vGap12,
-           OrderCountDownTimerWidget(controller: controller)
+          Gaps.vGap15,
+          const CardPickedRatioWidget(
+            pickedPercentage: 20,
+            numberOfItems: 5,
+            child: LeftItemsWidget(numberOfItems: 4, pickedPercent: 20,)
+          ),
+          Gaps.vGap15,
+           Center(
+             child: Text("Must Picking within",
+             style: AppTextStyle.s16_w300(color: context.colors.simiGray),
+             ),
+           ),
+          Gaps.vGap18,
+          OrderCountDownTimerWidget(pickWithinTime: DateTime.now().add(const Duration(minutes: 25))),
+          Gaps.vGap24,
+          AppTextButton.maxCustom(
+            text: 'Continue Picking',
+            maxHeight: 44,
+            textSize: 18,
+            onPressed: () {
+              AutoRouter.of(context).push(const OrderDetailsRouteName());
+            },
+          )
         ],
       ),
     );

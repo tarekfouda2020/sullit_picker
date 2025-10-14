@@ -110,6 +110,7 @@ class AppTextButton extends StatelessWidget {
     double? maxHeight,
     BorderRadiusGeometry? borderRadius,
     FontWeight? textFontWeight,
+    Color? borderColor,
   }) {
     return AppTextButton._(
       key: key,
@@ -123,6 +124,7 @@ class AppTextButton extends StatelessWidget {
       maxHeight: maxHeight,
       borderRadius: borderRadius,
       fontWeight: textFontWeight,
+      borderColor:borderColor ,
     );
   }
 

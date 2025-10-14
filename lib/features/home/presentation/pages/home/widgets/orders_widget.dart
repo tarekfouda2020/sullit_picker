@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/assigned_orders_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/have_orders_view_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/home_header_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/no_orders_view_widget.dart';
@@ -12,7 +13,6 @@ class OrdersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool noData = false;
     return Padding(
       padding: Dimens.paddingH20Px,
       child: Column(
@@ -21,8 +21,9 @@ class OrdersWidget extends StatelessWidget {
           HomeHeaderWidget(controller: controller),
           Gaps.vGap14,
           CustomSearchBar(controller: controller),
+          const AssignedOrdersWidget(),
           Visibility(
-              visible: noData,
+              visible: false,
               replacement:  HaveOrdersViewWidget(controller: controller),
               child: const NoOrdersViewWidget()),
         ],

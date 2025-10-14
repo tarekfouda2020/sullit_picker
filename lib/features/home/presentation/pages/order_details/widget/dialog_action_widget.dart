@@ -42,7 +42,6 @@ class DialogActionWidget extends StatelessWidget {
               Expanded(
                 child: AppTextButton.minCustom(
                   text: buttonGreenTitle,
-                  borderRadius: BorderRadius.circular(40),
                   onPressed: greenOnTap,
                   bgColor: context.colors.appGreen,
                   maxHeight: 40,
@@ -52,9 +51,8 @@ class DialogActionWidget extends StatelessWidget {
               ),
               Gaps.hGap8,
               Expanded(
-                child: AppTextButton.maxCustom(
+                child: AppTextButton.minCustom(
                   text: buttonRedTitle,
-                  borderRadius: BorderRadius.circular(40),
                   onPressed: redOnTap,
                   bgColor: context.colors.white,
                   borderColor: context.colors.primary,

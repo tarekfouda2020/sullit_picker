@@ -1,47 +1,69 @@
 import 'home_widgets_imports.dart';
 
 class CardPickedRatioWidget extends StatelessWidget {
-  final Color? color;
-  final String ratio;
-  const CardPickedRatioWidget({super.key, required this.ratio, this.color,});
+  final int numberOfItems;
+  final double pickedPercentage; // Value between 0.0 and 100.0
+  final Widget child;
+  const CardPickedRatioWidget({
+    super.key,
+    required this.numberOfItems,
+    required this.pickedPercentage,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return  Stack(
+      alignment: Alignment.bottomCenter,
+      clipBehavior: Clip.none,
       children: [
-        Positioned(
-            child: Container(
-          height: 40,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: const BorderRadius.only(
-              bottomRight: Radius.circular(15),
-              bottomLeft: Radius.circular(15),
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
+        child,
+        Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            Container(
+              height: 5,
+              decoration: const BoxDecoration(
+                color: Color(0xFFB0B0B0),
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(30),
+                  bottomLeft: Radius.circular(30),
+                ),
+              ),
             ),
-          ),
-        )),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
-          decoration: BoxDecoration(
-            color: context.colors.background,
-            borderRadius: Dimens.borderRadius10PX,
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                  child: Text(
-                'No. of Items : 4',
-                style: AppTextStyle.s16_w300(color: context.colors.black),
-              )),
-              Text(
-                'Picked $ratio%',
-                style: AppTextStyle.s14_w400(color: context.colors.black),
-              )
-            ],
-          ),
+            // Filled progress bar
+            Row(
+              children: [
+                Container(
+                  width: (MediaQuery.sizeOf(context).width - 100) * (pickedPercentage / 100),
+                  height: 5,
+                  decoration: const BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(15),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            // Circular indicator
+            PositionedDirectional(
+              start: (MediaQuery.of(context).size.width - 100) * (pickedPercentage / 100) - 6,
+              child: Container(
+                width: 13,
+                height: 13,
+                decoration: const BoxDecoration(
+                  color: Color(0xFF4CAF50),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+          ],
         ),
+
+
       ],
     );
   }

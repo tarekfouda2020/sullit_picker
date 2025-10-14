@@ -54,4 +54,27 @@ class TimerEntity {
   String minutes() => strDigits(myDuration.inMinutes.remainder(60));
 
   String seconds() => strDigits(myDuration.inSeconds.remainder(60));
+
+  String getDigit( String unit, int index) {
+    int value;
+    switch (unit) {
+      case 'days':
+        value = myDuration.inDays;
+        break;
+      case 'hours':
+        value = myDuration.inHours % 24;
+        break;
+      case 'minutes':
+        value = myDuration.inMinutes % 60;
+        break;
+      case 'seconds':
+        value = myDuration.inSeconds % 60;
+        break;
+      default:
+        throw ArgumentError('Invalid time unit: $unit');
+    }
+
+    return value.toString().padLeft(2, '0')[index];
+  }
+
 }

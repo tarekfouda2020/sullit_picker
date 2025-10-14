@@ -27,7 +27,7 @@ class CustomTimerWidget extends StatelessWidget {
               _buildContainer(context, threeTimeNumber!),
           ],
         ),
-        Gaps.vGap3,
+        Gaps.vGap6,
         Text(
           text,
           style: AppTextStyle.s14_w300(color: context.colors.primary),

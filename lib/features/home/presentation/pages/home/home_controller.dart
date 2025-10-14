@@ -12,9 +12,6 @@ class HomeController {
 
   bool popOut = false;
 
-  HomeController() {
-    getUserData();
-  }
 
 
 
