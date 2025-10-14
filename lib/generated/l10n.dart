@@ -320,10 +320,10 @@ class S {
     );
   }
 
-  /// `Login`
+  /// `Log in`
   String get label_Login {
     return Intl.message(
-      'Login',
+      'Log in',
       name: 'label_Login',
       desc: '',
       args: [],

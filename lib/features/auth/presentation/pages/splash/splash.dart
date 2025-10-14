@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/features/auth/presentation/widgets/app_slogan_widget.dart';
 
+import '../../../../../core/helpers/export.dart';
 import 'splash_imports.dart';
 
 
@@ -49,7 +50,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
               width: 147,
             ),
             Gaps.vGap7,
-            const AppSloganWidget(),
+            SvgPicture.asset(Res.appPickerSvg,height: 26,width: 134,)
           ],
         ),
       ),

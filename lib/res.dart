@@ -83,6 +83,7 @@ class Res {
 
   //auth
   static const String forgetPassBackground = "assets/images/forgetpass_background.png";
+  static const String appSloganPng = "assets/images/app_slogan.png";
 
   // Home screen specific icons
   static const String homeNotification = "assets/images/icons/home_notification.svg";

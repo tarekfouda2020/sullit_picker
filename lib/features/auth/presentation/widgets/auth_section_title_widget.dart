@@ -9,7 +9,7 @@ class AuthSectionTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom:paddingFromBottom ?? 5),
+      padding: EdgeInsets.only(bottom:paddingFromBottom ?? 7),
       child: Text(
         title,
         style: AppTextStyle.s14_w600(color: context.colors.textLabel),

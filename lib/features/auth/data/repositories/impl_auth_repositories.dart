@@ -43,13 +43,4 @@ class ImplAuthRepositories  extends AuthRepositories{
     return await dataSource.sendChangePassword(params);
   }
 
-  @override
-  Future<MyResult<InstructionsModel>> getInstructions()async {
-    return await dataSource.getInstructions();
-  }
-
-  @override
-  Future<MyResult<String>> appInstructionsAgree()async {
-    return await dataSource.appInstructionsAgree();
-  }
 }

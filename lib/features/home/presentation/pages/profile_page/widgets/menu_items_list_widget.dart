@@ -17,11 +17,11 @@ class MenuItemsListWidget extends StatelessWidget {
     return Column(
       children: [
         Gaps.vGap20,
-        // MenuItemWidget(
-        //   icon: Res.lockIcon,
-        //   title: Translate.of(context).change_password,
-        //   onTap: () => controller.navigateToChangePassword(context),
-        // ),
+        MenuItemWidget(
+          icon: Res.lockIcon,
+          title: Translate.of(context).change_password,
+          onTap: () => controller.navigateToChangePassword(context),
+        ),
         MenuItemWidget(
           icon: Res.globalIcon,
           title: Translate.of(context).language,

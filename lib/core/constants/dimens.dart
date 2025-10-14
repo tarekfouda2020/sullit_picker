@@ -56,6 +56,7 @@ class Dimens {
   static const double dp44 = 44;
   static const double dp47 = 47;
   static const double dp50 = 50;
+  static const double dp60 = 60;
   static const double dp64 = 64;
   static const double dp65 = 64;
   static const double dp96 = 96;
@@ -129,6 +130,8 @@ class Dimens {
   static const EdgeInsetsGeometry paddingH20V16Px = EdgeInsets.symmetric(horizontal: 20,vertical: 16);
 
   static const EdgeInsetsGeometry paddingStart31End27Px =  EdgeInsetsDirectional.only(start: 31, end: 27);
+
+  static const EdgeInsetsGeometry paddingEnd22Px =  EdgeInsetsDirectional.only( end: 22);
 
   static const EdgeInsetsGeometry paddingH18V12PX = EdgeInsets.symmetric(vertical: 12,horizontal: 18);
   static const EdgeInsetsGeometry paddingH16V10PX = EdgeInsets.symmetric(horizontal: 16, vertical: 10);

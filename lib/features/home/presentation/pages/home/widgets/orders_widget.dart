@@ -25,7 +25,8 @@ class OrdersWidget extends StatelessWidget {
           Visibility(
               visible: false,
               replacement:  HaveOrdersViewWidget(controller: controller),
-              child: const NoOrdersViewWidget()),
+              child: const NoOrdersViewWidget()
+          ),
         ],
       ),
     );

@@ -11,11 +11,11 @@ class UserInfoWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Gaps.vGap10,
-        Text(userData?.name ?? "Ahmed Mohamed",
+        Text(userData?.name ?? "",
           style: AppTextStyle.s18_w700(color: context.colors.black),
         ),
         Gaps.vGap5,
-        Text(userData!.email,
+        Text(userData?.email ?? "",
           style: AppTextStyle.s14_w400(color: context.colors.black),
         ),
 

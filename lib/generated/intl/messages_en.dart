@@ -215,7 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("Internet connected"),
         "km": MessageLookupByLibrary.simpleMessage("KM"),
-        "label_Login": MessageLookupByLibrary.simpleMessage("Login"),
+        "label_Login": MessageLookupByLibrary.simpleMessage("Log in"),
         "label_app_language": MessageLookupByLibrary.simpleMessage("Language"),
         "label_change_language":
             MessageLookupByLibrary.simpleMessage("Change language"),
