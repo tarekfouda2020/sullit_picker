@@ -29,7 +29,7 @@ class ConfirmResetPasswordController {
       result.when(
         isSuccess: (msg) {
           AppSnackBar.showSimpleToast(msg:msg ?? Translate.of(context).your_password_reset_please_login,type: ToastType.success);
-          AutoRouter.of(context).push(const LoginRegisterRoute());
+          AutoRouter.of(context).push(const LoginViewRoute());
         },
         isError: (error) {
           AppSnackBar.showErrorSnackBar( error: BaseError.unknown(msg: error.message));

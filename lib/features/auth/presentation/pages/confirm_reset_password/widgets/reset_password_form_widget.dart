@@ -1,5 +1,5 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/features/auth/presentation/pages/login_register/widgets/views/login_view/widgets/auth_section_title_widget.dart';
+import 'package:flutter_tdd/features/auth/presentation/widgets/auth_section_title_widget.dart';
 import '../confirm_reset_password_imports.dart';
 
 

@@ -1,9 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
-
-import 'package:flutter_tdd/core/constants/CustomButtonAnimation.dart';
-import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
@@ -15,25 +11,21 @@ import 'login_view_imports.dart';
 class LoginViewController {
   // Login form controllers
   final TextEditingController usernameController = TextEditingController();
-  final TextEditingController loginPasswordController = TextEditingController();
-  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  final ObsValue<bool> loginPasswordVisibleObs = ObsValue<bool>.withInit(false);
-
-  final GlobalKey<CustomButtonState> loadingButtonKey =
-      GlobalKey<CustomButtonState>();
+  final ObsValue<bool> passwordVisibleObs = ObsValue<bool>.withInit(false);
 
   void navigateToForgetPassword(BuildContext context) {
     AutoRouter.of(context).push(const ForgetPasswordPageRoute());
   }
 
   void switchPasswordVisibility() {
-    loginPasswordVisibleObs.setValue(!loginPasswordVisibleObs.getValue());
+    passwordVisibleObs.setValue(!passwordVisibleObs.getValue());
   }
 
   Future<void> callLogin(BuildContext context) async {
-    if (loginFormKey.currentState!.validate()) {
-      loadingButtonKey.currentState?.animateForward();
+    if (formKey.currentState!.validate()) {
       FocusScope.of(context).unfocus();
       final deviceId = await getIt<DeviceIdHelper>().getDeviceId();
       LoginParams params = _userParams(deviceId!);
@@ -45,7 +37,6 @@ class LoginViewController {
           },
           isError: (error) {},
         );
-        loadingButtonKey.currentState?.animateReverse();
       });
     }
   }
@@ -53,7 +44,7 @@ class LoginViewController {
   LoginParams _userParams(String deviceId) {
     return LoginParams(
       userName: usernameController.text,
-      password: loginPasswordController.text,
+      password: passwordController.text,
       deviceToken: deviceId,
       // userName: usernameController.text,
     );

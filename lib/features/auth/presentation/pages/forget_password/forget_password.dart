@@ -1,3 +1,5 @@
+import 'package:flutter_tdd/features/auth/presentation/widgets/auth_section_title_widget.dart';
+
 import 'forget_password_imports.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 

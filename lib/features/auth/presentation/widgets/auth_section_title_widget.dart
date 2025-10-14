@@ -1,5 +1,4 @@
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/features/auth/presentation/pages/login_register/login_register_imports.dart';
+import '../../../../core/helpers/export.dart';
 
 
 class AuthSectionTitleWidget extends StatelessWidget {

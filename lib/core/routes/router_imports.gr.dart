@@ -20,7 +20,7 @@ import 'package:flutter_tdd/features/auth/presentation/pages/confirm_reset_passw
     as _i18;
 import 'package:flutter_tdd/features/auth/presentation/pages/forget_password/forget_password.dart'
     as _i5;
-import 'package:flutter_tdd/features/auth/presentation/pages/login_register/login_register.dart'
+import 'package:flutter_tdd/features/auth/presentation/pages/login_view/login_view.dart'
     as _i7;
 import 'package:flutter_tdd/features/auth/presentation/pages/register/register_imports.dart'
     as _i12;
@@ -92,10 +92,10 @@ abstract class $AppRouter extends _i16.RootStackRouter {
         child: const _i6.HomePage(),
       );
     },
-    LoginRegisterRoute.name: (routeData) {
+    LoginViewRoute.name: (routeData) {
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.LoginRegisterPage(),
+        child: const _i7.LoginView(),
       );
     },
     NotificationsPageRoute.name: (routeData) {
@@ -284,15 +284,15 @@ class HomePageRoute extends _i16.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.LoginRegisterPage]
-class LoginRegisterRoute extends _i16.PageRouteInfo<void> {
-  const LoginRegisterRoute({List<_i16.PageRouteInfo>? children})
+/// [_i7.LoginView]
+class LoginViewRoute extends _i16.PageRouteInfo<void> {
+  const LoginViewRoute({List<_i16.PageRouteInfo>? children})
       : super(
-          LoginRegisterRoute.name,
+          LoginViewRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'LoginRegisterRoute';
+  static const String name = 'LoginViewRoute';
 
   static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
 }

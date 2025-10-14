@@ -12,8 +12,6 @@ import 'package:flutter_tdd/features/notifications/data/enum/notification_type.d
 import 'package:injectable/injectable.dart';
 
 import '../../features/auth/presentation/manager/user_cubit/user_cubit.dart';
-import '../../features/auth/presentation/pages/login_register/login_register_imports.dart';
-
 @lazySingleton
 class GlobalNotification {
   static final StreamController<Map<String, dynamic>> _onMessageStreamController =

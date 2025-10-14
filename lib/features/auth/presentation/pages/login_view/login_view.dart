@@ -1,8 +1,10 @@
 import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
-import 'package:flutter_tdd/features/auth/presentation/pages/login_register/widgets/views/login_view/login_view_controller.dart';
+import 'package:flutter_tdd/features/auth/presentation/pages/login_view/login_view_controller.dart';
+import 'package:flutter_tdd/features/auth/presentation/widgets/auth_section_title_widget.dart';
 
 
 
+@RoutePage(name: "LoginViewRoute")
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -19,7 +21,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: controller.loginFormKey,
+      key: controller.formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,10 +39,10 @@ class _LoginViewState extends State<LoginView> {
           Gaps.vGap12,
           AuthSectionTitleWidget(title:  Translate.of(context).password,),
           ObsValueConsumer(
-              observable: controller.loginPasswordVisibleObs,
+              observable: controller.passwordVisibleObs,
               builder: (context,isVisible) {
                 return GenericTextField(
-                  controller: controller.loginPasswordController,
+                  controller: controller.passwordController,
                   fieldTypes: isVisible ? FieldTypes.normal : FieldTypes.password,
                   type: TextInputType.text,
                   action: TextInputAction.done,
@@ -61,12 +63,9 @@ class _LoginViewState extends State<LoginView> {
               }
           ),
           Center(
-            child: LoadingButton(
-              title: Translate.of(context).login,
-              onTap: () => controller.callLogin(context),
-              // onTap: () => AutoRouter.of(context).push(const HomePageRoute()),
-              btnKey: controller.loadingButtonKey,
-              margin: const EdgeInsets.only(top: 28),
+            child: AppTextButton.maxCustom(
+              text: Translate.of(context).login,
+              onPressed: () => controller.callLogin(context),
             ),
           ),
           Gaps.vGap24,
