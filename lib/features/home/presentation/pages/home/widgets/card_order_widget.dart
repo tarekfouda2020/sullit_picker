@@ -1,10 +1,15 @@
+import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
+import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/order_count_down_timer_widget.dart';
-import '../../../widgets/left_items_widget.dart';
-import '../home_imports.dart';
-import 'card_picked_ratio_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget.dart';
+
+import 'home_widgets_imports.dart';
 class CardOrderWidget extends StatelessWidget {
   final HomeController controller;
-  const CardOrderWidget({super.key, required this.controller});
+  final OrderItem? data;
+  const CardOrderWidget({super.key, required this.controller, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +26,14 @@ class CardOrderWidget extends StatelessWidget {
           Row(
             children: [
               Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.blackOpacity),),
-              Text('3253646',style: AppTextStyle.s20_w600(color: context.colors.primary)),
+              Text(data!.code,style: AppTextStyle.s20_w600(color: context.colors.primary)),
             ],
           ),
           Gaps.vGap8,
-          Text('Assigned 2 min ago',style: AppTextStyle.s14_w300(color: context.colors.textColor)),
+          ObsValueConsumer(
+            observable: DateTimeHelper.getDifferenceFromCurrentDate(data!.startPickingAt),
+            builder: (context, assignedTime) => Text('Assigned $assignedTime',style: AppTextStyle.s14_w300(color: context.colors.textColor)),
+          ),
           Gaps.vGap15,
           const CardPickedRatioWidget(
             pickedPercentage: 20,
@@ -39,7 +47,7 @@ class CardOrderWidget extends StatelessWidget {
              ),
            ),
           Gaps.vGap18,
-          OrderCountDownTimerWidget(pickWithinTime: DateTime.now().add(const Duration(minutes: 25))),
+          OrderCountDownTimerWidget(pickWithinTime: DateTime.now().add(Duration(minutes: data!.preparationMinutes))),
           Gaps.vGap24,
           AppTextButton.maxCustom(
             text: 'Continue Picking',

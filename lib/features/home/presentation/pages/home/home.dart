@@ -16,6 +16,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     controller.initializeAvailableStatus(context);
+    controller.getOrdersRequester.request(fromRemote: false);
+    controller.getOrdersRequester.request();
   }
 
 

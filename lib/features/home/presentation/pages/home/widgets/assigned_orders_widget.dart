@@ -1,7 +1,8 @@
 import 'home_widgets_imports.dart';
 
 class AssignedOrdersWidget extends StatelessWidget {
-  const AssignedOrdersWidget({super.key});
+  final int ordersCount;
+  const AssignedOrdersWidget({super.key, required this.ordersCount});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class AssignedOrdersWidget extends StatelessWidget {
           ),
           Gaps.hGap4,
           Text(
-            '2',
+            "$ordersCount",
             style: AppTextStyle.s18_w800(
                 color: context.colors.primary),
           )

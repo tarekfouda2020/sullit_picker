@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/assigned_orders_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/have_orders_view_widget.dart';
@@ -15,18 +16,33 @@ class OrdersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: Dimens.paddingH20Px,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          HomeHeaderWidget(controller: controller),
-          Gaps.vGap14,
-          CustomSearchBar(controller: controller),
-          const AssignedOrdersWidget(),
-          Visibility(
-              visible: false,
-              replacement:  HaveOrdersViewWidget(controller: controller),
-              child: const NoOrdersViewWidget()),
-        ],
+      child: RequesterConsumer(
+        requester: controller.getOrdersRequester,
+        successBuilder: (context, data, isLoading) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              HomeHeaderWidget(controller: controller),
+              Gaps.vGap14,
+              CustomSearchBar(controller: controller),
+              AssignedOrdersWidget(ordersCount: data?.assignedOrdersCount??0,),
+              Visibility(
+                  visible: data == null,
+                  replacement:  HaveOrdersViewWidget(controller: controller, data: data),
+                  child: const NoOrdersViewWidget()
+              )
+            ],
+          );
+        },
+         failureBuilder: (context, error, callback) {
+          return const NoOrdersViewWidget();
+         },
+        loadingBuilder: (context) =>  const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(child: CircularProgressIndicator()),
+          ],
+        ),
       ),
     );
   }

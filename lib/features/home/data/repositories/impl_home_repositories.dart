@@ -6,6 +6,7 @@ import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart
 import 'package:flutter_tdd/features/home/data/data_source/home_data_source.dart';
 import 'package:flutter_tdd/features/home/data/model/available_for_order_model/available_for_order_model.dart';
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
+import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/report_reason_model/report_reason_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
@@ -28,13 +29,13 @@ class ImplHomeRepositories extends HomeRepositories{
   }
 
   @override
-  Future<MyResult<AvailableForOrderModel>> updateAvailability() {
-   return dataSource.updateAvailability();
+  Future<MyResult<List<LangModel>>> getLanguages(bool params) {
+   return dataSource.getLanguages(params);
   }
 
   @override
-  Future<MyResult<List<LangModel>>> getLanguages(bool params) {
-   return dataSource.getLanguages(params);
+  Future<MyResult<OrdersModel?>> orders(bool params) {
+   return dataSource.orders(params);
   }
 
 

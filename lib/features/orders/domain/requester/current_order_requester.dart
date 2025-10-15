@@ -7,7 +7,6 @@ import 'package:flutter_tdd/features/orders/domain/repositories/orders_repositor
 
 class CurrentOrderRequester extends Requester<OrderModel>{
 
-
   @override
   Future<void> request({bool fromRemote = true}) async{
     var result = await getIt<OrdersRepositories>().getCurrentOrder(fromRemote);

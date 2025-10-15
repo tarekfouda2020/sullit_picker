@@ -1,5 +1,7 @@
 
+import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
+import 'package:flutter_tdd/features/home/domain/requester/get_orders_requester.dart';
 
 import 'home_imports.dart';
 
@@ -7,6 +9,14 @@ class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
    final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
    final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
+  // final BaseBloc<OrdersModel?> ordersCubit = BaseBloc<OrdersModel?>();
+  late GetOrdersRequester getOrdersRequester;
+
+  HomeController(){
+    getOrdersRequester = GetOrdersRequester();
+    getOrdersRequester.request(fromRemote: false);
+    getOrdersRequester.request();
+  }
 
 
 
