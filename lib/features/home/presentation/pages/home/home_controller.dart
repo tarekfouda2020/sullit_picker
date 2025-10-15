@@ -57,7 +57,6 @@ class HomeController {
     result.when(
       isSuccess: (data) async {
         availableForOrdersObs.setValue(data!.data!.isAvailable);
-        availableForOrdersObs.refresh();
         AppSnackBar.showSuccessSnackBar(data.msg ??"", forceShow: true);
         context.read<UserCubit>().onUpdateUserData(
             userData?.copyWith(
