@@ -69,4 +69,18 @@ class ImplHomeDataSource extends HomeDataSource {
     );
     return await GenericHttpImpl<List<LangModel>>()(model);
   }
+
+
+  @override
+  Future<MyResult<AvailableForOrderModel>> updateAvailability()async {
+    HttpRequestModel model = HttpRequestModel(
+        url: ApiNames.toggleAvailability,
+        responseType: ResType.model,
+        requestMethod: RequestMethod.post,
+        responseKey: (data) => data,
+        toJsonFunc: (data) => AvailableForOrderModel.fromJson(data),
+        showLoader: true
+    );
+    return await GenericHttpImpl<AvailableForOrderModel>()(model);
+  }
 }

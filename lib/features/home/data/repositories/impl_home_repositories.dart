@@ -38,5 +38,9 @@ class ImplHomeRepositories extends HomeRepositories{
    return dataSource.orders(params);
   }
 
+  @override
+  Future<MyResult<AvailableForOrderModel>> updateAvailability() {
+    return dataSource.updateAvailability();
+  }
 
 }

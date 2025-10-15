@@ -18,5 +18,10 @@ abstract class HomeDataSource {
 
   Future<MyResult<List<LangModel>>> getLanguages(bool params);
 
+  Future<MyResult<AvailableForOrderModel>> updateAvailability();
+
+
+
+
 
 }
