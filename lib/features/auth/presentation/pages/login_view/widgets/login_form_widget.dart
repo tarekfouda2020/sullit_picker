@@ -1,6 +1,7 @@
 
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/password_suffix_icon_widget.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/login_view/login_view_controller.dart';
 
 import '../../../../../../core/helpers/export.dart';
@@ -43,25 +44,21 @@ class LoginFormWidget extends StatelessWidget {
                   onSubmit: () => controller.callLogin(context),
                   validate: (value) => value?.validatePassword(),
                   hint: Translate.of(context).enter_your_password,
-                  suffixIcon: GestureDetector(
-                    onTap: () => controller.switchPasswordVisibility(),
-                    child: Icon(
-                      isVisible ?Icons.visibility_outlined : Icons.visibility_off_outlined,
-                      color: context.colors.hintText,
-                      size: 20,
-                    ),
+                  suffixIcon: PasswordSuffixIconWidget(
+                    onTap:()=> controller.switchPasswordVisibility() ,
+                    value: isVisible,
                   ),
                 );
               }
           ),
-          Gaps.vGap24,
+          Gaps.vGap28,
           Center(
             child: AppTextButton.maxCustom(
               text: Translate.of(context).login,
               onPressed: () => controller.callLogin(context),
             ),
           ),
-          Gaps.vGap24,
+          Gaps.vGap30,
           Center(
             child: GestureDetector(
               onTap: () => controller.navigateToForgetPassword(context),

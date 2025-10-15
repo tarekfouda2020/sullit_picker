@@ -1,6 +1,7 @@
 
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
+import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/get_orders_requester.dart';
 
 import 'home_imports.dart';
@@ -13,6 +14,7 @@ class HomeController {
   late GetOrdersRequester getOrdersRequester;
 
   HomeController(){
+    getUserData();
     getOrdersRequester = GetOrdersRequester();
     getOrdersRequester.request(fromRemote: false);
     getOrdersRequester.request();
@@ -47,21 +49,7 @@ class HomeController {
   }
 
 
-  void acceptOrder(BuildContext context) {
-    hasOrders.setValue(true);
-    Navigator.of(context).pop();
-  }
 
-  void rejectOrder(BuildContext context) {
-    hasOrders.setValue(false);
-    Navigator.of(context).pop();
-  }
-
-  void completeOrder(BuildContext context) {
-    hasOrders.setValue(false);
-
-    AppSnackBar.showSuccessSnackBar(Translate.of(context).order_completed_successfully);
-  }
 
   Future<void> navigateToSideMenu(BuildContext context)async {
     await AutoRouter.of(context).push(const ProfilePageRoute());
@@ -72,16 +60,29 @@ class HomeController {
   }
 
 
-
-  void showReportProblemDialog(BuildContext context) {
-    _showProblemReportedSuccess(context);
+  Future<void> updateAvailabilityStatus(BuildContext context) async {
+    var userData = context.read<UserCubit>().state.model;
+    var result = await getIt<HomeRepositories>().updateAvailability();
+    result.when(
+      isSuccess: (data) async {
+        availableForOrdersObs.setValue(data!.data!.isAvailable);
+        availableForOrdersObs.refresh();
+        AppSnackBar.showSuccessSnackBar(data.msg ??"", forceShow: true);
+        context.read<UserCubit>().onUpdateUserData(
+            userData?.copyWith(
+              isAvailable: data.data?.isAvailable ?? userData.isAvailable
+            )
+        );
+      },
+      isError: (error) {
+        AppSnackBar.showErrorSnackBar(error: error);
+      },
+    );
   }
 
-  void _showProblemReportedSuccess(BuildContext context) {
-    AppSnackBar.showSuccessSnackBar(Translate.of(context).problem_reported_successfully);
-  }
 
-  void getUserData() async{
+
+  Future<void> getUserData() async{
      getIt<UserServicesHelper>().getUserData();
   }
 

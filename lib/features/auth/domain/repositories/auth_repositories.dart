@@ -22,7 +22,4 @@ abstract class AuthRepositories {
 
   Future<MyResult<String>> logout();
 
-  Future<MyResult<InstructionsModel>> getInstructions();
-
-  Future<MyResult<String>> appInstructionsAgree();
 }

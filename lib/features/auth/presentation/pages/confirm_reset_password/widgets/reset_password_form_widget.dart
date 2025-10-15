@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
+import 'package:flutter_tdd/core/widgets/password_suffix_icon_widget.dart';
 import 'package:flutter_tdd/features/auth/presentation/widgets/auth_section_title_widget.dart';
 import '../confirm_reset_password_imports.dart';
 
@@ -18,7 +19,7 @@ class ResetPasswordFormWidget extends StatelessWidget {
           GenericTextField(
             controller: controller.codeController,
             fieldTypes: FieldTypes.normal,
-            type: TextInputType.text,
+            type: TextInputType.number,
             action: TextInputAction.next,
             hint: Translate.of(context).enter_code,
             validate: (value) => value?.validateEmpty(),
@@ -40,14 +41,9 @@ class ResetPasswordFormWidget extends StatelessWidget {
                   enableBorderColor: context.colors.inputBorder,
                   focusBorderColor: context.colors.primary,
                   hintColor: context.colors.hintText,
-                  radius: BorderRadius.circular(30),
-                  suffixIcon: GestureDetector(
-                    onTap: () => controller.switchPasswordVisibility(controller.passwordVisibleObs),
-                    child: Icon(
-                      value ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                      color: context.colors.hintText,
-                      size: 20,
-                    ),
+                  suffixIcon: PasswordSuffixIconWidget(
+                    onTap:()=> controller.switchPasswordVisibility(controller.passwordVisibleObs) ,
+                    value: value,
                   ),
                 );
               }
@@ -62,19 +58,16 @@ class ResetPasswordFormWidget extends StatelessWidget {
                   validate: (value) => value?.validatePasswordConfirm(pass: controller.passwordController.text),
                   fieldTypes: value ? FieldTypes.normal : FieldTypes.password,
                   type: TextInputType.text,
-                  action: TextInputAction.done,
+                  action: TextInputAction.send,
+                  onTab: () => controller.onPressSend(context),
                   hint: Translate.s.enter_your_password,
                   fillColor: Colors.white,
                   enableBorderColor: context.colors.inputBorder,
                   focusBorderColor: context.colors.primary,
                   hintColor: context.colors.hintText,
-                  suffixIcon: GestureDetector(
-                    onTap: () => controller.switchPasswordVisibility(controller.confirmPasswordVisibleObs),
-                    child: Icon(
-                      value ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                      color: context.colors.hintText,
-                      size: 20,
-                    ),
+                  suffixIcon:  PasswordSuffixIconWidget(
+                    onTap:()=> controller.switchPasswordVisibility(controller.confirmPasswordVisibleObs) ,
+                    value: value,
                   ),
                 );
               }

@@ -44,12 +44,7 @@ class _LoginViewState extends State<LoginView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    Res.appIcon,
-                    width: 38,
-                    height: 37,
-                  ),
-                  Gaps.vGap40,
+                  Gaps.vGap30,
                   const AuthPageLogoWidget(),
                   Gaps.vGap24,
                   Gaps.vGap32,

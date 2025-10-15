@@ -21,7 +21,4 @@ abstract class AuthDataSource {
 
   Future<MyResult<String>> logout();
 
-  Future<MyResult<InstructionsModel>> getInstructions();
-
-  Future<MyResult<String>> appInstructionsAgree();
 }

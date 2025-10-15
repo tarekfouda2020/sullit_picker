@@ -22,10 +22,8 @@ class ApiNames{
 
 
 
-  static const String passwordForgot = "password/forgot";
-  static const String logout = "logout";
-  static const String freelancerInstructions = "freelancer-instructions";
-  static const String appInstructionsAgree = "app-instructions/agree";
+  static  String passwordForgot = "${appApi}password/forgot";
+  static  String logout = "${appApi}logout";
 
 
 
@@ -35,8 +33,9 @@ class ApiNames{
   static  String updateOrderStatus(int id) => "${appApi}orders/$id/status";
 
   ///home
-  static  String profile = "profile";
+  static  String profile = "${appApi}tprofile";
   static  String updateProfileImage = "${appApi}update-avatar?_method=patch";
+  static  String toggleAvailability = "${appApi}toggle-availability?_method=patch";
   static  String orders = "${appApi}orders";
 
   ///general

@@ -25,8 +25,7 @@ class SwitchNotificationWidget extends StatelessWidget {
         height: 18,
         padding: 1,
         value: controller.availableForOrdersObs.getValue(),
-        onToggle: (value) {},
-        // onToggle: (newValue)=> controller.updateAvailabilityStatus(context),
+        onToggle: (newValue)=> controller.updateAvailabilityStatus(context),
       ),
     );
   }
