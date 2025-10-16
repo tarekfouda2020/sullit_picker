@@ -5,4 +5,5 @@ final List<AutoRoute>  homeRoutes = [
   AutoRoute(page: HomePageRoute.page),
   AutoRoute(page: ProfilePageRoute.page),
   AutoRoute(page: OrderDetailsRouteName.page),
+
 ];

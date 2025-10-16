@@ -7,8 +7,8 @@ import 'dialog_action_widget.dart';
 class PickItemWidget extends StatelessWidget {
   final OrderDetailsController controller;
   final String title;
-  final String image;
-  final String description;
+  final String? image;
+  final String? description;
   final String subDescription;
   final String count;
   final String? status;
@@ -20,7 +20,7 @@ class PickItemWidget extends StatelessWidget {
     required this.title,
     required this.image,
     required this.controller,
-    required this.description,
+    this.description,
     required this.count,
     required this.subDescription,
     this.status,
@@ -69,7 +69,7 @@ class PickItemWidget extends StatelessWidget {
                         width: 52,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage(image),
+                            image: AssetImage(image ?? Res.chickenImage),
                           ),
                         ),
                       ),
@@ -78,7 +78,7 @@ class PickItemWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            description,
+                            description ?? '',
                             maxLines: 2,
                             softWrap: true,
                             overflow: TextOverflow.visible,

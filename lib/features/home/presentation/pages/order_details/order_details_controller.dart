@@ -1,9 +1,18 @@
+import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
+import 'package:flutter_tdd/features/home/domain/requester/show_orders_requester.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
 
 import 'order_details_imports.dart';
 
 class OrderDetailsController {
   final ObsValue<bool> isPicked = ObsValue.withInit(false);
+  late ShowOrdersRequester showOrdersRequester;
+
+  OrderDetailsController(int id){
+    showOrdersRequester = ShowOrdersRequester(id: id);
+    showOrdersRequester.request(fromRemote: false);
+    showOrdersRequester.request();
+  }
 
   void showReplaceDialog(BuildContext context) {
     showDialog(context: context,builder: (context) => DialogActionWidget(

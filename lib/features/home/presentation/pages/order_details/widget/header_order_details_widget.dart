@@ -1,14 +1,17 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
+import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/res.dart';
 
 import 'widgets_imports.dart';
 
 class HeaderOrderDetailsWidget extends StatelessWidget {
-  const HeaderOrderDetailsWidget({super.key});
+final OrderItem data;
+  const HeaderOrderDetailsWidget({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +34,21 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
               ),
               Gaps.hGap14,
               Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.simiGray),),
-              Text('3253646',style: AppTextStyle.s18_w600(color: context.colors.primary),),
+              Text(data.id.toString(),style: AppTextStyle.s18_w600(color: context.colors.primary),),
             ],
           ),
           Gaps.vGap8,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 38),
-            child: Text('Assigned 2 min ago',style: AppTextStyle.s14_w300(color: context.colors.textColor),),
-          )
+          ObsValueConsumer(
+            observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
+            builder: (context, assignedTime) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 38),
+              child: Text('Assigned $assignedTime',style: AppTextStyle.s14_w300(color: context.colors.textColor)),
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 38),
+          //   child: Text('Assigned 2 min ago',style: AppTextStyle.s14_w300(color: context.colors.textColor),),
+          // )
         ],
       ),
     );
