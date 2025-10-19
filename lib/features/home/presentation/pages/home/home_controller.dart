@@ -1,5 +1,6 @@
 
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/get_orders_requester.dart';
@@ -80,6 +81,18 @@ class HomeController {
   }
 
 
+  Future<void> acceptOrder(BuildContext context , int id ) async {
+    var result = await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: id));
+    result.when(
+      isSuccess: (data) async {
+        AppSnackBar.showSuccessSnackBar('Order accepted successfully');
+      },
+      isError: (error) {
+        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: 'Order accepted failed'));
+      },
+    );
+  }
+
 
   Future<void> getUserData() async{
      getIt<UserServicesHelper>().getUserData();
@@ -108,10 +121,6 @@ class HomeController {
 
     return value.toString().padLeft(2, '0')[index];
   }
-
-
-
-
 
 
 

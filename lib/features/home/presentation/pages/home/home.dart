@@ -3,7 +3,7 @@ import 'home_imports.dart';
 @RoutePage(name: "HomePageRoute")
 class HomePage extends StatefulWidget {
   // final bool fromLogin;
-  const HomePage({super.key});
+  const HomePage({super.key,});
 
   @override
   State<HomePage> createState() => _HomePageState();

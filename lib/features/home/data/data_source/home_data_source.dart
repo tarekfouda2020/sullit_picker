@@ -19,6 +19,8 @@ abstract class HomeDataSource {
 
   Future<MyResult<OrderItem>> showOrders(OrdersParams params);
 
+  Future<MyResult<OrderItem>> acceptOrder(OrdersParams params);
+
   Future<MyResult<List<LangModel>>> getLanguages(bool params);
 
   Future<MyResult<AvailableForOrderModel>> updateAvailability();

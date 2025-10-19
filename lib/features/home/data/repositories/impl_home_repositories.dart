@@ -49,4 +49,9 @@ class ImplHomeRepositories extends HomeRepositories{
    return dataSource.showOrders(params);
   }
 
+  @override
+  Future<MyResult<OrderItem>> acceptOrder(OrdersParams params) {
+   return dataSource.acceptOrder(params);
+  }
+
 }

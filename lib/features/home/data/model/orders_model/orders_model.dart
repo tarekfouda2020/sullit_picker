@@ -1,4 +1,5 @@
 
+import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -32,6 +33,17 @@ class OrderItem with _$OrderItem {
 
   factory OrderItem.fromJson(Map<String, dynamic> json) =>
       _$OrderItemFromJson(json);
+
+  OrderStatusEnum getOrderStatus(){
+    switch(status){
+      case 'preparing':
+        return OrderStatusEnum.preparing;
+      case 'new':
+        return OrderStatusEnum.newOrder;
+      default:
+        return OrderStatusEnum.newOrder;
+    }
+  }
 }
 
 @freezed
