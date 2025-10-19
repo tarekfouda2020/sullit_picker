@@ -19,23 +19,14 @@ class OrdersWidget extends StatelessWidget {
       child: RequesterConsumer(
         requester: controller.getOrdersRequester,
         successBuilder: (context, data, isLoading) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              HomeHeaderWidget(controller: controller),
-              Gaps.vGap14,
-              CustomSearchBar(controller: controller),
-              AssignedOrdersWidget(ordersCount: data?.assignedOrdersCount??0,),
-              Visibility(
-                  visible: data == null,
-                  replacement:  HaveOrdersViewWidget(controller: controller, data: data),
-                  child: const NoOrdersViewWidget()
-              )
-            ],
+          return Visibility(
+              visible: data == null,
+              replacement:  HaveOrdersViewWidget(controller: controller, data: data),
+              child:  NoOrdersViewWidget(controller: controller, ordersCount: 0,)
           );
         },
          failureBuilder: (context, error, callback) {
-          return const NoOrdersViewWidget();
+          return  NoOrdersViewWidget(controller: controller, ordersCount: 0,);
          },
         loadingBuilder: (context) =>  const Column(
           mainAxisAlignment: MainAxisAlignment.center,
