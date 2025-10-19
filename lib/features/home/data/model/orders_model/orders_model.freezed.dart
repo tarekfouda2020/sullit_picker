@@ -428,7 +428,7 @@ class __$$OrderItemImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$OrderItemImpl implements _OrderItem {
+class _$OrderItemImpl extends _OrderItem {
   const _$OrderItemImpl(
       {required this.id,
       required this.code,
@@ -439,7 +439,8 @@ class _$OrderItemImpl implements _OrderItem {
       @JsonKey(name: 'start_picking_at') required this.startPickingAt,
       @JsonKey(name: 'order_details')
       final List<OrderDetailsModel>? ordersDetails})
-      : _ordersDetails = ordersDetails;
+      : _ordersDetails = ordersDetails,
+        super._();
 
   factory _$OrderItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderItemImplFromJson(json);
@@ -527,7 +528,7 @@ class _$OrderItemImpl implements _OrderItem {
   }
 }
 
-abstract class _OrderItem implements OrderItem {
+abstract class _OrderItem extends OrderItem {
   const factory _OrderItem(
       {required final int id,
       required final String code,
@@ -539,6 +540,7 @@ abstract class _OrderItem implements OrderItem {
       @JsonKey(name: 'start_picking_at') required final String startPickingAt,
       @JsonKey(name: 'order_details')
       final List<OrderDetailsModel>? ordersDetails}) = _$OrderItemImpl;
+  const _OrderItem._() : super._();
 
   factory _OrderItem.fromJson(Map<String, dynamic> json) =
       _$OrderItemImpl.fromJson;

@@ -113,6 +113,7 @@ abstract class $AppRouter extends _i16.RootStackRouter {
         child: _i9.OrderDetails(
           key: args.key,
           id: args.id,
+          time: args.time,
         ),
       );
     },
@@ -324,12 +325,14 @@ class OrderDetailsRouteName
   OrderDetailsRouteName({
     _i19.Key? key,
     required int id,
+    required int time,
     List<_i16.PageRouteInfo>? children,
   }) : super(
           OrderDetailsRouteName.name,
           args: OrderDetailsRouteNameArgs(
             key: key,
             id: id,
+            time: time,
           ),
           initialChildren: children,
         );
@@ -344,15 +347,18 @@ class OrderDetailsRouteNameArgs {
   const OrderDetailsRouteNameArgs({
     this.key,
     required this.id,
+    required this.time,
   });
 
   final _i19.Key? key;
 
   final int id;
 
+  final int time;
+
   @override
   String toString() {
-    return 'OrderDetailsRouteNameArgs{key: $key, id: $id}';
+    return 'OrderDetailsRouteNameArgs{key: $key, id: $id, time: $time}';
   }
 }
 

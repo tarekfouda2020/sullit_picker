@@ -51,11 +51,11 @@ class CardOrderWidget extends StatelessWidget {
           OrderCountDownTimerWidget(pickWithinTime: DateTime.now().add(Duration(minutes: data!.preparationMinutes))),
           Gaps.vGap24,
           AppTextButton.maxCustom(
-            text: 'Continue Picking',
+            text: data!.isNewOrder ? 'Start Pick' : 'Continue Picking',
             maxHeight: 44,
             textSize: 18,
             onPressed: () {
-              AutoRouter.of(context).push(OrderDetailsRouteName(id: data!.id));
+              controller.acceptOrder(context, data!);
             },
           )
         ],

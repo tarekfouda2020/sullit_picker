@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/requester/show_orders_requester.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_new_weight_widget.dart';
 
 import 'order_details_imports.dart';
 
@@ -40,5 +41,27 @@ class OrderDetailsController {
                 Navigator.pop(context);
               },
             ));
+  }
+
+  void showWeightDialog(BuildContext context){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => DialogActionWidget(
+        description: 'Is the weight equals 900 gm ?',
+        buttonGreenTitle: 'Equals',
+        buttonRedTitle: 'Less Than',
+        greenOnTap: () {
+          print('Equals');
+        },
+        redOnTap: () => showDialog(
+          context: context,
+          builder: (context) => const DialogNewWeightWidget(
+            titleItem: 'Fresh Whole Chicken',
+            cheekWeight: 'The new weight must not less than 750 gm',
+            imageItem: Res.beefImage,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -20,6 +20,7 @@ class OrdersModel with _$OrdersModel {
 
 @freezed
 class OrderItem with _$OrderItem {
+ const OrderItem._();
   const factory OrderItem({
     required int id,
     required String code,
@@ -44,6 +45,10 @@ class OrderItem with _$OrderItem {
         return OrderStatusEnum.newOrder;
     }
   }
+
+  bool get isAssigned => getOrderStatus() == OrderStatusEnum.preparing;
+  bool get isNewOrder => getOrderStatus() == OrderStatusEnum.newOrder;
+
 }
 
 @freezed

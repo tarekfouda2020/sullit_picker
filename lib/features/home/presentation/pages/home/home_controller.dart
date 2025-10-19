@@ -81,11 +81,15 @@ class HomeController {
   }
 
 
-  Future<void> acceptOrder(BuildContext context , int id ) async {
-    var result = await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: id));
+  Future<void> acceptOrder(BuildContext context , OrderItem data ) async {
+    if(data.isAssigned){
+      AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,time: data.preparationMinutes));
+      return ;
+    }
+    var result = await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: data.id));
     result.when(
       isSuccess: (data) async {
-        AppSnackBar.showSuccessSnackBar('Order accepted successfully');
+        AutoRouter.of(context).push(OrderDetailsRouteName(id: data!.id,time: data.preparationMinutes));
       },
       isError: (error) {
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: 'Order accepted failed'));

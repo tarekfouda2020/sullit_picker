@@ -7,8 +7,8 @@ import 'order_details_imports.dart';
 @RoutePage(name: "OrderDetailsRouteName")
 class OrderDetails extends StatefulWidget {
   final int id;
-
-  const OrderDetails({super.key, required this.id});
+  final int time;
+  const OrderDetails({super.key, required this.id, required this.time});
 
   @override
   State<OrderDetails> createState() => _OrderDetailsState();
