@@ -37,6 +37,7 @@ class ApiNames{
   static  String updateProfileImage = "${appApi}update-avatar?_method=patch";
   static  String toggleAvailability = "${appApi}toggle-availability?_method=patch";
   static  String orders = "${appApi}orders";
+  static  String showOrders(int id) => "${appApi}orders/$id";
 
   ///general
   static  const String socials = "socials";

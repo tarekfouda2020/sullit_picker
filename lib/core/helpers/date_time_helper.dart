@@ -45,16 +45,18 @@ class DateTimeHelper {
 
 
   static ObsValue<String> getDifferenceFromCurrentDate(String strDate) {
-    final DateFormat formatter = DateFormat("dd MMM yyyy - hh:mm a");
-    final DateTime startTime = formatter.parse(strDate);
+    final DateFormat formatter = DateFormat("yyyy-MM-dd HH:mm:ss");
+    final DateTime startTime = formatter.parse(strDate, true).toLocal();
+    final ObsValue<String> timeAgoObs = ObsValue<String>.withInit(
+      _formatTimeAgo(DateTime.now().difference(startTime)),
+    );
 
-    final ObsValue<String> timeAgoObs = ObsValue<String>.withInit(_formatTimeAgo(DateTime.now().difference(startTime)));
     Timer.periodic(const Duration(seconds: 1), (timer) {
       final now = DateTime.now();
       final elapsed = now.difference(startTime);
       timeAgoObs.setValue(_formatTimeAgo(elapsed));
     });
-    
+
     return timeAgoObs;
   }
 

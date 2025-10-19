@@ -8,6 +8,7 @@ import 'package:flutter_tdd/features/home/data/model/available_for_order_model/a
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/report_reason_model/report_reason_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
@@ -41,6 +42,11 @@ class ImplHomeRepositories extends HomeRepositories{
   @override
   Future<MyResult<AvailableForOrderModel>> updateAvailability() {
     return dataSource.updateAvailability();
+  }
+
+  @override
+  Future<MyResult<OrderItem>> showOrders(OrdersParams params) {
+   return dataSource.showOrders(params);
   }
 
 }

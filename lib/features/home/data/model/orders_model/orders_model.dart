@@ -1,4 +1,5 @@
 
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'orders_model.freezed.dart';
@@ -26,8 +27,36 @@ class OrderItem with _$OrderItem {
     required String status,
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
+    @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
   }) = _OrderItem;
 
   factory OrderItem.fromJson(Map<String, dynamic> json) =>
       _$OrderItemFromJson(json);
+}
+
+@freezed
+class OrderDetailsModel with _$OrderDetailsModel {
+  const factory OrderDetailsModel({
+    required int id,
+    required String variation,
+    required int quantity,
+    required String price,
+    required ProductModel product,
+  }) = _OrderDetailsModel;
+
+  factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderDetailsModelFromJson(json);
+}
+
+
+@freezed
+class ProductModel with _$ProductModel {
+  const factory ProductModel({
+    required int id,
+    required String name,
+    @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
+  }) = _ProductModel;
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductModelFromJson(json);
 }

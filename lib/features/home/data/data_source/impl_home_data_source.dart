@@ -10,6 +10,7 @@ import 'package:flutter_tdd/features/home/data/model/available_for_order_model/a
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/report_reason_model/report_reason_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
@@ -82,5 +83,19 @@ class ImplHomeDataSource extends HomeDataSource {
         showLoader: true
     );
     return await GenericHttpImpl<AvailableForOrderModel>()(model);
+  }
+
+  @override
+  Future<MyResult<OrderItem>> showOrders(OrdersParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+        url: ApiNames.showOrders(params.id),
+        responseType: ResType.model,
+        requestMethod: RequestMethod.get,
+        responseKey: (data) => data['data'],
+        toJsonFunc: (data) =>  OrderItem.fromJson(data),
+        showLoader: true,
+        refresh: params.refresh
+    );
+    return await GenericHttpImpl<OrderItem>()(model);
   }
 }

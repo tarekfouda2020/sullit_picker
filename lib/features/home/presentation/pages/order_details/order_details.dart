@@ -6,14 +6,22 @@ import 'order_details_imports.dart';
 
 @RoutePage(name: "OrderDetailsRouteName")
 class OrderDetails extends StatefulWidget {
-  const OrderDetails({super.key});
+  final int id;
+
+  const OrderDetails({super.key, required this.id});
 
   @override
   State<OrderDetails> createState() => _OrderDetailsState();
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
-  OrderDetailsController controller = OrderDetailsController();
+  late OrderDetailsController controller;
+
+  @override
+  void initState() {
+    controller = OrderDetailsController(widget.id);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +33,21 @@ class _OrderDetailsState extends State<OrderDetails> {
         size: 20,
         removeBgColorInScroll: true,
       ),
-      body: Column(
-        children: [
-          const HeaderOrderDetailsWidget(),
-          Gaps.vGap12,
-          const TimerCardDetailsWidget(),
-          Gaps.vGap12,
-          PickCategoryWidget(controller: controller),
-        ],
+      body: RequesterConsumer(
+          requester: controller.showOrdersRequester,
+          successBuilder: (context, data, isLoading) => Column(
+            children: [
+              HeaderOrderDetailsWidget(data: data),
+              Gaps.vGap12,
+              TimerCardDetailsWidget(data: data),
+              Gaps.vGap12,
+              PickCategoryWidget(controller: controller, data: data),
+            ],
+          ),
+          failureBuilder: (context, error, callback) => Center(
+            child: Text('Something went wrong',style: AppTextStyle.s16_w600(color: context.colors.primary),),
+          ),
+          loadingBuilder: (context) => const Center(child: CircularProgressIndicator(),),
       ),
       bottomNavigationBar: const BottomNavBarDetailsWidget(),
     );

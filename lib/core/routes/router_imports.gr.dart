@@ -38,6 +38,8 @@ import 'package:flutter_tdd/features/home/presentation/pages/home/home.dart'
     as _i6;
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details.dart'
     as _i9;
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_imports.dart'
+    as _i19;
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page.dart'
     as _i11;
 import 'package:flutter_tdd/features/notifications/presentation/pages/notification_page/notification_page.dart'
@@ -105,9 +107,13 @@ abstract class $AppRouter extends _i16.RootStackRouter {
       );
     },
     OrderDetailsRouteName.name: (routeData) {
+      final args = routeData.argsAs<OrderDetailsRouteNameArgs>();
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.OrderDetails(),
+        child: _i9.OrderDetails(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     PrivacyPolicyPageRoute.name: (routeData) {
@@ -313,16 +319,41 @@ class NotificationsPageRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.OrderDetails]
-class OrderDetailsRouteName extends _i16.PageRouteInfo<void> {
-  const OrderDetailsRouteName({List<_i16.PageRouteInfo>? children})
-      : super(
+class OrderDetailsRouteName
+    extends _i16.PageRouteInfo<OrderDetailsRouteNameArgs> {
+  OrderDetailsRouteName({
+    _i19.Key? key,
+    required int id,
+    List<_i16.PageRouteInfo>? children,
+  }) : super(
           OrderDetailsRouteName.name,
+          args: OrderDetailsRouteNameArgs(
+            key: key,
+            id: id,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'OrderDetailsRouteName';
 
-  static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
+  static const _i16.PageInfo<OrderDetailsRouteNameArgs> page =
+      _i16.PageInfo<OrderDetailsRouteNameArgs>(name);
+}
+
+class OrderDetailsRouteNameArgs {
+  const OrderDetailsRouteNameArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i19.Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'OrderDetailsRouteNameArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

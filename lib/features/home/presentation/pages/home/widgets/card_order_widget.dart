@@ -23,7 +23,8 @@ class CardOrderWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.blackOpacity),),
               Text(data!.code,style: AppTextStyle.s20_w600(color: context.colors.primary)),
@@ -54,7 +55,7 @@ class CardOrderWidget extends StatelessWidget {
             maxHeight: 44,
             textSize: 18,
             onPressed: () {
-              AutoRouter.of(context).push(const OrderDetailsRouteName());
+              AutoRouter.of(context).push(OrderDetailsRouteName(id: data!.id));
             },
           )
         ],

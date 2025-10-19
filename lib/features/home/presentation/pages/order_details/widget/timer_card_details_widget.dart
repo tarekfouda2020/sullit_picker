@@ -2,13 +2,15 @@ import 'package:flutter_tdd/core/constants/dimens.dart';
 import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
+import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget.dart';
 
 import 'widgets_imports.dart';
 
 class TimerCardDetailsWidget extends StatelessWidget {
-  const TimerCardDetailsWidget({super.key});
+  final OrderItem data;
+  const TimerCardDetailsWidget({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
