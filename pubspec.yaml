@@ -100,6 +100,8 @@ dependencies:
   timeago:
   timezone:
   sound_effect: ^0.1.1
+  hive_flutter: ^1.1.0
+  hive: ^2.2.3
 #  slide_countdown: ^2.0.2
 #  webview_flutter_wkwebview: ^3.10.3
 
@@ -115,6 +117,7 @@ dev_dependencies:
   auto_route_generator: ^7.3.2
   injectable_generator: ^2.4.1
   flutter_lints: ^2.0.3
+  hive_generator: ^2.0.1
 
 
 flutter_intl:
