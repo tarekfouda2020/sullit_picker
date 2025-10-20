@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
+import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
@@ -8,7 +11,7 @@ import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget
 import 'home_widgets_imports.dart';
 class CardOrderWidget extends StatelessWidget {
   final HomeController controller;
-  final OrderItem? data;
+  final OrderModel data;
   const CardOrderWidget({super.key, required this.controller, required this.data});
 
   @override
@@ -27,13 +30,15 @@ class CardOrderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.blackOpacity),),
-              Text(data!.code,style: AppTextStyle.s20_w600(color: context.colors.primary)),
+              Text(data.code,style: AppTextStyle.s20_w600(color: context.colors.primary)),
             ],
           ),
           Gaps.vGap8,
           ObsValueConsumer(
-            observable: DateTimeHelper.getDifferenceFromCurrentDate(data!.startPickingAt),
-            builder: (context, assignedTime) => Text('Assigned $assignedTime',style: AppTextStyle.s14_w300(color: context.colors.textColor)),
+            observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
+            builder: (context, assignedTime) {
+              return Text('Assigned $assignedTime',style: AppTextStyle.s14_w300(color: context.colors.textColor));
+            },
           ),
           Gaps.vGap15,
           const CardPickedRatioWidget(
@@ -48,14 +53,27 @@ class CardOrderWidget extends StatelessWidget {
              ),
            ),
           Gaps.vGap18,
-          OrderCountDownTimerWidget(pickWithinTime: DateTime.now().add(Duration(minutes: data!.preparationMinutes))),
+          OrderCountDownTimerWidget(
+              pickWithinTime: DateTime.now().add(Duration(minutes: data.preparationMinutes)),
+            duringCountDown: (duration) {
+              var newEndTime = DateTime.now().add(duration);
+              HiveHelper.instance.addDataToBox<String>(
+                HiveBoxesNames.orders,
+                key: HiveBoxesKeys.orderEndDate,
+                jsonEncode({
+                  ...data.toJson(),
+                  'end_time': newEndTime.toIso8601String(),
+                }),
+              );
+            },
+          ),
           Gaps.vGap24,
           AppTextButton.maxCustom(
             text: 'Continue Picking',
             maxHeight: 44,
             textSize: 18,
             onPressed: () {
-              AutoRouter.of(context).push(OrderDetailsRouteName(id: data!.id));
+              AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id));
             },
           )
         ],

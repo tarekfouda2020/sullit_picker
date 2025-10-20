@@ -1,8 +1,6 @@
 
 import 'dart:developer';
 
-import 'package:hive/hive.dart';
-
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveHelper {
@@ -14,12 +12,16 @@ class HiveHelper {
   static bool _initialized = false;
 
 
-   // Future<void> init(List<TypeAdapter> adapters) async {
-   Future<void> init(TypeAdapter adapter) async {
+  Future<void> init()async{
     if (_initialized) return;
     await Hive.initFlutter();
+    _initialized = true;
+  }
+
+   Future<void> registerData<T>(TypeAdapter<T> adapter) async {
+   // Future<void> registerData(List<TypeAdapter> adapters) async {
     try{
-      Hive.registerAdapter(adapter);
+      Hive.registerAdapter<T>(adapter);
     }catch (e) {
       log('⚠️ Hive adapter already registered: $e');
     }
@@ -30,8 +32,7 @@ class HiveHelper {
     //     log('⚠️ Hive adapter already registered: $e');
     //   }
     // }
-    _initialized = true;
-    log('Hive initialized with $adapter adapter');
+    // log('Hive initialized with $adapters adapter');
   }
 
 
@@ -45,18 +46,17 @@ class HiveHelper {
         return await Hive.openBox<T>(boxName);
       } catch (e) {
         /// if box not exist or get corrupted for any reason
-        /// make a new box with th same name....but it will be empty
-        log('Failed to open box $boxName,.....');
+        /// make a new box with the same name....but it will be empty
+        log('⚠️ Failed to open box $boxName: $e');
+        log('🔧 Clearing corrupted box... $boxName');
         await Hive.deleteBoxFromDisk(boxName);
-        log('clearing corrupted box... $boxName,....');
+        log('✅ Corrupted box cleared, opening fresh box...');
         return await Hive.openBox<T>(boxName);
       }
     } else {
       return Hive.box<T>(boxName);
     }
   }
-
-
 
 
    Future<void> closeBox(String boxName) async {
@@ -71,7 +71,7 @@ class HiveHelper {
     log('All Hive boxes closed.');
   }
 
-   Future<void> clearHive(Box box) async {
+   Future<void> clearHive() async {
      await Hive.deleteFromDisk();
     log('Hive Been cleared');
   }
@@ -85,13 +85,42 @@ class HiveHelper {
     log('Deleted box: $boxName');
   }
 
+  Box<T> getBox<T>(String boxName){
+     return Hive.box<T>(boxName);
+  }
+
+  Future<void> addDataToBox<T>(String boxName, T value,{dynamic key = 1})async{
+     var box = getBox<T>(boxName);
+      await box.put(key, value);
+  }
+
+  T? getDataFromBox<T>(String boxName, {dynamic key = 1}){
+    var box = getBox<T>(boxName);
+    return box.get(key);
+  }
+
+  Future<void> deleteDataFromBox<T>(String boxName,{dynamic key = 1})async{
+    var box = getBox<T>(boxName);
+    await box.delete(key,);
+  }
+
 }
 
 
 class HiveBoxesNames{
 
-  static const String orderProducts = "products";
+  static const String orderDetails = "orderDetails";
 
   static const String orders = "orders";
+
+
+}
+
+class HiveBoxesKeys{
+  static const int orderEndDate = 2;
+
+  static const String assignedOrdersKey = "assigned";
+
+
 
 }

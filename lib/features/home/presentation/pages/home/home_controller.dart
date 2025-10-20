@@ -2,7 +2,6 @@
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
-import 'package:flutter_tdd/features/home/domain/requester/get_orders_requester.dart';
 
 import 'home_imports.dart';
 
@@ -10,14 +9,14 @@ class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
    final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
    final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
+   final BaseBloc<OrdersList> ordersListCubit = BaseBloc<OrdersList>();
+   final BaseBloc<List<OrderModel>> assignedOrdersCubit = BaseBloc<List<OrderModel>>([]);
   // final BaseBloc<OrdersModel?> ordersCubit = BaseBloc<OrdersModel?>();
-  late GetOrdersRequester getOrdersRequester;
 
   HomeController(){
     getUserData();
-    getOrdersRequester = GetOrdersRequester();
-    getOrdersRequester.request(fromRemote: false);
-    getOrdersRequester.request();
+    getAllOrders(fromRemote: false);
+    getAllOrders(fromRemote: true);
   }
 
 
@@ -25,13 +24,47 @@ class HomeController {
   bool popOut = false;
 
 
-
-
   Future<void> initializeAvailableStatus(BuildContext context,{bool value = false}) async {
     bool? isAvailable = context.read<UserCubit>().state.model?.isAvailable;
     availableForOrdersObs.setValue(isAvailable ?? value);
     availableForOrdersObs.refresh();
   }
+
+
+
+
+  Future<void> getAllOrders({bool fromRemote = true})async{
+    var result = await getIt<HomeRepositories>().orders(fromRemote);
+    result.when(
+      isSuccess: (data) {
+      ordersListCubit.successState(data);
+      updateAssignedFromLocalData(data!.assignedOrders);
+    },
+      isError: (error) {
+
+    },);
+  }
+
+
+
+
+  Future<void> updateAssignedFromLocalData(List<OrderModel> data) async{
+    var localData = await getIt<OrdersHelper>().getAssignedOrders();
+    if (localData.isEmpty) {
+      getIt<OrdersHelper>().saveAssignedOrders(data);
+      assignedOrdersCubit.successState(data);
+    } else {
+      initDataFromLocal();
+    }
+  }
+
+
+  Future<void> initDataFromLocal()async{
+    var data = await getIt<OrdersHelper>().getAssignedOrders();
+    assignedOrdersCubit.successState(data);
+  }
+
+
 
   void onPop() {
     if (popOut) {

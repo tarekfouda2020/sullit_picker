@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bottom_nav_bar_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/header_order_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/pick_category_widget.dart';
@@ -33,21 +34,27 @@ class _OrderDetailsState extends State<OrderDetails> {
         size: 20,
         removeBgColorInScroll: true,
       ),
-      body: RequesterConsumer(
-          requester: controller.showOrdersRequester,
-          successBuilder: (context, data, isLoading) => Column(
-            children: [
-              HeaderOrderDetailsWidget(data: data),
-              Gaps.vGap12,
-              TimerCardDetailsWidget(data: data),
-              Gaps.vGap12,
-              PickCategoryWidget(controller: controller, data: data),
-            ],
-          ),
-          failureBuilder: (context, error, callback) => Center(
+      body: BaseBlocBuilder(
+        bloc: controller.detailsCubit,
+        onSuccessWidget: (data) {
+        return Column(
+          children: [
+            HeaderOrderDetailsWidget(data: data),
+            Gaps.vGap12,
+            TimerCardDetailsWidget(data: data),
+            Gaps.vGap12,
+            PickCategoryWidget(controller: controller, data: data),
+          ],
+        ) ;
+      },
+        onLoadingWidget: (context) {
+          return const Center(child: CircularProgressIndicator(),);
+        },
+        onFailedWidget: (context, error, callback) {
+          return Center(
             child: Text('Something went wrong',style: AppTextStyle.s16_w600(color: context.colors.primary),),
-          ),
-          loadingBuilder: (context) => const Center(child: CircularProgressIndicator(),),
+          );
+        },
       ),
       bottomNavigationBar: const BottomNavBarDetailsWidget(),
     );

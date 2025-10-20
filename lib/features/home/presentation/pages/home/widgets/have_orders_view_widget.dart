@@ -9,7 +9,7 @@ import 'home_widgets_imports.dart';
 
 class HaveOrdersViewWidget extends StatelessWidget {
   final HomeController controller;
-  final OrdersModel? data;
+  final OrdersList data;
   const HaveOrdersViewWidget({super.key, required this.controller, required this.data});
 
   @override
@@ -19,16 +19,16 @@ class HaveOrdersViewWidget extends StatelessWidget {
         HomeHeaderWidget(controller: controller),
         Gaps.vGap14,
         CustomSearchBar(controller: controller),
-        AssignedOrdersWidget(ordersCount: data?.assignedOrdersCount??0,),
+        AssignedOrdersWidget(ordersCount: data.assignedOrdersCount,),
         Expanded(
           child: RefreshIndicator(
-            onRefresh: () async => controller.getOrdersRequester.request() ,
+            onRefresh: () async => await controller.getAllOrders() ,
             backgroundColor: context.colors.white,
             child: ListView.separated(
               itemBuilder: (BuildContext context, int index) {
-                return  CardOrderWidget(controller: controller, data: data?.assignedOrders[index],);
+                return  CardOrderWidget(controller: controller, data: data.assignedOrders[index],);
               },
-              itemCount: data!.assignedOrders.length,
+              itemCount: data.assignedOrders.length,
               separatorBuilder: (BuildContext context, int index) => Gaps.vGap12,
             ),
           ),

@@ -7,8 +7,9 @@ class AssignedOrdersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
+      height: Dimens.dp44,
       margin: const EdgeInsets.symmetric(vertical: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       decoration: BoxDecoration(
         color: context.colors.lightPrimary.withOpacity(0.3),
         borderRadius: Dimens.borderRadius30PX,

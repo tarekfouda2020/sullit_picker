@@ -7,8 +7,7 @@ import 'home_widgets_imports.dart';
 
 class NoOrdersViewWidget extends StatelessWidget {
   final HomeController controller;
-  final int ordersCount;
-  const NoOrdersViewWidget({super.key, required this.controller, required this.ordersCount});
+  const NoOrdersViewWidget({super.key, required this.controller, });
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class NoOrdersViewWidget extends StatelessWidget {
       padding: Dimens.paddingH20Px,
       child: RefreshIndicator(
         backgroundColor: context.colors.white,
-        onRefresh: ()=> controller.getOrdersRequester.request(),
+        onRefresh: () async => await controller.getAllOrders(),
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: ConstrainedBox(
@@ -30,7 +29,7 @@ class NoOrdersViewWidget extends StatelessWidget {
                   HomeHeaderWidget(controller: controller),
                   Gaps.vGap14,
                   CustomSearchBar(controller: controller),
-                  AssignedOrdersWidget(ordersCount: ordersCount,),
+                  const AssignedOrdersWidget(ordersCount: 0,),
                   Expanded(
                     child: Center(
                       child: Column(

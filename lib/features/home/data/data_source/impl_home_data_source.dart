@@ -11,9 +11,7 @@ import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart'
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/report_reason_model/report_reason_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
-import 'package:flutter_tdd/features/home/domain/entity/update_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
-import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeDataSource)
@@ -46,16 +44,16 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
-  Future<MyResult<OrdersModel?>> orders(bool params) async {
+  Future<MyResult<OrdersList?>> orders(bool params) async {
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.orders,
         responseType: ResType.model,
         requestMethod: RequestMethod.get,
         responseKey: (data) => data['data'],
-        toJsonFunc: (data) => data != null ? OrdersModel.fromJson(data) : null,
+        toJsonFunc: (data) => data != null ? OrdersList.fromJson(data) : null,
         showLoader: true,
         refresh: params);
-    return await GenericHttpImpl<OrdersModel?>()(model);
+    return await GenericHttpImpl<OrdersList?>()(model);
   }
 
   @override
@@ -86,16 +84,16 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
-  Future<MyResult<OrderItem>> showOrders(OrdersParams params) async {
+  Future<MyResult<OrderModel>> showOrders(OrdersParams params) async {
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.showOrders(params.id),
         responseType: ResType.model,
         requestMethod: RequestMethod.get,
         responseKey: (data) => data['data'],
-        toJsonFunc: (data) =>  OrderItem.fromJson(data),
+        toJsonFunc: (data) =>  OrderModel.fromJson(data),
         showLoader: true,
         refresh: params.refresh
     );
-    return await GenericHttpImpl<OrderItem>()(model);
+    return await GenericHttpImpl<OrderModel>()(model);
   }
 }

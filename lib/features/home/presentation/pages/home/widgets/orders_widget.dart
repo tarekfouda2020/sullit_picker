@@ -14,27 +14,28 @@ class OrdersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Dimens.paddingH20Px,
-      child: RequesterConsumer(
-        requester: controller.getOrdersRequester,
-        successBuilder: (context, data, isLoading) {
+    return Padding(padding:  Dimens.paddingH20Px,
+    child: BaseBlocBuilder(
+        bloc: controller.ordersListCubit,
+        onSuccessWidget: (data) {
           return Visibility(
-              visible: data == null,
+              visible: data.assignedOrders.isEmpty && data.newOrders.isEmpty,
               replacement:  HaveOrdersViewWidget(controller: controller, data: data),
-              child:  NoOrdersViewWidget(controller: controller, ordersCount: 0,)
+              child:  NoOrdersViewWidget(controller: controller,)
           );
         },
-         failureBuilder: (context, error, callback) {
-          return  NoOrdersViewWidget(controller: controller, ordersCount: 0,);
-         },
-        loadingBuilder: (context) =>  const Column(
+      onLoadingWidget: (context) {
+       return const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(child: CircularProgressIndicator()),
           ],
-        ),
-      ),
+        );
+      },
+      onFailedWidget: (context, error, callback) {
+        return NoOrdersViewWidget(controller: controller,);
+      },
+    ),
     );
   }
 }

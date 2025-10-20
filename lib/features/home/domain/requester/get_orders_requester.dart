@@ -3,7 +3,7 @@ import 'package:flutter_tdd/core/requester/requester.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 
-class GetOrdersRequester extends Requester<OrdersModel?>{
+class GetOrdersRequester extends Requester<OrdersList?>{
 
   @override
   Future<void> request({bool fromRemote = true}) async{

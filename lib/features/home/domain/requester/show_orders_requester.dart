@@ -4,7 +4,7 @@ import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.d
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 
-class ShowOrdersRequester extends Requester<OrderItem>{
+class ShowOrdersRequester extends Requester<OrderModel>{
   final int id;
 
   ShowOrdersRequester({required this.id});

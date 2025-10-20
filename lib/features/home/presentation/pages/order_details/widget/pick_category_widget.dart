@@ -7,7 +7,7 @@ import 'widgets_imports.dart';
 
 class PickCategoryWidget extends StatelessWidget {
   final OrderDetailsController controller;
-  final OrderItem data;
+  final OrderModel data;
   const PickCategoryWidget({super.key, required this.controller, required this.data});
 
   @override

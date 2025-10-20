@@ -1,15 +1,10 @@
 
 import 'dart:async';
+import 'dart:convert';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/global_context.dart';
-import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/new_order_alert_dialog_widget.dart';
-import 'package:flutter_tdd/features/orders/data/models/order_model/order_model.dart';
-import 'package:flutter_tdd/features/orders/domain/repositories/orders_repositories.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_tdd/core/helpers/hive_helper.dart';
+import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/res.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sound_effect/sound_effect.dart';
@@ -21,54 +16,55 @@ class OrdersHelper {
 
   final BaseBloc<OrderModel?> currentOrderCubit = BaseBloc<OrderModel?>();
 
-  Future<void> getCurrentOrder({void Function()? afterSuccess, bool fromRemote = true,bool setLoading = true}) async {
-    // if(setLoading){
-    if(currentOrderCubit.hasNoData){
-      currentOrderCubit.loadingState();
-    }
-    var result = await getIt<OrdersRepositories>().getCurrentOrder(fromRemote);
-    result.when(
-      isSuccess: (data) {
-        currentOrderCubit.successState(data);
-        if (afterSuccess != null) {
-          afterSuccess.call();
-        }
-      },
-      isError: (error) {
-        currentOrderCubit.failedState(
-          error,
-          () => getCurrentOrder(),
-        );
-      },
-    );
-  }
+   Future<void> saveOrders(OrdersList data) async {
+     final jsonString = jsonEncode(data.toJson());
+     await HiveHelper.instance.addDataToBox<String>(HiveBoxesNames.orders, jsonString);
+   }
 
 
-  // Future<void> showNewOrderAlert() async {
-  //   BuildContext context = getIt<GlobalContext>().context();
-  //   bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
-  //   if (isAvailable && currentOrderCubit.hasNoData) {
-  //     _startSound();
-  //    await showDialog(
-  //       context: context,
-  //       barrierDismissible: true,
-  //       builder: (context) => NewOrderAlertWidget(
-  //         onPressApply: () => onPressApply(context),
-  //       ),
-  //     );
-  //    _stopSound();
-  //   }
-  // }
+   Future<OrdersList?> getOrders() async {
+     final box = HiveHelper.instance.getBox<String>(HiveBoxesNames.orders);
+     if (box.isEmpty) return null;
 
-  // void onPressApply(BuildContext context){
-  //   _stopSound();
-  //   var user = context.read<UserCubit>().state.model;
-  //   if(user?.isFreelancer ?? false){
-  //
-  //   }else{
-  //     getCurrentOrder();
-  //   }
-  // }
+     final jsonString = box.values.first;
+     final map = jsonDecode(jsonString) as Map<String, dynamic>;
+     return OrdersList.fromJson(map);
+   }
+
+   Future<void> saveAssignedOrders(List<OrderModel> data) async {
+     final jsonString = jsonEncode(data.map((e) => e.toJson()).toList());
+     await HiveHelper.instance.addDataToBox<String>(
+       HiveBoxesNames.orders,
+       key: HiveBoxesKeys.assignedOrdersKey,
+       jsonString,
+     );
+   }
+
+   Future<List<OrderModel>> getAssignedOrders() async {
+     final jsonString = HiveHelper.instance.getDataFromBox<String>(
+       HiveBoxesNames.orders,
+       key: HiveBoxesKeys.assignedOrdersKey,
+     );
+
+     if (jsonString == null || jsonString.isEmpty) {
+       return [];
+     }
+
+     final List<dynamic> decodedList = jsonDecode(jsonString);
+     return decodedList.map((e) => OrderModel.fromJson(e)).toList();
+   }
+
+   Future<void> saveOrderDetails(OrderModel data) async {
+     final jsonString = jsonEncode(data.toJson());
+     await HiveHelper.instance.addDataToBox<String>(HiveBoxesNames.orderDetails, jsonString);
+   }
+
+   Future<OrderModel?> getOrderDetails() async {
+     final box = HiveHelper.instance.getBox<String>(HiveBoxesNames.orderDetails);
+     final jsonString = box.values.first;
+     final map = jsonDecode(jsonString) as Map<String, dynamic>;
+     return OrderModel.fromJson(map);
+   }
 
    Future<void> _startSound({Duration interval = const Duration(seconds: 2)}) async {
     if (_timer != null) return;
@@ -85,6 +81,7 @@ class OrdersHelper {
     _timer?.cancel();
     _timer = null;
   }
+
 
 
 

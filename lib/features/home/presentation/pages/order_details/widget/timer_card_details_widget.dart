@@ -9,7 +9,7 @@ import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget
 import 'widgets_imports.dart';
 
 class TimerCardDetailsWidget extends StatelessWidget {
-  final OrderItem data;
+  final OrderModel data;
   const TimerCardDetailsWidget({super.key, required this.data});
 
   @override

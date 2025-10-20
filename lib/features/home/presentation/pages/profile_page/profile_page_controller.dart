@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart'
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/languages_requester.dart';
-import 'package:flutter_tdd/features/orders/domain/entity/generic_pagin_params.dart';
 import 'profile_page_imports.dart';
 import 'widgets/lang_bottom_sheet_widget.dart';
 class ProfilePageController {
@@ -141,11 +140,6 @@ class ProfilePageController {
   }
 
 
-
-
-  GenericPaginateParams _storesParams(bool refresh) {
-    return GenericPaginateParams(pageSize: ApplicationConstants.paginationLimit, refresh: refresh, currentPage: 1);
-  }
 
   UpdateProfileImageParams _updateParams() {
     return UpdateProfileImageParams(image: pickedImage!);

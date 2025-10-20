@@ -33,7 +33,7 @@ class ApiNames{
   static  String updateOrderStatus(int id) => "${appApi}orders/$id/status";
 
   ///home
-  static  String profile = "${appApi}tprofile";
+  static  String profile = "${appApi}profile";
   static  String updateProfileImage = "${appApi}update-avatar?_method=patch";
   static  String toggleAvailability = "${appApi}toggle-availability?_method=patch";
   static  String orders = "${appApi}orders";

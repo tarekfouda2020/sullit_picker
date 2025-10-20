@@ -10,7 +10,7 @@ import 'package:flutter_tdd/res.dart';
 import 'widgets_imports.dart';
 
 class HeaderOrderDetailsWidget extends StatelessWidget {
-final OrderItem data;
+final OrderModel data;
   const HeaderOrderDetailsWidget({super.key, required this.data});
 
   @override
