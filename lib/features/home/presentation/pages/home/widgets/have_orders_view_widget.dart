@@ -9,8 +9,13 @@ import 'home_widgets_imports.dart';
 
 class HaveOrdersViewWidget extends StatelessWidget {
   final HomeController controller;
-  final OrdersList data;
-  const HaveOrdersViewWidget({super.key, required this.controller, required this.data});
+  final OrdersModel? data;
+
+  const HaveOrdersViewWidget({
+    super.key,
+    required this.controller,
+    required this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +24,44 @@ class HaveOrdersViewWidget extends StatelessWidget {
         HomeHeaderWidget(controller: controller),
         Gaps.vGap14,
         CustomSearchBar(controller: controller),
-        AssignedOrdersWidget(ordersCount: data.assignedOrdersCount,),
+        AssignedOrdersWidget(ordersCount: data?.assignedOrdersCount ?? 0),
+        Gaps.vGap10,
         Expanded(
           child: RefreshIndicator(
             onRefresh: () async => await controller.getAllOrders() ,
             backgroundColor: context.colors.white,
-            child: ListView.separated(
-              itemBuilder: (BuildContext context, int index) {
-                return  CardOrderWidget(controller: controller, data: data.assignedOrders[index],);
-              },
-              itemCount: data.assignedOrders.length,
-              separatorBuilder: (BuildContext context, int index) => Gaps.vGap12,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: data?.assignedOrders.length ?? 0,
+                    separatorBuilder: (_, __) => Gaps.vGap12,
+                    itemBuilder: (context, index) {
+                      return CardOrderWidget(
+                        controller: controller,
+                        data: data!.assignedOrders[index],
+                      );
+                    },
+                  ),
+                  Gaps.vGap20,
+                  ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: data?.newOrders.length ?? 0,
+                    separatorBuilder: (_, __) => Gaps.vGap12,
+                    itemBuilder: (context, index) {
+                      return CardOrderWidget(
+                        controller: controller,
+                        data: data!.newOrders[index],
+                      );
+                    },
+                  ),
+                  Gaps.vGap20,
+                ],
+              ),
             ),
           ),
         ),

@@ -44,18 +44,28 @@ class DateTimeHelper {
 
 
 
-  static ObsValue<String> getDifferenceFromCurrentDate(String strDate) {
-    final DateFormat formatter = DateFormat("yyyy-MM-dd HH:mm:ss");
-    final DateTime startTime = formatter.parse(strDate, true).toLocal();
-    final ObsValue<String> timeAgoObs = ObsValue<String>.withInit(
-      _formatTimeAgo(DateTime.now().difference(startTime)),
-    );
+  static ObsValue<String> getDifferenceFromCurrentDate(String? strDate) {
+    final ObsValue<String> timeAgoObs = ObsValue.withInit("No date available");
 
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      final now = DateTime.now();
-      final elapsed = now.difference(startTime);
-      timeAgoObs.setValue(_formatTimeAgo(elapsed));
-    });
+    if (strDate == null || strDate.trim().isEmpty) {
+      return timeAgoObs;
+    }
+
+    try {
+      final formatter = DateFormat("yyyy-MM-dd HH:mm:ss");
+      final startTime = formatter.parse(strDate, true).toLocal();
+
+      timeAgoObs.setValue(_formatTimeAgo(DateTime.now().difference(startTime)));
+
+      Timer.periodic(const Duration(seconds: 1), (timer) {
+        final now = DateTime.now();
+        final elapsed = now.difference(startTime);
+        timeAgoObs.setValue(_formatTimeAgo(elapsed));
+      });
+    } catch (e) {
+      print("⚠️ Date parse error: $e");
+      timeAgoObs.setValue("Invalid date");
+    }
 
     return timeAgoObs;
   }

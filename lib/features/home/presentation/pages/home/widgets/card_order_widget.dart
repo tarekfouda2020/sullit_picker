@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
@@ -69,11 +67,11 @@ class CardOrderWidget extends StatelessWidget {
           ),
           Gaps.vGap24,
           AppTextButton.maxCustom(
-            text: 'Continue Picking',
+            text: data!.isNewOrder ? 'Start Pick' : 'Continue Picking',
             maxHeight: 44,
             textSize: 18,
             onPressed: () {
-              AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id));
+              controller.acceptOrder(context, data!);
             },
           )
         ],

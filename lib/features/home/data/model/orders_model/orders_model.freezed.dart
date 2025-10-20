@@ -14,59 +14,52 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-OrdersList _$OrdersListFromJson(Map<String, dynamic> json) {
-  return _OrdersList.fromJson(json);
+OrdersModel _$OrdersModelFromJson(Map<String, dynamic> json) {
+  return _OrdersModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OrdersList {
-  @HiveField(0)
+mixin _$OrdersModel {
   @JsonKey(name: 'assigned_orders')
-  List<OrderModel> get assignedOrders => throw _privateConstructorUsedError;
-  @HiveField(1)
+  List<OrderItem> get assignedOrders => throw _privateConstructorUsedError;
   @JsonKey(name: 'assigned_orders_count')
   int get assignedOrdersCount => throw _privateConstructorUsedError;
-  @HiveField(2)
   @JsonKey(name: 'new_orders')
-  List<OrderModel> get newOrders => throw _privateConstructorUsedError;
+  List<OrderItem> get newOrders => throw _privateConstructorUsedError;
 
-  /// Serializes this OrdersList to a JSON map.
+  /// Serializes this OrdersModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of OrdersList
+  /// Create a copy of OrdersModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrdersListCopyWith<OrdersList> get copyWith =>
+  $OrdersModelCopyWith<OrdersModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrdersListCopyWith<$Res> {
-  factory $OrdersListCopyWith(
-          OrdersList value, $Res Function(OrdersList) then) =
-      _$OrdersListCopyWithImpl<$Res, OrdersList>;
+abstract class $OrdersModelCopyWith<$Res> {
+  factory $OrdersModelCopyWith(
+          OrdersModel value, $Res Function(OrdersModel) then) =
+      _$OrdersModelCopyWithImpl<$Res, OrdersModel>;
   @useResult
   $Res call(
-      {@HiveField(0)
-      @JsonKey(name: 'assigned_orders')
-      List<OrderModel> assignedOrders,
-      @HiveField(1)
-      @JsonKey(name: 'assigned_orders_count')
-      int assignedOrdersCount,
-      @HiveField(2) @JsonKey(name: 'new_orders') List<OrderModel> newOrders});
+      {@JsonKey(name: 'assigned_orders') List<OrderItem> assignedOrders,
+      @JsonKey(name: 'assigned_orders_count') int assignedOrdersCount,
+      @JsonKey(name: 'new_orders') List<OrderItem> newOrders});
 }
 
 /// @nodoc
-class _$OrdersListCopyWithImpl<$Res, $Val extends OrdersList>
-    implements $OrdersListCopyWith<$Res> {
-  _$OrdersListCopyWithImpl(this._value, this._then);
+class _$OrdersModelCopyWithImpl<$Res, $Val extends OrdersModel>
+    implements $OrdersModelCopyWith<$Res> {
+  _$OrdersModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrdersList
+  /// Create a copy of OrdersModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -79,7 +72,7 @@ class _$OrdersListCopyWithImpl<$Res, $Val extends OrdersList>
       assignedOrders: null == assignedOrders
           ? _value.assignedOrders
           : assignedOrders // ignore: cast_nullable_to_non_nullable
-              as List<OrderModel>,
+              as List<OrderItem>,
       assignedOrdersCount: null == assignedOrdersCount
           ? _value.assignedOrdersCount
           : assignedOrdersCount // ignore: cast_nullable_to_non_nullable
@@ -87,38 +80,34 @@ class _$OrdersListCopyWithImpl<$Res, $Val extends OrdersList>
       newOrders: null == newOrders
           ? _value.newOrders
           : newOrders // ignore: cast_nullable_to_non_nullable
-              as List<OrderModel>,
+              as List<OrderItem>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$OrdersListImplCopyWith<$Res>
-    implements $OrdersListCopyWith<$Res> {
-  factory _$$OrdersListImplCopyWith(
-          _$OrdersListImpl value, $Res Function(_$OrdersListImpl) then) =
-      __$$OrdersListImplCopyWithImpl<$Res>;
+abstract class _$$OrdersModelImplCopyWith<$Res>
+    implements $OrdersModelCopyWith<$Res> {
+  factory _$$OrdersModelImplCopyWith(
+          _$OrdersModelImpl value, $Res Function(_$OrdersModelImpl) then) =
+      __$$OrdersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@HiveField(0)
-      @JsonKey(name: 'assigned_orders')
-      List<OrderModel> assignedOrders,
-      @HiveField(1)
-      @JsonKey(name: 'assigned_orders_count')
-      int assignedOrdersCount,
-      @HiveField(2) @JsonKey(name: 'new_orders') List<OrderModel> newOrders});
+      {@JsonKey(name: 'assigned_orders') List<OrderItem> assignedOrders,
+      @JsonKey(name: 'assigned_orders_count') int assignedOrdersCount,
+      @JsonKey(name: 'new_orders') List<OrderItem> newOrders});
 }
 
 /// @nodoc
-class __$$OrdersListImplCopyWithImpl<$Res>
-    extends _$OrdersListCopyWithImpl<$Res, _$OrdersListImpl>
-    implements _$$OrdersListImplCopyWith<$Res> {
-  __$$OrdersListImplCopyWithImpl(
-      _$OrdersListImpl _value, $Res Function(_$OrdersListImpl) _then)
+class __$$OrdersModelImplCopyWithImpl<$Res>
+    extends _$OrdersModelCopyWithImpl<$Res, _$OrdersModelImpl>
+    implements _$$OrdersModelImplCopyWith<$Res> {
+  __$$OrdersModelImplCopyWithImpl(
+      _$OrdersModelImpl _value, $Res Function(_$OrdersModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrdersList
+  /// Create a copy of OrdersModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -127,11 +116,11 @@ class __$$OrdersListImplCopyWithImpl<$Res>
     Object? assignedOrdersCount = null,
     Object? newOrders = null,
   }) {
-    return _then(_$OrdersListImpl(
+    return _then(_$OrdersModelImpl(
       assignedOrders: null == assignedOrders
           ? _value._assignedOrders
           : assignedOrders // ignore: cast_nullable_to_non_nullable
-              as List<OrderModel>,
+              as List<OrderItem>,
       assignedOrdersCount: null == assignedOrdersCount
           ? _value.assignedOrdersCount
           : assignedOrdersCount // ignore: cast_nullable_to_non_nullable
@@ -139,50 +128,41 @@ class __$$OrdersListImplCopyWithImpl<$Res>
       newOrders: null == newOrders
           ? _value._newOrders
           : newOrders // ignore: cast_nullable_to_non_nullable
-              as List<OrderModel>,
+              as List<OrderItem>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 0, adapterName: "OrdersListAdapter")
-class _$OrdersListImpl implements _OrdersList {
-  const _$OrdersListImpl(
-      {@HiveField(0)
-      @JsonKey(name: 'assigned_orders')
-      required final List<OrderModel> assignedOrders,
-      @HiveField(1)
-      @JsonKey(name: 'assigned_orders_count')
-      required this.assignedOrdersCount,
-      @HiveField(2)
-      @JsonKey(name: 'new_orders')
-      required final List<OrderModel> newOrders})
+class _$OrdersModelImpl implements _OrdersModel {
+  const _$OrdersModelImpl(
+      {@JsonKey(name: 'assigned_orders')
+      required final List<OrderItem> assignedOrders,
+      @JsonKey(name: 'assigned_orders_count') required this.assignedOrdersCount,
+      @JsonKey(name: 'new_orders') required final List<OrderItem> newOrders})
       : _assignedOrders = assignedOrders,
         _newOrders = newOrders;
 
-  factory _$OrdersListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OrdersListImplFromJson(json);
+  factory _$OrdersModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrdersModelImplFromJson(json);
 
-  final List<OrderModel> _assignedOrders;
+  final List<OrderItem> _assignedOrders;
   @override
-  @HiveField(0)
   @JsonKey(name: 'assigned_orders')
-  List<OrderModel> get assignedOrders {
+  List<OrderItem> get assignedOrders {
     if (_assignedOrders is EqualUnmodifiableListView) return _assignedOrders;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_assignedOrders);
   }
 
   @override
-  @HiveField(1)
   @JsonKey(name: 'assigned_orders_count')
   final int assignedOrdersCount;
-  final List<OrderModel> _newOrders;
+  final List<OrderItem> _newOrders;
   @override
-  @HiveField(2)
   @JsonKey(name: 'new_orders')
-  List<OrderModel> get newOrders {
+  List<OrderItem> get newOrders {
     if (_newOrders is EqualUnmodifiableListView) return _newOrders;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_newOrders);
@@ -190,14 +170,14 @@ class _$OrdersListImpl implements _OrdersList {
 
   @override
   String toString() {
-    return 'OrdersList(assignedOrders: $assignedOrders, assignedOrdersCount: $assignedOrdersCount, newOrders: $newOrders)';
+    return 'OrdersModel(assignedOrders: $assignedOrders, assignedOrdersCount: $assignedOrdersCount, newOrders: $newOrders)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OrdersListImpl &&
+            other is _$OrdersModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._assignedOrders, _assignedOrders) &&
             (identical(other.assignedOrdersCount, assignedOrdersCount) ||
@@ -214,129 +194,110 @@ class _$OrdersListImpl implements _OrdersList {
       assignedOrdersCount,
       const DeepCollectionEquality().hash(_newOrders));
 
-  /// Create a copy of OrdersList
+  /// Create a copy of OrdersModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$OrdersListImplCopyWith<_$OrdersListImpl> get copyWith =>
-      __$$OrdersListImplCopyWithImpl<_$OrdersListImpl>(this, _$identity);
+  _$$OrdersModelImplCopyWith<_$OrdersModelImpl> get copyWith =>
+      __$$OrdersModelImplCopyWithImpl<_$OrdersModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$OrdersListImplToJson(
+    return _$$OrdersModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _OrdersList implements OrdersList {
-  const factory _OrdersList(
-      {@HiveField(0)
-      @JsonKey(name: 'assigned_orders')
-      required final List<OrderModel> assignedOrders,
-      @HiveField(1)
+abstract class _OrdersModel implements OrdersModel {
+  const factory _OrdersModel(
+      {@JsonKey(name: 'assigned_orders')
+      required final List<OrderItem> assignedOrders,
       @JsonKey(name: 'assigned_orders_count')
       required final int assignedOrdersCount,
-      @HiveField(2)
       @JsonKey(name: 'new_orders')
-      required final List<OrderModel> newOrders}) = _$OrdersListImpl;
+      required final List<OrderItem> newOrders}) = _$OrdersModelImpl;
 
-  factory _OrdersList.fromJson(Map<String, dynamic> json) =
-      _$OrdersListImpl.fromJson;
+  factory _OrdersModel.fromJson(Map<String, dynamic> json) =
+      _$OrdersModelImpl.fromJson;
 
   @override
-  @HiveField(0)
   @JsonKey(name: 'assigned_orders')
-  List<OrderModel> get assignedOrders;
+  List<OrderItem> get assignedOrders;
   @override
-  @HiveField(1)
   @JsonKey(name: 'assigned_orders_count')
   int get assignedOrdersCount;
   @override
-  @HiveField(2)
   @JsonKey(name: 'new_orders')
-  List<OrderModel> get newOrders;
+  List<OrderItem> get newOrders;
 
-  /// Create a copy of OrdersList
+  /// Create a copy of OrdersModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrdersListImplCopyWith<_$OrdersListImpl> get copyWith =>
+  _$$OrdersModelImplCopyWith<_$OrdersModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-OrderModel _$OrderModelFromJson(Map<String, dynamic> json) {
-  return _OOrderModel.fromJson(json);
+OrderItem _$OrderItemFromJson(Map<String, dynamic> json) {
+  return _OrderItem.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OrderModel {
-  @HiveField(0)
+mixin _$OrderItem {
   int get id => throw _privateConstructorUsedError;
-  @HiveField(1)
   String get code => throw _privateConstructorUsedError;
-  @HiveField(2)
   @JsonKey(name: 'total_items')
   int get totalItems => throw _privateConstructorUsedError;
-  @HiveField(3)
   @JsonKey(name: 'allow_replacement')
   bool get allowReplacement => throw _privateConstructorUsedError;
-  @HiveField(4)
   String get status => throw _privateConstructorUsedError;
-  @HiveField(5)
   @JsonKey(name: 'preparation_minutes')
   int get preparationMinutes => throw _privateConstructorUsedError;
-  @HiveField(6)
   @JsonKey(name: 'start_picking_at')
   String get startPickingAt => throw _privateConstructorUsedError;
-  @HiveField(7)
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? get ordersDetails =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this OrderModel to a JSON map.
+  /// Serializes this OrderItem to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of OrderModel
+  /// Create a copy of OrderItem
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderModelCopyWith<OrderModel> get copyWith =>
+  $OrderItemCopyWith<OrderItem> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderModelCopyWith<$Res> {
-  factory $OrderModelCopyWith(
-          OrderModel value, $Res Function(OrderModel) then) =
-      _$OrderModelCopyWithImpl<$Res, OrderModel>;
+abstract class $OrderItemCopyWith<$Res> {
+  factory $OrderItemCopyWith(OrderItem value, $Res Function(OrderItem) then) =
+      _$OrderItemCopyWithImpl<$Res, OrderItem>;
   @useResult
   $Res call(
-      {@HiveField(0) int id,
-      @HiveField(1) String code,
-      @HiveField(2) @JsonKey(name: 'total_items') int totalItems,
-      @HiveField(3) @JsonKey(name: 'allow_replacement') bool allowReplacement,
-      @HiveField(4) String status,
-      @HiveField(5)
-      @JsonKey(name: 'preparation_minutes')
-      int preparationMinutes,
-      @HiveField(6) @JsonKey(name: 'start_picking_at') String startPickingAt,
-      @HiveField(7)
-      @JsonKey(name: 'order_details')
-      List<OrderDetailsModel>? ordersDetails});
+      {int id,
+      String code,
+      @JsonKey(name: 'total_items') int totalItems,
+      @JsonKey(name: 'allow_replacement') bool allowReplacement,
+      String status,
+      @JsonKey(name: 'preparation_minutes') int preparationMinutes,
+      @JsonKey(name: 'start_picking_at') String startPickingAt,
+      @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails});
 }
 
 /// @nodoc
-class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
-    implements $OrderModelCopyWith<$Res> {
-  _$OrderModelCopyWithImpl(this._value, this._then);
+class _$OrderItemCopyWithImpl<$Res, $Val extends OrderItem>
+    implements $OrderItemCopyWith<$Res> {
+  _$OrderItemCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrderModel
+  /// Create a copy of OrderItem
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -388,37 +349,33 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
 }
 
 /// @nodoc
-abstract class _$$OOrderModelImplCopyWith<$Res>
-    implements $OrderModelCopyWith<$Res> {
-  factory _$$OOrderModelImplCopyWith(
-          _$OOrderModelImpl value, $Res Function(_$OOrderModelImpl) then) =
-      __$$OOrderModelImplCopyWithImpl<$Res>;
+abstract class _$$OrderItemImplCopyWith<$Res>
+    implements $OrderItemCopyWith<$Res> {
+  factory _$$OrderItemImplCopyWith(
+          _$OrderItemImpl value, $Res Function(_$OrderItemImpl) then) =
+      __$$OrderItemImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@HiveField(0) int id,
-      @HiveField(1) String code,
-      @HiveField(2) @JsonKey(name: 'total_items') int totalItems,
-      @HiveField(3) @JsonKey(name: 'allow_replacement') bool allowReplacement,
-      @HiveField(4) String status,
-      @HiveField(5)
-      @JsonKey(name: 'preparation_minutes')
-      int preparationMinutes,
-      @HiveField(6) @JsonKey(name: 'start_picking_at') String startPickingAt,
-      @HiveField(7)
-      @JsonKey(name: 'order_details')
-      List<OrderDetailsModel>? ordersDetails});
+      {int id,
+      String code,
+      @JsonKey(name: 'total_items') int totalItems,
+      @JsonKey(name: 'allow_replacement') bool allowReplacement,
+      String status,
+      @JsonKey(name: 'preparation_minutes') int preparationMinutes,
+      @JsonKey(name: 'start_picking_at') String startPickingAt,
+      @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails});
 }
 
 /// @nodoc
-class __$$OOrderModelImplCopyWithImpl<$Res>
-    extends _$OrderModelCopyWithImpl<$Res, _$OOrderModelImpl>
-    implements _$$OOrderModelImplCopyWith<$Res> {
-  __$$OOrderModelImplCopyWithImpl(
-      _$OOrderModelImpl _value, $Res Function(_$OOrderModelImpl) _then)
+class __$$OrderItemImplCopyWithImpl<$Res>
+    extends _$OrderItemCopyWithImpl<$Res, _$OrderItemImpl>
+    implements _$$OrderItemImplCopyWith<$Res> {
+  __$$OrderItemImplCopyWithImpl(
+      _$OrderItemImpl _value, $Res Function(_$OrderItemImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderModel
+  /// Create a copy of OrderItem
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -432,7 +389,7 @@ class __$$OOrderModelImplCopyWithImpl<$Res>
     Object? startPickingAt = null,
     Object? ordersDetails = freezed,
   }) {
-    return _then(_$OOrderModelImpl(
+    return _then(_$OrderItemImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -471,58 +428,43 @@ class __$$OOrderModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 1, adapterName: "OrderModelAdapter")
-class _$OOrderModelImpl implements _OOrderModel {
-  const _$OOrderModelImpl(
-      {@HiveField(0) required this.id,
-      @HiveField(1) required this.code,
-      @HiveField(2) @JsonKey(name: 'total_items') required this.totalItems,
-      @HiveField(3)
-      @JsonKey(name: 'allow_replacement')
-      required this.allowReplacement,
-      @HiveField(4) required this.status,
-      @HiveField(5)
-      @JsonKey(name: 'preparation_minutes')
-      required this.preparationMinutes,
-      @HiveField(6)
-      @JsonKey(name: 'start_picking_at')
-      required this.startPickingAt,
-      @HiveField(7)
+class _$OrderItemImpl extends _OrderItem {
+  const _$OrderItemImpl(
+      {required this.id,
+      required this.code,
+      @JsonKey(name: 'total_items') required this.totalItems,
+      @JsonKey(name: 'allow_replacement') required this.allowReplacement,
+      required this.status,
+      @JsonKey(name: 'preparation_minutes') required this.preparationMinutes,
+      @JsonKey(name: 'start_picking_at') required this.startPickingAt,
       @JsonKey(name: 'order_details')
       final List<OrderDetailsModel>? ordersDetails})
-      : _ordersDetails = ordersDetails;
+      : _ordersDetails = ordersDetails,
+        super._();
 
-  factory _$OOrderModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OOrderModelImplFromJson(json);
+  factory _$OrderItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrderItemImplFromJson(json);
 
   @override
-  @HiveField(0)
   final int id;
   @override
-  @HiveField(1)
   final String code;
   @override
-  @HiveField(2)
   @JsonKey(name: 'total_items')
   final int totalItems;
   @override
-  @HiveField(3)
   @JsonKey(name: 'allow_replacement')
   final bool allowReplacement;
   @override
-  @HiveField(4)
   final String status;
   @override
-  @HiveField(5)
   @JsonKey(name: 'preparation_minutes')
   final int preparationMinutes;
   @override
-  @HiveField(6)
   @JsonKey(name: 'start_picking_at')
   final String startPickingAt;
   final List<OrderDetailsModel>? _ordersDetails;
   @override
-  @HiveField(7)
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? get ordersDetails {
     final value = _ordersDetails;
@@ -534,14 +476,14 @@ class _$OOrderModelImpl implements _OOrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails)';
+    return 'OrderItem(id: $id, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OOrderModelImpl &&
+            other is _$OrderItemImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.totalItems, totalItems) ||
@@ -570,79 +512,66 @@ class _$OOrderModelImpl implements _OOrderModel {
       startPickingAt,
       const DeepCollectionEquality().hash(_ordersDetails));
 
-  /// Create a copy of OrderModel
+  /// Create a copy of OrderItem
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$OOrderModelImplCopyWith<_$OOrderModelImpl> get copyWith =>
-      __$$OOrderModelImplCopyWithImpl<_$OOrderModelImpl>(this, _$identity);
+  _$$OrderItemImplCopyWith<_$OrderItemImpl> get copyWith =>
+      __$$OrderItemImplCopyWithImpl<_$OrderItemImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$OOrderModelImplToJson(
+    return _$$OrderItemImplToJson(
       this,
     );
   }
 }
 
-abstract class _OOrderModel implements OrderModel {
-  const factory _OOrderModel(
-      {@HiveField(0) required final int id,
-      @HiveField(1) required final String code,
-      @HiveField(2) @JsonKey(name: 'total_items') required final int totalItems,
-      @HiveField(3)
-      @JsonKey(name: 'allow_replacement')
-      required final bool allowReplacement,
-      @HiveField(4) required final String status,
-      @HiveField(5)
+abstract class _OrderItem extends OrderItem {
+  const factory _OrderItem(
+      {required final int id,
+      required final String code,
+      @JsonKey(name: 'total_items') required final int totalItems,
+      @JsonKey(name: 'allow_replacement') required final bool allowReplacement,
+      required final String status,
       @JsonKey(name: 'preparation_minutes')
       required final int preparationMinutes,
-      @HiveField(6)
-      @JsonKey(name: 'start_picking_at')
-      required final String startPickingAt,
-      @HiveField(7)
+      @JsonKey(name: 'start_picking_at') required final String startPickingAt,
       @JsonKey(name: 'order_details')
-      final List<OrderDetailsModel>? ordersDetails}) = _$OOrderModelImpl;
+      final List<OrderDetailsModel>? ordersDetails}) = _$OrderItemImpl;
+  const _OrderItem._() : super._();
 
-  factory _OOrderModel.fromJson(Map<String, dynamic> json) =
-      _$OOrderModelImpl.fromJson;
+  factory _OrderItem.fromJson(Map<String, dynamic> json) =
+      _$OrderItemImpl.fromJson;
 
   @override
-  @HiveField(0)
   int get id;
   @override
-  @HiveField(1)
   String get code;
   @override
-  @HiveField(2)
   @JsonKey(name: 'total_items')
   int get totalItems;
   @override
-  @HiveField(3)
   @JsonKey(name: 'allow_replacement')
   bool get allowReplacement;
   @override
-  @HiveField(4)
   String get status;
   @override
-  @HiveField(5)
   @JsonKey(name: 'preparation_minutes')
   int get preparationMinutes;
   @override
-  @HiveField(6)
   @JsonKey(name: 'start_picking_at')
   String get startPickingAt;
   @override
-  @HiveField(7)
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? get ordersDetails;
 
-  /// Create a copy of OrderModel
+  /// Create a copy of OrderItem
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OOrderModelImplCopyWith<_$OOrderModelImpl> get copyWith =>
+  _$$OrderItemImplCopyWith<_$OrderItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

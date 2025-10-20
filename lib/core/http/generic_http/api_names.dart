@@ -38,6 +38,7 @@ class ApiNames{
   static  String toggleAvailability = "${appApi}toggle-availability?_method=patch";
   static  String orders = "${appApi}orders";
   static  String showOrders(int id) => "${appApi}orders/$id";
+  static  String acceptOrder(int id) => "${appApi}orders/$id/accept";
 
   ///general
   static  const String socials = "socials";

@@ -1,8 +1,8 @@
 
 class OrdersParams {
   int id;
-  bool refresh;
+  bool refresh ;
 
-  OrdersParams({required this.id,required this.refresh});
+  OrdersParams({required this.id,this.refresh = true});
 
 }
