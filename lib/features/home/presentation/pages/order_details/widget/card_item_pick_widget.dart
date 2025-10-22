@@ -49,7 +49,7 @@ class CardItemPickWidget extends StatelessWidget {
             ],
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: ObsValueConsumer(
@@ -88,6 +88,15 @@ class CardItemPickWidget extends StatelessWidget {
                       "${data.quantity - data.product.pickedQuantity!}",
                       style: AppTextStyle.s18_w600(
                           color: context.colors.primary),
+                    ),
+                  ),
+                  Gaps.vGap8,
+                  GestureDetector(
+                    onTap: () => controller.showWeightDialog(context),
+                    child: Text(
+                      'Edit Qnt',
+                      style: AppTextStyle.s14_w400(
+                          color: context.colors.textColor),
                     ),
                   ),
                 ],

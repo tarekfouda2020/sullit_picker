@@ -54,7 +54,7 @@ class _OrderDetailsState extends State<OrderDetails> {
           },
         ),
       ),
-      bottomNavigationBar: const BottomNavBarDetailsWidget(),
+      bottomNavigationBar:  BottomNavBarDetailsWidget(controller: controller),
     );
   }
 }

@@ -50,6 +50,25 @@ class OrderDetailsController {
     );
   }
 
+  void editQuantity(BuildContext context) {
+    showDialog(context: context, builder: (context) => const WeightConfirmDialogWidget());
+  }
+
+
+  Future<void> cancelOrder(BuildContext context) async {
+    var result = await getIt<HomeRepositories>().cancelOrder(OrdersParams(id: orderId));
+    result.when(
+      isSuccess: (data) async {
+        AppSnackBar.showSuccessSnackBar('Order cancellation successfully');
+        AutoRouter.of(context).maybePop();
+      },
+      isError: (error) {
+        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: 'Try Again'));
+      },
+    );
+  }
+
+
 
   void pickItem(OrderDetailsModel orderProduct) {
     var qty = orderProduct.quantity;

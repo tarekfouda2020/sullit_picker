@@ -101,6 +101,7 @@ const _$ProductStatusEnumEnumMap = {
   ProductStatusEnum.noEdit: 'noEdit',
   ProductStatusEnum.modified: 'modified',
   ProductStatusEnum.replaced: 'replaced',
+  ProductStatusEnum.normal: 'normal',
 };
 
 _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>

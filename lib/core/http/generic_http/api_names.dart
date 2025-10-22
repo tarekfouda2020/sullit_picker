@@ -29,16 +29,17 @@ class ApiNames{
 
 
   ///orders
-  static  String currentOrder = "${appApi}orders/current";
-  static  String updateOrderStatus(int id) => "${appApi}orders/$id/status";
+  static  String cancelOrder(int id) => "${appApi}orders/$id/cancel";
+  static  String orders = "${appApi}orders";
+  static  String showOrders(int id) => "${appApi}orders/$id";
+  static  String acceptOrder(int id) => "${appApi}orders/$id/accept";
+  static  String searchByBarcode(String sk) => "${appApi}products/search-by-barcode?sku=$sk";
 
   ///home
   static  String profile = "${appApi}profile";
   static  String updateProfileImage = "${appApi}update-avatar?_method=patch";
   static  String toggleAvailability = "${appApi}toggle-availability?_method=patch";
-  static  String orders = "${appApi}orders";
-  static  String showOrders(int id) => "${appApi}orders/$id";
-  static  String acceptOrder(int id) => "${appApi}orders/$id/accept";
+
 
   ///general
   static  const String socials = "socials";
