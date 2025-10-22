@@ -17,10 +17,7 @@ class RemoveProductDialog extends StatelessWidget {
       buttonGreenTitle: 'Yes Remove',
       buttonRedTitle: 'Cancel',
       greenOnTap: () => controller.deleteProduct(productId),
-      redOnTap: () {
-        Navigator.pop(context);
-        Navigator.pop(context);
-      },
+      redOnTap: () => Navigator.pop(context),
     );
   }
 }
