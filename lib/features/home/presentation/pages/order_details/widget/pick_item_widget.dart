@@ -23,12 +23,12 @@ class PickItemWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          orderDetails.product.category.name,
+          orderDetails.product!.category.name,
           style: AppTextStyle.s18_w500(color: context.colors.simiGray),
         ),
         Gaps.vGap12,
         CardPickedRatioWidget(
-          pickedPercentage: orderDetails.product.productPickedPercent!,
+          pickedPercentage: orderDetails.product!.productPickedPercent!,
           child: Stack(
             children: [
               CardItemPickWidget(
@@ -36,7 +36,7 @@ class PickItemWidget extends StatelessWidget {
                 data: orderDetails,
               ),
               Visibility(
-                visible: orderDetails.product.productStatus != ProductStatusEnum.noEdit,
+                visible: orderDetails.product!.productStatus != ProductStatusEnum.noEdit,
                 replacement: Positioned(
                     top: 18,
                     right: 20,

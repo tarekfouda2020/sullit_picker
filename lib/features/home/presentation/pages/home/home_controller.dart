@@ -53,7 +53,7 @@ class HomeController {
 
 
   Future<void> updateAssignedFromLocalData(List<OrderModel> data) async{
-    var localData = await getIt<OrdersHelper>().getAssignedOrders();
+    var localData =  getIt<OrdersHelper>().getAssignedOrders();
     if (localData.isEmpty) {
       getIt<OrdersHelper>().saveAssignedOrders(data);
       assignedOrdersCubit.successState(data);
@@ -64,7 +64,7 @@ class HomeController {
 
 
   Future<void> initDataFromLocal()async{
-    var data = await getIt<OrdersHelper>().getAssignedOrders();
+    var data =  getIt<OrdersHelper>().getAssignedOrders();
     assignedOrdersCubit.successState(data);
   }
 

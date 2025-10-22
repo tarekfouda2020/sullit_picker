@@ -61,7 +61,8 @@ class OrderDetailsModel with _$OrderDetailsModel {
     required String variation,
     required int quantity,
     required String price,
-    required ProductModel product,
+     /// return null in cancel order api
+   ProductModel? product,
   }) = _OrderDetailsModel;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>

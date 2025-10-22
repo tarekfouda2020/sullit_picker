@@ -602,8 +602,12 @@ mixin _$OrderDetailsModel {
   set quantity(int value) => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
   set price(String value) => throw _privateConstructorUsedError;
-  ProductModel get product => throw _privateConstructorUsedError;
-  set product(ProductModel value) => throw _privateConstructorUsedError;
+
+  /// return null in cancel order api
+  ProductModel? get product => throw _privateConstructorUsedError;
+
+  /// return null in cancel order api
+  set product(ProductModel? value) => throw _privateConstructorUsedError;
 
   /// Serializes this OrderDetailsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -626,9 +630,9 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       String variation,
       int quantity,
       String price,
-      ProductModel product});
+      ProductModel? product});
 
-  $ProductModelCopyWith<$Res> get product;
+  $ProductModelCopyWith<$Res>? get product;
 }
 
 /// @nodoc
@@ -650,7 +654,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? variation = null,
     Object? quantity = null,
     Object? price = null,
-    Object? product = null,
+    Object? product = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -669,10 +673,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
-      product: null == product
+      product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel,
+              as ProductModel?,
     ) as $Val);
   }
 
@@ -680,8 +684,12 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProductModelCopyWith<$Res> get product {
-    return $ProductModelCopyWith<$Res>(_value.product, (value) {
+  $ProductModelCopyWith<$Res>? get product {
+    if (_value.product == null) {
+      return null;
+    }
+
+    return $ProductModelCopyWith<$Res>(_value.product!, (value) {
       return _then(_value.copyWith(product: value) as $Val);
     });
   }
@@ -700,10 +708,10 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       String variation,
       int quantity,
       String price,
-      ProductModel product});
+      ProductModel? product});
 
   @override
-  $ProductModelCopyWith<$Res> get product;
+  $ProductModelCopyWith<$Res>? get product;
 }
 
 /// @nodoc
@@ -723,7 +731,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? variation = null,
     Object? quantity = null,
     Object? price = null,
-    Object? product = null,
+    Object? product = freezed,
   }) {
     return _then(_$OrderDetailsModelImpl(
       id: null == id
@@ -742,10 +750,10 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as String,
-      product: null == product
+      product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel,
+              as ProductModel?,
     ));
   }
 }
@@ -758,7 +766,7 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
       required this.variation,
       required this.quantity,
       required this.price,
-      required this.product});
+      this.product});
 
   factory _$OrderDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderDetailsModelImplFromJson(json);
@@ -771,8 +779,10 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
   int quantity;
   @override
   String price;
+
+  /// return null in cancel order api
   @override
-  ProductModel product;
+  ProductModel? product;
 
   @override
   String toString() {
@@ -802,7 +812,7 @@ abstract class _OrderDetailsModel implements OrderDetailsModel {
       required String variation,
       required int quantity,
       required String price,
-      required ProductModel product}) = _$OrderDetailsModelImpl;
+      ProductModel? product}) = _$OrderDetailsModelImpl;
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
       _$OrderDetailsModelImpl.fromJson;
@@ -819,9 +829,13 @@ abstract class _OrderDetailsModel implements OrderDetailsModel {
   @override
   String get price;
   set price(String value);
+
+  /// return null in cancel order api
   @override
-  ProductModel get product;
-  set product(ProductModel value);
+  ProductModel? get product;
+
+  /// return null in cancel order api
+  set product(ProductModel? value);
 
   /// Create a copy of OrderDetailsModel
   /// with the given fields replaced by the non-null parameter values.

@@ -59,7 +59,9 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
       variation: json['variation'] as String,
       quantity: (json['quantity'] as num).toInt(),
       price: json['price'] as String,
-      product: ProductModel.fromJson(json['product'] as Map<String, dynamic>),
+      product: json['product'] == null
+          ? null
+          : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$OrderDetailsModelImplToJson(

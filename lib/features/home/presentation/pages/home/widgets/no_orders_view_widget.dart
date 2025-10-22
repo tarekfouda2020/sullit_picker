@@ -11,65 +11,44 @@ class NoOrdersViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Padding(
-      padding: Dimens.paddingH20Px,
-      child: RefreshIndicator(
-        backgroundColor: context.colors.white,
-        onRefresh: () async => await controller.getAllOrders(),
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
-            ),
-            child: IntrinsicHeight(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  HomeHeaderWidget(controller: controller),
-                  Gaps.vGap14,
-                  CustomSearchBar(controller: controller),
-                  const AssignedOrdersWidget(ordersCount: 0,),
-                  Expanded(
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset(
-                            Res.noOrdersAvailable,
-                            width: 123,
-                            height: 152,
-                          ),
-                          Text(
-                            Translate.of(context).you_have_no_orders_now,
-                            style: AppTextStyle.s16_w400(color: context.colors.primary),
-                          )
-                        ],
-                      ),
+    return RefreshIndicator(
+      backgroundColor: context.colors.white,
+      onRefresh: () async => await controller.getAllOrders(),
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
+          ),
+          child: IntrinsicHeight(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                HomeHeaderWidget(controller: controller),
+                Gaps.vGap14,
+                CustomSearchBar(controller: controller),
+                const AssignedOrdersWidget(ordersCount: 0,),
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          Res.noOrdersAvailable,
+                          width: 123,
+                          height: 152,
+                        ),
+                        Text(
+                          Translate.of(context).you_have_no_orders_now,
+                          style: AppTextStyle.s16_w400(color: context.colors.primary),
+                        )
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ),
-      ),
-    );
-    return Expanded(
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              Res.noOrdersAvailable,
-              width: 123,
-              height: 152,
-            ),
-            Text(
-              Translate.of(context).you_have_no_orders_now,
-              style: AppTextStyle.s16_w400(color: context.colors.primary),
-            )
-          ],
         ),
       ),
     );

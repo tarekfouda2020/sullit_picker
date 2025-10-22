@@ -25,9 +25,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
           AppTextButton.maxCustom(
               text: 'Cancel Order',
             borderRadius: BorderRadius.circular(40),
-            onPressed: (){
-                controller.cancelOrder(context,);
-            },
+            onPressed: ()=> controller.cancelOrder(context,),
             textSize: 18,
             txtColor: context.colors.white,
             bgColor: context.colors.primary,

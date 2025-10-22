@@ -33,6 +33,7 @@ class OrdersWidget extends StatelessWidget {
         );
       },
       onFailedWidget: (context, error, callback) {
+        // return NoOrdersViewWidget(controller: controller,);
         return NoOrdersViewWidget(controller: controller,);
       },
     ),

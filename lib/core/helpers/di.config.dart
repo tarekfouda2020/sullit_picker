@@ -86,38 +86,38 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.factory<_i323.AppFileService>(() => _i323.AppFileService());
     gh.factory<_i320.LocationService>(() => _i320.LocationService());
-    gh.factory<_i577.PermissionServices>(() => _i577.PermissionServices());
     gh.factory<_i940.ShareServices>(() => _i940.ShareServices());
+    gh.factory<_i323.AppFileService>(() => _i323.AppFileService());
+    gh.factory<_i577.PermissionServices>(() => _i577.PermissionServices());
     gh.singleton<_i934.LoadingHelper>(() => _i934.LoadingHelper());
-    gh.lazySingleton<_i297.CountryPickerHelper>(
-        () => _i297.CountryPickerHelper());
-    gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
-    gh.lazySingleton<_i279.FirebaseAnalyticsHelper>(
-        () => _i279.FirebaseAnalyticsHelper());
+    gh.lazySingleton<_i407.NetworkInfoImpl>(() => _i407.NetworkInfoImpl());
+    gh.lazySingleton<_i466.DioOptions>(() => _i466.DioOptions());
+    gh.lazySingleton<_i974.HandleErrors>(() => _i974.HandleErrors());
+    gh.lazySingleton<_i45.HandleRequestBody>(() => _i45.HandleRequestBody());
+    gh.lazySingleton<_i893.HandleJsonResponse<dynamic>>(
+        () => _i893.HandleJsonResponse<dynamic>());
+    gh.lazySingleton<_i627.DioHeader>(() => _i627.DioHeader());
+    gh.lazySingleton<_i1065.Patch>(() => _i1065.Patch());
+    gh.lazySingleton<_i20.Post>(() => _i20.Post());
+    gh.lazySingleton<_i146.Delete>(() => _i146.Delete());
+    gh.lazySingleton<_i687.Get>(() => _i687.Get());
+    gh.lazySingleton<_i106.Put>(() => _i106.Put());
+    gh.lazySingleton<_i798.GenericHttpImpl<dynamic>>(
+        () => _i798.GenericHttpImpl<dynamic>());
     gh.lazySingleton<_i769.GlobalContext>(() => _i769.GlobalContext());
     gh.lazySingleton<_i443.GlobalNotification>(
         () => _i443.GlobalNotification());
-    gh.lazySingleton<_i752.OrdersHelper>(() => _i752.OrdersHelper());
     gh.lazySingleton<_i792.PickHelper>(() => _i792.PickHelper());
+    gh.lazySingleton<_i297.CountryPickerHelper>(
+        () => _i297.CountryPickerHelper());
+    gh.lazySingleton<_i652.Utilities>(() => _i652.Utilities());
+    gh.lazySingleton<_i279.FirebaseAnalyticsHelper>(
+        () => _i279.FirebaseAnalyticsHelper());
     gh.lazySingleton<_i690.UserServicesHelper>(
         () => _i690.UserServicesHelper());
-    gh.lazySingleton<_i652.Utilities>(() => _i652.Utilities());
-    gh.lazySingleton<_i146.Delete>(() => _i146.Delete());
-    gh.lazySingleton<_i687.Get>(() => _i687.Get());
-    gh.lazySingleton<_i1065.Patch>(() => _i1065.Patch());
-    gh.lazySingleton<_i20.Post>(() => _i20.Post());
-    gh.lazySingleton<_i106.Put>(() => _i106.Put());
-    gh.lazySingleton<_i627.DioHeader>(() => _i627.DioHeader());
-    gh.lazySingleton<_i466.DioOptions>(() => _i466.DioOptions());
-    gh.lazySingleton<_i974.HandleErrors>(() => _i974.HandleErrors());
-    gh.lazySingleton<_i893.HandleJsonResponse<dynamic>>(
-        () => _i893.HandleJsonResponse<dynamic>());
-    gh.lazySingleton<_i45.HandleRequestBody>(() => _i45.HandleRequestBody());
-    gh.lazySingleton<_i798.GenericHttpImpl<dynamic>>(
-        () => _i798.GenericHttpImpl<dynamic>());
-    gh.lazySingleton<_i407.NetworkInfoImpl>(() => _i407.NetworkInfoImpl());
+    gh.lazySingleton<_i752.OrdersHelper>(() => _i752.OrdersHelper());
+    gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
     gh.factory<_i1071.NotificationDataSource>(
         () => _i603.ImplNotificationDataSource());
     gh.factory<_i674.AuthRepositories>(() => _i988.ImplAuthRepositories());

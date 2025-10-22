@@ -4,7 +4,6 @@ import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/show_orders_requester.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
-
 import 'order_details_imports.dart';
 import 'widget/remove_product_dialog.dart';
 import 'widget/weight_confirm_dialog_widget.dart';
@@ -71,8 +70,9 @@ class OrderDetailsController {
   Future<void> cancelOrder(BuildContext context) async {
     var result = await getIt<HomeRepositories>().cancelOrder(OrdersParams(id: orderId));
     result.when(
-      isSuccess: (data) async {
-        AppSnackBar.showSuccessSnackBar('Order cancellation successfully');
+      isSuccess: (data) {
+        removeCanceledOrder();
+        AppSnackBar.showSuccessSnackBar('Order cancelled successfully');
         AutoRouter.of(context).maybePop();
       },
       isError: (error) {
@@ -82,10 +82,18 @@ class OrderDetailsController {
   }
 
 
+  Future<void> removeCanceledOrder()async{
+    var assignedOrders =  getIt<OrdersHelper>().getAssignedOrders();
+    assignedOrders.removeWhere((order) => order.id == orderId);
+    getIt<OrdersHelper>().assignedOrdersCubit.successState(assignedOrders);
+    getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
+  }
+
+
 
   void pickItem(OrderDetailsModel orderProduct) {
     var qty = orderProduct.quantity;
-    if( orderProduct.product.pickedQuantity!=qty){
+    if( orderProduct.product!.pickedQuantity!=qty){
       getProductPickedPercent(orderProduct,_detailsData);
       updateDetailsCubit();
       getIt<OrdersHelper>().saveOrderDetails(_detailsData);
@@ -104,18 +112,18 @@ class OrderDetailsController {
 
 
   void getProductPickedPercent(OrderDetailsModel orderProduct,OrderModel details){
-     var pickedQty = orderProduct.product.pickedQuantity!;
+     var pickedQty = orderProduct.product!.pickedQuantity!;
      pickedQty = pickedQty + 1 ;
-     orderProduct.product.pickedQuantity = pickedQty;
+     orderProduct.product!.pickedQuantity = pickedQty;
      var percent = (pickedQty/orderProduct.quantity)*100;
-     orderProduct.product.productPickedPercent = percent;
+     orderProduct.product!.productPickedPercent = percent;
     if(pickedQty == orderProduct.quantity){
       orderPickedPercent(details);
     }
   }
 
   void orderPickedPercent(OrderModel details){
-   var finishedPickedProducts = details.ordersDetails!.where((element) => element.quantity == element.product.pickedQuantity!,).toList();
+   var finishedPickedProducts = details.ordersDetails!.where((element) => element.quantity == element.product!.pickedQuantity!,).toList();
    var percent = (details.totalItems/finishedPickedProducts.length)*100;
     details.pickedPercent = percent;
     details.totalItems =  details.totalItems-1;

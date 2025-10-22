@@ -27,7 +27,7 @@ class OrdersHelper {
      );
    }
 
-   Future<List<OrderModel>> getAssignedOrders() async {
+   List<OrderModel> getAssignedOrders()  {
      final jsonString = HiveHelper.instance.getDataFromBox<String>(
        HiveBoxesNames.orders,
        key: HiveBoxesKeys.assignedOrdersKey,

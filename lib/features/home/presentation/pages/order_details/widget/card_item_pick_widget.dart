@@ -22,7 +22,7 @@ class CardItemPickWidget extends StatelessWidget {
               CachedImage(
                 height: 52,
                 width: 52,
-                url: data.product.thumbnailImage,
+                url: data.product!.thumbnailImage,
                 haveRadius: false,
                 boxShape: BoxShape.circle,
               ),
@@ -31,7 +31,7 @@ class CardItemPickWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data.product.name,
+                    data.product!.name,
                     maxLines: 2,
                     softWrap: true,
                     overflow: TextOverflow.visible,
@@ -85,7 +85,7 @@ class CardItemPickWidget extends StatelessWidget {
                         color: context.colors.lightPrimary,
                         borderRadius: Dimens.borderRadius30PX),
                     child: Text(
-                      "${data.quantity - data.product.pickedQuantity!}",
+                      "${data.quantity - data.product!.pickedQuantity!}",
                       style: AppTextStyle.s18_w600(
                           color: context.colors.primary),
                     ),
@@ -105,7 +105,7 @@ class CardItemPickWidget extends StatelessWidget {
           ),
           Gaps.vGap13,
           Text(
-            'Picked ${data.product.productPickedPercent!}%',
+            'Picked ${data.product!.productPickedPercent!}%',
             style:
             AppTextStyle.s14_w400(color: context.colors.textColor),
           )
