@@ -41,12 +41,9 @@ class PickItemWidget extends StatelessWidget {
                     top: 18,
                     right: 20,
                     child: GestureDetector(
-                      onTap: () => controller.showReplaceDialog(context),
-                      child: Icon(
-                        Icons.repeat_outlined,
-                        color: context.colors.primary,
-                        size: 22,
-                      ),
+                      // onTap: () => controller.showReplaceDialog(context),
+                      onTap: ()=> controller.onPressReplace(context, orderDetails.id),
+                      child: SvgPicture.asset(Res.repeatIcon,height: 22,width: 22,),
                     )),
                 child: Positioned(right: 0, child: StatusViewWidget(status: controller.detailsCubit.data!.status)),
               ),

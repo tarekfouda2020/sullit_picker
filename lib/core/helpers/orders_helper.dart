@@ -14,7 +14,8 @@ class OrdersHelper {
    final SoundEffect _player = SoundEffect();
    Timer? _timer;
 
-    BaseBloc<OrdersList> ordersListCubit = BaseBloc<OrdersList>();
+   final BaseBloc<List<OrderModel>> assignedOrdersCubit = BaseBloc<List<OrderModel>>([]);
+
 
    Future<void> saveOrders(OrdersList data) async {
      final jsonString = jsonEncode(data.toJson());

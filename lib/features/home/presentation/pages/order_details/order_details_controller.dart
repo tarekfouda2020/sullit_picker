@@ -4,7 +4,6 @@ import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/show_orders_requester.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
-import 'package:injectable/injectable.dart';
 
 import 'order_details_imports.dart';
 import 'widget/remove_product_dialog.dart';
@@ -23,22 +22,36 @@ class OrderDetailsController {
     getDetails();
   }
 
+   OrderModel get _detailsData => detailsCubit.data!;
+
+  void updateDetailsCubit({OrderModel? data}) => detailsCubit.successState(data ?? _detailsData);
+
+  void onPressReplace(BuildContext context,int productId){
+    bool replacePermission = _detailsData.allowReplacement;
+    if(replacePermission){
+      showReplaceDialog(context);
+    }else{
+      showDeleteDialog(context,productId);
+    }
+  }
+
+
   void showReplaceDialog(BuildContext context) {
     showDialog(context: context, builder: (context) {
       return DialogActionWidget(
         description: 'Are you sure you want replace this product ?',
         buttonGreenTitle: 'Yes Replace',
         buttonRedTitle: 'Cancel',
-        greenOnTap: () => showDeleteDialog(context),
+        greenOnTap: () {},
       );
     });
   }
 
 
-  void showDeleteDialog(BuildContext context) {
+  void showDeleteDialog(BuildContext context,int productId) {
     showDialog(
       context: context,
-      builder: (context) => const RemoveProductDialog(),
+      builder: (context) =>  RemoveProductDialog(controller: this,productId: productId,),
     );
   }
 
@@ -54,13 +67,21 @@ class OrderDetailsController {
   void pickItem(OrderDetailsModel orderProduct) {
     var qty = orderProduct.quantity;
     if( orderProduct.product.pickedQuantity!=qty){
-      getProductPickedPercent(orderProduct,detailsCubit.data!);
-
-      detailsCubit.successState(detailsCubit.data!);
-      getIt<OrdersHelper>().saveOrderDetails(detailsCubit.data!);
+      getProductPickedPercent(orderProduct,_detailsData);
+      updateDetailsCubit();
+      getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     }
   }
 
+
+  void deleteProduct(int productId){
+    _detailsData.ordersDetails!.removeWhere((element) => element.id == productId);
+    _detailsData.totalItems -=1 ;
+    updateSameOrderInList(_detailsData);
+    updateDetailsCubit();
+    getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+
+  }
 
 
   void getProductPickedPercent(OrderDetailsModel orderProduct,OrderModel details){
@@ -83,20 +104,16 @@ class OrderDetailsController {
   }
 
   void updateSameOrderInList(OrderModel details) {
-    var ordersListCubit = getIt<OrdersHelper>().ordersListCubit;
+    /// out side list updated inside this method
+    var ordersListCubit = getIt<OrdersHelper>().assignedOrdersCubit;
     var ordersData = ordersListCubit.data!;
-    var updatedList = ordersData.assignedOrders.map((order) {
-      if (order.id == details.id) {
-        return order.copyWith(
-          totalItems: details.totalItems,
-          pickedPercent: details.pickedPercent,
-        );
+    for(var item in ordersData){
+      if (item.id == details.id) {
+        item.totalItems = details.totalItems;
+        item.pickedPercent = details.pickedPercent;
       }
-      return order;
-    }).toList();
-    updatedList.removeWhere((element) => element.id == details.id,);
-    ordersData = ordersData.copyWith(assignedOrders: updatedList);
-    getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+    }
+    getIt<OrdersHelper>().saveAssignedOrders(ordersData);
     ordersListCubit.successState(ordersData);
   }
 
@@ -125,7 +142,7 @@ class OrderDetailsController {
     var box = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
     if (box == null || box.isEmpty) {
       getIt<OrdersHelper>().saveOrderDetails(data);
-      detailsCubit.successState(data);
+      updateDetailsCubit(data: data);
     } else {
       initDataFromLocal();
     }
@@ -134,7 +151,7 @@ class OrderDetailsController {
 
   Future<void> initDataFromLocal() async {
     var data = await getIt<OrdersHelper>().getOrderDetails(orderId);
-    detailsCubit.successState(data);
+    updateDetailsCubit(data: data);
   }
 
 

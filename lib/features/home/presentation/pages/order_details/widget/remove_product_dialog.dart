@@ -1,9 +1,13 @@
 
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
+
 import '../../../../../../core/helpers/export.dart';
 import 'dialog_action_widget.dart';
 
 class RemoveProductDialog extends StatelessWidget {
-  const RemoveProductDialog({super.key});
+  final OrderDetailsController controller;
+  final int productId;
+  const RemoveProductDialog({super.key, required this.controller, required this.productId});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +16,7 @@ class RemoveProductDialog extends StatelessWidget {
       'User didn’t give access to replace the product , you can just remove it from order',
       buttonGreenTitle: 'Yes Remove',
       buttonRedTitle: 'Cancel',
-      greenOnTap: () {
-        Navigator.pop(context);
-        Navigator.pop(context);
-      },
+      greenOnTap: () => controller.deleteProduct(productId),
       redOnTap: () {
         Navigator.pop(context);
         Navigator.pop(context);
