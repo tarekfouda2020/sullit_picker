@@ -33,7 +33,8 @@ class HaveOrdersViewWidget extends StatelessWidget {
             backgroundColor: context.colors.white,
             child: ListView(
               children: [
-                BaseBlocBuilder(bloc: controller.assignedOrdersCubit,
+                BaseBlocBuilder(
+                  bloc: controller.assignedOrdersCubit,
                   onSuccessWidget: (assigned) {
                   return Column(
                     children: List.generate(assigned.length,

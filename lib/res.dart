@@ -93,6 +93,7 @@ class Res {
   static const String searchIcon = "assets/images/icons/search_icon.svg";
   static const String checkIcon = "assets/images/icons/check_icon.svg";
   static const String noOrdersAvailable = "assets/images/no_orders_available.png";
+  static const String repeatIcon = "assets/images/repeat_icon.svg";
 
   // Illustrations
   static const String noOrdersIllustration = "assets/images/illustrations/no_orders.svg";

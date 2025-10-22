@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
         appBar: const DefaultAppBar(
           title: "",
           bgColor: Colors.transparent,
+          removeBgColorInScroll: true,
           size: 20,
         ),
         body: OrdersWidget(controller: controller),

@@ -10,11 +10,10 @@ class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
    final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
    final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
-   final BaseBloc<List<OrderModel>> assignedOrdersCubit = BaseBloc<List<OrderModel>>([]);
+  BaseBloc<OrdersList> ordersListCubit = BaseBloc<OrdersList>();
   // final BaseBloc<OrdersModel?> ordersCubit = BaseBloc<OrdersModel?>();
 
-
-  BaseBloc<OrdersList> get ordersListCubit => getIt<OrdersHelper>().ordersListCubit;
+  BaseBloc<List<OrderModel>> get assignedOrdersCubit => getIt<OrdersHelper>().assignedOrdersCubit;
 
 
   HomeController(){
