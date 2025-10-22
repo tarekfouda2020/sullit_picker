@@ -49,7 +49,8 @@ class PickItemWidget extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
+        Gaps.vGap20,
       ],
     );
   }

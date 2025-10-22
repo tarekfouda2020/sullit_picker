@@ -27,23 +27,16 @@ class CardItemPickWidget extends StatelessWidget {
                 boxShape: BoxShape.circle,
               ),
               Gaps.hGap10,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
                 children: [
                   Text(
-                    data.product!.name,
+                    "${data.product!.name} ${data.variation}",
                     maxLines: 2,
                     softWrap: true,
                     overflow: TextOverflow.visible,
                     style: AppTextStyle.s14_w600(
                         color: context.colors.simiGray),
                   ),
-                  Gaps.vGap5,
-                  // Text(
-                  //   data.price,
-                  //   style: AppTextStyle.s14_w400(
-                  //       color: context.colors.simiGray),
-                  // )
                 ],
               ),
             ],
