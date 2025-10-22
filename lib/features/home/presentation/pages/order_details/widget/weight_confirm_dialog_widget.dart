@@ -1,6 +1,7 @@
 
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_new_weight_widget.dart';
+
 import 'dialog_action_widget.dart';
-import 'dialog_new_weight_widget.dart';
 import 'widgets_imports.dart';
 
 class WeightConfirmDialogWidget extends StatelessWidget {
@@ -19,11 +20,7 @@ class WeightConfirmDialogWidget extends StatelessWidget {
           showDialog(
             context: context,
             builder: (context) =>
-            const DialogNewWeightWidget(
-              titleItem: 'Fresh Whole Chicken',
-              cheekWeight: 'The new weight must not less than 750 gm',
-              imageItem: Res.beefImage,
-            ),
+                const DialogNewWeightWidget(titleItem: 'Fresh Whole Chicken',imageItem: Res.chickenImage,cheekWeight: 'The new weight must not less than 750 gm',)
           ),
     );
   }

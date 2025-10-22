@@ -17,20 +17,6 @@ class OrdersHelper {
    final BaseBloc<List<OrderModel>> assignedOrdersCubit = BaseBloc<List<OrderModel>>([]);
 
 
-   Future<void> saveOrders(OrdersList data) async {
-     final jsonString = jsonEncode(data.toJson());
-     await HiveHelper.instance.addDataToBox<String>(HiveBoxesNames.orders, jsonString);
-   }
-
-
-   Future<OrdersList?> getOrders() async {
-     final box = HiveHelper.instance.getBox<String>(HiveBoxesNames.orders);
-     if (box.isEmpty) return null;
-
-     final jsonString = box.values.first;
-     final map = jsonDecode(jsonString) as Map<String, dynamic>;
-     return OrdersList.fromJson(map);
-   }
 
    Future<void> saveAssignedOrders(List<OrderModel> data) async {
      final jsonString = jsonEncode(data.map((e) => e.toJson()).toList());

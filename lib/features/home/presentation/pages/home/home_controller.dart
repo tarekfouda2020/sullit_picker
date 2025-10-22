@@ -134,7 +134,6 @@ class HomeController {
     );
   }
 
-
   Future<void> getUserData() async{
      getIt<UserServicesHelper>().getUserData();
   }
