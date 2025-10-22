@@ -20,11 +20,11 @@ class LeftItemsWidget extends StatelessWidget {
         children: [
           Expanded(
               child: Text(
-                'No. of Items : 4',
+                'No. of Items : $numberOfItems',
                 style: AppTextStyle.s16_w300(color: context.colors.black),
               )),
           Text(
-            'Picked ${10}%',
+            'Picked $pickedPercent%',
             style: AppTextStyle.s14_w400(color: context.colors.black),
           )
         ],

@@ -5,8 +5,7 @@ import 'widgets_imports.dart';
 class CardItemPickWidget extends StatelessWidget {
   final OrderDetailsController controller;
   final OrderDetailsModel data;
-  final VoidCallback onPressed;
-  const CardItemPickWidget({super.key, required this.controller, required this.data, required this.onPressed});
+  const CardItemPickWidget({super.key, required this.controller, required this.data,});
 
   @override
   Widget build(BuildContext context) {
@@ -20,21 +19,19 @@ class CardItemPickWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
+              CachedImage(
                 height: 52,
                 width: 52,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(data.product.thumbnailImage),
-                  ),
-                ),
+                url: data.product.thumbnailImage,
+                haveRadius: false,
+                boxShape: BoxShape.circle,
               ),
               Gaps.hGap10,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data.quantity.toString(),
+                    data.product.name,
                     maxLines: 2,
                     softWrap: true,
                     overflow: TextOverflow.visible,
@@ -42,11 +39,11 @@ class CardItemPickWidget extends StatelessWidget {
                         color: context.colors.simiGray),
                   ),
                   Gaps.vGap5,
-                  Text(
-                    data.price,
-                    style: AppTextStyle.s14_w400(
-                        color: context.colors.simiGray),
-                  )
+                  // Text(
+                  //   data.price,
+                  //   style: AppTextStyle.s14_w400(
+                  //       color: context.colors.simiGray),
+                  // )
                 ],
               ),
             ],
@@ -68,8 +65,7 @@ class CardItemPickWidget extends StatelessWidget {
                             : context.colors.white,
                         textSize: 16,
                         maxHeight: 40,
-                        borderRadius: BorderRadius.circular(40),
-                        onPressed: onPressed,
+                        onPressed: () => controller.pickItem(data) ,
                       ),
                 ),
               ),
@@ -89,7 +85,7 @@ class CardItemPickWidget extends StatelessWidget {
                         color: context.colors.lightPrimary,
                         borderRadius: Dimens.borderRadius30PX),
                     child: Text(
-                      data.quantity.toString(),
+                      "${data.quantity - data.product.pickedQuantity!}",
                       style: AppTextStyle.s18_w600(
                           color: context.colors.primary),
                     ),
@@ -98,9 +94,9 @@ class CardItemPickWidget extends StatelessWidget {
               )
             ],
           ),
-          Gaps.vGap10,
+          Gaps.vGap13,
           Text(
-            'Picked 100%',
+            'Picked ${data.product.productPickedPercent!}%',
             style:
             AppTextStyle.s14_w400(color: context.colors.textColor),
           )

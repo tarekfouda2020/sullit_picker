@@ -1,29 +1,29 @@
 
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details.dart';
+import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:hive/hive.dart';
 
 part 'orders_model.freezed.dart';
 
 part 'orders_model.g.dart';
 
 @freezed
-class OrdersModel with _$OrdersModel {
-  const factory OrdersModel({
-    @JsonKey(name: 'assigned_orders') required List<OrderItem> assignedOrders,
+class OrdersList with _$OrdersList {
+  const factory OrdersList({
+    @JsonKey(name: 'assigned_orders') required List<OrderModel> assignedOrders,
     @JsonKey(name: 'assigned_orders_count') required int assignedOrdersCount,
-    @JsonKey(name: 'new_orders') required List<OrderItem> newOrders,
-  }) = _OrdersModel;
+    @JsonKey(name: 'new_orders') required List<OrderModel> newOrders,
+  }) = _OrdersList;
 
-  factory OrdersModel.fromJson(Map<String, dynamic> json) =>
-      _$OrdersModelFromJson(json);
+  factory OrdersList.fromJson(Map<String, dynamic> json) =>
+      _$OrdersListFromJson(json);
 }
 
-@freezed
-class OrderItem with _$OrderItem {
- const OrderItem._();
-  const factory OrderItem({
+@unfreezed
+@immutable
+class OrderModel with _$OrderModel {
+ const OrderModel._();
+   factory OrderModel({
     required int id,
     required String code,
     @JsonKey(name: 'total_items') required int totalItems,
@@ -32,10 +32,11 @@ class OrderItem with _$OrderItem {
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
     @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
-  }) = _OrderItem;
+    @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? pickedPercent,
+  }) = _OrderModel;
 
-  factory OrderItem.fromJson(Map<String, dynamic> json) =>
-      _$OrderItemFromJson(json);
+  factory OrderModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderModelFromJson(json);
 
   OrderStatusEnum getOrderStatus(){
     switch(status){
@@ -53,9 +54,9 @@ class OrderItem with _$OrderItem {
 
 }
 
-@freezed
+@unfreezed
 class OrderDetailsModel with _$OrderDetailsModel {
-  const factory OrderDetailsModel({
+   factory OrderDetailsModel({
     required int id,
     required String variation,
     required int quantity,
@@ -68,14 +69,29 @@ class OrderDetailsModel with _$OrderDetailsModel {
 }
 
 
-@freezed
+@unfreezed
 class ProductModel with _$ProductModel {
-  const factory ProductModel({
+   factory ProductModel({
     required int id,
     required String name,
+    required CategoryModel category,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
+    @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? productPickedPercent,
+    @JsonKey(name: 'picked_quantity',defaultValue: 0)  int? pickedQuantity,
+    @JsonKey(name: 'product_status',defaultValue: ProductStatusEnum.noEdit)  ProductStatusEnum? productStatus,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);
+}
+
+@freezed
+class CategoryModel with _$CategoryModel {
+  const factory CategoryModel({
+    required int id,
+    required String name,
+  }) = _CategoryModel;
+
+  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryModelFromJson(json);
 }

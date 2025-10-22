@@ -15,42 +15,39 @@ final OrderModel data;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: Dimens.paddingH20Px,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: SvgPicture.asset(
-                  Res.arrow,
-                  colorFilter:
-                      ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
-                  width: 24,
-                  height: 24,
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: SvgPicture.asset(
+                Res.arrow,
+                colorFilter:
+                    ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
+                width: 24,
+                height: 24,
               ),
-              Gaps.hGap14,
-              Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.simiGray),),
-              Text(data.id.toString(),style: AppTextStyle.s18_w600(color: context.colors.primary),),
-            ],
-          ),
-          Gaps.vGap8,
-          ObsValueConsumer(
-            observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
-            builder: (context, assignedTime) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 38),
-              child: Text('Assigned $assignedTime',style: AppTextStyle.s14_w300(color: context.colors.textColor)),
             ),
+            Gaps.hGap14,
+            Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.simiGray),),
+            Text(data.code,style: AppTextStyle.s18_w600(color: context.colors.primary),),
+          ],
+        ),
+        Gaps.vGap8,
+        ObsValueConsumer(
+          observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
+          builder: (context, assignedTime) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 38),
+            child: Text('Assigned $assignedTime',style: AppTextStyle.s14_w300(color: context.colors.textColor)),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 38),
-          //   child: Text('Assigned 2 min ago',style: AppTextStyle.s14_w300(color: context.colors.textColor),),
-          // )
-        ],
-      ),
+        ),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 38),
+        //   child: Text('Assigned 2 min ago',style: AppTextStyle.s14_w300(color: context.colors.textColor),),
+        // )
+      ],
     );
   }
 }

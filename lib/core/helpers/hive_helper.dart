@@ -113,14 +113,13 @@ class HiveBoxesNames{
 
   static const String orders = "orders";
 
-
 }
 
 class HiveBoxesKeys{
-  static const int orderEndDate = 2;
+
+  static const String orderEndDate = "orderEndDate";
 
   static const String assignedOrdersKey = "assigned";
-
 
 
 }

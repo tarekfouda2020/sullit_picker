@@ -3,105 +3,6 @@
 part of 'orders_model.dart';
 
 // **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
-
-class OrdersListAdapter extends TypeAdapter<_$OrdersListImpl> {
-  @override
-  final int typeId = 0;
-
-  @override
-  _$OrdersListImpl read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return _$OrdersListImpl(
-      assignedOrders: (fields[0] as List).cast<OrderModel>(),
-      assignedOrdersCount: fields[1] as int,
-      newOrders: (fields[2] as List).cast<OrderModel>(),
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, _$OrdersListImpl obj) {
-    writer
-      ..writeByte(3)
-      ..writeByte(1)
-      ..write(obj.assignedOrdersCount)
-      ..writeByte(0)
-      ..write(obj.assignedOrders)
-      ..writeByte(2)
-      ..write(obj.newOrders);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is OrdersListAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-class OrderModelAdapter extends TypeAdapter<_$OOrderModelImpl> {
-  @override
-  final int typeId = 1;
-
-  @override
-  _$OOrderModelImpl read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return _$OOrderModelImpl(
-      id: fields[0] as int,
-      code: fields[1] as String,
-      totalItems: fields[2] as int,
-      allowReplacement: fields[3] as bool,
-      status: fields[4] as String,
-      preparationMinutes: fields[5] as int,
-      startPickingAt: fields[6] as String,
-      ordersDetails: (fields[7] as List?)?.cast<OrderDetailsModel>(),
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, _$OOrderModelImpl obj) {
-    writer
-      ..writeByte(8)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.code)
-      ..writeByte(2)
-      ..write(obj.totalItems)
-      ..writeByte(3)
-      ..write(obj.allowReplacement)
-      ..writeByte(4)
-      ..write(obj.status)
-      ..writeByte(5)
-      ..write(obj.preparationMinutes)
-      ..writeByte(6)
-      ..write(obj.startPickingAt)
-      ..writeByte(7)
-      ..write(obj.ordersDetails);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is OrderModelAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
@@ -123,8 +24,8 @@ Map<String, dynamic> _$$OrdersListImplToJson(_$OrdersListImpl instance) =>
       'new_orders': instance.newOrders,
     };
 
-_$OOrderModelImpl _$$OOrderModelImplFromJson(Map<String, dynamic> json) =>
-    _$OOrderModelImpl(
+_$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
+    _$OrderModelImpl(
       id: (json['id'] as num).toInt(),
       code: json['code'] as String,
       totalItems: (json['total_items'] as num).toInt(),
@@ -135,9 +36,10 @@ _$OOrderModelImpl _$$OOrderModelImplFromJson(Map<String, dynamic> json) =>
       ordersDetails: (json['order_details'] as List<dynamic>?)
           ?.map((e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      pickedPercent: (json['picked_percent'] as num?)?.toDouble() ?? 0.0,
     );
 
-Map<String, dynamic> _$$OOrderModelImplToJson(_$OOrderModelImpl instance) =>
+Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'code': instance.code,
@@ -147,6 +49,7 @@ Map<String, dynamic> _$$OOrderModelImplToJson(_$OOrderModelImpl instance) =>
       'preparation_minutes': instance.preparationMinutes,
       'start_picking_at': instance.startPickingAt,
       'order_details': instance.ordersDetails,
+      'picked_percent': instance.pickedPercent,
     };
 
 _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
@@ -173,12 +76,41 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
     _$ProductModelImpl(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
+      category:
+          CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
       thumbnailImage: json['thumbnail_image'] as String,
+      productPickedPercent: (json['picked_percent'] as num?)?.toDouble() ?? 0.0,
+      pickedQuantity: (json['picked_quantity'] as num?)?.toInt() ?? 0,
+      productStatus: $enumDecodeNullable(
+              _$ProductStatusEnumEnumMap, json['product_status']) ??
+          ProductStatusEnum.noEdit,
     );
 
 Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'category': instance.category,
       'thumbnail_image': instance.thumbnailImage,
+      'picked_percent': instance.productPickedPercent,
+      'picked_quantity': instance.pickedQuantity,
+      'product_status': _$ProductStatusEnumEnumMap[instance.productStatus],
+    };
+
+const _$ProductStatusEnumEnumMap = {
+  ProductStatusEnum.noEdit: 'noEdit',
+  ProductStatusEnum.modified: 'modified',
+  ProductStatusEnum.replaced: 'replaced',
+};
+
+_$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
+    _$CategoryModelImpl(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
     };

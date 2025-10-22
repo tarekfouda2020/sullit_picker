@@ -53,12 +53,11 @@ class _FlexibilityBackGroundWidgetState extends State<FlexibilityBackGroundWidge
   @override
   Widget build(BuildContext context) {
     // If there's an error or no size calculated, use a flexible fallback
-    if (_hasError || (_calculatedHeight == null && _calculatedWidth == null)) {
+    if (_hasError || ( _calculatedWidth == null)) {
       return LayoutBuilder(
         builder: (context, constraints) {
           return SizedBox(
             width: constraints.maxWidth.isFinite ? constraints.maxWidth : null,
-            height: _calculatedHeight ?? 300, // Fallback height
             child: widget.child,
           );
         },

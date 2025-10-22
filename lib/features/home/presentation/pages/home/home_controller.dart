@@ -10,14 +10,17 @@ class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
    final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
    final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
-   final BaseBloc<OrdersList> ordersListCubit = BaseBloc<OrdersList>();
    final BaseBloc<List<OrderModel>> assignedOrdersCubit = BaseBloc<List<OrderModel>>([]);
   // final BaseBloc<OrdersModel?> ordersCubit = BaseBloc<OrdersModel?>();
+
+
+  BaseBloc<OrdersList> get ordersListCubit => getIt<OrdersHelper>().ordersListCubit;
+
 
   HomeController(){
     getUserData();
     getAllOrders(fromRemote: false);
-    getAllOrders(fromRemote: true);
+    getAllOrders();
   }
 
 
@@ -35,6 +38,9 @@ class HomeController {
 
 
   Future<void> getAllOrders({bool fromRemote = true})async{
+   if(ordersListCubit.hasNoData){
+     ordersListCubit.loadingState();
+   }
     var result = await getIt<HomeRepositories>().orders(fromRemote);
     result.when(
       isSuccess: (data) {
@@ -42,11 +48,9 @@ class HomeController {
       updateAssignedFromLocalData(data!.assignedOrders);
     },
       isError: (error) {
-
+        ordersListCubit.failedState(error, () => getAllOrders(),);
     },);
   }
-
-
 
 
   Future<void> updateAssignedFromLocalData(List<OrderModel> data) async{
@@ -114,7 +118,8 @@ class HomeController {
   }
 
 
-  Future<void> acceptOrder(BuildContext context , OrderItem data ) async {
+
+  Future<void> acceptOrder(BuildContext context , OrderModel data ) async {
     if(data.isAssigned){
       AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,time: data.preparationMinutes));
       return ;

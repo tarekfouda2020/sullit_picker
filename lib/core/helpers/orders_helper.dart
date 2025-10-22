@@ -14,7 +14,7 @@ class OrdersHelper {
    final SoundEffect _player = SoundEffect();
    Timer? _timer;
 
-  final BaseBloc<OrderModel?> currentOrderCubit = BaseBloc<OrderModel?>();
+    BaseBloc<OrdersList> ordersListCubit = BaseBloc<OrdersList>();
 
    Future<void> saveOrders(OrdersList data) async {
      final jsonString = jsonEncode(data.toJson());
@@ -56,13 +56,12 @@ class OrdersHelper {
 
    Future<void> saveOrderDetails(OrderModel data) async {
      final jsonString = jsonEncode(data.toJson());
-     await HiveHelper.instance.addDataToBox<String>(HiveBoxesNames.orderDetails, jsonString);
+     await HiveHelper.instance.addDataToBox<String>(HiveBoxesNames.orderDetails, jsonString,key: data.id);
    }
 
-   Future<OrderModel?> getOrderDetails() async {
-     final box = HiveHelper.instance.getBox<String>(HiveBoxesNames.orderDetails);
-     final jsonString = box.values.first;
-     final map = jsonDecode(jsonString) as Map<String, dynamic>;
+   Future<OrderModel?> getOrderDetails(int orderId) async {
+     final box = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails,key: orderId);
+     final map = jsonDecode(box ?? "") as Map<String, dynamic>;
      return OrderModel.fromJson(map);
    }
 

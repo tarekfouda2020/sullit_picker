@@ -11,7 +11,8 @@ import 'home_widgets_imports.dart';
 class OrderCountDownTimerWidget extends StatefulWidget {
   final DateTime pickWithinTime;
   final void Function(Duration duration)? duringCountDown;
-  const OrderCountDownTimerWidget({super.key, required this.pickWithinTime,  this.duringCountDown, });
+  final bool isNewOrder;
+  const OrderCountDownTimerWidget({super.key, required this.pickWithinTime,  this.duringCountDown,  this.isNewOrder = true, });
 
   @override
   State<OrderCountDownTimerWidget> createState() => _OrderCountDownTimerWidgetState();
@@ -26,34 +27,13 @@ class _OrderCountDownTimerWidgetState extends State<OrderCountDownTimerWidget> {
  void initState() {
    super.initState();
    timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
-
-   // Read stored time safely
-   final existTime = HiveHelper.instance.getDataFromBox<String>(
-     HiveBoxesNames.orders,
-     key: HiveBoxesKeys.orderEndDate,
-   );
-
-   DateTime pickTime;
-
-   if (existTime != null && existTime.isNotEmpty) {
-     try {
-       final json = jsonDecode(existTime) as Map<String, dynamic>;
-       final storedEndTime = json["end_time"];
-       if (storedEndTime != null) {
-         pickTime = storedEndTime;
-       } else {
-         pickTime = widget.pickWithinTime;
-       }
-     } catch (e) {
-       // In case decoding fails for any reason
-       pickTime = widget.pickWithinTime;
-     }
-   } else {
-     pickTime = widget.pickWithinTime;
+   if(widget.isNewOrder){
+     timerObs.getValue().initDuration(widget.pickWithinTime);
+     return ;
    }
 
    // Initialize and start timer
-   timerObs.getValue().initDuration(pickTime);
+   timerObs.getValue().initDuration(widget.pickWithinTime);
    timerObs.getValue().startTimer(callback: () {
      timerObs.setValue(timerObs.getValue());
      timerObs.refresh();

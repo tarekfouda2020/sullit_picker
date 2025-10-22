@@ -18,6 +18,7 @@ class OrdersWidget extends StatelessWidget {
     child: BaseBlocBuilder(
         bloc: controller.ordersListCubit,
         onSuccessWidget: (data) {
+          print("🟢 ordersListCubit updated with ${data.assignedOrders.length} items");
           return Visibility(
               visible: data.assignedOrders.isEmpty && data.newOrders.isEmpty,
               replacement:  HaveOrdersViewWidget(controller: controller, data: data),

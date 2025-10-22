@@ -1,5 +1,5 @@
+
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
-import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
@@ -16,6 +16,7 @@ class CardOrderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Dimens.paddingAll20Px,
+      margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.borderRadius12PX,
@@ -39,10 +40,9 @@ class CardOrderWidget extends StatelessWidget {
             },
           ),
           Gaps.vGap15,
-          const CardPickedRatioWidget(
-            pickedPercentage: 20,
-            numberOfItems: 5,
-            child: LeftItemsWidget(numberOfItems: 4, pickedPercent: 20,)
+           CardPickedRatioWidget(
+            pickedPercentage: data.pickedPercent!,
+            child:  LeftItemsWidget(numberOfItems: data.totalItems, pickedPercent: data.pickedPercent!,)
           ),
           Gaps.vGap15,
            Center(
@@ -52,26 +52,21 @@ class CardOrderWidget extends StatelessWidget {
            ),
           Gaps.vGap18,
           OrderCountDownTimerWidget(
-              pickWithinTime: DateTime.now().add(Duration(minutes: data.preparationMinutes)),
+              pickWithinTime: DateTime.now().add(Duration(minutes: data.preparationMinutes,seconds: 1)),
+            isNewOrder: data.isNewOrder,
             duringCountDown: (duration) {
-              var newEndTime = DateTime.now().add(duration);
-              HiveHelper.instance.addDataToBox<String>(
-                HiveBoxesNames.orders,
-                key: HiveBoxesKeys.orderEndDate,
-                jsonEncode({
-                  ...data.toJson(),
-                  'end_time': newEndTime.toIso8601String(),
-                }),
-              );
+              data.preparationMinutes = duration.inMinutes;
+                var assignedList = controller.assignedOrdersCubit.data;
+            getIt<OrdersHelper>().saveAssignedOrders(assignedList!);
             },
           ),
           Gaps.vGap24,
           AppTextButton.maxCustom(
-            text: data!.isNewOrder ? 'Start Pick' : 'Continue Picking',
+            text: data.isNewOrder ? 'Start Pick' : 'Continue Picking',
             maxHeight: 44,
             textSize: 18,
             onPressed: () {
-              controller.acceptOrder(context, data!);
+              controller.acceptOrder(context, data);
             },
           )
         ],

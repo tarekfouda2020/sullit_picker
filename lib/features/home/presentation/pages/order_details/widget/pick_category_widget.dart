@@ -5,23 +5,18 @@ import 'widgets_imports.dart';
 
 class PickCategoryWidget extends StatelessWidget {
   final OrderDetailsController controller;
-  final OrderModel data;
-  const PickCategoryWidget({super.key, required this.controller, required this.data});
+  final OrderModel order;
+  const PickCategoryWidget({super.key, required this.controller, required this.order});
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
       child: ListView.builder(
-        padding: Dimens.paddingH20Px,
-        itemCount: data.totalItems,
+        itemCount: order.ordersDetails!.length,
         itemBuilder: (context, index) {
-          var item = data.ordersDetails![index];
           return PickItemWidget(
-            data: item,
+            orderDetails: order.ordersDetails![index],
             controller: controller,
-            status: data.status,
-            canReplaced: data.allowReplacement ,
-            onPressed: () => controller.showWeightDialog(context)
           );
         },
       ),

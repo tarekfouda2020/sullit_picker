@@ -20,7 +20,7 @@ class _OrderDetailsState extends State<OrderDetails> {
 
   @override
   void initState() {
-    controller = OrderDetailsController(widget.id);
+    controller = OrderDetailsController(widget.id,widget.time);
     super.initState();
   }
 
@@ -28,33 +28,31 @@ class _OrderDetailsState extends State<OrderDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: const DefaultAppBar(
-        title: "",
-        bgColor: Colors.transparent,
-        size: 20,
-        removeBgColorInScroll: true,
-      ),
-      body: BaseBlocBuilder(
-        bloc: controller.detailsCubit,
-        onSuccessWidget: (data) {
-        return Column(
-          children: [
-            HeaderOrderDetailsWidget(data: data),
-            Gaps.vGap12,
-            TimerCardDetailsWidget(data: data),
-            Gaps.vGap12,
-            PickCategoryWidget(controller: controller, data: data),
-          ],
-        ) ;
-      },
-        onLoadingWidget: (context) {
-          return const Center(child: CircularProgressIndicator(),);
+      body: Padding(
+        padding: Dimens.paddingH20Px,
+        child: BaseBlocBuilder(
+          bloc: controller.detailsCubit,
+          onSuccessWidget: (data) {
+          return Column(
+            children: [
+              Gaps.vGap(kToolbarHeight),
+              HeaderOrderDetailsWidget(data: data),
+              Gaps.vGap12,
+              TimerCardDetailsWidget(data: data),
+              Gaps.vGap12,
+              PickCategoryWidget(controller: controller, order: data),
+            ],
+          ) ;
         },
-        onFailedWidget: (context, error, callback) {
-          return Center(
-            child: Text('Something went wrong',style: AppTextStyle.s16_w600(color: context.colors.primary),),
-          );
-        },
+          onLoadingWidget: (context) {
+            return const Center(child: CircularProgressIndicator(),);
+          },
+          onFailedWidget: (context, error, callback) {
+            return Center(
+              child: Text('Something went wrong',style: AppTextStyle.s16_w600(color: context.colors.primary),),
+            );
+          },
+        ),
       ),
       bottomNavigationBar: const BottomNavBarDetailsWidget(),
     );

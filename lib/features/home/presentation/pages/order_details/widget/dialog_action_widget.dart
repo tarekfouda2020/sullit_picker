@@ -5,7 +5,7 @@ class DialogActionWidget extends StatelessWidget {
   final String buttonGreenTitle;
   final String buttonRedTitle;
   final void Function() greenOnTap;
-  final void Function() redOnTap;
+  final void Function()? redOnTap;
 
   const DialogActionWidget(
       {super.key,
@@ -13,7 +13,7 @@ class DialogActionWidget extends StatelessWidget {
       required this.buttonGreenTitle,
       required this.buttonRedTitle,
       required this.greenOnTap,
-      required this.redOnTap});
+      this.redOnTap});
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,7 @@ class DialogActionWidget extends StatelessWidget {
           Gaps.vGap21,
           Text(
             description,
-            style: AppTextStyle.s18_w700(color: context.colors.textColor)
-                .copyWith(height: 1.2),
+            style: AppTextStyle.s18_w700(color: context.colors.textColor).copyWith(height: 1.2),
             textAlign: TextAlign.center,
           ),
           Gaps.vGap24,
@@ -53,7 +52,7 @@ class DialogActionWidget extends StatelessWidget {
               Expanded(
                 child: AppTextButton.minCustom(
                   text: buttonRedTitle,
-                  onPressed: redOnTap,
+                  onPressed: redOnTap ?? ()=>  Navigator.pop(context),
                   bgColor: context.colors.white,
                   borderColor: context.colors.primary,
                   maxHeight: 40,

@@ -1,5 +1,7 @@
 import 'package:flutter_tdd/core/helpers/export.dart';
+import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/card_item_pick_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/status_view_widget.dart';
@@ -7,18 +9,12 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/widge
 
 class PickItemWidget extends StatelessWidget {
   final OrderDetailsController controller;
-  final OrderDetailsModel data;
-  final bool canReplaced;
-  final String status;
-  final VoidCallback onPressed;
+  final OrderDetailsModel orderDetails;
 
   const PickItemWidget({
     super.key,
-    this.canReplaced = false,
-    required this.onPressed,
     required this.controller,
-    required this.data,
-    required this.status,
+    required this.orderDetails,
   });
 
   @override
@@ -27,35 +23,35 @@ class PickItemWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Not Now',
-          style: AppTextStyle.s18_w700(color: context.colors.simiGray),
+          orderDetails.product.category.name,
+          style: AppTextStyle.s18_w500(color: context.colors.simiGray),
         ),
-        Gaps.vGap7,
-        Stack(
-          children: [
-            CardItemPickWidget(
-              controller: controller,
-              data: data,
-              onPressed: onPressed,
-            ),
-            Visibility(
-              visible: canReplaced,
-              replacement: Positioned(
-                  top: 18,
-                  right: 20,
-                  /// ToDo replace Dialogs Here
-                  child: GestureDetector(
-                    onTap: () => controller.showReplaceDialog(context),
-                    child: Icon(
-                      Icons.repeat_outlined,
-                      color: context.colors.primary,
-                      size: 22,
-                    ),
-                  )),
-              child:
-                  Positioned(right: 0, child: StatusViewWidget(status: status)),
-            ),
-          ],
+        Gaps.vGap12,
+        CardPickedRatioWidget(
+          pickedPercentage: orderDetails.product.productPickedPercent!,
+          child: Stack(
+            children: [
+              CardItemPickWidget(
+                controller: controller,
+                data: orderDetails,
+              ),
+              Visibility(
+                visible: orderDetails.product.productStatus != ProductStatusEnum.noEdit,
+                replacement: Positioned(
+                    top: 18,
+                    right: 20,
+                    child: GestureDetector(
+                      onTap: () => controller.showReplaceDialog(context),
+                      child: Icon(
+                        Icons.repeat_outlined,
+                        color: context.colors.primary,
+                        size: 22,
+                      ),
+                    )),
+                child: Positioned(right: 0, child: StatusViewWidget(status: controller.detailsCubit.data!.status)),
+              ),
+            ],
+          ),
         )
       ],
     );

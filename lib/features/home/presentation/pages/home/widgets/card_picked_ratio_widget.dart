@@ -1,12 +1,10 @@
 import 'home_widgets_imports.dart';
 
 class CardPickedRatioWidget extends StatelessWidget {
-  final int numberOfItems;
-  final double pickedPercentage; // Value between 0.0 and 100.0
+  final double pickedPercentage;
   final Widget child;
   const CardPickedRatioWidget({
     super.key,
-    required this.numberOfItems,
     required this.pickedPercentage,
     required this.child,
   });
@@ -36,7 +34,7 @@ class CardPickedRatioWidget extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: (MediaQuery.sizeOf(context).width - 100) * (pickedPercentage / 100),
+                  width: (MediaQuery.sizeOf(context).width - 100 ) * (pickedPercentage / 100) ,
                   height: 5,
                   decoration: const BoxDecoration(
                     color: Colors.green,
@@ -50,7 +48,7 @@ class CardPickedRatioWidget extends StatelessWidget {
             ),
             // Circular indicator
             PositionedDirectional(
-              start: (MediaQuery.of(context).size.width - 100) * (pickedPercentage / 100) - 6,
+              start: (MediaQuery.of(context).size.width - 100) * (pickedPercentage / 100) ,
               child: Container(
                 width: 13,
                 height: 13,
@@ -62,7 +60,6 @@ class CardPickedRatioWidget extends StatelessWidget {
             ),
           ],
         ),
-
 
       ],
     );
