@@ -28,21 +28,20 @@ class NotificationCardWidget extends StatelessWidget {
                 height: 25,
               ),
               Gaps.hGap8,
-              Column(
-                spacing: 10,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('${model.title} ',
-                    style: AppTextStyle.s14_w400(color: context.colors.black),
-                  ),
-                  Text( "#${model.data.orderCode}",
-                  style: AppTextStyle.s14_w600(color: context.colors.black),
-                  ),
-                  Text(
-                   model.createdAt,
-                    style: AppTextStyle.s12_w400(color: context.colors.gray3),
-                  ),
-                ],
+              Flexible(
+                child: Column(
+                  spacing: 10,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('${model.text} ',
+                      style: AppTextStyle.s14_w400(color: context.colors.black),
+                    ),
+                    Text(
+                     model.createdAt,
+                      style: AppTextStyle.s12_w400(color: context.colors.gray3),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -7,9 +7,8 @@ part 'notification_model.g.dart';
 class NotificationModel with _$NotificationModel {
   const factory NotificationModel({
     required String id,
-    required String title,
     required String text,
-    required NotificationData data,
+    @JsonKey(name: "order_id") required int orderId,
     @JsonKey(name: "created_at") required String createdAt,
   }) = _NotificationModel;
 

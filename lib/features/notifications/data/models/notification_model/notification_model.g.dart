@@ -10,9 +10,8 @@ _$NotificationModelImpl _$$NotificationModelImplFromJson(
         Map<String, dynamic> json) =>
     _$NotificationModelImpl(
       id: json['id'] as String,
-      title: json['title'] as String,
       text: json['text'] as String,
-      data: NotificationData.fromJson(json['data'] as Map<String, dynamic>),
+      orderId: (json['order_id'] as num).toInt(),
       createdAt: json['created_at'] as String,
     );
 
@@ -20,9 +19,8 @@ Map<String, dynamic> _$$NotificationModelImplToJson(
         _$NotificationModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
       'text': instance.text,
-      'data': instance.data,
+      'order_id': instance.orderId,
       'created_at': instance.createdAt,
     };
 
