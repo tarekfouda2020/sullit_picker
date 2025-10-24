@@ -12,9 +12,12 @@ class StatusViewWidget extends StatelessWidget {
       width: 113,
       height: 33,
       decoration: BoxDecoration(
-          color: context.colors.phosphorousGreen.withAlpha(35),
-          borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(10), bottomLeft: Radius.circular(12))),
+        color: context.colors.phosphorousGreen.withAlpha(35),
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(10),
+          bottomLeft: Radius.circular(12),
+        ),
+      ),
       child: Text(
         status ?? '',
         style: AppTextStyle.s14_w700(color: context.colors.phosphorousGreen),
