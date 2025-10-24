@@ -1,8 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
@@ -19,46 +19,47 @@ class OrderDetailsController {
   late final int orderId;
   late final int duration;
 
-  OrderDetailsController(int id,int remainingTime) {
+  OrderDetailsController(int id, int remainingTime) {
     orderId = id;
     duration = remainingTime;
     getDetails();
   }
 
-   OrderModel get _detailsData => detailsCubit.data!;
+  OrderModel get _detailsData => detailsCubit.data!;
 
   void updateDetailsCubit({OrderModel? data}) => detailsCubit.successState(data ?? _detailsData);
 
-  void onPressReplace(BuildContext context,int productId){
+  void onPressReplace(BuildContext context, OrderDetailsModel item) {
     bool replacePermission = _detailsData.allowReplacement;
-    if(replacePermission){
-      showReplaceDialog(context);
-    }else{
-      showDeleteDialog(context,productId);
+    if (replacePermission) {
+      showReplaceDialog(context, item);
+    } else {
+      showDeleteDialog(context, item.id);
     }
   }
 
-
-  void showReplaceDialog(BuildContext context) {
-    showDialog(context: context, builder: (context) {
-      return DialogActionWidget(
-        description: 'Are you sure you want replace this product ?',
-        buttonGreenTitle: 'Yes Replace',
-        buttonRedTitle: 'Cancel',
-        greenOnTap: () {},
-      );
-    });
+  void showReplaceDialog(BuildContext context, OrderDetailsModel oldItem) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return DialogActionWidget(
+            description: 'Are you sure you want replace this product ?',
+            buttonGreenTitle: 'Yes Replace',
+            buttonRedTitle: 'Cancel',
+            greenOnTap: () => scanProduct(context, oldItem),
+          );
+        });
   }
 
-
-
-  void showDeleteDialog(BuildContext context,int productId) {
+  void showDeleteDialog(BuildContext context, int productId) {
     showDialog(
       context: context,
-      builder: (context) =>  RemoveProductDialog(controller: this,productId: productId,),
+      builder: (context) => RemoveProductDialog(
+        controller: this,
+        productId: productId,
+      ),
     );
   }
-
 
   void showWeightDialog(BuildContext context) {
     showDialog(
@@ -71,6 +72,32 @@ class OrderDetailsController {
     showDialog(context: context, builder: (context) => const WeightConfirmDialogWidget());
   }
 
+  void showCancelOrderDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogActionWidget(
+          description: 'Are you sure you want to cancel order',
+          buttonGreenTitle: 'Confirm',
+          buttonRedTitle: "No",
+          greenOnTap: () => cancelOrder(context),
+        );
+      },
+    );
+  }
+
+  void showDeleteItemDialog(BuildContext context, int itemId) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogActionWidget(
+          description: 'Are you sure you want to delete product',
+          buttonGreenTitle: 'Delete',
+          greenOnTap: () => deleteProduct(context,itemId),
+        );
+      },
+    );
+  }
 
   Future<void> cancelOrder(BuildContext context) async {
     var result = await getIt<HomeRepositories>().cancelOrder(OrdersParams(id: orderId));
@@ -86,60 +113,56 @@ class OrderDetailsController {
     );
   }
 
-
-  Future<void> removeCanceledOrder()async{
-    var assignedOrders =  getIt<OrdersHelper>().getAssignedOrders();
+  Future<void> removeCanceledOrder() async {
+    var assignedOrders = getIt<OrdersHelper>().getAssignedOrders();
     assignedOrders.removeWhere((order) => order.id == orderId);
     getIt<OrdersHelper>().assignedOrdersCubit.successState(assignedOrders);
     getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
   }
 
-
-
   void pickItem(OrderDetailsModel orderProduct) {
     var qty = orderProduct.quantity;
-    if( orderProduct.product!.pickedQuantity!=qty){
-      getProductPickedPercent(orderProduct,_detailsData);
+    if (orderProduct.product!.pickedQuantity != qty) {
+      getProductPickedPercent(orderProduct, _detailsData);
       updateDetailsCubit();
       getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     }
   }
 
-
-  void deleteProduct(int productId){
-    _detailsData.ordersDetails!.removeWhere((element) => element.id == productId);
-    _detailsData.totalItems -=1 ;
+  void deleteProduct(BuildContext context,int itemId) {
+    _detailsData.ordersDetails!.removeWhere((element) => element.id == itemId);
     updateSameOrderInList(_detailsData);
+    orderPickedPercent(_detailsData);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
-
+    Navigator.pop(context);
   }
 
-
-  void getProductPickedPercent(OrderDetailsModel orderProduct,OrderModel details){
-     var pickedQty = orderProduct.product!.pickedQuantity!;
-     pickedQty = pickedQty + 1 ;
-     orderProduct.product!.pickedQuantity = pickedQty;
-     var percent = (pickedQty/orderProduct.quantity)*100;
-     orderProduct.product!.productPickedPercent = percent;
-    if(pickedQty == orderProduct.quantity){
+  void getProductPickedPercent(OrderDetailsModel orderProduct, OrderModel details) {
+    var pickedQty = orderProduct.product!.pickedQuantity!;
+    pickedQty = pickedQty + 1;
+    orderProduct.product!.pickedQuantity = pickedQty;
+    var percent = (pickedQty / orderProduct.quantity) * 100;
+    orderProduct.product!.productPickedPercent = percent;
+    if (pickedQty == orderProduct.quantity) {
       orderPickedPercent(details);
     }
   }
 
-  void orderPickedPercent(OrderModel details){
-   var finishedPickedProducts = details.ordersDetails!.where((element) => element.quantity == element.product!.pickedQuantity!,).toList();
-   var percent = (details.totalItems/finishedPickedProducts.length)*100;
+  void orderPickedPercent(OrderModel details) {
+    var totalPickedQty = details.ordersDetails!.fold<int>(0, (sum, item) => sum + (item.product!.pickedQuantity ?? 0));
+    var totalQty = details.ordersDetails!.fold<int>(0, (sum, item) => sum + item.quantity);
+    final percent = (totalPickedQty / totalQty) * 100;
     details.pickedPercent = percent;
-    details.totalItems =  details.totalItems-1;
-   updateSameOrderInList(details);
+    details.totalItems = details.totalItems - 1;
+    updateSameOrderInList(details);
   }
 
   void updateSameOrderInList(OrderModel details) {
     /// out side list updated inside this method
     var ordersListCubit = getIt<OrdersHelper>().assignedOrdersCubit;
     var ordersData = ordersListCubit.data!;
-    for(var item in ordersData){
+    for (var item in ordersData) {
       if (item.id == details.id) {
         item.totalItems = details.totalItems;
         item.pickedPercent = details.pickedPercent;
@@ -148,7 +171,6 @@ class OrderDetailsController {
     getIt<OrdersHelper>().saveAssignedOrders(ordersData);
     ordersListCubit.successState(ordersData);
   }
-
 
   Future<void> getDetails({bool fromRemote = true}) async {
     var hiveData = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
@@ -166,9 +188,9 @@ class OrderDetailsController {
       },
       isError: (error) {
         detailsCubit.failedState(error, () => getDetails());
-      },);
+      },
+    );
   }
-
 
   Future<void> updateLocalData(OrderModel data) async {
     var box = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
@@ -180,59 +202,79 @@ class OrderDetailsController {
     }
   }
 
-
   Future<void> initDataFromLocal() async {
     var data = await getIt<OrdersHelper>().getOrderDetails(orderId);
     updateDetailsCubit(data: data);
   }
 
-
-
-
-  Future<void> scanProduct(BuildContext context,OrderDetailsModel oldItem)async{
+  Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
     String? barcode = await getIt<BarcodeService>().scanBarcode();
-    if(barcode!=null && barcode.isNotEmpty){
-      log("========>>>>>> code: $barcode<<<<<<<=======");
-      getProductWithBarcode(context,"3456789",oldItem);
-      AppSnackBar.showSimpleToast(
-        // "${tr('productScanned')} code: $barcode",
-        msg: "Product Scanned",
-        type: ToastType.success,
+    if (barcode != null && barcode.isNotEmpty) {
+      AppSnackBar.showSuccessSnackBar(
+        "Product Scanned",
       );
+      getProductWithBarcode(context, barcode, oldItem);
     }
   }
 
-  Future<void> getProductWithBarcode(BuildContext context,String barcode,OrderDetailsModel oldItem)async{
+  Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
+    getIt<LoadingHelper>().showLoadingDialog();
     var params = _replacedProductParams(barcode);
-   var result =  await  getIt<HomeRepositories>().searchByBarcode(params);
+    var result = await getIt<HomeRepositories>().searchByBarcode(params);
     result.when(
       isSuccess: (data) {
-      oldItem = oldItem.copyWith(
-       variation: data!.variant.name
-      );
-    },
+        updateReplacedProduct(data!, oldItem);
+      },
       isError: (error) {
         AppSnackBar.showSimpleToast(
           msg: "Product not found",
           type: ToastType.error,
         );
-    },);
+      },
+    );
+    getIt<LoadingHelper>().dismissDialog();
+    Navigator.pop(context);
+  }
+
+  void updateReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
+    var newPrice = double.parse(newData.variant.mainPrice);
+    var oldItemPrice = double.parse(oldItem.price);
+
+    if (newPrice > oldItemPrice) {
+      AppSnackBar.showSimpleToast(
+        msg: "Cannot replace with product having higher price than $oldItemPrice",
+      );
+      return;
     }
 
-
-
-
-    void updateReplacedProduct(OrderDetailsModel oldItem){
-
-    }
+    var index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+    var updatedItem = oldItem.copyWith(
+      price: newData.variant.mainPrice,
+      newVariantId: newData.variant.id,
+      product: oldItem.product!.copyWith(
+        name: newData.name,
+        thumbnailImage: newData.thumbnailImage,
+        pickedQuantity: 0,
+        productPickedPercent: 0,
+      ),
+    );
+    _detailsData.ordersDetails![index] = updatedItem;
+    updateDetailsCubit();
+    getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+  }
 
   OrdersParams _orderParams(bool refresh) {
     return OrdersParams(id: orderId, refresh: refresh);
   }
 
-
-  ReplacedProductParams _replacedProductParams(String barcode){
+  ReplacedProductParams _replacedProductParams(String barcode) {
     return ReplacedProductParams(barcode: barcode);
   }
+
+
+
+
+  bool  isProductFullPicked(OrderDetailsModel item) => item.quantity - item.product!.pickedQuantity! == 0;
+
 
 }

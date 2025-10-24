@@ -10,7 +10,8 @@ import 'package:flutter_tdd/res.dart';
 import 'widgets_imports.dart';
 
 class HeaderOrderDetailsWidget extends StatelessWidget {
-final OrderModel data;
+  final OrderModel data;
+
   const HeaderOrderDetailsWidget({super.key, required this.data});
 
   @override
@@ -24,15 +25,20 @@ final OrderModel data;
               onTap: () => Navigator.pop(context),
               child: SvgPicture.asset(
                 Res.arrow,
-                colorFilter:
-                    ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
                 width: 24,
                 height: 24,
               ),
             ),
             Gaps.hGap14,
-            Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.simiGray),),
-            Text(data.code,style: AppTextStyle.s18_w600(color: context.colors.primary),),
+            Text(
+              'Order No. : ',
+              style: AppTextStyle.s18_w300(color: context.colors.simiGray),
+            ),
+            Text(
+              data.code,
+              style: AppTextStyle.s18_w600(color: context.colors.primary),
+            ),
           ],
         ),
         Gaps.vGap8,
@@ -40,7 +46,7 @@ final OrderModel data;
           observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
           builder: (context, assignedTime) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 38),
-            child: Text('Assigned $assignedTime',style: AppTextStyle.s14_w300(color: context.colors.textColor)),
+            child: Text('Assigned $assignedTime', style: AppTextStyle.s14_w300(color: context.colors.textColor)),
           ),
         ),
         // Padding(

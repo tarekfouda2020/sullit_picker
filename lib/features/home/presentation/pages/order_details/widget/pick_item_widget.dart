@@ -22,9 +22,21 @@ class PickItemWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          orderDetails.product!.category.name,
-          style: AppTextStyle.s18_w500(color: context.colors.simiGray),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                orderDetails.product!.category.name,
+                style: AppTextStyle.s18_w500(color: context.colors.simiGray),
+              ),
+            ),
+            GestureDetector(
+              onTap: () => controller.showDeleteItemDialog(context,orderDetails.id),
+              child: Text("Delete Product",
+              style: AppTextStyle.s15_w500(color: context.colors.primary),
+              ),
+            )
+          ],
         ),
         Gaps.vGap12,
         CardPickedRatioWidget(
@@ -42,7 +54,7 @@ class PickItemWidget extends StatelessWidget {
                     right: 20,
                     child: GestureDetector(
                       // onTap: () => controller.showReplaceDialog(context),
-                      onTap: ()=> controller.onPressReplace(context, orderDetails.id),
+                      onTap: ()=> controller.onPressReplace(context, orderDetails),
                       child: SvgPicture.asset(Res.repeatIcon,height: 22,width: 22,),
                     )),
                 child: Positioned(right: 0, child: StatusViewWidget(status: controller.detailsCubit.data!.status)),

@@ -32,6 +32,7 @@ class TimerCardDetailsWidget extends StatelessWidget {
                 'Must Picking within',
                 style: AppTextStyle.s16_w300(color: context.colors.black),
               ),
+              Gaps.vGap15,
               OrderCountDownTimerWidget(
                 pickWithinTime: DateTime.now().add(Duration(minutes: data.preparationMinutes)),
                 isNewOrder: false,

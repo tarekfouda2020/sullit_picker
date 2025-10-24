@@ -132,8 +132,8 @@ class ImplHomeDataSource extends HomeDataSource {
         url: ApiNames.searchByBarcode(params.barcode),
         responseType: ResType.model,
         requestMethod: RequestMethod.get,
-      toJsonFunc: (data) => data['data'],
-      showLoader: true,
+      toJsonFunc: (data) => SearchBarcodeModel.fromJson(data),
+      responseKey: (data) => data['data'],
       refresh: params.refresh,
     );
     return await GenericHttpImpl<SearchBarcodeModel>()(model);

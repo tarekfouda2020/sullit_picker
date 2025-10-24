@@ -27,39 +27,31 @@ class CardItemPickWidget extends StatelessWidget {
                 boxShape: BoxShape.circle,
               ),
               Gaps.hGap10,
-              Row(
-                children: [
-                  Text(
-                    "${data.product!.name} ${data.variation}",
-                    maxLines: 2,
-                    softWrap: true,
-                    overflow: TextOverflow.visible,
-                    style: AppTextStyle.s14_w600(
-                        color: context.colors.simiGray),
-                  ),
-                ],
+              Text(
+                "${data.product!.name} ${data.variation}",
+                maxLines: 2,
+                softWrap: true,
+                overflow: TextOverflow.visible,
+                style: AppTextStyle.s14_w600(
+                    color: context.colors.simiGray),
               ),
             ],
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(
-                child: ObsValueConsumer(
-                  observable: controller.isPicked,
-                  builder: (context, isPicked) =>
-                      AppTextButton.maxCustom(
-                        text: isPicked ? 'Picked' : 'Pick',
-                        bgColor: isPicked
-                            ? context.colors.softWhite
-                            : context.colors.primary,
-                        txtColor: isPicked
-                            ? context.colors.appGreen
-                            : context.colors.white,
-                        textSize: 16,
-                        maxHeight: 40,
-                        onPressed: () => controller.pickItem(data) ,
-                      ),
+                child: AppTextButton.maxCustom(
+                  text: controller.isProductFullPicked(data) ? 'Picked' : 'Pick',
+                  bgColor: controller.isProductFullPicked(data)
+                      ? context.colors.softWhite
+                      : context.colors.primary,
+                  txtColor: controller.isProductFullPicked(data)
+                      ? context.colors.appGreen
+                      : context.colors.white,
+                  textSize: 16,
+                  maxHeight: 40,
+                  onPressed: () => controller.pickItem(data) ,
                 ),
               ),
               Gaps.hGap6,
@@ -72,33 +64,33 @@ class CardItemPickWidget extends StatelessWidget {
                   ),
                   Gaps.vGap8,
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                     decoration: BoxDecoration(
                         color: context.colors.lightPrimary,
-                        borderRadius: Dimens.borderRadius30PX),
+                        borderRadius: Dimens.borderRadius30PX,
+                    ),
                     child: Text(
                       "${data.quantity - data.product!.pickedQuantity!}",
                       style: AppTextStyle.s18_w600(
                           color: context.colors.primary),
                     ),
                   ),
-                  Gaps.vGap8,
-                  GestureDetector(
-                    onTap: () => controller.showWeightDialog(context),
-                    child: Text(
-                      'Edit Qnt',
-                      style: AppTextStyle.s14_w400(
-                          color: context.colors.textColor),
-                    ),
-                  ),
+                  // Gaps.vGap8,
+                  // GestureDetector(
+                  //   onTap: () => controller.showWeightDialog(context),
+                  //   child: Text(
+                  //     'Edit Qnt',
+                  //     style: AppTextStyle.s14_w400(
+                  //         color: context.colors.textColor),
+                  //   ),
+                  // ),
                 ],
               )
             ],
           ),
           Gaps.vGap13,
           Text(
-            'Picked ${data.product!.productPickedPercent!}%',
+            'Picked ${data.product!.productPickedPercent!.toStringAsFixed(2)}%',
             style:
             AppTextStyle.s14_w400(color: context.colors.textColor),
           )

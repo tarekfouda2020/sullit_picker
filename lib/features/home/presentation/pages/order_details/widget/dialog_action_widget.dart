@@ -3,7 +3,7 @@ import 'widgets_imports.dart';
 class DialogActionWidget extends StatelessWidget {
   final String description;
   final String buttonGreenTitle;
-  final String buttonRedTitle;
+  final String? buttonRedTitle;
   final void Function() greenOnTap;
   final void Function()? redOnTap;
 
@@ -11,7 +11,7 @@ class DialogActionWidget extends StatelessWidget {
       {super.key,
       required this.description,
       required this.buttonGreenTitle,
-      required this.buttonRedTitle,
+       this.buttonRedTitle,
       required this.greenOnTap,
       this.redOnTap});
 
@@ -51,7 +51,7 @@ class DialogActionWidget extends StatelessWidget {
               Gaps.hGap8,
               Expanded(
                 child: AppTextButton.minCustom(
-                  text: buttonRedTitle,
+                  text: buttonRedTitle ??"Cancel",
                   onPressed: redOnTap ?? ()=>  Navigator.pop(context),
                   bgColor: context.colors.white,
                   borderColor: context.colors.primary,

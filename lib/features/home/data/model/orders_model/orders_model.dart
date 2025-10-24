@@ -64,6 +64,9 @@ class OrderDetailsModel with _$OrderDetailsModel {
 
    /// return null in cancel order api
    ProductModel? product,
+
+   /// have value when replace the item
+     @JsonKey(name: "new_variant_id",defaultValue: -1) int? newVariantId
   }) = _OrderDetailsModel;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>

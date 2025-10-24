@@ -15,9 +15,7 @@ class RemoveProductDialog extends StatelessWidget {
       description:
       'User didn’t give access to replace the product , you can just remove it from order',
       buttonGreenTitle: 'Yes Remove',
-      buttonRedTitle: 'Cancel',
-      greenOnTap: () => controller.deleteProduct(productId),
-      redOnTap: () => Navigator.pop(context),
+      greenOnTap: () => controller.deleteProduct(context,productId),
     );
   }
 }

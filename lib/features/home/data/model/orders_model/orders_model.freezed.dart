@@ -609,6 +609,14 @@ mixin _$OrderDetailsModel {
   /// return null in cancel order api
   set product(ProductModel? value) => throw _privateConstructorUsedError;
 
+  /// have value when replace the item
+  @JsonKey(name: "new_variant_id", defaultValue: -1)
+  int? get newVariantId => throw _privateConstructorUsedError;
+
+  /// have value when replace the item
+  @JsonKey(name: "new_variant_id", defaultValue: -1)
+  set newVariantId(int? value) => throw _privateConstructorUsedError;
+
   /// Serializes this OrderDetailsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
@@ -630,7 +638,8 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       String variation,
       int quantity,
       String price,
-      ProductModel? product});
+      ProductModel? product,
+      @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId});
 
   $ProductModelCopyWith<$Res>? get product;
 }
@@ -655,6 +664,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? quantity = null,
     Object? price = null,
     Object? product = freezed,
+    Object? newVariantId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -677,6 +687,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
+      newVariantId: freezed == newVariantId
+          ? _value.newVariantId
+          : newVariantId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
@@ -708,7 +722,8 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       String variation,
       int quantity,
       String price,
-      ProductModel? product});
+      ProductModel? product,
+      @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId});
 
   @override
   $ProductModelCopyWith<$Res>? get product;
@@ -732,6 +747,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? quantity = null,
     Object? price = null,
     Object? product = freezed,
+    Object? newVariantId = freezed,
   }) {
     return _then(_$OrderDetailsModelImpl(
       id: null == id
@@ -754,6 +770,10 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
+      newVariantId: freezed == newVariantId
+          ? _value.newVariantId
+          : newVariantId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -766,7 +786,8 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
       required this.variation,
       required this.quantity,
       required this.price,
-      this.product});
+      this.product,
+      @JsonKey(name: "new_variant_id", defaultValue: -1) this.newVariantId});
 
   factory _$OrderDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderDetailsModelImplFromJson(json);
@@ -784,9 +805,14 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
   @override
   ProductModel? product;
 
+  /// have value when replace the item
+  @override
+  @JsonKey(name: "new_variant_id", defaultValue: -1)
+  int? newVariantId;
+
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, product: $product)';
+    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, product: $product, newVariantId: $newVariantId)';
   }
 
   /// Create a copy of OrderDetailsModel
@@ -812,7 +838,9 @@ abstract class _OrderDetailsModel implements OrderDetailsModel {
       required String variation,
       required int quantity,
       required String price,
-      ProductModel? product}) = _$OrderDetailsModelImpl;
+      ProductModel? product,
+      @JsonKey(name: "new_variant_id", defaultValue: -1)
+      int? newVariantId}) = _$OrderDetailsModelImpl;
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
       _$OrderDetailsModelImpl.fromJson;
@@ -836,6 +864,15 @@ abstract class _OrderDetailsModel implements OrderDetailsModel {
 
   /// return null in cancel order api
   set product(ProductModel? value);
+
+  /// have value when replace the item
+  @override
+  @JsonKey(name: "new_variant_id", defaultValue: -1)
+  int? get newVariantId;
+
+  /// have value when replace the item
+  @JsonKey(name: "new_variant_id", defaultValue: -1)
+  set newVariantId(int? value);
 
   /// Create a copy of OrderDetailsModel
   /// with the given fields replaced by the non-null parameter values.
