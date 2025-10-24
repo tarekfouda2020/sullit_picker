@@ -10,7 +10,7 @@ class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
    final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
    final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
-  BaseBloc<OrdersList> ordersListCubit = BaseBloc<OrdersList>();
+  BaseBloc<OrdersList?> ordersListCubit = BaseBloc<OrdersList?>();
   // final BaseBloc<OrdersModel?> ordersCubit = BaseBloc<OrdersModel?>();
 
   BaseBloc<List<OrderModel>> get assignedOrdersCubit => getIt<OrdersHelper>().assignedOrdersCubit;
@@ -44,7 +44,7 @@ class HomeController {
     result.when(
       isSuccess: (data) {
       ordersListCubit.successState(data);
-      updateAssignedFromLocalData(data!.assignedOrders);
+      updateAssignedFromLocalData(data?.assignedOrders ?? <OrderModel>[]);
     },
       isError: (error) {
         ordersListCubit.failedState(error, () => getAllOrders(),);

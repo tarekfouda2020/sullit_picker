@@ -1,6 +1,10 @@
+import 'dart:developer';
+
+import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/show_orders_requester.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
@@ -45,6 +49,7 @@ class OrderDetailsController {
       );
     });
   }
+
 
 
   void showDeleteDialog(BuildContext context,int productId) {
@@ -182,8 +187,43 @@ class OrderDetailsController {
   }
 
 
+
+
+  Future<void> scanProduct(BuildContext context)async{
+    String? barcode = await getIt<BarcodeService>().scanBarcode();
+    if(barcode!=null && barcode.isNotEmpty){
+      log("========>>>>>> code: $barcode<<<<<<<=======");
+      getProductWithBarcode(context,"5285001226436");
+      AppSnackBar.showSimpleToast(
+        // "${tr('productScanned')} code: $barcode",
+        msg: "Product Scanned",
+        type: ToastType.success,
+      );
+    }
+  }
+
+  Future<void> getProductWithBarcode(BuildContext context,String barcode)async{
+    var params = _replacedProductParams(barcode);
+   var result =  await  getIt<HomeRepositories>().searchByBarcode(params);
+    result.when(
+      isSuccess: (data) {
+
+    },
+      isError: (error) {
+        AppSnackBar.showSimpleToast(
+          msg: "Product not found",
+          type: ToastType.error,
+        );
+    },);
+    }
+
   OrdersParams _orderParams(bool refresh) {
     return OrdersParams(id: orderId, refresh: refresh);
+  }
+
+
+  ReplacedProductParams _replacedProductParams(String barcode){
+    return ReplacedProductParams(barcode: barcode);
   }
 
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
+import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/assigned_orders_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/have_orders_view_widget.dart';
@@ -18,11 +19,11 @@ class OrdersWidget extends StatelessWidget {
     child: BaseBlocBuilder(
         bloc: controller.ordersListCubit,
         onSuccessWidget: (data) {
-          return Visibility(
-              visible: data.assignedOrders.isEmpty && data.newOrders.isEmpty,
-              replacement:  HaveOrdersViewWidget(controller: controller, data: data),
-              child:  NoOrdersViewWidget(controller: controller,)
-          );
+          if(data==null){
+            return NoOrdersViewWidget(controller: controller,);
+          }else{
+            return HaveOrdersViewWidget(controller: controller, data: data);
+          }
         },
       onLoadingWidget: (context) {
        return const Column(
@@ -33,10 +34,22 @@ class OrdersWidget extends StatelessWidget {
         );
       },
       onFailedWidget: (context, error, callback) {
-        // return NoOrdersViewWidget(controller: controller,);
         return NoOrdersViewWidget(controller: controller,);
       },
     ),
     );
   }
+
+
+
+
+
+  /// if not available when an order create the *data* return null
+  /// else *assignedOrdersList* and *newOrdersList* both return empty
+  bool _haveNoData(OrdersList? data) => (
+      (
+          (data?.assignedOrders ?? <OrderModel>[]).isEmpty && (data?.newOrders ?? <OrderModel>[]).isEmpty
+      )
+          || data==null
+  );
 }

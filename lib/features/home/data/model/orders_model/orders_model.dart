@@ -61,7 +61,8 @@ class OrderDetailsModel with _$OrderDetailsModel {
     required String variation,
     required int quantity,
     required String price,
-     /// return null in cancel order api
+
+   /// return null in cancel order api
    ProductModel? product,
   }) = _OrderDetailsModel;
 
@@ -77,6 +78,8 @@ class ProductModel with _$ProductModel {
     required String name,
     required CategoryModel category,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
+
+
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? productPickedPercent,
     @JsonKey(name: 'picked_quantity',defaultValue: 0)  int? pickedQuantity,
     @JsonKey(name: 'product_status',defaultValue: ProductStatusEnum.noEdit)  ProductStatusEnum? productStatus,

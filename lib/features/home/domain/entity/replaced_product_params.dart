@@ -1,6 +1,6 @@
 class ReplacedProductParams {
-  final String sk;
+  final String barcode;
   bool refresh;
 
-  ReplacedProductParams({required this.sk, this.refresh = false});
+  ReplacedProductParams({required this.barcode, this.refresh = true});
 }

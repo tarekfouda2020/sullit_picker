@@ -51,7 +51,7 @@ class CardItemPickWidget extends StatelessWidget {
                       AppTextButton.maxCustom(
                         text: isPicked ? 'Picked' : 'Pick',
                         bgColor: isPicked
-                            ? const Color(0xFFE3FFE3)
+                            ? context.colors.softWhite
                             : context.colors.primary,
                         txtColor: isPicked
                             ? context.colors.appGreen

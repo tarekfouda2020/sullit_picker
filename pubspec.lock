@@ -86,6 +86,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.3.2"
+  barcode:
+    dependency: "direct main"
+    description:
+      name: barcode
+      sha256: "7b6729c37e3b7f34233e2318d866e8c48ddb46c1f7ad01ff7bb2a8de1da2b9f4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.9"
+  barcode_scan2:
+    dependency: "direct main"
+    description:
+      name: barcode_scan2
+      sha256: "0f3eb7c0a0c80a0f65d3fa88737544fdb6d27127a4fad566e980e626f3fb76e1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.5.1"
   bloc:
     dependency: "direct main"
     description:
@@ -1466,6 +1482,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  protobuf:
+    dependency: transitive
+    description:
+      name: protobuf
+      sha256: "68645b24e0716782e58948f8467fd42a880f255096a821f9e7d0ec625b00c84d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   provider:
     dependency: transitive
     description:
@@ -1490,6 +1514,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      sha256: "5a1d2586170e172b8a8c8470bbbffd5eb0cd38a66c0d77155ea138d3af3a4445"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
   quiver:
     dependency: transitive
     description:

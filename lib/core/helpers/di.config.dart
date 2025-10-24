@@ -8,6 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter_tdd/core/helpers/barcode_service.dart' as _i813;
 import 'package:flutter_tdd/core/helpers/country_picker.dart' as _i297;
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart' as _i177;
 import 'package:flutter_tdd/core/helpers/file_service.dart' as _i323;
@@ -108,6 +109,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i769.GlobalContext>(() => _i769.GlobalContext());
     gh.lazySingleton<_i443.GlobalNotification>(
         () => _i443.GlobalNotification());
+    gh.lazySingleton<_i813.BarcodeService>(() => _i813.BarcodeService());
     gh.lazySingleton<_i792.PickHelper>(() => _i792.PickHelper());
     gh.lazySingleton<_i297.CountryPickerHelper>(
         () => _i297.CountryPickerHelper());

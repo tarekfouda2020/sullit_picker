@@ -113,4 +113,6 @@ abstract class AppColors {
 
   Color get phosphorousGreen;
 
+  Color get softWhite;
+
 }

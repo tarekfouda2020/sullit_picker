@@ -128,4 +128,7 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get darkRed => const Color(0xFF992B2D);
+
+  @override
+  Color get softWhite => const Color(0xFFE3FFE3);
 }

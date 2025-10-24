@@ -129,7 +129,7 @@ class ImplHomeDataSource extends HomeDataSource {
   @override
   Future<MyResult<SearchBarcodeModel>> searchByBarcode(ReplacedProductParams params) async {
     HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.searchByBarcode(params.sk),
+        url: ApiNames.searchByBarcode(params.barcode),
         responseType: ResType.model,
         requestMethod: RequestMethod.get,
       toJsonFunc: (data) => data['data'],

@@ -34,11 +34,11 @@ class UserServicesHelper {
 
   Future<void> clearCashAndRoute(BuildContext context)async {
     context.read<DeviceCubit>().updateUserAuth(false);
+    GlobalState.instance.set(ApplicationConstants.keyToken,null);
+    context.read<UserCubit>().onUpdateUserData(null);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.remove(ApplicationConstants.keyToken);
     preferences.remove("user");
-    GlobalState.instance.set(ApplicationConstants.keyToken,null);
-    context.read<UserCubit>().onUpdateUserData(null);
     // AutoRouter.of(context).pushAndPopUntil( const Splash(), predicate: (route) => false);
     AutoRouter.of(context).push(const Splash());
 }
