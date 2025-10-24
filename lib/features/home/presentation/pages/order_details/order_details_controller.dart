@@ -189,11 +189,11 @@ class OrderDetailsController {
 
 
 
-  Future<void> scanProduct(BuildContext context)async{
+  Future<void> scanProduct(BuildContext context,OrderDetailsModel oldItem)async{
     String? barcode = await getIt<BarcodeService>().scanBarcode();
     if(barcode!=null && barcode.isNotEmpty){
       log("========>>>>>> code: $barcode<<<<<<<=======");
-      getProductWithBarcode(context,"5285001226436");
+      getProductWithBarcode(context,"3456789",oldItem);
       AppSnackBar.showSimpleToast(
         // "${tr('productScanned')} code: $barcode",
         msg: "Product Scanned",
@@ -202,12 +202,14 @@ class OrderDetailsController {
     }
   }
 
-  Future<void> getProductWithBarcode(BuildContext context,String barcode)async{
+  Future<void> getProductWithBarcode(BuildContext context,String barcode,OrderDetailsModel oldItem)async{
     var params = _replacedProductParams(barcode);
    var result =  await  getIt<HomeRepositories>().searchByBarcode(params);
     result.when(
       isSuccess: (data) {
-
+      oldItem = oldItem.copyWith(
+       variation: data!.variant.name
+      );
     },
       isError: (error) {
         AppSnackBar.showSimpleToast(
@@ -215,6 +217,13 @@ class OrderDetailsController {
           type: ToastType.error,
         );
     },);
+    }
+
+
+
+
+    void updateReplacedProduct(OrderDetailsModel oldItem){
+
     }
 
   OrdersParams _orderParams(bool refresh) {

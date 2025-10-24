@@ -127,6 +127,9 @@ class HomeController {
     result.when(
       isSuccess: (data) async {
         AutoRouter.of(context).push(OrderDetailsRouteName(id: data!.id,time: data.preparationMinutes));
+        assignedOrdersCubit.data!.add(data);
+        assignedOrdersCubit.successState(assignedOrdersCubit.data);
+        getIt<OrdersHelper>().saveAssignedOrders(assignedOrdersCubit.data!);
       },
       isError: (error) {
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: 'Order accepted failed'));

@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
           bgColor: Colors.transparent,
           removeBgColorInScroll: true,
           size: 20,
+          showBack: false,
         ),
         body: OrdersWidget(controller: controller),
       ),
