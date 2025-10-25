@@ -17,9 +17,9 @@ class PrepareOrderParams {
       }
     }).toList();
     final removeDetailsJson = removeData.map((e) => _actionJson(PrepareOrderActionType.remove, e)).toList();
-    final allDetailsJsons = currentDetailsJson + removeDetailsJson;
+    final allDetailsJsons = (currentDetailsJson + removeDetailsJson).where((e) => e != null).toList();
     return {
-      "details": allDetailsJsons,
+      if (allDetailsJsons.isNotEmpty) "details": allDetailsJsons,
     };
   }
 
