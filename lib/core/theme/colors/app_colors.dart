@@ -115,4 +115,6 @@ abstract class AppColors {
 
   Color get softWhite;
 
+  Color get indicatorColor;
+
 }

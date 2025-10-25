@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'home_widgets_imports.dart';
 
-class CardPickedRatioWidget extends StatelessWidget {
+class CardPickedRatioWidget extends StatefulWidget {
   final double pickedPercentage;
   final Widget child;
   const CardPickedRatioWidget({
@@ -10,23 +12,76 @@ class CardPickedRatioWidget extends StatelessWidget {
   });
 
   @override
+  State<CardPickedRatioWidget> createState() => _CardPickedRatioWidgetState();
+}
+
+class _CardPickedRatioWidgetState extends State<CardPickedRatioWidget> {
+
+
+
+  double? _calculatedWidth;
+  bool _hasError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _updateSize();
+    });
+  }
+
+  void _updateSize() {
+    if (!mounted) return;
+
+    try {
+      GlobalKey key =  widget.child.key as GlobalKey<State<StatefulWidget>>;
+      final context = key.currentContext;
+      if (context != null) {
+        final renderBox = context.findRenderObject() as RenderBox?;
+        if (renderBox != null && renderBox.hasSize) {
+          final size = renderBox.size;
+          if (mounted && size.width > 0 && size.height > 0) {
+            setState(() {
+              _calculatedWidth = size.width;
+              _hasError = false;
+            });
+          }
+        }
+      }
+    } catch (e) {
+      // Handle any size access errors gracefully
+      if (mounted) {
+        setState(() {
+          _hasError = true;
+        });
+      }
+    }
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return  Stack(
       alignment: Alignment.bottomCenter,
       clipBehavior: Clip.none,
       children: [
-        child,
+        widget.child,
+        if (_hasError || ( _calculatedWidth == null))
+          LayoutBuilder(builder: (context, constraints) {
+            return  Gaps.empty;
+          },)
+          else
         Stack(
           clipBehavior: Clip.none,
           alignment: Alignment.center,
           children: [
             Container(
               height: 5,
-              decoration: const BoxDecoration(
-                color: Color(0xFFB0B0B0),
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
+              decoration:  BoxDecoration(
+                color: const Color(0xFFB0B0B0),
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomEnd: Radius.circular(widget.pickedPercentage == 100?30:0),
+                  bottomStart: const Radius.circular(30),
                 ),
               ),
             ),
@@ -34,13 +89,13 @@ class CardPickedRatioWidget extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: (MediaQuery.sizeOf(context).width - 100 ) * (pickedPercentage / 100) ,
+                  width: (_calculatedWidth ?? 0) * (widget.pickedPercentage / 100)  ,
                   height: 5,
-                  decoration: const BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(15),
-                      bottomLeft: Radius.circular(15),
+                  decoration:  BoxDecoration(
+                    color:  context.colors.indicatorColor,
+                    borderRadius: BorderRadiusDirectional.only(
+                      bottomEnd: Radius.circular(widget.pickedPercentage == 100?30:0),
+                      bottomStart: const Radius.circular(30),
                     ),
                   ),
                 ),
@@ -48,19 +103,22 @@ class CardPickedRatioWidget extends StatelessWidget {
             ),
             // Circular indicator
             PositionedDirectional(
-              start: (MediaQuery.of(context).size.width - 100) * (pickedPercentage / 100) ,
+              start: (_calculatedWidth ?? 0) * (widget.pickedPercentage / 100) - (
+               widget.pickedPercentage==100
+                   ?13
+                   :0
+              ) ,
               child: Container(
                 width: 13,
                 height: 13,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF4CAF50),
+                decoration:  BoxDecoration(
+                  color: context.colors.indicatorColor,
                   shape: BoxShape.circle,
                 ),
               ),
             ),
           ],
         ),
-
       ],
     );
   }

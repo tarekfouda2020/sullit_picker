@@ -27,6 +27,7 @@ class CardOrderWidget extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 8,
             children: [
               Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.blackOpacity),),
               Text(data.code,style: AppTextStyle.s20_w600(color: context.colors.primary)),
@@ -42,7 +43,11 @@ class CardOrderWidget extends StatelessWidget {
           Gaps.vGap15,
            CardPickedRatioWidget(
             pickedPercentage: data.pickedPercent!,
-            child:  LeftItemsWidget(numberOfItems: data.totalItems, pickedPercent: data.pickedPercent!,)
+            child:  LeftItemsWidget(
+              key: GlobalKey(debugLabel: "${data.id}"),
+              numberOfItems: data.totalItems,
+              pickedPercent: data.pickedPercent!,
+            )
           ),
           Gaps.vGap15,
            Center(

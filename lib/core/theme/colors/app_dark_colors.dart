@@ -131,4 +131,6 @@ class AppDarkColors extends AppColors {
 
   @override
   Color get softWhite => const Color(0xFFE3FFE3);
+
+  Color get indicatorColor => const Color(0xFF4CAF50);
 }
