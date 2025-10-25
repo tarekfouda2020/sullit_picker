@@ -68,7 +68,7 @@ class PickItemWidget extends StatelessWidget {
                 ),
                 child: Positioned(
                   right: 0,
-                  child: StatusViewWidget(status: controller.detailsCubit.data!.status),
+                  child: StatusViewWidget(status: orderDetails.product!.productStatus?.getName() ?? ""),
                 ),
               ),
             ],

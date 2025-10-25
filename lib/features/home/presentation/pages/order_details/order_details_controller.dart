@@ -1,8 +1,7 @@
 import 'dart:developer';
-
-import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
@@ -34,6 +33,10 @@ class OrderDetailsController {
   OrderModel get _detailsData => detailsCubit.data!;
 
   void updateDetailsCubit({OrderModel? data}) => detailsCubit.successState(data ?? _detailsData);
+
+  void updateIsAllPickedObs(){
+    isAllPickedObs.setValue(isAllProductsPicked);
+  }
 
   void onPressReplace(BuildContext context, OrderDetailsModel item) {
     if (isProductFullPicked(item)) {
@@ -239,18 +242,20 @@ class OrderDetailsController {
   Future<void> initDataFromLocal() async {
     var data = await getIt<OrdersHelper>().getOrderDetails(orderId);
     updateDetailsCubit(data: data);
+    updateIsAllPickedObs();
   }
 
   Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
-    Navigator.pop(context);
-    String? barcode = await getIt<BarcodeService>().scanBarcode();
-    if (barcode != null && barcode.isNotEmpty) {
-      AppSnackBar.showSuccessSnackBar(
-        "Product Scanned",
-      );
-      BuildContext ctx = getIt<GlobalContext>().context();
-      getProductWithBarcode(ctx, barcode, oldItem);
-    }
+    getProductWithBarcode(context, "3456789", oldItem);
+    // Navigator.pop(context);
+    // String? barcode = await getIt<BarcodeService>().scanBarcode();
+    // if (barcode != null && barcode.isNotEmpty) {
+    //   AppSnackBar.showSuccessSnackBar(
+    //     "Product Scanned",
+    //   );
+    //   BuildContext ctx = getIt<GlobalContext>().context();
+    //   getProductWithBarcode(ctx, barcode, oldItem);
+    // }
   }
 
   Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
@@ -288,11 +293,13 @@ class OrderDetailsController {
     var updatedItem = oldItem.copyWith(
       price: newData.variant.mainPrice,
       newVariantId: newData.variant.id,
+      variation: "",
       product: oldItem.product!.copyWith(
         name: newData.name,
         thumbnailImage: newData.thumbnailImage,
         pickedQuantity: 0,
         productPickedPercent: 0,
+        productStatus: ProductStatusEnum.replaced
       ),
     );
     _detailsData.ordersDetails![index] = updatedItem;

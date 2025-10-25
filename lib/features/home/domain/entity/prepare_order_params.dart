@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 
 class PrepareOrderParams {
@@ -15,11 +18,19 @@ class PrepareOrderParams {
       if (e.newVariantId != null && e.newVariantId != -1) {
         return _actionJson(PrepareOrderActionType.replace, e);
       }
-    }).toList();
-    final removeDetailsJson = removeData.map((e) => _actionJson(PrepareOrderActionType.remove, e)).toList();
-    final allDetailsJsons = (currentDetailsJson + removeDetailsJson).where((e) => e != null).toList();
+      return null;
+    }).where((e) => e != null).cast<Map<String, dynamic>>().toList();
+
+    final removeDetailsJson = removeData
+        .map((e) => _actionJson(PrepareOrderActionType.remove, e))
+        .toList();
+
+    final allDetailsJsons = [...currentDetailsJson, ...removeDetailsJson];
+
+    log("======>>>> all data $allDetailsJsons <<<<<<======");
+
     return {
-      if (allDetailsJsons.isNotEmpty) "details": allDetailsJsons,
+      "details": jsonEncode(allDetailsJsons),
     };
   }
 
