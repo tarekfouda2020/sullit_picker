@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/qnt_count_widget.dart';
 
 import 'widgets_imports.dart';
 class CardItemPickWidget extends StatelessWidget {
@@ -63,18 +64,7 @@ class CardItemPickWidget extends StatelessWidget {
                         color: context.colors.textColor),
                   ),
                   Gaps.vGap8,
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                    decoration: BoxDecoration(
-                        color: context.colors.lightPrimary,
-                        borderRadius: Dimens.borderRadius30PX,
-                    ),
-                    child: Text(
-                      "${data.quantity - data.product!.pickedQuantity!}",
-                      style: AppTextStyle.s18_w600(
-                          color: context.colors.primary),
-                    ),
-                  ),
+                  QntCountWidget(qnt: data.quantity - data.product!.pickedQuantity!,),
                   // Gaps.vGap8,
                   // GestureDetector(
                   //   onTap: () => controller.showWeightDialog(context),

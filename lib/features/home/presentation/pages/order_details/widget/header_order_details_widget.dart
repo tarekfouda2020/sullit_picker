@@ -5,14 +5,15 @@ import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/res.dart';
 
 import 'widgets_imports.dart';
 
 class HeaderOrderDetailsWidget extends StatelessWidget {
   final OrderModel data;
-
-  const HeaderOrderDetailsWidget({super.key, required this.data});
+ final OrderDetailsController controller;
+  const HeaderOrderDetailsWidget({super.key, required this.data, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +43,29 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
           ],
         ),
         Gaps.vGap8,
-        ObsValueConsumer(
-          observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
-          builder: (context, assignedTime) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 38),
-            child: Text('Assigned $assignedTime', style: AppTextStyle.s14_w300(color: context.colors.textColor)),
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: ObsValueConsumer(
+                observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
+                builder: (context, assignedTime) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 38),
+                  child: Text('Assigned $assignedTime', style: AppTextStyle.s14_w300(color: context.colors.textColor)),
+                ),
+              ),
+            ),
+            // Visibility(
+            //   visible: controller.detailsCubit.data?.deletedOrders?.isNotEmpty ?? false,
+            //   child: GestureDetector(
+            //     onTap: () => controller.showDeletedProductsSheet(context),
+            //     child: Text("Deleted Items (${controller.detailsCubit.data?.deletedOrders?.length})",
+            //     style: AppTextStyle.s15_w500(color: context.colors.primary),
+            //     ),
+            //   ),
+            // )
+
+          ],
         ),
-        // Padding(
-        //   padding: const EdgeInsets.symmetric(horizontal: 38),
-        //   child: Text('Assigned 2 min ago',style: AppTextStyle.s14_w300(color: context.colors.textColor),),
-        // )
       ],
     );
   }

@@ -36,7 +36,7 @@ class _OrderDetailsState extends State<OrderDetails> {
           return Column(
             children: [
               Gaps.vGap(kToolbarHeight),
-              HeaderOrderDetailsWidget(data: data),
+              HeaderOrderDetailsWidget(data: data,controller: controller,),
               Gaps.vGap12,
               TimerCardDetailsWidget(data: data),
               Gaps.vGap12,

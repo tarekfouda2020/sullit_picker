@@ -7,6 +7,7 @@ import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/show_orders_requester.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/deleted_products_sheet_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
 import 'order_details_imports.dart';
 import 'widget/remove_product_dialog.dart';
@@ -14,6 +15,7 @@ import 'widget/weight_confirm_dialog_widget.dart';
 
 class OrderDetailsController {
   final ObsValue<bool> isPicked = ObsValue.withInit(false);
+  final ObsValue<bool> refreshDeletedSheetObs = ObsValue.withInit(false);
   final BaseBloc<OrderModel> detailsCubit = BaseBloc<OrderModel>();
   late ShowOrdersRequester showOrdersRequester;
   late final int orderId;
@@ -30,6 +32,9 @@ class OrderDetailsController {
   void updateDetailsCubit({OrderModel? data}) => detailsCubit.successState(data ?? _detailsData);
 
   void onPressReplace(BuildContext context, OrderDetailsModel item) {
+    if(isProductFullPicked(item)){
+      return ;
+    }
     bool replacePermission = _detailsData.allowReplacement;
     if (replacePermission) {
       showReplaceDialog(context, item);
@@ -86,14 +91,17 @@ class OrderDetailsController {
     );
   }
 
-  void showDeleteItemDialog(BuildContext context, int itemId) {
+  void showDeleteItemDialog(BuildContext context, OrderDetailsModel item) {
+    if(isProductFullPicked(item)){
+      return ;
+    }
     showDialog(
       context: context,
       builder: (context) {
         return DialogActionWidget(
           description: 'Are you sure you want to delete product',
           buttonGreenTitle: 'Delete',
-          greenOnTap: () => deleteProduct(context,itemId),
+          greenOnTap: () => deleteProduct(context,item.id),
         );
       },
     );
@@ -130,9 +138,11 @@ class OrderDetailsController {
   }
 
   void deleteProduct(BuildContext context,int itemId) {
-    _detailsData.ordersDetails!.removeWhere((element) => element.id == itemId);
-    updateSameOrderInList(_detailsData);
+    var removedItem = _detailsData.ordersDetails?.firstWhere((element) =>element.id == itemId,);
+    _detailsData.ordersDetails!.remove(removedItem);
     orderPickedPercent(_detailsData);
+    updateSameOrderInList(_detailsData);
+    _detailsData.deletedOrders?.add(removedItem!);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     Navigator.pop(context);
@@ -146,6 +156,21 @@ class OrderDetailsController {
     orderProduct.product!.productPickedPercent = percent;
     if (pickedQty == orderProduct.quantity) {
       orderPickedPercent(details);
+    }
+  }
+
+  void returnDeleteProduct(BuildContext context,int itemId) {
+    var removedItem = _detailsData.deletedOrders?.firstWhere((element) =>element.id == itemId,);
+    _detailsData.ordersDetails!.add(removedItem!);
+    orderPickedPercent(_detailsData);
+    updateSameOrderInList(_detailsData);
+    _detailsData.deletedOrders?.remove(removedItem);
+    updateDetailsCubit();
+    getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+    if(_detailsData.deletedOrders?.isEmpty??false){
+      Navigator.pop(context);
+    }else{
+      refreshDeletedSheetObs.refresh();
     }
   }
 
@@ -208,12 +233,14 @@ class OrderDetailsController {
   }
 
   Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
+    Navigator.pop(context);
     String? barcode = await getIt<BarcodeService>().scanBarcode();
     if (barcode != null && barcode.isNotEmpty) {
       AppSnackBar.showSuccessSnackBar(
         "Product Scanned",
       );
-      getProductWithBarcode(context, barcode, oldItem);
+      BuildContext ctx = getIt<GlobalContext>().context();
+      getProductWithBarcode(ctx, barcode, oldItem);
     }
   }
 
@@ -273,8 +300,18 @@ class OrderDetailsController {
 
 
 
+  void showDeletedProductsSheet(BuildContext context){
+    AppBottomSheets.showScrollableBody(context: context, builder: (context) {
+      return DeletedProductsSheetWidget(controller: this);
+    },);
+  }
+
 
   bool  isProductFullPicked(OrderDetailsModel item) => item.quantity - item.product!.pickedQuantity! == 0;
+
+  bool get isAllProductsPicked {
+   return _detailsData.ordersDetails!.every((item) => item.quantity - item.product!.pickedQuantity! == 0);
+  }
 
 
 }

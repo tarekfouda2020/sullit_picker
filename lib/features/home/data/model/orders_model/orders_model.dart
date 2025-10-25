@@ -32,6 +32,9 @@ class OrderModel with _$OrderModel {
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
     @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
+
+     /// used in local data
+    @JsonKey(name: 'deleted_orders',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? deletedOrders,
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? pickedPercent,
   }) = _OrderModel;
 
@@ -82,7 +85,7 @@ class ProductModel with _$ProductModel {
     required CategoryModel category,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
 
-
+     /// used in local data
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? productPickedPercent,
     @JsonKey(name: 'picked_quantity',defaultValue: 0)  int? pickedQuantity,
     @JsonKey(name: 'product_status',defaultValue: ProductStatusEnum.noEdit)  ProductStatusEnum? productStatus,

@@ -21,8 +21,12 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                 text: 'Send to cashier',
                 onPressed: (){},
                 textSize: 18,
-                txtColor: context.colors.white,
-                bgColor: context.colors.appGreen,
+                txtColor: controller.isAllProductsPicked
+                    ?context.colors.white
+                    :context.colors.white.withAlpha(126),
+                bgColor: controller.isAllProductsPicked
+                    ?context.colors.appGreen
+                    :context.colors.appGreen.withAlpha(126),
                 maxHeight: 50,
               ),
               Gaps.vGap10,

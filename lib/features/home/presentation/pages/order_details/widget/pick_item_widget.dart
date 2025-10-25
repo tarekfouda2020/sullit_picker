@@ -31,7 +31,7 @@ class PickItemWidget extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () => controller.showDeleteItemDialog(context,orderDetails.id),
+              onTap: () => controller.showDeleteItemDialog(context,orderDetails),
               child: Text("Delete Product",
               style: AppTextStyle.s15_w500(color: context.colors.primary),
               ),
