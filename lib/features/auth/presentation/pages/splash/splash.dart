@@ -1,11 +1,8 @@
-import 'package:flutter_tdd/core/constants/gaps.dart';
-import 'package:flutter_tdd/features/auth/presentation/widgets/app_slogan_widget.dart';
-
 import '../../../../../core/helpers/export.dart';
 import 'splash_imports.dart';
 
 
-@RoutePage()
+@RoutePage(name: "SplashRoute")
 class Splash extends StatefulWidget {
   const Splash({super.key});
 

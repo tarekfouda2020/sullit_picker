@@ -1,8 +1,6 @@
 
 import 'dart:convert';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
@@ -21,15 +19,15 @@ import '../routes/router_imports.gr.dart';
 
 @lazySingleton
 class UserServicesHelper {
-  void cashAndRoute(BuildContext context, UserModel? data, String msg, bool register) async {
-    context.read<DeviceCubit>().updateUserAuth(register ? false: true);
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString("user", json.encode(data?.toJson()));
-    preferences.setString(ApplicationConstants.keyToken, data!.token);
-    GlobalState.instance.set(ApplicationConstants.keyToken, data.token);
+  Future<void> cashAndRoute(BuildContext context, UserModel? data, String msg,) async {
+    context.read<DeviceCubit>().updateUserAuth( true);
+    var userData = json.encode(data?.toJson());
+    GlobalState.instance.set(ApplicationConstants.keyToken, data?.token);
     context.read<UserCubit>().onUpdateUserData(data);
     AppSnackBar.showSimpleToast(msg: msg, type: ToastType.success);
-    AutoRouter.of(context).replaceAll([const HomePageRoute()]);
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString("user",userData );
+    AutoRouter.of(context).push(const HomePageRoute());
   }
 
   Future<void> clearCashAndRoute(BuildContext context)async {
@@ -37,11 +35,10 @@ class UserServicesHelper {
     GlobalState.instance.set(ApplicationConstants.keyToken,null);
     context.read<UserCubit>().onUpdateUserData(null);
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.remove(ApplicationConstants.keyToken);
-    preferences.remove("user");
-    // AutoRouter.of(context).pushAndPopUntil( const Splash(), predicate: (route) => false);
-    AutoRouter.of(context).push(const Splash());
-}
+    await preferences.remove("user");
+    await preferences.remove(ApplicationConstants.keyToken);
+    AutoRouter.of(context).push(const SplashRoute());
+  }
 
 
 Future<void> updateUserData(BuildContext context, UserModel? data,{bool isAuth = true}) async {

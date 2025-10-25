@@ -141,7 +141,7 @@ abstract class $AppRouter extends _i16.RootStackRouter {
         child: const _i13.ResetPassword(),
       );
     },
-    Splash.name: (routeData) {
+    SplashRoute.name: (routeData) {
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i14.Splash(),
@@ -420,14 +420,14 @@ class ResetPassword extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i14.Splash]
-class Splash extends _i16.PageRouteInfo<void> {
-  const Splash({List<_i16.PageRouteInfo>? children})
+class SplashRoute extends _i16.PageRouteInfo<void> {
+  const SplashRoute({List<_i16.PageRouteInfo>? children})
       : super(
-          Splash.name,
+          SplashRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'Splash';
+  static const String name = 'SplashRoute';
 
   static const _i16.PageInfo<void> page = _i16.PageInfo<void>(name);
 }

@@ -44,11 +44,6 @@ class MenuItemsListWidget extends StatelessWidget {
           title: Translate.of(context).privacy_policy,
           onTap: () => controller.navigateToPrivacyPolicy(context),
         ),
-        Gaps.vGap22,
-        AppTextButton.maxPrimary(text: Translate.of(context).logout,
-        onPressed: () => controller.logout(context),
-        ),
-        Gaps.vGap30
       ],
     );
   }

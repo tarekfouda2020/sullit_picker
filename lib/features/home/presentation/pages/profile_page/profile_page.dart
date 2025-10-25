@@ -39,6 +39,11 @@ class _ProfilePageState extends State<ProfilePage> {
            ProfileHeaderWidget(controller: controller),
            DriverWorkInfo(controller: controller),
           MenuItemsListWidget(controller: controller),
+          Gaps.vGap22,
+          AppTextButton.maxPrimary(
+            text: Translate.of(context).logout,
+            onPressed: () => controller.logout(context),
+          ),
         ],
       ),
     );

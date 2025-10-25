@@ -10,7 +10,6 @@ class FlexibilityBackGroundWidget extends StatefulWidget {
 }
 
 class _FlexibilityBackGroundWidgetState extends State<FlexibilityBackGroundWidget> {
-  double? _calculatedHeight;
   double? _calculatedWidth;
   bool _hasError = false;
 
@@ -33,7 +32,6 @@ class _FlexibilityBackGroundWidgetState extends State<FlexibilityBackGroundWidge
           final size = renderBox.size;
           if (mounted && size.width > 0 && size.height > 0) {
             setState(() {
-              _calculatedHeight = size.height;
               _calculatedWidth = size.width;
               _hasError = false;
             });
@@ -66,7 +64,6 @@ class _FlexibilityBackGroundWidgetState extends State<FlexibilityBackGroundWidge
     
     return SizedBox(
       width: _calculatedWidth,
-      height: _calculatedHeight,
       child: widget.child,
     );
   }

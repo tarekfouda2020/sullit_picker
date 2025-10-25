@@ -32,7 +32,7 @@ class LoginViewController {
       await getIt.get<AuthRepositories>().sendLogin(params).then((result) {
         result.when(
           isSuccess: (data) {
-            getIt<UserServicesHelper>().cashAndRoute(context, data, 'Success Login', false);
+            getIt<UserServicesHelper>().cashAndRoute(context, data, 'Success Login');
           },
           isError: (error) {},
         );
