@@ -270,6 +270,8 @@ class OrderDetailsController {
     if (newPrice > oldItemPrice) {
       AppSnackBar.showSimpleToast(
         msg: "Cannot replace with product having higher price than $oldItemPrice",
+        type: ToastType.error,
+        gravity: ToastGravity.BOTTOM
       );
       return;
     }
