@@ -131,6 +131,8 @@ class GenericTextField extends StatelessWidget {
         borderRadius: radius,
         hintSize: hintSize,
         lang: context.watch<DeviceCubit>().state.model.locale.languageCode,
+      ).copyWith(
+        errorMaxLines: 2
       ),
     );
   }

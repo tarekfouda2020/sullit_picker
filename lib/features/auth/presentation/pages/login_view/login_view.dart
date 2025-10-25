@@ -4,8 +4,6 @@ import 'package:flutter_tdd/features/auth/presentation/pages/login_view/widgets/
 
 import 'widgets/login_form_widget.dart';
 
-
-
 @RoutePage(name: "LoginViewRoute")
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -16,9 +14,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
 
-
   final LoginViewController controller = LoginViewController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +42,7 @@ class _LoginViewState extends State<LoginView> {
                 children: [
                   Gaps.vGap30,
                   const AuthPageLogoWidget(),
-                  Gaps.vGap24,
-                  Gaps.vGap32,
+                  Gaps.vGap50,
                   LoginFormWidget(controller: controller),
                   Gaps.vGap50, // Bottom padding
                 ],

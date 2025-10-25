@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
@@ -246,16 +247,15 @@ class OrderDetailsController {
   }
 
   Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
-    getProductWithBarcode(context, "3456789", oldItem);
-    // Navigator.pop(context);
-    // String? barcode = await getIt<BarcodeService>().scanBarcode();
-    // if (barcode != null && barcode.isNotEmpty) {
-    //   AppSnackBar.showSuccessSnackBar(
-    //     "Product Scanned",
-    //   );
-    //   BuildContext ctx = getIt<GlobalContext>().context();
-    //   getProductWithBarcode(ctx, barcode, oldItem);
-    // }
+    Navigator.pop(context);
+    String? barcode = await getIt<BarcodeService>().scanBarcode();
+    if (barcode != null && barcode.isNotEmpty) {
+      AppSnackBar.showSuccessSnackBar(
+        "Product Scanned",
+      );
+      BuildContext ctx = getIt<GlobalContext>().context();
+      getProductWithBarcode(ctx, barcode, oldItem);
+    }
   }
 
   Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {

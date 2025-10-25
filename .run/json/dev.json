@@ -1,5 +1,5 @@
 {
-  "APP_ID": "ua.suliitdriver.com",
+  "APP_ID": "ua.suliitpicker.com",
   "APP_BASE_URL": "https://staging.suliit.com/api/v3/",
   "APP_ENV_NAME": "dev",
   "APP_API": "picker/",
