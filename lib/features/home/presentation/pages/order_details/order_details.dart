@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bottom_nav_bar_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/header_order_details_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/order_details_shimmer_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/pick_category_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/timer_card_details_widget.dart';
 import 'order_details_imports.dart';
@@ -45,7 +46,7 @@ class _OrderDetailsState extends State<OrderDetails> {
           ) ;
         },
           onLoadingWidget: (context) {
-            return const Center(child: CircularProgressIndicator(),);
+            return const OrderDetailsShimmerWidget();
           },
           onFailedWidget: (context, error, callback) {
             return Center(

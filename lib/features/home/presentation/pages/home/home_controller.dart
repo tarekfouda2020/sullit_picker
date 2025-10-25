@@ -36,8 +36,8 @@ class HomeController {
 
 
 
-  Future<void> getAllOrders({bool fromRemote = true})async{
-   if(ordersListCubit.hasNoData){
+  Future<void> getAllOrders({bool fromRemote = true, bool setLoading = true})async{
+   if(ordersListCubit.hasNoData && setLoading){
      ordersListCubit.loadingState();
    }
     var result = await getIt<HomeRepositories>().orders(fromRemote);

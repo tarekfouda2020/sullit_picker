@@ -13,7 +13,7 @@ class NoOrdersViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       backgroundColor: context.colors.white,
-      onRefresh: () async => await controller.getAllOrders(),
+      onRefresh: () async => await controller.getAllOrders(setLoading: false),
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: ConstrainedBox(
