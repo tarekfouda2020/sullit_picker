@@ -18,7 +18,7 @@ import 'widget/remove_product_dialog.dart';
 import 'widget/weight_confirm_dialog_widget.dart';
 
 class OrderDetailsController {
-  final ObsValue<bool> isPicked = ObsValue.withInit(false);
+  final ObsValue<bool> isAllPickedObs = ObsValue.withInit(false);
   final ObsValue<bool> refreshDeletedSheetObs = ObsValue.withInit(false);
   final BaseBloc<OrderModel> detailsCubit = BaseBloc<OrderModel>();
   late ShowOrdersRequester showOrdersRequester;
@@ -117,6 +117,7 @@ class OrderDetailsController {
       isSuccess: (data) {
         removeCanceledOrder();
         AppSnackBar.showSuccessSnackBar('Order cancelled successfully');
+        Navigator.pop(context);
         AutoRouter.of(context).maybePop();
       },
       isError: (error) {
@@ -329,6 +330,9 @@ class OrderDetailsController {
     result.when(
       isSuccess: (data) {
         AutoRouter.of(context).maybePop(params.orderId);
+        AppSnackBar.showSuccessSnackBar(
+         "Order ready for delivery",
+        );
       },
       isError: (error) {
         AppSnackBar.showSimpleToast(

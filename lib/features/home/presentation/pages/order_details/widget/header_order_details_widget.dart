@@ -1,12 +1,6 @@
-import 'package:flutter_svg/svg.dart';
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:flutter_tdd/core/constants/gaps.dart';
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
-import 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
-import 'package:flutter_tdd/core/theme/text/app_text_style.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
-import 'package:flutter_tdd/res.dart';
 
 import 'widgets_imports.dart';
 
@@ -23,7 +17,7 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
         Row(
           children: [
             GestureDetector(
-              onTap: () => Navigator.pop(context),
+              onTap: () => AutoRouter.of(context).maybePop(),
               child: SvgPicture.asset(
                 Res.arrow,
                 colorFilter: ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
