@@ -23,7 +23,6 @@ class UserImageWidget extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         child: Container(
-          
           width: 63,height: 63,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(

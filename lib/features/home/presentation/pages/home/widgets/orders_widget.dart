@@ -27,7 +27,6 @@ class OrdersWidget extends StatelessWidget {
           }
         },
       onLoadingWidget: (context) {
-          /// seperate loading view in widgets folder and summon it here
        return const HaveOrdersViewShimmerWidget();
       },
       onFailedWidget: (context, error, callback) {

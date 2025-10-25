@@ -53,29 +53,29 @@ class HomeHeaderWidget extends StatelessWidget {
   Widget _imageWidget(BuildContext context){
     var avatar = context.select<UserCubit,String?>((value) => value.state.model?.avatar);
     return  GestureDetector(
-      onTap: () => controller.navigateToSideMenu(context),
+      onTap: ()  =>  controller.navigateToSideMenu(context),
       child: Visibility(
         visible: avatar==null || avatar == "",
         replacement: CachedImage(
           url: avatar ?? "",
-          width: 60,
-          height: 60,
+          width: Dimens.dp40,
+          height: Dimens.dp40,
           haveRadius: false,
           boxShape: BoxShape.circle,
           fit: BoxFit.cover,
         ),
         child: Container(
-          width: 60,
-          height: 60,
+          width: Dimens.dp40,
+          height: Dimens.dp40,
           padding: const EdgeInsets.only(bottom: 2),
-          alignment: Alignment.center,
+          alignment: Alignment.bottomCenter,
           decoration:  BoxDecoration(
             color: context.colors.white,
             shape: BoxShape.circle,
           ),
           child: SvgPicture.asset(
             Res.personIcon,
-            width: 45, height: 45,
+            width: 30, height: 30,
           )
           ,
         ),

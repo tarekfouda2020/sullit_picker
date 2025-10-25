@@ -103,7 +103,7 @@ class HomeController {
             .onUpdateUserData(userData?.copyWith(isAvailable: data.data?.isAvailable ?? userData.isAvailable));
       },
       isError: (error) {
-        AppSnackBar.showErrorSnackBar(error: error);
+
       },
     );
   }
