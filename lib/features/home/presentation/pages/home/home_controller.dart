@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
@@ -8,52 +7,54 @@ import 'home_imports.dart';
 
 class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
-   final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
-   final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
+  final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
+  final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
   BaseBloc<OrdersList?> ordersListCubit = BaseBloc<OrdersList?>();
+
   // final BaseBloc<OrdersModel?> ordersCubit = BaseBloc<OrdersModel?>();
 
   BaseBloc<List<OrderModel>> get assignedOrdersCubit => getIt<OrdersHelper>().assignedOrdersCubit;
 
-
-  HomeController(){
+  HomeController() {
     getUserData();
     getAllOrders(fromRemote: false);
     getAllOrders();
   }
 
-
-
   bool popOut = false;
 
-
-  Future<void> initializeAvailableStatus(BuildContext context,{bool value = false}) async {
+  Future<void> initializeAvailableStatus(BuildContext context, {bool value = false}) async {
     bool? isAvailable = context.read<UserCubit>().state.model?.isAvailable;
     availableForOrdersObs.setValue(isAvailable ?? value);
     availableForOrdersObs.refresh();
   }
 
-
-
-
-  Future<void> getAllOrders({bool fromRemote = true, bool setLoading = true})async{
-   if(ordersListCubit.hasNoData && setLoading){
-     ordersListCubit.loadingState();
-   }
+  Future<void> getAllOrders({bool fromRemote = true, bool setLoading = true}) async {
+    if (ordersListCubit.hasNoData && setLoading) {
+      ordersListCubit.loadingState();
+    }
     var result = await getIt<HomeRepositories>().orders(fromRemote);
     result.when(
       isSuccess: (data) {
-      ordersListCubit.successState(data);
-      updateAssignedFromLocalData(data?.assignedOrders ?? <OrderModel>[]);
-    },
+        ordersListCubit.successState(data);
+        if (ordersListCubit.data != null) {
+          updateAssignedFromLocalData(data?.assignedOrders ?? <OrderModel>[]);
+          if (ordersListCubit.data!.assignedOrders.isEmpty && ordersListCubit.data!.newOrders.isEmpty) {
+            ordersListCubit.successState(null);
+          }
+        }
+      },
       isError: (error) {
-        ordersListCubit.failedState(error, () => getAllOrders(),);
-    },);
+        ordersListCubit.failedState(
+          error,
+          () => getAllOrders(),
+        );
+      },
+    );
   }
 
-
-  Future<void> updateAssignedFromLocalData(List<OrderModel> data) async{
-    var localData =  getIt<OrdersHelper>().getAssignedOrders();
+  Future<void> updateAssignedFromLocalData(List<OrderModel> data) async {
+    var localData = getIt<OrdersHelper>().getAssignedOrders();
     if (localData.isEmpty) {
       getIt<OrdersHelper>().saveAssignedOrders(data);
       assignedOrdersCubit.successState(data);
@@ -62,13 +63,10 @@ class HomeController {
     }
   }
 
-
-  Future<void> initDataFromLocal()async{
-    var data =  getIt<OrdersHelper>().getAssignedOrders();
+  Future<void> initDataFromLocal() async {
+    var data = getIt<OrdersHelper>().getAssignedOrders();
     assignedOrdersCubit.successState(data);
   }
-
-
 
   void onPop() {
     if (popOut) {
@@ -85,10 +83,7 @@ class HomeController {
     }
   }
 
-
-
-
-  Future<void> navigateToSideMenu(BuildContext context)async {
+  Future<void> navigateToSideMenu(BuildContext context) async {
     await AutoRouter.of(context).push(const ProfilePageRoute());
   }
 
@@ -96,19 +91,16 @@ class HomeController {
     AutoRouter.of(context).push(const NotificationsPageRoute());
   }
 
-
   Future<void> updateAvailabilityStatus(BuildContext context) async {
     var userData = context.read<UserCubit>().state.model;
     var result = await getIt<HomeRepositories>().updateAvailability();
     result.when(
       isSuccess: (data) async {
         availableForOrdersObs.setValue(data!.data!.isAvailable);
-        AppSnackBar.showSuccessSnackBar(data.msg ??"", forceShow: true);
-        context.read<UserCubit>().onUpdateUserData(
-            userData?.copyWith(
-              isAvailable: data.data?.isAvailable ?? userData.isAvailable
-            )
-        );
+        AppSnackBar.showSuccessSnackBar(data.msg ?? "", forceShow: true);
+        context
+            .read<UserCubit>()
+            .onUpdateUserData(userData?.copyWith(isAvailable: data.data?.isAvailable ?? userData.isAvailable));
       },
       isError: (error) {
         AppSnackBar.showErrorSnackBar(error: error);
@@ -116,17 +108,22 @@ class HomeController {
     );
   }
 
-
-
-  Future<void> acceptOrder(BuildContext context , OrderModel data ) async {
-    if(data.isAssigned){
-      AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,time: data.preparationMinutes));
-      return ;
+  Future<void> acceptOrder(BuildContext context, OrderModel data) async {
+    if (data.isAssigned) {
+      final value =
+          await AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id, time: data.preparationMinutes));
+      if (value as int == data.id) {
+        assignedOrdersCubit.data!.remove(data);
+        assignedOrdersCubit.successState(assignedOrdersCubit.data);
+        getIt<OrdersHelper>().saveAssignedOrders(assignedOrdersCubit.data!);
+        getAllOrders();
+      }
+      return;
     }
     var result = await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: data.id));
     result.when(
       isSuccess: (data) async {
-        AutoRouter.of(context).push(OrderDetailsRouteName(id: data!.id,time: data.preparationMinutes));
+        AutoRouter.of(context).push(OrderDetailsRouteName(id: data!.id, time: data.preparationMinutes));
         assignedOrdersCubit.data!.add(data);
         assignedOrdersCubit.successState(assignedOrdersCubit.data);
         getIt<OrdersHelper>().saveAssignedOrders(assignedOrdersCubit.data!);
@@ -137,11 +134,9 @@ class HomeController {
     );
   }
 
-  Future<void> getUserData() async{
-     getIt<UserServicesHelper>().getUserData();
+  Future<void> getUserData() async {
+    getIt<UserServicesHelper>().getUserData();
   }
-
-
 
   String getDigit(Duration duration, String unit, int index) {
     int value;
@@ -164,13 +159,4 @@ class HomeController {
 
     return value.toString().padLeft(2, '0')[index];
   }
-
-
-
-
-
-
-
-
-
 }

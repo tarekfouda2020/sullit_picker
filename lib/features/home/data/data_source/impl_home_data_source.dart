@@ -12,6 +12,7 @@ import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.d
 import 'package:flutter_tdd/features/home/data/model/report_reason_model/report_reason_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:injectable/injectable.dart';
@@ -138,4 +139,19 @@ class ImplHomeDataSource extends HomeDataSource {
     );
     return await GenericHttpImpl<SearchBarcodeModel>()(model);
   }
+
+  @override
+  Future<MyResult<OrderModel>> prepareOrder(PrepareOrderParams params) async {
+  HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.prepareOrder(params.orderId),
+      responseType: ResType.model,
+      requestMethod: RequestMethod.post,
+      toJsonFunc: (data) => OrderModel.fromJson(data),
+      responseKey: (data) => data['data'],
+      requestBody: params.toJson(),
+      isFormData: true,
+      showLoader: true);
+  return await GenericHttpImpl<OrderModel>()(model);
+
+}
 }

@@ -6,7 +6,6 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/order
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/card_item_pick_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/status_view_widget.dart';
 
-
 class PickItemWidget extends StatelessWidget {
   final OrderDetailsController controller;
   final OrderDetailsModel orderDetails;
@@ -31,9 +30,10 @@ class PickItemWidget extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () => controller.showDeleteItemDialog(context,orderDetails),
-              child: Text("Delete Product",
-              style: AppTextStyle.s15_w500(color: context.colors.primary),
+              onTap: () => controller.showDeleteItemDialog(context, orderDetails),
+              child: Text(
+                "Delete Product",
+                style: AppTextStyle.s15_w500(color: context.colors.primary),
               ),
             )
           ],
@@ -41,7 +41,6 @@ class PickItemWidget extends StatelessWidget {
         Gaps.vGap12,
         CardPickedRatioWidget(
           pickedPercentage: orderDetails.product!.productPickedPercent!,
-
           child: Stack(
             key: GlobalKey(debugLabel: "${orderDetails.id}"),
             children: [
@@ -52,14 +51,25 @@ class PickItemWidget extends StatelessWidget {
               Visibility(
                 visible: orderDetails.product!.productStatus != ProductStatusEnum.noEdit,
                 replacement: Positioned(
-                    top: 18,
-                    right: 20,
+                  top: 18,
+                  right: 20,
+                  child: Visibility(
+                    visible: !controller.isProductFullPicked(orderDetails),
                     child: GestureDetector(
                       // onTap: () => controller.showReplaceDialog(context),
-                      onTap: ()=> controller.onPressReplace(context, orderDetails),
-                      child: SvgPicture.asset(Res.repeatIcon,height: 22,width: 22,),
-                    )),
-                child: Positioned(right: 0, child: StatusViewWidget(status: controller.detailsCubit.data!.status)),
+                      onTap: () => controller.onPressReplace(context, orderDetails),
+                      child: SvgPicture.asset(
+                        Res.repeatIcon,
+                        height: 22,
+                        width: 22,
+                      ),
+                    ),
+                  ),
+                ),
+                child: Positioned(
+                  right: 0,
+                  child: StatusViewWidget(status: controller.detailsCubit.data!.status),
+                ),
               ),
             ],
           ),

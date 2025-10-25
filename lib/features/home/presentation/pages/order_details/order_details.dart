@@ -4,12 +4,14 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/widge
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/order_details_shimmer_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/pick_category_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/timer_card_details_widget.dart';
+
 import 'order_details_imports.dart';
 
 @RoutePage(name: "OrderDetailsRouteName")
 class OrderDetails extends StatefulWidget {
   final int id;
   final int time;
+
   const OrderDetails({super.key, required this.id, required this.time});
 
   @override
@@ -21,7 +23,7 @@ class _OrderDetailsState extends State<OrderDetails> {
 
   @override
   void initState() {
-    controller = OrderDetailsController(widget.id,widget.time);
+    controller = OrderDetailsController(widget.id, widget.time);
     super.initState();
   }
 
@@ -34,28 +36,34 @@ class _OrderDetailsState extends State<OrderDetails> {
         child: BaseBlocBuilder(
           bloc: controller.detailsCubit,
           onSuccessWidget: (data) {
-          return Column(
-            children: [
-              Gaps.vGap(kToolbarHeight),
-              HeaderOrderDetailsWidget(data: data,controller: controller,),
-              Gaps.vGap12,
-              TimerCardDetailsWidget(data: data),
-              Gaps.vGap12,
-              PickCategoryWidget(controller: controller, order: data),
-            ],
-          ) ;
-        },
+            return Column(
+              children: [
+                Gaps.vGap(kToolbarHeight),
+                HeaderOrderDetailsWidget(
+                  data: data,
+                  controller: controller,
+                ),
+                Gaps.vGap12,
+                TimerCardDetailsWidget(data: data),
+                Gaps.vGap12,
+                PickCategoryWidget(controller: controller, order: data),
+              ],
+            );
+          },
           onLoadingWidget: (context) {
             return const OrderDetailsShimmerWidget();
           },
           onFailedWidget: (context, error, callback) {
             return Center(
-              child: Text('Something went wrong',style: AppTextStyle.s16_w600(color: context.colors.primary),),
+              child: Text(
+                'Something went wrong',
+                style: AppTextStyle.s16_w600(color: context.colors.primary),
+              ),
             );
           },
         ),
       ),
-      bottomNavigationBar:  BottomNavBarDetailsWidget(controller: controller),
+      bottomNavigationBar: BottomNavBarDetailsWidget(controller: controller),
     );
   }
 }

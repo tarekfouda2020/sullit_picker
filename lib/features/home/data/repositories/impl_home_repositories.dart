@@ -7,58 +7,63 @@ import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart'
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeRepositories)
-class ImplHomeRepositories extends HomeRepositories{
-
+class ImplHomeRepositories extends HomeRepositories  {
   var dataSource = getIt<HomeDataSource>();
+
   @override
-  Future<MyResult<UserModel>> getProfile() {
-   return dataSource.getProfile();
+  Future<MyResult<UserModel>> getProfile() async {
+    return dataSource.getProfile();
   }
 
   @override
-  Future<MyResult<UserModel>> updateProfileImage(UpdateProfileImageParams params) {
-   return dataSource.updateProfileImage(params);
+  Future<MyResult<UserModel>> updateProfileImage(UpdateProfileImageParams params) async {
+    return dataSource.updateProfileImage(params);
   }
 
   @override
-  Future<MyResult<List<LangModel>>> getLanguages(bool params) {
-   return dataSource.getLanguages(params);
+  Future<MyResult<List<LangModel>>> getLanguages(bool params) async {
+    return dataSource.getLanguages(params);
   }
 
   @override
-  Future<MyResult<OrdersList?>> orders(bool params) {
-   return dataSource.orders(params);
+  Future<MyResult<OrdersList?>> orders(bool params) async {
+    return dataSource.orders(params);
   }
 
   @override
-  Future<MyResult<AvailableForOrderModel>> updateAvailability() {
+  Future<MyResult<AvailableForOrderModel>> updateAvailability() async {
     return dataSource.updateAvailability();
   }
 
   @override
-  Future<MyResult<OrderModel>> showOrders(OrdersParams params) {
-   return dataSource.showOrders(params);
+  Future<MyResult<OrderModel>> showOrders(OrdersParams params) async {
+    return dataSource.showOrders(params);
   }
 
   @override
-  Future<MyResult<OrderModel>> acceptOrder(OrdersParams params) {
-   return dataSource.acceptOrder(params);
+  Future<MyResult<OrderModel>> acceptOrder(OrdersParams params) async {
+    return dataSource.acceptOrder(params);
   }
 
   @override
-  Future<MyResult<OrderModel>> cancelOrder(OrdersParams params) {
-   return dataSource.cancelOrder(params);
+  Future<MyResult<OrderModel>> cancelOrder(OrdersParams params) async {
+    return dataSource.cancelOrder(params);
   }
 
   @override
-  Future<MyResult<SearchBarcodeModel>> searchByBarcode(ReplacedProductParams params) {
+  Future<MyResult<SearchBarcodeModel>> searchByBarcode(ReplacedProductParams params) async {
     return dataSource.searchByBarcode(params);
   }
 
+  @override
+  Future<MyResult<OrderModel>> prepareOrder(PrepareOrderParams params) async {
+    return dataSource.prepareOrder(params);
+  }
 }

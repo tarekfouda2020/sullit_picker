@@ -1,14 +1,18 @@
+import 'dart:developer';
+
 import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/show_orders_requester.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/deleted_products_sheet_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
+
 import 'order_details_imports.dart';
 import 'widget/remove_product_dialog.dart';
 import 'widget/weight_confirm_dialog_widget.dart';
@@ -32,8 +36,8 @@ class OrderDetailsController {
   void updateDetailsCubit({OrderModel? data}) => detailsCubit.successState(data ?? _detailsData);
 
   void onPressReplace(BuildContext context, OrderDetailsModel item) {
-    if(isProductFullPicked(item)){
-      return ;
+    if (isProductFullPicked(item)) {
+      return;
     }
     bool replacePermission = _detailsData.allowReplacement;
     if (replacePermission) {
@@ -92,8 +96,8 @@ class OrderDetailsController {
   }
 
   void showDeleteItemDialog(BuildContext context, OrderDetailsModel item) {
-    if(isProductFullPicked(item)){
-      return ;
+    if (isProductFullPicked(item)) {
+      return;
     }
     showDialog(
       context: context,
@@ -101,7 +105,7 @@ class OrderDetailsController {
         return DialogActionWidget(
           description: 'Are you sure you want to delete product',
           buttonGreenTitle: 'Delete',
-          greenOnTap: () => deleteProduct(context,item.id),
+          greenOnTap: () => deleteProduct(context, item.id),
         );
       },
     );
@@ -137,8 +141,10 @@ class OrderDetailsController {
     }
   }
 
-  void deleteProduct(BuildContext context,int itemId) {
-    var removedItem = _detailsData.ordersDetails?.firstWhere((element) =>element.id == itemId,);
+  void deleteProduct(BuildContext context, int itemId) {
+    var removedItem = _detailsData.ordersDetails?.firstWhere(
+      (element) => element.id == itemId,
+    );
     _detailsData.ordersDetails!.remove(removedItem);
     orderPickedPercent(_detailsData);
     updateSameOrderInList(_detailsData);
@@ -159,17 +165,19 @@ class OrderDetailsController {
     }
   }
 
-  void returnDeleteProduct(BuildContext context,int itemId) {
-    var removedItem = _detailsData.deletedOrders?.firstWhere((element) =>element.id == itemId,);
+  void returnDeleteProduct(BuildContext context, int itemId) {
+    var removedItem = _detailsData.deletedOrders?.firstWhere(
+      (element) => element.id == itemId,
+    );
     _detailsData.ordersDetails!.add(removedItem!);
     orderPickedPercent(_detailsData);
     updateSameOrderInList(_detailsData);
     _detailsData.deletedOrders?.remove(removedItem);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
-    if(_detailsData.deletedOrders?.isEmpty??false){
+    if (_detailsData.deletedOrders?.isEmpty ?? false) {
       Navigator.pop(context);
-    }else{
+    } else {
       refreshDeletedSheetObs.refresh();
     }
   }
@@ -269,10 +277,9 @@ class OrderDetailsController {
 
     if (newPrice > oldItemPrice) {
       AppSnackBar.showSimpleToast(
-        msg: "Cannot replace with product having higher price than $oldItemPrice",
-        type: ToastType.error,
-        gravity: ToastGravity.BOTTOM
-      );
+          msg: "Cannot replace with product having higher price than $oldItemPrice",
+          type: ToastType.error,
+          gravity: ToastGravity.BOTTOM);
       return;
     }
 
@@ -300,20 +307,43 @@ class OrderDetailsController {
     return ReplacedProductParams(barcode: barcode);
   }
 
-
-
-  void showDeletedProductsSheet(BuildContext context){
-    AppBottomSheets.showScrollableBody(context: context, builder: (context) {
-      return DeletedProductsSheetWidget(controller: this);
-    },);
+  void showDeletedProductsSheet(BuildContext context) {
+    AppBottomSheets.showScrollableBody(
+      context: context,
+      builder: (context) {
+        return DeletedProductsSheetWidget(controller: this);
+      },
+    );
   }
 
-
-  bool  isProductFullPicked(OrderDetailsModel item) => item.quantity - item.product!.pickedQuantity! == 0;
+  bool isProductFullPicked(OrderDetailsModel item) => item.quantity - item.product!.pickedQuantity! == 0;
 
   bool get isAllProductsPicked {
-   return _detailsData.ordersDetails!.every((item) => item.quantity - item.product!.pickedQuantity! == 0);
+    return _detailsData.ordersDetails!.every((item) => item.quantity - item.product!.pickedQuantity! == 0);
   }
 
+  Future<void> prepareOrder(BuildContext context) async {
+    final params = _prepareOrderParams();
+    log(">>>>${params.toJson()}");
+    final result = await getIt<HomeRepositories>().prepareOrder(params);
+    result.when(
+      isSuccess: (data) {
+        AutoRouter.of(context).maybePop(params.orderId);
+      },
+      isError: (error) {
+        AppSnackBar.showSimpleToast(
+          msg: "Something went wrong",
+          type: ToastType.error,
+        );
+      },
+    );
+  }
 
+  PrepareOrderParams _prepareOrderParams() {
+    return PrepareOrderParams(
+      orderId: orderId,
+      currentProductsDetails: _detailsData.ordersDetails!,
+      deletedDetails: _detailsData.deletedOrders,
+    );
+  }
 }

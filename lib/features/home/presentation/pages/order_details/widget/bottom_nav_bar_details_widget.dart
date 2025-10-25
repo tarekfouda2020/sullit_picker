@@ -19,7 +19,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
             children: [
               AppTextButton.maxCustom(
                 text: 'Send to cashier',
-                onPressed: (){},
+                onPressed: ()=> controller.prepareOrder(context),
                 textSize: 18,
                 txtColor: controller.isAllProductsPicked
                     ?context.colors.white
