@@ -182,3 +182,4 @@ class CategoryShimmerWidget extends StatelessWidget {
     );
   }
 }
+

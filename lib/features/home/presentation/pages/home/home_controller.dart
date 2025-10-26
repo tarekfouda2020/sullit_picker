@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
@@ -123,10 +124,11 @@ class HomeController {
     var result = await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: data.id));
     result.when(
       isSuccess: (data) async {
-        AutoRouter.of(context).push(OrderDetailsRouteName(id: data!.id, time: data.preparationMinutes));
+        data!.getOrderStatus() == OrderStatusEnum.preparing;
         assignedOrdersCubit.data!.add(data);
         assignedOrdersCubit.successState(assignedOrdersCubit.data);
         getIt<OrdersHelper>().saveAssignedOrders(assignedOrdersCubit.data!);
+        AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id, time: data.preparationMinutes));
       },
       isError: (error) {
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: 'Order accepted failed'));
