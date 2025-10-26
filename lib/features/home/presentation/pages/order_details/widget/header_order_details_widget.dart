@@ -1,3 +1,5 @@
+import 'dart:math';
+import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
@@ -18,12 +20,7 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () => AutoRouter.of(context).maybePop(),
-              child: SvgPicture.asset(
-                Res.arrow,
-                colorFilter: ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
-                width: 24,
-                height: 24,
-              ),
+              child: _buildTransform(context),
             ),
             Gaps.hGap14,
             Text(
@@ -62,5 +59,20 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Transform _buildTransform(BuildContext context) {
+    var lang = context.select<DeviceCubit,String>((value) => value.state.model.locale.languageCode);
+    return Transform.rotate(
+              angle:lang == ApplicationConstants.langAR
+                  ? pi
+                  : 0,
+              child: SvgPicture.asset(
+                Res.arrowBack,
+                colorFilter: ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
+                width: 24,
+                height: 24,
+              ),
+            );
   }
 }

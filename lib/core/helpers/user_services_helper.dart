@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
+import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/http/dio_helper/utils/cache_manager.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/splash/splash_imports.dart';
@@ -37,6 +39,9 @@ class UserServicesHelper {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove("user");
     await preferences.remove(ApplicationConstants.keyToken);
+    await getIt<DeviceIdHelper>().clearDeviceToken();
+    await CacheManager().clearCache();
+
     AutoRouter.of(context).push(const SplashRoute());
   }
 

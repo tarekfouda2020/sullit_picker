@@ -135,4 +135,7 @@ class AppLightColors extends AppColors {
   @override
   Color get indicatorColor => const Color(0xFF4CAF50);
 
+  @override
+  Color get gray4 => const Color(0xFFB0B0B0);
+
 }

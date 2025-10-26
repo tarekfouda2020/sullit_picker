@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/constants/lang_code.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/menu_item_widget.dart';
 
@@ -48,6 +49,14 @@ class MenuItemsListWidget extends StatelessWidget {
     );
   }
 
-  String get currentLang => GlobalState.instance.get(ApplicationConstants.langKey);
+  String get currentLang {
+    var langKey = GlobalState.instance.get(ApplicationConstants.langKey);
+    if(langKey == LangCode.ar){
+      return "AR";
+    }else{
+      return GlobalState.instance.get(ApplicationConstants.langKey);
+    }
+
+  }
 
 } 

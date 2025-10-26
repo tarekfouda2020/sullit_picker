@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/helpers/global_notification.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -26,7 +27,7 @@ void main()async{
   getIt.registerSingleton(SharedPreferences.getInstance());
   getIt.registerSingleton(AppRouter());
   await configureDependencies();
-  // getIt<GlobalNotification>().setupNotification();
+  getIt<GlobalNotification>().setupNotification();
 
   runApp(
     BlocProvider(

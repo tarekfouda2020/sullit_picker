@@ -117,4 +117,6 @@ abstract class AppColors {
 
   Color get indicatorColor;
 
+  Color get gray4;
+
 }

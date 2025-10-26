@@ -22,7 +22,7 @@ class ImplAuthDataSource extends AuthDataSource{
 
 
   @override
-  Future<MyResult<String>> forgotPassword(VerifyParams params) {
+  Future<MyResult<String>> forgotPassword(VerifyParams params)async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.passwordForgot,
       responseType: ResType.type,
@@ -32,11 +32,11 @@ class ImplAuthDataSource extends AuthDataSource{
       isFormData: true,
       showLoader: true,
     );
-    return GenericHttpImpl<String>()(model);
+    return await GenericHttpImpl<String>()(model);
   }
 
   @override
-  Future<MyResult<String>> confirmResetPassword(ConfirmResetPasswordParams params) {
+  Future<MyResult<String>> confirmResetPassword(ConfirmResetPasswordParams params)async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.confirmResetPassword,
       responseType: ResType.type,
@@ -46,7 +46,7 @@ class ImplAuthDataSource extends AuthDataSource{
       isFormData: true,
       showLoader: true,
     );
-    return GenericHttpImpl<String>()(model);
+    return await GenericHttpImpl<String>()(model);
   }
   @override
   Future<MyResult<UserModel>> sendLogin(LoginParams params)async {
@@ -66,19 +66,18 @@ class ImplAuthDataSource extends AuthDataSource{
   }
 
   @override
-  Future<MyResult<String>> logout() {
+  Future<MyResult<String>> logout() async{
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.logout,
       responseType: ResType.type,
       requestMethod: RequestMethod.post,
       responseKey: (data) => data['msg'],
-      showLoader: true,
-      isFormData: false
+      isFormData: true
     );
-    return GenericHttpImpl<String>()(model);
+    return await GenericHttpImpl<String>()(model);
   }
   @override
-  Future<MyResult<String>> sendChangePassword(ChangePasswordParams params) {
+  Future<MyResult<String>> sendChangePassword(ChangePasswordParams params) async{
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.updatePassword,
         responseType: ResType.type,
@@ -88,7 +87,7 @@ class ImplAuthDataSource extends AuthDataSource{
         isFormData: true,
         showLoader: true
     );
-    return GenericHttpImpl<String>().call(model);
+    return await GenericHttpImpl<String>().call(model);
   }
 
 

@@ -30,7 +30,7 @@ class PrepareOrderParams {
     log("======>>>> all data $allDetailsJsons <<<<<<======");
 
     return {
-      "details": jsonEncode(allDetailsJsons),
+     if(allDetailsJsons.isNotEmpty) "details": jsonEncode(allDetailsJsons),
     };
   }
 

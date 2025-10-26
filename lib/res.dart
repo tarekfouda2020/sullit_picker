@@ -80,6 +80,7 @@ class Res {
   // static const String sulitIcon = "assets/images/icons/sulit_icon.png";
   static const String appSlogan = "assets/images/Weideliver.svg";
   static const String warningIcon = "assets/images/warning_icon.svg";
+  static const String arrowBack = "assets/images/arrow_back.svg";
 
   //auth
   static const String forgetPassBackground = "assets/images/forgetpass_background.png";

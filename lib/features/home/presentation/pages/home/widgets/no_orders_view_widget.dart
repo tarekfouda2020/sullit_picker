@@ -12,6 +12,7 @@ class NoOrdersViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
+      key: getIt<OrdersHelper>().ordersRefreshKey,
       backgroundColor: context.colors.white,
       onRefresh: () async => await controller.getAllOrders(setLoading: false),
       child: SingleChildScrollView(
@@ -27,7 +28,7 @@ class NoOrdersViewWidget extends StatelessWidget {
                 HomeHeaderWidget(controller: controller),
                 Gaps.vGap14,
                 CustomSearchBar(controller: controller),
-                const AssignedOrdersWidget(ordersCount: 0,),
+                const AssignedOrdersWidget(),
                 Expanded(
                   child: Center(
                     child: Column(

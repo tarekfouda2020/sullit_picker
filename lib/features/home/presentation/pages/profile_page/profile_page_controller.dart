@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
@@ -56,10 +57,12 @@ class ProfilePageController {
 
 
   Future<void> logout(BuildContext context) async {
+    getIt<LoadingHelper>().showLoadingDialog();
     final result = await getIt<AuthRepositories>().logout();
     result.when(
       isSuccess: (msg) async {
         await getIt<UserServicesHelper>().clearCashAndRoute(context);
+        getIt<LoadingHelper>().dismissDialog();
         AppSnackBar.showSimpleToast(
             msg: msg ?? Translate.s.logged_out_successfully, type: ToastType.success, gravity: ToastGravity.BOTTOM);
       },

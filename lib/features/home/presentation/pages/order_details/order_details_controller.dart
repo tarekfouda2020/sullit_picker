@@ -24,6 +24,7 @@ class OrderDetailsController {
   late ShowOrdersRequester showOrdersRequester;
   late final int orderId;
   late final int duration;
+  late final int allItemsCount;
 
   OrderDetailsController(int id, int remainingTime) {
     orderId = id;
@@ -122,7 +123,7 @@ class OrderDetailsController {
         removeCanceledOrder();
         AppSnackBar.showSuccessSnackBar('Order cancelled successfully');
         Navigator.pop(context);
-        AutoRouter.of(context).maybePop();
+        AutoRouter.of(context).maybePop(orderId);
       },
       isError: (error) {
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: 'Try Again'));
@@ -131,10 +132,10 @@ class OrderDetailsController {
   }
 
   Future<void> removeCanceledOrder() async {
-    var assignedOrders = getIt<OrdersHelper>().getAssignedOrders();
-    assignedOrders.removeWhere((order) => order.id == orderId);
-    getIt<OrdersHelper>().assignedOrdersCubit.successState(assignedOrders);
-    getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
+    // var assignedOrders = getIt<OrdersHelper>().getAssignedOrders();
+    // assignedOrders.removeWhere((order) => order.id == orderId);
+    // getIt<OrdersHelper>().assignedOrdersCubit.successState(assignedOrders);
+    // getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
     getIt<OrdersHelper>().deleteOrderDetails(orderId);
   }
 
@@ -144,6 +145,7 @@ class OrderDetailsController {
       getProductPickedPercent(orderProduct, _detailsData);
       updateDetailsCubit();
       getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+      updateSameOrderInList(_detailsData);
     }
   }
 
@@ -230,6 +232,7 @@ class OrderDetailsController {
       isSuccess: (data) {
         data?.preparationMinutes = duration;
         updateLocalData(data!);
+        allItemsCount = data.totalItems;
       },
       isError: (error) {
         detailsCubit.failedState(error, () => getDetails());
@@ -347,6 +350,7 @@ class OrderDetailsController {
         AppSnackBar.showSuccessSnackBar(
          "Order ready for delivery",
         );
+        getIt<OrdersHelper>().deleteOrderDetails(data!.id);
       },
       isError: (error) {
         AppSnackBar.showSimpleToast(

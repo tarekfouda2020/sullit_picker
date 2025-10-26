@@ -1,13 +1,15 @@
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/order_count_down_timer_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget.dart';
 
 import 'widgets_imports.dart';
 
 class TimerCardDetailsWidget extends StatelessWidget {
   final OrderModel data;
-  const TimerCardDetailsWidget({super.key, required this.data});
+  final OrderDetailsController controller;
+  const TimerCardDetailsWidget({super.key, required this.data, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,10 @@ class TimerCardDetailsWidget extends StatelessWidget {
               pickedPercentage: data.pickedPercent!,
               child: LeftItemsWidget(
                 key: GlobalKey(debugLabel: "${data.id}"),
-                numberOfItems: data.totalItems, pickedPercent: data.pickedPercent!,)
+                numberOfItems: data.ordersDetails?.length ?? 0,
+                pickedPercent: data.pickedPercent!,
+                endTitle: "${data.totalItems.toString()} items left",
+              )
           ),
           Gaps.vGap12,
           Column(

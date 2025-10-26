@@ -34,6 +34,7 @@ class CountryPickerHelper {
   }
 
    Future<CountryCode?> selectCountrySheet(BuildContext context) async {
+     return null;
     final selectedCountry = await _countryCodePicker(context).showPicker(
       context: context,
       backgroundColor: context.colors.white,

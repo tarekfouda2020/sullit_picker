@@ -66,7 +66,64 @@
       "client_info": {
         "mobilesdk_app_id": "1:644512695362:android:8a76983c12bf96890a99db",
         "android_client_info": {
+          "package_name": "ua.suliitdriver.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:71b739aa60e5444e0a99db",
+        "android_client_info": {
           "package_name": "ua.suliitpicker.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:572cdc13c00514e10a99db",
+        "android_client_info": {
+          "package_name": "ua.suliitstore.app.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEMQQwHKc-RMVsUFHMZmzSGPAhdmyzl-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644512695362:android:5524044bd4ead8510a99db",
+        "android_client_info": {
+          "package_name": "ua.suliitstore.com"
         }
       },
       "oauth_client": [],

@@ -11,7 +11,6 @@ class ContactUsFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var userData = context.read<UserCubit>().state.model;
     return Form(
       key: controller.formKey,
         child: Column(
@@ -27,7 +26,7 @@ class ContactUsFormWidget extends StatelessWidget {
           enableBorderColor: context.colors.inputBorder,
           hint: Translate.of(context).your_name,
           margin: const EdgeInsets.only(bottom: 12),
-          validate: (value) => value?.validateName(),
+          validate: (value) => value?.validateEmpty(),
         ),
         AuthSectionTitleWidget(title: Translate.of(context).label_email),
         GenericTextField(

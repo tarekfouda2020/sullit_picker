@@ -9,76 +9,83 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseBlocBuilder(
-      bloc: controller.detailsCubit,
-      onSuccessWidget: (data) {
-        return ObsValueConsumer(
-          observable: controller.isAllPickedObs,
-          builder: (context,value) {
-            return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Visibility(
-                    visible: value,
-                    replacement: AppTextButton.maxCustom(
-                      text: 'Send to cashier',
-                      onPressed: ()=> controller.isAllPickedObs.setValue(true),
-                      textSize: 18,
-                      txtColor: controller.isAllProductsPicked
-                          ?context.colors.white
-                          :context.colors.white.withAlpha(126),
-                      bgColor: controller.isAllProductsPicked
-                          ?context.colors.appGreen
-                          :context.colors.appGreen.withAlpha(126),
-                      maxHeight: 50,
+    return Padding(
+      padding: Dimens.paddingH20Px,
+      child: BaseBlocBuilder(
+        bloc: controller.detailsCubit,
+        onSuccessWidget: (data) {
+          return ObsValueConsumer(
+            observable: controller.isAllPickedObs,
+            builder: (context,value) {
+              return Container(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Visibility(
+                      visible: value,
+                      replacement: AppTextButton.maxCustom(
+                        text: 'Send to cashier',
+                        onPressed: (){
+                          if(controller.isAllProductsPicked){
+                            controller.isAllPickedObs.setValue(true);
+                          }
+                        },
+                        textSize: 18,
+                        txtColor: controller.isAllProductsPicked
+                            ?context.colors.white
+                            :context.colors.white.withAlpha(126),
+                        bgColor: controller.isAllProductsPicked
+                            ?context.colors.appGreen
+                            :context.colors.appGreen.withAlpha(126),
+                        maxHeight: 50,
+                      ),
+                      child: AppTextButton.maxCustom(
+                        text: 'Dispatch',
+                        onPressed: ()=> controller.prepareOrder(context),
+                        textSize: 18,
+                        txtColor: context.colors.white,
+                        bgColor: context.colors.appGreen,
+                        maxHeight: 50,
+                      ),
                     ),
-                    child: AppTextButton.maxCustom(
-                      text: 'Dispatch',
-                      onPressed: ()=> controller.prepareOrder(context),
+                    Gaps.vGap10,
+                    AppTextButton.maxCustom(
+                      text: 'Cancel Order',
+                      onPressed: ()=> controller.showCancelOrderDialog(context,),
                       textSize: 18,
                       txtColor: context.colors.white,
-                      bgColor: context.colors.appGreen,
+                      bgColor: context.colors.primary,
                       maxHeight: 50,
                     ),
-                  ),
-                  Gaps.vGap10,
-                  AppTextButton.maxCustom(
-                    text: 'Cancel Order',
-                    onPressed: ()=> controller.showCancelOrderDialog(context,),
-                    textSize: 18,
-                    txtColor: context.colors.white,
-                    bgColor: context.colors.primary,
-                    maxHeight: 50,
-                  ),
-                  Gaps.vGap15,
-                ],
-              ),
-            );
-          }
-        );
-      },
-      onFailedWidget: (context, error, callback) {
-        return Gaps.empty;
-      },
-      onLoadingWidget: (context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(2, (index) {
-            return   BaseShimmerWidget(
-                child: Container(
-                  height: 50,
-                  margin: const EdgeInsets.only(bottom: 15),
-                  decoration: BoxDecoration(
-                      color: context.colors.white,
-                      borderRadius: Dimens.borderRadius30PX
-                  ),
-                ));
-          },),
-        );
-      },
+                    Gaps.vGap15,
+                  ],
+                ),
+              );
+            }
+          );
+        },
+        onFailedWidget: (context, error, callback) {
+          return Gaps.empty;
+        },
+        onLoadingWidget: (context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(2, (index) {
+              return   BaseShimmerWidget(
+                  child: Container(
+                    height: 50,
+                    margin: const EdgeInsets.only(bottom: 15),
+                    decoration: BoxDecoration(
+                        color: context.colors.white,
+                        borderRadius: Dimens.borderRadius30PX
+                    ),
+                  ));
+            },),
+          );
+        },
 
+      ),
     );
   }
 }

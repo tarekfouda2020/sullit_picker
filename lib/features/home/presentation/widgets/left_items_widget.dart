@@ -4,7 +4,8 @@ import '../../../../core/helpers/export.dart';
 class LeftItemsWidget extends StatelessWidget {
   final int numberOfItems;
   final double pickedPercent;
-  const LeftItemsWidget({super.key, required this.numberOfItems, required this.pickedPercent});
+  final String? endTitle;
+  const LeftItemsWidget({super.key, required this.numberOfItems, required this.pickedPercent, this.endTitle});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class LeftItemsWidget extends StatelessWidget {
                 style: AppTextStyle.s16_w300(color: context.colors.black),
               )),
           Text(
-            'Picked $pickedPercent%',
+            endTitle ?? 'Picked $pickedPercent%',
             style: AppTextStyle.s14_w400(color: context.colors.black),
           )
         ],

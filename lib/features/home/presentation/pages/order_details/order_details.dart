@@ -44,7 +44,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                   controller: controller,
                 ),
                 Gaps.vGap12,
-                TimerCardDetailsWidget(data: data),
+                TimerCardDetailsWidget(data: data,controller: controller),
                 Gaps.vGap12,
                 PickCategoryWidget(controller: controller, order: data),
               ],

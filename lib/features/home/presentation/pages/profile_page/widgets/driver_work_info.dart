@@ -9,17 +9,20 @@ class DriverWorkInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var userData = context.read<UserCubit>().state.model;
+
     return _buildContainer(context, child: Text(
       "ID : #${userData?.id ?? ""} - ${userData?.sellerName ?? ""}",
       // 'ID : #5647843 - Munch Corner',
       style: AppTextStyle.s16_w700(color: context.colors.primary),
     ));
   }
+
+
+
   Container _buildContainer(BuildContext context, {required Widget child}) {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       height: 42,
-      padding: const EdgeInsetsDirectional.only(start: 18),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: context.colors.lightBackground,

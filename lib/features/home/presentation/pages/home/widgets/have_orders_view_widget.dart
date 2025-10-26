@@ -25,10 +25,11 @@ class HaveOrdersViewWidget extends StatelessWidget {
         HomeHeaderWidget(controller: controller),
         Gaps.vGap14,
         CustomSearchBar(controller: controller),
-        AssignedOrdersWidget(ordersCount: data.assignedOrdersCount),
+        const AssignedOrdersWidget(),
         Gaps.vGap10,
         Expanded(
           child: RefreshIndicator(
+            key: getIt<OrdersHelper>().ordersRefreshKey,
             onRefresh: () async => await controller.getAllOrders() ,
             backgroundColor: context.colors.white,
             child: ListView(

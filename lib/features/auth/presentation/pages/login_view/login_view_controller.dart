@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
@@ -27,7 +29,7 @@ class LoginViewController {
   Future<void> callLogin(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       FocusScope.of(context).unfocus();
-      final deviceId = await getIt<DeviceIdHelper>().getDeviceId();
+      var deviceId = await getIt<DeviceIdHelper>().getDeviceId();
       LoginParams params = _userParams(deviceId!);
       await getIt.get<AuthRepositories>().sendLogin(params).then((result) {
         result.when(

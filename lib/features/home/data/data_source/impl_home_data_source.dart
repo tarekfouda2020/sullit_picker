@@ -32,8 +32,7 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
-  Future<MyResult<UserModel>> updateProfileImage(
-      UpdateProfileImageParams params) async {
+  Future<MyResult<UserModel>> updateProfileImage(UpdateProfileImageParams params) async {
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.updateProfileImage,
         responseType: ResType.model,
@@ -42,7 +41,8 @@ class ImplHomeDataSource extends HomeDataSource {
         responseKey: (data) => data['data'],
         requestBody: params.toJson(),
         isFormData: true,
-        showLoader: true);
+        showLoader: true
+    );
     return await GenericHttpImpl<UserModel>()(model);
   }
 
@@ -150,7 +150,8 @@ class ImplHomeDataSource extends HomeDataSource {
       responseKey: (data) => data['data'],
       requestBody: params.toJson(),
       isFormData: true,
-      showLoader: true);
+      showLoader: true
+  );
   return await GenericHttpImpl<OrderModel>()(model);
 
 }

@@ -28,14 +28,17 @@ class CardItemPickWidget extends StatelessWidget {
                 boxShape: BoxShape.circle,
               ),
               Gaps.hGap10,
-              Text(
-                "${data.product!.name} ${data.variation}",
-                maxLines: 2,
-                softWrap: true,
-                overflow: TextOverflow.visible,
-                style: AppTextStyle.s14_w600(
-                    color: context.colors.simiGray),
+              Expanded(
+                child: Text(
+                  "${data.product!.name} ${data.variation}",
+                  maxLines: 2,
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
+                  style: AppTextStyle.s14_w600(
+                      color: context.colors.simiGray),
+                ),
               ),
+              const SizedBox(width: 120)
             ],
           ),
           Row(

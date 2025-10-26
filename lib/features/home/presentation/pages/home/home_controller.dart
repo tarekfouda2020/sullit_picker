@@ -10,11 +10,12 @@ class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
   final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
   final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
-  BaseBloc<OrdersList?> ordersListCubit = BaseBloc<OrdersList?>();
 
   // final BaseBloc<OrdersModel?> ordersCubit = BaseBloc<OrdersModel?>();
 
   BaseBloc<List<OrderModel>> get assignedOrdersCubit => getIt<OrdersHelper>().assignedOrdersCubit;
+
+  BaseBloc<OrdersList?> get ordersListCubit => getIt<OrdersHelper>().ordersListCubit;
 
   HomeController() {
     getUserData();
@@ -31,42 +32,7 @@ class HomeController {
   }
 
   Future<void> getAllOrders({bool fromRemote = true, bool setLoading = true}) async {
-    if (ordersListCubit.hasNoData && setLoading) {
-      ordersListCubit.loadingState();
-    }
-    var result = await getIt<HomeRepositories>().orders(fromRemote);
-    result.when(
-      isSuccess: (data) {
-        ordersListCubit.successState(data);
-        if (ordersListCubit.data != null) {
-          updateAssignedFromLocalData(data?.assignedOrders ?? <OrderModel>[]);
-          if (ordersListCubit.data!.assignedOrders.isEmpty && ordersListCubit.data!.newOrders.isEmpty) {
-            ordersListCubit.successState(null);
-          }
-        }
-      },
-      isError: (error) {
-        ordersListCubit.failedState(
-          error,
-          () => getAllOrders(),
-        );
-      },
-    );
-  }
-
-  Future<void> updateAssignedFromLocalData(List<OrderModel> data) async {
-    var localData = getIt<OrdersHelper>().getAssignedOrders();
-    if (localData.isEmpty) {
-      getIt<OrdersHelper>().saveAssignedOrders(data);
-      assignedOrdersCubit.successState(data);
-    } else {
-      initDataFromLocal();
-    }
-  }
-
-  Future<void> initDataFromLocal() async {
-    var data = getIt<OrdersHelper>().getAssignedOrders();
-    assignedOrdersCubit.successState(data);
+   await getIt<OrdersHelper>().getAllOrders(setLoading: setLoading,fromRemote: fromRemote);
   }
 
   void onPop() {
@@ -99,9 +65,10 @@ class HomeController {
       isSuccess: (data) async {
         availableForOrdersObs.setValue(data!.data!.isAvailable);
         AppSnackBar.showSuccessSnackBar(data.msg ?? "", forceShow: true);
-        context
-            .read<UserCubit>()
-            .onUpdateUserData(userData?.copyWith(isAvailable: data.data?.isAvailable ?? userData.isAvailable));
+        context.read<UserCubit>().onUpdateUserData(userData?.copyWith(isAvailable: data.data?.isAvailable ?? userData.isAvailable));
+        if(ordersListCubit.data == null){
+          getIt<OrdersHelper>().ordersRefreshKey.currentState?.show();
+        }
       },
       isError: (error) {
 
@@ -113,7 +80,7 @@ class HomeController {
     if (data.isAssigned) {
       final value =
           await AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id, time: data.preparationMinutes));
-      if (value as int == data.id) {
+      if (value!= null && value as int == data.id) {
         assignedOrdersCubit.data!.remove(data);
         assignedOrdersCubit.successState(assignedOrdersCubit.data);
         getIt<OrdersHelper>().saveAssignedOrders(assignedOrdersCubit.data!);
@@ -125,9 +92,10 @@ class HomeController {
     result.when(
       isSuccess: (data) async {
         data!.getOrderStatus() == OrderStatusEnum.preparing;
-        assignedOrdersCubit.data!.add(data);
-        assignedOrdersCubit.successState(assignedOrdersCubit.data);
+        assignedOrdersCubit.data?.add(data);
         getIt<OrdersHelper>().saveAssignedOrders(assignedOrdersCubit.data!);
+        getIt<OrdersHelper>().assignedOrdersCubit.data!.add(data);
+        getIt<OrdersHelper>().assignedOrdersCubit.successState(assignedOrdersCubit.data);
         AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id, time: data.preparationMinutes));
       },
       isError: (error) {
