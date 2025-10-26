@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'home_widgets_imports.dart';
 
 class CardPickedRatioWidget extends StatefulWidget {
-  final double pickedPercentage;
+  final double? pickedPercentage;
   final Widget child;
   const CardPickedRatioWidget({
     super.key,
@@ -89,7 +89,7 @@ class _CardPickedRatioWidgetState extends State<CardPickedRatioWidget> {
             Row(
               children: [
                 Container(
-                  width: (_calculatedWidth ?? 0) * (widget.pickedPercentage / 100)  ,
+                  width: (_calculatedWidth ?? 0) * (widget.pickedPercentage??0 / 100)  ,
                   height: 5,
                   decoration:  BoxDecoration(
                     color:  context.colors.indicatorColor,
@@ -101,9 +101,9 @@ class _CardPickedRatioWidgetState extends State<CardPickedRatioWidget> {
                 ),
               ],
             ),
-            // Circular indicator
+           if((widget.pickedPercentage??0) > 0)
             PositionedDirectional(
-              start: (_calculatedWidth ?? 0) * (widget.pickedPercentage / 100) - (
+              start: (_calculatedWidth ?? 0) * (widget.pickedPercentage??0 / 100) - (
                widget.pickedPercentage==100
                    ?13
                    :0

@@ -101,7 +101,7 @@ class HiveHelper {
 
   Future<void> deleteDataFromBox<T>(String boxName,{dynamic key = 1})async{
     var box = getBox<T>(boxName);
-    await box.delete(key,);
+    await box.delete(key);
   }
 
 }

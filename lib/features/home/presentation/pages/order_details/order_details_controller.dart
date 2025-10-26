@@ -135,6 +135,7 @@ class OrderDetailsController {
     assignedOrders.removeWhere((order) => order.id == orderId);
     getIt<OrdersHelper>().assignedOrdersCubit.successState(assignedOrders);
     getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
+    getIt<OrdersHelper>().deleteOrderDetails(orderId);
   }
 
   void pickItem(OrderDetailsModel orderProduct) {
@@ -151,12 +152,18 @@ class OrderDetailsController {
       (element) => element.id == itemId,
     );
     _detailsData.ordersDetails!.remove(removedItem);
-    orderPickedPercent(_detailsData);
-    updateSameOrderInList(_detailsData);
+    if((_detailsData.ordersDetails??[]).isNotEmpty){
+      orderPickedPercent(_detailsData);
+      updateSameOrderInList(_detailsData);
+    }
     _detailsData.deletedOrders?.add(removedItem!);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     Navigator.pop(context);
+    if((_detailsData.ordersDetails??[]).isEmpty){
+      BuildContext ctx  = getIt<GlobalContext>().context();
+      cancelOrder(ctx);
+    }
   }
 
   void getProductPickedPercent(OrderDetailsModel orderProduct, OrderModel details) {
