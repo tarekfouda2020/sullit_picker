@@ -56,11 +56,10 @@ class DateTimeHelper {
       final startTime = formatter.parse(strDate, true).toLocal();
 
       timeAgoObs.setValue(_formatTimeAgo(DateTime.now().difference(startTime)));
-
       Timer.periodic(const Duration(seconds: 1), (timer) {
         final now = DateTime.now();
         final elapsed = now.difference(startTime);
-        timeAgoObs.setValue(_formatTimeAgo(elapsed));
+        timeAgoObs.setValue(elapsed.inSeconds>0?_formatTimeAgo(elapsed):"No date available");
       });
     } catch (e) {
       print("⚠️ Date parse error: $e");
