@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
@@ -7,9 +6,11 @@ import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/order_
 import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget.dart';
 
 import 'home_widgets_imports.dart';
+
 class CardOrderWidget extends StatelessWidget {
   final HomeController controller;
   final OrderModel data;
+
   const CardOrderWidget({super.key, required this.controller, required this.data});
 
   @override
@@ -29,40 +30,53 @@ class CardOrderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 8,
             children: [
-              Text('Order No. : ',style: AppTextStyle.s18_w300(color: context.colors.blackOpacity),),
-              Text(data.code,style: AppTextStyle.s20_w600(color: context.colors.primary)),
+              Row(
+                children: [
+                  Text(
+                    'Order No. : ',
+                    style: AppTextStyle.s17_w300(color: context.colors.simiGray),
+                  ),
+                  Gaps.hGap2,
+                  Expanded(
+                    child: Text(
+                      data.code,
+                      style: AppTextStyle.s19_w600(color: context.colors.primary),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           Gaps.vGap8,
           ObsValueConsumer(
             observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
             builder: (context, assignedTime) {
-              return Text('Assigned $assignedTime',style: AppTextStyle.s14_w300(color: context.colors.textColor));
+              return Text('Assigned $assignedTime', style: AppTextStyle.s14_w300(color: context.colors.textColor));
             },
           ),
           Gaps.vGap15,
-           CardPickedRatioWidget(
-            pickedPercentage: data.pickedPercent!,
-            child:  LeftItemsWidget(
-              key: GlobalKey(debugLabel: "${data.id}"),
-              numberOfItems: data.totalItems,
-              pickedPercent: data.pickedPercent!,
-            )
-          ),
+          CardPickedRatioWidget(
+              pickedPercentage: data.pickedPercent!,
+              child: LeftItemsWidget(
+                key: GlobalKey(debugLabel: "${data.id}"),
+                numberOfItems: data.totalItems,
+                pickedPercent: data.pickedPercent!,
+              )),
           Gaps.vGap15,
-           Center(
-             child: Text("Must Picking within",
-             style: AppTextStyle.s16_w300(color: context.colors.simiGray),
-             ),
-           ),
+          Center(
+            child: Text(
+              "Must Picking within",
+              style: AppTextStyle.s16_w300(color: context.colors.simiGray),
+            ),
+          ),
           Gaps.vGap18,
           OrderCountDownTimerWidget(
-              pickWithinTime: DateTime.now().add(Duration(minutes: data.preparationMinutes,seconds: 1)),
+            pickWithinTime: DateTime.now().add(Duration(minutes: data.preparationMinutes, seconds: 1)),
             isNewOrder: data.isNewOrder,
             duringCountDown: (duration) {
               data.preparationMinutes = duration.inMinutes;
-                var assignedList = controller.assignedOrdersCubit.data;
-            getIt<OrdersHelper>().saveAssignedOrders(assignedList!);
+              var assignedList = controller.assignedOrdersCubit.data;
+              getIt<OrdersHelper>().saveAssignedOrders(assignedList!);
             },
           ),
           Gaps.vGap24,
