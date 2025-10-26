@@ -92,10 +92,10 @@ class HomeController {
     result.when(
       isSuccess: (data) async {
         data!.getOrderStatus() == OrderStatusEnum.preparing;
-        assignedOrdersCubit.data?.add(data);
-        getIt<OrdersHelper>().saveAssignedOrders(assignedOrdersCubit.data!);
-        getIt<OrdersHelper>().assignedOrdersCubit.data!.add(data);
-        getIt<OrdersHelper>().assignedOrdersCubit.successState(assignedOrdersCubit.data);
+        final currentOrders = getIt<OrdersHelper>().assignedOrdersCubit.data ?? [];
+        final updatedOrders = List<OrderModel>.from(currentOrders)..add(data);
+        getIt<OrdersHelper>().assignedOrdersCubit.successState(updatedOrders);
+        getIt<OrdersHelper>().saveAssignedOrders(updatedOrders);
         AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id, time: data.preparationMinutes));
       },
       isError: (error) {

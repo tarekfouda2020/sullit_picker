@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/home_header_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/home_refresh_indocator_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/search_bar.dart';
 
 import 'assigned_orders_widget.dart';
@@ -11,9 +12,7 @@ class NoOrdersViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      key: getIt<OrdersHelper>().ordersRefreshKey,
-      backgroundColor: context.colors.white,
+    return HomeRefreshIndicatorWidget(
       onRefresh: () async => await controller.getAllOrders(setLoading: false),
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),

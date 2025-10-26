@@ -23,7 +23,7 @@ class OrdersHelper {
    /// used only in home page
    /// used in tow places i UI but only one of them will apply
    /// so the key will be in one place >>> avoiding to Error *Multiple widgets used the same GlobalKey.*
-   final GlobalKey<RefreshIndicatorState> ordersRefreshKey = GlobalKey<RefreshIndicatorState>();
+    GlobalKey<RefreshIndicatorState> get ordersRefreshKey => GlobalKey<RefreshIndicatorState>();
 
 
    Future<void> saveAssignedOrders(List<OrderModel> data) async {
