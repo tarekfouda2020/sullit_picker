@@ -15,7 +15,7 @@ class UserInfoWidget extends StatelessWidget {
           style: AppTextStyle.s18_w700(color: context.colors.black),
         ),
         Gaps.vGap8,
-        Text(userData?.username ?? "",
+        Text("@${userData?.username ?? ""}",
           style: AppTextStyle.s14_w400(color: context.colors.black),
         ),
 

@@ -21,7 +21,7 @@ class DriverWorkInfo extends StatelessWidget {
 
   Container _buildContainer(BuildContext context, {required Widget child}) {
     return Container(
-      margin: const EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.only(top: 16),
       height: 42,
       alignment: Alignment.center,
       decoration: BoxDecoration(

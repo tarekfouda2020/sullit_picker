@@ -50,11 +50,13 @@ class _NotificationsPageState extends State<NotificationsPage> {
               );
             },
             newPageProgressIndicatorBuilder: (context) => Center(
-              child: SizedBox(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
                 child: SizedBox(
-                  width: 30, height: 30,
+                  width: 25, height: 25,
                   child: CircularProgressIndicator.adaptive(
                     backgroundColor: context.colors.primary,
+                    strokeWidth: 3,
                     valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
                   ),
                 ),

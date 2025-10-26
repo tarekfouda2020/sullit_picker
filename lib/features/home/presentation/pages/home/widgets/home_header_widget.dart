@@ -43,6 +43,7 @@ class HomeHeaderWidget extends StatelessWidget {
             ),
           ),
           NotificationIconWidget(
+            endPadding: 8,
             onTap: () => controller.navigateToNotifications(context),
           ),
         ],

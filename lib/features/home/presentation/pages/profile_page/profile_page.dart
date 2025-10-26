@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ],
       ),
       body: ListView(
-        padding: Dimens.paddingH20Px,
+        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
         children: [
            ProfileHeaderWidget(controller: controller),
            DriverWorkInfo(controller: controller),

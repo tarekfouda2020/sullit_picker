@@ -10,7 +10,7 @@ class QntCountWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       decoration: BoxDecoration(
-        color: context.colors.lightPrimary,
+        color: context.colors.lightPrimary.withOpacity(0.3),
         borderRadius: Dimens.borderRadius30PX,
       ),
       child: Text(

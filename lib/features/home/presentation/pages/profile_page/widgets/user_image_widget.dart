@@ -17,7 +17,7 @@ class UserImageWidget extends StatelessWidget {
         visible: userImage == "",
         replacement: CachedImage(
           url: userImage,
-          width: 63,height: 63,
+          width: 62,height: 62,
           boxShape:BoxShape.circle,
           haveRadius: false,
           fit: BoxFit.cover,
