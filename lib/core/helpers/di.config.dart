@@ -114,6 +114,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i792.PickHelper>(() => _i792.PickHelper());
     gh.lazySingleton<_i297.CountryPickerHelper>(
         () => _i297.CountryPickerHelper());
+    gh.lazySingleton<_i431.NotifyMethodsHelper>(
+        () => _i431.NotifyMethodsHelper());
     gh.lazySingleton<_i652.Utilities>(() => _i652.Utilities());
     gh.lazySingleton<_i279.FirebaseAnalyticsHelper>(
         () => _i279.FirebaseAnalyticsHelper());
@@ -121,8 +123,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i690.UserServicesHelper());
     gh.lazySingleton<_i752.OrdersHelper>(() => _i752.OrdersHelper());
     gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
-    gh.lazySingleton<_i431.NotifyMethodsHelper>(
-        () => _i431.NotifyMethodsHelper());
     gh.factory<_i1071.NotificationDataSource>(
         () => _i603.ImplNotificationDataSource());
     gh.factory<_i674.AuthRepositories>(() => _i988.ImplAuthRepositories());
