@@ -9,7 +9,7 @@ class HomeRefreshIndicatorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-        key:  getIt<OrdersHelper>().ordersRefreshKey,
+        key:  getIt<OrdersHelper>().ordersRefreshKey(),
       backgroundColor: context.colors.white,
         onRefresh: onRefresh,
       child: child,

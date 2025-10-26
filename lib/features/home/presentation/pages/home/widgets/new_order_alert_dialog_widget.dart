@@ -9,6 +9,7 @@ class NewOrderAlertWidget extends StatelessWidget {
     return AlertDialog(
       backgroundColor: Colors.transparent,
       insetPadding: EdgeInsets.zero,
+      // key: ,
       content: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),

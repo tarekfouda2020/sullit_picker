@@ -66,8 +66,8 @@ class HomeController {
         availableForOrdersObs.setValue(data!.data!.isAvailable);
         AppSnackBar.showSuccessSnackBar(data.msg ?? "", forceShow: true);
         context.read<UserCubit>().onUpdateUserData(userData?.copyWith(isAvailable: data.data?.isAvailable ?? userData.isAvailable));
-        if(ordersListCubit.data == null){
-          getIt<OrdersHelper>().ordersRefreshKey.currentState?.show();
+        if(ordersListCubit.data == null && data.data!.isAvailable == true){
+          getIt<OrdersHelper>().getAllOrders(setLoading: false);
         }
       },
       isError: (error) {

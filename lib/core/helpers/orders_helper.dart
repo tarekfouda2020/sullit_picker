@@ -23,7 +23,7 @@ class OrdersHelper {
    /// used only in home page
    /// used in tow places i UI but only one of them will apply
    /// so the key will be in one place >>> avoiding to Error *Multiple widgets used the same GlobalKey.*
-    GlobalKey<RefreshIndicatorState> get ordersRefreshKey => GlobalKey<RefreshIndicatorState>();
+    GlobalKey<RefreshIndicatorState>   ordersRefreshKey() => GlobalKey<RefreshIndicatorState>();
 
 
    Future<void> saveAssignedOrders(List<OrderModel> data) async {
@@ -127,12 +127,13 @@ class OrdersHelper {
    Future<void> onPressApply(BuildContext context)async{
      _stopSound();
      var notInHomePage = getIt<NotifyMethodsHelper>().notInHomePage();
+     print("=========>>>>>> not in home page${notInHomePage} ------<<<<<<<<<========");
      if(notInHomePage){
        await AutoRouter.of(context).push(const HomePageRoute());
      }else{
        var data = ordersListCubit.data;
        if(data==null || (data.assignedOrders.isEmpty && data.newOrders.isEmpty)){
-         ordersRefreshKey.currentState?.show();
+         getAllOrders(setLoading: true);
        }
      }
 

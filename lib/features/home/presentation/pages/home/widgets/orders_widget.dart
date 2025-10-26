@@ -1,13 +1,9 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/assigned_orders_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/have_orders_view_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/have_orders_view_shimmer_widget.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/home_header_widget.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/home_success_view_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/no_orders_view_widget.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/search_bar.dart';
 import 'home_widgets_imports.dart';
 
 class OrdersWidget extends StatelessWidget {
