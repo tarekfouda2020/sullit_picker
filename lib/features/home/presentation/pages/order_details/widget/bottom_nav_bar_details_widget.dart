@@ -50,6 +50,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                       ),
                     ),
                     Gaps.vGap10,
+                    if(!controller.isAllProductsPicked)
                     AppTextButton.maxCustom(
                       text: 'Cancel Order',
                       onPressed: ()=> controller.showCancelOrderDialog(context,),
