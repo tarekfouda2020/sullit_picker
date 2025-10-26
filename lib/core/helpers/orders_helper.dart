@@ -52,6 +52,10 @@ class OrdersHelper {
      return OrderModel.fromJson(map);
    }
 
+   Future<void> deleteOrderDetails(int orderId) async {
+     HiveHelper.instance.deleteDataFromBox<String>(HiveBoxesNames.orderDetails,key: orderId);
+   }
+
    Future<void> _startSound({Duration interval = const Duration(seconds: 2)}) async {
     if (_timer != null) return;
     await _player.initialize();
