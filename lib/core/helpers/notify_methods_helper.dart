@@ -20,32 +20,26 @@ import 'package:flutter/material.dart';
 @lazySingleton
 class NotifyMethodsHelper {
 
-  bool notInOrderDetails() {
+  bool? notInOrderDetails() {
     try {
       final router = getIt<AppRouter>();
       final topRoute = router.current;
       log("================>>>>>> route name ${topRoute.name}  <<<<<<<<=====");
-      if (topRoute.name != OrderDetailsRouteName.name) {
-        return true;
-      }
+     return (topRoute.name != OrderDetailsRouteName.name);
     } catch (e) {
-     return false;
+     return null;
     }
-    return true;
   }
 
-  bool notInHomePage() {
+  bool? notInHomePage() {
     try {
       final router = getIt<AppRouter>();
       final topRoute = router.current;
       log("================>>>>>> route name ${topRoute.name}  <<<<<<<<=====");
-      if (topRoute.name != HomePageRoute.name) {
-        return true;
-      }
+      return (topRoute.name != HomePageRoute.name) ;
     } catch (e) {
-      return false;
+      return null;
     }
-    return true;
   }
 
 

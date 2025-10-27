@@ -127,8 +127,8 @@ class OrdersHelper {
    Future<void> onPressApply(BuildContext context)async{
      _stopSound();
      var notInHomePage = getIt<NotifyMethodsHelper>().notInHomePage();
-     if(!notInHomePage){
-       await AutoRouter.of(context).push(const HomePageRoute());
+     if(notInHomePage == true){
+        AutoRouter.of(context).push(const HomePageRoute());
      }else{
        var data = ordersListCubit.data;
        if(data==null || (data.assignedOrders.isEmpty && data.newOrders.isEmpty)){

@@ -103,7 +103,7 @@ class GlobalNotification {
 
   static void _handleNotificationResponse(String notifyType){
    var type = NotificationType.notifyType(notifyType);
-   var notInOrderDetails = getIt<NotifyMethodsHelper>().notInOrderDetails();
+   var notInOrderDetails = getIt<NotifyMethodsHelper>().notInOrderDetails() == true;
    if(notInOrderDetails && (type.isNewOrder) ){
      getIt<OrdersHelper>().showNewOrderAlert();
    }else if(type.isOrderAccepted || type.isNewOrder){
