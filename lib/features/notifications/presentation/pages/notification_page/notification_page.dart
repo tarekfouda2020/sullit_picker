@@ -27,7 +27,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         onRefresh: () async{},
         backgroundColor: context.colors.white,
         child: PagedListView<int, NotificationModel>(
-          padding: Dimens.paddingH20Px,
+          padding: Dimens.paddingH20V12PX,
           pagingController: controller.notifyPagingController,
           builderDelegate: PagedChildBuilderDelegate<NotificationModel>(
             itemBuilder: (context, notify, index) =>  NotificationCardWidget(model:notify),

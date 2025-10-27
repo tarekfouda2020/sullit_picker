@@ -8,7 +8,7 @@ class PrivacyPolicyController {
 
   Future<void> getPrivacyPolicy() async {
     privacyPolicyRequester = PrivacyPolicyRequester();
-    await privacyPolicyRequester.request();
+    await privacyPolicyRequester.request(fromRemote: false);
   }
 
 }

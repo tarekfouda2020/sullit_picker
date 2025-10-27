@@ -341,5 +341,6 @@
   "fresh_whole_chicken": "Fresh Whole Chicken",
   "order_ready_for_delivery": "Order ready for delivery",
   "something_went_wrong": "Something went wrong",
+  "no_of_items": "No. of Items ",
   "cannot_replace_higher_price": "Cannot replace with product having higher price than {price}"
 }

@@ -312,6 +312,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No internet connection"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
             "No Notifications received yet!"),
+        "no_of_items": MessageLookupByLibrary.simpleMessage("No. of Items "),
         "no_orders_description": MessageLookupByLibrary.simpleMessage(
             "You are now available to receive delivery orders\nYou will be notified when a new order arrives"),
         "no_orders_title":

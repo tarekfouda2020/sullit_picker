@@ -307,6 +307,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
             "لم يتم استلام أي إشعارات بعد!"),
+        "no_of_items": MessageLookupByLibrary.simpleMessage("عدد العناصر"),
         "no_orders_description": MessageLookupByLibrary.simpleMessage(
             "أنت الآن متاح لاستقبال طلبات التوصيل\nسيتم إشعارك عند وصول طلب جديد"),
         "no_orders_title":
@@ -336,7 +337,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم إكمال الطلب بنجاح!"),
         "order_details": MessageLookupByLibrary.simpleMessage("تفاصيل الطلب"),
         "order_items": MessageLookupByLibrary.simpleMessage("عناصر الطلب"),
-        "order_no": MessageLookupByLibrary.simpleMessage("رقم الطلب"),
+        "order_no": MessageLookupByLibrary.simpleMessage("رقم الطلب:"),
         "order_no_colon": MessageLookupByLibrary.simpleMessage("رقم الطلب :"),
         "order_ready_for_delivery":
             MessageLookupByLibrary.simpleMessage("الطلب جاهز للتوصيل"),

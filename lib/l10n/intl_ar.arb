@@ -262,7 +262,7 @@
   "filter_by_working_store": "تصفية حسب متجر العمل",
   "collected": "مقبوض",
   "deposited": "مودع",
-  "order_no": "رقم الطلب",
+  "order_no": "رقم الطلب:",
   "transaction_no": "رقم المعاملة",
   "one_hour_ago": "منذ ساعة واحدة",
   "total_orders": "إجمالي الطلبات",
@@ -345,5 +345,6 @@
   "fresh_whole_chicken": "دجاج كامل طازج",
   "order_ready_for_delivery": "الطلب جاهز للتوصيل",
   "something_went_wrong": "حدث خطأ ما",
+  "no_of_items": "عدد العناصر",
   "cannot_replace_higher_price": "لا يمكن استبدال منتج بسعر أعلى من {price}"
 }
