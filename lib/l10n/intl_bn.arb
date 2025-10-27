@@ -258,6 +258,7 @@
   "fresh_whole_chicken": "তাজা গোটা মুরগি",
   "order_ready_for_delivery": "অর্ডার ডেলিভারির জন্য প্রস্তুত",
   "something_went_wrong": "কিছু ভুল হয়েছে",
-    "logoutAlert": "Are you sure you want to logout? This action will clear all data",
+    "unavailable": "Unavailable",
+    "logoutAlert": "Are you sure you want to logout?",
   "cannot_replace_higher_price": "{price} এর চেয়ে বেশি দামের পণ্য দিয়ে প্রতিস্থাপন করা যায় না"
 } 

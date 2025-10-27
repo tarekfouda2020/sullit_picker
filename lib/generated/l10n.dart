@@ -3460,10 +3460,20 @@ class S {
     );
   }
 
-  /// `Are you sure you want to logout? This action will clear all data`
+  /// `Unavailable`
+  String get unavailable {
+    return Intl.message(
+      'Unavailable',
+      name: 'unavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to logout?`
   String get logoutAlert {
     return Intl.message(
-      'Are you sure you want to logout? This action will clear all data',
+      'Are you sure you want to logout?',
       name: 'logoutAlert',
       desc: '',
       args: [],

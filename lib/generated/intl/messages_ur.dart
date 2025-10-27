@@ -283,7 +283,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اکاؤنٹ میں لاگ ان کریں"),
         "logout": MessageLookupByLibrary.simpleMessage("لاگ آؤٹ"),
         "logoutAlert": MessageLookupByLibrary.simpleMessage(
-            "هل أنت متأكد أنك تريد الخروج? سيؤدي هذا الإجراء إلى مسح جميع البيانات"),
+            "هل أنت متأكد أنك تريد الخروج?"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "لوریم ایپسم پرنٹنگ کا ایک سادہ ڈمی ٹیکسٹ ہے"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(
@@ -526,6 +526,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tryAgain": MessageLookupByLibrary.simpleMessage("دوبارہ کوشش کریں"),
         "try_again": MessageLookupByLibrary.simpleMessage("دوبارہ کوشش کریں"),
         "type": MessageLookupByLibrary.simpleMessage("قسم"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("غير متاح"),
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("متحدہ عرب امارات، دبئی"),
         "unpaid": MessageLookupByLibrary.simpleMessage("ادائیگی نہیں ہوئی"),

@@ -275,7 +275,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تسجيل الدخول إلى الحساب"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "logoutAlert": MessageLookupByLibrary.simpleMessage(
-            "هل أنت متأكد أنك تريد الخروج? سيؤدي هذا الإجراء إلى مسح جميع البيانات"),
+            "هل أنت متأكد أنك تريد الخروج?"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "لوريم إيبسوم هو نص وهمي بسيط من الطباعة"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(
@@ -513,6 +513,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tryAgain": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
         "try_again": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
         "type": MessageLookupByLibrary.simpleMessage("النوع"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("غير متاح"),
         "united_arab_emirates_dubai": MessageLookupByLibrary.simpleMessage(
             "الإمارات العربية المتحدة، دبي"),
         "unpaid": MessageLookupByLibrary.simpleMessage("غير مدفوع"),

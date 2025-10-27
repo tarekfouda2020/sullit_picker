@@ -279,7 +279,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login to account"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "logoutAlert": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you want to logout? This action will clear all data"),
+            "Are you sure you want to logout?"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "Lorem Ipsum is simply dummy text of the printing"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(
@@ -526,6 +526,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tryAgain": MessageLookupByLibrary.simpleMessage("TRY AGAIN"),
         "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("United Arab Emirates, Dubai"),
         "unpaid": MessageLookupByLibrary.simpleMessage("UnPaid"),

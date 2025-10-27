@@ -31,37 +31,37 @@ class HomeHeaderWidget extends StatelessWidget {
                       ),
                       Gaps.vGap4,
                       ObsValueConsumer(
-                        observable: controller.availableForOrdersObs,
-                        builder: (context,value) {
-                          return Row(
-                            children: [
-                              Text(
-                                '#${userData?.id ?? ""}',
-                                style: AppTextStyle.s14_w700(color: context.colors.primary),
-                              ),
-                              Gaps.hGap13,
-                              if(value)
-                              Row(
-                                children: [
-                                  Container(
-                                    height: 12,
-                                    width: 12,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: context.colors.green,
+                          observable: controller.availableForOrdersObs,
+                          builder: (context, value) {
+                            return Row(
+                              children: [
+                                Text(
+                                  '#${userData?.id ?? ""}',
+                                  style: AppTextStyle.s14_w700(color: context.colors.primary),
+                                ),
+                                Gaps.hGap13,
+                                Row(
+                                  children: [
+                                    Container(
+                                      height: 12,
+                                      width: 12,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: context.colors.green,
+                                      ),
                                     ),
-                                  ),
-                                  Gaps.hGap6,
-                                  Text(
-                                    Translate.of(context).available,
-                                    style: AppTextStyle.s12_w400(color: context.colors.green),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          );
-                        }
-                      ),
+                                    Gaps.hGap6,
+                                    Text(
+                                      value ? Translate.of(context).available : Translate.of(context).unavailable,
+                                      style: AppTextStyle.s12_w400(
+                                        color: value ? context.colors.green : context.colors.primary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          }),
                     ],
                   ),
                 ),

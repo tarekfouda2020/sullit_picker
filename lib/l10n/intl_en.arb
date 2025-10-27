@@ -342,6 +342,7 @@
   "order_ready_for_delivery": "Order ready for delivery",
   "something_went_wrong": "Something went wrong",
   "no_of_items": "No. of Items ",
-    "logoutAlert": "Are you sure you want to logout? This action will clear all data",
+  "unavailable": "Unavailable",
+    "logoutAlert": "Are you sure you want to logout?",
   "cannot_replace_higher_price": "Cannot replace with product having higher price than {price}"
 }

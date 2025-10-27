@@ -346,6 +346,7 @@
   "order_ready_for_delivery": "الطلب جاهز للتوصيل",
   "something_went_wrong": "حدث خطأ ما",
   "no_of_items": "عدد العناصر",
-  "logoutAlert": "هل أنت متأكد أنك تريد الخروج? سيؤدي هذا الإجراء إلى مسح جميع البيانات",
+  "unavailable": "غير متاح",
+  "logoutAlert": "هل أنت متأكد أنك تريد الخروج?",
   "cannot_replace_higher_price": "لا يمكن استبدال منتج بسعر أعلى من {price}"
 }

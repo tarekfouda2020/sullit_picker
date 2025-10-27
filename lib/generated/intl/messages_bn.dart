@@ -227,7 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "লগইন সফল! ফিরে আসার জন্য স্বাগতম।"),
         "logout": MessageLookupByLibrary.simpleMessage("লগআউট"),
         "logoutAlert": MessageLookupByLibrary.simpleMessage(
-            "Are you sure you want to logout? This action will clear all data"),
+            "Are you sure you want to logout?"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "লরেম ইপসাম হল মুদ্রণের একটি সাধারণ ডামি টেক্সট"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(
@@ -404,6 +404,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tryAgain": MessageLookupByLibrary.simpleMessage("আবার চেষ্টা করুন"),
         "try_again": MessageLookupByLibrary.simpleMessage("আবার চেষ্টা করুন"),
         "type": MessageLookupByLibrary.simpleMessage("ধরন"),
+        "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("সংযুক্ত আরব আমিরাত, দুবাই"),
         "unpaid": MessageLookupByLibrary.simpleMessage("অপেইড"),

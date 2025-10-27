@@ -17,7 +17,7 @@ class SwitchNotificationWidget extends StatelessWidget {
       textDirection:  TextDirection.rtl,
       child: FlutterSwitch(
         inactiveColor: context.colors.gray58,
-        activeColor: context.colors.primary,
+        activeColor: context.colors.green,
         toggleColor: context.colors.green.withValues(alpha: 30),
         inactiveToggleColor: context.colors.white,
         toggleSize: 16,
