@@ -2,7 +2,10 @@
 
 import 'dart:developer';
 
+import 'package:flutter_tdd/core/errors/base_error.dart';
+import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
@@ -30,14 +33,19 @@ class LoginViewController {
   Future<void> callLogin(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       FocusScope.of(context).unfocus();
+      getIt<LoadingHelper>().showLoadingDialog();
       var deviceId = await getIt<DeviceIdHelper>().getDeviceId();
       LoginParams params = _userParams(deviceId!);
       await getIt.get<AuthRepositories>().sendLogin(params).then((result) {
         result.when(
           isSuccess: (data) {
+            getIt<LoadingHelper>().dismissDialog();
             getIt<UserServicesHelper>().cashAndRoute(context, data, Translate.of(context).login_successful);
           },
-          isError: (error) {},
+          isError: (error) {
+            getIt<LoadingHelper>().dismissDialog();
+            AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.s.something_went_wrong));
+          },
         );
       });
     }

@@ -72,15 +72,27 @@ class _MyAppState extends State<MyApp> {
                   routeInformationParser: getIt.get<AppRouter>().defaultRouteParser(),
                   builder: EasyLoading.init(builder: (ctx, child) {
                     ScreenUtil.init(ctx);
-                    return NetworkLayerWidget(
-                      isNetworkConnected: state.model.isNetworkConnected,
-                      child: child!,
+                    return MediaQuery(
+                      data: _getMediaQueryData(ctx),
+                      child: NetworkLayerWidget(
+                        isNetworkConnected: state.model.isNetworkConnected,
+                        child: child!,
+                      ),
                     );
                   }),
                 );
               });
         },
       ),
+    );
+  }
+
+
+  MediaQueryData _getMediaQueryData(BuildContext context) {
+    final mq = MediaQuery.of(context);
+    return mq.copyWith(
+      textScaler: const TextScaler.linear(1.0),
+      boldText: false,
     );
   }
 }
