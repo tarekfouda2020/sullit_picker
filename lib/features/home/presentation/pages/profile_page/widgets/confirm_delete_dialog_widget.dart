@@ -1,15 +1,10 @@
-
-
-import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/helpers/export.dart';
-
-import '../../../../../../core/localization/translate.dart';
-import '../../../../../../core/theme/text/app_text_style.dart';
 
 class ConfirmDeleteDialogWidget extends StatelessWidget {
   final String content;
   final void Function() onTap;
-  const ConfirmDeleteDialogWidget({super.key,  required this.onTap, required this.content});
+
+  const ConfirmDeleteDialogWidget({super.key, required this.onTap, required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +14,7 @@ class ConfirmDeleteDialogWidget extends StatelessWidget {
       content: Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
-        decoration: BoxDecoration(
-            color: context.colors.white,
-            borderRadius: BorderRadius.circular(16)),
+        decoration: BoxDecoration(color: context.colors.white, borderRadius: BorderRadius.circular(16)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
