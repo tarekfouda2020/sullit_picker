@@ -86,6 +86,7 @@ class HomeController {
               ))
           )
           );
+      print("=====>>> value is ${value}<<<<====");
       if (value!= null && value as int == data.id) {
         assignedOrdersCubit.data!.remove(data);
         assignedOrdersCubit.successState(assignedOrdersCubit.data);

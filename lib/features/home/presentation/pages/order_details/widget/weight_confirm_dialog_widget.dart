@@ -17,7 +17,10 @@ class WeightConfirmDialogWidget extends StatelessWidget {
       description: "${Translate.of(context).is_weight_equals}${controller.getProductWeight(orderProduct)} ${controller.getProductWeightUnit(orderProduct)}",
       buttonGreenTitle: Translate.of(context).equals,
       buttonRedTitle: Translate.of(context).less_than,
-      greenOnTap: () => controller.pickItem(orderProduct),
+      greenOnTap: () {
+        controller.pickItem(orderProduct);
+        Navigator.pop(context);
+      },
       redOnTap: () => controller.showNewWeightDialog(context, orderProduct),
     );
   }
