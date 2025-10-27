@@ -282,6 +282,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_to_account":
             MessageLookupByLibrary.simpleMessage("اکاؤنٹ میں لاگ ان کریں"),
         "logout": MessageLookupByLibrary.simpleMessage("لاگ آؤٹ"),
+        "logoutAlert": MessageLookupByLibrary.simpleMessage(
+            "هل أنت متأكد أنك تريد الخروج? سيؤدي هذا الإجراء إلى مسح جميع البيانات"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "لوریم ایپسم پرنٹنگ کا ایک سادہ ڈمی ٹیکسٹ ہے"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(

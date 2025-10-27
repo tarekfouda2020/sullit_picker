@@ -274,6 +274,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_to_account":
             MessageLookupByLibrary.simpleMessage("تسجيل الدخول إلى الحساب"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "logoutAlert": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to logout? This action will clear all data"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "لوريم إيبسوم هو نص وهمي بسيط من الطباعة"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(

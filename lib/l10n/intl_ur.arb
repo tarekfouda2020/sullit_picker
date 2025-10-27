@@ -344,5 +344,6 @@
   "fresh_whole_chicken": "تازہ پوری مرغی",
   "order_ready_for_delivery": "آرڈر ڈیلیوری کے لیے تیار ہے",
   "something_went_wrong": "کچھ غلط ہو گیا",
+  "logoutAlert": "هل أنت متأكد أنك تريد الخروج? سيؤدي هذا الإجراء إلى مسح جميع البيانات",
   "cannot_replace_higher_price": "{price} سے زیادہ قیمت والے پروڈکٹ سے تبدیل نہیں کیا جا سکتا"
 }

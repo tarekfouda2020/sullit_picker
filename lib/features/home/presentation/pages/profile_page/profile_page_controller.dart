@@ -5,6 +5,7 @@ import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart'
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/languages_requester.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/confirm_delete_dialog_widget.dart';
 import 'profile_page_imports.dart';
 import 'widgets/lang_bottom_sheet_widget.dart';
 class ProfilePageController {
@@ -57,7 +58,22 @@ class ProfilePageController {
   }
 
 
-  Future<void> logout(BuildContext context) async {
+
+  void logout(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ConfirmDeleteDialogWidget(
+          onTap: () => _logout(context),
+          content: Translate.s.logoutAlert,
+        );
+      },
+    );
+  }
+
+
+
+  Future<void> _logout(BuildContext context) async {
     getIt<LoadingHelper>().showLoadingDialog();
     final result = await getIt<AuthRepositories>().logout();
     result.when(

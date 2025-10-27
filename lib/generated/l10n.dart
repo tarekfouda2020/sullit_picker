@@ -3460,6 +3460,16 @@ class S {
     );
   }
 
+  /// `Are you sure you want to logout? This action will clear all data`
+  String get logoutAlert {
+    return Intl.message(
+      'Are you sure you want to logout? This action will clear all data',
+      name: 'logoutAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cannot replace with product having higher price than {price}`
   String cannot_replace_higher_price(Object price) {
     return Intl.message(

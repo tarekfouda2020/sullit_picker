@@ -226,6 +226,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_successful": MessageLookupByLibrary.simpleMessage(
             "লগইন সফল! ফিরে আসার জন্য স্বাগতম।"),
         "logout": MessageLookupByLibrary.simpleMessage("লগআউট"),
+        "logoutAlert": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to logout? This action will clear all data"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "লরেম ইপসাম হল মুদ্রণের একটি সাধারণ ডামি টেক্সট"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(
