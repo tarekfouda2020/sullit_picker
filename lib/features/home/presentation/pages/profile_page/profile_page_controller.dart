@@ -20,8 +20,8 @@ class ProfilePageController {
 
   Future<void> getLanguages() async {
     langRequester.request(fromRemote: false);
-    await langRequester.request();
-    setDefaultLang();
+     langRequester.request();
+    // setDefaultLang();
   }
 
   Future<void> selectImage(BuildContext context) async {
