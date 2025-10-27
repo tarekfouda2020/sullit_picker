@@ -90,6 +90,35 @@ class DateTimeHelper {
     }
   }
 
+  static ObsValue<TimerEntity> getTimerEntityFromDateTime(DateTime? targetTime) {
+    final ObsValue<TimerEntity> timerObs =
+    ObsValue.withInit(TimerEntity(myDuration: Duration.zero));
+
+    if (targetTime == null) {
+      return timerObs;
+    }
+
+    try {
+      final entity = TimerEntity();
+      entity.initDuration(targetTime);
+
+      // Set initial value
+      timerObs.setValue(entity);
+
+      // Start periodic update
+      entity.startTimer(callback: () {
+        timerObs.setValue(entity);
+      });
+
+    } catch (e) {
+      print("⚠️ DateTime error: $e");
+      timerObs.setValue(TimerEntity(myDuration: Duration.zero));
+    }
+
+    return timerObs;
+  }
+
+
 
   static String getDate(String backendDate, {String? formatType}) {
     try {
