@@ -1,6 +1,4 @@
-import 'dart:convert';
 
-import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/custom_timer_widget.dart';
@@ -21,7 +19,7 @@ class OrderCountDownTimerWidget extends StatefulWidget {
 class _OrderCountDownTimerWidgetState extends State<OrderCountDownTimerWidget> {
 
 
- late ObsValue<TimerEntity> timerObs;
+  late ObsValue<TimerEntity> timerObs;
 
  @override
  void initState() {
@@ -52,13 +50,13 @@ class _OrderCountDownTimerWidgetState extends State<OrderCountDownTimerWidget> {
             CustomTimerWidget(
               firstTimeNumber: value.getDigit( 'minutes', 0),
               secondTimeNumber: value.getDigit( 'minutes', 1),
-              text: "Minutes",
+              text: Translate.s.minutes,
             ),
             _buildSeparatorText(context),
             CustomTimerWidget(
               firstTimeNumber: value.getDigit( 'seconds', 0),
               secondTimeNumber: value.getDigit( 'seconds', 1),
-              text: "Seconds",
+              text: Translate.s.seconds,
             ),
           ],
         );

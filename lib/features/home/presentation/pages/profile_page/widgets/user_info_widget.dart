@@ -18,16 +18,6 @@ class UserInfoWidget extends StatelessWidget {
         Text("@${userData?.username ?? ""}",
           style: AppTextStyle.s14_w400(color: context.colors.black),
         ),
-
-        // const ProfileRatingWidget(),
-        // Gaps.vGap8,
-        // Text(userData?.fullPhone ?? "",
-        //   style: AppTextStyle.s14_w400(color: context.colors.black),
-        // ),
-        // Gaps.vGap7,
-        // Text(userData?.email ?? "",
-        //     style: AppTextStyle.s14_w400(color: context.colors.black)
-        // ),
       ],
     );
   }

@@ -10,9 +10,9 @@ class WeightConfirmDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  DialogActionWidget(
-      description: 'Is the weight equals 900 gm ?',
-      buttonGreenTitle: 'Equals',
-      buttonRedTitle: 'Less Than',
+      description: Translate.of(context).is_weight_equals,
+      buttonGreenTitle: Translate.of(context).equals,
+      buttonRedTitle: Translate.of(context).less_than,
       greenOnTap: () {
         print('Equals');
       },

@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/errors/base_error.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 
 import 'confirm_reset_password_imports.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';

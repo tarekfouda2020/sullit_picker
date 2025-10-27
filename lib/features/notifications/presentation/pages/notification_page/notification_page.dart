@@ -67,7 +67,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             noItemsFoundIndicatorBuilder: (context) => Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("No Notifications received yet!",
+                Text(Translate.of(context).no_notifications_yet,
                   style: AppTextStyle.s20_w500(color: context.colors.black),
                 )
               ],

@@ -15,7 +15,7 @@ class DialogNewWeightWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        'What is the New Weight ?',
+        Translate.of(context).what_is_new_weight,
         style: AppTextStyle.s18_w700(color: context.colors.textColor),
       ),
       // titlePadding: const EdgeInsets.fromLTRB(38, 25, 38, 11),
@@ -51,7 +51,7 @@ class DialogNewWeightWidget extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
               // margin: const EdgeInsets.symmetric(vertical: 10),
               fillColor: context.colors.background,
-              hint: 'Enter new weight',
+              hint: Translate.of(context).enter_new_weight,
               hintColor: context.colors.textColor,
               radius: Dimens.borderRadius30PX,
               hintSize: 14,
@@ -80,7 +80,7 @@ class DialogNewWeightWidget extends StatelessWidget {
           ),
           Gaps.vGap28,
           AppTextButton.maxCustom(
-            text: 'Confirm',
+            text: Translate.of(context).app_confirm,
             txtColor: context.colors.white,
             textSize: 16,
             bgColor: context.colors.primary,

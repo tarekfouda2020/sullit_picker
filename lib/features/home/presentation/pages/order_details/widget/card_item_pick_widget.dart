@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/qnt_count_widget.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 
 import 'widgets_imports.dart';
 class CardItemPickWidget extends StatelessWidget {
@@ -46,7 +47,7 @@ class CardItemPickWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: AppTextButton.maxCustom(
-                  text: controller.isProductFullPicked(data) ? 'Picked' : 'Pick',
+                  text: controller.isProductFullPicked(data) ? Translate.of(context).picked : Translate.of(context).pick,
                   bgColor: controller.isProductFullPicked(data)
                       ? context.colors.softWhite
                       : context.colors.primary,
@@ -62,7 +63,7 @@ class CardItemPickWidget extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    'Qnt',
+                    Translate.of(context).qnt,
                     style: AppTextStyle.s14_w400(
                         color: context.colors.textColor),
                   ),
@@ -83,7 +84,7 @@ class CardItemPickWidget extends StatelessWidget {
           ),
           Gaps.vGap13,
           Text(
-            'Picked ${data.product!.productPickedPercent!.toStringAsFixed(2)}%',
+            '${Translate.of(context).picked} ${data.product!.productPickedPercent!.toStringAsFixed(2)}%',
             style:
             AppTextStyle.s14_w400(color: context.colors.textColor),
           )

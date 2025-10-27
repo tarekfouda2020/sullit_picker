@@ -1,5 +1,6 @@
 
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
 import 'package:flutter_tdd/features/auth/presentation/widgets/auth_section_title_widget.dart';
 import 'package:flutter_tdd/features/general/presentation/pages/contact_us/contact_us_controller.dart';
@@ -36,7 +37,7 @@ class ContactUsFormWidget extends StatelessWidget {
           action: TextInputAction.next,
           fillColor: context.colors.white,
           enableBorderColor: context.colors.inputBorder,
-          hint: 'mmm@info.com',
+          hint: Translate.of(context).email_placeholder,
           margin: const EdgeInsets.only(bottom: 12),
           validate: (value) => value?.validateEmail(),
         ),
@@ -47,7 +48,7 @@ class ContactUsFormWidget extends StatelessWidget {
           fieldTypes: FieldTypes.normal,
           type: TextInputType.number,
           action: TextInputAction.next,
-          hint: "0000000",
+          hint: Translate.of(context).phone_placeholder,
           fillColor: context.colors.white,
           enableBorderColor: context.colors.inputBorder,
           prefixIcon: prefixIcon(),

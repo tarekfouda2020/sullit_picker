@@ -20,9 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(days) => "Expired with in ${days} Days";
+  static String m0(price) =>
+      "Cannot replace with product having higher price than ${price}";
 
-  static String m1(MB, files) =>
+  static String m1(days) => "Expired with in ${days} Days";
+
+  static String m2(MB, files) =>
       "Files size must be less than ${MB} MB, ${files}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -42,7 +45,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_name": MessageLookupByLibrary.simpleMessage("Suliit Driver"),
         "app_technical_issue":
             MessageLookupByLibrary.simpleMessage("App Technical Issue"),
+        "are_you_sure_cancel_order": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to cancel order"),
+        "are_you_sure_delete_product": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete product"),
+        "are_you_sure_replace": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want replace this product ?"),
         "arrived": MessageLookupByLibrary.simpleMessage("Arrived"),
+        "assigned": MessageLookupByLibrary.simpleMessage("Assigned"),
+        "assigned_orders":
+            MessageLookupByLibrary.simpleMessage("Assigned Orders :"),
         "attach_back_driving_licensee": MessageLookupByLibrary.simpleMessage(
             "Attach Back Driving Licensee"),
         "attach_back_id":
@@ -67,7 +79,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "business": MessageLookupByLibrary.simpleMessage("Business"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancel_order": MessageLookupByLibrary.simpleMessage("Cancel Order"),
         "cancelled": MessageLookupByLibrary.simpleMessage("Cancelled"),
+        "cannot_replace_higher_price": m0,
         "cash": MessageLookupByLibrary.simpleMessage("Cash"),
         "cash_on_delivery":
             MessageLookupByLibrary.simpleMessage("Cash on Delivery"),
@@ -96,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
         "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "continue_picking":
+            MessageLookupByLibrary.simpleMessage("Continue Picking"),
         "continue_with_apple":
             MessageLookupByLibrary.simpleMessage("Continue with Apple"),
         "continue_with_facebook":
@@ -118,6 +134,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "customer_not_available":
             MessageLookupByLibrary.simpleMessage("Customer not available"),
         "decline_order": MessageLookupByLibrary.simpleMessage("Decline Order"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "delete_product":
+            MessageLookupByLibrary.simpleMessage("Delete Product"),
+        "deleted_products":
+            MessageLookupByLibrary.simpleMessage("Deleted Products"),
         "delivered": MessageLookupByLibrary.simpleMessage("Delivered"),
         "delivered_time":
             MessageLookupByLibrary.simpleMessage("Delivered Time"),
@@ -127,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deposited": MessageLookupByLibrary.simpleMessage("Deposited"),
         "detect_supported_area":
             MessageLookupByLibrary.simpleMessage("Detect supported area"),
+        "dispatch": MessageLookupByLibrary.simpleMessage("Dispatch"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "driver_home": MessageLookupByLibrary.simpleMessage("Driver Home"),
         "driver_profile":
@@ -136,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "e_mail": MessageLookupByLibrary.simpleMessage("E-mail"),
         "earnings": MessageLookupByLibrary.simpleMessage("Earnings"),
         "edit_profile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "email_placeholder":
+            MessageLookupByLibrary.simpleMessage("mmm@info.com"),
         "email_required":
             MessageLookupByLibrary.simpleMessage("Email is required"),
         "enter_code": MessageLookupByLibrary.simpleMessage("Enter code"),
@@ -143,6 +167,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your code to reset your password"),
         "enter_email_to_recover": MessageLookupByLibrary.simpleMessage(
             "Enter your e-mail to recover the password"),
+        "enter_new_weight":
+            MessageLookupByLibrary.simpleMessage("Enter new weight"),
         "enter_title": MessageLookupByLibrary.simpleMessage("Enter Title"),
         "enter_user_name":
             MessageLookupByLibrary.simpleMessage("Enter User Name"),
@@ -158,6 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Your Password"),
         "enter_your_phone":
             MessageLookupByLibrary.simpleMessage("Enter your phone number"),
+        "equals": MessageLookupByLibrary.simpleMessage("Equals"),
         "error_BadRequest_Error":
             MessageLookupByLibrary.simpleMessage("BAD REQUEST"),
         "error_NotFound_Error":
@@ -185,7 +212,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No internet connection"),
         "estimated_time":
             MessageLookupByLibrary.simpleMessage("Estimated Time"),
-        "expired_within_days": m0,
+        "expired_within_days": m1,
         "failed_orders": MessageLookupByLibrary.simpleMessage("Failed Orders"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("Failed Reason"),
         "failed_to_update_location":
@@ -201,6 +228,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "forgot_password_question":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "fresh_whole_chicken":
+            MessageLookupByLibrary.simpleMessage("Fresh Whole Chicken"),
         "get_started": MessageLookupByLibrary.simpleMessage("Get Started"),
         "hello_welcome": MessageLookupByLibrary.simpleMessage(
             "Hello, You are welcome with us!"),
@@ -214,6 +243,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "in_progress": MessageLookupByLibrary.simpleMessage("In Progress"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("Internet connected"),
+        "is_weight_equals": MessageLookupByLibrary.simpleMessage(
+            "Is the weight equals 900 gm?"),
+        "items_left": MessageLookupByLibrary.simpleMessage("items left"),
+        "items_left_suffix": MessageLookupByLibrary.simpleMessage("items left"),
         "km": MessageLookupByLibrary.simpleMessage("KM"),
         "label_Login": MessageLookupByLibrary.simpleMessage("Log in"),
         "label_app_language": MessageLookupByLibrary.simpleMessage("Language"),
@@ -233,6 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "label_register": MessageLookupByLibrary.simpleMessage("Register"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "last_week": MessageLookupByLibrary.simpleMessage("Last Week"),
+        "less_than": MessageLookupByLibrary.simpleMessage("Less Than"),
         "loadingText": MessageLookupByLibrary.simpleMessage("Loading…"),
         "location_updated_successfully": MessageLookupByLibrary.simpleMessage(
             "Location updated successfully"),
@@ -255,6 +289,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "maybe_later": MessageLookupByLibrary.simpleMessage("Maybe Later"),
         "message_sent_successfully":
             MessageLookupByLibrary.simpleMessage("Message sent successfully"),
+        "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
+        "must_picking_within":
+            MessageLookupByLibrary.simpleMessage("Must Picking within"),
         "my_statistics": MessageLookupByLibrary.simpleMessage("My Statistics"),
         "my_subscription":
             MessageLookupByLibrary.simpleMessage("My Subscription"),
@@ -269,15 +306,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("New Password"),
         "new_password_required":
             MessageLookupByLibrary.simpleMessage("New password is required"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noResults": MessageLookupByLibrary.simpleMessage("No Results"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("No internet connection"),
+        "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
+            "No Notifications received yet!"),
         "no_orders_description": MessageLookupByLibrary.simpleMessage(
             "You are now available to receive delivery orders\nYou will be notified when a new order arrives"),
         "no_orders_title":
             MessageLookupByLibrary.simpleMessage("No Orders Available"),
         "no_plans_found":
             MessageLookupByLibrary.simpleMessage("No Plans Found"),
+        "no_terms_yet": MessageLookupByLibrary.simpleMessage("No Terms Yet"),
         "no_transactions_description": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any transactions yet. Your transaction history will appear here once you start making transactions."),
         "no_transactions_found":
@@ -292,11 +333,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "one_hour_ago": MessageLookupByLibrary.simpleMessage("1 Hour Ago"),
         "online": MessageLookupByLibrary.simpleMessage("Online"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
+        "order_accepted_failed":
+            MessageLookupByLibrary.simpleMessage("Order accepted failed"),
+        "order_cancelled_successfully": MessageLookupByLibrary.simpleMessage(
+            "Order cancelled successfully"),
         "order_completed_successfully": MessageLookupByLibrary.simpleMessage(
             "Order completed successfully!"),
         "order_details": MessageLookupByLibrary.simpleMessage("Order Details"),
         "order_items": MessageLookupByLibrary.simpleMessage("Order Items"),
         "order_no": MessageLookupByLibrary.simpleMessage("Order no"),
+        "order_no_colon": MessageLookupByLibrary.simpleMessage("Order No. :"),
+        "order_ready_for_delivery":
+            MessageLookupByLibrary.simpleMessage("Order ready for delivery"),
         "order_status": MessageLookupByLibrary.simpleMessage("Order Status"),
         "order_value": MessageLookupByLibrary.simpleMessage("Order Value"),
         "orders_history":
@@ -339,7 +387,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
         "phone_number_required":
             MessageLookupByLibrary.simpleMessage("Phone number is required"),
+        "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
         "pick": MessageLookupByLibrary.simpleMessage("Pick"),
+        "picked": MessageLookupByLibrary.simpleMessage("Picked"),
         "pickup_address":
             MessageLookupByLibrary.simpleMessage("Pickup Address"),
         "please_accept_terms": MessageLookupByLibrary.simpleMessage(
@@ -376,7 +426,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "problem_type": MessageLookupByLibrary.simpleMessage("Problem Type"),
         "process_to_pay":
             MessageLookupByLibrary.simpleMessage("Process to pay"),
+        "product_not_found":
+            MessageLookupByLibrary.simpleMessage("Product not found"),
+        "product_scanned":
+            MessageLookupByLibrary.simpleMessage("Product Scanned"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "qnt": MessageLookupByLibrary.simpleMessage("Qnt"),
         "quick_actions": MessageLookupByLibrary.simpleMessage("Quick Actions"),
         "quick_options": MessageLookupByLibrary.simpleMessage("Quick Options"),
         "receiving_from":
@@ -409,9 +464,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Restaurant Issue"),
         "restore": MessageLookupByLibrary.simpleMessage("Restore"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+        "return_key": MessageLookupByLibrary.simpleMessage("Return"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
+        "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),
         "select_country":
             MessageLookupByLibrary.simpleMessage("Select the country"),
         "select_pay_method":
@@ -421,14 +478,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Send Payment Link"),
         "send_reset_link":
             MessageLookupByLibrary.simpleMessage("Send Reset Link"),
+        "send_to_cashier":
+            MessageLookupByLibrary.simpleMessage("Send to cashier"),
         "set_new_password":
             MessageLookupByLibrary.simpleMessage("Set new password"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
-        "size_more_than_mg_error": m1,
+        "size_more_than_mg_error": m2,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "start_delivering":
             MessageLookupByLibrary.simpleMessage("Start Delivering"),
+        "start_pick": MessageLookupByLibrary.simpleMessage("Start Pick"),
         "start_receiving_orders": MessageLookupByLibrary.simpleMessage(
             "Start receiving orders and begin your delivery journey with us"),
         "statistics": MessageLookupByLibrary.simpleMessage("My Statistics"),
@@ -461,6 +521,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "trip_to_downtown":
             MessageLookupByLibrary.simpleMessage("Trip to Downtown"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("TRY AGAIN"),
+        "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("United Arab Emirates, Dubai"),
@@ -468,6 +529,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "user_didnt_respond":
             MessageLookupByLibrary.simpleMessage("User didn\'t respond"),
         "user_name": MessageLookupByLibrary.simpleMessage("User Name"),
+        "user_no_replace_access": MessageLookupByLibrary.simpleMessage(
+            "User didn\'t give access to replace the product, you can just remove it from order"),
         "vehicle_information":
             MessageLookupByLibrary.simpleMessage("Vehicle Information"),
         "verify_your_e_mail":
@@ -479,12 +542,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("View Wallet Details"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
         "weideliver": MessageLookupByLibrary.simpleMessage("Weideliver"),
+        "weight_minimum": MessageLookupByLibrary.simpleMessage(
+            "The new weight must not less than 750 gm"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "welcome_back": MessageLookupByLibrary.simpleMessage("Welcome Back!"),
         "welcome_message":
             MessageLookupByLibrary.simpleMessage("Welcome to Suliit Driver"),
         "welcome_to_suliit":
             MessageLookupByLibrary.simpleMessage("Welcome to Suliit!"),
+        "what_is_new_weight":
+            MessageLookupByLibrary.simpleMessage("What is the New Weight?"),
         "work_as_a_freelance":
             MessageLookupByLibrary.simpleMessage("work as a freelance"),
         "work_at_many_stores":
@@ -497,6 +564,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wrong_address": MessageLookupByLibrary.simpleMessage("Wrong address"),
         "yearly_subscription":
             MessageLookupByLibrary.simpleMessage("Yearly Subscription"),
+        "yes_remove": MessageLookupByLibrary.simpleMessage("Yes Remove"),
+        "yes_replace": MessageLookupByLibrary.simpleMessage("Yes Replace"),
         "you_have_no_orders_now":
             MessageLookupByLibrary.simpleMessage("You Have No Orders Now"),
         "your_name": MessageLookupByLibrary.simpleMessage("Your Name"),

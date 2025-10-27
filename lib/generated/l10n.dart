@@ -3019,6 +3019,446 @@ class S {
       args: [],
     );
   }
+
+  /// `Order No. :`
+  String get order_no_colon {
+    return Intl.message(
+      'Order No. :',
+      name: 'order_no_colon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Assigned Orders :`
+  String get assigned_orders {
+    return Intl.message(
+      'Assigned Orders :',
+      name: 'assigned_orders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must Picking within`
+  String get must_picking_within {
+    return Intl.message(
+      'Must Picking within',
+      name: 'must_picking_within',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Pick`
+  String get start_pick {
+    return Intl.message(
+      'Start Pick',
+      name: 'start_pick',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue Picking`
+  String get continue_picking {
+    return Intl.message(
+      'Continue Picking',
+      name: 'continue_picking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Assigned`
+  String get assigned {
+    return Intl.message(
+      'Assigned',
+      name: 'assigned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minutes`
+  String get minutes {
+    return Intl.message(
+      'Minutes',
+      name: 'minutes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seconds`
+  String get seconds {
+    return Intl.message(
+      'Seconds',
+      name: 'seconds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Product`
+  String get delete_product {
+    return Intl.message(
+      'Delete Product',
+      name: 'delete_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes Replace`
+  String get yes_replace {
+    return Intl.message(
+      'Yes Replace',
+      name: 'yes_replace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want replace this product ?`
+  String get are_you_sure_replace {
+    return Intl.message(
+      'Are you sure you want replace this product ?',
+      name: 'are_you_sure_replace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to cancel order`
+  String get are_you_sure_cancel_order {
+    return Intl.message(
+      'Are you sure you want to cancel order',
+      name: 'are_you_sure_cancel_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete product`
+  String get are_you_sure_delete_product {
+    return Intl.message(
+      'Are you sure you want to delete product',
+      name: 'are_you_sure_delete_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes Remove`
+  String get yes_remove {
+    return Intl.message(
+      'Yes Remove',
+      name: 'yes_remove',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order cancelled successfully`
+  String get order_cancelled_successfully {
+    return Intl.message(
+      'Order cancelled successfully',
+      name: 'order_cancelled_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get try_again {
+    return Intl.message(
+      'Try Again',
+      name: 'try_again',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product Scanned`
+  String get product_scanned {
+    return Intl.message(
+      'Product Scanned',
+      name: 'product_scanned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product not found`
+  String get product_not_found {
+    return Intl.message(
+      'Product not found',
+      name: 'product_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send to cashier`
+  String get send_to_cashier {
+    return Intl.message(
+      'Send to cashier',
+      name: 'send_to_cashier',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dispatch`
+  String get dispatch {
+    return Intl.message(
+      'Dispatch',
+      name: 'dispatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel Order`
+  String get cancel_order {
+    return Intl.message(
+      'Cancel Order',
+      name: 'cancel_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleted Products`
+  String get deleted_products {
+    return Intl.message(
+      'Deleted Products',
+      name: 'deleted_products',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return`
+  String get return_key {
+    return Intl.message(
+      'Return',
+      name: 'return_key',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Picked`
+  String get picked {
+    return Intl.message(
+      'Picked',
+      name: 'picked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qnt`
+  String get qnt {
+    return Intl.message(
+      'Qnt',
+      name: 'qnt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `items left`
+  String get items_left {
+    return Intl.message(
+      'items left',
+      name: 'items_left',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order accepted failed`
+  String get order_accepted_failed {
+    return Intl.message(
+      'Order accepted failed',
+      name: 'order_accepted_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `mmm@info.com`
+  String get email_placeholder {
+    return Intl.message(
+      'mmm@info.com',
+      name: 'email_placeholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `0000000`
+  String get phone_placeholder {
+    return Intl.message(
+      '0000000',
+      name: 'phone_placeholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Terms Yet`
+  String get no_terms_yet {
+    return Intl.message(
+      'No Terms Yet',
+      name: 'no_terms_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Notifications received yet!`
+  String get no_notifications_yet {
+    return Intl.message(
+      'No Notifications received yet!',
+      name: 'no_notifications_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `items left`
+  String get items_left_suffix {
+    return Intl.message(
+      'items left',
+      name: 'items_left_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User didn't give access to replace the product, you can just remove it from order`
+  String get user_no_replace_access {
+    return Intl.message(
+      'User didn\'t give access to replace the product, you can just remove it from order',
+      name: 'user_no_replace_access',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is the weight equals 900 gm?`
+  String get is_weight_equals {
+    return Intl.message(
+      'Is the weight equals 900 gm?',
+      name: 'is_weight_equals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Equals`
+  String get equals {
+    return Intl.message(
+      'Equals',
+      name: 'equals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Less Than`
+  String get less_than {
+    return Intl.message(
+      'Less Than',
+      name: 'less_than',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is the New Weight?`
+  String get what_is_new_weight {
+    return Intl.message(
+      'What is the New Weight?',
+      name: 'what_is_new_weight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter new weight`
+  String get enter_new_weight {
+    return Intl.message(
+      'Enter new weight',
+      name: 'enter_new_weight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The new weight must not less than 750 gm`
+  String get weight_minimum {
+    return Intl.message(
+      'The new weight must not less than 750 gm',
+      name: 'weight_minimum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fresh Whole Chicken`
+  String get fresh_whole_chicken {
+    return Intl.message(
+      'Fresh Whole Chicken',
+      name: 'fresh_whole_chicken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order ready for delivery`
+  String get order_ready_for_delivery {
+    return Intl.message(
+      'Order ready for delivery',
+      name: 'order_ready_for_delivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cannot replace with product having higher price than {price}`
+  String cannot_replace_higher_price(Object price) {
+    return Intl.message(
+      'Cannot replace with product having higher price than $price',
+      name: 'cannot_replace_higher_price',
+      desc: '',
+      args: [price],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

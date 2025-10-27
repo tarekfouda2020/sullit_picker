@@ -82,7 +82,7 @@ class _TermsConditionsState extends State<TermsConditions> {
           },
           failureBuilder: (context, error, callback) => Center(
             child: Text(
-              'No Terms Yet',
+              Translate.of(context).no_terms_yet,
               style: AppTextStyle.s24_w700(color: context.colors.black),
             ),
           ),

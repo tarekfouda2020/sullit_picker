@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
@@ -24,7 +25,7 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
             ),
             Gaps.hGap14,
             Text(
-              'Order No. : ',
+              Translate.of(context).order_no_colon,
               style: AppTextStyle.s18_w300(color: context.colors.simiGray),
             ),
             Text(
@@ -41,7 +42,7 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
                 observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
                 builder: (context, assignedTime) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 38),
-                  child: Text('Assigned $assignedTime', style: AppTextStyle.s14_w300(color: context.colors.textColor)),
+                  child: Text('${Translate.of(context).assigned} $assignedTime', style: AppTextStyle.s14_w300(color: context.colors.textColor)),
                 ),
               ),
             ),

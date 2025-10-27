@@ -288,6 +288,10 @@ mixin _$OrderModel {
   double? get pickedPercent => throw _privateConstructorUsedError;
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
   set pickedPercent(double? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+  int? get preparationSeconds => throw _privateConstructorUsedError;
+  @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+  set preparationSeconds(int? value) => throw _privateConstructorUsedError;
 
   /// Serializes this OrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -316,8 +320,9 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
-      @JsonKey(name: 'picked_percent', defaultValue: 0.0)
-      double? pickedPercent});
+      @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
+      @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+      int? preparationSeconds});
 }
 
 /// @nodoc
@@ -345,6 +350,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? ordersDetails = freezed,
     Object? deletedOrders = freezed,
     Object? pickedPercent = freezed,
+    Object? preparationSeconds = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -387,6 +393,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.pickedPercent
           : pickedPercent // ignore: cast_nullable_to_non_nullable
               as double?,
+      preparationSeconds: freezed == preparationSeconds
+          ? _value.preparationSeconds
+          : preparationSeconds // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -410,8 +420,9 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
-      @JsonKey(name: 'picked_percent', defaultValue: 0.0)
-      double? pickedPercent});
+      @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
+      @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+      int? preparationSeconds});
 }
 
 /// @nodoc
@@ -437,6 +448,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? ordersDetails = freezed,
     Object? deletedOrders = freezed,
     Object? pickedPercent = freezed,
+    Object? preparationSeconds = freezed,
   }) {
     return _then(_$OrderModelImpl(
       id: null == id
@@ -479,6 +491,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.pickedPercent
           : pickedPercent // ignore: cast_nullable_to_non_nullable
               as double?,
+      preparationSeconds: freezed == preparationSeconds
+          ? _value.preparationSeconds
+          : preparationSeconds // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -497,7 +513,9 @@ class _$OrderModelImpl extends _OrderModel {
       @JsonKey(name: 'order_details') this.ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       this.deletedOrders,
-      @JsonKey(name: 'picked_percent', defaultValue: 0.0) this.pickedPercent})
+      @JsonKey(name: 'picked_percent', defaultValue: 0.0) this.pickedPercent,
+      @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+      this.preparationSeconds})
       : super._();
 
   factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -532,10 +550,13 @@ class _$OrderModelImpl extends _OrderModel {
   @override
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
   double? pickedPercent;
+  @override
+  @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+  int? preparationSeconds;
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, pickedPercent: $pickedPercent)';
+    return 'OrderModel(id: $id, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   /// Create a copy of OrderModel
@@ -566,8 +587,9 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
-      @JsonKey(name: 'picked_percent', defaultValue: 0.0)
-      double? pickedPercent}) = _$OrderModelImpl;
+      @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
+      @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+      int? preparationSeconds}) = _$OrderModelImpl;
   _OrderModel._() : super._();
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
@@ -621,6 +643,11 @@ abstract class _OrderModel extends OrderModel {
   double? get pickedPercent;
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
   set pickedPercent(double? value);
+  @override
+  @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+  int? get preparationSeconds;
+  @JsonKey(name: 'preparation_seconds', defaultValue: 0)
+  set preparationSeconds(int? value);
 
   /// Create a copy of OrderModel
   /// with the given fields replaced by the non-null parameter values.

@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/user_services_helper.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import '../../../../../../../../core/helpers/di.dart';
 
 import 'login_view_imports.dart';
@@ -34,7 +35,7 @@ class LoginViewController {
       await getIt.get<AuthRepositories>().sendLogin(params).then((result) {
         result.when(
           isSuccess: (data) {
-            getIt<UserServicesHelper>().cashAndRoute(context, data, 'Success Login');
+            getIt<UserServicesHelper>().cashAndRoute(context, data, Translate.of(context).login_successful);
           },
           isError: (error) {},
         );

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
@@ -22,6 +24,7 @@ class NotifyMethodsHelper {
     try {
       final router = getIt<AppRouter>();
       final topRoute = router.current;
+      log("================>>>>>> route name ${topRoute.name}  <<<<<<<<=====");
       if (topRoute.name != OrderDetailsRouteName.name) {
         return true;
       }
@@ -35,6 +38,7 @@ class NotifyMethodsHelper {
     try {
       final router = getIt<AppRouter>();
       final topRoute = router.current;
+      log("================>>>>>> route name ${topRoute.name}  <<<<<<<<=====");
       if (topRoute.name != HomePageRoute.name) {
         return true;
       }
@@ -44,12 +48,6 @@ class NotifyMethodsHelper {
     return true;
   }
 
-
-  void showNewOrderNotify(){
-    if(notInOrderDetails()){
-      getIt<OrdersHelper>().showNewOrderAlert();
-    }
-  }
 
 
 

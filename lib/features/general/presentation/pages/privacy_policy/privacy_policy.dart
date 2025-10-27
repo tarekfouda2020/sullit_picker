@@ -84,7 +84,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           },
           failureBuilder: (context, error, callback) => Center(
             child: Text(
-              'No Terms Yet',
+              Translate.of(context).no_terms_yet,
               style: AppTextStyle.s24_w700(color: context.colors.black),
             ),
           ),

@@ -23,12 +23,12 @@ class OrderDetailsController {
   final BaseBloc<OrderModel> detailsCubit = BaseBloc<OrderModel>();
   late ShowOrdersRequester showOrdersRequester;
   late final int orderId;
-  late final int duration;
+  late final DateTime targetTime;
   late final int allItemsCount;
 
-  OrderDetailsController(int id, int remainingTime) {
+  OrderDetailsController(int id, DateTime time) {
     orderId = id;
-    duration = remainingTime;
+    targetTime = time;
     getDetails();
   }
 
@@ -57,9 +57,9 @@ class OrderDetailsController {
         context: context,
         builder: (context) {
           return DialogActionWidget(
-            description: 'Are you sure you want replace this product ?',
-            buttonGreenTitle: 'Yes Replace',
-            buttonRedTitle: 'Cancel',
+            description: Translate.of(context).are_you_sure_replace,
+            buttonGreenTitle: Translate.of(context).yes_replace,
+            buttonRedTitle: Translate.of(context).app_cancel,
             greenOnTap: () => scanProduct(context, oldItem),
           );
         });
@@ -91,9 +91,9 @@ class OrderDetailsController {
       context: context,
       builder: (context) {
         return DialogActionWidget(
-          description: 'Are you sure you want to cancel order',
-          buttonGreenTitle: 'Confirm',
-          buttonRedTitle: "No",
+          description: Translate.of(context).are_you_sure_cancel_order,
+          buttonGreenTitle: Translate.of(context).app_confirm,
+          buttonRedTitle: Translate.of(context).no,
           greenOnTap: () => cancelOrder(context),
         );
       },
@@ -108,8 +108,8 @@ class OrderDetailsController {
       context: context,
       builder: (context) {
         return DialogActionWidget(
-          description: 'Are you sure you want to delete product',
-          buttonGreenTitle: 'Delete',
+          description: Translate.of(context).are_you_sure_delete_product,
+          buttonGreenTitle: Translate.of(context).delete,
           greenOnTap: () => deleteProduct(context, item.id),
         );
       },
@@ -121,12 +121,12 @@ class OrderDetailsController {
     result.when(
       isSuccess: (data) {
         removeCanceledOrder();
-        AppSnackBar.showSuccessSnackBar('Order cancelled successfully');
+        AppSnackBar.showSuccessSnackBar(Translate.of(context).order_cancelled_successfully);
         Navigator.pop(context);
         AutoRouter.of(context).maybePop(orderId);
       },
       isError: (error) {
-        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: 'Try Again'));
+        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).try_again));
       },
     );
   }
@@ -230,7 +230,6 @@ class OrderDetailsController {
     var result = await getIt<HomeRepositories>().showOrders(params);
     result.when(
       isSuccess: (data) {
-        data?.preparationMinutes = duration;
         updateLocalData(data!);
         allItemsCount = data.totalItems;
       },
@@ -261,7 +260,7 @@ class OrderDetailsController {
     String? barcode = await getIt<BarcodeService>().scanBarcode();
     if (barcode != null && barcode.isNotEmpty) {
       AppSnackBar.showSuccessSnackBar(
-        "Product Scanned",
+        Translate.of(context).product_scanned,
       );
       BuildContext ctx = getIt<GlobalContext>().context();
       getProductWithBarcode(ctx, barcode, oldItem);
@@ -278,7 +277,7 @@ class OrderDetailsController {
       },
       isError: (error) {
         AppSnackBar.showSimpleToast(
-          msg: "Product not found",
+          msg: Translate.of(context).product_not_found,
           type: ToastType.error,
         );
       },
@@ -293,7 +292,7 @@ class OrderDetailsController {
 
     if (newPrice > oldItemPrice) {
       AppSnackBar.showSimpleToast(
-          msg: "Cannot replace with product having higher price than $oldItemPrice",
+          msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
           type: ToastType.error,
           gravity: ToastGravity.BOTTOM);
       return;
@@ -348,13 +347,13 @@ class OrderDetailsController {
       isSuccess: (data) {
         AutoRouter.of(context).maybePop(params.orderId);
         AppSnackBar.showSuccessSnackBar(
-         "Order ready for delivery",
+         Translate.of(context).order_ready_for_delivery,
         );
         getIt<OrdersHelper>().deleteOrderDetails(data!.id);
       },
       isError: (error) {
         AppSnackBar.showSimpleToast(
-          msg: "Something went wrong",
+          msg: Translate.of(context).something_went_wrong,
           type: ToastType.error,
         );
       },

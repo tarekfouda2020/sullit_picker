@@ -10,9 +10,9 @@ import 'order_details_imports.dart';
 @RoutePage(name: "OrderDetailsRouteName")
 class OrderDetails extends StatefulWidget {
   final int id;
-  final int time;
+  final DateTime targetTime;
 
-  const OrderDetails({super.key, required this.id, required this.time});
+  const OrderDetails({super.key, required this.id, required this.targetTime});
 
   @override
   State<OrderDetails> createState() => _OrderDetailsState();
@@ -23,7 +23,7 @@ class _OrderDetailsState extends State<OrderDetails> {
 
   @override
   void initState() {
-    controller = OrderDetailsController(widget.id, widget.time);
+    controller = OrderDetailsController(widget.id, widget.targetTime);
     super.initState();
   }
 
@@ -56,7 +56,7 @@ class _OrderDetailsState extends State<OrderDetails> {
           onFailedWidget: (context, error, callback) {
             return Center(
               child: Text(
-                'Something went wrong',
+                Translate.s.something_went_wrong,
                 style: AppTextStyle.s16_w600(color: context.colors.primary),
               ),
             );

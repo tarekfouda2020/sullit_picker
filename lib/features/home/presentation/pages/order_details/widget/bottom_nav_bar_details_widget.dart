@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/core/widgets/shimmers/base_shimmer_widget.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
 import 'widgets_imports.dart';
@@ -25,7 +26,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                     Visibility(
                       visible: value,
                       replacement: AppTextButton.maxCustom(
-                        text: 'Send to cashier',
+                        text: Translate.of(context).send_to_cashier,
                         onPressed: (){
                           if(controller.isAllProductsPicked){
                             controller.isAllPickedObs.setValue(true);
@@ -41,7 +42,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                         maxHeight: 50,
                       ),
                       child: AppTextButton.maxCustom(
-                        text: 'Dispatch',
+                        text: Translate.of(context).dispatch,
                         onPressed: ()=> controller.prepareOrder(context),
                         textSize: 18,
                         txtColor: context.colors.white,
@@ -52,7 +53,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                     Gaps.vGap10,
                     if(!controller.isAllProductsPicked)
                     AppTextButton.maxCustom(
-                      text: 'Cancel Order',
+                      text: Translate.of(context).cancel_order,
                       onPressed: ()=> controller.showCancelOrderDialog(context,),
                       textSize: 18,
                       txtColor: context.colors.white,

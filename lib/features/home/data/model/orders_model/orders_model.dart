@@ -36,6 +36,7 @@ class OrderModel with _$OrderModel {
      /// used in local data
     @JsonKey(name: 'deleted_orders',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? deletedOrders,
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? pickedPercent,
+     @JsonKey(name: 'preparation_seconds',defaultValue: 0) int? preparationSeconds,
   }) = _OrderModel;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>

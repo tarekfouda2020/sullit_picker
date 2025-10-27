@@ -21,7 +21,7 @@ class AssignedOrdersWidget extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Assigned Orders : ",
+                Translate.of(context).assigned_orders,
                 style: AppTextStyle.s18_w300(
                     color: context.colors.primary),
               ),

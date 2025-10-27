@@ -14,7 +14,6 @@ class MenuItemsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var isFreelancer = context.read<UserCubit>().state.model?.isFreelancer;
     return Column(
       children: [
         Gaps.vGap20,

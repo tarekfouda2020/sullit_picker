@@ -29,23 +29,29 @@ class TimerCardDetailsWidget extends StatelessWidget {
                 key: GlobalKey(debugLabel: "${data.id}"),
                 numberOfItems: data.ordersDetails?.length ?? 0,
                 pickedPercent: data.pickedPercent!,
-                endTitle: "${data.totalItems.toString()} items left",
+                endTitle: "${data.totalItems.toString()} ${Translate.of(context).items_left_suffix}",
               )
           ),
           Gaps.vGap12,
           Column(
             children: [
               Text(
-                'Must Picking within',
+                Translate.of(context).must_picking_within,
                 style: AppTextStyle.s16_w300(color: context.colors.black),
               ),
               Gaps.vGap15,
               OrderCountDownTimerWidget(
-                pickWithinTime: DateTime.now().add(Duration(minutes: data.preparationMinutes)),
+                pickWithinTime: DateTime.now().add(Duration(
+                  minutes: data.preparationMinutes,
+                  seconds: data.preparationSeconds ?? 0,
+                )),
                 isNewOrder: false,
                 duringCountDown: (duration) {
                   data.preparationMinutes = duration.inMinutes;
+                  data.preparationSeconds = duration.inSeconds;
                   getIt<OrdersHelper>().saveOrderDetails(data);
+                  // Update the same order in the list
+                  _updateOrderInList();
                 },
               )
 
@@ -55,4 +61,20 @@ class TimerCardDetailsWidget extends StatelessWidget {
       ),
     );
   }
+
+  void _updateOrderInList() {
+    // Update the same order in the assigned orders list
+    var assignedOrders = getIt<OrdersHelper>().assignedOrdersCubit.data;
+    if (assignedOrders != null) {
+      for (var order in assignedOrders) {
+        if (order.id == data.id) {
+          order.preparationMinutes = data.preparationMinutes;
+          order.preparationSeconds = data.preparationSeconds;
+          break;
+        }
+      }
+      getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
+    }
+  }
+
 }

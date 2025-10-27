@@ -5,8 +5,8 @@ import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
 import 'package:intl/intl.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class DateTimeHelper {
   }
 
   static DateTime convertToDateTime({required String strDate,  String? formatType}) {
-    DateTime formatted = DateFormat("dd-MM-yyyy hh:mm a").parse(strDate);
+    DateTime formatted = DateFormat( formatType ?? "dd-MM-yyyy hh:mm a").parse(strDate);
     return formatted;
   }
 

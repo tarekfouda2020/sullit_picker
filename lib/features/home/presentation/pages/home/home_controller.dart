@@ -79,7 +79,13 @@ class HomeController {
   Future<void> acceptOrder(BuildContext context, OrderModel data) async {
     if (data.isAssigned) {
       final value =
-          await AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id, time: data.preparationMinutes));
+          await  AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,
+              targetTime: DateTime.now().add(Duration(
+                minutes: data.preparationMinutes,
+                seconds: data.preparationSeconds ?? 0,
+              ))
+          )
+          );
       if (value!= null && value as int == data.id) {
         assignedOrdersCubit.data!.remove(data);
         assignedOrdersCubit.successState(assignedOrdersCubit.data);
@@ -92,14 +98,21 @@ class HomeController {
     result.when(
       isSuccess: (data) async {
         data!.getOrderStatus() == OrderStatusEnum.preparing;
-        final currentOrders = getIt<OrdersHelper>().assignedOrdersCubit.data ?? [];
-        final updatedOrders = List<OrderModel>.from(currentOrders)..add(data);
+        var currentOrders = getIt<OrdersHelper>().assignedOrdersCubit.data ?? [];
+        var updatedOrders = List<OrderModel>.from(currentOrders)..add(data);
         getIt<OrdersHelper>().assignedOrdersCubit.successState(updatedOrders);
         getIt<OrdersHelper>().saveAssignedOrders(updatedOrders);
-        AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id, time: data.preparationMinutes));
+        getIt<OrdersHelper>().getAllOrders();
+        AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,
+            targetTime: DateTime.now().add(Duration(
+              minutes: data.preparationMinutes,
+              seconds: data.preparationSeconds ?? 0,
+            ))
+        )
+        );
       },
       isError: (error) {
-        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: 'Order accepted failed'));
+        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).order_accepted_failed));
       },
     );
   }

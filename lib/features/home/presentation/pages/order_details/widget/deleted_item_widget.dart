@@ -45,7 +45,7 @@ class DeletedItemWidget extends StatelessWidget {
         ),
         Gaps.vGap15,
         AppTextButton.maxCustom(
-          text: "Return (${item.product!.pickedQuantity!})",
+          text: "${Translate.s.return_key} (${item.product!.pickedQuantity!})",
           bgColor: context.colors.primary,
         txtColor: context.colors.white,
           maxHeight: 45,

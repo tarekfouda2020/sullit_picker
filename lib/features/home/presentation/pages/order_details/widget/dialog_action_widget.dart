@@ -51,7 +51,7 @@ class DialogActionWidget extends StatelessWidget {
               Gaps.hGap8,
               Expanded(
                 child: AppTextButton.minCustom(
-                  text: buttonRedTitle ??"Cancel",
+                  text: buttonRedTitle ??Translate.s.cancel,
                   onPressed: redOnTap ?? ()=>  Navigator.pop(context),
                   bgColor: context.colors.white,
                   borderColor: context.colors.primary,

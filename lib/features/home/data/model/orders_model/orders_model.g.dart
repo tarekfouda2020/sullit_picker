@@ -42,6 +42,7 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
               .toList() ??
           [],
       pickedPercent: (json['picked_percent'] as num?)?.toDouble() ?? 0.0,
+      preparationSeconds: (json['preparation_seconds'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
@@ -56,6 +57,7 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'order_details': instance.ordersDetails,
       'deleted_orders': instance.deletedOrders,
       'picked_percent': instance.pickedPercent,
+      'preparation_seconds': instance.preparationSeconds,
     };
 
 _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(

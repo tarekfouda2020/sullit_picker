@@ -24,7 +24,7 @@ class DeletedProductsSheetWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             spacing: 20,
             children: [
-              const BottomSheetHeaderWidget(title: "Deleted Products"),
+              BottomSheetHeaderWidget(title: Translate.s.deleted_products),
               ...List.generate(controller.detailsCubit.data!.deletedOrders!.length ,
                     (index) {
                 return DeletedItemWidget(item: controller.detailsCubit.data!.deletedOrders![index],controller: controller,);

@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
+import 'package:flutter_tdd/core/constants/lang_code.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
@@ -50,13 +51,13 @@ class SplashController {
           ),
         );
         if(value == ApplicationConstants.langAR){
-          value = "sa";
+          value = LangCode.ar;
         }
         if(value == ApplicationConstants.langBN){
-          value = "bd";
+          value = LangCode.bd;
         }
         if(value == ApplicationConstants.langUR){
-          value = "pk";
+          value = LangCode.pk;
         }
         GlobalState.instance.set(ApplicationConstants.langKey, value ?? ApplicationConstants.langEN);
 
@@ -77,7 +78,7 @@ class SplashController {
   // String getLangCode(String code){
   //  if(code == "sa"){
   //    return ApplicationConstants.langAR;
-  //  }else if(code == "bd"){
+  //  }else if(code == LangCode.bd){
   //    return ApplicationConstants.langBN;
   //  }else{
   //    return code;
@@ -88,7 +89,7 @@ class SplashController {
     switch(code){
       case ApplicationConstants.langAR: return "SA";
       case ApplicationConstants.langEN: return "US";
-      case ApplicationConstants.langBN: return "BD";
+      case ApplicationConstants.langBN: return LangCode.bd;
       case ApplicationConstants.langUR: return "PK";
       default: return "US";
     }

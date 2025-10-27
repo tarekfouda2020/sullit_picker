@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/constants/lang_code.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
@@ -113,13 +114,13 @@ class ProfilePageController {
 
   void changeLang(LangModel model, BuildContext context) {
     String code = model.code;
-    if (model.code == "sa") {
+    if (model.code == LangCode.ar) {
       code = ApplicationConstants.langAR;
     }
-    if (model.code == "bd") {
+    if (model.code == LangCode.bd) {
       code = ApplicationConstants.langBN;
     }
-    if (model.code == "pk") {
+    if (model.code == LangCode.pk) {
       code = ApplicationConstants.langUR;
     }
     List<LangModel> languages = langRequester.data!;

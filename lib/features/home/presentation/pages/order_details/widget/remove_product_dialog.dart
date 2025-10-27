@@ -12,9 +12,8 @@ class RemoveProductDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DialogActionWidget(
-      description:
-      'User didn’t give access to replace the product , you can just remove it from order',
-      buttonGreenTitle: 'Yes Remove',
+      description: Translate.of(context).user_no_replace_access,
+      buttonGreenTitle: Translate.of(context).yes_remove,
       greenOnTap: () => controller.deleteProduct(context,productId),
     );
   }
