@@ -28,6 +28,7 @@ class GenericTextField extends StatelessWidget {
   final Color? fillColor;
   final Color? hintColor;
   final Color? textColor;
+  final TextStyle? hintTxtStyle;
   final int? maxLength;
   final Function(String? value) validate;
   final FieldTypes fieldTypes;
@@ -69,6 +70,7 @@ class GenericTextField extends StatelessWidget {
       required this.action,
       this.enableBorderColor,
       this.focusBorderColor,
+      this.hintTxtStyle,
         this.hintSize,
       required this.validate});
 
@@ -130,6 +132,7 @@ class GenericTextField extends StatelessWidget {
         hintColor: hintColor,
         borderRadius: radius,
         hintSize: hintSize,
+        hintTxtStyle: hintTxtStyle,
         lang: context.watch<DeviceCubit>().state.model.locale.languageCode,
       ).copyWith(
         errorMaxLines: 2

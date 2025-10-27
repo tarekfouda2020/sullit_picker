@@ -53,7 +53,7 @@ class PickItemWidget extends StatelessWidget {
               Visibility(
                 visible: orderDetails.product!.productStatus != ProductStatusEnum.noEdit,
                 replacement: Positioned.directional(
-                  textDirection: lang == "ar" ? TextDirection.rtl : TextDirection.ltr,
+                  textDirection: lang == ApplicationConstants.langAR ? TextDirection.rtl : TextDirection.ltr,
                   top: 18,
                   end: 20,
                   child: Visibility(

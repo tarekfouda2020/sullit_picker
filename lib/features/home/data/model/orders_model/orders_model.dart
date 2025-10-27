@@ -70,7 +70,8 @@ class OrderDetailsModel with _$OrderDetailsModel {
    ProductModel? product,
 
    /// have value when replace the item
-     @JsonKey(name: "new_variant_id",defaultValue: -1) int? newVariantId
+     @JsonKey(name: "new_variant_id",defaultValue: -1) int? newVariantId,
+     @JsonKey(name: "new_price",defaultValue: 0.0) double? newPrice
   }) = _OrderDetailsModel;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>

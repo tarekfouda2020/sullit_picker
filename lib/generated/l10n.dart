@@ -3370,10 +3370,10 @@ class S {
     );
   }
 
-  /// `Is the weight equals 900 gm?`
+  /// `Is the weight equals`
   String get is_weight_equals {
     return Intl.message(
-      'Is the weight equals 900 gm?',
+      'Is the weight equals',
       name: 'is_weight_equals',
       desc: '',
       args: [],
@@ -3487,6 +3487,56 @@ class S {
       name: 'cannot_replace_higher_price',
       desc: '',
       args: [price],
+    );
+  }
+
+  /// `Price should be less than or equal to`
+  String get price_should_be_less_than_or_equal_to {
+    return Intl.message(
+      'Price should be less than or equal to',
+      name: 'price_should_be_less_than_or_equal_to',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The new weight must be between`
+  String get new_weight_must_be_between {
+    return Intl.message(
+      'The new weight must be between',
+      name: 'new_weight_must_be_between',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `and`
+  String get and {
+    return Intl.message(
+      'and',
+      name: 'and',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter new price`
+  String get enter_new_price {
+    return Intl.message(
+      'Enter new price',
+      name: 'enter_new_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The new weight must not be less than`
+  String get new_weight_must_not_less_than {
+    return Intl.message(
+      'The new weight must not be less than',
+      name: 'new_weight_must_not_less_than',
+      desc: '',
+      args: [],
     );
   }
 }

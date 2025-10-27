@@ -17,6 +17,7 @@ class CustomInputDecoration extends InputDecoration {
   final BorderRadius? borderRadius;
   final EdgeInsets? padding;
   final double? hintSize;
+  final TextStyle? hintTxtStyle;
 
   const CustomInputDecoration(
       {required this.lang,
@@ -30,6 +31,7 @@ class CustomInputDecoration extends InputDecoration {
       this.focsColor,
       this.borderRadius,
       this.hintSize,
+      this.hintTxtStyle,
       this.padding})
       : super();
 
@@ -69,7 +71,7 @@ class CustomInputDecoration extends InputDecoration {
   TextStyle get labelStyle => AppTextStyle.s14_w400(color: AppColors.noContextInstance.blackOpacity);
 
   @override
-  TextStyle? get hintStyle => AppTextStyle.s14_w400(color: AppColors.noContextInstance.blackOpacity).copyWith(fontSize: hintSize);
+  TextStyle? get hintStyle => hintTxtStyle ?? AppTextStyle.s14_w400(color: AppColors.noContextInstance.blackOpacity).copyWith(fontSize: hintSize);
 
   @override
   EdgeInsetsGeometry get contentPadding =>

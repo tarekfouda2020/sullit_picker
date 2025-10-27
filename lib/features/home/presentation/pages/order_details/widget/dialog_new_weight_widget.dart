@@ -1,15 +1,16 @@
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
+import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
 import 'widgets_imports.dart';
 
 class DialogNewWeightWidget extends StatelessWidget {
-  final String titleItem;
-  final String imageItem;
-  final String cheekWeight;
-
+ final OrderDetailsModel orderProduct;
+ final OrderDetailsController controller;
   const DialogNewWeightWidget(
-      {super.key, required this.titleItem, required this.cheekWeight, required this.imageItem});
+      {super.key, required this.orderProduct, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -21,77 +22,102 @@ class DialogNewWeightWidget extends StatelessWidget {
       // titlePadding: const EdgeInsets.fromLTRB(38, 25, 38, 11),
       backgroundColor: context.colors.white,
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              SvgPicture.asset(
-                imageItem,
-                width: 52,
-                height: 52,
-              ),
-              Gaps.hGap10,
-              Text(
-                titleItem,
-                style: AppTextStyle.s14_w600(color: context.colors.textColor)
-                    .copyWith(height: 1.2),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          Gaps.vGap7,
-          Flexible(
-            child: GenericTextField(
-              fieldTypes: FieldTypes.normal,
-              type: TextInputType.number,
-              action: TextInputAction.done,
-              validate: (value) => value!.validateEmpty(),
-              contentPadding:
-                  const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
-              // margin: const EdgeInsets.symmetric(vertical: 10),
-              fillColor: context.colors.background,
-              hint: Translate.of(context).enter_new_weight,
-              hintColor: context.colors.textColor,
-              radius: Dimens.borderRadius30PX,
-              hintSize: 14,
-            ),
-          ),
-          Gaps.vGap11,
-          Row(
-            children: [
-              SvgPicture.asset(
-                Res.warningIcon,
-                width: 17,
-                height: 17,
-              ),
-              Gaps.hGap4,
-              Expanded(
-                child: Text(
-                  cheekWeight,
-                  style: AppTextStyle.s12_w300(color: context.colors.primary).copyWith(height: 1.2),
-                  overflow: TextOverflow.visible,
+      content: Form(
+        key: controller.formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                CachedImage(
+                  url: orderProduct.product?.thumbnailImage ?? "",
+                  width: 52,
+                  height: 52,
+                  haveRadius: false,
+                  boxShape: BoxShape.circle,
+                ),
+                Gaps.hGap10,
+                Text(
+                  orderProduct.product?.name ?? "",
+                  style: AppTextStyle.s14_w600(color: context.colors.textColor)
+                      .copyWith(height: 1.2),
                   textAlign: TextAlign.center,
-                  maxLines: 2,
-                  softWrap: true,
+                ),
+              ],
+            ),
+            Gaps.vGap10,
+            Flexible(
+              child: GenericTextField(
+                controller: controller.newWeightController,
+                fieldTypes: FieldTypes.normal,
+                type: TextInputType.number,
+                action: TextInputAction.done,
+                validate: (value) => value!.validateEmpty(),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+                fillColor: context.colors.background,
+                hint: Translate.of(context).enter_new_weight,
+                hintColor: context.colors.textColor,
+                hintTxtStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+                suffixIcon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(controller.getProductWeightUnit(orderProduct),
+                    style: AppTextStyle.s13_w500(color: context.colors.black),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-          Gaps.vGap28,
-          AppTextButton.maxCustom(
-            text: Translate.of(context).app_confirm,
-            txtColor: context.colors.white,
-            textSize: 16,
-            bgColor: context.colors.primary,
-            borderRadius: BorderRadius.circular(40),
-            maxHeight: 40,
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-          ),
-        ],
+            ),
+            Gaps.vGap11,
+            Flexible(
+              child: GenericTextField(
+                controller: controller.newPriceController,
+                fieldTypes: FieldTypes.normal,
+                type: TextInputType.number,
+                action: TextInputAction.done,
+                validate: (value) => value!.validateEmpty(),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 11),
+                fillColor: context.colors.background,
+                hint: Translate.s.enter_new_price,
+                hintColor: context.colors.textColor,
+                hintTxtStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+                suffixIcon: Text(""
+                ,style: AppTextStyle.s15_w500(color: context.colors.primary),
+                ).withDirhamSymbol(),
+              ),
+            ),
+            Gaps.vGap11,
+            Row(
+              children: [
+                SvgPicture.asset(
+                  Res.warningIcon,
+                  width: 17,
+                  height: 17,
+                ),
+                Gaps.hGap4,
+                Flexible(
+                  child: Text(
+                    "${Translate.s.new_weight_must_not_less_than} ${controller.productMinimumNewWeight(orderProduct)} ${controller.getProductWeightUnit(orderProduct)}",
+                    style: AppTextStyle.s12_w300(color: context.colors.primary).copyWith(height: 1.2),
+                    overflow: TextOverflow.visible,
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    softWrap: true,
+                  ),
+                ),
+              ],
+            ),
+            Gaps.vGap28,
+            AppTextButton.maxCustom(
+              text: Translate.of(context).app_confirm,
+              txtColor: context.colors.white,
+              textSize: 16,
+              bgColor: context.colors.primary,
+              maxHeight: 40,
+              onPressed: () => controller.confirmNewWeight(orderProduct, context),
+            ),
+          ],
+        ),
       ),
     );
   }

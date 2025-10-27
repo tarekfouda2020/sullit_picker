@@ -343,9 +343,11 @@
   "weight_minimum": "نیا وزن 750 گرام سے کم نہیں ہونا چاہیے",
   "fresh_whole_chicken": "تازہ پوری مرغی",
   "order_ready_for_delivery": "آرڈر ڈیلیوری کے لیے تیار ہے",
-  "something_went_wrong": "کچھ غلط ہو گیا",
-  "unavailable": "Unavailable",
-  "unavailable": "غير متاح",
   "logoutAlert": "هل أنت متأكد أنك تريد الخروج?",
-  "cannot_replace_higher_price": "{price} سے زیادہ قیمت والے پروڈکٹ سے تبدیل نہیں کیا جا سکتا"
+  "cannot_replace_higher_price": "{price} سے زیادہ قیمت والے پروڈکٹ سے تبدیل نہیں کیا جا سکتا",
+  "price_should_be_less_than_or_equal_to": "قیمت کم یا برابر ہونی چاہیے",
+  "new_weight_must_be_between": "نیا وزن اس کے درمیان ہونا چاہیے",
+  "and": "اور",
+  "enter_new_price": "نئی قیمت درج کریں",
+  "new_weight_must_not_less_than": "نیا وزن اس سے کم نہیں ہونا چاہیے"
 }

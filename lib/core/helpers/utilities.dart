@@ -36,35 +36,6 @@ class Utilities {
   }
 
 
-  String parseCurrency(String text) {
-    BuildContext ctx = getIt<GlobalContext>().context();
-    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
-
-    final Map<String, String> currencyMap = {
-      "د.إ": "AED",
-      "ر.س": "SAR",
-      "ج.م": "EGP",
-      "د.ك": "KWD",
-    };
-
-    final regExp = RegExp(r"([^\d\s]+)\s*([\d.,]+)");
-
-    return text.replaceAllMapped(regExp, (match) {
-      String currencyPart = match.group(1)!.trim();
-      String numberPart = match.group(2)!.trim();
-
-      if ((lang == ApplicationConstants.langEN || lang == ApplicationConstants.langBN ) && currencyMap.containsKey(currencyPart)) {
-        currencyPart = currencyMap[currencyPart]!;
-      }
-
-      final double value = num.parse(numberPart.replaceAll(',', '')).toDouble();
-      final formattedNumber = NumberFormat("#,##0.00", lang).format(value);
-
-      return "$formattedNumber $currencyPart";
-    });
-  }
-
-
   String cleanHtml(String html) {
     return html
         .replaceAll(RegExp(r'<span[^>]*>|</span>'), '')
@@ -80,39 +51,20 @@ class Utilities {
   }
 
 
-  String getPrice(String text) {
-    BuildContext ctx = getIt<GlobalContext>().context();
-    // String lang = GlobalState.instance.get("lang");
-    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
-    final RegExp regExp = RegExp(r"^([^\d]+)?([\d.,]+)$");
-    final match = regExp.firstMatch(text);
-    if (match == null) return "0.00";
-    String numberPart = match.group(2)!.replaceAll(",", "").trim();
-    double value = double.tryParse(numberPart) ?? 0.0;
 
-    return NumberFormat("#,##0.00", lang).format(value);
+
+
+  String formatAmount(String value) {
+    final parsed = double.tryParse(value.replaceAll(',', '')) ?? 0;
+    final intValue = parsed.toStringAsFixed(2);
+
+    final formattedInteger = intValue.replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+          (match) => '${match.group(1)},',
+    );
+
+    return formattedInteger;
   }
-
-  String getCurrency(String text) {
-    BuildContext ctx = getIt<GlobalContext>().context();
-    // String lang = GlobalState.instance.get("lang");
-    String lang = ctx.read<DeviceCubit>().state.model.locale.languageCode;
-    final RegExp regExp = RegExp(r"^([^\d]+)([\d.,]+)$");
-    final match = regExp.firstMatch(text);
-    if (match == null) return "";
-    String currencyPart = match.group(1)!.trim();
-    final Map<String, String> currencyMap = {
-      "د.إ": "AED",
-      "ر.س": "SAR",
-      "ج.م": "EGP",
-      "د.ك": "KWD",
-    };
-    if (lang == "en" && currencyMap.containsKey(currencyPart)) {
-      return currencyMap[currencyPart]!;
-    }
-    return currencyPart;
-  }
-
 
 
   String convertDigitsToLatin(String s) {

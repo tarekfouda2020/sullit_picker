@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,6 @@ void main()async{
   await HiveHelper.instance.init();
   // await HiveHelper.instance.registerData<OrderModel>(OrderModelAdapter());
   // await HiveHelper.instance.registerData<OrdersList>(OrdersListAdapter());
-
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.orderDetails);
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.orders);
   await Firebase.initializeApp();
@@ -28,7 +29,7 @@ void main()async{
   getIt.registerSingleton(AppRouter());
   await configureDependencies();
   getIt<GlobalNotification>().setupNotification();
-
+  HttpOverrides.global = MyHttpOverrides();
   runApp(
     BlocProvider(
       create: (BuildContext context) => DeviceCubit(),
@@ -37,3 +38,11 @@ void main()async{
   );
 }
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => false;
+  }
+}

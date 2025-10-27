@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_item": MessageLookupByLibrary.simpleMessage("Add new item"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "agree": MessageLookupByLibrary.simpleMessage("Agree"),
+        "and": MessageLookupByLibrary.simpleMessage("and"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "app_name": MessageLookupByLibrary.simpleMessage("Suliit Driver"),
@@ -167,6 +168,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your code to reset your password"),
         "enter_email_to_recover": MessageLookupByLibrary.simpleMessage(
             "Enter your e-mail to recover the password"),
+        "enter_new_price":
+            MessageLookupByLibrary.simpleMessage("Enter new price"),
         "enter_new_weight":
             MessageLookupByLibrary.simpleMessage("Enter new weight"),
         "enter_title": MessageLookupByLibrary.simpleMessage("Enter Title"),
@@ -243,8 +246,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "in_progress": MessageLookupByLibrary.simpleMessage("In Progress"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("Internet connected"),
-        "is_weight_equals": MessageLookupByLibrary.simpleMessage(
-            "Is the weight equals 900 gm?"),
+        "is_weight_equals":
+            MessageLookupByLibrary.simpleMessage("Is the weight equals"),
         "items_left": MessageLookupByLibrary.simpleMessage("items left"),
         "items_left_suffix": MessageLookupByLibrary.simpleMessage("items left"),
         "km": MessageLookupByLibrary.simpleMessage("KM"),
@@ -308,6 +311,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("New Password"),
         "new_password_required":
             MessageLookupByLibrary.simpleMessage("New password is required"),
+        "new_weight_must_be_between": MessageLookupByLibrary.simpleMessage(
+            "The new weight must be between"),
+        "new_weight_must_not_less_than": MessageLookupByLibrary.simpleMessage(
+            "The new weight must not be less than"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noResults": MessageLookupByLibrary.simpleMessage("No Results"),
         "no_internet_connection":
@@ -420,6 +427,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Verify your Email"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "Please Verify your phone number"),
+        "price_should_be_less_than_or_equal_to":
+            MessageLookupByLibrary.simpleMessage(
+                "Price should be less than or equal to"),
         "privacy_policy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "problem_description":

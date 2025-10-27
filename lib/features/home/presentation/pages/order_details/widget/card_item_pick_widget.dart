@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/features/auth/presentation/pages/confirm_reset_password/confirm_reset_password_imports.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/qnt_count_widget.dart';
@@ -35,17 +36,38 @@ class CardItemPickWidget extends StatelessWidget {
               ),
               Gaps.hGap10,
               Expanded(
-                child: Text(
-                  "${data.product!.name} ${data.variation}",
-                  maxLines: 2,
-                  softWrap: true,
-                  overflow: TextOverflow.visible,
-                  style: AppTextStyle.s14_w600(
-                    color: context.colors.simiGray,
-                  ).copyWith(height: 1.15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${data.product!.name} ${ data.variation.validateIfItWeight() == true
+                          ?""
+                          :data.variation}",
+                      maxLines: 2,
+                      softWrap: true,
+                      overflow: TextOverflow.visible,
+                      style: AppTextStyle.s14_w600(
+                        color: context.colors.simiGray,
+                      ).copyWith(height: 1.15),
+                    ),
+                    if(data.variation.validateIfItWeight() == true)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          data.variation,
+                          maxLines: 2,
+                          softWrap: true,
+                          overflow: TextOverflow.visible,
+                          style: AppTextStyle.s14_w600(
+                            color: context.colors.simiGray,
+                          ).copyWith(height: 1.15),
+                        ),
+                      )
+
+                  ],
                 ),
               ),
-              const SizedBox(width: 120)
+              const SizedBox(width: 90)
             ],
           ),
           Row(
@@ -59,7 +81,8 @@ class CardItemPickWidget extends StatelessWidget {
                   txtColor: controller.isProductFullPicked(data) ? context.colors.appGreen : context.colors.white,
                   textSize: 16,
                   maxHeight: 40,
-                  onPressed: () => controller.pickItem(data),
+                  onPressed: () => controller.onPressPick(context, data),
+                  // onPressed: () => controller.pickItem(data),
                 ),
               ),
               Gaps.hGap6,

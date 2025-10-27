@@ -167,6 +167,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: dirhamicon
+      fonts:
+        - asset: assets/fonts/dirhamicon.otf
+          weight: 300
     - family: NotoSans
       fonts:
        - asset: assets/fonts/NotoSans.ttf

@@ -71,6 +71,7 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
           ? null
           : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
       newVariantId: (json['new_variant_id'] as num?)?.toInt() ?? -1,
+      newPrice: (json['new_price'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$OrderDetailsModelImplToJson(
@@ -82,6 +83,7 @@ Map<String, dynamic> _$$OrderDetailsModelImplToJson(
       'price': instance.price,
       'product': instance.product,
       'new_variant_id': instance.newVariantId,
+      'new_price': instance.newPrice,
     };
 
 _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>

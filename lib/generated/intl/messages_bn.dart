@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("নতুন আইটেম যোগ করুন"),
         "address": MessageLookupByLibrary.simpleMessage("ঠিকানা"),
         "agree": MessageLookupByLibrary.simpleMessage("সম্মত"),
+        "and": MessageLookupByLibrary.simpleMessage("এবং"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("বাতিল"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("নিশ্চিত করুন"),
         "app_name": MessageLookupByLibrary.simpleMessage("সুলিত ড্রাইভার"),
@@ -132,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "আপনার পাসওয়ার্ড পুনরায় সেট করতে আপনার কোড লিখুন"),
         "enter_email_to_recover": MessageLookupByLibrary.simpleMessage(
             "পাসওয়ার্ড পুনরুদ্ধারের জন্য আপনার ইমেল লিখুন"),
+        "enter_new_price":
+            MessageLookupByLibrary.simpleMessage("নতুন মূল্য লিখুন"),
         "enter_new_weight":
             MessageLookupByLibrary.simpleMessage("নতুন ওজন প্রবেশ করুন"),
         "enter_title": MessageLookupByLibrary.simpleMessage("শিরোনাম লিখুন"),
@@ -251,6 +254,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_order_alert":
             MessageLookupByLibrary.simpleMessage("নতুন অর্ডার সতর্কতা"),
         "new_password": MessageLookupByLibrary.simpleMessage("নতুন পাসওয়ার্ড"),
+        "new_weight_must_be_between":
+            MessageLookupByLibrary.simpleMessage("নতুন ওজন হতে হবে এর মধ্যে"),
+        "new_weight_must_not_less_than":
+            MessageLookupByLibrary.simpleMessage("নতুন ওজন কম হতে পারবে না"),
         "no": MessageLookupByLibrary.simpleMessage("না"),
         "noResults": MessageLookupByLibrary.simpleMessage("কোন ফলাফল নেই"),
         "no_internet_connection":
@@ -327,6 +334,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "অনুগ্রহ করে আপনার ইমেল যাচাই করুন"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "অনুগ্রহ করে আপনার ফোন নম্বর যাচাই করুন"),
+        "price_should_be_less_than_or_equal_to":
+            MessageLookupByLibrary.simpleMessage("মূল্য কম বা সমান হতে হবে"),
         "privacy_policy":
             MessageLookupByLibrary.simpleMessage("গোপনীয়তা নীতি"),
         "process_to_pay":

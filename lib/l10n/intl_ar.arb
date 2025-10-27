@@ -324,7 +324,6 @@
   "cancel_order": "إلغاء الطلب",
   "deleted_products": "المنتجات المحذوفة",
   "return": "إرجاع",
-  "pick": "التقاط",
   "picked": "تم التقاطه",
   "qnt": "الكمية",
   "items_left": "عناصر متبقية",
@@ -344,9 +343,13 @@
   "weight_minimum": "يجب ألا يقل الوزن الجديد عن 750 جم",
   "fresh_whole_chicken": "دجاج كامل طازج",
   "order_ready_for_delivery": "الطلب جاهز للتوصيل",
-  "something_went_wrong": "حدث خطأ ما",
   "no_of_items": "عدد العناصر",
   "unavailable": "غير متاح",
   "logoutAlert": "هل أنت متأكد أنك تريد الخروج?",
-  "cannot_replace_higher_price": "لا يمكن استبدال منتج بسعر أعلى من {price}"
+  "cannot_replace_higher_price": "لا يمكن استبدال منتج بسعر أعلى من {price}",
+  "price_should_be_less_than_or_equal_to": "يجب أن يكون السعر أقل من أو يساوي",
+  "new_weight_must_be_between": "يجب أن يكون الوزن الجديد بين",
+  "and": "و",
+  "enter_new_price": "أدخل السعر الجديد",
+  "new_weight_must_not_less_than": "يجب ألا يكون الوزن الجديد أقل من"
 }

@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_item": MessageLookupByLibrary.simpleMessage("إضافة عنصر جديد"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "agree": MessageLookupByLibrary.simpleMessage("موافق"),
+        "and": MessageLookupByLibrary.simpleMessage("و"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "app_name": MessageLookupByLibrary.simpleMessage("سائق سليط"),
@@ -163,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "أدخل رمزك لإعادة تعيين كلمة المرور"),
         "enter_email_to_recover": MessageLookupByLibrary.simpleMessage(
             "أدخل بريدك الإلكتروني لاستعادة كلمة المرور"),
+        "enter_new_price":
+            MessageLookupByLibrary.simpleMessage("أدخل السعر الجديد"),
         "enter_new_weight":
             MessageLookupByLibrary.simpleMessage("أدخل الوزن الجديد"),
         "enter_title": MessageLookupByLibrary.simpleMessage("أدخل العنوان"),
@@ -303,6 +306,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "new_password_required":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة مطلوبة"),
+        "new_weight_must_be_between": MessageLookupByLibrary.simpleMessage(
+            "يجب أن يكون الوزن الجديد بين"),
+        "new_weight_must_not_less_than": MessageLookupByLibrary.simpleMessage(
+            "يجب ألا يكون الوزن الجديد أقل من"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noResults": MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
         "no_internet_connection":
@@ -383,7 +390,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number_required":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف مطلوب"),
         "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
-        "pick": MessageLookupByLibrary.simpleMessage("التقاط"),
+        "pick": MessageLookupByLibrary.simpleMessage("اختيار"),
         "picked": MessageLookupByLibrary.simpleMessage("تم التقاطه"),
         "pickup_address":
             MessageLookupByLibrary.simpleMessage("عنوان الاستلام"),
@@ -411,6 +418,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى التحقق من البريد الإلكتروني"),
         "please_verify_phone_number":
             MessageLookupByLibrary.simpleMessage("يرجى التحقق من رقم الهاتف"),
+        "price_should_be_less_than_or_equal_to":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن يكون السعر أقل من أو يساوي"),
         "privacy_policy":
             MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
         "problem_description":

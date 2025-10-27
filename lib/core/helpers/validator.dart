@@ -58,6 +58,15 @@ extension Validator on String {
     return null;
   }
 
+  bool? validateIfItWeight() {
+    if (trim().isNotEmpty) {
+      if (RegExp(r'^\s*\d+(\.\d+)?\s*(kg|g)\s*$', caseSensitive: false).hasMatch(this)) {
+        return true;
+      }
+    }
+    return null;
+  }
+
   String? validatePhone({String? message}) {
     if (trim().isEmpty) {
       return message ??  Translate.s.fillField;

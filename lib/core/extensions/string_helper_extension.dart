@@ -13,12 +13,8 @@ extension StringExtension on String? {
 
   bool get isRTL => international.Bidi.detectRtlDirectionality(this!);
 
-  String get parseCurrency {
-    return getIt<Utilities>().parseCurrency(this ?? "");
-  }
-
-  String get rawPrice {
-    return getIt<Utilities>().getPrice(this ?? "");
+  String  formatAmount() {
+    return getIt<Utilities>().formatAmount(this ?? "");
   }
 
 }

@@ -1,7 +1,8 @@
-import 'dart:developer';
 import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/helpers/weight_info.dart';
+import 'package:flutter_tdd/features/auth/presentation/pages/forget_password/forget_password_imports.dart';
 import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.
 import 'package:flutter_tdd/features/home/domain/requester/show_orders_requester.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/deleted_products_sheet_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_action_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/dialog_new_weight_widget.dart';
 
 import 'order_details_imports.dart';
 import 'widget/remove_product_dialog.dart';
@@ -21,6 +23,12 @@ class OrderDetailsController {
   final ObsValue<bool> isAllPickedObs = ObsValue.withInit(false);
   final ObsValue<bool> refreshDeletedSheetObs = ObsValue.withInit(false);
   final BaseBloc<OrderModel> detailsCubit = BaseBloc<OrderModel>();
+
+  final TextEditingController newWeightController = TextEditingController();
+  final TextEditingController newPriceController = TextEditingController();
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   late ShowOrdersRequester showOrdersRequester;
   late final int orderId;
   late final DateTime targetTime;
@@ -75,15 +83,10 @@ class OrderDetailsController {
     );
   }
 
-  void showWeightDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => const WeightConfirmDialogWidget(),
-    );
-  }
+
 
   void editQuantity(BuildContext context) {
-    showDialog(context: context, builder: (context) => const WeightConfirmDialogWidget());
+    // showDialog(context: context, builder: (context) => const WeightConfirmDialogWidget());
   }
 
   void showCancelOrderDialog(BuildContext context) {
@@ -138,6 +141,106 @@ class OrderDetailsController {
     // getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
     getIt<OrdersHelper>().deleteOrderDetails(orderId);
   }
+
+
+
+  void onPressPick(BuildContext context,OrderDetailsModel orderProduct){
+    var variant = orderProduct.variation;
+    if(variant.validateIfItWeight() == true){
+      showWeightDialog(context,orderProduct);
+    }else{
+      pickItem(orderProduct);
+    }
+  }
+
+
+  void showWeightDialog(BuildContext context,OrderDetailsModel orderProduct) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return  WeightConfirmDialogWidget(orderProduct: orderProduct,controller: this,);
+      },
+    );
+  }
+
+  void showNewWeightDialog(BuildContext context,OrderDetailsModel orderProduct) {
+    showDialog(
+        context: context,
+        builder: (context) =>
+         DialogNewWeightWidget(
+         orderProduct: orderProduct,
+           controller: this,
+        )
+    );
+  }
+
+
+  void confirmNewWeight(OrderDetailsModel orderProduct, BuildContext context){
+    if(formKey.currentState!.validate()){
+
+      var newPrice = double.parse(newPriceController.text);
+      var oldPrice = double.parse(orderProduct.price);
+
+      var oldWeight  = getProductWeight(orderProduct);
+      var newWeight = double.parse(newWeightController.text);
+      var minWeight = productMinimumNewWeight(orderProduct);
+      var unit = getProductWeightUnit(orderProduct);
+
+      if(newPrice > oldPrice){
+        AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
+            type: ToastType.error,
+            gravity: ToastGravity.BOTTOM
+        );
+        return ;
+      }
+
+      /// the new weight can not be more the old weight
+      /// and can not be less than the Minimum one
+      if (newWeight < minWeight || newWeight > oldWeight) {
+        AppSnackBar.showSimpleToast(
+          msg: "${Translate.s.new_weight_must_be_between} ${minWeight.toStringAsFixed(2)} ${Translate.s.and} $oldWeight $unit",
+          type: ToastType.error,
+          gravity: ToastGravity.BOTTOM,
+        );
+        return;
+      }
+
+      var index = _detailsData.ordersDetails!.indexWhere((e) => e.id == orderProduct.id);
+      var updatedItem = orderProduct.copyWith(
+        price: "$newPrice",
+        newPrice: newPrice,
+        variation: "$newWeight$unit",
+        product: orderProduct.product!.copyWith(
+            productStatus: ProductStatusEnum.modified
+        ),
+      );
+      _detailsData.ordersDetails![index] = updatedItem;
+      updateDetailsCubit();
+      getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+      newWeightController.clear();
+      newPriceController.clear();
+      pickItem(updatedItem);
+      Navigator.pop(context);
+      Navigator.pop(context);
+    }
+  }
+
+  double productMinimumNewWeight(OrderDetailsModel orderProduct){
+    var oldWeight = getProductWeight(orderProduct);
+    var newWeight = oldWeight-(oldWeight*0.1);
+    return newWeight;
+  }
+
+
+  double getProductWeight(OrderDetailsModel orderProduct,){
+    return WeightInfo.extractWeight(orderProduct.variation)?.value ??0;
+  }
+
+
+  String getProductWeightUnit(OrderDetailsModel orderProduct,){
+    return WeightInfo.extractWeight(orderProduct.variation)?.unit ?? "";
+  }
+
 
   void pickItem(OrderDetailsModel orderProduct) {
     var qty = orderProduct.quantity;
@@ -294,7 +397,8 @@ class OrderDetailsController {
       AppSnackBar.showSimpleToast(
           msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
           type: ToastType.error,
-          gravity: ToastGravity.BOTTOM);
+          gravity: ToastGravity.BOTTOM
+      );
       return;
     }
 
@@ -341,7 +445,6 @@ class OrderDetailsController {
 
   Future<void> prepareOrder(BuildContext context) async {
     final params = _prepareOrderParams();
-    log(">>>>${params.toJson()}");
     final result = await getIt<HomeRepositories>().prepareOrder(params);
     result.when(
       isSuccess: (data) {

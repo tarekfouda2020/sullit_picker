@@ -15,8 +15,18 @@ class PrepareOrderParams {
     final removeData = (deletedDetails ?? []);
 
     final currentDetailsJson = currentDetails.map((e) {
+
+      /// replaced projects
       if (e.newVariantId != null && e.newVariantId != -1) {
+        if(e.newPrice!=null && e.newPrice!=0.0){
+          return _actionJson(PrepareOrderActionType.updatePrice, e);
+        }
         return _actionJson(PrepareOrderActionType.replace, e);
+      }
+
+      /// updated price
+      if(e.newPrice!=null && e.newPrice!=0.0){
+        return _actionJson(PrepareOrderActionType.updatePrice, e);
       }
       return null;
     }).where((e) => e != null).cast<Map<String, dynamic>>().toList();
@@ -40,7 +50,7 @@ class PrepareOrderParams {
         return {
           "id": data.id,
           "action": "update_price",
-          "price": data.price,
+          "price": data.newPrice,
           "picker_notes": "update price notes",
         };
       case PrepareOrderActionType.replace:

@@ -332,7 +332,7 @@
   "no_notifications_yet": "No Notifications received yet!",
   "items_left_suffix": "items left",
   "user_no_replace_access": "User didn't give access to replace the product, you can just remove it from order",
-  "is_weight_equals": "Is the weight equals 900 gm?",
+  "is_weight_equals": "Is the weight equals",
   "equals": "Equals",
   "less_than": "Less Than",
   "what_is_new_weight": "What is the New Weight?",
@@ -340,9 +340,13 @@
   "weight_minimum": "The new weight must not less than 750 gm",
   "fresh_whole_chicken": "Fresh Whole Chicken",
   "order_ready_for_delivery": "Order ready for delivery",
-  "something_went_wrong": "Something went wrong",
   "no_of_items": "No. of Items ",
   "unavailable": "Unavailable",
     "logoutAlert": "Are you sure you want to logout?",
-  "cannot_replace_higher_price": "Cannot replace with product having higher price than {price}"
+  "cannot_replace_higher_price": "Cannot replace with product having higher price than {price}",
+  "price_should_be_less_than_or_equal_to": "Price should be less than or equal to",
+  "new_weight_must_be_between": "The new weight must be between",
+  "and": "and",
+  "enter_new_price": "Enter new price",
+  "new_weight_must_not_less_than": "The new weight must not be less than"
 }

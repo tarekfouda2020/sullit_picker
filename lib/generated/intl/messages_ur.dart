@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نیا آئٹم شامل کریں"),
         "address": MessageLookupByLibrary.simpleMessage("پتہ"),
         "agree": MessageLookupByLibrary.simpleMessage("منظور"),
+        "and": MessageLookupByLibrary.simpleMessage("اور"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("منسوخ"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("تصدیق"),
         "app_name": MessageLookupByLibrary.simpleMessage("سلیٹ ڈرائیور"),
@@ -172,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "پاس ورڈ ری سیٹ کرنے کے لیے اپنا کوڈ درج کریں"),
         "enter_email_to_recover": MessageLookupByLibrary.simpleMessage(
             "پاس ورڈ بحالی کے لیے اپنا ای میل درج کریں"),
+        "enter_new_price":
+            MessageLookupByLibrary.simpleMessage("نئی قیمت درج کریں"),
         "enter_new_weight":
             MessageLookupByLibrary.simpleMessage("نیا وزن درج کریں"),
         "enter_title": MessageLookupByLibrary.simpleMessage("عنوان درج کریں"),
@@ -311,6 +314,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("نیا پاس ورڈ"),
         "new_password_required":
             MessageLookupByLibrary.simpleMessage("نیا پاس ورڈ ضروری ہے"),
+        "new_weight_must_be_between": MessageLookupByLibrary.simpleMessage(
+            "نیا وزن اس کے درمیان ہونا چاہیے"),
+        "new_weight_must_not_less_than": MessageLookupByLibrary.simpleMessage(
+            "نیا وزن اس سے کم نہیں ہونا چاہیے"),
         "no": MessageLookupByLibrary.simpleMessage("نہیں"),
         "noResults": MessageLookupByLibrary.simpleMessage("کوئی نتائج نہیں"),
         "no_internet_connection":
@@ -424,6 +431,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "برائے کرم ای میل کی تصدیق کریں"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "برائے کرم فون نمبر کی تصدیق کریں"),
+        "price_should_be_less_than_or_equal_to":
+            MessageLookupByLibrary.simpleMessage("قیمت کم یا برابر ہونی چاہیے"),
         "privacy_policy":
             MessageLookupByLibrary.simpleMessage("پرائیویسی پالیسی"),
         "problem_description":
@@ -490,7 +499,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("سیٹنگز"),
         "size_more_than_mg_error": m2,
         "something_went_wrong":
-            MessageLookupByLibrary.simpleMessage("کچھ غلط ہو گیا"),
+            MessageLookupByLibrary.simpleMessage("کچھ خرابی ہوئی"),
         "start_delivering":
             MessageLookupByLibrary.simpleMessage("ڈیلیوری شروع کریں"),
         "start_pick": MessageLookupByLibrary.simpleMessage("پک شروع کریں"),
@@ -526,7 +535,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "tryAgain": MessageLookupByLibrary.simpleMessage("دوبارہ کوشش کریں"),
         "try_again": MessageLookupByLibrary.simpleMessage("دوبارہ کوشش کریں"),
         "type": MessageLookupByLibrary.simpleMessage("قسم"),
-        "unavailable": MessageLookupByLibrary.simpleMessage("غير متاح"),
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("متحدہ عرب امارات، دبئی"),
         "unpaid": MessageLookupByLibrary.simpleMessage("ادائیگی نہیں ہوئی"),
