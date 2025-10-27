@@ -1,21 +1,26 @@
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/qnt_count_widget.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
 
 import 'widgets_imports.dart';
+
 class CardItemPickWidget extends StatelessWidget {
   final OrderDetailsController controller;
   final OrderDetailsModel data;
-  const CardItemPickWidget({super.key, required this.controller, required this.data,});
+
+  const CardItemPickWidget({
+    super.key,
+    required this.controller,
+    required this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
       decoration: BoxDecoration(
-          color: context.colors.white,
-          borderRadius: Dimens.borderRadius10PX,
+        color: context.colors.white,
+        borderRadius: Dimens.borderRadius10PX,
       ),
       child: Column(
         children: [
@@ -36,7 +41,8 @@ class CardItemPickWidget extends StatelessWidget {
                   softWrap: true,
                   overflow: TextOverflow.visible,
                   style: AppTextStyle.s14_w600(
-                      color: context.colors.simiGray),
+                    color: context.colors.simiGray,
+                  ).copyWith(height: 1.15),
                 ),
               ),
               const SizedBox(width: 120)
@@ -47,16 +53,13 @@ class CardItemPickWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: AppTextButton.maxCustom(
-                  text: controller.isProductFullPicked(data) ? Translate.of(context).picked : Translate.of(context).pick,
-                  bgColor: controller.isProductFullPicked(data)
-                      ? context.colors.softWhite
-                      : context.colors.primary,
-                  txtColor: controller.isProductFullPicked(data)
-                      ? context.colors.appGreen
-                      : context.colors.white,
+                  text:
+                      controller.isProductFullPicked(data) ? Translate.of(context).picked : Translate.of(context).pick,
+                  bgColor: controller.isProductFullPicked(data) ? context.colors.softWhite : context.colors.primary,
+                  txtColor: controller.isProductFullPicked(data) ? context.colors.appGreen : context.colors.white,
                   textSize: 16,
                   maxHeight: 40,
-                  onPressed: () => controller.pickItem(data) ,
+                  onPressed: () => controller.pickItem(data),
                 ),
               ),
               Gaps.hGap6,
@@ -64,11 +67,12 @@ class CardItemPickWidget extends StatelessWidget {
                 children: [
                   Text(
                     Translate.of(context).qnt,
-                    style: AppTextStyle.s14_w400(
-                        color: context.colors.textColor),
+                    style: AppTextStyle.s14_w400(color: context.colors.textColor),
                   ),
                   Gaps.vGap8,
-                  QntCountWidget(qnt: data.quantity - data.product!.pickedQuantity!,),
+                  QntCountWidget(
+                    qnt: data.quantity - data.product!.pickedQuantity!,
+                  ),
                   // Gaps.vGap8,
                   // GestureDetector(
                   //   onTap: () => controller.showWeightDialog(context),
@@ -85,8 +89,7 @@ class CardItemPickWidget extends StatelessWidget {
           Gaps.vGap13,
           Text(
             '${Translate.of(context).picked} ${data.product!.productPickedPercent!.toStringAsFixed(2)}%',
-            style:
-            AppTextStyle.s14_w400(color: context.colors.textColor),
+            style: AppTextStyle.s14_w400(color: context.colors.textColor),
           )
         ],
       ),

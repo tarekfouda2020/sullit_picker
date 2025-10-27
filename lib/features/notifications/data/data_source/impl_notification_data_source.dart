@@ -16,7 +16,7 @@ class ImplNotificationDataSource extends NotificationDataSource {
   @override
   Future<MyResult<List<NotificationModel>>> getNotifications(GenericPaginateParams params) async{
     HttpRequestModel  model = HttpRequestModel(
-        url: ApiNames.notifications,
+        url: ApiNames.notifications + params.paramsToQuery(),
         responseType: ResType.list,
         requestMethod: RequestMethod.get,
       refresh: params.refresh,
