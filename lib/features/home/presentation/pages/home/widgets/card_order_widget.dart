@@ -33,7 +33,7 @@ class CardOrderWidget extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'Order No. : ',
+                    Translate.s.order_no,
                     style: AppTextStyle.s17_w300(color: context.colors.simiGray),
                   ),
                   Gaps.hGap2,
@@ -51,7 +51,7 @@ class CardOrderWidget extends StatelessWidget {
           ObsValueConsumer(
             observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
             builder: (context, assignedTime) {
-              return Text('Assigned $assignedTime', style: AppTextStyle.s14_w300(color: context.colors.textColor));
+              return Text('${Translate.s.assigned} $assignedTime', style: AppTextStyle.s14_w300(color: context.colors.textColor));
             },
           ),
           Gaps.vGap15,
@@ -65,7 +65,7 @@ class CardOrderWidget extends StatelessWidget {
           Gaps.vGap15,
           Center(
             child: Text(
-              "Must Picking within",
+              Translate.s.must_picking_within,
               style: AppTextStyle.s16_w300(color: context.colors.simiGray),
             ),
           ),
@@ -81,7 +81,7 @@ class CardOrderWidget extends StatelessWidget {
           ),
           Gaps.vGap24,
           AppTextButton.maxCustom(
-            text: data.isNewOrder ? 'Start Pick' : 'Continue Picking',
+            text: data.isNewOrder ? Translate.s.start_pick : Translate.s.continue_picking,
             maxHeight: 44,
             textSize: 18,
             onPressed: () {
