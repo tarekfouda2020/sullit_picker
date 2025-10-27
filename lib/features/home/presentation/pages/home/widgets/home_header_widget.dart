@@ -47,7 +47,7 @@ class HomeHeaderWidget extends StatelessWidget {
                                       width: 12,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: context.colors.green,
+                                        color: value ? context.colors.green : context.colors.primary,
                                       ),
                                     ),
                                     Gaps.hGap6,
