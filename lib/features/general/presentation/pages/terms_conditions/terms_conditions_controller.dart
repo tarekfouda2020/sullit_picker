@@ -5,7 +5,7 @@ class TermsConditionsController {
 
   Future<void> getTerms() async {
     termsRequester = TermsRequester();
-    await termsRequester.request();
+    await termsRequester.request(fromRemote: false);
   }
 
 

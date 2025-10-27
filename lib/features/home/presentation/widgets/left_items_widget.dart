@@ -21,11 +21,11 @@ class LeftItemsWidget extends StatelessWidget {
         children: [
           Expanded(
               child: Text(
-                'No. of Items : $numberOfItems',
+                '${Translate.s.no_of_items} : $numberOfItems',
                 style: AppTextStyle.s16_w300(color: context.colors.black),
               )),
           Text(
-            endTitle ?? 'Picked $pickedPercent%',
+            endTitle ?? '${Translate.s.picked} $pickedPercent%',
             style: AppTextStyle.s14_w400(color: context.colors.black),
           )
         ],

@@ -3450,6 +3450,16 @@ class S {
     );
   }
 
+  /// `No. of Items `
+  String get no_of_items {
+    return Intl.message(
+      'No. of Items ',
+      name: 'no_of_items',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cannot replace with product having higher price than {price}`
   String cannot_replace_higher_price(Object price) {
     return Intl.message(

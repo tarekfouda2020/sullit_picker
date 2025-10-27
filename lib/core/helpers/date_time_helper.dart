@@ -1,14 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
-import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_import.dart';
-import 'package:flutter/material.dart';
 
 class DateTimeHelper {
   static String formatDate({required DateTime date, required String formatType}) {
@@ -24,8 +23,8 @@ class DateTimeHelper {
     return formatted;
   }
 
-  static DateTime convertToDateTime({required String strDate,  String? formatType}) {
-    DateTime formatted = DateFormat( formatType ?? "dd-MM-yyyy hh:mm a").parse(strDate);
+  static DateTime convertToDateTime({required String strDate, String? formatType}) {
+    DateTime formatted = DateFormat(formatType ?? "dd-MM-yyyy hh:mm a").parse(strDate);
     return formatted;
   }
 
@@ -42,8 +41,6 @@ class DateTimeHelper {
     return days[date.weekday - 1];
   }
 
-
-
   static ObsValue<String> getDifferenceFromCurrentDate(String? strDate) {
     final ObsValue<String> timeAgoObs = ObsValue.withInit("No date available");
 
@@ -59,7 +56,7 @@ class DateTimeHelper {
       Timer.periodic(const Duration(seconds: 1), (timer) {
         final now = DateTime.now();
         final elapsed = now.difference(startTime);
-        timeAgoObs.setValue(elapsed.inSeconds>0?_formatTimeAgo(elapsed):"No date available");
+        timeAgoObs.setValue(_formatTimeAgo(elapsed));
       });
     } catch (e) {
       print("⚠️ Date parse error: $e");
@@ -89,7 +86,6 @@ class DateTimeHelper {
       return "$years year${years > 1 ? 's' : ''} ago";
     }
   }
-
 
   static String getDate(String backendDate, {String? formatType}) {
     try {
@@ -134,7 +130,6 @@ class DateTimeHelper {
             final match = regex.firstMatch(backendDate);
 
             if (match != null) {
-
               if (i == 0) {
                 // Pattern 1: "26-08-2025 15:41 PM"
                 int day = int.parse(match.group(1)!);
@@ -152,7 +147,6 @@ class DateTimeHelper {
 
                 parsed = DateTime(year, month, day, hour, minute);
                 break;
-
               } else if (i == 1) {
                 // Pattern 2: "30 Aug 2025 08:50 AM"
                 int day = int.parse(match.group(1)!);
@@ -173,7 +167,6 @@ class DateTimeHelper {
 
                 parsed = DateTime(year, month, day, hour, minute);
                 break;
-
               } else if (i == 2) {
                 // Pattern 3: "30 August 2025 08:50 AM"
                 int day = int.parse(match.group(1)!);
@@ -194,7 +187,6 @@ class DateTimeHelper {
 
                 parsed = DateTime(year, month, day, hour, minute);
                 break;
-
               } else if (i == 3) {
                 // Pattern 4: "2025-8-13 1:42" (yyyy-M-d H:mm)
                 int year = int.parse(match.group(1)!);
@@ -210,8 +202,7 @@ class DateTimeHelper {
                 break;
               }
             }
-          } catch (e) {
-          }
+          } catch (e) {}
         }
 
         // If still not parsed, try the fallback formats
@@ -241,8 +232,7 @@ class DateTimeHelper {
       DateTime localTime = utcTime.toLocal();
 
       /// Format with proper locale
-      String formatted = DateFormat(formatType ?? "dd MMM yyyy - hh:mm a", locale)
-          .format(localTime);
+      String formatted = DateFormat(formatType ?? "dd MMM yyyy - hh:mm a", locale).format(localTime);
       if (locale == ApplicationConstants.langAR) {
         String arabicFormatted = _toArabicNumbers(formatted);
         return arabicFormatted;
@@ -253,10 +243,9 @@ class DateTimeHelper {
     }
   }
 
-
   static String _toArabicNumbers(String input) {
-    const western = ['0','1','2','3','4','5','6','7','8','9'];
-    const eastern = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    const western = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    const eastern = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
     for (int i = 0; i < western.length; i++) {
       input = input.replaceAll(western[i], eastern[i]);
     }
@@ -266,8 +255,18 @@ class DateTimeHelper {
   /// Convert month abbreviation to month number
   static int _getMonthFromAbbreviation(String monthAbbr) {
     const monthMap = {
-      'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
-      'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+      'Jan': 1,
+      'Feb': 2,
+      'Mar': 3,
+      'Apr': 4,
+      'May': 5,
+      'Jun': 6,
+      'Jul': 7,
+      'Aug': 8,
+      'Sep': 9,
+      'Oct': 10,
+      'Nov': 11,
+      'Dec': 12
     };
 
     String normalized = monthAbbr.substring(0, 3).toLowerCase();
@@ -288,8 +287,18 @@ class DateTimeHelper {
   /// Convert full month name to month number
   static int _getMonthFromName(String monthName) {
     const monthMap = {
-      'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6,
-      'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12
+      'January': 1,
+      'February': 2,
+      'March': 3,
+      'April': 4,
+      'May': 5,
+      'June': 6,
+      'July': 7,
+      'August': 8,
+      'September': 9,
+      'October': 10,
+      'November': 11,
+      'December': 12
     };
 
     String normalized = monthName.toLowerCase();
@@ -302,5 +311,4 @@ class DateTimeHelper {
     // Try abbreviation as fallback
     return _getMonthFromAbbreviation(monthName);
   }
-
 }
