@@ -9,6 +9,7 @@ import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
+import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/http/dio_helper/utils/cache_manager.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
@@ -35,13 +36,14 @@ class UserServicesHelper {
   Future<void> clearCashAndRoute(BuildContext context)async {
     context.read<DeviceCubit>().updateUserAuth(false);
     GlobalState.instance.set(ApplicationConstants.keyToken,null);
-    context.read<UserCubit>().onUpdateUserData(null);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove("user");
     await preferences.remove(ApplicationConstants.keyToken);
     await getIt<DeviceIdHelper>().clearDeviceToken();
     await CacheManager().clearCache();
-
+    await HiveHelper.instance.closeAllBoxes();
+    await HiveHelper.instance.clearHive();
+    context.read<UserCubit>().onUpdateUserData(null);
     AutoRouter.of(context).push(const SplashRoute());
   }
 
