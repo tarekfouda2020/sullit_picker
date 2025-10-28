@@ -19,8 +19,6 @@ void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
   await HiveHelper.instance.init();
-  // await HiveHelper.instance.registerData<OrderModel>(OrderModelAdapter());
-  // await HiveHelper.instance.registerData<OrdersList>(OrdersListAdapter());
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.orderDetails);
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.orders);
   await Firebase.initializeApp();

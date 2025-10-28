@@ -1,12 +1,14 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/new_order_alert_dialog_widget.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sound_effect/sound_effect.dart';
 
@@ -16,6 +18,7 @@ import '../../features/auth/presentation/pages/change_password/change_password_i
 class OrdersHelper {
    final SoundEffect _player = SoundEffect();
    Timer? _timer;
+   bool _isDisposed = false;
 
    final BaseBloc<List<OrderModel>> assignedOrdersCubit = BaseBloc<List<OrderModel>>([]);
    final BaseBloc<OrdersList?> ordersListCubit = BaseBloc<OrdersList?>();
@@ -27,6 +30,9 @@ class OrdersHelper {
 
 
    Future<void> saveAssignedOrders(List<OrderModel> data) async {
+     // Prevent saving to Hive if helper is disposed (during logout)
+     if (_isDisposed) return;
+     
      final jsonString = jsonEncode(data.map((e) => e.toJson()).toList());
      await HiveHelper.instance.addDataToBox<String>(
        HiveBoxesNames.orders,
@@ -36,6 +42,9 @@ class OrdersHelper {
    }
 
    List<OrderModel> getAssignedOrders()  {
+     // Prevent accessing Hive if helper is disposed (during logout)
+     if (_isDisposed) return [];
+     
      final jsonString = HiveHelper.instance.getDataFromBox<String>(
        HiveBoxesNames.orders,
        key: HiveBoxesKeys.assignedOrdersKey,
@@ -50,13 +59,19 @@ class OrdersHelper {
    }
 
    Future<void> saveOrderDetails(OrderModel data) async {
+     // Prevent saving to Hive if helper is disposed (during logout)
+     if (_isDisposed) return;
+     
      final jsonString = jsonEncode(data.toJson());
      await HiveHelper.instance.addDataToBox<String>(HiveBoxesNames.orderDetails, jsonString,key: data.id);
    }
 
    Future<OrderModel?> getOrderDetails(int orderId) async {
      final box = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails,key: orderId);
-     final map = jsonDecode(box ?? "") as Map<String, dynamic>;
+     if (box == null || box.isEmpty) {
+       return null;
+     }
+     final map = jsonDecode(box) as Map<String, dynamic>;
      return OrderModel.fromJson(map);
    }
 
@@ -92,6 +107,12 @@ class OrdersHelper {
 
 
    Future<void> updateAssignedFromLocalData(List<OrderModel> data) async {
+     // Prevent accessing Hive if helper is disposed (during logout)
+     if (_isDisposed) {
+       assignedOrdersCubit.successState(data);
+       return;
+     }
+     
      var localData = getIt<OrdersHelper>().getAssignedOrders();
      if (localData.isEmpty) {
        getIt<OrdersHelper>().saveAssignedOrders(data);
@@ -102,6 +123,12 @@ class OrdersHelper {
    }
 
    Future<void> initDataFromLocal() async {
+     // Prevent accessing Hive if helper is disposed (during logout)
+     if (_isDisposed) {
+       assignedOrdersCubit.successState([]);
+       return;
+     }
+     
      var data = getIt<OrdersHelper>().getAssignedOrders();
      assignedOrdersCubit.successState(data);
    }
@@ -154,7 +181,30 @@ class OrdersHelper {
     _timer = null;
   }
 
+   /// Clean up all resources before logout
+   Future<void> cleanup() async {
+    _isDisposed = true;
+    await _stopSound();
+    assignedOrdersCubit.successState([]);
+    ordersListCubit.successState(null);
+  }
 
-
-
+   /// Reset the helper after logging in with a new account
+   Future<void> reset() async {
+    _isDisposed = false;
+    assignedOrdersCubit.successState([]);
+    ordersListCubit.successState(null);
+    
+    // Ensure Hive boxes are open
+    try {
+      if (!Hive.isBoxOpen(HiveBoxesNames.orders)) {
+        await HiveHelper.instance.openBox<String>(HiveBoxesNames.orders);
+      }
+      if (!Hive.isBoxOpen(HiveBoxesNames.orderDetails)) {
+        await HiveHelper.instance.openBox<String>(HiveBoxesNames.orderDetails);
+      }
+    } catch (e) {
+      log('⚠️ Failed to open Hive boxes during reset: $e');
+    }
+  }
 }

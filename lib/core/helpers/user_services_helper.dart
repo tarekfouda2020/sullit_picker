@@ -10,6 +10,7 @@ import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
+import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/http/dio_helper/utils/cache_manager.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
@@ -24,6 +25,10 @@ import '../routes/router_imports.gr.dart';
 class UserServicesHelper {
   Future<void> cashAndRoute(BuildContext context, UserModel? data, String msg,) async {
     context.read<DeviceCubit>().updateUserAuth( true);
+    
+    // Reset OrdersHelper for new login to ensure clean state
+    await getIt<OrdersHelper>().reset();
+    
     var userData = json.encode(data?.toJson());
     GlobalState.instance.set(ApplicationConstants.keyToken, data?.token);
     context.read<UserCubit>().onUpdateUserData(data);
@@ -35,14 +40,26 @@ class UserServicesHelper {
 
   Future<void> clearCashAndRoute(BuildContext context)async {
     context.read<DeviceCubit>().updateUserAuth(false);
+    
+    // Clean up OrdersHelper before clearing Hive to prevent timer-related crashes
+    await getIt<OrdersHelper>().cleanup();
+    
     GlobalState.instance.set(ApplicationConstants.keyToken,null);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove("user");
     await preferences.remove(ApplicationConstants.keyToken);
     await getIt<DeviceIdHelper>().clearDeviceToken();
     await CacheManager().clearCache();
+    
+    // Close and clear Hive boxes
     await HiveHelper.instance.closeAllBoxes();
     await HiveHelper.instance.clearHive();
+    
+    // Reinitialize Hive for the next login
+    await HiveHelper.instance.init();
+    await HiveHelper.instance.openBox<String>(HiveBoxesNames.orderDetails);
+    await HiveHelper.instance.openBox<String>(HiveBoxesNames.orders);
+    
     context.read<UserCubit>().onUpdateUserData(null);
     AutoRouter.of(context).push(const SplashRoute());
   }

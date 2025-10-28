@@ -85,22 +85,34 @@ class HiveHelper {
     log('Deleted box: $boxName');
   }
 
-  Box<T> getBox<T>(String boxName){
-     return Hive.box<T>(boxName);
+  Box<T>? getBox<T>(String boxName){
+     try {
+       if (!Hive.isBoxOpen(boxName)) {
+         log('⚠️ Box $boxName is not open');
+         return null;
+       }
+       return Hive.box<T>(boxName);
+     } catch (e) {
+       log('⚠️ Error accessing box $boxName: $e');
+       return null;
+     }
   }
 
   Future<void> addDataToBox<T>(String boxName, T value,{dynamic key = 1})async{
      var box = getBox<T>(boxName);
-      await box.put(key, value);
+     if (box == null) return;
+     await box.put(key, value);
   }
 
   T? getDataFromBox<T>(String boxName, {dynamic key = 1}){
     var box = getBox<T>(boxName);
+    if (box == null) return null;
     return box.get(key);
   }
 
   Future<void> deleteDataFromBox<T>(String boxName,{dynamic key = 1})async{
     var box = getBox<T>(boxName);
+    if (box == null) return;
     await box.delete(key);
   }
 
