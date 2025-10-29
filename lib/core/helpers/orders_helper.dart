@@ -158,12 +158,8 @@ class OrdersHelper {
      if(notInHomePage == true){
         AutoRouter.of(context).push(const HomePageRoute());
      }else{
-       var data = ordersListCubit.data;
-       if(data==null || (data.assignedOrders.isEmpty && data.newOrders.isEmpty)){
-         getAllOrders(setLoading: true);
-       }
+       getAllOrders(setLoading: true);
      }
-
    }
 
    Future<void> _startSound({Duration interval = const Duration(seconds: 2)}) async {
