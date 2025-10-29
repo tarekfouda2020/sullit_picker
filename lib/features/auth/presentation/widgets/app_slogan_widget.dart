@@ -12,11 +12,7 @@ class AppSloganWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(Res.appSloganPng,height: 97,width: 250,);
-    return Text(
-      Translate.s.weideliver,
-      style: AppTextStyle.s35_w700(color: context.colors.primary),
-    );
+    return Image.asset(Res.appIcon,height: 150,width: 300,);
   }
 }
 

@@ -24,6 +24,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    precacheImage(const AssetImage(Res.appIcon), context);
     precacheImage(const AssetImage(Res.newOrderSound), context);
   }
 
@@ -41,13 +42,6 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
               height: 141,
               width: 124,
             ),
-            Image.asset(
-              Res.sulitTitleImage,
-              height: 67,
-              width: 147,
-            ),
-            Gaps.vGap7,
-            SvgPicture.asset(Res.appPickerSvg,height: 26,width: 134,)
           ],
         ),
       ),

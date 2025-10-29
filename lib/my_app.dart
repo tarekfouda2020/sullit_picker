@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
               builder: (theme, darkTheme) {
                 return MaterialApp.router(
                   debugShowCheckedModeBanner: false,
-                  title: "Base TDD",
+                  title: "MCOOP Picker",
                   darkTheme: darkTheme,
                   theme: theme,
                   supportedLocales: S.delegate.supportedLocales,

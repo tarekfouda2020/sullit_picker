@@ -54,7 +54,7 @@ class ApiNames{
 
 
   /// notifications
-static  String notifications = "notifications";
+static  String notifications = "${appApi}notifications";
 
 
 

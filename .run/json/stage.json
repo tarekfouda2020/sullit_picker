@@ -3,8 +3,8 @@
   "APP_BASE_URL": "https://mushrifcoop.com/api/v3/",
   "APP_ENV_NAME": "stage",
   "APP_API": "picker/",
-  "APP_APP_NAME_EN": "Suliit Picker",
-  "APP_APP_NAME_AR": "Suliit Picker",
+  "APP_APP_NAME_EN": "MCOOP Picker",
+  "APP_APP_NAME_AR": "MCOOP Picker",
   "APP_LOCAL_LOGO": "assets/images/application_icon.png"
 
 }

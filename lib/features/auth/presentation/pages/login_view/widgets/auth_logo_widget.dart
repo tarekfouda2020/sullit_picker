@@ -11,7 +11,7 @@ class AuthPageLogoWidget extends StatelessWidget {
       child: Column(
         children: [
           const AppSloganWidget(),
-          Gaps.vGap(100),
+          Gaps.vGap(60),
           Text(
             Translate.s.label_Login,
             style: AppTextStyle.s22_w700(color: context.colors.black),
