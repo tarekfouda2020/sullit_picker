@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
@@ -86,11 +88,13 @@ class HomeController {
               ))
           )
           );
-      print("=====>>> value is ${value}<<<<====");
+      log("=====>>> value is $value<<<<====");
       if (value!= null && value as int == data.id) {
-        assignedOrdersCubit.data!.remove(data);
-        assignedOrdersCubit.successState(assignedOrdersCubit.data);
-        getIt<OrdersHelper>().saveAssignedOrders(assignedOrdersCubit.data!);
+        final updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
+        updatedList.remove(data);
+        assignedOrdersCubit.successState(updatedList);
+        getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+
         getAllOrders();
       }
       return;

@@ -33,7 +33,7 @@ class CardOrderWidget extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    Translate.s.order_no,
+                    "${Translate.s.order_no} : ",
                     style: AppTextStyle.s17_w300(color: context.colors.simiGray),
                   ),
                   Gaps.hGap2,

@@ -39,6 +39,7 @@ class OrdersHelper {
        key: HiveBoxesKeys.assignedOrdersKey,
        jsonString,
      );
+     assignedOrdersCubit.successState(data);
    }
 
    List<OrderModel> getAssignedOrders()  {
