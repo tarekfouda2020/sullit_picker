@@ -1,6 +1,6 @@
 {
   "APP_ID": "ua.suliitpicker.com",
-  "APP_BASE_URL": "https://mushrifcoop.com/",
+  "APP_BASE_URL": "https://mushrifcoop.com/api/v3/",
   "APP_ENV_NAME": "prod",
   "APP_API": "picker/",
   "APP_APP_NAME_EN": "MCOOP Picker",
