@@ -99,7 +99,7 @@ class _CardPickedRatioWidgetState extends State<CardPickedRatioWidget> {
                 ),
               ],
             ),
-           if((widget.pickedPercentage) > 0)
+           if((widget.pickedPercentage) > 0 && widget.pickedPercentage != 100 )
             PositionedDirectional(
               start: (_calculatedWidth ?? 0) * (widget.pickedPercentage / 100) - (
                widget.pickedPercentage==100

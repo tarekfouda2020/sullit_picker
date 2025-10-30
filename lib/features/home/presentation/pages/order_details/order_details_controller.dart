@@ -362,10 +362,10 @@ class OrderDetailsController {
     Navigator.pop(context);
     String? barcode = await getIt<BarcodeService>().scanBarcode();
     if (barcode != null && barcode.isNotEmpty) {
-      AppSnackBar.showSuccessSnackBar(
-        Translate.of(context).product_scanned,
-      );
       BuildContext ctx = getIt<GlobalContext>().context();
+      AppSnackBar.showSuccessSnackBar(
+        Translate.of(ctx).product_scanned,
+      );
       getProductWithBarcode(ctx, barcode, oldItem);
     }
   }
@@ -386,8 +386,8 @@ class OrderDetailsController {
       },
     );
     getIt<LoadingHelper>().dismissDialog();
-    Navigator.pop(context);
   }
+
 
   void updateReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     var newPrice = double.parse(newData.variant.mainPrice);

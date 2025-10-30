@@ -71,7 +71,13 @@ class PickItemWidget extends StatelessWidget {
                 ),
                 child: Positioned(
                   right: 0,
-                  child: StatusViewWidget(status: orderDetails.product!.productStatus?.getName() ?? ""),
+                  child: GestureDetector(
+                      onTap: () {
+                        if(orderDetails.product!.productStatus == ProductStatusEnum.replaced ){
+                          controller.onPressReplace(context, orderDetails);
+                        }
+                      },
+                      child: StatusViewWidget(status: orderDetails.product!.productStatus?.getName() ?? "")),
                 ),
               ),
             ],
