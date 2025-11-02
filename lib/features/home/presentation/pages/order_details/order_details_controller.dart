@@ -252,6 +252,20 @@ class OrderDetailsController {
     }
   }
 
+  void returnPickedItem(OrderDetailsModel orderProduct){
+    var pickedQty = orderProduct.product!.pickedQuantity!;
+    pickedQty = pickedQty - 1;
+    orderProduct.product!.pickedQuantity = pickedQty;
+    var percent = (pickedQty / orderProduct.quantity) * 100;
+    orderProduct.product!.productPickedPercent = percent;
+    if(pickedQty == 0){
+      orderPickedPercent(_detailsData,isReturn: true);
+    }
+    updateDetailsCubit();
+    getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+    updateSameOrderInList(_detailsData);
+  }
+
   void deleteProduct(BuildContext context, int itemId) {
     var removedItem = _detailsData.ordersDetails?.firstWhere(
       (element) => element.id == itemId,
@@ -271,14 +285,22 @@ class OrderDetailsController {
     }
   }
 
-  void getProductPickedPercent(OrderDetailsModel orderProduct, OrderModel details) {
+
+
+
+  void getProductPickedPercent(OrderDetailsModel orderProduct, OrderModel details, {bool returnItem = false}) {
     var pickedQty = orderProduct.product!.pickedQuantity!;
-    pickedQty = pickedQty + 1;
+    if(returnItem){
+      /// return button will be show only when pickedQty > 0
+      pickedQty = pickedQty - 1;
+    }else{
+      pickedQty = pickedQty + 1;
+    }
     orderProduct.product!.pickedQuantity = pickedQty;
     var percent = (pickedQty / orderProduct.quantity) * 100;
     orderProduct.product!.productPickedPercent = percent;
     if (pickedQty == orderProduct.quantity) {
-      orderPickedPercent(details);
+      orderPickedPercent(details,isReturn: returnItem);
     }
   }
 
@@ -299,12 +321,16 @@ class OrderDetailsController {
     }
   }
 
-  void orderPickedPercent(OrderModel details) {
+  void orderPickedPercent(OrderModel details,{bool isReturn = false}) {
     var totalPickedQty = details.ordersDetails!.fold<int>(0, (sum, item) => sum + (item.product!.pickedQuantity ?? 0));
     var totalQty = details.ordersDetails!.fold<int>(0, (sum, item) => sum + item.quantity);
     final percent = (totalPickedQty / totalQty) * 100;
     details.pickedPercent = percent;
-    details.totalItems = details.totalItems - 1;
+    if(isReturn){
+      details.totalItems = details.totalItems + 1;
+    }else{
+      details.totalItems = details.totalItems - 1;
+    }
     updateSameOrderInList(details);
   }
 

@@ -8,7 +8,8 @@ class NotificationModel with _$NotificationModel {
   const factory NotificationModel({
     required String id,
     required String text,
-    @JsonKey(name: "order_id") required int orderId,
+    required String title,
+    required NotificationData data,
     @JsonKey(name: "created_at") required String createdAt,
   }) = _NotificationModel;
 

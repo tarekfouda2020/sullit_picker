@@ -22,8 +22,8 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) {
 mixin _$NotificationModel {
   String get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
-  @JsonKey(name: "order_id")
-  int get orderId => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  NotificationData get data => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
   String get createdAt => throw _privateConstructorUsedError;
 
@@ -46,8 +46,11 @@ abstract class $NotificationModelCopyWith<$Res> {
   $Res call(
       {String id,
       String text,
-      @JsonKey(name: "order_id") int orderId,
+      String title,
+      NotificationData data,
       @JsonKey(name: "created_at") String createdAt});
+
+  $NotificationDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -67,7 +70,8 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
   $Res call({
     Object? id = null,
     Object? text = null,
-    Object? orderId = null,
+    Object? title = null,
+    Object? data = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -79,15 +83,29 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as NotificationData,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
+  }
+
+  /// Create a copy of NotificationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NotificationDataCopyWith<$Res> get data {
+    return $NotificationDataCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
   }
 }
 
@@ -102,8 +120,12 @@ abstract class _$$NotificationModelImplCopyWith<$Res>
   $Res call(
       {String id,
       String text,
-      @JsonKey(name: "order_id") int orderId,
+      String title,
+      NotificationData data,
       @JsonKey(name: "created_at") String createdAt});
+
+  @override
+  $NotificationDataCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -121,7 +143,8 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? text = null,
-    Object? orderId = null,
+    Object? title = null,
+    Object? data = null,
     Object? createdAt = null,
   }) {
     return _then(_$NotificationModelImpl(
@@ -133,10 +156,14 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
-      orderId: null == orderId
-          ? _value.orderId
-          : orderId // ignore: cast_nullable_to_non_nullable
-              as int,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as NotificationData,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -151,7 +178,8 @@ class _$NotificationModelImpl implements _NotificationModel {
   const _$NotificationModelImpl(
       {required this.id,
       required this.text,
-      @JsonKey(name: "order_id") required this.orderId,
+      required this.title,
+      required this.data,
       @JsonKey(name: "created_at") required this.createdAt});
 
   factory _$NotificationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -162,15 +190,16 @@ class _$NotificationModelImpl implements _NotificationModel {
   @override
   final String text;
   @override
-  @JsonKey(name: "order_id")
-  final int orderId;
+  final String title;
+  @override
+  final NotificationData data;
   @override
   @JsonKey(name: "created_at")
   final String createdAt;
 
   @override
   String toString() {
-    return 'NotificationModel(id: $id, text: $text, orderId: $orderId, createdAt: $createdAt)';
+    return 'NotificationModel(id: $id, text: $text, title: $title, data: $data, createdAt: $createdAt)';
   }
 
   @override
@@ -180,14 +209,16 @@ class _$NotificationModelImpl implements _NotificationModel {
             other is _$NotificationModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.data, data) || other.data == data) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, text, orderId, createdAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, text, title, data, createdAt);
 
   /// Create a copy of NotificationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -210,7 +241,8 @@ abstract class _NotificationModel implements NotificationModel {
   const factory _NotificationModel(
           {required final String id,
           required final String text,
-          @JsonKey(name: "order_id") required final int orderId,
+          required final String title,
+          required final NotificationData data,
           @JsonKey(name: "created_at") required final String createdAt}) =
       _$NotificationModelImpl;
 
@@ -222,8 +254,9 @@ abstract class _NotificationModel implements NotificationModel {
   @override
   String get text;
   @override
-  @JsonKey(name: "order_id")
-  int get orderId;
+  String get title;
+  @override
+  NotificationData get data;
   @override
   @JsonKey(name: "created_at")
   String get createdAt;

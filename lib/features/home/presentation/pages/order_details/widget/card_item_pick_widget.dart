@@ -75,8 +75,7 @@ class CardItemPickWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: AppTextButton.maxCustom(
-                  text:
-                      controller.isProductFullPicked(data) ? Translate.of(context).picked : Translate.of(context).pick,
+                  text: controller.isProductFullPicked(data) ? Translate.of(context).picked : Translate.of(context).pick,
                   bgColor: controller.isProductFullPicked(data) ? context.colors.softWhite : context.colors.primary,
                   txtColor: controller.isProductFullPicked(data) ? context.colors.appGreen : context.colors.white,
                   textSize: 16,
@@ -108,6 +107,17 @@ class CardItemPickWidget extends StatelessWidget {
                 ],
               )
             ],
+          ),
+          Gaps.vGap13,
+          if(data.product!.pickedQuantity !> 0)
+          AppTextButton.maxCustom(
+            text:  Translate.s.return_key ,
+            bgColor:  context.colors.primary,
+            txtColor:  context.colors.white,
+            textSize: 16,
+            maxHeight: 40,
+            onPressed: () => controller.returnPickedItem(data),
+            // onPressed: () => controller.pickItem(data),
           ),
           Gaps.vGap13,
           Text(

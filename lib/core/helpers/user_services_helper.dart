@@ -40,11 +40,11 @@ class UserServicesHelper {
 
   Future<void> clearCashAndRoute(BuildContext context)async {
     context.read<DeviceCubit>().updateUserAuth(false);
-    
+    GlobalState.instance.set(ApplicationConstants.keyToken,null);
+
+
     // Clean up OrdersHelper before clearing Hive to prevent timer-related crashes
     await getIt<OrdersHelper>().cleanup();
-    
-    GlobalState.instance.set(ApplicationConstants.keyToken,null);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove("user");
     await preferences.remove(ApplicationConstants.keyToken);
@@ -52,6 +52,7 @@ class UserServicesHelper {
     await CacheManager().clearCache();
     
     // Close and clear Hive boxes
+    HiveHelper.instance.deleteDataFromBox<String>(HiveBoxesNames.orders,key: HiveBoxesKeys.assignedOrdersKey,);
     await HiveHelper.instance.closeAllBoxes();
     await HiveHelper.instance.clearHive();
     

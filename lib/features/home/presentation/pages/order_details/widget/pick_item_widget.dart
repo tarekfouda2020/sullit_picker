@@ -19,7 +19,6 @@ class PickItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lang = context.watch<DeviceCubit>().state.model.locale.languageCode;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -52,23 +51,7 @@ class PickItemWidget extends StatelessWidget {
               ),
               Visibility(
                 visible: orderDetails.product!.productStatus != ProductStatusEnum.noEdit,
-                replacement: Positioned.directional(
-                  textDirection: lang == ApplicationConstants.langAR ? TextDirection.rtl : TextDirection.ltr,
-                  top: 18,
-                  end: 20,
-                  child: Visibility(
-                    visible: !controller.isProductFullPicked(orderDetails),
-                    child: GestureDetector(
-                      // onTap: () => controller.showReplaceDialog(context),
-                      onTap: () => controller.onPressReplace(context, orderDetails),
-                      child: SvgPicture.asset(
-                        Res.repeatIcon,
-                        height: 22,
-                        width: 22,
-                      ),
-                    ),
-                  ),
-                ),
+                replacement: _buildPositioned(context),
                 child: Positioned(
                   right: 0,
                   child: GestureDetector(
@@ -86,5 +69,26 @@ class PickItemWidget extends StatelessWidget {
         Gaps.vGap20,
       ],
     );
+  }
+
+  Positioned _buildPositioned( BuildContext context) {
+    final lang = context.select<DeviceCubit,String>((value) => value.state.model.locale.languageCode,);
+    return Positioned.directional(
+                textDirection: lang == ApplicationConstants.langAR ? TextDirection.rtl : TextDirection.ltr,
+                top: 18,
+                end: 20,
+                child: Visibility(
+                  visible: !controller.isProductFullPicked(orderDetails),
+                  child: GestureDetector(
+                    // onTap: () => controller.showReplaceDialog(context),
+                    onTap: () => controller.onPressReplace(context, orderDetails),
+                    child: SvgPicture.asset(
+                      Res.repeatIcon,
+                      height: 22,
+                      width: 22,
+                    ),
+                  ),
+                ),
+              );
   }
 }

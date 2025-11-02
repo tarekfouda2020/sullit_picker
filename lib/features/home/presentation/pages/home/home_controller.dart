@@ -37,6 +37,21 @@ class HomeController {
    await getIt<OrdersHelper>().getAllOrders(setLoading: setLoading,fromRemote: fromRemote);
   }
 
+  Future<void> refreshOrders({bool fromRemote = true, bool setLoading = true}) async {
+    await getIt<OrdersHelper>().getAllOrders(setLoading: setLoading,fromRemote: fromRemote);
+    OrdersList? remoteData = getIt<OrdersHelper>().ordersListCubit.data;
+    if(remoteData!=null){
+      List<OrderModel> remoteAssignedOrders = remoteData.assignedOrders;
+      List<OrderModel> localAssignedOrders = getIt<OrdersHelper>().getAssignedOrders();
+      Set<int> remoteAssignedIds = remoteAssignedOrders.map((e) => e.id).toSet();
+      localAssignedOrders.removeWhere((element) => !remoteAssignedIds.contains(element.id));
+      getIt<OrdersHelper>().saveAssignedOrders(localAssignedOrders);
+    }else{
+      getIt<OrdersHelper>().saveAssignedOrders([]);
+    }
+
+  }
+
   void onPop() {
     if (popOut) {
       SystemNavigator.pop();
@@ -88,14 +103,11 @@ class HomeController {
               ))
           )
           );
-      log("=====>>> value is $value<<<<====");
       if (value!= null && value as int == data.id) {
-        final updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
+        var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
         updatedList.remove(data);
-        assignedOrdersCubit.successState(updatedList);
-        getIt<OrdersHelper>().saveAssignedOrders(updatedList);
-
-        getAllOrders();
+        await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+       await getAllOrders();
       }
       return;
     }

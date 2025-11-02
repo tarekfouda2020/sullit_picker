@@ -181,7 +181,6 @@ class OrdersHelper {
    /// Clean up all resources before logout
    Future<void> cleanup() async {
     _isDisposed = true;
-    await _stopSound();
     assignedOrdersCubit.successState([]);
     ordersListCubit.successState(null);
   }

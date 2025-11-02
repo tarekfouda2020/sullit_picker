@@ -30,7 +30,7 @@ class HaveOrdersViewWidget extends StatelessWidget {
         Gaps.vGap10,
         Expanded(
           child: HomeRefreshIndicatorWidget(
-            onRefresh: () async => await controller.getAllOrders() ,
+            onRefresh: () async => await controller.refreshOrders() ,
             child: ListView(
               children: [
                 BaseBlocBuilder(
