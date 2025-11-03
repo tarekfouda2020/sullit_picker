@@ -22,6 +22,7 @@ SearchBarcodeModel _$SearchBarcodeModelFromJson(Map<String, dynamic> json) {
 mixin _$SearchBarcodeModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get barcode => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_image')
   String get thumbnailImage => throw _privateConstructorUsedError;
   @JsonKey(name: 'price_high_low_discount')
@@ -54,6 +55,7 @@ abstract class $SearchBarcodeModelCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
+      String barcode,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       @JsonKey(name: 'price_high_low_discount') String priceHighLowDiscount,
       @JsonKey(name: 'price_high_low') String priceHighLow,
@@ -82,6 +84,7 @@ class _$SearchBarcodeModelCopyWithImpl<$Res, $Val extends SearchBarcodeModel>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? barcode = null,
     Object? thumbnailImage = null,
     Object? priceHighLowDiscount = null,
     Object? priceHighLow = null,
@@ -98,6 +101,10 @@ class _$SearchBarcodeModelCopyWithImpl<$Res, $Val extends SearchBarcodeModel>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      barcode: null == barcode
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
@@ -152,6 +159,7 @@ abstract class _$$SearchBarcodeModelImplCopyWith<$Res>
   $Res call(
       {int id,
       String name,
+      String barcode,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       @JsonKey(name: 'price_high_low_discount') String priceHighLowDiscount,
       @JsonKey(name: 'price_high_low') String priceHighLow,
@@ -179,6 +187,7 @@ class __$$SearchBarcodeModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? barcode = null,
     Object? thumbnailImage = null,
     Object? priceHighLowDiscount = null,
     Object? priceHighLow = null,
@@ -195,6 +204,10 @@ class __$$SearchBarcodeModelImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      barcode: null == barcode
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
               as String,
       thumbnailImage: null == thumbnailImage
           ? _value.thumbnailImage
@@ -234,6 +247,7 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
   const _$SearchBarcodeModelImpl(
       {required this.id,
       required this.name,
+      required this.barcode,
       @JsonKey(name: 'thumbnail_image') required this.thumbnailImage,
       @JsonKey(name: 'price_high_low_discount')
       required this.priceHighLowDiscount,
@@ -250,6 +264,8 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
   final int id;
   @override
   final String name;
+  @override
+  final String barcode;
   @override
   @JsonKey(name: 'thumbnail_image')
   final String thumbnailImage;
@@ -272,7 +288,7 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
 
   @override
   String toString() {
-    return 'SearchBarcodeModel(id: $id, name: $name, thumbnailImage: $thumbnailImage, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, currencySymbol: $currencySymbol, variant: $variant)';
+    return 'SearchBarcodeModel(id: $id, name: $name, barcode: $barcode, thumbnailImage: $thumbnailImage, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, currencySymbol: $currencySymbol, variant: $variant)';
   }
 
   @override
@@ -282,6 +298,7 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
             other is _$SearchBarcodeModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.barcode, barcode) || other.barcode == barcode) &&
             (identical(other.thumbnailImage, thumbnailImage) ||
                 other.thumbnailImage == thumbnailImage) &&
             (identical(other.priceHighLowDiscount, priceHighLowDiscount) ||
@@ -303,6 +320,7 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
       runtimeType,
       id,
       name,
+      barcode,
       thumbnailImage,
       priceHighLowDiscount,
       priceHighLow,
@@ -332,6 +350,7 @@ abstract class _SearchBarcodeModel implements SearchBarcodeModel {
   const factory _SearchBarcodeModel(
       {required final int id,
       required final String name,
+      required final String barcode,
       @JsonKey(name: 'thumbnail_image') required final String thumbnailImage,
       @JsonKey(name: 'price_high_low_discount')
       required final String priceHighLowDiscount,
@@ -348,6 +367,8 @@ abstract class _SearchBarcodeModel implements SearchBarcodeModel {
   int get id;
   @override
   String get name;
+  @override
+  String get barcode;
   @override
   @JsonKey(name: 'thumbnail_image')
   String get thumbnailImage;

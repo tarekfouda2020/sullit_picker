@@ -438,7 +438,8 @@ class OrderDetailsController {
         thumbnailImage: newData.thumbnailImage,
         pickedQuantity: 0,
         productPickedPercent: 0,
-        productStatus: ProductStatusEnum.replaced
+        productStatus: ProductStatusEnum.replaced,
+        barcode: newData.barcode
       ),
     );
     _detailsData.ordersDetails![index] = updatedItem;

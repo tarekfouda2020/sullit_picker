@@ -1,4 +1,6 @@
+import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/confirm_reset_password/confirm_reset_password_imports.dart';
+import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/qnt_count_widget.dart';
@@ -70,6 +72,26 @@ class CardItemPickWidget extends StatelessWidget {
               const SizedBox(width: 90)
             ],
           ),
+          Gaps.vGap15,
+          Column(
+            children: [
+              Divider(color: context.colors.disableGray,thickness:1.3,),
+              Gaps.vGap5,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text('Barcode : ',style: AppTextStyle.s14_w400(color: context.colors.black),),
+                  Expanded(child: Text(data.product!.barcode,style: AppTextStyle.s14_w500(color: context.colors.primary))),
+                  Text(
+                    data.product!.productStatus == ProductStatusEnum.replaced
+                        ?data.price
+                        :data.getProductPrice,style: AppTextStyle.s18_w800(color: context.colors.primary)).withDirhamSymbol(symbolStyle: AppTextStyle.s20_w400(color: context.colors.primary)),
+                ],
+              ),
+              Gaps.vGap5,
+              Divider(color: context.colors.disableGray,thickness: 1.3,)
+            ],
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -108,7 +130,7 @@ class CardItemPickWidget extends StatelessWidget {
               )
             ],
           ),
-          Gaps.vGap13,
+          Gaps.vGap10,
           if(data.product!.pickedQuantity !> 0)
           AppTextButton.maxCustom(
             text:  Translate.s.return_key ,

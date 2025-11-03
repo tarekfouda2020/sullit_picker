@@ -60,6 +60,7 @@ class OrderModel with _$OrderModel {
 
 @unfreezed
 class OrderDetailsModel with _$OrderDetailsModel {
+  OrderDetailsModel._();
    factory OrderDetailsModel({
     required int id,
     required String variation,
@@ -76,6 +77,13 @@ class OrderDetailsModel with _$OrderDetailsModel {
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$OrderDetailsModelFromJson(json);
+
+  String get getProductPrice{
+    var itemPrice = double.parse(price);
+    var singleItemPrice = (itemPrice/quantity).toStringAsFixed(2);
+    return singleItemPrice;
+  }
+
 }
 
 
@@ -84,6 +92,7 @@ class ProductModel with _$ProductModel {
    factory ProductModel({
     required int id,
     required String name,
+    required String barcode,
     required CategoryModel category,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
 

@@ -11,6 +11,7 @@ _$SearchBarcodeModelImpl _$$SearchBarcodeModelImplFromJson(
     _$SearchBarcodeModelImpl(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
+      barcode: json['barcode'] as String,
       thumbnailImage: json['thumbnail_image'] as String,
       priceHighLowDiscount: json['price_high_low_discount'] as String,
       priceHighLow: json['price_high_low'] as String,
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$SearchBarcodeModelImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'barcode': instance.barcode,
       'thumbnail_image': instance.thumbnailImage,
       'price_high_low_discount': instance.priceHighLowDiscount,
       'price_high_low': instance.priceHighLow,

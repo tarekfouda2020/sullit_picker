@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/export.dart';
+import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';

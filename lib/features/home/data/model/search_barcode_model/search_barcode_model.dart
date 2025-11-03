@@ -8,6 +8,7 @@ class SearchBarcodeModel with _$SearchBarcodeModel {
   const factory SearchBarcodeModel({
     required int id,
     required String name,
+    required String barcode,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
     @JsonKey(name: 'price_high_low_discount') required String priceHighLowDiscount,
     @JsonKey(name: 'price_high_low') required String priceHighLow,

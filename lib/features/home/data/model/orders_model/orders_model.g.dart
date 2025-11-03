@@ -90,6 +90,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
     _$ProductModelImpl(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
+      barcode: json['barcode'] as String,
       category:
           CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
       thumbnailImage: json['thumbnail_image'] as String,
@@ -104,6 +105,7 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'barcode': instance.barcode,
       'category': instance.category,
       'thumbnail_image': instance.thumbnailImage,
       'picked_percent': instance.productPickedPercent,

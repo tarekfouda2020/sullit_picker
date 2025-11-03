@@ -865,7 +865,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$OrderDetailsModelImpl implements _OrderDetailsModel {
+class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   _$OrderDetailsModelImpl(
       {required this.id,
       required this.variation,
@@ -873,7 +873,8 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
       required this.price,
       this.product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) this.newVariantId,
-      @JsonKey(name: "new_price", defaultValue: 0.0) this.newPrice});
+      @JsonKey(name: "new_price", defaultValue: 0.0) this.newPrice})
+      : super._();
 
   factory _$OrderDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderDetailsModelImplFromJson(json);
@@ -921,7 +922,7 @@ class _$OrderDetailsModelImpl implements _OrderDetailsModel {
   }
 }
 
-abstract class _OrderDetailsModel implements OrderDetailsModel {
+abstract class _OrderDetailsModel extends OrderDetailsModel {
   factory _OrderDetailsModel(
           {required int id,
           required String variation,
@@ -931,6 +932,7 @@ abstract class _OrderDetailsModel implements OrderDetailsModel {
           @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
           @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice}) =
       _$OrderDetailsModelImpl;
+  _OrderDetailsModel._() : super._();
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
       _$OrderDetailsModelImpl.fromJson;
@@ -987,6 +989,8 @@ mixin _$ProductModel {
   set id(int value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
+  String get barcode => throw _privateConstructorUsedError;
+  set barcode(String value) => throw _privateConstructorUsedError;
   CategoryModel get category => throw _privateConstructorUsedError;
   set category(CategoryModel value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_image')
@@ -1030,6 +1034,7 @@ abstract class $ProductModelCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
+      String barcode,
       CategoryModel category,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1058,6 +1063,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? barcode = null,
     Object? category = null,
     Object? thumbnailImage = null,
     Object? productPickedPercent = freezed,
@@ -1072,6 +1078,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      barcode: null == barcode
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
               as String,
       category: null == category
           ? _value.category
@@ -1118,6 +1128,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   $Res call(
       {int id,
       String name,
+      String barcode,
       CategoryModel category,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1145,6 +1156,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? barcode = null,
     Object? category = null,
     Object? thumbnailImage = null,
     Object? productPickedPercent = freezed,
@@ -1159,6 +1171,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      barcode: null == barcode
+          ? _value.barcode
+          : barcode // ignore: cast_nullable_to_non_nullable
               as String,
       category: null == category
           ? _value.category
@@ -1190,6 +1206,7 @@ class _$ProductModelImpl implements _ProductModel {
   _$ProductModelImpl(
       {required this.id,
       required this.name,
+      required this.barcode,
       required this.category,
       @JsonKey(name: 'thumbnail_image') required this.thumbnailImage,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1205,6 +1222,8 @@ class _$ProductModelImpl implements _ProductModel {
   int id;
   @override
   String name;
+  @override
+  String barcode;
   @override
   CategoryModel category;
   @override
@@ -1224,7 +1243,7 @@ class _$ProductModelImpl implements _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, category: $category, thumbnailImage: $thumbnailImage, productPickedPercent: $productPickedPercent, pickedQuantity: $pickedQuantity, productStatus: $productStatus)';
+    return 'ProductModel(id: $id, name: $name, barcode: $barcode, category: $category, thumbnailImage: $thumbnailImage, productPickedPercent: $productPickedPercent, pickedQuantity: $pickedQuantity, productStatus: $productStatus)';
   }
 
   /// Create a copy of ProductModel
@@ -1247,6 +1266,7 @@ abstract class _ProductModel implements ProductModel {
   factory _ProductModel(
       {required int id,
       required String name,
+      required String barcode,
       required CategoryModel category,
       @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1264,6 +1284,9 @@ abstract class _ProductModel implements ProductModel {
   @override
   String get name;
   set name(String value);
+  @override
+  String get barcode;
+  set barcode(String value);
   @override
   CategoryModel get category;
   set category(CategoryModel value);
