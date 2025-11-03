@@ -417,7 +417,7 @@ class OrderDetailsController {
 
   void updateReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     var newPrice = double.parse(newData.variant.mainPrice);
-    var oldItemPrice = double.parse(oldItem.price);
+    var oldItemPrice = double.parse(oldItem.getProductPrice);
 
     if (newPrice > oldItemPrice) {
       AppSnackBar.showSimpleToast(
