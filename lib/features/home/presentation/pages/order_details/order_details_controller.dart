@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_tdd/core/helpers/barcode_service.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
@@ -467,6 +465,7 @@ class OrderDetailsController {
     OrderDetailsModel updatedItem = replacedItem.copyWith(
       /// same data that changed when replace first time will also be changed here
       price: originalItem.price,
+      newVariantId: null,
       variation: originalItem.variation,
       product: originalItem.product!.copyWith(
       name: originalItem.product!.name,
