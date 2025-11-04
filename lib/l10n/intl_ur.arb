@@ -348,6 +348,7 @@
   "price_should_be_less_than_or_equal_to": "قیمت کم یا برابر ہونی چاہیے",
   "new_weight_must_be_between": "نیا وزن اس کے درمیان ہونا چاہیے",
   "and": "اور",
+  "barcode": "بارکوڈ : ",
   "enter_new_price": "نئی قیمت درج کریں",
   "new_weight_must_not_less_than": "نیا وزن اس سے کم نہیں ہونا چاہیے"
 }

@@ -41,6 +41,11 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
                   (e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      replacedOrders: (json['replaced_orders'] as List<dynamic>?)
+              ?.map(
+                  (e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       pickedPercent: (json['picked_percent'] as num?)?.toDouble() ?? 0.0,
       preparationSeconds: (json['preparation_seconds'] as num?)?.toInt() ?? 0,
     );
@@ -56,6 +61,7 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'start_picking_at': instance.startPickingAt,
       'order_details': instance.ordersDetails,
       'deleted_orders': instance.deletedOrders,
+      'replaced_orders': instance.replacedOrders,
       'picked_percent': instance.pickedPercent,
       'preparation_seconds': instance.preparationSeconds,
     };

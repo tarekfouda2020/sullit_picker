@@ -95,8 +95,7 @@ class HomeController {
 
   Future<void> acceptOrder(BuildContext context, OrderModel data) async {
     if (data.isAssigned) {
-      final value =
-          await  AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,
+      final value = await  AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,
               targetTime: DateTime.now().add(Duration(
                 minutes: data.preparationMinutes,
                 seconds: data.preparationSeconds ?? 0,
@@ -107,7 +106,9 @@ class HomeController {
         var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
         updatedList.remove(data);
         await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+        log('orders ==== >>>> before get all orders =====');
        await getAllOrders();
+        log('orders ==== >>>> before get all orders =====');
       }
       return;
     }

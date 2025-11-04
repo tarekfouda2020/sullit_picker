@@ -73,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "back_again_to_exit":
             MessageLookupByLibrary.simpleMessage("Press Back again to exit"),
         "back_to_login": MessageLookupByLibrary.simpleMessage("Back to Login"),
+        "barcode": MessageLookupByLibrary.simpleMessage("Barcode : "),
         "benefits": MessageLookupByLibrary.simpleMessage("Benefits :"),
         "benefits_policy":
             MessageLookupByLibrary.simpleMessage("Benefits&Policy :"),

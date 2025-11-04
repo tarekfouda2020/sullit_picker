@@ -35,6 +35,7 @@ class OrderModel with _$OrderModel {
 
      /// used in local data
     @JsonKey(name: 'deleted_orders',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? deletedOrders,
+    @JsonKey(name: 'replaced_orders',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? replacedOrders,
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? pickedPercent,
      @JsonKey(name: 'preparation_seconds',defaultValue: 0) int? preparationSeconds,
   }) = _OrderModel;
@@ -89,6 +90,7 @@ class OrderDetailsModel with _$OrderDetailsModel {
 
 @unfreezed
 class ProductModel with _$ProductModel {
+  ProductModel._();
    factory ProductModel({
     required int id,
     required String name,
@@ -104,6 +106,10 @@ class ProductModel with _$ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);
+
+
+  bool get replaced => productStatus == ProductStatusEnum.replaced;
+
 }
 
 @freezed

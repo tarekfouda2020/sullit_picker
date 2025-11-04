@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خروج کے لیے دوبارہ دبائیں"),
         "back_to_login":
             MessageLookupByLibrary.simpleMessage("لاگ ان پر واپس جائیں"),
+        "barcode": MessageLookupByLibrary.simpleMessage("بارکوڈ : "),
         "benefits": MessageLookupByLibrary.simpleMessage("فوائد:"),
         "benefits_policy":
             MessageLookupByLibrary.simpleMessage("فوائد اور پالیسی:"),

@@ -80,8 +80,9 @@ class CardItemPickWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text('Barcode : ',style: AppTextStyle.s14_w400(color: context.colors.black),),
+                  Text(Translate.s.barcode,style: AppTextStyle.s14_w400(color: context.colors.black),),
                   Expanded(child: Text(data.product!.barcode,style: AppTextStyle.s14_w500(color: context.colors.primary))),
+                  Gaps.hGap10,
                   Text(
                     data.product!.productStatus == ProductStatusEnum.replaced
                         ?data.price
@@ -138,7 +139,7 @@ class CardItemPickWidget extends StatelessWidget {
             txtColor:  context.colors.white,
             textSize: 16,
             maxHeight: 40,
-            onPressed: () => controller.returnPickedItem(data),
+            onPressed: () => controller.returnPickedItem(context,data),
             // onPressed: () => controller.pickItem(data),
           ),
           Gaps.vGap13,

@@ -2,7 +2,7 @@ import 'widgets_imports.dart';
 
 class DialogActionWidget extends StatelessWidget {
   final String description;
-  final String buttonGreenTitle;
+  final String? buttonGreenTitle;
   final String? buttonRedTitle;
   final void Function() greenOnTap;
   final void Function()? redOnTap;
@@ -10,7 +10,7 @@ class DialogActionWidget extends StatelessWidget {
   const DialogActionWidget(
       {super.key,
       required this.description,
-      required this.buttonGreenTitle,
+       this.buttonGreenTitle,
        this.buttonRedTitle,
       required this.greenOnTap,
       this.redOnTap});
@@ -43,7 +43,7 @@ class DialogActionWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppTextButton.minCustom(
-                    text: buttonGreenTitle,
+                    text: buttonGreenTitle ?? Translate.s.confirm,
                     onPressed: greenOnTap,
                     bgColor: context.colors.appGreen,
                     maxHeight: 40,

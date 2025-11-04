@@ -350,6 +350,7 @@
   "price_should_be_less_than_or_equal_to": "يجب أن يكون السعر أقل من أو يساوي",
   "new_weight_must_be_between": "يجب أن يكون الوزن الجديد بين",
   "and": "و",
+  "barcode": "الباركود : ",
   "enter_new_price": "أدخل السعر الجديد",
   "new_weight_must_not_less_than": "يجب ألا يكون الوزن الجديد أقل من"
 }

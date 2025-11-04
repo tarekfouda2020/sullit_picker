@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اضغط مرة أخرى للخروج"),
         "back_to_login":
             MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
+        "barcode": MessageLookupByLibrary.simpleMessage("الباركود : "),
         "benefits": MessageLookupByLibrary.simpleMessage("الفوائد :"),
         "benefits_policy":
             MessageLookupByLibrary.simpleMessage("الفوائد والسياسة :"),

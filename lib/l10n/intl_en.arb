@@ -348,5 +348,6 @@
   "new_weight_must_be_between": "The new weight must be between",
   "and": "and",
   "enter_new_price": "Enter new price",
+  "barcode": "Barcode : ",
   "new_weight_must_not_less_than": "The new weight must not be less than"
 }

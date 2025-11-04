@@ -25,7 +25,7 @@ class LeftItemsWidget extends StatelessWidget {
                 style: AppTextStyle.s16_w300(color: context.colors.black),
               )),
           Text(
-            endTitle ?? '${Translate.s.picked} $pickedPercent%',
+            endTitle ?? '${Translate.s.picked} ${pickedPercent.toStringAsFixed(2)}%',
             style: AppTextStyle.s14_w400(color: context.colors.black),
           )
         ],

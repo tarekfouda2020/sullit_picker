@@ -263,6 +263,7 @@
   "price_should_be_less_than_or_equal_to": "মূল্য কম বা সমান হতে হবে",
   "new_weight_must_be_between": "নতুন ওজন হতে হবে এর মধ্যে",
   "and": "এবং",
+  "barcode": "বারকোড : ",
   "enter_new_price": "নতুন মূল্য লিখুন",
   "new_weight_must_not_less_than": "নতুন ওজন কম হতে পারবে না"
 } 

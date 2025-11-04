@@ -3530,6 +3530,16 @@ class S {
     );
   }
 
+  /// `Barcode : `
+  String get barcode {
+    return Intl.message(
+      'Barcode : ',
+      name: 'barcode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `The new weight must not be less than`
   String get new_weight_must_not_less_than {
     return Intl.message(
