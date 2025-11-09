@@ -354,5 +354,19 @@
     "contact_with_customer_using": "Contact with customer using",
     "whatsapp": "WhatsApp",
     "customer_phone": "Customer phone:",
-    "customer_name": "Customer name:"
+    "customer_name": "Customer name:",
+     "seconds_ago": "seconds ago",
+      "minutes_ago": "minutes ago",
+      "hours_ago": "hours ago",
+      "days_ago": "days ago",
+      "weeks_ago": "weeks ago",
+      "months_ago": "months ago",
+      "years_ago": "years ago",
+      "ago": "ago",
+       "month": "month",
+        "year": "year",
+        "week": "week",
+          "no_date_available": "No date available"
+
+
 }

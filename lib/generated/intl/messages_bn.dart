@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_item":
             MessageLookupByLibrary.simpleMessage("নতুন আইটেম যোগ করুন"),
         "address": MessageLookupByLibrary.simpleMessage("ঠিকানা"),
+        "ago": MessageLookupByLibrary.simpleMessage("আগে"),
         "agree": MessageLookupByLibrary.simpleMessage("সম্মত"),
         "and": MessageLookupByLibrary.simpleMessage("এবং"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("বাতিল"),
@@ -111,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "current_password":
             MessageLookupByLibrary.simpleMessage("বর্তমান পাসওয়ার্ড"),
         "customer_name": MessageLookupByLibrary.simpleMessage("গ্রাহকের নাম"),
+        "days_ago": MessageLookupByLibrary.simpleMessage("দিন আগে"),
         "delete": MessageLookupByLibrary.simpleMessage("মুছুন"),
         "delete_product": MessageLookupByLibrary.simpleMessage("পণ্য মুছুন"),
         "deleted_products":
@@ -196,7 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fresh_whole_chicken":
             MessageLookupByLibrary.simpleMessage("তাজা গোটা মুরগি"),
         "history": MessageLookupByLibrary.simpleMessage("ইতিহাস"),
-        "hours_ago": MessageLookupByLibrary.simpleMessage("ঘন্টা আগে"),
+        "hours_ago": MessageLookupByLibrary.simpleMessage("ঘণ্টা আগে"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("ইন্টারনেট সংযুক্ত"),
         "is_weight_equals":
@@ -245,6 +247,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "message_sent_successfully": MessageLookupByLibrary.simpleMessage(
             "বার্তা সফলভাবে পাঠানো হয়েছে"),
         "minutes": MessageLookupByLibrary.simpleMessage("মিনিট"),
+        "minutes_ago": MessageLookupByLibrary.simpleMessage("মিনিট আগে"),
+        "month": MessageLookupByLibrary.simpleMessage("মাস"),
+        "months_ago": MessageLookupByLibrary.simpleMessage("মাস আগে"),
         "must_picking_within":
             MessageLookupByLibrary.simpleMessage("এর মধ্যে পিক করতে হবে"),
         "my_statistics":
@@ -263,6 +268,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("নতুন ওজন কম হতে পারবে না"),
         "no": MessageLookupByLibrary.simpleMessage("না"),
         "noResults": MessageLookupByLibrary.simpleMessage("কোন ফলাফল নেই"),
+        "no_date_available":
+            MessageLookupByLibrary.simpleMessage("কোনও তারিখ পাওয়া যায়নি"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("কোন ইন্টারনেট সংযোগ নেই"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
@@ -376,6 +383,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("অনুসন্ধান"),
         "search_hint": MessageLookupByLibrary.simpleMessage("অনুসন্ধান..."),
         "seconds": MessageLookupByLibrary.simpleMessage("সেকেন্ড"),
+        "seconds_ago": MessageLookupByLibrary.simpleMessage("সেকেন্ড আগে"),
         "select_pay_method": MessageLookupByLibrary.simpleMessage(
             "পেমেন্ট পদ্ধতি নির্বাচন করুন"),
         "send": MessageLookupByLibrary.simpleMessage("পাঠান"),
@@ -430,6 +438,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "view_wallet_details":
             MessageLookupByLibrary.simpleMessage("ওয়ালেটের বিবরণ দেখুন"),
         "wallet": MessageLookupByLibrary.simpleMessage("ওয়ালেট"),
+        "week": MessageLookupByLibrary.simpleMessage("সপ্তাহ"),
+        "weeks_ago": MessageLookupByLibrary.simpleMessage("সপ্তাহ আগে"),
         "weight_minimum": MessageLookupByLibrary.simpleMessage(
             "নতুন ওজন 750 গ্রামের কম হতে হবে না"),
         "welcome_back":
@@ -441,6 +451,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "work_for": MessageLookupByLibrary.simpleMessage("কাজের জন্য"),
         "write_reason_here":
             MessageLookupByLibrary.simpleMessage("কারণ এখানে লিখুন"),
+        "year": MessageLookupByLibrary.simpleMessage("বছর"),
+        "years_ago": MessageLookupByLibrary.simpleMessage("বছর আগে"),
         "yes_remove": MessageLookupByLibrary.simpleMessage("হ্যাঁ সরান"),
         "yes_replace":
             MessageLookupByLibrary.simpleMessage("হ্যাঁ প্রতিস্থাপন করুন"),

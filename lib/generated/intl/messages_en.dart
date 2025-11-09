@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "access_denied": MessageLookupByLibrary.simpleMessage("Access denied"),
         "add_new_item": MessageLookupByLibrary.simpleMessage("Add new item"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "ago": MessageLookupByLibrary.simpleMessage("ago"),
         "agree": MessageLookupByLibrary.simpleMessage("Agree"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -141,6 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Customer not available"),
         "customer_phone":
             MessageLookupByLibrary.simpleMessage("Customer phone:"),
+        "days_ago": MessageLookupByLibrary.simpleMessage("days ago"),
         "decline_order": MessageLookupByLibrary.simpleMessage("Decline Order"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "delete_product":
@@ -302,6 +304,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "message_sent_successfully":
             MessageLookupByLibrary.simpleMessage("Message sent successfully"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
+        "minutes_ago": MessageLookupByLibrary.simpleMessage("minutes ago"),
+        "month": MessageLookupByLibrary.simpleMessage("month"),
+        "months_ago": MessageLookupByLibrary.simpleMessage("months ago"),
         "must_picking_within":
             MessageLookupByLibrary.simpleMessage("Must Picking within"),
         "my_statistics": MessageLookupByLibrary.simpleMessage("My Statistics"),
@@ -324,6 +329,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The new weight must not be less than"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noResults": MessageLookupByLibrary.simpleMessage("No Results"),
+        "no_date_available":
+            MessageLookupByLibrary.simpleMessage("No date available"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("No internet connection"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
@@ -489,6 +496,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
         "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),
+        "seconds_ago": MessageLookupByLibrary.simpleMessage("seconds ago"),
         "select_country":
             MessageLookupByLibrary.simpleMessage("Select the country"),
         "select_pay_method":
@@ -562,6 +570,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "view_wallet_details":
             MessageLookupByLibrary.simpleMessage("View Wallet Details"),
         "wallet": MessageLookupByLibrary.simpleMessage("Wallet"),
+        "week": MessageLookupByLibrary.simpleMessage("week"),
+        "weeks_ago": MessageLookupByLibrary.simpleMessage("weeks ago"),
         "weideliver": MessageLookupByLibrary.simpleMessage("Weideliver"),
         "weight_minimum": MessageLookupByLibrary.simpleMessage(
             "The new weight must not less than 750 gm"),
@@ -584,8 +594,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "write_reason_here":
             MessageLookupByLibrary.simpleMessage("Write Reason here"),
         "wrong_address": MessageLookupByLibrary.simpleMessage("Wrong address"),
+        "year": MessageLookupByLibrary.simpleMessage("year"),
         "yearly_subscription":
             MessageLookupByLibrary.simpleMessage("Yearly Subscription"),
+        "years_ago": MessageLookupByLibrary.simpleMessage("years ago"),
         "yes_remove": MessageLookupByLibrary.simpleMessage("Yes Remove"),
         "yes_replace": MessageLookupByLibrary.simpleMessage("Yes Replace"),
         "you_have_no_orders_now":

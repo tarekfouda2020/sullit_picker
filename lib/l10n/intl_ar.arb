@@ -358,6 +358,19 @@
     "whatsapp": "واتساب",
     "customer_phone": "رقم هاتف العميل:",
     "customer_name": "اسم العميل: ",
-     "return_key": "إرجاع"
+     "return_key": "إرجاع",
+       "seconds_ago": "منذ ثوانٍ",
+       "minutes_ago": "منذ دقائق",
+       "hours_ago": "منذ ساعات",
+       "days_ago": "منذ أيام",
+       "weeks_ago": "منذ أسابيع",
+       "months_ago": "منذ أشهر",
+       "years_ago": "منذ سنوات",
+         "ago": "منذ",
+          "month": "شهر",
+           "year": "سنة",
+           "week": "أسبوع",
+             "no_date_available": "لا توجد بيانات تاريخية"
+
 
 }

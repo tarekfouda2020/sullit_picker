@@ -3589,6 +3589,116 @@ class S {
       args: [],
     );
   }
+
+  /// `seconds ago`
+  String get seconds_ago {
+    return Intl.message(
+      'seconds ago',
+      name: 'seconds_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minutes ago`
+  String get minutes_ago {
+    return Intl.message(
+      'minutes ago',
+      name: 'minutes_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days ago`
+  String get days_ago {
+    return Intl.message(
+      'days ago',
+      name: 'days_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `weeks ago`
+  String get weeks_ago {
+    return Intl.message(
+      'weeks ago',
+      name: 'weeks_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `months ago`
+  String get months_ago {
+    return Intl.message(
+      'months ago',
+      name: 'months_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `years ago`
+  String get years_ago {
+    return Intl.message(
+      'years ago',
+      name: 'years_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ago`
+  String get ago {
+    return Intl.message(
+      'ago',
+      name: 'ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `month`
+  String get month {
+    return Intl.message(
+      'month',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `year`
+  String get year {
+    return Intl.message(
+      'year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `week`
+  String get week {
+    return Intl.message(
+      'week',
+      name: 'week',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No date available`
+  String get no_date_available {
+    return Intl.message(
+      'No date available',
+      name: 'no_date_available',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

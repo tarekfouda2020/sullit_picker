@@ -8,6 +8,7 @@ import 'package:flutter_tdd/core/bloc/value_state_manager/value_state_manager_im
 import 'package:flutter_tdd/core/constants/app_constants.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/global_context.dart';
+import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:intl/intl.dart';
 
 class DateTimeHelper {
@@ -43,7 +44,7 @@ class DateTimeHelper {
   }
 
   static ObsValue<String> getDifferenceFromCurrentDate(String? strDate, {String? format}) {
-    final ObsValue<String> timeAgoObs = ObsValue.withInit("No date available");
+    final ObsValue<String> timeAgoObs = ObsValue.withInit(Translate.s.no_date_available);
 
     if (strDate == null || strDate.trim().isEmpty) {
       return timeAgoObs;
@@ -69,22 +70,22 @@ class DateTimeHelper {
 
   static String _formatTimeAgo(Duration elapsed) {
     if (elapsed.inSeconds < 60) {
-      return "${elapsed.inSeconds} seconds ago";
+      return "${elapsed.inSeconds} ${Translate.s.seconds_ago}";
     } else if (elapsed.inMinutes < 60) {
-      return "${elapsed.inMinutes} minutes ago";
+      return "${elapsed.inMinutes} ${Translate.s.minutes_ago}";
     } else if (elapsed.inHours < 24) {
-      return "${elapsed.inHours} hours ago";
+      return "${elapsed.inHours} ${Translate.s.hours_ago}";
     } else if (elapsed.inDays < 7) {
-      return "${elapsed.inDays} days ago";
+      return "${elapsed.inDays} ${Translate.s.days_ago}";
     } else if (elapsed.inDays < 30) {
       final weeks = (elapsed.inDays / 7).floor();
-      return "$weeks week${weeks > 1 ? 's' : ''} ago";
+      return "$weeks ${Translate.s.weeks_ago}${weeks > 1 ? 's' : ''} ${Translate.s.ago}";
     } else if (elapsed.inDays < 365) {
       final months = (elapsed.inDays / 30).floor();
-      return "$months month${months > 1 ? 's' : ''} ago";
+      return "$months ${Translate.s.month}${months > 1 ? 's' : ''} ${Translate.s.ago}";
     } else {
       final years = (elapsed.inDays / 365).floor();
-      return "$years year${years > 1 ? 's' : ''} ago";
+      return "$years ${Translate.s.year}${years > 1 ? 's' : ''} ${Translate.s.ago}";
     }
   }
 
