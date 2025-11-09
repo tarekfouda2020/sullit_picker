@@ -336,6 +336,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "ابھی تک کوئی اطلاعات موصول نہیں ہوئیں!"),
         "no_orders_description": MessageLookupByLibrary.simpleMessage(
             "آپ اب ڈیلیوری آرڈرز وصول کرنے کے لیے دستیاب ہیں\nنئے آرڈر آنے پر آپ کو اطلاع دی جائے گی"),
+        "no_orders_found":
+            MessageLookupByLibrary.simpleMessage("کوئی آرڈر نہیں ملا"),
         "no_orders_title":
             MessageLookupByLibrary.simpleMessage("کوئی آرڈر دستیاب نہیں"),
         "no_plans_found":
@@ -441,6 +443,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "برائے کرم ای میل کی تصدیق کریں"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "برائے کرم فون نمبر کی تصدیق کریں"),
+        "previous_orders": MessageLookupByLibrary.simpleMessage("پچھلے آرڈرز"),
         "price": MessageLookupByLibrary.simpleMessage("قیمت"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage("قیمت کم یا برابر ہونی چاہیے"),

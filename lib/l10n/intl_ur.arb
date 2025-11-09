@@ -365,5 +365,7 @@
         "year": "سال",
         "week": "ہفتہ",
          "no_date_available": "کوئی تاریخ دستیاب نہیں",
-          "price": "قیمت"
+          "price": "قیمت",
+          "no_orders_found": "کوئی آرڈر نہیں ملا",
+           "previous_orders": "پچھلے آرڈرز"
 }

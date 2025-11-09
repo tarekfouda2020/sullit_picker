@@ -338,6 +338,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_of_items": MessageLookupByLibrary.simpleMessage("No. of Items "),
         "no_orders_description": MessageLookupByLibrary.simpleMessage(
             "You are now available to receive delivery orders\nYou will be notified when a new order arrives"),
+        "no_orders_found":
+            MessageLookupByLibrary.simpleMessage("No orders found"),
         "no_orders_title":
             MessageLookupByLibrary.simpleMessage("No Orders Available"),
         "no_plans_found":
@@ -441,6 +443,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Verify your Email"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "Please Verify your phone number"),
+        "previous_orders":
+            MessageLookupByLibrary.simpleMessage("Previous Orders"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage(

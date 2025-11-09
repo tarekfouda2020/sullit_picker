@@ -274,6 +274,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("কোন ইন্টারনেট সংযোগ নেই"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
             "এখনও কোন বিজ্ঞপ্তি পাওয়া যায়নি!"),
+        "no_orders_found":
+            MessageLookupByLibrary.simpleMessage("কোনও অর্ডার পাওয়া যায়নি"),
         "no_plans_found":
             MessageLookupByLibrary.simpleMessage("কোন পরিকল্পনা পাওয়া যায়নি"),
         "no_terms_yet":
@@ -344,6 +346,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "অনুগ্রহ করে আপনার ইমেল যাচাই করুন"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "অনুগ্রহ করে আপনার ফোন নম্বর যাচাই করুন"),
+        "previous_orders":
+            MessageLookupByLibrary.simpleMessage("পূর্ববর্তী অর্ডারসমূহ"),
         "price": MessageLookupByLibrary.simpleMessage("মূল্য"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage("মূল্য কম বা সমান হতে হবে"),

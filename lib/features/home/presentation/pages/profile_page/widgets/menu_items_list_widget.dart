@@ -1,7 +1,6 @@
 import 'package:flutter_tdd/core/constants/lang_code.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/profile_page_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/menu_item_widget.dart';
-
 import 'profile_page_widgets_imports.dart';
 
 class MenuItemsListWidget extends StatelessWidget {
@@ -17,6 +16,11 @@ class MenuItemsListWidget extends StatelessWidget {
     return Column(
       children: [
         Gaps.vGap20,
+        MenuItemWidget(
+          icon: Res.orderHistory,
+          title: Translate.s.previous_orders,
+          onTap: () => controller.navigateToPreviousOrders(context),
+        ),
         MenuItemWidget(
           icon: Res.lockIcon,
           title: Translate.of(context).change_password,

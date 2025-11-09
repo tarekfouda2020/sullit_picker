@@ -371,7 +371,9 @@
            "year": "سنة",
            "week": "أسبوع",
              "no_date_available": "لا توجد بيانات تاريخية",
-               "price": "السعر"
+               "price": "السعر",
+                "no_orders_found": "لم يتم العثور على طلبات",
+                  "previous_orders": "الطلبات السابقة"
 
 
 

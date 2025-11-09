@@ -367,7 +367,9 @@
         "year": "year",
         "week": "week",
           "no_date_available": "No date available",
-           "price": "Price"
+           "price": "Price",
+           "no_orders_found": "No orders found",
+            "previous_orders": "Previous Orders"
 
 
 }

@@ -333,6 +333,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_of_items": MessageLookupByLibrary.simpleMessage("عدد العناصر"),
         "no_orders_description": MessageLookupByLibrary.simpleMessage(
             "أنت الآن متاح لاستقبال طلبات التوصيل\nسيتم إشعارك عند وصول طلب جديد"),
+        "no_orders_found":
+            MessageLookupByLibrary.simpleMessage("لم يتم العثور على طلبات"),
         "no_orders_title":
             MessageLookupByLibrary.simpleMessage("لا توجد طلبات متاحة"),
         "no_plans_found":
@@ -432,6 +434,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى التحقق من البريد الإلكتروني"),
         "please_verify_phone_number":
             MessageLookupByLibrary.simpleMessage("يرجى التحقق من رقم الهاتف"),
+        "previous_orders":
+            MessageLookupByLibrary.simpleMessage("الطلبات السابقة"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage(

@@ -3709,6 +3709,26 @@ class S {
       args: [],
     );
   }
+
+  /// `No orders found`
+  String get no_orders_found {
+    return Intl.message(
+      'No orders found',
+      name: 'no_orders_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Previous Orders`
+  String get previous_orders {
+    return Intl.message(
+      'Previous Orders',
+      name: 'previous_orders',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
