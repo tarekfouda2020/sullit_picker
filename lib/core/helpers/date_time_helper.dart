@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,7 @@ class DateTimeHelper {
     return days[date.weekday - 1];
   }
 
-  static ObsValue<String> getDifferenceFromCurrentDate(String? strDate) {
+  static ObsValue<String> getDifferenceFromCurrentDate(String? strDate, {String? format}) {
     final ObsValue<String> timeAgoObs = ObsValue.withInit("No date available");
 
     if (strDate == null || strDate.trim().isEmpty) {
@@ -49,7 +50,7 @@ class DateTimeHelper {
     }
 
     try {
-      final formatter = DateFormat("yyyy-MM-dd HH:mm:ss");
+      final formatter = DateFormat( format ?? "yyyy-MM-dd HH:mm:ss","en");
       final startTime = formatter.parse(strDate, true).toLocal();
 
       timeAgoObs.setValue(_formatTimeAgo(DateTime.now().difference(startTime)));
@@ -59,7 +60,7 @@ class DateTimeHelper {
         timeAgoObs.setValue(_formatTimeAgo(elapsed));
       });
     } catch (e) {
-      print("⚠️ Date parse error: $e");
+      log("⚠️ Date parse error: $e");
       timeAgoObs.setValue("Invalid date");
     }
 

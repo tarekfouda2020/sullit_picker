@@ -371,7 +371,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "আপনার পাসওয়ার্ড পুনরায় সেট করুন"),
         "restore": MessageLookupByLibrary.simpleMessage("পুনরুদ্ধার"),
         "retry": MessageLookupByLibrary.simpleMessage("পুনরায় চেষ্টা করুন"),
-        "return_key": MessageLookupByLibrary.simpleMessage("ফেরত"),
+        "return_key": MessageLookupByLibrary.simpleMessage("ফিরে যান"),
         "save": MessageLookupByLibrary.simpleMessage("সংরক্ষণ করুন"),
         "search": MessageLookupByLibrary.simpleMessage("অনুসন্ধান"),
         "search_hint": MessageLookupByLibrary.simpleMessage("অনুসন্ধান..."),

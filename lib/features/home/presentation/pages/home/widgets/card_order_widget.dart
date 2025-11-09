@@ -6,6 +6,7 @@ import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.d
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/order_count_down_timer_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/widgets/customer_date_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget.dart';
 
 import 'home_widgets_imports.dart';
@@ -48,22 +49,7 @@ class CardOrderWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(" Customer name: ${data.customer.name}",
-              style: AppTextStyle.s15_w500(color: context.colors.black),
-              ),
-              GestureDetector(
-                onTap: () => BottomSheetsWidget.showContactWithSheet(context, data.customer.customerPhone),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text("Customer phone: ${data.customer.customerPhone}",
-                        style: AppTextStyle.s15_w500(color: context.colors.black),
-                      ),
-                    ),
-                    Icon(Icons.phone,color: context.colors.green,)
-                  ],
-                ),
-              ),
+              CustomerDateWidget(customer: data.customer),
             ],
           ),
           Gaps.vGap15,

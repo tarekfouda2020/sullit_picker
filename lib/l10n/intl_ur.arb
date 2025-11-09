@@ -351,5 +351,6 @@
   "barcode": "بارکوڈ : ",
   "enter_new_price": "نئی قیمت درج کریں",
   "new_weight_must_not_less_than": "نیا وزن اس سے کم نہیں ہونا چاہیے",
-   "confirm_return_original_product": "کیا آپ اصل پروڈکٹ واپس کرنے کی تصدیق کرتے ہیں؟"
+   "confirm_return_original_product": "کیا آپ اصل پروڈکٹ واپس کرنے کی تصدیق کرتے ہیں؟",
+    "return_key": "واپس"
 }
