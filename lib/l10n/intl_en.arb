@@ -349,5 +349,10 @@
   "and": "and",
   "enter_new_price": "Enter new price",
   "barcode": "Barcode : ",
-  "new_weight_must_not_less_than": "The new weight must not be less than"
+  "new_weight_must_not_less_than": "The new weight must not be less than",
+  "confirm_return_original_product": "Confirm return the original product?",
+    "contact_with_customer_using": "Contact with customer using",
+    "whatsapp": "WhatsApp",
+    "customer_phone": "Customer phone:",
+    "customer_name": "Customer name:"
 }

@@ -109,9 +109,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm_password_required": MessageLookupByLibrary.simpleMessage(
             "Confirm password is required"),
+        "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
+            "Confirm return the original product?"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
         "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
+        "contact_with_customer_using":
+            MessageLookupByLibrary.simpleMessage("Contact with customer using"),
         "continue_picking":
             MessageLookupByLibrary.simpleMessage("Continue Picking"),
         "continue_with_apple":
@@ -132,9 +136,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Customer Information"),
         "customer_issue":
             MessageLookupByLibrary.simpleMessage("Customer Issue"),
-        "customer_name": MessageLookupByLibrary.simpleMessage("Customer Name"),
+        "customer_name": MessageLookupByLibrary.simpleMessage("Customer name:"),
         "customer_not_available":
             MessageLookupByLibrary.simpleMessage("Customer not available"),
+        "customer_phone":
+            MessageLookupByLibrary.simpleMessage("Customer phone:"),
         "decline_order": MessageLookupByLibrary.simpleMessage("Decline Order"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "delete_product":
@@ -567,6 +573,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to Suliit!"),
         "what_is_new_weight":
             MessageLookupByLibrary.simpleMessage("What is the New Weight?"),
+        "whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),
         "work_as_a_freelance":
             MessageLookupByLibrary.simpleMessage("work as a freelance"),
         "work_at_many_stores":

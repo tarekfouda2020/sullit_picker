@@ -352,5 +352,10 @@
   "and": "و",
   "barcode": "الباركود : ",
   "enter_new_price": "أدخل السعر الجديد",
-  "new_weight_must_not_less_than": "يجب ألا يكون الوزن الجديد أقل من"
+  "new_weight_must_not_less_than": "يجب ألا يكون الوزن الجديد أقل من",
+  "confirm_return_original_product": "تأكيد إرجاع المنتج الأصلي؟",
+   "contact_with_customer_using": "التواصل مع العميل عبر",
+    "whatsapp": "واتساب",
+    "customer_phone": " : رقم هاتف العميل",
+    "customer_name": " : اسم العميل"
 }

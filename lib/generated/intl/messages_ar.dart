@@ -107,9 +107,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirm_password_required":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور مطلوب"),
+        "confirm_return_original_product":
+            MessageLookupByLibrary.simpleMessage("تأكيد إرجاع المنتج الأصلي؟"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("أكد كلمة المرور"),
         "contact_us": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
+        "contact_with_customer_using":
+            MessageLookupByLibrary.simpleMessage("التواصل مع العميل عبر"),
         "continue_picking":
             MessageLookupByLibrary.simpleMessage("متابعة الالتقاط"),
         "continue_with_apple":
@@ -128,9 +132,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية مطلوبة"),
         "customer_info": MessageLookupByLibrary.simpleMessage("معلومات العميل"),
         "customer_issue": MessageLookupByLibrary.simpleMessage("مشكلة العميل"),
-        "customer_name": MessageLookupByLibrary.simpleMessage("اسم العميل"),
+        "customer_name": MessageLookupByLibrary.simpleMessage(" : اسم العميل"),
         "customer_not_available":
             MessageLookupByLibrary.simpleMessage("العميل غير متاح"),
+        "customer_phone":
+            MessageLookupByLibrary.simpleMessage(" : رقم هاتف العميل"),
         "decline_order": MessageLookupByLibrary.simpleMessage("رفض الطلب"),
         "delete": MessageLookupByLibrary.simpleMessage("حذف"),
         "delete_product": MessageLookupByLibrary.simpleMessage("حذف المنتج"),
@@ -554,6 +560,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مرحباً بك في سليط!"),
         "what_is_new_weight":
             MessageLookupByLibrary.simpleMessage("ما هو الوزن الجديد؟"),
+        "whatsapp": MessageLookupByLibrary.simpleMessage("واتساب"),
         "work_as_a_freelance":
             MessageLookupByLibrary.simpleMessage("العمل كمستقل"),
         "work_at_many_stores":

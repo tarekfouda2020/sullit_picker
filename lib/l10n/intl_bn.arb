@@ -265,5 +265,6 @@
   "and": "এবং",
   "barcode": "বারকোড : ",
   "enter_new_price": "নতুন মূল্য লিখুন",
-  "new_weight_must_not_less_than": "নতুন ওজন কম হতে পারবে না"
+  "new_weight_must_not_less_than": "নতুন ওজন কম হতে পারবে না",
+   "confirm_return_original_product": "মূল পণ্য ফেরত দেওয়ার নিশ্চিতকরণ?"
 } 

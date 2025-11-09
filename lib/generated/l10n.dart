@@ -1700,10 +1700,10 @@ class S {
     );
   }
 
-  /// `Customer Name`
+  /// `Customer name:`
   String get customer_name {
     return Intl.message(
-      'Customer Name',
+      'Customer name:',
       name: 'customer_name',
       desc: '',
       args: [],
@@ -3545,6 +3545,46 @@ class S {
     return Intl.message(
       'The new weight must not be less than',
       name: 'new_weight_must_not_less_than',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm return the original product?`
+  String get confirm_return_original_product {
+    return Intl.message(
+      'Confirm return the original product?',
+      name: 'confirm_return_original_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact with customer using`
+  String get contact_with_customer_using {
+    return Intl.message(
+      'Contact with customer using',
+      name: 'contact_with_customer_using',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WhatsApp`
+  String get whatsapp {
+    return Intl.message(
+      'WhatsApp',
+      name: 'whatsapp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer phone:`
+  String get customer_phone {
+    return Intl.message(
+      'Customer phone:',
+      name: 'customer_phone',
       desc: '',
       args: [],
     );

@@ -39,7 +39,7 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Text(" Customer name: ${data.customer.name}",
+              Text("Customer name: ${data.customer.name}",
                 style: AppTextStyle.s15_w500(color: context.colors.black),
               ),
               GestureDetector(

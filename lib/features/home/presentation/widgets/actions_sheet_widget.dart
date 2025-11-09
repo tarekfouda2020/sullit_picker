@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/phone_helper.dart';
-import 'package:flutter_tdd/core/helpers/utilities.dart';
 
 import '../../../../core/helpers/export.dart';
 
@@ -23,9 +21,9 @@ class CallingCustomerSheetWidget extends StatelessWidget {
         ),
       ),
       child: CupertinoActionSheet(
-        title:   const Text(
-         "Contact with customer using",
-          style: AppTextStyle.s16_w600(color: CupertinoColors.systemGrey),
+        title:    Text(
+        Translate.s.contact_with_customer_using,
+          style: const AppTextStyle.s16_w600(color: CupertinoColors.systemGrey),
         ),
         actions: [
           CupertinoActionSheetAction(
@@ -38,7 +36,7 @@ class CallingCustomerSheetWidget extends StatelessWidget {
           CupertinoActionSheetAction(
             onPressed: () => getIt<Utilities>().launchWhatsApp(phoneNumber),
             child:  Text(
-              "Whats app",
+              Translate.s.whatsapp,
               style: AppTextStyle.s18_w500(color: context.colors.green),
             ),
           ),

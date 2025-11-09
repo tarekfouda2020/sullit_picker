@@ -11,6 +11,7 @@ import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dar
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
+import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeRepositories)
@@ -65,5 +66,10 @@ class ImplHomeRepositories extends HomeRepositories  {
   @override
   Future<MyResult<OrderModel>> prepareOrder(PrepareOrderParams params) async {
     return dataSource.prepareOrder(params);
+  }
+
+  @override
+  Future<MyResult<List<OrderModel>>> getPreviousOrders(GenericPaginateParams params) async {
+    return dataSource.getPreviousOrders(params);
   }
 }

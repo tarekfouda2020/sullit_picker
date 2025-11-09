@@ -15,6 +15,7 @@ import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
+import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeDataSource)
@@ -153,6 +154,21 @@ class ImplHomeDataSource extends HomeDataSource {
       showLoader: true
   );
   return await GenericHttpImpl<OrderModel>()(model);
+
+}
+
+@override
+  Future<MyResult<List<OrderModel>>> getPreviousOrders(GenericPaginateParams params) async {
+  HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.previousOrders+params.paramsToQuery(),
+      responseType: ResType.model,
+      requestMethod: RequestMethod.get,
+      toJsonFunc: (data) => List<OrderModel>.from(data.map((json)=>OrderModel.fromJson(json))),
+      responseKey: (data) => data['data']['orders'],
+      isFormData: true,
+      showLoader: true
+  );
+  return await GenericHttpImpl<List<OrderModel>>()(model);
 
 }
 }

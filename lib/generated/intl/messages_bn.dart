@@ -97,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "নতুন পাসওয়ার্ড নিশ্চিত করুন"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("পাসওয়ার্ড নিশ্চিত করুন"),
+        "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
+            "মূল পণ্য ফেরত দেওয়ার নিশ্চিতকরণ?"),
         "confirm_your_password": MessageLookupByLibrary.simpleMessage(
             "আপনার পাসওয়ার্ড নিশ্চিত করুন"),
         "contact_us": MessageLookupByLibrary.simpleMessage("যোগাযোগ করুন"),

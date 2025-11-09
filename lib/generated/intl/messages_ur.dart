@@ -111,6 +111,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("پاس ورڈ کی تصدیق"),
         "confirm_password_required":
             MessageLookupByLibrary.simpleMessage("پاس ورڈ کی تصدیق ضروری ہے"),
+        "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
+            "کیا آپ اصل پروڈکٹ واپس کرنے کی تصدیق کرتے ہیں؟"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("اپنے پاس ورڈ کی تصدیق کریں"),
         "contact_us": MessageLookupByLibrary.simpleMessage("ہم سے رابطہ کریں"),
