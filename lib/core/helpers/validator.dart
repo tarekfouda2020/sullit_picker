@@ -60,7 +60,7 @@ extension Validator on String {
 
   bool? validateIfItWeight() {
     if (trim().isNotEmpty) {
-      if (RegExp(r'^\s*\d+(\.\d+)?\s*(kg|g)\s*$', caseSensitive: false).hasMatch(this)) {
+      if (RegExp(r'^\s*(\d+(\.\d+)?\s*(kg|g)|kg|g)\s*$', caseSensitive: false).hasMatch(this)) {
         return true;
       }
     }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
+import 'package:flutter_tdd/core/widgets/bottom_sheets_widget.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
@@ -30,7 +31,7 @@ class CardOrderWidget extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 8,
+            spacing: 15,
             children: [
               Row(
                 children: [
@@ -47,9 +48,25 @@ class CardOrderWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              Text(" Customer name: ${data.customer.name}",
+              style: AppTextStyle.s15_w500(color: context.colors.black),
+              ),
+              GestureDetector(
+                onTap: () => BottomSheetsWidget.showContactWithSheet(context, data.customer.customerPhone),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text("Customer phone: ${data.customer.customerPhone}",
+                        style: AppTextStyle.s15_w500(color: context.colors.black),
+                      ),
+                    ),
+                    Icon(Icons.phone,color: context.colors.green,)
+                  ],
+                ),
+              ),
             ],
           ),
-          Gaps.vGap8,
+          Gaps.vGap15,
           ObsValueConsumer(
             observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
             builder: (context, assignedTime) {
@@ -94,4 +111,9 @@ class CardOrderWidget extends StatelessWidget {
       ),
     );
   }
+
+
+
+
+
 }
