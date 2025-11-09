@@ -441,6 +441,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Verify your Email"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "Please Verify your phone number"),
+        "price": MessageLookupByLibrary.simpleMessage("Price"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage(
                 "Price should be less than or equal to"),

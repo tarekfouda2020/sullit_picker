@@ -344,6 +344,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "অনুগ্রহ করে আপনার ইমেল যাচাই করুন"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "অনুগ্রহ করে আপনার ফোন নম্বর যাচাই করুন"),
+        "price": MessageLookupByLibrary.simpleMessage("মূল্য"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage("মূল্য কম বা সমান হতে হবে"),
         "privacy_policy":

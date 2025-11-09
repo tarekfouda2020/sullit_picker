@@ -366,7 +366,8 @@
        "month": "month",
         "year": "year",
         "week": "week",
-          "no_date_available": "No date available"
+          "no_date_available": "No date available",
+           "price": "Price"
 
 
 }

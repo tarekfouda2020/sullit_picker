@@ -441,6 +441,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "برائے کرم ای میل کی تصدیق کریں"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "برائے کرم فون نمبر کی تصدیق کریں"),
+        "price": MessageLookupByLibrary.simpleMessage("قیمت"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage("قیمت کم یا برابر ہونی چاہیے"),
         "privacy_policy":

@@ -432,6 +432,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى التحقق من البريد الإلكتروني"),
         "please_verify_phone_number":
             MessageLookupByLibrary.simpleMessage("يرجى التحقق من رقم الهاتف"),
+        "price": MessageLookupByLibrary.simpleMessage("السعر"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن يكون السعر أقل من أو يساوي"),

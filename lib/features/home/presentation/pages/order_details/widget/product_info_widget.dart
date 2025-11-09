@@ -51,7 +51,7 @@ class ProductInfoWidget extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Price : ",
+                    "${Translate.s.price} : ",
                     style: AppTextStyle.s14_w600(
                       color: context.colors.primary,
                     ),
