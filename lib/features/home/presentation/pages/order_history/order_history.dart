@@ -113,7 +113,7 @@ class _OrderHistoryState extends State<OrderHistory> {
               padding: Dimens.paddingScreenAll,
           decoration: BoxDecoration(
             borderRadius: Dimens.borderRadius12PX,
-            border: Border.all(color: context.colors.gray3)
+            border: Border.all( color: context.colors.borderColor)
           ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
