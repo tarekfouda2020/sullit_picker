@@ -3729,6 +3729,26 @@ class S {
       args: [],
     );
   }
+
+  /// `status`
+  String get status {
+    return Intl.message(
+      'status',
+      name: 'status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start pick at`
+  String get start_pick_at {
+    return Intl.message(
+      'Start pick at',
+      name: 'start_pick_at',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

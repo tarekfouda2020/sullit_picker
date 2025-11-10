@@ -522,9 +522,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "start_delivering":
             MessageLookupByLibrary.simpleMessage("Start Delivering"),
         "start_pick": MessageLookupByLibrary.simpleMessage("Start Pick"),
+        "start_pick_at": MessageLookupByLibrary.simpleMessage("Start pick at"),
         "start_receiving_orders": MessageLookupByLibrary.simpleMessage(
             "Start receiving orders and begin your delivery journey with us"),
         "statistics": MessageLookupByLibrary.simpleMessage("My Statistics"),
+        "status": MessageLookupByLibrary.simpleMessage("status"),
         "street_name": MessageLookupByLibrary.simpleMessage("Street Name"),
         "submit_report": MessageLookupByLibrary.simpleMessage("Submit Report"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("Sulite Store"),

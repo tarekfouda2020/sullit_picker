@@ -512,9 +512,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "start_delivering":
             MessageLookupByLibrary.simpleMessage("ابدأ التوصيل"),
         "start_pick": MessageLookupByLibrary.simpleMessage("ابدأ الالتقاط"),
+        "start_pick_at":
+            MessageLookupByLibrary.simpleMessage("بدأ الالتقاط في"),
         "start_receiving_orders": MessageLookupByLibrary.simpleMessage(
             "ابدأ في استقبال الطلبات وابدأ رحلة التوصيل معنا"),
         "statistics": MessageLookupByLibrary.simpleMessage("إحصائياتي"),
+        "status": MessageLookupByLibrary.simpleMessage("الحالة"),
         "street_name": MessageLookupByLibrary.simpleMessage("اسم الشارع"),
         "submit_report": MessageLookupByLibrary.simpleMessage("إرسال التقرير"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("متجر سليط"),

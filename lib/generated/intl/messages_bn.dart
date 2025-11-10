@@ -404,6 +404,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "start_delivering":
             MessageLookupByLibrary.simpleMessage("ডেলিভারি শুরু করুন"),
         "start_pick": MessageLookupByLibrary.simpleMessage("পিক শুরু করুন"),
+        "start_pick_at": MessageLookupByLibrary.simpleMessage("শুরু করার সময়"),
+        "status": MessageLookupByLibrary.simpleMessage("স্থিতি"),
         "street_name": MessageLookupByLibrary.simpleMessage("সড়কের নাম"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("সুলিত স্টোর"),
         "supported_geographical_area":

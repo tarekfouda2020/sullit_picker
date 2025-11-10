@@ -518,9 +518,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "start_delivering":
             MessageLookupByLibrary.simpleMessage("ڈیلیوری شروع کریں"),
         "start_pick": MessageLookupByLibrary.simpleMessage("پک شروع کریں"),
+        "start_pick_at":
+            MessageLookupByLibrary.simpleMessage("اٹھانا شروع کریں وقت"),
         "start_receiving_orders": MessageLookupByLibrary.simpleMessage(
             "آرڈرز وصول کرنا شروع کریں اور ہمارے ساتھ ڈیلیوری کا سفر شروع کریں"),
         "statistics": MessageLookupByLibrary.simpleMessage("میری شماریات"),
+        "status": MessageLookupByLibrary.simpleMessage("حالت"),
         "street_name": MessageLookupByLibrary.simpleMessage("گلی کا نام"),
         "submit_report": MessageLookupByLibrary.simpleMessage("رپورٹ جمع کریں"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("سلیٹ اسٹور"),

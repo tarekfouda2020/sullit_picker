@@ -1,4 +1,5 @@
 
+import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/core/helpers/export.dart';
 import 'package:flutter_tdd/core/helpers/phone_helper.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
@@ -59,6 +60,16 @@ class OrderModel with _$OrderModel {
 
   bool get isAssigned => getOrderStatus() == OrderStatusEnum.preparing;
   bool get isNewOrder => getOrderStatus() == OrderStatusEnum.newOrder;
+
+ String? getStartPickingDate(){
+  try{
+    DateTime date = DateTimeHelper.convertToDateTime(strDate: startPickingAt,formatType: "yyyy-MM-dd HH:mm:ss");
+    String startDate = DateTimeHelper.formatDate(date: date, formatType: "dd-MM-yyyy - h:mm a");
+    return startDate;
+  }catch(error){
+    return null;
+  }
+ }
 
 }
 

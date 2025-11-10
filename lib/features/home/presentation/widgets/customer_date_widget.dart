@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tdd/core/widgets/bottom_sheets_widget.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_history/widgets/order_history_items_widget.dart';
 
 import '../../../../core/helpers/export.dart';
 
@@ -15,24 +16,14 @@ class CustomerDateWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 15,
       children: [
-        Text("${Translate.s.customer_name} ${customer.name}",
-          style: AppTextStyle.s15_w500(color: context.colors.black),
-        ),
+        OrderHistoryItemsWidget(title: Translate.s.customer_name, endTitle: customer.name,vPadding: 15,),
         GestureDetector(
-          onTap: () => BottomSheetsWidget.showContactWithSheet(context, customer.customerPhone),
-          child: Row(
-            children: [
-              Text(Translate.s.customer_phone,
-                style: AppTextStyle.s15_w500(color: context.colors.black),
-              ),
-              Expanded(
-                child: Text(customer.customerPhone,
-                  style: AppTextStyle.s15_w500(color: context.colors.black),
-                ),
-              ),
-              Icon(CupertinoIcons.phone_arrow_up_right,color: context.colors.green,)
-            ],
-          ),
+            onTap: () => BottomSheetsWidget.showContactWithSheet(context, customer.customerPhone),
+            child: OrderHistoryItemsWidget(
+              title: Translate.s.customer_phone,
+              endTitle: customer.customerPhone,
+             onPressPhone: () => BottomSheetsWidget.showContactWithSheet(context, customer.customerPhone),
+            )
         ),
       ],
     );

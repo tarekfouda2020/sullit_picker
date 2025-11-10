@@ -144,8 +144,8 @@ class OrderDetailsController {
 
 
   void onPressPick(BuildContext context,OrderDetailsModel orderProduct){
-    String unit = orderProduct.product!.unit;
-    if(unit.validateIfItWeight() == true){
+    String variation = orderProduct.variation;
+    if(variation.validateIfItWeight() == true){
       showWeightDialog(context,orderProduct);
     }else{
       pickItem(orderProduct);
@@ -373,6 +373,7 @@ class OrderDetailsController {
     );
   }
 
+
   Future<void> updateLocalData(OrderModel data) async {
     String? box = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
     if (box == null || box.isEmpty) {
@@ -382,6 +383,8 @@ class OrderDetailsController {
       initDataFromLocal();
     }
   }
+
+
 
   Future<void> initDataFromLocal() async {
     OrderModel? data = await getIt<OrdersHelper>().getOrderDetails(orderId);

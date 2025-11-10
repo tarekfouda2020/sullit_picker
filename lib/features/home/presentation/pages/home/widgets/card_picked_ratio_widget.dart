@@ -99,22 +99,22 @@ class _CardPickedRatioWidgetState extends State<CardPickedRatioWidget> {
                 ),
               ],
             ),
-           if((widget.pickedPercentage) > 0 && widget.pickedPercentage != 100 )
-            PositionedDirectional(
-              start: (_calculatedWidth ?? 0) * (widget.pickedPercentage / 100) - (
-               widget.pickedPercentage==100
-                   ?13
-                   :0
-              ) ,
-              child: Container(
-                width: 13,
-                height: 13,
-                decoration:  BoxDecoration(
-                  color: context.colors.indicatorColor,
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ),
+           // if((widget.pickedPercentage) > 0 && widget.pickedPercentage != 100 )
+           //  PositionedDirectional(
+           //    start: (_calculatedWidth ?? 0) * (widget.pickedPercentage / 100) - (
+           //     widget.pickedPercentage==100
+           //         ?13
+           //         :0
+           //    ) ,
+           //    child: Container(
+           //      width: 13,
+           //      height: 13,
+           //      decoration:  BoxDecoration(
+           //        color: context.colors.indicatorColor,
+           //        shape: BoxShape.circle,
+           //      ),
+           //    ),
+           //  ),
           ],
         ),
       ],

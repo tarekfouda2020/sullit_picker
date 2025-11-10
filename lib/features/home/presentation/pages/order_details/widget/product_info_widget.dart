@@ -24,9 +24,9 @@ class ProductInfoWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${data.product!.name} ${data.variation} ${ data.product!.unit.validateIfItWeight() == true
+                "${data.product!.name} ${data.variation} ${data.variation.validateIfItWeight() == true
                     ?""
-                    :", ${data.product!.unit}" }",
+                    :",${data.product!.unit}"}",
                 maxLines: 2,
                 softWrap: true,
                 overflow: TextOverflow.visible,
@@ -34,7 +34,7 @@ class ProductInfoWidget extends StatelessWidget {
                   color: context.colors.simiGray,
                 ).copyWith(height: 1.15),
               ),
-              if(data.product!.unit.validateIfItWeight() == true)
+              if(data.variation.validateIfItWeight() == true)
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
@@ -47,21 +47,25 @@ class ProductInfoWidget extends StatelessWidget {
                     ).copyWith(height: 1.15),
                   ),
                 ),
-              Gaps.vGap4,
+              Gaps.vGap8,
               Row(
                 children: [
                   Text(
                     "${Translate.s.price} : ",
-                    style: AppTextStyle.s14_w600(
+                    style: AppTextStyle.s14_w500(
                       color: context.colors.primary,
                     ),
                   ),
                   Text(
-                    data.price,
-                    style: AppTextStyle.s16_w600(
+                    "${data.getProductPrice} ${data.variation.validateIfItWeight() == true
+                        ?"/${data.variation}"
+                        :""}",
+                    style: AppTextStyle.s14_w500(
                       color: context.colors.primary,
                     ),
-                  ).withDirhamSymbol()
+                  ).withDirhamSymbol(
+                    symbolStyle: AppTextStyle.s16_w300(color: context.colors.primary)
+                  )
                 ],
               )   ,
 

@@ -10,7 +10,7 @@ class CallingCustomerSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoTheme(
-      data: const CupertinoThemeData(
+      data:  const CupertinoThemeData(
         brightness: Brightness.light,
         // primaryColor: Colors.teal,
         textTheme: CupertinoTextThemeData(
@@ -19,6 +19,7 @@ class CallingCustomerSheetWidget extends StatelessWidget {
             color: Colors.black,
           ),
         ),
+        applyThemeToAll: true
       ),
       child: CupertinoActionSheet(
         title:    Text(

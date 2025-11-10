@@ -21,7 +21,6 @@ class WeightInfo {
         match.group(2)!.toLowerCase(),
       );
     }
-    print("inside class ${double.parse(match!.group(1)!)}==========");
     return null;
   }
 

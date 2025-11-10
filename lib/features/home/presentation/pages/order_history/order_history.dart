@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/core/widgets/shimmers/base_shimmer_widget.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_history/order_history_controller.dart';
@@ -31,7 +30,7 @@ class _OrderHistoryState extends State<OrderHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.background,
-      appBar: const DefaultAppBar(title: ""),
+      appBar:  DefaultAppBar(title: Translate.s.previous_orders),
       body: RefreshIndicator(
         onRefresh: () async => controller.getPreviousOrders(1),
         backgroundColor: context.colors.white,

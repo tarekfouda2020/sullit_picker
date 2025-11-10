@@ -37,9 +37,11 @@ class OrderHistoryItemWidget extends StatelessWidget {
               ),
             ],
           ),
+          OrderHistoryItemsWidget(title: Translate.s.status, endTitle: order.status,),
           OrderHistoryItemsWidget(title: Translate.s.customer_name, endTitle: order.customer.name,),
           OrderHistoryItemsWidget(title: Translate.s.customer_phone, endTitle: order.customer.customerPhone,),
-          OrderHistoryItemsWidget(title: "Status ", endTitle: order.status,),
+          if(order.getStartPickingDate()!=null)
+          OrderHistoryItemsWidget(title: Translate.s.start_pick_at, endTitle: order.getStartPickingDate()!),
         ],
       ),
     );
