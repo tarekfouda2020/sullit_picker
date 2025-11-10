@@ -144,8 +144,8 @@ class OrderDetailsController {
 
 
   void onPressPick(BuildContext context,OrderDetailsModel orderProduct){
-    String variant = orderProduct.variation;
-    if(variant.validateIfItWeight() == true){
+    String unit = orderProduct.product!.unit;
+    if(unit.validateIfItWeight() == true){
       showWeightDialog(context,orderProduct);
     }else{
       pickItem(orderProduct);
@@ -261,7 +261,11 @@ class OrderDetailsController {
       orderPickedPercent(_detailsData,isReturn: true);
       if(orderProduct.product!.replaced){
         showConFirmReturnDialog(context,orderProduct);
+        return ;
       }
+    }
+    if(isAllPickedObs.getValue()){
+      isAllPickedObs.setValue(false);
     }
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
@@ -393,7 +397,7 @@ class OrderDetailsController {
       AppSnackBar.showSuccessSnackBar(
         Translate.of(ctx).product_scanned,
       );
-      getProductWithBarcode(ctx, "5285001226474", oldItem);
+      getProductWithBarcode(ctx, barcode, oldItem);
     }
   }
 
@@ -419,7 +423,6 @@ class OrderDetailsController {
   void updateReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     double newPrice = double.parse(newData.variant.mainPrice);
     double oldItemPrice = double.parse(oldItem.getProductPrice);
-
     if (newPrice > oldItemPrice) {
       AppSnackBar.showSimpleToast(
           msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
@@ -448,12 +451,13 @@ class OrderDetailsController {
     _detailsData.replacedOrders!.add(oldItem);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+    updateSameOrderInList(_detailsData);
   }
 
 
   /// return original order after replace it
   void returnReplacedProduct(OrderDetailsModel replacedItem ){
-    /// after replace product >> save the original product in (replacedOrders list with the same id)
+    /// after replace product => save the original product in (replacedOrders list with the same id)
     /// prepareOrder need orderId even if replaced it send the original id with new variant id
 
     /// update the replaced product(the one with status replaced) with the original one from replaced list
@@ -488,9 +492,12 @@ class OrderDetailsController {
       context: context,
       builder: (context) {
       return DialogActionWidget(
-        description: 'confirm return the original product ?',
+        description: Translate.s.confirm_return_original_product,
         greenOnTap: () {
           Navigator.pop(context);
+          if(isAllPickedObs.getValue()){
+            isAllPickedObs.setValue(false);
+          }
           returnReplacedProduct(replacedItem);
         },
       );
@@ -514,10 +521,10 @@ class OrderDetailsController {
     return ReplacedProductParams(barcode: barcode);
   }
 
-  bool isProductFullPicked(OrderDetailsModel item) => item.quantity - item.product!.pickedQuantity! == 0;
+  bool isProductFullPicked(OrderDetailsModel item) => item.remainQnt == 0;
 
   bool get isAllProductsPicked {
-    return _detailsData.ordersDetails!.every((item) => item.quantity - item.product!.pickedQuantity! == 0);
+    return _detailsData.ordersDetails!.every((item) => item.remainQnt == 0);
   }
 
   Future<void> prepareOrder(BuildContext context) async {

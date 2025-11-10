@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
+import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 
 abstract class HomeRepositories {
   Future<MyResult<UserModel>> getProfile();
@@ -30,4 +31,6 @@ abstract class HomeRepositories {
   Future<MyResult<AvailableForOrderModel>> updateAvailability();
 
   Future<MyResult<OrderModel>> prepareOrder(PrepareOrderParams params);
+
+  Future<MyResult<List<OrderModel>>> getPreviousOrders(GenericPaginateParams params);
 }

@@ -248,6 +248,8 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) {
 mixin _$OrderModel {
   int get id => throw _privateConstructorUsedError;
   set id(int value) => throw _privateConstructorUsedError;
+  CustomerModel get customer => throw _privateConstructorUsedError;
+  set customer(CustomerModel value) => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
   set code(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_items')
@@ -317,6 +319,7 @@ abstract class $OrderModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
+      CustomerModel customer,
       String code,
       @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
@@ -331,6 +334,8 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
       int? preparationSeconds});
+
+  $CustomerModelCopyWith<$Res> get customer;
 }
 
 /// @nodoc
@@ -349,6 +354,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   @override
   $Res call({
     Object? id = null,
+    Object? customer = null,
     Object? code = null,
     Object? totalItems = null,
     Object? allowReplacement = null,
@@ -366,6 +372,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      customer: null == customer
+          ? _value.customer
+          : customer // ignore: cast_nullable_to_non_nullable
+              as CustomerModel,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -412,6 +422,16 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
               as int?,
     ) as $Val);
   }
+
+  /// Create a copy of OrderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CustomerModelCopyWith<$Res> get customer {
+    return $CustomerModelCopyWith<$Res>(_value.customer, (value) {
+      return _then(_value.copyWith(customer: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -424,6 +444,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
+      CustomerModel customer,
       String code,
       @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
@@ -438,6 +459,9 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
       int? preparationSeconds});
+
+  @override
+  $CustomerModelCopyWith<$Res> get customer;
 }
 
 /// @nodoc
@@ -454,6 +478,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? customer = null,
     Object? code = null,
     Object? totalItems = null,
     Object? allowReplacement = null,
@@ -471,6 +496,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      customer: null == customer
+          ? _value.customer
+          : customer // ignore: cast_nullable_to_non_nullable
+              as CustomerModel,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -524,6 +553,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
 class _$OrderModelImpl extends _OrderModel {
   _$OrderModelImpl(
       {required this.id,
+      required this.customer,
       required this.code,
       @JsonKey(name: 'total_items') required this.totalItems,
       @JsonKey(name: 'allow_replacement') required this.allowReplacement,
@@ -545,6 +575,8 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   int id;
+  @override
+  CustomerModel customer;
   @override
   String code;
   @override
@@ -581,7 +613,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, replacedOrders: $replacedOrders, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, replacedOrders: $replacedOrders, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   /// Create a copy of OrderModel
@@ -603,6 +635,7 @@ class _$OrderModelImpl extends _OrderModel {
 abstract class _OrderModel extends OrderModel {
   factory _OrderModel(
       {required int id,
+      required CustomerModel customer,
       required String code,
       @JsonKey(name: 'total_items') required int totalItems,
       @JsonKey(name: 'allow_replacement') required bool allowReplacement,
@@ -625,6 +658,9 @@ abstract class _OrderModel extends OrderModel {
   @override
   int get id;
   set id(int value);
+  @override
+  CustomerModel get customer;
+  set customer(CustomerModel value);
   @override
   String get code;
   set code(String value);
@@ -1023,6 +1059,8 @@ mixin _$ProductModel {
   set name(String value) => throw _privateConstructorUsedError;
   String get barcode => throw _privateConstructorUsedError;
   set barcode(String value) => throw _privateConstructorUsedError;
+  String get unit => throw _privateConstructorUsedError;
+  set unit(String value) => throw _privateConstructorUsedError;
   CategoryModel get category => throw _privateConstructorUsedError;
   set category(CategoryModel value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_image')
@@ -1067,6 +1105,7 @@ abstract class $ProductModelCopyWith<$Res> {
       {int id,
       String name,
       String barcode,
+      String unit,
       CategoryModel category,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1096,6 +1135,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? id = null,
     Object? name = null,
     Object? barcode = null,
+    Object? unit = null,
     Object? category = null,
     Object? thumbnailImage = null,
     Object? productPickedPercent = freezed,
@@ -1114,6 +1154,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       barcode: null == barcode
           ? _value.barcode
           : barcode // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
               as String,
       category: null == category
           ? _value.category
@@ -1161,6 +1205,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       {int id,
       String name,
       String barcode,
+      String unit,
       CategoryModel category,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1189,6 +1234,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? barcode = null,
+    Object? unit = null,
     Object? category = null,
     Object? thumbnailImage = null,
     Object? productPickedPercent = freezed,
@@ -1207,6 +1253,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       barcode: null == barcode
           ? _value.barcode
           : barcode // ignore: cast_nullable_to_non_nullable
+              as String,
+      unit: null == unit
+          ? _value.unit
+          : unit // ignore: cast_nullable_to_non_nullable
               as String,
       category: null == category
           ? _value.category
@@ -1239,6 +1289,7 @@ class _$ProductModelImpl extends _ProductModel {
       {required this.id,
       required this.name,
       required this.barcode,
+      required this.unit,
       required this.category,
       @JsonKey(name: 'thumbnail_image') required this.thumbnailImage,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1258,6 +1309,8 @@ class _$ProductModelImpl extends _ProductModel {
   @override
   String barcode;
   @override
+  String unit;
+  @override
   CategoryModel category;
   @override
   @JsonKey(name: 'thumbnail_image')
@@ -1276,7 +1329,7 @@ class _$ProductModelImpl extends _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, barcode: $barcode, category: $category, thumbnailImage: $thumbnailImage, productPickedPercent: $productPickedPercent, pickedQuantity: $pickedQuantity, productStatus: $productStatus)';
+    return 'ProductModel(id: $id, name: $name, barcode: $barcode, unit: $unit, category: $category, thumbnailImage: $thumbnailImage, productPickedPercent: $productPickedPercent, pickedQuantity: $pickedQuantity, productStatus: $productStatus)';
   }
 
   /// Create a copy of ProductModel
@@ -1300,6 +1353,7 @@ abstract class _ProductModel extends ProductModel {
       {required int id,
       required String name,
       required String barcode,
+      required String unit,
       required CategoryModel category,
       @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1321,6 +1375,9 @@ abstract class _ProductModel extends ProductModel {
   @override
   String get barcode;
   set barcode(String value);
+  @override
+  String get unit;
+  set unit(String value);
   @override
   CategoryModel get category;
   set category(CategoryModel value);
@@ -1521,5 +1578,192 @@ abstract class _CategoryModel implements CategoryModel {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CustomerModel _$CustomerModelFromJson(Map<String, dynamic> json) {
+  return _CustomerModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CustomerModel {
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+
+  /// Serializes this CustomerModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of CustomerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CustomerModelCopyWith<CustomerModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CustomerModelCopyWith<$Res> {
+  factory $CustomerModelCopyWith(
+          CustomerModel value, $Res Function(CustomerModel) then) =
+      _$CustomerModelCopyWithImpl<$Res, CustomerModel>;
+  @useResult
+  $Res call({String name, String email, String phone});
+}
+
+/// @nodoc
+class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
+    implements $CustomerModelCopyWith<$Res> {
+  _$CustomerModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of CustomerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? email = null,
+    Object? phone = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CustomerModelImplCopyWith<$Res>
+    implements $CustomerModelCopyWith<$Res> {
+  factory _$$CustomerModelImplCopyWith(
+          _$CustomerModelImpl value, $Res Function(_$CustomerModelImpl) then) =
+      __$$CustomerModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, String email, String phone});
+}
+
+/// @nodoc
+class __$$CustomerModelImplCopyWithImpl<$Res>
+    extends _$CustomerModelCopyWithImpl<$Res, _$CustomerModelImpl>
+    implements _$$CustomerModelImplCopyWith<$Res> {
+  __$$CustomerModelImplCopyWithImpl(
+      _$CustomerModelImpl _value, $Res Function(_$CustomerModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CustomerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? email = null,
+    Object? phone = null,
+  }) {
+    return _then(_$CustomerModelImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CustomerModelImpl extends _CustomerModel {
+  _$CustomerModelImpl(
+      {required this.name, required this.email, required this.phone})
+      : super._();
+
+  factory _$CustomerModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CustomerModelImplFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final String email;
+  @override
+  final String phone;
+
+  @override
+  String toString() {
+    return 'CustomerModel(name: $name, email: $email, phone: $phone)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CustomerModelImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, email, phone);
+
+  /// Create a copy of CustomerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CustomerModelImplCopyWith<_$CustomerModelImpl> get copyWith =>
+      __$$CustomerModelImplCopyWithImpl<_$CustomerModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CustomerModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CustomerModel extends CustomerModel {
+  factory _CustomerModel(
+      {required final String name,
+      required final String email,
+      required final String phone}) = _$CustomerModelImpl;
+  _CustomerModel._() : super._();
+
+  factory _CustomerModel.fromJson(Map<String, dynamic> json) =
+      _$CustomerModelImpl.fromJson;
+
+  @override
+  String get name;
+  @override
+  String get email;
+  @override
+  String get phone;
+
+  /// Create a copy of CustomerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CustomerModelImplCopyWith<_$CustomerModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

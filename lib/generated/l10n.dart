@@ -1700,10 +1700,10 @@ class S {
     );
   }
 
-  /// `Customer Name`
+  /// `Customer name:`
   String get customer_name {
     return Intl.message(
-      'Customer Name',
+      'Customer name:',
       name: 'customer_name',
       desc: '',
       args: [],
@@ -3545,6 +3545,186 @@ class S {
     return Intl.message(
       'The new weight must not be less than',
       name: 'new_weight_must_not_less_than',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm return the original product?`
+  String get confirm_return_original_product {
+    return Intl.message(
+      'Confirm return the original product?',
+      name: 'confirm_return_original_product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact with customer using`
+  String get contact_with_customer_using {
+    return Intl.message(
+      'Contact with customer using',
+      name: 'contact_with_customer_using',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WhatsApp`
+  String get whatsapp {
+    return Intl.message(
+      'WhatsApp',
+      name: 'whatsapp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer phone:`
+  String get customer_phone {
+    return Intl.message(
+      'Customer phone:',
+      name: 'customer_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `seconds ago`
+  String get seconds_ago {
+    return Intl.message(
+      'seconds ago',
+      name: 'seconds_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minutes ago`
+  String get minutes_ago {
+    return Intl.message(
+      'minutes ago',
+      name: 'minutes_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days ago`
+  String get days_ago {
+    return Intl.message(
+      'days ago',
+      name: 'days_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `weeks ago`
+  String get weeks_ago {
+    return Intl.message(
+      'weeks ago',
+      name: 'weeks_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `months ago`
+  String get months_ago {
+    return Intl.message(
+      'months ago',
+      name: 'months_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `years ago`
+  String get years_ago {
+    return Intl.message(
+      'years ago',
+      name: 'years_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ago`
+  String get ago {
+    return Intl.message(
+      'ago',
+      name: 'ago',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `month`
+  String get month {
+    return Intl.message(
+      'month',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `year`
+  String get year {
+    return Intl.message(
+      'year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `week`
+  String get week {
+    return Intl.message(
+      'week',
+      name: 'week',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No date available`
+  String get no_date_available {
+    return Intl.message(
+      'No date available',
+      name: 'no_date_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message(
+      'Price',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No orders found`
+  String get no_orders_found {
+    return Intl.message(
+      'No orders found',
+      name: 'no_orders_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Previous Orders`
+  String get previous_orders {
+    return Intl.message(
+      'Previous Orders',
+      name: 'previous_orders',
       desc: '',
       args: [],
     );

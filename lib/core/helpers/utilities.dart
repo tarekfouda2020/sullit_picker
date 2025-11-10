@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/constants/app_constants.dart';
@@ -33,6 +35,24 @@ class Utilities {
   void launchURL({required String url}) async {
     var uri = Uri.parse(url);
     await launchUrl(uri);
+  }
+
+
+  void launchWhatsApp(phone,{String? msg}) async {
+    String message = 'مرحبا';
+    String whatsUrl = "";
+    if (Platform.isAndroid) {
+      whatsUrl = "https://wa.me/$phone/?text=${msg ?? message}";
+    } else {
+      whatsUrl = "https://api.whatsapp.com/send?phone=$phone&text=${msg ?? message}";
+    }
+    var uri = Uri.parse(whatsUrl);
+    await launchUrl(uri);
+
+    // final Uri url =
+    // Uri(scheme: 'https', host: 'wa.me', path: phone);
+    //
+    // launchUrl(url);
   }
 
 

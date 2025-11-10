@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_item":
             MessageLookupByLibrary.simpleMessage("نیا آئٹم شامل کریں"),
         "address": MessageLookupByLibrary.simpleMessage("پتہ"),
+        "ago": MessageLookupByLibrary.simpleMessage("پہلے"),
         "agree": MessageLookupByLibrary.simpleMessage("منظور"),
         "and": MessageLookupByLibrary.simpleMessage("اور"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("منسوخ"),
@@ -111,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("پاس ورڈ کی تصدیق"),
         "confirm_password_required":
             MessageLookupByLibrary.simpleMessage("پاس ورڈ کی تصدیق ضروری ہے"),
+        "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
+            "کیا آپ اصل پروڈکٹ واپس کرنے کی تصدیق کرتے ہیں؟"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("اپنے پاس ورڈ کی تصدیق کریں"),
         "contact_us": MessageLookupByLibrary.simpleMessage("ہم سے رابطہ کریں"),
@@ -137,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customer_name": MessageLookupByLibrary.simpleMessage("کسٹمر کا نام"),
         "customer_not_available":
             MessageLookupByLibrary.simpleMessage("کسٹمر دستیاب نہیں"),
+        "days_ago": MessageLookupByLibrary.simpleMessage("دن پہلے"),
         "decline_order":
             MessageLookupByLibrary.simpleMessage("آرڈر مسترد کریں"),
         "delete": MessageLookupByLibrary.simpleMessage("حذف کریں"),
@@ -300,6 +304,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "message_sent_successfully":
             MessageLookupByLibrary.simpleMessage("پیغام کامیابی سے بھیجا گیا"),
         "minutes": MessageLookupByLibrary.simpleMessage("منٹ"),
+        "minutes_ago": MessageLookupByLibrary.simpleMessage("منٹ پہلے"),
+        "month": MessageLookupByLibrary.simpleMessage("مہینہ"),
+        "months_ago": MessageLookupByLibrary.simpleMessage("مہینے پہلے"),
         "must_picking_within":
             MessageLookupByLibrary.simpleMessage("کے اندر پکنگ ضروری ہے"),
         "my_statistics": MessageLookupByLibrary.simpleMessage("میری شماریات"),
@@ -321,12 +328,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "نیا وزن اس سے کم نہیں ہونا چاہیے"),
         "no": MessageLookupByLibrary.simpleMessage("نہیں"),
         "noResults": MessageLookupByLibrary.simpleMessage("کوئی نتائج نہیں"),
+        "no_date_available":
+            MessageLookupByLibrary.simpleMessage("کوئی تاریخ دستیاب نہیں"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("انٹرنیٹ کنکشن نہیں ہے"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
             "ابھی تک کوئی اطلاعات موصول نہیں ہوئیں!"),
         "no_orders_description": MessageLookupByLibrary.simpleMessage(
             "آپ اب ڈیلیوری آرڈرز وصول کرنے کے لیے دستیاب ہیں\nنئے آرڈر آنے پر آپ کو اطلاع دی جائے گی"),
+        "no_orders_found":
+            MessageLookupByLibrary.simpleMessage("کوئی آرڈر نہیں ملا"),
         "no_orders_title":
             MessageLookupByLibrary.simpleMessage("کوئی آرڈر دستیاب نہیں"),
         "no_plans_found":
@@ -432,6 +443,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "برائے کرم ای میل کی تصدیق کریں"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "برائے کرم فون نمبر کی تصدیق کریں"),
+        "previous_orders": MessageLookupByLibrary.simpleMessage("پچھلے آرڈرز"),
+        "price": MessageLookupByLibrary.simpleMessage("قیمت"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage("قیمت کم یا برابر ہونی چاہیے"),
         "privacy_policy":
@@ -484,6 +497,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("تلاش"),
         "search_hint": MessageLookupByLibrary.simpleMessage("تلاش کریں..."),
         "seconds": MessageLookupByLibrary.simpleMessage("سکنڈ"),
+        "seconds_ago": MessageLookupByLibrary.simpleMessage("سیکنڈ پہلے"),
         "select_country":
             MessageLookupByLibrary.simpleMessage("ملک منتخب کریں"),
         "select_pay_method":
@@ -554,6 +568,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "view_wallet_details":
             MessageLookupByLibrary.simpleMessage("والیٹ کی تفصیلات دیکھیں"),
         "wallet": MessageLookupByLibrary.simpleMessage("والیٹ"),
+        "week": MessageLookupByLibrary.simpleMessage("ہفتہ"),
+        "weeks_ago": MessageLookupByLibrary.simpleMessage("ہفتے پہلے"),
         "weideliver":
             MessageLookupByLibrary.simpleMessage("ہم ڈیلیور کرتے ہیں"),
         "weight_minimum": MessageLookupByLibrary.simpleMessage(
@@ -577,8 +593,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "write_reason_here":
             MessageLookupByLibrary.simpleMessage("یہاں وجہ لکھیں"),
         "wrong_address": MessageLookupByLibrary.simpleMessage("غلط پتہ"),
+        "year": MessageLookupByLibrary.simpleMessage("سال"),
         "yearly_subscription":
             MessageLookupByLibrary.simpleMessage("سالانہ سبسکرپشن"),
+        "years_ago": MessageLookupByLibrary.simpleMessage("سال پہلے"),
         "yes_remove": MessageLookupByLibrary.simpleMessage("ہاں ہٹائیں"),
         "yes_replace": MessageLookupByLibrary.simpleMessage("ہاں بدلیں"),
         "you_have_no_orders_now":

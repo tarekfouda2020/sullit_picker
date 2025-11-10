@@ -1,4 +1,6 @@
 
+import 'package:flutter_tdd/core/helpers/export.dart';
+import 'package:flutter_tdd/core/helpers/phone_helper.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -25,6 +27,7 @@ class OrderModel with _$OrderModel {
  const OrderModel._();
    factory OrderModel({
     required int id,
+     required CustomerModel customer,
     required String code,
     @JsonKey(name: 'total_items') required int totalItems,
     @JsonKey(name: 'allow_replacement') required bool allowReplacement,
@@ -85,6 +88,17 @@ class OrderDetailsModel with _$OrderDetailsModel {
     return singleItemPrice;
   }
 
+  double get remainQntPrice{
+    var itemPrice = double.parse(price);
+    var singleItemPrice = (itemPrice/quantity);
+    return singleItemPrice * remainQnt;
+  }
+
+
+  int  get remainQnt{
+    return quantity - product!.pickedQuantity!;
+}
+
 }
 
 
@@ -95,6 +109,7 @@ class ProductModel with _$ProductModel {
     required int id,
     required String name,
     required String barcode,
+    required String unit,
     required CategoryModel category,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
 
@@ -121,4 +136,24 @@ class CategoryModel with _$CategoryModel {
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$CategoryModelFromJson(json);
+}
+
+
+@freezed
+class CustomerModel with _$CustomerModel {
+  CustomerModel._();
+   factory CustomerModel({
+    required String name,
+    required String email,
+    required String phone,
+  }) = _CustomerModel;
+
+  factory CustomerModel.fromJson(Map<String, dynamic> json) =>
+      _$CustomerModelFromJson(json);
+
+
+  String get customerPhone{
+    BuildContext context  = getIt<GlobalContext>().context();
+    return PhoneHelper.handleFullPhone(context, phone);
+  }
 }

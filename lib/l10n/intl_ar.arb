@@ -352,5 +352,29 @@
   "and": "و",
   "barcode": "الباركود : ",
   "enter_new_price": "أدخل السعر الجديد",
-  "new_weight_must_not_less_than": "يجب ألا يكون الوزن الجديد أقل من"
+  "new_weight_must_not_less_than": "يجب ألا يكون الوزن الجديد أقل من",
+  "confirm_return_original_product": "تأكيد إرجاع المنتج الأصلي؟",
+   "contact_with_customer_using": "التواصل مع العميل عبر",
+    "whatsapp": "واتساب",
+    "customer_phone": "رقم هاتف العميل:",
+    "customer_name": "اسم العميل: ",
+     "return_key": "إرجاع",
+       "seconds_ago": "منذ ثوانٍ",
+       "minutes_ago": "منذ دقائق",
+       "hours_ago": "منذ ساعات",
+       "days_ago": "منذ أيام",
+       "weeks_ago": "منذ أسابيع",
+       "months_ago": "منذ أشهر",
+       "years_ago": "منذ سنوات",
+         "ago": "منذ",
+          "month": "شهر",
+           "year": "سنة",
+           "week": "أسبوع",
+             "no_date_available": "لا توجد بيانات تاريخية",
+               "price": "السعر",
+                "no_orders_found": "لم يتم العثور على طلبات",
+                  "previous_orders": "الطلبات السابقة"
+
+
+
 }

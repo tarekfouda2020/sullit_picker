@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/export.dart';
 import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
@@ -33,10 +34,7 @@ class PickItemWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () => controller.showDeleteItemDialog(context, orderDetails),
-              child: Text(
-                Translate.of(context).delete_product,
-                style: AppTextStyle.s15_w500(color: context.colors.primary),
-              ),
+              child: const Icon(CupertinoIcons.trash,color: CupertinoColors.systemRed,size: 20,),
             )
           ],
         ),

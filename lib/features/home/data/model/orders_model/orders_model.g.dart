@@ -27,6 +27,8 @@ Map<String, dynamic> _$$OrdersListImplToJson(_$OrdersListImpl instance) =>
 _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
     _$OrderModelImpl(
       id: (json['id'] as num).toInt(),
+      customer:
+          CustomerModel.fromJson(json['customer'] as Map<String, dynamic>),
       code: json['code'] as String,
       totalItems: (json['total_items'] as num).toInt(),
       allowReplacement: json['allow_replacement'] as bool,
@@ -53,6 +55,7 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'customer': instance.customer,
       'code': instance.code,
       'total_items': instance.totalItems,
       'allow_replacement': instance.allowReplacement,
@@ -97,6 +100,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       barcode: json['barcode'] as String,
+      unit: json['unit'] as String,
       category:
           CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
       thumbnailImage: json['thumbnail_image'] as String,
@@ -112,6 +116,7 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'barcode': instance.barcode,
+      'unit': instance.unit,
       'category': instance.category,
       'thumbnail_image': instance.thumbnailImage,
       'picked_percent': instance.productPickedPercent,
@@ -136,4 +141,18 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+    };
+
+_$CustomerModelImpl _$$CustomerModelImplFromJson(Map<String, dynamic> json) =>
+    _$CustomerModelImpl(
+      name: json['name'] as String,
+      email: json['email'] as String,
+      phone: json['phone'] as String,
+    );
+
+Map<String, dynamic> _$$CustomerModelImplToJson(_$CustomerModelImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'email': instance.email,
+      'phone': instance.phone,
     };

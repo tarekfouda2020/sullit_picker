@@ -1,10 +1,12 @@
+import 'package:flutter_tdd/core/helpers/export.dart';
+
 class GenericPaginateParams {
-   int pageSize;
+    int pageSize;
   int currentPage;
   bool refresh = true;
 
   GenericPaginateParams({
-    required this.pageSize,
+     this.pageSize = ApplicationConstants.paginationLimit,
     required this.refresh,
     required this.currentPage,
   });

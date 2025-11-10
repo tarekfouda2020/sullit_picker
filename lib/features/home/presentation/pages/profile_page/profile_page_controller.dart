@@ -39,6 +39,10 @@ class ProfilePageController {
     AutoRouter.of(context).push(const ChangePasswordPageRoute());
   }
 
+  void navigateToPreviousOrders(BuildContext context) {
+    AutoRouter.of(context).push(const OrderHistoryPageRoute());
+  }
+
 
 
   void navigateToContactUs(BuildContext context) {

@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_item":
             MessageLookupByLibrary.simpleMessage("নতুন আইটেম যোগ করুন"),
         "address": MessageLookupByLibrary.simpleMessage("ঠিকানা"),
+        "ago": MessageLookupByLibrary.simpleMessage("আগে"),
         "agree": MessageLookupByLibrary.simpleMessage("সম্মত"),
         "and": MessageLookupByLibrary.simpleMessage("এবং"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("বাতিল"),
@@ -97,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "নতুন পাসওয়ার্ড নিশ্চিত করুন"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("পাসওয়ার্ড নিশ্চিত করুন"),
+        "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
+            "মূল পণ্য ফেরত দেওয়ার নিশ্চিতকরণ?"),
         "confirm_your_password": MessageLookupByLibrary.simpleMessage(
             "আপনার পাসওয়ার্ড নিশ্চিত করুন"),
         "contact_us": MessageLookupByLibrary.simpleMessage("যোগাযোগ করুন"),
@@ -109,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "current_password":
             MessageLookupByLibrary.simpleMessage("বর্তমান পাসওয়ার্ড"),
         "customer_name": MessageLookupByLibrary.simpleMessage("গ্রাহকের নাম"),
+        "days_ago": MessageLookupByLibrary.simpleMessage("দিন আগে"),
         "delete": MessageLookupByLibrary.simpleMessage("মুছুন"),
         "delete_product": MessageLookupByLibrary.simpleMessage("পণ্য মুছুন"),
         "deleted_products":
@@ -194,7 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fresh_whole_chicken":
             MessageLookupByLibrary.simpleMessage("তাজা গোটা মুরগি"),
         "history": MessageLookupByLibrary.simpleMessage("ইতিহাস"),
-        "hours_ago": MessageLookupByLibrary.simpleMessage("ঘন্টা আগে"),
+        "hours_ago": MessageLookupByLibrary.simpleMessage("ঘণ্টা আগে"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("ইন্টারনেট সংযুক্ত"),
         "is_weight_equals":
@@ -243,6 +247,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "message_sent_successfully": MessageLookupByLibrary.simpleMessage(
             "বার্তা সফলভাবে পাঠানো হয়েছে"),
         "minutes": MessageLookupByLibrary.simpleMessage("মিনিট"),
+        "minutes_ago": MessageLookupByLibrary.simpleMessage("মিনিট আগে"),
+        "month": MessageLookupByLibrary.simpleMessage("মাস"),
+        "months_ago": MessageLookupByLibrary.simpleMessage("মাস আগে"),
         "must_picking_within":
             MessageLookupByLibrary.simpleMessage("এর মধ্যে পিক করতে হবে"),
         "my_statistics":
@@ -261,10 +268,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("নতুন ওজন কম হতে পারবে না"),
         "no": MessageLookupByLibrary.simpleMessage("না"),
         "noResults": MessageLookupByLibrary.simpleMessage("কোন ফলাফল নেই"),
+        "no_date_available":
+            MessageLookupByLibrary.simpleMessage("কোনও তারিখ পাওয়া যায়নি"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("কোন ইন্টারনেট সংযোগ নেই"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
             "এখনও কোন বিজ্ঞপ্তি পাওয়া যায়নি!"),
+        "no_orders_found":
+            MessageLookupByLibrary.simpleMessage("কোনও অর্ডার পাওয়া যায়নি"),
         "no_plans_found":
             MessageLookupByLibrary.simpleMessage("কোন পরিকল্পনা পাওয়া যায়নি"),
         "no_terms_yet":
@@ -335,6 +346,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "অনুগ্রহ করে আপনার ইমেল যাচাই করুন"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "অনুগ্রহ করে আপনার ফোন নম্বর যাচাই করুন"),
+        "previous_orders":
+            MessageLookupByLibrary.simpleMessage("পূর্ববর্তী অর্ডারসমূহ"),
+        "price": MessageLookupByLibrary.simpleMessage("মূল্য"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage("মূল্য কম বা সমান হতে হবে"),
         "privacy_policy":
@@ -369,11 +383,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "আপনার পাসওয়ার্ড পুনরায় সেট করুন"),
         "restore": MessageLookupByLibrary.simpleMessage("পুনরুদ্ধার"),
         "retry": MessageLookupByLibrary.simpleMessage("পুনরায় চেষ্টা করুন"),
-        "return_key": MessageLookupByLibrary.simpleMessage("ফেরত"),
+        "return_key": MessageLookupByLibrary.simpleMessage("ফিরে যান"),
         "save": MessageLookupByLibrary.simpleMessage("সংরক্ষণ করুন"),
         "search": MessageLookupByLibrary.simpleMessage("অনুসন্ধান"),
         "search_hint": MessageLookupByLibrary.simpleMessage("অনুসন্ধান..."),
         "seconds": MessageLookupByLibrary.simpleMessage("সেকেন্ড"),
+        "seconds_ago": MessageLookupByLibrary.simpleMessage("সেকেন্ড আগে"),
         "select_pay_method": MessageLookupByLibrary.simpleMessage(
             "পেমেন্ট পদ্ধতি নির্বাচন করুন"),
         "send": MessageLookupByLibrary.simpleMessage("পাঠান"),
@@ -428,6 +443,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "view_wallet_details":
             MessageLookupByLibrary.simpleMessage("ওয়ালেটের বিবরণ দেখুন"),
         "wallet": MessageLookupByLibrary.simpleMessage("ওয়ালেট"),
+        "week": MessageLookupByLibrary.simpleMessage("সপ্তাহ"),
+        "weeks_ago": MessageLookupByLibrary.simpleMessage("সপ্তাহ আগে"),
         "weight_minimum": MessageLookupByLibrary.simpleMessage(
             "নতুন ওজন 750 গ্রামের কম হতে হবে না"),
         "welcome_back":
@@ -439,6 +456,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "work_for": MessageLookupByLibrary.simpleMessage("কাজের জন্য"),
         "write_reason_here":
             MessageLookupByLibrary.simpleMessage("কারণ এখানে লিখুন"),
+        "year": MessageLookupByLibrary.simpleMessage("বছর"),
+        "years_ago": MessageLookupByLibrary.simpleMessage("বছর আগে"),
         "yes_remove": MessageLookupByLibrary.simpleMessage("হ্যাঁ সরান"),
         "yes_replace":
             MessageLookupByLibrary.simpleMessage("হ্যাঁ প্রতিস্থাপন করুন"),

@@ -265,5 +265,22 @@
   "and": "এবং",
   "barcode": "বারকোড : ",
   "enter_new_price": "নতুন মূল্য লিখুন",
-  "new_weight_must_not_less_than": "নতুন ওজন কম হতে পারবে না"
+  "new_weight_must_not_less_than": "নতুন ওজন কম হতে পারবে না",
+   "confirm_return_original_product": "মূল পণ্য ফেরত দেওয়ার নিশ্চিতকরণ?",
+    "return_key": "ফিরে যান",
+      "seconds_ago": "সেকেন্ড আগে",
+      "minutes_ago": "মিনিট আগে",
+      "hours_ago": "ঘণ্টা আগে",
+      "days_ago": "দিন আগে",
+      "weeks_ago": "সপ্তাহ আগে",
+      "months_ago": "মাস আগে",
+      "years_ago": "বছর আগে",
+          "ago": "আগে",
+            "month": "মাস",
+            "year": "বছর",
+            "week": "সপ্তাহ",
+             "no_date_available": "কোনও তারিখ পাওয়া যায়নি",
+              "price": "মূল্য",
+              "no_orders_found": "কোনও অর্ডার পাওয়া যায়নি",
+               "previous_orders": "পূর্ববর্তী অর্ডারসমূহ"
 } 

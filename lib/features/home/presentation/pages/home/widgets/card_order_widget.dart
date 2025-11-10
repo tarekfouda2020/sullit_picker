@@ -1,10 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
+import 'package:flutter_tdd/core/widgets/bottom_sheets_widget.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_picked_ratio_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/order_count_down_timer_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/widgets/customer_date_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/left_items_widget.dart';
 
 import 'home_widgets_imports.dart';
@@ -30,12 +32,12 @@ class CardOrderWidget extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 8,
+            spacing: 15,
             children: [
               Row(
                 children: [
                   Text(
-                    "${Translate.s.order_no} : ",
+                    "${Translate.of(context).order_no} : ",
                     style: AppTextStyle.s17_w300(color: context.colors.simiGray),
                   ),
                   Gaps.hGap2,
@@ -47,9 +49,10 @@ class CardOrderWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              CustomerDateWidget(customer: data.customer),
             ],
           ),
-          Gaps.vGap8,
+          Gaps.vGap15,
           ObsValueConsumer(
             observable: DateTimeHelper.getDifferenceFromCurrentDate(data.startPickingAt),
             builder: (context, assignedTime) {
@@ -94,4 +97,9 @@ class CardOrderWidget extends StatelessWidget {
       ),
     );
   }
+
+
+
+
+
 }
