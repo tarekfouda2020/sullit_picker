@@ -87,7 +87,7 @@ class OrderDetailsController {
       AppSnackBar.showSuccessSnackBar(
         Translate.of(ctx).product_scanned,
       );
-      getProductWithBarcode(ctx, "31630", oldItem);
+      getProductWithBarcode(ctx, barcode, oldItem);
     }
   }
 
