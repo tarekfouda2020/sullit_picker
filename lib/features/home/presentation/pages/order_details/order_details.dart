@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bottom_nav_bar_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/header_order_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/order_details_shimmer_widget.dart';
@@ -19,7 +20,7 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
-  late OrderDetailsController controller;
+  late final OrderDetailsController controller;
 
   @override
   void initState() {

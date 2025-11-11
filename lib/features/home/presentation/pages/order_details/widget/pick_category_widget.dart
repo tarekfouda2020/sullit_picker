@@ -10,7 +10,7 @@ class PickCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
+    return Expanded(
       child: ListView.builder(
         itemCount: order.ordersDetails!.length,
         itemBuilder: (context, index) {

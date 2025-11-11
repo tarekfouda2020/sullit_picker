@@ -39,7 +39,9 @@ class OrderModel with _$OrderModel {
 
      /// used in local data
     @JsonKey(name: 'deleted_orders',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? deletedOrders,
-    @JsonKey(name: 'replaced_orders',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? replacedOrders,
+
+     /// changed_orders hold the replaced items and modified items
+    @JsonKey(name: 'changed_products',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? changedProducts,
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? pickedPercent,
      @JsonKey(name: 'preparation_seconds',defaultValue: 0) int? preparationSeconds,
   }) = _OrderModel;
@@ -82,12 +84,17 @@ class OrderDetailsModel with _$OrderDetailsModel {
     required int quantity,
     required String price,
 
-   /// return null in cancel order api
-   ProductModel? product,
+    /// return null in cancel order api
+    ProductModel? product,
 
-   /// have value when replace the item
+     /// have value when replace the item
      @JsonKey(name: "new_variant_id",defaultValue: -1) int? newVariantId,
-     @JsonKey(name: "new_price",defaultValue: 0.0) double? newPrice
+
+     /// have value when edit the item price
+     @JsonKey(name: "new_price",defaultValue: 0.0) double? newPrice,
+
+     /// before do any edit in the product enter the note
+     @JsonKey(name: "picker_notes",defaultValue: "",) String? pickerNotes,
   }) = _OrderDetailsModel;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -102,9 +109,12 @@ class OrderDetailsModel with _$OrderDetailsModel {
   double get remainQntPrice{
     var itemPrice = double.parse(price);
     var singleItemPrice = (itemPrice/quantity);
-    return singleItemPrice * remainQnt;
+    if(product!.replaced){
+      return itemPrice*remainQnt ;
+    }else{
+      return singleItemPrice*remainQnt;
+    }
   }
-
 
   int  get remainQnt{
     return quantity - product!.pickedQuantity!;
@@ -128,6 +138,7 @@ class ProductModel with _$ProductModel {
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? productPickedPercent,
     @JsonKey(name: 'picked_quantity',defaultValue: 0)  int? pickedQuantity,
     @JsonKey(name: 'product_status',defaultValue: ProductStatusEnum.noEdit)  ProductStatusEnum? productStatus,
+    @JsonKey(name: 'show_edit_price',defaultValue: false)  bool? showEditPrice,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -135,6 +146,8 @@ class ProductModel with _$ProductModel {
 
 
   bool get replaced => productStatus == ProductStatusEnum.replaced;
+
+  bool get modified => productStatus == ProductStatusEnum.modified;
 
 }
 

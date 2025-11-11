@@ -1,6 +1,5 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/core/widgets/shimmers/base_shimmer_widget.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
 import 'widgets_imports.dart';
@@ -27,11 +26,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                       visible: value,
                       replacement: AppTextButton.maxCustom(
                         text: Translate.of(context).send_to_cashier,
-                        onPressed: (){
-                          if(controller.isAllProductsPicked){
-                            controller.isAllPickedObs.setValue(true);
-                          }
-                        },
+                        onPressed: ()=> controller.sendToCashier(),
                         textSize: 18,
                         txtColor: controller.isAllProductsPicked
                             ?context.colors.white

@@ -48,27 +48,6 @@ class ProductInfoWidget extends StatelessWidget {
                   ),
                 ),
               Gaps.vGap8,
-              Row(
-                children: [
-                  Text(
-                    "${Translate.s.price} : ",
-                    style: AppTextStyle.s14_w500(
-                      color: context.colors.primary,
-                    ),
-                  ),
-                  Text(
-                    "${data.getProductPrice} ${data.variation.validateIfItWeight() == true
-                        ?"/${data.variation}"
-                        :""}",
-                    style: AppTextStyle.s14_w500(
-                      color: context.colors.primary,
-                    ),
-                  ).withDirhamSymbol(
-                    symbolStyle: AppTextStyle.s16_w300(color: context.colors.primary)
-                  )
-                ],
-              )   ,
-
             ],
           ),
         ),

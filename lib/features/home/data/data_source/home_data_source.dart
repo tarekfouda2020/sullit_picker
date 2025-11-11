@@ -23,7 +23,7 @@ abstract class HomeDataSource {
 
   Future<MyResult<OrderModel>> acceptOrder(OrdersParams params);
 
-  Future<MyResult<OrderModel>> cancelOrder(OrdersParams params);
+  Future<MyResult<OrderModel>> cancelOrder(int id);
 
   Future<MyResult<SearchBarcodeModel>> searchByBarcode(ReplacedProductParams params);
 

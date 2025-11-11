@@ -16,10 +16,7 @@ class BarcodePriceWidget extends StatelessWidget {
         Text(Translate.s.barcode,style: AppTextStyle.s14_w400(color: context.colors.black),),
         Expanded(child: Text(data.product!.barcode,style: AppTextStyle.s14_w500(color: context.colors.primary))),
         Gaps.hGap10,
-        Text(
-            data.product!.replaced
-                ?data.price
-                :data.remainQntPrice.toStringAsFixed(2),
+        Text(data.remainQntPrice.toStringAsFixed(2),
             style: AppTextStyle.s18_w800(color: context.colors.primary)).withDirhamSymbol(symbolStyle: AppTextStyle.s20_w400(color: context.colors.primary)),
       ],
     );

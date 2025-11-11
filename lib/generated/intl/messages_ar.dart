@@ -133,11 +133,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية مطلوبة"),
         "customer_info": MessageLookupByLibrary.simpleMessage("معلومات العميل"),
         "customer_issue": MessageLookupByLibrary.simpleMessage("مشكلة العميل"),
-        "customer_name": MessageLookupByLibrary.simpleMessage("اسم العميل: "),
+        "customer_name": MessageLookupByLibrary.simpleMessage("اسم العميل "),
         "customer_not_available":
             MessageLookupByLibrary.simpleMessage("العميل غير متاح"),
         "customer_phone":
-            MessageLookupByLibrary.simpleMessage("رقم هاتف العميل:"),
+            MessageLookupByLibrary.simpleMessage("رقم هاتف العميل"),
         "days_ago": MessageLookupByLibrary.simpleMessage("منذ أيام"),
         "decline_order": MessageLookupByLibrary.simpleMessage("رفض الطلب"),
         "delete": MessageLookupByLibrary.simpleMessage("حذف"),

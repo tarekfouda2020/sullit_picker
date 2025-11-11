@@ -17,6 +17,7 @@ class DialogNewWeightWidget extends StatelessWidget {
     return AlertDialog(
       title: Text(
         Translate.of(context).what_is_new_weight,
+        // "Enter the new price",
         style: AppTextStyle.s18_w700(color: context.colors.textColor),
       ),
       // titlePadding: const EdgeInsets.fromLTRB(38, 25, 38, 11),

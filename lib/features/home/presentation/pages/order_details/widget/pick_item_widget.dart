@@ -34,7 +34,11 @@ class PickItemWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () => controller.showDeleteItemDialog(context, orderDetails),
-              child: const Icon(CupertinoIcons.trash,color: CupertinoColors.systemRed,size: 20,),
+              child: const Icon(
+                CupertinoIcons.trash,
+                color: CupertinoColors.systemRed,
+                size: 20,
+              ),
             )
           ],
         ),
@@ -49,7 +53,8 @@ class PickItemWidget extends StatelessWidget {
                 data: orderDetails,
               ),
               Visibility(
-                visible: orderDetails.product!.productStatus != ProductStatusEnum.noEdit,
+                visible: orderDetails.product!.productStatus !=
+                    ProductStatusEnum.noEdit,
                 replacement: _buildPositioned(context),
                 child: Positioned(
                   right: 0,
@@ -59,7 +64,9 @@ class PickItemWidget extends StatelessWidget {
                       //     controller.onPressReplace(context, orderDetails);
                       //   }
                       // },
-                      child: StatusViewWidget(status: orderDetails.product!.productStatus?.getName() ?? "")),
+                      child: StatusViewWidget(
+                    status: orderDetails.product!.productStatus?.getName() ?? "",
+                  )),
                 ),
               ),
             ],
@@ -70,24 +77,28 @@ class PickItemWidget extends StatelessWidget {
     );
   }
 
-  Positioned _buildPositioned( BuildContext context) {
-    final lang = context.select<DeviceCubit,String>((value) => value.state.model.locale.languageCode,);
+  Positioned _buildPositioned(BuildContext context) {
+    final lang = context.select<DeviceCubit, String>(
+      (value) => value.state.model.locale.languageCode,
+    );
     return Positioned.directional(
-                textDirection: lang == ApplicationConstants.langAR ? TextDirection.rtl : TextDirection.ltr,
-                top: 18,
-                end: 20,
-                child: Visibility(
-                  visible: !controller.isProductFullPicked(orderDetails),
-                  child: GestureDetector(
-                    // onTap: () => controller.showReplaceDialog(context),
-                    onTap: () => controller.onPressReplace(context, orderDetails),
-                    child: SvgPicture.asset(
-                      Res.repeatIcon,
-                      height: 22,
-                      width: 22,
-                    ),
-                  ),
-                ),
-              );
+      textDirection: lang == ApplicationConstants.langAR
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      top: 18,
+      end: 20,
+      child: Visibility(
+        visible: !controller.isProductFullPicked(orderDetails),
+        child: GestureDetector(
+          // onTap: () => controller.showReplaceDialog(context),
+          onTap: () => controller.onPressReplace(context, orderDetails),
+          child: SvgPicture.asset(
+            Res.repeatIcon,
+            height: 22,
+            width: 22,
+          ),
+        ),
+      ),
+    );
   }
 }

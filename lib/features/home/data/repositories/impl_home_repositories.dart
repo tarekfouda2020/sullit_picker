@@ -54,8 +54,8 @@ class ImplHomeRepositories extends HomeRepositories  {
   }
 
   @override
-  Future<MyResult<OrderModel>> cancelOrder(OrdersParams params) async {
-    return dataSource.cancelOrder(params);
+  Future<MyResult<OrderModel>> cancelOrder(int id) async {
+    return dataSource.cancelOrder(id);
   }
 
   @override

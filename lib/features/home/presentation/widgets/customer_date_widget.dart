@@ -20,7 +20,7 @@ class CustomerDateWidget extends StatelessWidget {
         GestureDetector(
             onTap: () => BottomSheetsWidget.showContactWithSheet(context, customer.customerPhone),
             child: OrderHistoryItemsWidget(
-              title: Translate.s.customer_phone,
+              title: Translate.s.phone,
               endTitle: customer.customerPhone,
              onPressPhone: () => BottomSheetsWidget.showContactWithSheet(context, customer.customerPhone),
             )

@@ -32,6 +32,7 @@ class OrderHistoryItemsWidget extends StatelessWidget {
               style: AppTextStyle.s16_w400(color: context.colors.black),
             ),
           ),
+          Gaps.hGap5,
           Visibility(
             visible: onPressPhone!=null,
             child: GestureDetector(

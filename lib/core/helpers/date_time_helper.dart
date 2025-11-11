@@ -52,7 +52,7 @@ class DateTimeHelper {
 
     try {
       final formatter = DateFormat( format ?? "yyyy-MM-dd HH:mm:ss","en");
-      final startTime = formatter.parse(strDate, true).toLocal();
+      final startTime = formatter.parse(strDate, true);
 
       timeAgoObs.setValue(_formatTimeAgo(DateTime.now().difference(startTime)));
       Timer.periodic(const Duration(seconds: 1), (timer) {

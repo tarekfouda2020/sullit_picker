@@ -137,11 +137,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Customer Information"),
         "customer_issue":
             MessageLookupByLibrary.simpleMessage("Customer Issue"),
-        "customer_name": MessageLookupByLibrary.simpleMessage("Customer name:"),
+        "customer_name": MessageLookupByLibrary.simpleMessage("Customer name"),
         "customer_not_available":
             MessageLookupByLibrary.simpleMessage("Customer not available"),
         "customer_phone":
-            MessageLookupByLibrary.simpleMessage("Customer phone:"),
+            MessageLookupByLibrary.simpleMessage("Customer phone"),
         "days_ago": MessageLookupByLibrary.simpleMessage("days ago"),
         "decline_order": MessageLookupByLibrary.simpleMessage("Decline Order"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),

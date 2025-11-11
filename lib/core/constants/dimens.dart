@@ -133,6 +133,9 @@ class Dimens {
 
   static const EdgeInsetsGeometry paddingEnd22Px =  EdgeInsetsDirectional.only( end: 22);
 
+  static const EdgeInsetsGeometry paddingH10V16PX = EdgeInsets.symmetric(horizontal: 10,vertical: 16);
+
+
   static const EdgeInsetsGeometry paddingH18V12PX = EdgeInsets.symmetric(vertical: 12,horizontal: 18);
   static const EdgeInsetsGeometry paddingH16V10PX = EdgeInsets.symmetric(horizontal: 16, vertical: 10);
   static const EdgeInsetsGeometry paddingH20V12PX = EdgeInsets.symmetric(horizontal: 20, vertical: 12);

@@ -28,7 +28,7 @@ class PrepareOrderParams {
       if(e.newPrice!=null && e.newPrice!=0.0){
         return _actionJson(PrepareOrderActionType.updatePrice, e);
       }
-      return null;
+
     }).where((e) => e != null).cast<Map<String, dynamic>>().toList();
 
     final removeDetailsJson = removeData
@@ -51,14 +51,14 @@ class PrepareOrderParams {
           "id": data.id,
           "action": "update_price",
           "price": data.newPrice,
-          "picker_notes": "update price notes",
+          "picker_notes": data.pickerNotes!,
         };
       case PrepareOrderActionType.replace:
         return {
           "id": data.id,
           "action": "replace",
           "new_variant_id": data.newVariantId,
-          "picker_notes": "replace notes"
+          "picker_notes": data.pickerNotes!
         };
       case PrepareOrderActionType.reduce:
         return {
@@ -71,7 +71,7 @@ class PrepareOrderParams {
         return {
           "id": data.id,
           "action": "remove",
-          "picker_notes": "remove notes",
+          "picker_notes": data.pickerNotes!,
         };
     }
   }

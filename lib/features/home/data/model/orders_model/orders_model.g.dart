@@ -43,7 +43,7 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
                   (e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      replacedOrders: (json['replaced_orders'] as List<dynamic>?)
+      changedProducts: (json['changed_products'] as List<dynamic>?)
               ?.map(
                   (e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -64,7 +64,7 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'start_picking_at': instance.startPickingAt,
       'order_details': instance.ordersDetails,
       'deleted_orders': instance.deletedOrders,
-      'replaced_orders': instance.replacedOrders,
+      'changed_products': instance.changedProducts,
       'picked_percent': instance.pickedPercent,
       'preparation_seconds': instance.preparationSeconds,
     };
@@ -81,6 +81,7 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
           : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
       newVariantId: (json['new_variant_id'] as num?)?.toInt() ?? -1,
       newPrice: (json['new_price'] as num?)?.toDouble() ?? 0.0,
+      pickerNotes: json['picker_notes'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$OrderDetailsModelImplToJson(
@@ -93,6 +94,7 @@ Map<String, dynamic> _$$OrderDetailsModelImplToJson(
       'product': instance.product,
       'new_variant_id': instance.newVariantId,
       'new_price': instance.newPrice,
+      'picker_notes': instance.pickerNotes,
     };
 
 _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
@@ -109,6 +111,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
       productStatus: $enumDecodeNullable(
               _$ProductStatusEnumEnumMap, json['product_status']) ??
           ProductStatusEnum.noEdit,
+      showEditPrice: json['show_edit_price'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
@@ -122,6 +125,7 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
       'picked_percent': instance.productPickedPercent,
       'picked_quantity': instance.pickedQuantity,
       'product_status': _$ProductStatusEnumEnumMap[instance.productStatus],
+      'show_edit_price': instance.showEditPrice,
     };
 
 const _$ProductStatusEnumEnumMap = {

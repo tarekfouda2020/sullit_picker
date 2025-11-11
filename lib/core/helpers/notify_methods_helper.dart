@@ -24,7 +24,6 @@ class NotifyMethodsHelper {
     try {
       final router = getIt<AppRouter>();
       final topRoute = router.current;
-      log("================>>>>>> route name ${topRoute.name}  <<<<<<<<=====");
      return (topRoute.name != OrderDetailsRouteName.name);
     } catch (e) {
      return null;
@@ -35,7 +34,6 @@ class NotifyMethodsHelper {
     try {
       final router = getIt<AppRouter>();
       final topRoute = router.current;
-      log("================>>>>>> route name ${topRoute.name}  <<<<<<<<=====");
       return (topRoute.name != HomePageRoute.name) ;
     } catch (e) {
       return null;

@@ -109,16 +109,15 @@ class ImplHomeDataSource extends HomeDataSource {
         requestMethod: RequestMethod.post,
         responseKey: (data) => data['data'],
         toJsonFunc: (data) =>  OrderModel.fromJson(data),
-        showLoader: true,
         // refresh: params.refresh
     );
     return await GenericHttpImpl<OrderModel>()(model);
   }
 
   @override
-  Future<MyResult<OrderModel>> cancelOrder(OrdersParams params) async {
+  Future<MyResult<OrderModel>> cancelOrder(int id) async {
     HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.cancelOrder(params.id),
+        url: ApiNames.cancelOrder(id),
         responseType: ResType.model,
         requestMethod: RequestMethod.post,
       toJsonFunc: (data) => OrderModel.fromJson(data),

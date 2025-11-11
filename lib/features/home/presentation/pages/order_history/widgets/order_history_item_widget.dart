@@ -1,6 +1,7 @@
 
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_history/widgets/order_history_items_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/widgets/customer_date_widget.dart';
 
 import '../../../../../../core/helpers/export.dart';
 
@@ -11,7 +12,7 @@ class OrderHistoryItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Dimens.paddingScreenAll,
+      padding: Dimens.paddingH10V16PX,
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.borderRadius12PX,
@@ -38,9 +39,8 @@ class OrderHistoryItemWidget extends StatelessWidget {
             ],
           ),
           OrderHistoryItemsWidget(title: Translate.s.status, endTitle: order.status,),
-          OrderHistoryItemsWidget(title: Translate.s.customer_name, endTitle: order.customer.name,),
-          OrderHistoryItemsWidget(title: Translate.s.customer_phone, endTitle: order.customer.customerPhone,),
-          if(order.getStartPickingDate()!=null)
+          CustomerDateWidget(customer: order.customer),
+          if(order.getStartPickingDate() != null)
           OrderHistoryItemsWidget(title: Translate.s.start_pick_at, endTitle: order.getStartPickingDate()!),
         ],
       ),

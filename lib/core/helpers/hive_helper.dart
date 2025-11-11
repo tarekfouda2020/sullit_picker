@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:hive_flutter/hive_flutter.dart';
@@ -23,13 +22,13 @@ class HiveHelper {
     try{
       Hive.registerAdapter<T>(adapter);
     }catch (e) {
-      log('⚠️ Hive adapter already registered: $e');
+      log('Hive adapter already registered: $e');
     }
     // for (final adapter in adapters) {
     //   try {
     //     Hive.registerAdapter(adapter);
     //   } catch (e) {
-    //     log('⚠️ Hive adapter already registered: $e');
+    //     log('Hive adapter already registered: $e');
     //   }
     // }
     // log('Hive initialized with $adapters adapter');
@@ -47,10 +46,10 @@ class HiveHelper {
       } catch (e) {
         /// if box not exist or get corrupted for any reason
         /// make a new box with the same name....but it will be empty
-        log('⚠️ Failed to open box $boxName: $e');
-        log('🔧 Clearing corrupted box... $boxName');
+        log('Failed to open box $boxName: $e');
+        log('Clearing corrupted box... $boxName');
         await Hive.deleteBoxFromDisk(boxName);
-        log('✅ Corrupted box cleared, opening fresh box...');
+        log('Corrupted box cleared, opening fresh box...');
         return await Hive.openBox<T>(boxName);
       }
     } else {
@@ -88,12 +87,12 @@ class HiveHelper {
   Box<T>? getBox<T>(String boxName){
      try {
        if (!Hive.isBoxOpen(boxName)) {
-         log('⚠️ Box $boxName is not open');
+         log('Box $boxName is not open');
          return null;
        }
        return Hive.box<T>(boxName);
      } catch (e) {
-       log('⚠️ Error accessing box $boxName: $e');
+       log('Error accessing box $boxName: $e');
        return null;
      }
   }

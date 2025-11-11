@@ -1700,10 +1700,10 @@ class S {
     );
   }
 
-  /// `Customer name:`
+  /// `Customer name`
   String get customer_name {
     return Intl.message(
-      'Customer name:',
+      'Customer name',
       name: 'customer_name',
       desc: '',
       args: [],
@@ -3580,10 +3580,10 @@ class S {
     );
   }
 
-  /// `Customer phone:`
+  /// `Customer phone`
   String get customer_phone {
     return Intl.message(
-      'Customer phone:',
+      'Customer phone',
       name: 'customer_phone',
       desc: '',
       args: [],

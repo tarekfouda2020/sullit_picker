@@ -4,9 +4,8 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/order
 import '../../../../../../core/helpers/export.dart';
 
 class ReturnItemButtonWidget extends StatelessWidget {
-  final OrderDetailsController controller;
-  final OrderDetailsModel data;
-  const ReturnItemButtonWidget({super.key, required this.controller, required this.data});
+  final void Function() onPress;
+  const ReturnItemButtonWidget({super.key,required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class ReturnItemButtonWidget extends StatelessWidget {
       txtColor:  context.colors.white,
       textSize: 16,
       maxHeight: 40,
-      onPressed: () => controller.returnPickedItem(context,data),
+      onPressed: onPress,
       // onPressed: () => controller.pickItem(data),
     );
   }

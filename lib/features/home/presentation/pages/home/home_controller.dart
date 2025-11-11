@@ -103,12 +103,12 @@ class HomeController {
           )
           );
       if (value!= null && value as int == data.id) {
-        var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
-        updatedList.remove(data);
-        await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
-        log('orders ==== >>>> before get all orders =====');
+        // var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
+        // updatedList.remove(data);
+        // await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+        // log('orders ==== >>>> before get all orders =====');
        await getAllOrders();
-        log('orders ==== >>>> before get all orders =====');
+        // log('orders ==== >>>> before get all orders =====');
       }
       return;
     }
