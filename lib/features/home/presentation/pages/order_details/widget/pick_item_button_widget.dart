@@ -29,11 +29,19 @@ class PickItemButtonWidget extends StatelessWidget {
         Flexible(
           child: AppTextButton.maxCustom(
             text: 'Pick All',
-            bgColor: controller.isProductFullPicked(data) ? context.colors.softWhite : context.colors.primary,
-            txtColor: controller.isProductFullPicked(data) ? context.colors.appGreen : context.colors.white,
+            bgColor: controller.isProductFullPicked(data)
+                ? context.colors.softWhite
+                : ((data.product!.pickedQuantity ?? 0) > 0
+                ? context.colors.primary.withOpacity(0.4) // 👈 لون باهت لما يكون Disabled
+                : context.colors.primary),
+            txtColor: controller.isProductFullPicked(data)
+                ? context.colors.appGreen
+                : context.colors.white,
             textSize: 16,
             maxHeight: 40,
-            // onPressed: () => controller.onPressPick(context, data),
+            onPressed: (data.product!.pickedQuantity ?? 0) > 0
+                ? null
+                : () => controller.onPressPick(context, data,pickAll: true),
           ),
         ),
         Gaps.hGap6,

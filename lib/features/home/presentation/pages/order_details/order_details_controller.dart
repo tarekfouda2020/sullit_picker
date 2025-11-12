@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/update_reason_dialog_widget.dart';
 
 import 'order_details_imports.dart';
@@ -212,14 +214,18 @@ class OrderDetailsController {
 
 
 
-  void onPressPick(BuildContext context,OrderDetailsModel orderProduct){
-    String variation = orderProduct.variation;
-    if(variation.validateIfItWeight() == true){
-      // showWeightDialog(context,orderProduct);
-      showPriceDialog(context,orderProduct);
-    }else{
-      pickItem(orderProduct);
+  void onPressPick(BuildContext context,OrderDetailsModel orderProduct,{bool pickAll = false}){
+    int qty = orderProduct.quantity;
+    if (orderProduct.product!.pickedQuantity != qty){
+      String variation = orderProduct.variation;
+      if(variation.validateIfItWeight() == true){
+        // showWeightDialog(context,orderProduct);
+        showPriceDialog(context,orderProduct,pickAll: pickAll);
+      }else{
+        pickItem(orderProduct,pickedAll: pickAll);
+      }
     }
+
   }
 
 
@@ -232,13 +238,13 @@ class OrderDetailsController {
     );
   }
 
-  void showPriceDialog(BuildContext context,OrderDetailsModel orderProduct) {
+  void showPriceDialog(BuildContext context,OrderDetailsModel orderProduct,{bool pickAll = false}) {
     // OrderDetailsModel? productAfterUpdated = _detailsData.changedProducts?.firstWhereOrNull((element) => element.id == orderProduct.id);
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return  NewPriceDialogWidget(orderProduct:  orderProduct,controller: this,);
+        return  NewPriceDialogWidget(orderProduct:  orderProduct,controller: this,pickAll: pickAll,);
       },
     );
   }
@@ -254,7 +260,7 @@ class OrderDetailsController {
     );
   }
 
-  void showNewPriceDialog(BuildContext context,OrderDetailsModel orderProduct,{bool popTwice = true}) {
+  void showNewPriceDialog(BuildContext context,OrderDetailsModel orderProduct,{bool popTwice = true,bool pickAll = false}) {
     showDialog(
         context: context,
         builder: (context) =>
@@ -262,6 +268,7 @@ class OrderDetailsController {
               orderProduct:  orderProduct,
               controller: this,
               popTwice: popTwice,
+              pickAll: pickAll,
             )
     );
   }
@@ -335,17 +342,17 @@ class OrderDetailsController {
 
 
 
-  void confirmNewPrice(OrderDetailsModel oldItem, BuildContext context,{bool popTwice = true}){
+  void confirmNewPrice(OrderDetailsModel oldItem, BuildContext context,{bool popTwice = true,bool  pickAll = false}){
     if(formKey.currentState!.validate()){
       double newPrice = double.parse(newPriceController.text);
       double oldPrice = double.parse(oldItem.getProductPrice);
-      // if(newPrice > oldPrice){
-      //   AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
-      //       type: ToastType.error,
-      //       gravity: ToastGravity.BOTTOM
-      //   );
-      //   return ;
-      // }
+      if(newPrice > oldPrice){
+        AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
+            type: ToastType.error,
+            gravity: ToastGravity.BOTTOM
+        );
+        return ;
+      }
       int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
       OrderDetailsModel updatedItem = oldItem.copyWith(
         price: "${newPrice*oldItem.quantity}",
@@ -359,7 +366,7 @@ class OrderDetailsController {
 
       /// to prevent adding the same item again with the same id
       _detailsData.changedProducts!.addIf(!_detailsData.changedProducts!.contains(oldItem.id),oldItem);
-      pickItem(updatedItem);
+      pickItem(updatedItem,pickedAll: pickAll);
       pickerNoteController.clear();
       newPriceController.clear();
       Navigator.pop(context);
@@ -374,10 +381,10 @@ class OrderDetailsController {
   }
 
 
-  void pickItem(OrderDetailsModel orderProduct) {
+  void pickItem(OrderDetailsModel orderProduct,{bool pickedAll = false}) {
     int qty = orderProduct.quantity;
     if (orderProduct.product!.pickedQuantity != qty) {
-      getProductPickedPercent(orderProduct,);
+      getProductPickedPercent(orderProduct,pickedAll: pickedAll);
       updateDetailsCubit();
       getIt<OrdersHelper>().saveOrderDetails(_detailsData);
       updateSameOrderInList(_detailsData);
@@ -440,19 +447,23 @@ class OrderDetailsController {
     }
   }
 
-  void getProductPickedPercent(OrderDetailsModel orderProduct, {bool returnItem = false}) {
+  void getProductPickedPercent(OrderDetailsModel orderProduct, {bool returnItem = false, bool pickedAll = false}) {
     int pickedQty = orderProduct.product!.pickedQuantity!;
-    if(returnItem){
+    if (returnItem) {
       /// return button will be show only when pickedQty > 0
       pickedQty = pickedQty - 1;
-    }else{
-      pickedQty = pickedQty + 1;
+    } else {
+      if (pickedAll) {
+        pickedQty = pickedQty + orderProduct.quantity;
+      } else {
+        pickedQty = pickedQty + 1;
+      }
     }
     orderProduct.product!.pickedQuantity = pickedQty;
     double percent = (pickedQty / orderProduct.quantity) * 100;
     orderProduct.product!.productPickedPercent = percent;
     if (pickedQty == orderProduct.quantity) {
-      orderPickedPercent(_detailsData,isReturn: returnItem);
+      orderPickedPercent(_detailsData, isReturn: returnItem);
     }
   }
 

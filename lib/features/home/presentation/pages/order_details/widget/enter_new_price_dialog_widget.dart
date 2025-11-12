@@ -11,11 +11,13 @@ class EnterNewPriceDialogWidget extends StatelessWidget {
   final OrderDetailsModel orderProduct;
   final OrderDetailsController controller;
 final bool popTwice;
+final bool pickAll;
   const EnterNewPriceDialogWidget({
     super.key,
     required this.orderProduct,
     required this.controller,
      this.popTwice = true,
+     this.pickAll = false,
   });
 
   @override
@@ -79,7 +81,7 @@ final bool popTwice;
             Flexible(
               child : PickerNotesWidget(
                 controller: controller,
-                onSubmit: () => controller.confirmNewPrice(orderProduct, context,popTwice: popTwice)
+                onSubmit: () => controller.confirmNewPrice(orderProduct, context,popTwice: popTwice,pickAll: pickAll)
               ),
             ),
             Gaps.vGap28,
@@ -89,7 +91,7 @@ final bool popTwice;
               textSize: 16,
               bgColor: context.colors.primary,
               maxHeight: 40,
-              onPressed: () => controller.confirmNewPrice(orderProduct, context,popTwice: popTwice),
+              onPressed: () => controller.confirmNewPrice(orderProduct, context,popTwice: popTwice,pickAll: pickAll),
             ),
           ],
         ),
