@@ -377,7 +377,7 @@ class OrderDetailsController {
   void pickItem(OrderDetailsModel orderProduct) {
     int qty = orderProduct.quantity;
     if (orderProduct.product!.pickedQuantity != qty) {
-      getProductPickedPercent(orderProduct, _detailsData);
+      getProductPickedPercent(orderProduct,);
       updateDetailsCubit();
       getIt<OrdersHelper>().saveOrderDetails(_detailsData);
       updateSameOrderInList(_detailsData);
@@ -440,7 +440,7 @@ class OrderDetailsController {
     }
   }
 
-  void getProductPickedPercent(OrderDetailsModel orderProduct, OrderModel details, {bool returnItem = false}) {
+  void getProductPickedPercent(OrderDetailsModel orderProduct, {bool returnItem = false}) {
     int pickedQty = orderProduct.product!.pickedQuantity!;
     if(returnItem){
       /// return button will be show only when pickedQty > 0
@@ -452,7 +452,7 @@ class OrderDetailsController {
     double percent = (pickedQty / orderProduct.quantity) * 100;
     orderProduct.product!.productPickedPercent = percent;
     if (pickedQty == orderProduct.quantity) {
-      orderPickedPercent(details,isReturn: returnItem);
+      orderPickedPercent(_detailsData,isReturn: returnItem);
     }
   }
 
