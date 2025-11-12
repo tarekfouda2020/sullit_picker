@@ -11,10 +11,10 @@ class PrepareOrderParams {
   const PrepareOrderParams({required this.orderId, required this.currentProductsDetails, this.deletedDetails});
 
   Map<String, dynamic> toJson() {
-    final currentDetails = currentProductsDetails;
-    final removeData = (deletedDetails ?? []);
+    final List<OrderDetailsModel> currentDetails = currentProductsDetails;
+    final List<OrderDetailsModel> removeData = (deletedDetails ?? []);
 
-    final currentDetailsJson = currentDetails.map((e) {
+    final List<Map<String, dynamic>> currentDetailsJson = currentDetails.map((e) {
 
       /// replaced projects
       if (e.newVariantId != null && e.newVariantId != -1) {
@@ -31,11 +31,11 @@ class PrepareOrderParams {
 
     }).where((e) => e != null).cast<Map<String, dynamic>>().toList();
 
-    final removeDetailsJson = removeData
+    final List<Map<String, dynamic>> removeDetailsJson = removeData
         .map((e) => _actionJson(PrepareOrderActionType.remove, e))
         .toList();
 
-    final allDetailsJsons = [...currentDetailsJson, ...removeDetailsJson];
+    final List<Map<String, dynamic>> allDetailsJsons = [...currentDetailsJson, ...removeDetailsJson];
 
     log("======>>>> all data $allDetailsJsons <<<<<<======");
 
