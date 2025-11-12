@@ -12,10 +12,10 @@ class PickItemButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Expanded(
+        Flexible(
           child: AppTextButton.maxCustom(
             text: controller.isProductFullPicked(data) ? Translate.of(context).picked : Translate.of(context).pick,
             bgColor: controller.isProductFullPicked(data) ? context.colors.softWhite : context.colors.primary,
@@ -23,7 +23,17 @@ class PickItemButtonWidget extends StatelessWidget {
             textSize: 16,
             maxHeight: 40,
             onPressed: () => controller.onPressPick(context, data),
-            // onPressed: () => controller.pickItem(data),
+          ),
+        ),
+        Gaps.hGap6,
+        Flexible(
+          child: AppTextButton.maxCustom(
+            text: 'Pick All',
+            bgColor: controller.isProductFullPicked(data) ? context.colors.softWhite : context.colors.primary,
+            txtColor: controller.isProductFullPicked(data) ? context.colors.appGreen : context.colors.white,
+            textSize: 16,
+            maxHeight: 40,
+            // onPressed: () => controller.onPressPick(context, data),
           ),
         ),
         Gaps.hGap6,
@@ -37,15 +47,6 @@ class PickItemButtonWidget extends StatelessWidget {
             QntCountWidget(
               qnt: data.remainQnt,
             ),
-            // Gaps.vGap8,
-            // GestureDetector(
-            //   onTap: () => controller.showWeightDialog(context),
-            //   child: Text(
-            //     'Edit Qnt',
-            //     style: AppTextStyle.s14_w400(
-            //         color: context.colors.textColor),
-            //   ),
-            // ),
           ],
         )
       ],

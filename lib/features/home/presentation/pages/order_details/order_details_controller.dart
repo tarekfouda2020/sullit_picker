@@ -341,14 +341,13 @@ class OrderDetailsController {
     if(formKey.currentState!.validate()){
       double newPrice = double.parse(newPriceController.text);
       double oldPrice = double.parse(oldItem.getProductPrice);
-      if(newPrice > oldPrice){
-        AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
-            type: ToastType.error,
-            gravity: ToastGravity.BOTTOM
-        );
-        return ;
-      }
-
+      // if(newPrice > oldPrice){
+      //   AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
+      //       type: ToastType.error,
+      //       gravity: ToastGravity.BOTTOM
+      //   );
+      //   return ;
+      // }
       int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
       OrderDetailsModel updatedItem = oldItem.copyWith(
         price: "${newPrice*oldItem.quantity}",
