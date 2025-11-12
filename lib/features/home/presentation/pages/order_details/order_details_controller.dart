@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/update_reason_dialog_widget.dart';
 
 import 'order_details_imports.dart';
@@ -359,7 +357,9 @@ class OrderDetailsController {
         ),
       );
       _detailsData.ordersDetails![index] = updatedItem;
-      _detailsData.changedProducts!.addIf(!_detailsData.changedProducts!.contains(updatedItem.id),updatedItem);
+
+      /// to prevent adding the same item again with the same id
+      _detailsData.changedProducts!.addIf(!_detailsData.changedProducts!.contains(oldItem.id),oldItem);
       pickItem(updatedItem);
       pickerNoteController.clear();
       newPriceController.clear();
@@ -540,19 +540,19 @@ class OrderDetailsController {
   }
 
 
-  /// return original order after replace it
+  /// return original order after update it
   void returnChangedProduct(OrderDetailsModel updatedOrder ){
-    /// after replace product => save the original product in (changedProducts list with the same id)
+    /// after update product => save the original product in (changedProducts list with the same id)
     /// prepareOrder need orderId even if replaced it send the original id with new variant id
 
-    /// update the replaced product(the one with status replaced) with the original one from replaced list
+    /// update the  product(the one with status replaced, or modified) with the original one from changedProducts list
 
 
     List<OrderDetailsModel> originalItems = _detailsData.changedProducts!;
     int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id);
     OrderDetailsModel originalItem = originalItems.firstWhere((element) => element.id == updatedOrder.id,);
     OrderDetailsModel updatedItem = updatedOrder.copyWith(
-      /// same data that changed when replace first time will also be changed here
+      /// same data that changed when updated first time will also be changed here
       price: originalItem.price,
       newVariantId: null,
       variation: originalItem.variation,

@@ -101,8 +101,10 @@ class OrderDetailsModel with _$OrderDetailsModel {
       _$OrderDetailsModelFromJson(json);
 
   String get getProductPrice{
+    print("price is ====>>>> $price  ------- inside model ----- ");
     var itemPrice = double.parse(price);
     var singleItemPrice = (itemPrice/quantity).toStringAsFixed(2);
+    print("single price is ====>>>> $singleItemPrice  ------- inside model ----- ");
     return singleItemPrice;
   }
 
