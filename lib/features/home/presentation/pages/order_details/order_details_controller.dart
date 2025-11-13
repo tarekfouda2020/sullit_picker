@@ -156,9 +156,11 @@ class OrderDetailsController {
     }
 
     int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
-    OrderDetailsModel updatedItem = oldItem.copyWith(
+
+    OrderDetailsModel updateOldItemData = oldItem.copyWith(
       price: newData.variant.mainPrice,
       newVariantId: newData.variant.id,
+      addedVariantId: newData.variant.id,
       variation: "",
       product: oldItem.product!.copyWith(
           name: newData.name,
@@ -169,7 +171,7 @@ class OrderDetailsController {
           barcode: newData.barcode
       ),
     );
-    _detailsData.ordersDetails![index] = updatedItem;
+    _detailsData.ordersDetails![index] = updateOldItemData;
     /// add replaced products in a separated list
     _detailsData.changedProducts!.add(oldItem);
     updateDetailsCubit();
