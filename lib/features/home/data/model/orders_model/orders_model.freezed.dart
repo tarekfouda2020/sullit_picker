@@ -763,6 +763,10 @@ mixin _$OrderDetailsModel {
   /// have value when replace the item
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   set newVariantId(int? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "added_variant_id", defaultValue: -1)
+  int? get addedVariantId => throw _privateConstructorUsedError;
+  @JsonKey(name: "added_variant_id", defaultValue: -1)
+  set addedVariantId(int? value) => throw _privateConstructorUsedError;
 
   /// have value when edit the item price
   @JsonKey(name: "new_price", defaultValue: 0.0)
@@ -803,6 +807,7 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       String price,
       ProductModel? product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
+      @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes});
 
@@ -830,6 +835,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? price = null,
     Object? product = freezed,
     Object? newVariantId = freezed,
+    Object? addedVariantId = freezed,
     Object? newPrice = freezed,
     Object? pickerNotes = freezed,
   }) {
@@ -857,6 +863,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
       newVariantId: freezed == newVariantId
           ? _value.newVariantId
           : newVariantId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      addedVariantId: freezed == addedVariantId
+          ? _value.addedVariantId
+          : addedVariantId // ignore: cast_nullable_to_non_nullable
               as int?,
       newPrice: freezed == newPrice
           ? _value.newPrice
@@ -899,6 +909,7 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       String price,
       ProductModel? product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
+      @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes});
 
@@ -925,6 +936,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? price = null,
     Object? product = freezed,
     Object? newVariantId = freezed,
+    Object? addedVariantId = freezed,
     Object? newPrice = freezed,
     Object? pickerNotes = freezed,
   }) {
@@ -953,6 +965,10 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
           ? _value.newVariantId
           : newVariantId // ignore: cast_nullable_to_non_nullable
               as int?,
+      addedVariantId: freezed == addedVariantId
+          ? _value.addedVariantId
+          : addedVariantId // ignore: cast_nullable_to_non_nullable
+              as int?,
       newPrice: freezed == newPrice
           ? _value.newPrice
           : newPrice // ignore: cast_nullable_to_non_nullable
@@ -975,6 +991,7 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
       required this.price,
       this.product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) this.newVariantId,
+      @JsonKey(name: "added_variant_id", defaultValue: -1) this.addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) this.newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "") this.pickerNotes})
       : super._();
@@ -999,6 +1016,9 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   @override
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   int? newVariantId;
+  @override
+  @JsonKey(name: "added_variant_id", defaultValue: -1)
+  int? addedVariantId;
 
   /// have value when edit the item price
   @override
@@ -1012,7 +1032,7 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, product: $product, newVariantId: $newVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes)';
+    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes)';
   }
 
   /// Create a copy of OrderDetailsModel
@@ -1040,6 +1060,7 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       required String price,
       ProductModel? product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
+      @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "")
       String? pickerNotes}) = _$OrderDetailsModelImpl;
@@ -1076,6 +1097,11 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   /// have value when replace the item
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   set newVariantId(int? value);
+  @override
+  @JsonKey(name: "added_variant_id", defaultValue: -1)
+  int? get addedVariantId;
+  @JsonKey(name: "added_variant_id", defaultValue: -1)
+  set addedVariantId(int? value);
 
   /// have value when edit the item price
   @override

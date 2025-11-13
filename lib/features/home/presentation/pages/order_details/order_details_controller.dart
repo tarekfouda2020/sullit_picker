@@ -87,7 +87,7 @@ class OrderDetailsController {
       AppSnackBar.showSuccessSnackBar(
         Translate.of(ctx).product_scanned,
       );
-      getProductWithBarcode(ctx, barcode, oldItem);
+      getProductWithBarcode(ctx, "62211628", oldItem);
     }
   }
 
@@ -110,6 +110,40 @@ class OrderDetailsController {
   }
 
   void updateReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
+    double newPrice = double.parse(newData.variant.mainPrice);
+    double oldItemPrice = double.parse(oldItem.getProductPrice);
+    if (newPrice > oldItemPrice) {
+      AppSnackBar.showSimpleToast(
+          msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
+          type: ToastType.error,
+          gravity: ToastGravity.BOTTOM
+      );
+      return;
+    }
+
+    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+    OrderDetailsModel updatedItem = oldItem.copyWith(
+      price: newData.variant.mainPrice,
+      newVariantId: newData.variant.id,
+      variation: "",
+      product: oldItem.product!.copyWith(
+          name: newData.name,
+          thumbnailImage: newData.thumbnailImage,
+          pickedQuantity: 0,
+          productPickedPercent: 0,
+          productStatus: ProductStatusEnum.replaced,
+          barcode: newData.barcode
+      ),
+    );
+    _detailsData.ordersDetails![index] = updatedItem;
+    /// add replaced products in a separated list
+    _detailsData.changedProducts!.add(oldItem);
+    updateDetailsCubit();
+    getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+    updateSameOrderInList(_detailsData);
+  }
+
+  void addReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     double newPrice = double.parse(newData.variant.mainPrice);
     double oldItemPrice = double.parse(oldItem.getProductPrice);
     if (newPrice > oldItemPrice) {

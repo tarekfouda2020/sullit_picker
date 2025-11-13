@@ -54,6 +54,7 @@ class OrderModel with _$OrderModel {
       case 'preparing':
         return OrderStatusEnum.preparing;
       case 'new':
+      case 'pending':
         return OrderStatusEnum.newOrder;
       default:
         return OrderStatusEnum.newOrder;
@@ -73,6 +74,11 @@ class OrderModel with _$OrderModel {
   }
  }
 
+ double getOriginalTotalPrice(){
+   double totalPrice = ordersDetails!.fold(0.0, (sum, item) => sum + (double.tryParse(item.price) ?? 0.0));
+   return totalPrice;
+ }
+
 }
 
 @unfreezed
@@ -89,6 +95,8 @@ class OrderDetailsModel with _$OrderDetailsModel {
 
      /// have value when replace the item
      @JsonKey(name: "new_variant_id",defaultValue: -1) int? newVariantId,
+
+     @JsonKey(name: "added_variant_id",defaultValue: -1) int? addedVariantId,
 
      /// have value when edit the item price
      @JsonKey(name: "new_price",defaultValue: 0.0) double? newPrice,
@@ -119,6 +127,9 @@ class OrderDetailsModel with _$OrderDetailsModel {
   int  get remainQnt{
     return quantity - product!.pickedQuantity!;
 }
+
+
+
 
 }
 
