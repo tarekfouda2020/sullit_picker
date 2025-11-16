@@ -297,16 +297,16 @@ mixin _$OrderModel {
   set changedProducts(List<OrderDetailsModel>? value) =>
       throw _privateConstructorUsedError;
 
-  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
-  /// in replace item when replace it...if the original one qnt reduced by 1
-  /// will added in this list
+  /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
+  /// in replace item...if the original one qnt reduced by 1
+  /// the original will added in this list
   @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get qntChangedProducts =>
       throw _privateConstructorUsedError;
 
-  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
-  /// in replace item when replace it...if the original one qnt reduced by 1
-  /// will added in this list
+  /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
+  /// in replace item...if the original one qnt reduced by 1
+  /// the original will added in this list
   @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
   set qntChangedProducts(List<OrderDetailsModel>? value) =>
       throw _privateConstructorUsedError;
@@ -644,9 +644,9 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? changedProducts;
 
-  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
-  /// in replace item when replace it...if the original one qnt reduced by 1
-  /// will added in this list
+  /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
+  /// in replace item...if the original one qnt reduced by 1
+  /// the original will added in this list
   @override
   @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? qntChangedProducts;
@@ -760,16 +760,16 @@ abstract class _OrderModel extends OrderModel {
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   set changedProducts(List<OrderDetailsModel>? value);
 
-  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
-  /// in replace item when replace it...if the original one qnt reduced by 1
-  /// will added in this list
+  /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
+  /// in replace item...if the original one qnt reduced by 1
+  /// the original will added in this list
   @override
   @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get qntChangedProducts;
 
-  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
-  /// in replace item when replace it...if the original one qnt reduced by 1
-  /// will added in this list
+  /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
+  /// in replace item...if the original one qnt reduced by 1
+  /// the original will added in this list
   @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
   set qntChangedProducts(List<OrderDetailsModel>? value);
   @override
