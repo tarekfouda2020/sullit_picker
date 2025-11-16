@@ -36,6 +36,12 @@ class PrepareOrderParams {
           if (e.addedVariantId != null && e.addedVariantId != -1) {
             return _actionJson(PrepareOrderActionType.add, e);
           }
+
+          /// added item
+          if (e.product!.productStatus!.isQntModified) {
+            return _actionJson(PrepareOrderActionType.reduce, e);
+          }
+
         })
         .where((e) => e != null)
         .cast<Map<String, dynamic>>()
@@ -78,7 +84,7 @@ class PrepareOrderParams {
         return {
           "id": data.id,
           "action": "reduce",
-          "qty": data.quantity,
+          "qty": data.remainQnt,
           "picker_notes": "replace notes",
         };
       case PrepareOrderActionType.remove:

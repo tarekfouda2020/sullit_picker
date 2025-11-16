@@ -277,24 +277,38 @@ mixin _$OrderModel {
   set ordersDetails(List<OrderDetailsModel>? value) =>
       throw _privateConstructorUsedError;
 
-  /// used in local data
+  /// all keys below used in local data
   @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get deletedOrders =>
       throw _privateConstructorUsedError;
 
-  /// used in local data
+  /// all keys below used in local data
   @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
   set deletedOrders(List<OrderDetailsModel>? value) =>
       throw _privateConstructorUsedError;
 
-  /// changed_orders hold the replaced items and modified items
+  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get changedProducts =>
       throw _privateConstructorUsedError;
 
-  /// changed_orders hold the replaced items and modified items
+  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   set changedProducts(List<OrderDetailsModel>? value) =>
+      throw _privateConstructorUsedError;
+
+  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
+  /// in replace item when replace it...if the original one qnt reduced by 1
+  /// will added in this list
+  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  List<OrderDetailsModel>? get qntChangedProducts =>
+      throw _privateConstructorUsedError;
+
+  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
+  /// in replace item when replace it...if the original one qnt reduced by 1
+  /// will added in this list
+  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  set qntChangedProducts(List<OrderDetailsModel>? value) =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
   double? get pickedPercent => throw _privateConstructorUsedError;
@@ -335,6 +349,9 @@ abstract class $OrderModelCopyWith<$Res> {
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? changedProducts,
+      @JsonKey(
+          name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+      List<OrderDetailsModel>? qntChangedProducts,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
       int? preparationSeconds});
@@ -368,6 +385,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? ordersDetails = freezed,
     Object? deletedOrders = freezed,
     Object? changedProducts = freezed,
+    Object? qntChangedProducts = freezed,
     Object? pickedPercent = freezed,
     Object? preparationSeconds = freezed,
   }) {
@@ -416,6 +434,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.changedProducts
           : changedProducts // ignore: cast_nullable_to_non_nullable
               as List<OrderDetailsModel>?,
+      qntChangedProducts: freezed == qntChangedProducts
+          ? _value.qntChangedProducts
+          : qntChangedProducts // ignore: cast_nullable_to_non_nullable
+              as List<OrderDetailsModel>?,
       pickedPercent: freezed == pickedPercent
           ? _value.pickedPercent
           : pickedPercent // ignore: cast_nullable_to_non_nullable
@@ -460,6 +482,9 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? changedProducts,
+      @JsonKey(
+          name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+      List<OrderDetailsModel>? qntChangedProducts,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
       int? preparationSeconds});
@@ -492,6 +517,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? ordersDetails = freezed,
     Object? deletedOrders = freezed,
     Object? changedProducts = freezed,
+    Object? qntChangedProducts = freezed,
     Object? pickedPercent = freezed,
     Object? preparationSeconds = freezed,
   }) {
@@ -540,6 +566,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.changedProducts
           : changedProducts // ignore: cast_nullable_to_non_nullable
               as List<OrderDetailsModel>?,
+      qntChangedProducts: freezed == qntChangedProducts
+          ? _value.qntChangedProducts
+          : qntChangedProducts // ignore: cast_nullable_to_non_nullable
+              as List<OrderDetailsModel>?,
       pickedPercent: freezed == pickedPercent
           ? _value.pickedPercent
           : pickedPercent // ignore: cast_nullable_to_non_nullable
@@ -569,6 +599,9 @@ class _$OrderModelImpl extends _OrderModel {
       this.deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
       this.changedProducts,
+      @JsonKey(
+          name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+      this.qntChangedProducts,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) this.pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
       this.preparationSeconds})
@@ -601,15 +634,22 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? ordersDetails;
 
-  /// used in local data
+  /// all keys below used in local data
   @override
   @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? deletedOrders;
 
-  /// changed_orders hold the replaced items and modified items
+  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @override
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? changedProducts;
+
+  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
+  /// in replace item when replace it...if the original one qnt reduced by 1
+  /// will added in this list
+  @override
+  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  List<OrderDetailsModel>? qntChangedProducts;
   @override
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
   double? pickedPercent;
@@ -619,7 +659,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   /// Create a copy of OrderModel
@@ -653,6 +693,9 @@ abstract class _OrderModel extends OrderModel {
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? changedProducts,
+      @JsonKey(
+          name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+      List<OrderDetailsModel>? qntChangedProducts,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
       int? preparationSeconds}) = _$OrderModelImpl;
@@ -699,23 +742,36 @@ abstract class _OrderModel extends OrderModel {
   @JsonKey(name: 'order_details')
   set ordersDetails(List<OrderDetailsModel>? value);
 
-  /// used in local data
+  /// all keys below used in local data
   @override
   @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get deletedOrders;
 
-  /// used in local data
+  /// all keys below used in local data
   @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
   set deletedOrders(List<OrderDetailsModel>? value);
 
-  /// changed_orders hold the replaced items and modified items
+  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @override
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get changedProducts;
 
-  /// changed_orders hold the replaced items and modified items
+  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   set changedProducts(List<OrderDetailsModel>? value);
+
+  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
+  /// in replace item when replace it...if the original one qnt reduced by 1
+  /// will added in this list
+  @override
+  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  List<OrderDetailsModel>? get qntChangedProducts;
+
+  /// qnt_changed_products hold the replaced items(that being replaced one by 1)
+  /// in replace item when replace it...if the original one qnt reduced by 1
+  /// will added in this list
+  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  set qntChangedProducts(List<OrderDetailsModel>? value);
   @override
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
   double? get pickedPercent;
@@ -763,8 +819,12 @@ mixin _$OrderDetailsModel {
   /// have value when replace the item
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   set newVariantId(int? value) => throw _privateConstructorUsedError;
+
+  /// have value when add new item
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   int? get addedVariantId => throw _privateConstructorUsedError;
+
+  /// have value when add new item
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   set addedVariantId(int? value) => throw _privateConstructorUsedError;
 
@@ -1016,6 +1076,8 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   @override
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   int? newVariantId;
+
+  /// have value when add new item
   @override
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   int? addedVariantId;
@@ -1097,9 +1159,13 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   /// have value when replace the item
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   set newVariantId(int? value);
+
+  /// have value when add new item
   @override
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   int? get addedVariantId;
+
+  /// have value when add new item
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   set addedVariantId(int? value);
 

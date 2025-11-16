@@ -48,6 +48,11 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
                   (e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
+      qntChangedProducts: (json['qnt_changed_products'] as List<dynamic>?)
+              ?.map(
+                  (e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       pickedPercent: (json['picked_percent'] as num?)?.toDouble() ?? 0.0,
       preparationSeconds: (json['preparation_seconds'] as num?)?.toInt() ?? 0,
     );
@@ -65,6 +70,7 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'order_details': instance.ordersDetails,
       'deleted_orders': instance.deletedOrders,
       'changed_products': instance.changedProducts,
+      'qnt_changed_products': instance.qntChangedProducts,
       'picked_percent': instance.pickedPercent,
       'preparation_seconds': instance.preparationSeconds,
     };
@@ -132,8 +138,10 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
 
 const _$ProductStatusEnumEnumMap = {
   ProductStatusEnum.noEdit: 'noEdit',
-  ProductStatusEnum.modified: 'modified',
+  ProductStatusEnum.priceModified: 'priceModified',
+  ProductStatusEnum.qntModified: 'qntModified',
   ProductStatusEnum.replaced: 'replaced',
+  ProductStatusEnum.added: 'added',
   ProductStatusEnum.normal: 'normal',
 };
 

@@ -32,7 +32,7 @@ class PickItemButtonWidget extends StatelessWidget {
             bgColor: controller.isProductFullPicked(data)
                 ? context.colors.softWhite
                 : ((data.product!.pickedQuantity ?? 0) > 0
-                ? context.colors.primary.withOpacity(0.4) // 👈 لون باهت لما يكون Disabled
+                ? context.colors.primary.withOpacity(0.4)
                 : context.colors.primary),
             txtColor: controller.isProductFullPicked(data)
                 ? context.colors.appGreen

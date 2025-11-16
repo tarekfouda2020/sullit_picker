@@ -81,14 +81,16 @@ class OrderDetailsController {
 
   Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
-    String? barcode = await getIt<BarcodeService>().scanBarcode();
-    if (barcode != null && barcode.isNotEmpty) {
-      BuildContext ctx = getIt<GlobalContext>().context();
-      AppSnackBar.showSuccessSnackBar(
-        Translate.of(ctx).product_scanned,
-      );
-      getProductWithBarcode(ctx, "62211628", oldItem);
-    }
+    BuildContext ctx = getIt<GlobalContext>().context();
+    getProductWithBarcode(ctx, "62211628", oldItem);
+    // String? barcode = await getIt<BarcodeService>().scanBarcode();
+    // if (barcode != null && barcode.isNotEmpty) {
+    //   BuildContext ctx = getIt<GlobalContext>().context();
+    //   AppSnackBar.showSuccessSnackBar(
+    //     Translate.of(ctx).product_scanned,
+    //   );
+    //   getProductWithBarcode(ctx, barcode, oldItem);
+    // }
   }
 
   Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
@@ -97,7 +99,7 @@ class OrderDetailsController {
     var result = await getIt<HomeRepositories>().searchByBarcode(params);
     result.when(
       isSuccess: (data) {
-        updateReplacedProduct(data!, oldItem);
+        addNewProduct(data!, oldItem);
       },
       isError: (error) {
         AppSnackBar.showSimpleToast(
@@ -137,13 +139,13 @@ class OrderDetailsController {
     );
     _detailsData.ordersDetails![index] = updatedItem;
     /// add replaced products in a separated list
-    _detailsData.changedProducts!.add(oldItem);
+    _detailsData.changedProducts!.addIf((OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),oldItem);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     updateSameOrderInList(_detailsData);
   }
 
-  void addReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
+  void addNewProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     double newPrice = double.parse(newData.variant.mainPrice);
     double oldItemPrice = double.parse(oldItem.getProductPrice);
     if (newPrice > oldItemPrice) {
@@ -154,30 +156,65 @@ class OrderDetailsController {
       );
       return;
     }
-
     int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+    if(oldItem.quantity > 0){
+      /// using  (ProductStatusEnum.qntModified) and  (.isQntModified >> see PrepareOrderParams)
+      /// to define that...this item qnt has been modified when sending in prepare order params
+      /// and sending remain qnt
 
-    OrderDetailsModel updateOldItemData = oldItem.copyWith(
+      oldItem.quantity = oldItem.quantity - 1;
+      oldItem.product!.productStatus = ProductStatusEnum.qntModified;
+      _detailsData.ordersDetails![index] = oldItem;
+    }
+    List<int> existedNewVariantIds = _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toList();
+    bool isNewItemAddedBefore = existedNewVariantIds.contains(newData.variant.id);
+
+    OrderDetailsModel updatedItem = oldItem.copyWith(
       price: newData.variant.mainPrice,
-      newVariantId: newData.variant.id,
       addedVariantId: newData.variant.id,
       variation: "",
       product: oldItem.product!.copyWith(
           name: newData.name,
           thumbnailImage: newData.thumbnailImage,
-          pickedQuantity: 0,
-          productPickedPercent: 0,
-          productStatus: ProductStatusEnum.replaced,
           barcode: newData.barcode
       ),
     );
-    _detailsData.ordersDetails![index] = updateOldItemData;
-    /// add replaced products in a separated list
-    _detailsData.changedProducts!.add(oldItem);
+    if(oldItem.quantity == 0){
+      _detailsData.ordersDetails!.removeAt(index);
+      _detailsData.deletedOrders!.add(oldItem);
+    }
+    if(isNewItemAddedBefore){
+      _updateExistItem(newData, updatedItem);
+    }else{
+      _addNewItem(updatedItem, index,oldItem);
+    }
+    /// add the original one we press replace on it in qntChangedProducts list
+    _detailsData.qntChangedProducts!.addIf((OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),oldItem);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     updateSameOrderInList(_detailsData);
   }
+
+
+  void _updateExistItem(SearchBarcodeModel newData, OrderDetailsModel updatedItem) {
+    int newItemIndex = _detailsData.ordersDetails!.indexWhere((e) => e.addedVariantId == newData.variant.id);
+    updatedItem.quantity = updatedItem.quantity + 1;
+    updatedItem.product!.pickedQuantity = updatedItem.product!.pickedQuantity;
+    updatedItem.product!.productPickedPercent = updatedItem.product!.productPickedPercent;
+    _detailsData.ordersDetails![newItemIndex] = updatedItem;
+  }
+
+  void _addNewItem(OrderDetailsModel updatedItem, int index,OrderDetailsModel oldItem) {
+    updatedItem.quantity = 1;
+    updatedItem.product!.pickedQuantity = 0;
+    updatedItem.product!.productPickedPercent = 0;
+    updatedItem.product!.productStatus = ProductStatusEnum.added;
+    _detailsData.ordersDetails!.insert(index+1,updatedItem);
+    /// add replaced products in a separated list
+    _detailsData.changedProducts!.addIf((OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),oldItem);
+  }
+
+
 
 
   void showDeleteDialog(BuildContext context, int productId) {
@@ -346,7 +383,7 @@ class OrderDetailsController {
         newPrice: newPrice,
         variation: "$newWeight$unit",
         product: orderProduct.product!.copyWith(
-            productStatus: ProductStatusEnum.modified
+            productStatus: ProductStatusEnum.priceModified
         ),
       );
       _detailsData.ordersDetails![index] = updatedItem;
@@ -395,7 +432,7 @@ class OrderDetailsController {
         newPrice: newPrice,
        pickerNotes: pickerNoteController.text,
         product: oldItem.product!.copyWith(
-            productStatus: ProductStatusEnum.modified
+            productStatus: ProductStatusEnum.priceModified
         ),
       );
       _detailsData.ordersDetails![index] = updatedItem;
@@ -437,7 +474,7 @@ class OrderDetailsController {
     orderProduct.product!.productPickedPercent = percent;
     if(pickedQty == 0){
       orderPickedPercent(_detailsData,isReturn: true);
-      if(orderProduct.product!.replaced || orderProduct.product!.modified){
+      if(orderProduct.product!.replaced || orderProduct.product!.isAdded){
         showConFirmReturnDialog(context,orderProduct);
         return ;
       }
@@ -586,7 +623,7 @@ class OrderDetailsController {
   }
 
 
-  /// return original order after update it
+  /// return original order after replace it all (not reduce 1 qnt and add another one...not that my friend)
   void returnChangedProduct(OrderDetailsModel updatedOrder ){
     /// after update product => save the original product in (changedProducts list with the same id)
     /// prepareOrder need orderId even if replaced it send the original id with new variant id
@@ -609,6 +646,37 @@ class OrderDetailsController {
       productPickedPercent: 0,
       productStatus: ProductStatusEnum.noEdit,
       barcode: originalItem.product!.barcode
+      ),
+    );
+    _detailsData.ordersDetails![index] = updatedItem;
+    _detailsData.changedProducts!.remove(originalItems);
+    updateDetailsCubit();
+    getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+  }
+
+  /// return added order after add (now this is reverse of *reduce 1 qnt and add another one*...my friend)
+  void returnAddedProduct(OrderDetailsModel updatedOrder ){
+    /// after replace product => save the original product in (qntChangedProducts list with the same id)
+    /// prepareOrder need orderId even if it replaced 1 by 1 see (prepare order params)
+
+    /// update the  product(the one with status replaced, or modified) with the original one from qntChangedProducts list
+
+
+    List<OrderDetailsModel> originalItems = _detailsData.qntChangedProducts!;
+    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id);
+    OrderDetailsModel originalItem = originalItems.firstWhere((element) => element.id == updatedOrder.id && element.product!.productStatus!.isQntModified,);
+    OrderDetailsModel updatedItem = updatedOrder.copyWith(
+      /// same data that changed when updated first time will also be changed here
+      price: originalItem.price,
+      newVariantId: null,
+      variation: originalItem.variation,
+      product: originalItem.product!.copyWith(
+          name: originalItem.product!.name,
+          thumbnailImage: originalItem.product!.thumbnailImage,
+          pickedQuantity: 0,
+          productPickedPercent: 0,
+          productStatus: ProductStatusEnum.noEdit,
+          barcode: originalItem.product!.barcode
       ),
     );
     _detailsData.ordersDetails![index] = updatedItem;

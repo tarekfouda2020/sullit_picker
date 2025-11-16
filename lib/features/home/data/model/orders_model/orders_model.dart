@@ -37,11 +37,17 @@ class OrderModel with _$OrderModel {
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
     @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
 
-     /// used in local data
+     /// all keys below used in local data
     @JsonKey(name: 'deleted_orders',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? deletedOrders,
 
-     /// changed_orders hold the replaced items and modified items
+     /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
     @JsonKey(name: 'changed_products',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? changedProducts,
+
+      /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
+     /// in replace item...if the original one qnt reduced by 1
+    /// the original will added in this list
+     @JsonKey(name: 'qnt_changed_products',defaultValue: <OrderDetailsModel>[]) List<OrderDetailsModel>? qntChangedProducts,
+
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? pickedPercent,
      @JsonKey(name: 'preparation_seconds',defaultValue: 0) int? preparationSeconds,
   }) = _OrderModel;
@@ -96,6 +102,7 @@ class OrderDetailsModel with _$OrderDetailsModel {
      /// have value when replace the item
      @JsonKey(name: "new_variant_id",defaultValue: -1) int? newVariantId,
 
+     /// have value when add new item
      @JsonKey(name: "added_variant_id",defaultValue: -1) int? addedVariantId,
 
      /// have value when edit the item price
@@ -156,9 +163,11 @@ class ProductModel with _$ProductModel {
       _$ProductModelFromJson(json);
 
 
-  bool get replaced => productStatus == ProductStatusEnum.replaced;
+  bool get replaced => productStatus!.isReplaced;
 
-  bool get modified => productStatus == ProductStatusEnum.modified;
+  bool get modified =>  productStatus!.isPriceModified || productStatus!.isQntModified ;
+
+  bool get isAdded => productStatus!.isAdded;
 
 }
 

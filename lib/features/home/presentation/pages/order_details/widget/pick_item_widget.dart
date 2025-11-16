@@ -53,8 +53,7 @@ class PickItemWidget extends StatelessWidget {
                 data: orderDetails,
               ),
               Visibility(
-                visible: orderDetails.product!.productStatus !=
-                    ProductStatusEnum.noEdit,
+                visible: orderDetails.product!.productStatus!.shouldShowStatus,
                 replacement: _buildPositioned(context),
                 child: Positioned(
                   right: 0,

@@ -43,7 +43,7 @@ class CardItemPickWidget extends StatelessWidget {
           ),
           PickItemButtonWidget(controller: controller,data: data),
           Gaps.vGap10,
-          if(data.product!.pickedQuantity !> 0 || data.product!.replaced || data.product!.modified)
+          if(data.product!.pickedQuantity !> 0 || data.product!.replaced || data.product!.isAdded)
             ReturnItemButtonWidget(onPress: () => controller.returnPickedItem(context,data)),
           // if( data.product!.modified)
           //   ReturnItemButtonWidget(onPress:() => controller.returnPickedItem(context,data)),
