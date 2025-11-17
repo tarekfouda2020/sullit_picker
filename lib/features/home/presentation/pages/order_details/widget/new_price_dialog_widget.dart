@@ -31,7 +31,7 @@ class NewPriceDialogWidget extends StatelessWidget {
     if (pickAll) {
       return orderProduct.price;
     } else {
-      return orderProduct.getProductPrice;
+      return orderProduct.unitPrice;
     }
   }
 }

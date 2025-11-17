@@ -11,6 +11,9 @@ import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sound_effect/sound_effect.dart';
+
+import '../../../../../core/helpers/export.dart';
 
 class SplashController {
   // void navigateToLogin(BuildContext context) async {
@@ -96,6 +99,10 @@ class SplashController {
   }
 
 
-
+  // Future<void> preloadSound() async {
+  //   SoundEffect soundEffect = SoundEffect();
+  //   await soundEffect.initialize();
+  //   await soundEffect.load("effect", Res.newOrderSound);
+  // }
 
 }

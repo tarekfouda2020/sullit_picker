@@ -37,7 +37,7 @@ class PrepareOrderParams {
             return _actionJson(PrepareOrderActionType.add, e);
           }
 
-          /// added item
+          /// reduced item
           if (e.product!.productStatus!.isQntModified) {
             return _actionJson(PrepareOrderActionType.reduce, e);
           }
@@ -48,7 +48,7 @@ class PrepareOrderParams {
         .toList();
 
     final List<Map<String, dynamic>> removeDetailsJson = removeData
-        .map((e) => _actionJson(PrepareOrderActionType.remove, e))
+        .where((element) => !element.product!.productStatus!.isAdded,).map((e) => _actionJson(PrepareOrderActionType.remove, e))
         .toList();
 
     final List<Map<String, dynamic>> allDetailsJsons = [

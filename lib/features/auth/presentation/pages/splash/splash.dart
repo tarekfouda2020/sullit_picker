@@ -1,3 +1,5 @@
+import 'package:sound_effect/sound_effect.dart';
+
 import '../../../../../core/helpers/export.dart';
 import 'splash_imports.dart';
 
@@ -27,6 +29,8 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     precacheImage(const AssetImage(Res.appIcon), context);
     precacheImage(const AssetImage(Res.newOrderSound), context);
   }
+
+
 
   @override
   Widget build(BuildContext context) {

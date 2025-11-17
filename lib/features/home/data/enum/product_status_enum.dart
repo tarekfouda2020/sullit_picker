@@ -51,5 +51,31 @@ enum ProductStatusEnum {
     }
   }
 
+  bool get shouldShowDeleteIcon {
+    switch (this) {
+      case ProductStatusEnum.added:
+      case ProductStatusEnum.replaced:
+        return false;
+      case ProductStatusEnum.qntModified:
+      case ProductStatusEnum.priceModified:
+      case ProductStatusEnum.normal:
+      case ProductStatusEnum.noEdit:
+        return true;
+    }
+  }
+
+  bool get shouldShowEditPriceIcon {
+    switch (this) {
+      case ProductStatusEnum.added:
+      case ProductStatusEnum.replaced:
+      case ProductStatusEnum.qntModified:
+        return false;
+      case ProductStatusEnum.priceModified:
+      case ProductStatusEnum.normal:
+      case ProductStatusEnum.noEdit:
+        return true;
+    }
+  }
+
 
 }

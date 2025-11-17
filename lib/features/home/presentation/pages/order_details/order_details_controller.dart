@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/update_reason_dialog_widget.dart';
 
 import 'order_details_imports.dart';
@@ -82,15 +80,17 @@ class OrderDetailsController {
   Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
     BuildContext ctx = getIt<GlobalContext>().context();
-    getProductWithBarcode(ctx, "62211628", oldItem);
-    // String? barcode = await getIt<BarcodeService>().scanBarcode();
-    // if (barcode != null && barcode.isNotEmpty) {
-    //   BuildContext ctx = getIt<GlobalContext>().context();
-    //   AppSnackBar.showSuccessSnackBar(
-    //     Translate.of(ctx).product_scanned,
-    //   );
-    //   getProductWithBarcode(ctx, barcode, oldItem);
-    // }
+    // 62211628
+    // 31610
+    // getProductWithBarcode(ctx, "31610", oldItem);
+    String? barcode = await getIt<BarcodeService>().scanBarcode();
+    if (barcode != null && barcode.isNotEmpty) {
+      BuildContext ctx = getIt<GlobalContext>().context();
+      AppSnackBar.showSuccessSnackBar(
+        Translate.of(ctx).product_scanned,
+      );
+      getProductWithBarcode(ctx, barcode, oldItem);
+    }
   }
 
   Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
@@ -113,7 +113,7 @@ class OrderDetailsController {
 
   void updateReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     double newPrice = double.parse(newData.variant.mainPrice);
-    double oldItemPrice = double.parse(oldItem.getProductPrice);
+    double oldItemPrice = double.parse(oldItem.unitPrice);
     if (newPrice > oldItemPrice) {
       AppSnackBar.showSimpleToast(
           msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
@@ -126,6 +126,7 @@ class OrderDetailsController {
     int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
     OrderDetailsModel updatedItem = oldItem.copyWith(
       price: newData.variant.mainPrice,
+      unitPrice: newData.variant.mainPrice,
       newVariantId: newData.variant.id,
       variation: "",
       product: oldItem.product!.copyWith(
@@ -147,7 +148,7 @@ class OrderDetailsController {
 
   void addNewProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     double newPrice = double.parse(newData.variant.mainPrice);
-    double oldItemPrice = double.parse(oldItem.getProductPrice);
+    double oldItemPrice = double.parse(oldItem.unitPrice);
     if (newPrice > oldItemPrice) {
       AppSnackBar.showSimpleToast(
           msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
@@ -171,6 +172,7 @@ class OrderDetailsController {
 
     OrderDetailsModel updatedItem = oldItem.copyWith(
       price: newData.variant.mainPrice,
+      unitPrice:newData.variant.mainPrice,
       addedVariantId: newData.variant.id,
       variation: "",
       product: oldItem.product!.copyWith(
@@ -179,12 +181,13 @@ class OrderDetailsController {
           barcode: newData.barcode
       ),
     );
+    /// in the last replace add it to removed list will be send as a deleted item in api-params
     if(oldItem.quantity == 0){
       _detailsData.ordersDetails!.removeAt(index);
       _detailsData.deletedOrders!.add(oldItem);
     }
     if(isNewItemAddedBefore){
-      _updateExistItem(newData, updatedItem);
+      _updateExistItem(newData);
     }else{
       _addNewItem(updatedItem, index,oldItem);
     }
@@ -196,12 +199,13 @@ class OrderDetailsController {
   }
 
 
-  void _updateExistItem(SearchBarcodeModel newData, OrderDetailsModel updatedItem) {
+  void _updateExistItem(SearchBarcodeModel newData) {
     int newItemIndex = _detailsData.ordersDetails!.indexWhere((e) => e.addedVariantId == newData.variant.id);
-    updatedItem.quantity = updatedItem.quantity + 1;
-    updatedItem.product!.pickedQuantity = updatedItem.product!.pickedQuantity;
-    updatedItem.product!.productPickedPercent = updatedItem.product!.productPickedPercent;
-    _detailsData.ordersDetails![newItemIndex] = updatedItem;
+    OrderDetailsModel existingItem = _detailsData.ordersDetails![newItemIndex];
+    OrderDetailsModel newItem = existingItem.copyWith(
+      quantity: existingItem.quantity + 1,
+    );
+    _detailsData.ordersDetails![newItemIndex] = newItem;
   }
 
   void _addNewItem(OrderDetailsModel updatedItem, int index,OrderDetailsModel oldItem) {
@@ -210,8 +214,6 @@ class OrderDetailsController {
     updatedItem.product!.productPickedPercent = 0;
     updatedItem.product!.productStatus = ProductStatusEnum.added;
     _detailsData.ordersDetails!.insert(index+1,updatedItem);
-    /// add replaced products in a separated list
-    _detailsData.changedProducts!.addIf((OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),oldItem);
   }
 
 
@@ -351,7 +353,7 @@ class OrderDetailsController {
     if(formKey.currentState!.validate()){
 
       double newPrice = double.parse(newPriceController.text);
-      double oldPrice = double.parse(orderProduct.getProductPrice);
+      double oldPrice = double.parse(orderProduct.unitPrice);
 
       double oldWeight  = getProductWeight(orderProduct);
       double newWeight = double.parse(newWeightController.text);
@@ -418,7 +420,7 @@ class OrderDetailsController {
   void confirmNewPrice(OrderDetailsModel oldItem, BuildContext context,{bool popTwice = true,bool  pickAll = false}){
     if(formKey.currentState!.validate()){
       double newPrice = double.parse(newPriceController.text);
-      double oldPrice = double.parse(oldItem.getProductPrice);
+      double oldPrice = double.parse(oldItem.unitPrice);
       if(newPrice > oldPrice){
         AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
             type: ToastType.error,
@@ -475,6 +477,7 @@ class OrderDetailsController {
     if(pickedQty == 0){
       orderPickedPercent(_detailsData,isReturn: true);
       if(orderProduct.product!.replaced || orderProduct.product!.isAdded){
+
         showConFirmReturnDialog(context,orderProduct);
         return ;
       }
@@ -637,6 +640,7 @@ class OrderDetailsController {
     OrderDetailsModel updatedItem = updatedOrder.copyWith(
       /// same data that changed when updated first time will also be changed here
       price: originalItem.price,
+      unitPrice: originalItem.unitPrice,
       newVariantId: null,
       variation: originalItem.variation,
       product: originalItem.product!.copyWith(
@@ -656,36 +660,42 @@ class OrderDetailsController {
 
   /// return added order after add (now this is reverse of *reduce 1 qnt and add another one*...my friend)
   void returnAddedProduct(OrderDetailsModel updatedOrder ){
-    /// after replace product => save the original product in (qntChangedProducts list with the same id)
-    /// prepareOrder need orderId even if it replaced 1 by 1 see (prepare order params)
+    /// note that updatedOrder and original item have the same id..(we will use benefit of this => in bring original one)
 
-    /// update the  product(the one with status replaced, or modified) with the original one from qntChangedProducts list
+    /// after add a new product => save the original product in (qntChangedProducts list with the same id)
+    /// this list is used for local changes it link between the (original item) and (items added from it)
+    /// prepareOrder need orderId even if it replaced 1 by 1  you can see => (prepare order params)
 
+    /// update the  product(the one with status replaced, or modified) by increase its qnt
+    /// remove it all and increase the original one qnt by 1
+    /// or return it if deleted
 
-    List<OrderDetailsModel> originalItems = _detailsData.qntChangedProducts!;
-    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id);
-    OrderDetailsModel originalItem = originalItems.firstWhere((element) => element.id == updatedOrder.id && element.product!.productStatus!.isQntModified,);
-    OrderDetailsModel updatedItem = updatedOrder.copyWith(
-      /// same data that changed when updated first time will also be changed here
-      price: originalItem.price,
-      newVariantId: null,
-      variation: originalItem.variation,
-      product: originalItem.product!.copyWith(
-          name: originalItem.product!.name,
-          thumbnailImage: originalItem.product!.thumbnailImage,
-          pickedQuantity: 0,
-          productPickedPercent: 0,
-          productStatus: ProductStatusEnum.noEdit,
-          barcode: originalItem.product!.barcode
-      ),
-    );
-    _detailsData.ordersDetails![index] = updatedItem;
-    _detailsData.changedProducts!.remove(originalItems);
+    List<OrderDetailsModel> deletedItems = _detailsData.deletedOrders!;
+    int addedItemIndex = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id && updatedOrder.addedVariantId == e.addedVariantId);
+    List<int> deletedItemsIds = deletedItems.map((e) => e.id).toList();
+    OrderDetailsModel originalItem;
+
+    if(deletedItemsIds.contains(updatedOrder.id)){
+      originalItem =  deletedItems.firstWhere((element) => element.id == updatedOrder.id && element.product!.productStatus!.isQntModified,);
+      originalItem = originalItem.copyWith(
+          quantity: originalItem.quantity+updatedOrder.quantity
+      );
+      _detailsData.ordersDetails!..removeAt(addedItemIndex)..insert(addedItemIndex,originalItem);
+      _detailsData.deletedOrders!.removeWhere((element) => element.id == originalItem.id);
+    }else{
+      originalItem =  _detailsData.ordersDetails!.firstWhere((element) => element.id == updatedOrder.id && element.product!.productStatus!.isQntModified,);
+      int originalItemIndex = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id && e.product!.productStatus!.isQntModified);
+      originalItem = originalItem.copyWith(
+        quantity: originalItem.quantity + updatedOrder.quantity
+      );
+      _detailsData.ordersDetails![originalItemIndex] = originalItem;
+      _detailsData.ordersDetails!.removeAt(addedItemIndex);
+    }
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
   }
 
-  void showConFirmReturnDialog(BuildContext context,OrderDetailsModel replacedItem ){
+  void showConFirmReturnDialog(BuildContext context,OrderDetailsModel replacedItem){
     showDialog(
       context: context,
       builder: (context) {
@@ -702,7 +712,12 @@ class OrderDetailsController {
           if(isAllPickedObs.getValue()){
             isAllPickedObs.setValue(false);
           }
-          returnChangedProduct(replacedItem);
+          if(replacedItem.product!.isAdded){
+            returnAddedProduct(replacedItem);
+          }else{
+            returnChangedProduct(replacedItem);
+          }
+
         },
       );
     },);
@@ -743,6 +758,8 @@ class OrderDetailsController {
     return _detailsData.ordersDetails!.every((item) => item.remainQnt == 0);
   }
 
+  int get getPickedItemsCount => _detailsData.ordersDetails!.where((element) => element.remainQnt == 0).length;
+
   Future<void> prepareOrder(BuildContext context) async {
     getIt<LoadingHelper>().showLoadingDialog();
     final params = _prepareOrderParams();
@@ -778,6 +795,5 @@ class OrderDetailsController {
       deletedDetails: _detailsData.deletedOrders,
     );
   }
-
 
 }

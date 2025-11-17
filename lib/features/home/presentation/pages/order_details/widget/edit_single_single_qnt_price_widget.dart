@@ -23,7 +23,7 @@ class EditSingleSingleQntPriceWidget extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            _getPrice(),
+           model.unitPrice,
             style: AppTextStyle.s14_w500(
               color: context.colors.primary,
             ),
@@ -31,7 +31,7 @@ class EditSingleSingleQntPriceWidget extends StatelessWidget {
               symbolStyle: AppTextStyle.s16_w300(color: context.colors.primary)
           ),
         ),
-        if(model.product!.showEditPrice == true && model.product!.replaced == false)
+        if(model.product!.showEditPrice == true && model.product!.productStatus!.shouldShowEditPriceIcon)
           EditPriceWidget(controller: controller,model: model),
       ],
     );

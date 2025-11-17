@@ -10,6 +10,7 @@ import 'home_imports.dart';
 
 class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
+  final ObsValue<bool> absorbAcceptButtonObs = ObsValue<bool>.withInit(false);
   final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
   final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
 
@@ -94,6 +95,7 @@ class HomeController {
   }
 
   Future<void> acceptOrder(BuildContext context, OrderModel data) async {
+    absorbAcceptButtonObs.setValue(true);
     if (data.isAssigned) {
       final value = await  AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,
               targetTime: DateTime.now().add(Duration(
@@ -133,6 +135,7 @@ class HomeController {
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).order_accepted_failed));
       },
     );
+    absorbAcceptButtonObs.setValue(false);
   }
 
   Future<void> getUserData() async {

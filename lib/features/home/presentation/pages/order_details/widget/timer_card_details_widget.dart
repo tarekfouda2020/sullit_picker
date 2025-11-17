@@ -29,7 +29,7 @@ class TimerCardDetailsWidget extends StatelessWidget {
                 key: GlobalKey(debugLabel: "${data.id}"),
                 numberOfItems: data.ordersDetails?.length ?? 0,
                 pickedPercent: data.pickedPercent!,
-                endTitle: "${data.totalItems.toString()} ${Translate.of(context).items_left_suffix}",
+                endTitle: "${(data.ordersDetails?.length ?? 0) - controller.getPickedItemsCount} ${Translate.of(context).items_left_suffix}",
               )
           ),
           Gaps.vGap12,

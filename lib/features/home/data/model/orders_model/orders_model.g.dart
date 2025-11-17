@@ -82,6 +82,7 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
       variation: json['variation'] as String,
       quantity: (json['quantity'] as num).toInt(),
       price: json['price'] as String,
+      unitPrice: json['unit_price'] as String,
       product: json['product'] == null
           ? null
           : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
@@ -98,6 +99,7 @@ Map<String, dynamic> _$$OrderDetailsModelImplToJson(
       'variation': instance.variation,
       'quantity': instance.quantity,
       'price': instance.price,
+      'unit_price': instance.unitPrice,
       'product': instance.product,
       'new_variant_id': instance.newVariantId,
       'added_variant_id': instance.addedVariantId,

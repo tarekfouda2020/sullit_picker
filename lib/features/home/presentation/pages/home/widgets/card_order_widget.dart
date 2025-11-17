@@ -89,9 +89,7 @@ class CardOrderWidget extends StatelessWidget {
             text: data.isNewOrder ? Translate.s.start_pick : Translate.s.continue_picking,
             maxHeight: 44,
             textSize: 18,
-            onPressed: () {
-              controller.acceptOrder(context, data);
-            },
+            onPressed: () => controller.acceptOrder(context, data),
           )
         ],
       ),

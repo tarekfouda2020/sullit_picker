@@ -24,3 +24,4 @@ export 'widget/enter_new_price_dialog_widget.dart';
 export 'widget/new_price_dialog_widget.dart';
 export 'widget/remove_product_dialog.dart';
 export 'widget/weight_confirm_dialog_widget.dart';
+export 'helpers/product_return_handler.dart';

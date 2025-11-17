@@ -32,12 +32,15 @@ class PickItemWidget extends StatelessWidget {
                 style: AppTextStyle.s18_w500(color: context.colors.simiGray),
               ),
             ),
-            GestureDetector(
-              onTap: () => controller.showDeleteItemDialog(context, orderDetails),
-              child: const Icon(
-                CupertinoIcons.trash,
-                color: CupertinoColors.systemRed,
-                size: 20,
+            Visibility(
+              visible: orderDetails.product!.productStatus!.shouldShowDeleteIcon,
+              child: GestureDetector(
+                onTap: () => controller.showDeleteItemDialog(context, orderDetails),
+                child: const Icon(
+                  CupertinoIcons.trash,
+                  color: CupertinoColors.systemRed,
+                  size: 20,
+                ),
               ),
             )
           ],

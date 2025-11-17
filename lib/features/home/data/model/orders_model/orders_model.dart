@@ -95,6 +95,7 @@ class OrderDetailsModel with _$OrderDetailsModel {
     required String variation,
     required int quantity,
     required String price,
+     @JsonKey(name: "unit_price",) required String unitPrice,
 
     /// return null in cancel order api
     ProductModel? product,
@@ -112,23 +113,27 @@ class OrderDetailsModel with _$OrderDetailsModel {
      @JsonKey(name: "picker_notes",defaultValue: "",) String? pickerNotes,
   }) = _OrderDetailsModel;
 
-  factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
-      _$OrderDetailsModelFromJson(json);
+  factory OrderDetailsModel.fromJson(Map<String, dynamic> json) => _$OrderDetailsModelFromJson(json);
 
   String get getProductPrice{
-    var itemPrice = double.parse(price);
-    var singleItemPrice = (itemPrice/quantity).toStringAsFixed(2);
-    return singleItemPrice;
+    // var itemPrice = double.parse(unitPrice);
+    // var singleItemPrice = (itemPrice/quantity).toStringAsFixed(2);
+    return unitPrice;
   }
 
+  // double get remainQntPrice{
+  //   var itemPrice = double.parse(price);
+  //   var singleItemPrice = (itemPrice/quantity);
+  //   if(product!.replaced){
+  //     return itemPrice*remainQnt ;
+  //   }else{
+  //     return singleItemPrice*remainQnt;
+  //   }
+  // }
+
   double get remainQntPrice{
-    var itemPrice = double.parse(price);
-    var singleItemPrice = (itemPrice/quantity);
-    if(product!.replaced){
-      return itemPrice*remainQnt ;
-    }else{
-      return singleItemPrice*remainQnt;
-    }
+    double itemPrice = double.parse(unitPrice);
+   return itemPrice*remainQnt;
   }
 
   int  get remainQnt{

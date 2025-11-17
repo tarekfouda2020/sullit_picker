@@ -805,6 +805,10 @@ mixin _$OrderDetailsModel {
   set quantity(int value) => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
   set price(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "unit_price")
+  String get unitPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: "unit_price")
+  set unitPrice(String value) => throw _privateConstructorUsedError;
 
   /// return null in cancel order api
   ProductModel? get product => throw _privateConstructorUsedError;
@@ -865,6 +869,7 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       String variation,
       int quantity,
       String price,
+      @JsonKey(name: "unit_price") String unitPrice,
       ProductModel? product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
       @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
@@ -893,6 +898,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? variation = null,
     Object? quantity = null,
     Object? price = null,
+    Object? unitPrice = null,
     Object? product = freezed,
     Object? newVariantId = freezed,
     Object? addedVariantId = freezed,
@@ -915,6 +921,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      unitPrice: null == unitPrice
+          ? _value.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
               as String,
       product: freezed == product
           ? _value.product
@@ -967,6 +977,7 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       String variation,
       int quantity,
       String price,
+      @JsonKey(name: "unit_price") String unitPrice,
       ProductModel? product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
       @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
@@ -994,6 +1005,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? variation = null,
     Object? quantity = null,
     Object? price = null,
+    Object? unitPrice = null,
     Object? product = freezed,
     Object? newVariantId = freezed,
     Object? addedVariantId = freezed,
@@ -1016,6 +1028,10 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as String,
+      unitPrice: null == unitPrice
+          ? _value.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
               as String,
       product: freezed == product
           ? _value.product
@@ -1049,6 +1065,7 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
       required this.variation,
       required this.quantity,
       required this.price,
+      @JsonKey(name: "unit_price") required this.unitPrice,
       this.product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) this.newVariantId,
       @JsonKey(name: "added_variant_id", defaultValue: -1) this.addedVariantId,
@@ -1067,6 +1084,9 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   int quantity;
   @override
   String price;
+  @override
+  @JsonKey(name: "unit_price")
+  String unitPrice;
 
   /// return null in cancel order api
   @override
@@ -1094,7 +1114,7 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes)';
+    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes)';
   }
 
   /// Create a copy of OrderDetailsModel
@@ -1120,6 +1140,7 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       required String variation,
       required int quantity,
       required String price,
+      @JsonKey(name: "unit_price") required String unitPrice,
       ProductModel? product,
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
       @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
@@ -1143,6 +1164,11 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   @override
   String get price;
   set price(String value);
+  @override
+  @JsonKey(name: "unit_price")
+  String get unitPrice;
+  @JsonKey(name: "unit_price")
+  set unitPrice(String value);
 
   /// return null in cancel order api
   @override
