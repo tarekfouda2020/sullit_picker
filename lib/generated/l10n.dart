@@ -1700,10 +1700,10 @@ class S {
     );
   }
 
-  /// `Customer name`
+  /// `Customer Name`
   String get customer_name {
     return Intl.message(
-      'Customer name',
+      'Customer Name',
       name: 'customer_name',
       desc: '',
       args: [],
@@ -3745,6 +3745,56 @@ class S {
     return Intl.message(
       'Start pick at',
       name: 'start_pick_at',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Reason...?`
+  String get update_reason {
+    return Intl.message(
+      'Update Reason...?',
+      name: 'update_reason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm number of used bags`
+  String get confirm_used_bags {
+    return Intl.message(
+      'Confirm number of used bags',
+      name: 'confirm_used_bags',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter number of bags`
+  String get enter_bag_number {
+    return Intl.message(
+      'Enter number of bags',
+      name: 'enter_bag_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete Dispatch`
+  String get complete_dispatch {
+    return Intl.message(
+      'Complete Dispatch',
+      name: 'complete_dispatch',
       desc: '',
       args: [],
     );

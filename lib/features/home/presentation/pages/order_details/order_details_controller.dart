@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bags_number_dialog_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/update_reason_dialog_widget.dart';
 
 import 'order_details_imports.dart';
@@ -10,10 +11,13 @@ class OrderDetailsController {
   final TextEditingController newWeightController = TextEditingController();
   final TextEditingController newPriceController = TextEditingController();
   final TextEditingController pickerNoteController = TextEditingController();
+  final TextEditingController bagsCountController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final GlobalKey<FormState> replaceReasonKey = GlobalKey<FormState>();
+
+  final GlobalKey<FormState> bagsCountFormKey = GlobalKey<FormState>();
 
   late ShowOrdersRequester showOrdersRequester;
   late final int orderId;
@@ -282,7 +286,8 @@ class OrderDetailsController {
 
   Future<void> removeOrder() async {
     List<OrderModel> assignedOrders = getIt<OrdersHelper>().getAssignedOrders();
-    assignedOrders.removeWhere((order) => order.id == orderId);
+    List<OrderModel> updatedList = (assignedOrders).map((e) => e).toList();
+    updatedList.removeWhere((element) => element.id == orderId,);
     await getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
     await getIt<OrdersHelper>().deleteOrderDetails(orderId);
   }
@@ -723,6 +728,14 @@ class OrderDetailsController {
     },);
   }
 
+
+  void showBagsCountDialog(BuildContext context){
+    showDialog(context: context, builder: (context) {
+      return BagsNumberDialogWidget(controller: this);
+    },);
+  }
+
+
   void showDeletedProductsSheet(BuildContext context) {
     AppBottomSheets.showScrollableBody(
       context: context,
@@ -761,38 +774,44 @@ class OrderDetailsController {
   int get getPickedItemsCount => _detailsData.ordersDetails!.where((element) => element.remainQnt == 0).length;
 
   Future<void> prepareOrder(BuildContext context) async {
-    getIt<LoadingHelper>().showLoadingDialog();
-    final params = _prepareOrderParams();
-    final result = await getIt<HomeRepositories>().prepareOrder(params);
-    result.when(
-      isSuccess: (data) async{
-        List<OrderModel>? assigned = getIt<OrdersHelper>().assignedOrdersCubit.data;
-        List<OrderModel> updatedList = (assigned ?? <OrderModel>[]).map((e) => e).toList();
-        updatedList.removeWhere((element) => element.id == orderId,);
-        await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
-        await getIt<OrdersHelper>().getAllOrders();
-        AutoRouter.of(context).maybePop(params.orderId);
-        getIt<OrdersHelper>().deleteOrderDetails(data!.id);
-        AppSnackBar.showSuccessSnackBar(
-          Translate.of(context).order_ready_for_delivery,
-        );
-        getIt<LoadingHelper>().dismissDialog();
-      },
-      isError: (error) {
-        AppSnackBar.showSimpleToast(
-          msg: Translate.of(context).something_went_wrong,
-          type: ToastType.error,
-        );
-      },
-    );
-    getIt<LoadingHelper>().dismissDialog();
+    if(bagsCountFormKey.currentState!.validate()){
+      Navigator.pop(context);
+      getIt<LoadingHelper>().showLoadingDialog();
+      final params = _prepareOrderParams();
+      final result = await getIt<HomeRepositories>().prepareOrder(params);
+      BuildContext ctx = getIt<GlobalContext>().context();
+      result.when(
+        isSuccess: (data) async{
+          List<OrderModel>? assigned = getIt<OrdersHelper>().assignedOrdersCubit.data;
+          List<OrderModel> updatedList = (assigned ?? <OrderModel>[]).map((e) => e).toList();
+          updatedList.removeWhere((element) => element.id == orderId,);
+          await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+          await getIt<OrdersHelper>().getAllOrders();
+          AutoRouter.of(ctx).maybePop(params.orderId);
+          getIt<OrdersHelper>().deleteOrderDetails(data!.id);
+          AppSnackBar.showSuccessSnackBar(
+            Translate.of(ctx).order_ready_for_delivery,
+          );
+          getIt<LoadingHelper>().dismissDialog();
+        },
+        isError: (error) {
+          AppSnackBar.showSimpleToast(
+            msg: Translate.of(ctx).something_went_wrong,
+            type: ToastType.error,
+          );
+        },
+      );
+      getIt<LoadingHelper>().dismissDialog();
+    }
   }
 
   PrepareOrderParams _prepareOrderParams() {
+    double bagCount = double.parse(bagsCountController.text);
     return PrepareOrderParams(
       orderId: orderId,
       currentProductsDetails: _detailsData.ordersDetails!,
       deletedDetails: _detailsData.deletedOrders,
+      bagCount: bagCount.toInt()
     );
   }
 

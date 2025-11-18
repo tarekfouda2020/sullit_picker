@@ -96,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "code_sent_to":
             MessageLookupByLibrary.simpleMessage("تم إرسال رمز إلى"),
         "collected": MessageLookupByLibrary.simpleMessage("مقبوض"),
+        "complete_dispatch":
+            MessageLookupByLibrary.simpleMessage("إكمال الشحن"),
         "complete_order": MessageLookupByLibrary.simpleMessage("إكمال الطلب"),
         "completed_orders":
             MessageLookupByLibrary.simpleMessage("الطلبات المكتملة"),
@@ -110,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور مطلوب"),
         "confirm_return_original_product":
             MessageLookupByLibrary.simpleMessage("تأكيد إرجاع المنتج الأصلي؟"),
+        "confirm_used_bags":
+            MessageLookupByLibrary.simpleMessage("تأكيد عدد الأكياس المستخدمة"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("أكد كلمة المرور"),
         "contact_us": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
@@ -133,7 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور الحالية مطلوبة"),
         "customer_info": MessageLookupByLibrary.simpleMessage("معلومات العميل"),
         "customer_issue": MessageLookupByLibrary.simpleMessage("مشكلة العميل"),
-        "customer_name": MessageLookupByLibrary.simpleMessage("اسم العميل "),
+        "customer_name": MessageLookupByLibrary.simpleMessage("اسم العميل"),
         "customer_not_available":
             MessageLookupByLibrary.simpleMessage("العميل غير متاح"),
         "customer_phone":
@@ -168,6 +172,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
         "email_required":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني مطلوب"),
+        "enter_bag_number":
+            MessageLookupByLibrary.simpleMessage("أدخل عدد الأكياس"),
         "enter_code": MessageLookupByLibrary.simpleMessage("أدخل الرمز"),
         "enter_code_to_reset": MessageLookupByLibrary.simpleMessage(
             "أدخل رمزك لإعادة تعيين كلمة المرور"),
@@ -519,6 +525,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistics": MessageLookupByLibrary.simpleMessage("إحصائياتي"),
         "status": MessageLookupByLibrary.simpleMessage("الحالة"),
         "street_name": MessageLookupByLibrary.simpleMessage("اسم الشارع"),
+        "submit": MessageLookupByLibrary.simpleMessage("إرسال"),
         "submit_report": MessageLookupByLibrary.simpleMessage("إرسال التقرير"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("متجر سليط"),
         "supported_geographical_area":
@@ -551,6 +558,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "united_arab_emirates_dubai": MessageLookupByLibrary.simpleMessage(
             "الإمارات العربية المتحدة، دبي"),
         "unpaid": MessageLookupByLibrary.simpleMessage("غير مدفوع"),
+        "update_reason":
+            MessageLookupByLibrary.simpleMessage(" سبب التحديث..؟"),
         "user_didnt_respond":
             MessageLookupByLibrary.simpleMessage("المستخدم لم يستجب"),
         "user_name": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),

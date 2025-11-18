@@ -38,7 +38,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                       ),
                       child: AppTextButton.maxCustom(
                         text: Translate.of(context).dispatch,
-                        onPressed: ()=> controller.prepareOrder(context),
+                        onPressed: ()=> controller.showBagsCountDialog(context),
                         textSize: 18,
                         txtColor: context.colors.white,
                         bgColor: context.colors.appGreen,

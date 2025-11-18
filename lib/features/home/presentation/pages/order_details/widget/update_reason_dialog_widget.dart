@@ -14,8 +14,7 @@ class UpdateReasonDialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
         title: Text(
-        // Translate.of(context).what_is_new_weight,
-        "Update Reason..?",
+       Translate.s.update_reason,
         textAlign: TextAlign.center,
         style: AppTextStyle.s18_w700(color: context.colors.textColor),
     ),
@@ -30,7 +29,7 @@ class UpdateReasonDialogWidget extends StatelessWidget {
           PickerNotesWidget(controller: controller),
           Gaps.vGap15,
           AppTextButton.maxCustom(
-            text: "Submit",
+            text: Translate.s.submit,
           onPressed: onPressSubmit,
           )
         ],

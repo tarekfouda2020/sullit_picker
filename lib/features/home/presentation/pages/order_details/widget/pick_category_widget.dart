@@ -14,10 +14,7 @@ class PickCategoryWidget extends StatelessWidget {
       child: ListView.builder(
         itemCount: order.ordersDetails!.length,
         itemBuilder: (context, index) {
-          return PickItemWidget(
-            orderDetails: order.ordersDetails![index],
-            controller: controller,
-          );
+          return ;
         },
       ),
     );

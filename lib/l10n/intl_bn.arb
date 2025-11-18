@@ -267,10 +267,8 @@
   "enter_new_price": "নতুন মূল্য লিখুন",
   "new_weight_must_not_less_than": "নতুন ওজন কম হতে পারবে না",
   "confirm_return_original_product": "মূল পণ্য ফেরত দেওয়ার নিশ্চিতকরণ?",
-  "return_key": "ফিরে যান",
   "seconds_ago": "সেকেন্ড আগে",
   "minutes_ago": "মিনিট আগে",
-  "hours_ago": "ঘণ্টা আগে",
   "days_ago": "দিন আগে",
   "weeks_ago": "সপ্তাহ আগে",
   "months_ago": "মাস আগে",
@@ -284,5 +282,11 @@
   "no_orders_found": "কোনও অর্ডার পাওয়া যায়নি",
   "previous_orders": "পূর্ববর্তী অর্ডারসমূহ",
   "status": "স্থিতি",
-  "start_pick_at": "শুরু করার সময়"
+  "start_pick_at": "শুরু করার সময়",
+  "update_reason": "আপডেটের কারণ কী?",
+  "submit": "জমা দিন",
+  "confirm_used_bags": "ব্যবহৃত ব্যাগের সংখ্যা নিশ্চিত করুন",
+  "enter_bag_number": "ব্যাগের সংখ্যা লিখুন",
+  "complete_dispatch": "ডিসপ্যাচ সম্পন্ন করুন"
+
 }

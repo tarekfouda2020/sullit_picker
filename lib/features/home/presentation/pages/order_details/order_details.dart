@@ -4,9 +4,11 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/widge
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/header_order_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/order_details_shimmer_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/pick_category_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/pick_item_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/timer_card_details_widget.dart';
 
 import 'order_details_imports.dart';
+import 'widget/order_details_header_widget.dart';
 
 @RoutePage(name: "OrderDetailsRouteName")
 class OrderDetails extends StatefulWidget {
@@ -39,15 +41,28 @@ class _OrderDetailsState extends State<OrderDetails> {
           onSuccessWidget: (data) {
             return Column(
               children: [
-                Gaps.vGap(kToolbarHeight),
-                HeaderOrderDetailsWidget(
-                  data: data,
-                  controller: controller,
+                Gaps.vGap(kToolbarHeight-20),
+                OrderDetailsHeaderWidget(data: data),
+                Gaps.vGap10,
+                Expanded(
+                  child: ListView(
+                    children: [
+                      HeaderOrderDetailsWidget(
+                        data: data,
+                        controller: controller,
+                      ),
+                      Gaps.vGap12,
+                      TimerCardDetailsWidget(data: data,controller: controller),
+                      Gaps.vGap12,
+                      ...List.generate(data.ordersDetails!.length, (index) {
+                        return PickItemWidget(
+                          orderDetails: data.ordersDetails![index],
+                          controller: controller,
+                        );
+                      },)
+                    ],
+                  ),
                 ),
-                Gaps.vGap12,
-                TimerCardDetailsWidget(data: data,controller: controller),
-                Gaps.vGap12,
-                PickCategoryWidget(controller: controller, order: data),
               ],
             );
           },

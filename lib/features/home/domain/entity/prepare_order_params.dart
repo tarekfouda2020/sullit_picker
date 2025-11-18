@@ -7,11 +7,14 @@ class PrepareOrderParams {
   final int orderId;
   final List<OrderDetailsModel> currentProductsDetails;
   final List<OrderDetailsModel>? deletedDetails;
+  final int? bagCount;
 
   const PrepareOrderParams(
       {required this.orderId,
       required this.currentProductsDetails,
-      this.deletedDetails});
+      this.deletedDetails,
+      this.bagCount,
+      });
 
   Map<String, dynamic> toJson() {
     final List<OrderDetailsModel> currentDetails = currentProductsDetails;
@@ -56,10 +59,11 @@ class PrepareOrderParams {
       ...removeDetailsJson
     ];
 
-    log("======>>>> all data $allDetailsJsons <<<<<<======");
+    // log("======>>>> all data $allDetailsJsons <<<<<<======");
 
     return {
       if (allDetailsJsons.isNotEmpty) "details": jsonEncode(allDetailsJsons),
+      if (bagCount!=null && (bagCount ?? 0 ) > 0 ) "bag_count": bagCount,
     };
   }
 

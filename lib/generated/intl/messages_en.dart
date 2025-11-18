@@ -97,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "code_sent_to":
             MessageLookupByLibrary.simpleMessage("A code has been sent to"),
         "collected": MessageLookupByLibrary.simpleMessage("Collected"),
+        "complete_dispatch":
+            MessageLookupByLibrary.simpleMessage("Complete Dispatch"),
         "complete_order":
             MessageLookupByLibrary.simpleMessage("Complete Order"),
         "completed_orders":
@@ -112,6 +114,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Confirm password is required"),
         "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
             "Confirm return the original product?"),
+        "confirm_used_bags":
+            MessageLookupByLibrary.simpleMessage("Confirm number of used bags"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
         "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
@@ -137,7 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Customer Information"),
         "customer_issue":
             MessageLookupByLibrary.simpleMessage("Customer Issue"),
-        "customer_name": MessageLookupByLibrary.simpleMessage("Customer name"),
+        "customer_name": MessageLookupByLibrary.simpleMessage("Customer Name"),
         "customer_not_available":
             MessageLookupByLibrary.simpleMessage("Customer not available"),
         "customer_phone":
@@ -172,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
         "email_required":
             MessageLookupByLibrary.simpleMessage("Email is required"),
+        "enter_bag_number":
+            MessageLookupByLibrary.simpleMessage("Enter number of bags"),
         "enter_code": MessageLookupByLibrary.simpleMessage("Enter code"),
         "enter_code_to_reset": MessageLookupByLibrary.simpleMessage(
             "Enter your code to reset your password"),
@@ -528,6 +534,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistics": MessageLookupByLibrary.simpleMessage("My Statistics"),
         "status": MessageLookupByLibrary.simpleMessage("status"),
         "street_name": MessageLookupByLibrary.simpleMessage("Street Name"),
+        "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "submit_report": MessageLookupByLibrary.simpleMessage("Submit Report"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("Sulite Store"),
         "supported_geographical_area":
@@ -562,6 +569,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("United Arab Emirates, Dubai"),
         "unpaid": MessageLookupByLibrary.simpleMessage("UnPaid"),
+        "update_reason":
+            MessageLookupByLibrary.simpleMessage("Update Reason...?"),
         "user_didnt_respond":
             MessageLookupByLibrary.simpleMessage("User didn\'t respond"),
         "user_name": MessageLookupByLibrary.simpleMessage("User Name"),

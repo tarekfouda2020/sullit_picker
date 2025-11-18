@@ -31,6 +31,7 @@ class OrderModel with _$OrderModel {
      required CustomerModel customer,
     required String code,
     @JsonKey(name: 'total_items') required int totalItems,
+    @JsonKey(name: 'bag_count') required int bagCount,
     @JsonKey(name: 'allow_replacement') required bool allowReplacement,
     required String status,
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
@@ -156,6 +157,7 @@ class ProductModel with _$ProductModel {
     required String unit,
     required CategoryModel category,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
+    @JsonKey(name: 'is_fresh') required bool isFresh,
 
      /// used in local data
     @JsonKey(name: 'picked_percent',defaultValue: 0.0) double? productPickedPercent,

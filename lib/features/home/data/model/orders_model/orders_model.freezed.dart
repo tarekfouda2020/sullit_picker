@@ -256,6 +256,10 @@ mixin _$OrderModel {
   int get totalItems => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_items')
   set totalItems(int value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bag_count')
+  int get bagCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bag_count')
+  set bagCount(int value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'allow_replacement')
   bool get allowReplacement => throw _privateConstructorUsedError;
   @JsonKey(name: 'allow_replacement')
@@ -340,6 +344,7 @@ abstract class $OrderModelCopyWith<$Res> {
       CustomerModel customer,
       String code,
       @JsonKey(name: 'total_items') int totalItems,
+      @JsonKey(name: 'bag_count') int bagCount,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
       String status,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
@@ -378,6 +383,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? customer = null,
     Object? code = null,
     Object? totalItems = null,
+    Object? bagCount = null,
     Object? allowReplacement = null,
     Object? status = null,
     Object? preparationMinutes = null,
@@ -405,6 +411,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
+      bagCount: null == bagCount
+          ? _value.bagCount
+          : bagCount // ignore: cast_nullable_to_non_nullable
               as int,
       allowReplacement: null == allowReplacement
           ? _value.allowReplacement
@@ -473,6 +483,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       CustomerModel customer,
       String code,
       @JsonKey(name: 'total_items') int totalItems,
+      @JsonKey(name: 'bag_count') int bagCount,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
       String status,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
@@ -510,6 +521,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? customer = null,
     Object? code = null,
     Object? totalItems = null,
+    Object? bagCount = null,
     Object? allowReplacement = null,
     Object? status = null,
     Object? preparationMinutes = null,
@@ -537,6 +549,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
+              as int,
+      bagCount: null == bagCount
+          ? _value.bagCount
+          : bagCount // ignore: cast_nullable_to_non_nullable
               as int,
       allowReplacement: null == allowReplacement
           ? _value.allowReplacement
@@ -590,6 +606,7 @@ class _$OrderModelImpl extends _OrderModel {
       required this.customer,
       required this.code,
       @JsonKey(name: 'total_items') required this.totalItems,
+      @JsonKey(name: 'bag_count') required this.bagCount,
       @JsonKey(name: 'allow_replacement') required this.allowReplacement,
       required this.status,
       @JsonKey(name: 'preparation_minutes') required this.preparationMinutes,
@@ -619,6 +636,9 @@ class _$OrderModelImpl extends _OrderModel {
   @override
   @JsonKey(name: 'total_items')
   int totalItems;
+  @override
+  @JsonKey(name: 'bag_count')
+  int bagCount;
   @override
   @JsonKey(name: 'allow_replacement')
   bool allowReplacement;
@@ -659,7 +679,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, bagCount: $bagCount, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   /// Create a copy of OrderModel
@@ -684,6 +704,7 @@ abstract class _OrderModel extends OrderModel {
       required CustomerModel customer,
       required String code,
       @JsonKey(name: 'total_items') required int totalItems,
+      @JsonKey(name: 'bag_count') required int bagCount,
       @JsonKey(name: 'allow_replacement') required bool allowReplacement,
       required String status,
       @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
@@ -718,6 +739,11 @@ abstract class _OrderModel extends OrderModel {
   int get totalItems;
   @JsonKey(name: 'total_items')
   set totalItems(int value);
+  @override
+  @JsonKey(name: 'bag_count')
+  int get bagCount;
+  @JsonKey(name: 'bag_count')
+  set bagCount(int value);
   @override
   @JsonKey(name: 'allow_replacement')
   bool get allowReplacement;
@@ -1241,6 +1267,10 @@ mixin _$ProductModel {
   String get thumbnailImage => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_image')
   set thumbnailImage(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_fresh')
+  bool get isFresh => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_fresh')
+  set isFresh(bool value) => throw _privateConstructorUsedError;
 
   /// used in local data
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1286,6 +1316,7 @@ abstract class $ProductModelCopyWith<$Res> {
       String unit,
       CategoryModel category,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
+      @JsonKey(name: 'is_fresh') bool isFresh,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
       double? productPickedPercent,
       @JsonKey(name: 'picked_quantity', defaultValue: 0) int? pickedQuantity,
@@ -1318,6 +1349,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? unit = null,
     Object? category = null,
     Object? thumbnailImage = null,
+    Object? isFresh = null,
     Object? productPickedPercent = freezed,
     Object? pickedQuantity = freezed,
     Object? productStatus = freezed,
@@ -1348,6 +1380,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.thumbnailImage
           : thumbnailImage // ignore: cast_nullable_to_non_nullable
               as String,
+      isFresh: null == isFresh
+          ? _value.isFresh
+          : isFresh // ignore: cast_nullable_to_non_nullable
+              as bool,
       productPickedPercent: freezed == productPickedPercent
           ? _value.productPickedPercent
           : productPickedPercent // ignore: cast_nullable_to_non_nullable
@@ -1393,6 +1429,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       String unit,
       CategoryModel category,
       @JsonKey(name: 'thumbnail_image') String thumbnailImage,
+      @JsonKey(name: 'is_fresh') bool isFresh,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
       double? productPickedPercent,
       @JsonKey(name: 'picked_quantity', defaultValue: 0) int? pickedQuantity,
@@ -1424,6 +1461,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? unit = null,
     Object? category = null,
     Object? thumbnailImage = null,
+    Object? isFresh = null,
     Object? productPickedPercent = freezed,
     Object? pickedQuantity = freezed,
     Object? productStatus = freezed,
@@ -1454,6 +1492,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.thumbnailImage
           : thumbnailImage // ignore: cast_nullable_to_non_nullable
               as String,
+      isFresh: null == isFresh
+          ? _value.isFresh
+          : isFresh // ignore: cast_nullable_to_non_nullable
+              as bool,
       productPickedPercent: freezed == productPickedPercent
           ? _value.productPickedPercent
           : productPickedPercent // ignore: cast_nullable_to_non_nullable
@@ -1484,6 +1526,7 @@ class _$ProductModelImpl extends _ProductModel {
       required this.unit,
       required this.category,
       @JsonKey(name: 'thumbnail_image') required this.thumbnailImage,
+      @JsonKey(name: 'is_fresh') required this.isFresh,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
       this.productPickedPercent,
       @JsonKey(name: 'picked_quantity', defaultValue: 0) this.pickedQuantity,
@@ -1509,6 +1552,9 @@ class _$ProductModelImpl extends _ProductModel {
   @override
   @JsonKey(name: 'thumbnail_image')
   String thumbnailImage;
+  @override
+  @JsonKey(name: 'is_fresh')
+  bool isFresh;
 
   /// used in local data
   @override
@@ -1526,7 +1572,7 @@ class _$ProductModelImpl extends _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, barcode: $barcode, unit: $unit, category: $category, thumbnailImage: $thumbnailImage, productPickedPercent: $productPickedPercent, pickedQuantity: $pickedQuantity, productStatus: $productStatus, showEditPrice: $showEditPrice)';
+    return 'ProductModel(id: $id, name: $name, barcode: $barcode, unit: $unit, category: $category, thumbnailImage: $thumbnailImage, isFresh: $isFresh, productPickedPercent: $productPickedPercent, pickedQuantity: $pickedQuantity, productStatus: $productStatus, showEditPrice: $showEditPrice)';
   }
 
   /// Create a copy of ProductModel
@@ -1553,6 +1599,7 @@ abstract class _ProductModel extends ProductModel {
       required String unit,
       required CategoryModel category,
       @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
+      @JsonKey(name: 'is_fresh') required bool isFresh,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0)
       double? productPickedPercent,
       @JsonKey(name: 'picked_quantity', defaultValue: 0) int? pickedQuantity,
@@ -1585,6 +1632,11 @@ abstract class _ProductModel extends ProductModel {
   String get thumbnailImage;
   @JsonKey(name: 'thumbnail_image')
   set thumbnailImage(String value);
+  @override
+  @JsonKey(name: 'is_fresh')
+  bool get isFresh;
+  @JsonKey(name: 'is_fresh')
+  set isFresh(bool value);
 
   /// used in local data
   @override

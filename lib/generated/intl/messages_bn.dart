@@ -89,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "code_sent_to":
             MessageLookupByLibrary.simpleMessage("একটি কোড পাঠানো হয়েছে"),
         "collected": MessageLookupByLibrary.simpleMessage("সংগৃহীত"),
+        "complete_dispatch":
+            MessageLookupByLibrary.simpleMessage("ডিসপ্যাচ সম্পন্ন করুন"),
         "completed_orders":
             MessageLookupByLibrary.simpleMessage("সম্পূর্ণ অর্ডার"),
         "confirm": MessageLookupByLibrary.simpleMessage("নিশ্চিত করুন"),
@@ -100,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("পাসওয়ার্ড নিশ্চিত করুন"),
         "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
             "মূল পণ্য ফেরত দেওয়ার নিশ্চিতকরণ?"),
+        "confirm_used_bags": MessageLookupByLibrary.simpleMessage(
+            "ব্যবহৃত ব্যাগের সংখ্যা নিশ্চিত করুন"),
         "confirm_your_password": MessageLookupByLibrary.simpleMessage(
             "আপনার পাসওয়ার্ড নিশ্চিত করুন"),
         "contact_us": MessageLookupByLibrary.simpleMessage("যোগাযোগ করুন"),
@@ -133,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("প্রোফাইল সম্পাদনা করুন"),
         "email_placeholder":
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
+        "enter_bag_number":
+            MessageLookupByLibrary.simpleMessage("ব্যাগের সংখ্যা লিখুন"),
         "enter_code": MessageLookupByLibrary.simpleMessage("কোড লিখুন"),
         "enter_code_to_reset": MessageLookupByLibrary.simpleMessage(
             "আপনার পাসওয়ার্ড পুনরায় সেট করতে আপনার কোড লিখুন"),
@@ -198,7 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fresh_whole_chicken":
             MessageLookupByLibrary.simpleMessage("তাজা গোটা মুরগি"),
         "history": MessageLookupByLibrary.simpleMessage("ইতিহাস"),
-        "hours_ago": MessageLookupByLibrary.simpleMessage("ঘণ্টা আগে"),
+        "hours_ago": MessageLookupByLibrary.simpleMessage("ঘন্টা আগে"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("ইন্টারনেট সংযুক্ত"),
         "is_weight_equals":
@@ -383,7 +389,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "আপনার পাসওয়ার্ড পুনরায় সেট করুন"),
         "restore": MessageLookupByLibrary.simpleMessage("পুনরুদ্ধার"),
         "retry": MessageLookupByLibrary.simpleMessage("পুনরায় চেষ্টা করুন"),
-        "return_key": MessageLookupByLibrary.simpleMessage("ফিরে যান"),
+        "return_key": MessageLookupByLibrary.simpleMessage("ফেরত"),
         "save": MessageLookupByLibrary.simpleMessage("সংরক্ষণ করুন"),
         "search": MessageLookupByLibrary.simpleMessage("অনুসন্ধান"),
         "search_hint": MessageLookupByLibrary.simpleMessage("অনুসন্ধান..."),
@@ -407,6 +413,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "start_pick_at": MessageLookupByLibrary.simpleMessage("শুরু করার সময়"),
         "status": MessageLookupByLibrary.simpleMessage("স্থিতি"),
         "street_name": MessageLookupByLibrary.simpleMessage("সড়কের নাম"),
+        "submit": MessageLookupByLibrary.simpleMessage("জমা দিন"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("সুলিত স্টোর"),
         "supported_geographical_area":
             MessageLookupByLibrary.simpleMessage("সমর্থিত ভৌগোলিক এলাকা"),
@@ -435,6 +442,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("সংযুক্ত আরব আমিরাত, দুবাই"),
         "unpaid": MessageLookupByLibrary.simpleMessage("অপেইড"),
+        "update_reason":
+            MessageLookupByLibrary.simpleMessage("আপডেটের কারণ কী?"),
         "user_didnt_respond":
             MessageLookupByLibrary.simpleMessage("ব্যবহারকারী সাড়া দেয়নি"),
         "user_no_replace_access": MessageLookupByLibrary.simpleMessage(

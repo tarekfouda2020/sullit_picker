@@ -352,10 +352,8 @@
   "enter_new_price": "نئی قیمت درج کریں",
   "new_weight_must_not_less_than": "نیا وزن اس سے کم نہیں ہونا چاہیے",
   "confirm_return_original_product": "کیا آپ اصل پروڈکٹ واپس کرنے کی تصدیق کرتے ہیں؟",
-  "return_key": "واپس",
   "seconds_ago": "سیکنڈ پہلے",
   "minutes_ago": "منٹ پہلے",
-  "hours_ago": "گھنٹے پہلے",
   "days_ago": "دن پہلے",
   "weeks_ago": "ہفتے پہلے",
   "months_ago": "مہینے پہلے",
@@ -369,5 +367,10 @@
   "no_orders_found": "کوئی آرڈر نہیں ملا",
   "previous_orders": "پچھلے آرڈرز",
   "status": "حالت",
-  "start_pick_at": "اٹھانا شروع کریں وقت"
+  "start_pick_at": "اٹھانا شروع کریں وقت",
+  "update_reason": "اپ ڈیٹ کی وجہ کیا ہے؟",
+  "submit": "جمع کریں",
+  "confirm_used_bags": "استعمال شدہ تھیلوں کی تعداد کی تصدیق کریں",
+  "enter_bag_number": "تھیلوں کی تعداد درج کریں",
+  "complete_dispatch": "ڈسپیچ مکمل کریں"
 }

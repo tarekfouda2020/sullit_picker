@@ -34,7 +34,7 @@ class DialogActionWidget extends StatelessWidget {
             Gaps.vGap21,
             Text(
               description,
-              style: AppTextStyle.s18_w700(color: context.colors.textColor).copyWith(height: 1.2),
+              style: AppTextStyle.s18_w700(color: context.colors.black).copyWith(height: 1.2),
               textAlign: TextAlign.center,
             ),
             Gaps.vGap24,

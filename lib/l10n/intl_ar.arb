@@ -357,11 +357,9 @@
   "contact_with_customer_using": "التواصل مع العميل عبر",
   "whatsapp": "واتساب",
   "customer_phone": "رقم هاتف العميل",
-  "customer_name": "اسم العميل ",
   "return_key": "إرجاع",
   "seconds_ago": "منذ ثوانٍ",
   "minutes_ago": "منذ دقائق",
-  "hours_ago": "منذ ساعات",
   "days_ago": "منذ أيام",
   "weeks_ago": "منذ أسابيع",
   "months_ago": "منذ أشهر",
@@ -375,5 +373,10 @@
   "no_orders_found": "لم يتم العثور على طلبات",
   "previous_orders": "الطلبات السابقة",
   "status": "الحالة",
-  "start_pick_at": "بدأ الالتقاط في"
+  "start_pick_at": "بدأ الالتقاط في",
+  "update_reason": " سبب التحديث..؟",
+  "submit": "إرسال",
+  "confirm_used_bags": "تأكيد عدد الأكياس المستخدمة",
+  "enter_bag_number": "أدخل عدد الأكياس",
+  "complete_dispatch": "إكمال الشحن"
 }

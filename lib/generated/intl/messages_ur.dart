@@ -99,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "code": MessageLookupByLibrary.simpleMessage("کوڈ"),
         "code_sent_to": MessageLookupByLibrary.simpleMessage("کوڈ بھیجا گیا"),
         "collected": MessageLookupByLibrary.simpleMessage("جمع شدہ"),
+        "complete_dispatch":
+            MessageLookupByLibrary.simpleMessage("ڈسپیچ مکمل کریں"),
         "complete_order":
             MessageLookupByLibrary.simpleMessage("آرڈر مکمل کریں"),
         "completed_orders":
@@ -114,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("پاس ورڈ کی تصدیق ضروری ہے"),
         "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
             "کیا آپ اصل پروڈکٹ واپس کرنے کی تصدیق کرتے ہیں؟"),
+        "confirm_used_bags": MessageLookupByLibrary.simpleMessage(
+            "استعمال شدہ تھیلوں کی تعداد کی تصدیق کریں"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("اپنے پاس ورڈ کی تصدیق کریں"),
         "contact_us": MessageLookupByLibrary.simpleMessage("ہم سے رابطہ کریں"),
@@ -173,6 +177,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
         "email_required":
             MessageLookupByLibrary.simpleMessage("ای میل ضروری ہے"),
+        "enter_bag_number":
+            MessageLookupByLibrary.simpleMessage("تھیلوں کی تعداد درج کریں"),
         "enter_code": MessageLookupByLibrary.simpleMessage("کوڈ درج کریں"),
         "enter_code_to_reset": MessageLookupByLibrary.simpleMessage(
             "پاس ورڈ ری سیٹ کرنے کے لیے اپنا کوڈ درج کریں"),
@@ -525,6 +531,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "statistics": MessageLookupByLibrary.simpleMessage("میری شماریات"),
         "status": MessageLookupByLibrary.simpleMessage("حالت"),
         "street_name": MessageLookupByLibrary.simpleMessage("گلی کا نام"),
+        "submit": MessageLookupByLibrary.simpleMessage("جمع کریں"),
         "submit_report": MessageLookupByLibrary.simpleMessage("رپورٹ جمع کریں"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("سلیٹ اسٹور"),
         "supported_geographical_area":
@@ -556,6 +563,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("متحدہ عرب امارات، دبئی"),
         "unpaid": MessageLookupByLibrary.simpleMessage("ادائیگی نہیں ہوئی"),
+        "update_reason":
+            MessageLookupByLibrary.simpleMessage("اپ ڈیٹ کی وجہ کیا ہے؟"),
         "user_didnt_respond":
             MessageLookupByLibrary.simpleMessage("صارف نے جواب نہیں دیا"),
         "user_name": MessageLookupByLibrary.simpleMessage("صارف کا نام"),

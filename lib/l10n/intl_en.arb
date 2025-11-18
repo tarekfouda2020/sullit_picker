@@ -354,10 +354,8 @@
   "contact_with_customer_using": "Contact with customer using",
   "whatsapp": "WhatsApp",
   "customer_phone": "Customer phone",
-  "customer_name": "Customer name",
   "seconds_ago": "seconds ago",
   "minutes_ago": "minutes ago",
-  "hours_ago": "hours ago",
   "days_ago": "days ago",
   "weeks_ago": "weeks ago",
   "months_ago": "months ago",
@@ -371,7 +369,12 @@
   "no_orders_found": "No orders found",
   "previous_orders": "Previous Orders",
   "status" :"status",
-  "start_pick_at": "Start pick at"
+  "start_pick_at": "Start pick at",
+  "update_reason": "Update Reason...?",
+  "submit": "Submit",
+  "confirm_used_bags": "Confirm number of used bags",
+  "enter_bag_number": "Enter number of bags",
+  "complete_dispatch": "Complete Dispatch"
 
 
 }
