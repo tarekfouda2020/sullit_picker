@@ -9,45 +9,34 @@ class DeviceIdHelper{
   Future<String?> getDeviceId() async {
     try {
       final messaging = FirebaseMessaging.instance;
-
-      // 👉 iOS ONLY - Wait for APNS token before getting FCM token
-      if (Platform.isIOS) {
-        // 1. Request notification permission (required for APNs)
-        NotificationSettings settings = await messaging.requestPermission(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
-
-        if (settings.authorizationStatus == AuthorizationStatus.denied) {
-          log("User denied notification permission");
-          return null;
-        }
-
-        // 2. Wait for APNs Token
-        String? apnsToken = await messaging.getAPNSToken();
-        int retry = 0;
-        const maxRetries = 20;
-
-        while (apnsToken == null && retry < maxRetries) {
-          await Future.delayed(const Duration(milliseconds: 500));
-          apnsToken = await messaging.getAPNSToken();
-          retry++;
-        }
-
-        if (apnsToken == null) {
-          log("APNs token still null after waiting.");
-          return null;
-        }
-
-        log("✅ APNs token received: ${apnsToken.substring(0, 20)}...");
-      }
+      // if (Platform.isIOS) {
+      //   String? apnsToken = await messaging.getAPNSToken();
+      //   int retry = 0;
+      //   const maxRetries = 20;
+      //   while (apnsToken == null && retry < maxRetries) {
+      //     await Future.delayed(const Duration(milliseconds: 500));
+      //     apnsToken = await messaging.getAPNSToken();
+      //     retry++;
+      //     if (retry % 5 == 0) {
+      //       log("⏳ Waiting for APNs token... (attempt $retry/$maxRetries)");
+      //     }
+      //   }
+      //   if (apnsToken == null) {
+      //     log("❌ APNs token still null after waiting ${maxRetries * 500}ms");
+      //     log("💡 Troubleshooting steps:");
+      //     log("   1. Check that Push Notifications capability is enabled in Xcode");
+      //     log("   2. Verify entitlements file has aps-environment set");
+      //     log("   3. Ensure app has notification permissions in Settings");
+      //     log("   4. Make sure you're testing on a physical device (not simulator)");
+      //     log("   5. Check that device is connected to internet");
+      //   }
+      // }
 
       final token = await messaging.getToken();
       return token;
 
     } catch (e) {
-      log("====>>>> error is $e ========");
+      log("❌ Error getting device token: $e ======== end error");
       return null;
     }
   }

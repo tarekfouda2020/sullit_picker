@@ -13,7 +13,7 @@ class NoOrdersViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HomeRefreshIndicatorWidget(
-      onRefresh: () async => await controller.refreshOrders(setLoading: false),
+      onRefresh: () async => await controller.getAllOrders(setLoading: false),
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: ConstrainedBox(

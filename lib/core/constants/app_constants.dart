@@ -17,7 +17,7 @@ class ApplicationConstants {
   static const paginationLimit = 10;
   static const paginationSkip = 0;
 
-  static const logoVarName = 'icon_g';
+  static const logoVarName = 'application_icon';
   static String logoPathPng = "assets/images/${ApplicationConstants.logoVarName}.png";
 
 }

@@ -34,16 +34,16 @@ class HomeController {
     availableForOrdersObs.refresh();
   }
 
-  Future<void> getAllOrders({bool fromRemote = true, bool setLoading = true}) async {
-   await getIt<OrdersHelper>().getAllOrders(setLoading: setLoading,fromRemote: fromRemote);
-  }
+  // Future<void> getAllOrders({bool fromRemote = true, bool setLoading = true}) async {
+  //  await getIt<OrdersHelper>().getAllOrders(setLoading: setLoading,fromRemote: fromRemote);
+  // }
 
-  Future<void> refreshOrders({bool fromRemote = true, bool setLoading = true}) async {
+  Future<void> getAllOrders({bool fromRemote = true, bool setLoading = true}) async {
     await getIt<OrdersHelper>().getAllOrders(setLoading: setLoading,fromRemote: fromRemote);
     OrdersList? remoteData = getIt<OrdersHelper>().ordersListCubit.data;
+    List<OrderModel> localAssignedOrders = getIt<OrdersHelper>().getAssignedOrders();
     if(remoteData!=null){
       List<OrderModel> remoteAssignedOrders = remoteData.assignedOrders;
-      List<OrderModel> localAssignedOrders = getIt<OrdersHelper>().getAssignedOrders();
       Set<int> remoteAssignedIds = remoteAssignedOrders.map((e) => e.id).toSet();
       localAssignedOrders.removeWhere((element) => !remoteAssignedIds.contains(element.id));
       getIt<OrdersHelper>().ordersListCubit.successState(remoteData);
@@ -51,7 +51,6 @@ class HomeController {
     }else{
       getIt<OrdersHelper>().saveAssignedOrders([]);
     }
-
   }
 
   void onPop() {
