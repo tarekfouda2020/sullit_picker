@@ -162,6 +162,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deposited": MessageLookupByLibrary.simpleMessage("Deposited"),
         "detect_supported_area":
             MessageLookupByLibrary.simpleMessage("Detect supported area"),
+        "device_token_error": MessageLookupByLibrary.simpleMessage(
+            "Something went wrong while getting your device info. Please try again later."),
         "dispatch": MessageLookupByLibrary.simpleMessage("Dispatch"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "driver_home": MessageLookupByLibrary.simpleMessage("Driver Home"),

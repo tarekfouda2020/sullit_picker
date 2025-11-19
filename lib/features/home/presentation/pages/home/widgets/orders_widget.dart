@@ -20,7 +20,7 @@ class OrdersWidget extends StatelessWidget {
           if(data==null){
             return NoOrdersViewWidget(controller: controller,);
           }else{
-            return HaveOrdersViewWidget(controller: controller, data: data!);
+            return HaveOrdersViewWidget(controller: controller, data: data);
           }
         },
       onLoadingWidget: (context) {

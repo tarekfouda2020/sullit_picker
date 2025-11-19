@@ -127,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deposited": MessageLookupByLibrary.simpleMessage("জমা"),
         "detect_supported_area":
             MessageLookupByLibrary.simpleMessage("সমর্থিত এলাকা সনাক্ত করুন"),
+        "device_token_error": MessageLookupByLibrary.simpleMessage(
+            "আপনার ডিভাইসের তথ্য পাওয়ার সময় একটি সমস্যা হয়েছে। দয়া করে পরে আবার চেষ্টা করুন।"),
         "dispatch": MessageLookupByLibrary.simpleMessage("প্রেরণ করুন"),
         "done": MessageLookupByLibrary.simpleMessage("সম্পন্ন"),
         "driver_home": MessageLookupByLibrary.simpleMessage("ড্রাইভার হোম"),

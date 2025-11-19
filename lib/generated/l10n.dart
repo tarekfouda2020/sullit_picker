@@ -3799,6 +3799,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Something went wrong while getting your device info. Please try again later.`
+  String get device_token_error {
+    return Intl.message(
+      'Something went wrong while getting your device info. Please try again later.',
+      name: 'device_token_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -378,5 +378,7 @@
   "submit": "إرسال",
   "confirm_used_bags": "تأكيد عدد الأكياس المستخدمة",
   "enter_bag_number": "أدخل عدد الأكياس",
-  "complete_dispatch": "إكمال الشحن"
+  "complete_dispatch": "إكمال الشحن",
+  "device_token_error": "حدث خطأ أثناء الحصول على معلومات جهازك. يرجى المحاولة لاحقًا."
+
 }

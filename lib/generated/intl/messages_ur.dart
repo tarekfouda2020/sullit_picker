@@ -161,6 +161,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deposited": MessageLookupByLibrary.simpleMessage("ڈپازٹ شدہ"),
         "detect_supported_area":
             MessageLookupByLibrary.simpleMessage("سپورٹ شدہ علاقہ دریافت کریں"),
+        "device_token_error": MessageLookupByLibrary.simpleMessage(
+            "آپ کے ڈیوائس کی معلومات حاصل کرتے وقت کوئی مسئلہ ہوا۔ براہِ کرم بعد میں دوبارہ کوشش کریں۔"),
         "dispatch": MessageLookupByLibrary.simpleMessage("ارسال کریں"),
         "done": MessageLookupByLibrary.simpleMessage("ہو گیا"),
         "driver_home":

@@ -156,6 +156,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deposited": MessageLookupByLibrary.simpleMessage("مودع"),
         "detect_supported_area":
             MessageLookupByLibrary.simpleMessage("اكتشف المنطقة المدعومة"),
+        "device_token_error": MessageLookupByLibrary.simpleMessage(
+            "حدث خطأ أثناء الحصول على معلومات جهازك. يرجى المحاولة لاحقًا."),
         "dispatch": MessageLookupByLibrary.simpleMessage("إرسال"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
         "driver_home":

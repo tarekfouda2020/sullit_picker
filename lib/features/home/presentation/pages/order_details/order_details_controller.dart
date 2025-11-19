@@ -787,7 +787,7 @@ class OrderDetailsController {
           updatedList.removeWhere((element) => element.id == orderId,);
           await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
           await getIt<OrdersHelper>().getAllOrders();
-          AutoRouter.of(ctx).maybePop(params.orderId);
+          AutoRouter.of(ctx).maybePop();
           getIt<OrdersHelper>().deleteOrderDetails(data!.id);
           AppSnackBar.showSuccessSnackBar(
             Translate.of(ctx).order_ready_for_delivery,

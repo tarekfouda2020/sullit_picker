@@ -22,7 +22,7 @@ class LoginFormWidget extends StatelessWidget {
           GenericTextField(
               controller: controller.usernameController,
               fieldTypes: FieldTypes.normal,
-              type: TextInputType.name,
+              type: TextInputType.text,
               action: TextInputAction.next,
               fillColor: Colors.white,
               margin: const EdgeInsets.only(top: 5),

@@ -46,6 +46,7 @@ class HomeController {
       List<OrderModel> localAssignedOrders = getIt<OrdersHelper>().getAssignedOrders();
       Set<int> remoteAssignedIds = remoteAssignedOrders.map((e) => e.id).toSet();
       localAssignedOrders.removeWhere((element) => !remoteAssignedIds.contains(element.id));
+      getIt<OrdersHelper>().ordersListCubit.successState(remoteData);
       getIt<OrdersHelper>().saveAssignedOrders(localAssignedOrders);
     }else{
       getIt<OrdersHelper>().saveAssignedOrders([]);
@@ -105,10 +106,10 @@ class HomeController {
           )
           );
       if (value!= null && value as int == data.id) {
-        // var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
-        // updatedList.remove(data);
-        // await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
-        // log('orders ==== >>>> before get all orders =====');
+        var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
+        updatedList.remove(data);
+        await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+        log('orders ==== >>>> before get all orders =====');
        await getAllOrders();
         // log('orders ==== >>>> before get all orders =====');
       }
