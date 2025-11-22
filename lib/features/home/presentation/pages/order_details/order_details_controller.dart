@@ -83,7 +83,7 @@ class OrderDetailsController {
 
   Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
-    BuildContext ctx = getIt<GlobalContext>().context();
+    // BuildContext ctx = getIt<GlobalContext>().context();
     // 62211628
     // 31610
     // getProductWithBarcode(ctx, "31610", oldItem);
@@ -151,8 +151,8 @@ class OrderDetailsController {
   }
 
   void addNewProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
-    double newPrice = double.parse(newData.variant.mainPrice);
-    double oldItemPrice = double.parse(oldItem.unitPrice);
+    // double newPrice = double.parse(newData.variant.mainPrice);
+    // double oldItemPrice = double.parse(oldItem.unitPrice);
     // if (newPrice > oldItemPrice) {
     //   AppSnackBar.showSimpleToast(
     //       msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
@@ -358,7 +358,7 @@ class OrderDetailsController {
     if(formKey.currentState!.validate()){
 
       double newPrice = double.parse(newPriceController.text);
-      double oldPrice = double.parse(orderProduct.unitPrice);
+      // double oldPrice = double.parse(orderProduct.unitPrice);
 
       double oldWeight  = getProductWeight(orderProduct);
       double newWeight = double.parse(newWeightController.text);
@@ -426,13 +426,13 @@ class OrderDetailsController {
     if(formKey.currentState!.validate()){
       double newPrice = double.parse(newPriceController.text);
       double oldPrice = double.parse(oldItem.unitPrice);
-      if(newPrice > oldPrice){
-        AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
-            type: ToastType.error,
-            gravity: ToastGravity.BOTTOM
-        );
-        return ;
-      }
+      // if(newPrice > oldPrice){
+      //   AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
+      //       type: ToastType.error,
+      //       gravity: ToastGravity.BOTTOM
+      //   );
+      //   return ;
+      // }
       int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
       OrderDetailsModel updatedItem = oldItem.copyWith(
         price: "${newPrice*oldItem.quantity}",
