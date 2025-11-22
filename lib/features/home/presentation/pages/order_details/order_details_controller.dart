@@ -153,14 +153,14 @@ class OrderDetailsController {
   void addNewProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     double newPrice = double.parse(newData.variant.mainPrice);
     double oldItemPrice = double.parse(oldItem.unitPrice);
-    if (newPrice > oldItemPrice) {
-      AppSnackBar.showSimpleToast(
-          msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
-          type: ToastType.error,
-          gravity: ToastGravity.BOTTOM
-      );
-      return;
-    }
+    // if (newPrice > oldItemPrice) {
+    //   AppSnackBar.showSimpleToast(
+    //       msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
+    //       type: ToastType.error,
+    //       gravity: ToastGravity.BOTTOM
+    //   );
+    //   return;
+    // }
     int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
     if(oldItem.quantity > 0){
       /// using  (ProductStatusEnum.qntModified) and  (.isQntModified >> see PrepareOrderParams)
@@ -365,13 +365,13 @@ class OrderDetailsController {
       double minWeight = productMinimumNewWeight(orderProduct);
       String unit = getProductWeightUnit(orderProduct);
 
-      if(newPrice > oldPrice){
-        AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
-            type: ToastType.error,
-            gravity: ToastGravity.BOTTOM
-        );
-        return ;
-      }
+      // if(newPrice > oldPrice){
+      //   AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
+      //       type: ToastType.error,
+      //       gravity: ToastGravity.BOTTOM
+      //   );
+      //   return ;
+      // }
 
       /// the new weight can not be more the old weight
       /// and can not be less than the Minimum one
