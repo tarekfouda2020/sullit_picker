@@ -28,7 +28,7 @@ class PickItemButtonWidget extends StatelessWidget {
         Gaps.hGap6,
         Flexible(
           child: AppTextButton.maxCustom(
-            text: 'Pick All',
+            text: Translate.of(context).pick_all,
             bgColor: controller.isProductFullPicked(data)
                 ? context.colors.softWhite
                 : ((data.product!.pickedQuantity ?? 0) > 0

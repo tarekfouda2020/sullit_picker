@@ -16,7 +16,7 @@ class EditPriceWidget extends StatelessWidget {
       onTap: () => controller.showNewPriceDialog(context,model,popTwice: false),
       child: Row(
         children: [
-          const Text("Edit",
+          Text(Translate.of(context).edit,
             style: AppTextStyle.s16_w500(color: CupertinoColors.systemBlue),
           ),
           Gaps.hGap4,

@@ -52,8 +52,9 @@ class UserServicesHelper {
     await CacheManager().clearCache();
     
     // Close and clear Hive boxes
-    HiveHelper.instance.deleteDataFromBox<String>(HiveBoxesNames.orders,key: HiveBoxesKeys.assignedOrdersKey,);
     await HiveHelper.instance.closeAllBoxes();
+    HiveHelper.instance.deleteDataFromBox<String>(HiveBoxesNames.orders,key: HiveBoxesKeys.assignedOrdersKey,);
+    await HiveHelper.instance.deleteBox<String>(HiveBoxesNames.orderDetails);
     await HiveHelper.instance.clearHive();
     
     // Reinitialize Hive for the next login

@@ -173,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ڈرائیونگ لائسنس"),
         "e_mail": MessageLookupByLibrary.simpleMessage("ای میل"),
         "earnings": MessageLookupByLibrary.simpleMessage("آمدنی"),
+        "edit": MessageLookupByLibrary.simpleMessage("ترمیم کریں"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("پروفائل میں تبدیلی"),
         "email_placeholder":
@@ -190,6 +191,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("نئی قیمت درج کریں"),
         "enter_new_weight":
             MessageLookupByLibrary.simpleMessage("نیا وزن درج کریں"),
+        "enter_the_new_price":
+            MessageLookupByLibrary.simpleMessage("نئی قیمت درج کریں"),
         "enter_title": MessageLookupByLibrary.simpleMessage("عنوان درج کریں"),
         "enter_user_name":
             MessageLookupByLibrary.simpleMessage("صارف کا نام درج کریں"),
@@ -299,7 +302,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اکاؤنٹ میں لاگ ان کریں"),
         "logout": MessageLookupByLibrary.simpleMessage("لاگ آؤٹ"),
         "logoutAlert": MessageLookupByLibrary.simpleMessage(
-            "هل أنت متأكد أنك تريد الخروج?"),
+            "کیا آپ واقعی باہر نکلنا چاہتے ہیں؟"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "لوریم ایپسم پرنٹنگ کا ایک سادہ ڈمی ٹیکسٹ ہے"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(
@@ -424,7 +427,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فون نمبر ضروری ہے"),
         "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
         "pick": MessageLookupByLibrary.simpleMessage("منتخب کریں"),
+        "pick_all": MessageLookupByLibrary.simpleMessage("سب منتخب کریں"),
         "picked": MessageLookupByLibrary.simpleMessage("چن لیا گیا"),
+        "picker_note_hint":
+            MessageLookupByLibrary.simpleMessage("اپ ڈیٹ کے لیے آپ کا نوٹ..."),
         "pickup_address": MessageLookupByLibrary.simpleMessage("پک اپ کا پتہ"),
         "please_accept_terms": MessageLookupByLibrary.simpleMessage(
             "جاری رکھنے کے لیے شرائط و ضوابط قبول کریں"),

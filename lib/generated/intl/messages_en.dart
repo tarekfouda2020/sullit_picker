@@ -173,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Driving licensee"),
         "e_mail": MessageLookupByLibrary.simpleMessage("E-mail"),
         "earnings": MessageLookupByLibrary.simpleMessage("Earnings"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "edit_profile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "email_placeholder":
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
@@ -189,6 +190,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter new price"),
         "enter_new_weight":
             MessageLookupByLibrary.simpleMessage("Enter new weight"),
+        "enter_the_new_price":
+            MessageLookupByLibrary.simpleMessage("Enter the new price"),
         "enter_title": MessageLookupByLibrary.simpleMessage("Enter Title"),
         "enter_user_name":
             MessageLookupByLibrary.simpleMessage("Enter User Name"),
@@ -423,7 +426,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Phone number is required"),
         "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
         "pick": MessageLookupByLibrary.simpleMessage("Pick"),
+        "pick_all": MessageLookupByLibrary.simpleMessage("Pick All"),
         "picked": MessageLookupByLibrary.simpleMessage("Picked"),
+        "picker_note_hint":
+            MessageLookupByLibrary.simpleMessage("Your note for update..."),
         "pickup_address":
             MessageLookupByLibrary.simpleMessage("Pickup Address"),
         "please_accept_terms": MessageLookupByLibrary.simpleMessage(

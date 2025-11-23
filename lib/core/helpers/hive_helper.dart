@@ -76,13 +76,14 @@ class HiveHelper {
   }
 
 
-   Future<void> deleteBox(String boxName) async {
+   Future<void> deleteBox<T>(String boxName) async {
     if (Hive.isBoxOpen(boxName)) {
-      await Hive.box(boxName).close();
+      await Hive.box<T>(boxName).close();
     }
     await Hive.deleteBoxFromDisk(boxName);
     log('Deleted box: $boxName');
   }
+
 
   Box<T>? getBox<T>(String boxName){
      try {

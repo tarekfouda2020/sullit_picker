@@ -34,7 +34,9 @@ class NotificationCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('${model.text} ',
-                      style: AppTextStyle.s14_w400(color: context.colors.black),
+                      style: AppTextStyle.s14_w400(color: context.colors.black).copyWith(
+                        height: 1.3
+                      ),
                     ),
                     Text(
                      model.createdAt,

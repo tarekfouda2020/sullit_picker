@@ -58,8 +58,8 @@ class PickItemWidget extends StatelessWidget {
               Visibility(
                 visible: orderDetails.product!.productStatus!.shouldShowStatus,
                 replacement: _buildPositioned(context),
-                child: Positioned(
-                  right: 0,
+                child: PositionedDirectional(
+                  end: 0,
                   child: GestureDetector(
                       // onTap: () {
                       //   if(orderDetails.product!.productStatus == ProductStatusEnum.replaced ){

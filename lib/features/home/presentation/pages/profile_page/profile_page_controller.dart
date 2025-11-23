@@ -88,8 +88,10 @@ class ProfilePageController {
             msg: msg ?? Translate.s.logged_out_successfully, type: ToastType.success, gravity: ToastGravity.BOTTOM);
       },
       isError: (error) {
+        getIt<LoadingHelper>().dismissDialog();
         AppSnackBar.showErrorSnackBar(
-          error: BaseError.unknown(msg: error.message),
+          error: BaseError.unknown(msg: Translate.s.something_went_wrong),
+          // error: BaseError.unknown(msg: error.message ),
         );
       },
     );

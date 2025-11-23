@@ -345,7 +345,7 @@
   "order_ready_for_delivery": "الطلب جاهز للتوصيل",
   "no_of_items": "عدد العناصر",
   "unavailable": "غير متاح",
-  "logoutAlert": "هل أنت متأكد أنك تريد الخروج?",
+  "logoutAlert": "هل أنت متأكد أنك تريد الخروج؟",
   "cannot_replace_higher_price": "لا يمكن استبدال منتج بسعر أعلى من {price}",
   "price_should_be_less_than_or_equal_to": "يجب أن يكون السعر أقل من أو يساوي",
   "new_weight_must_be_between": "يجب أن يكون الوزن الجديد بين",
@@ -379,6 +379,9 @@
   "confirm_used_bags": "تأكيد عدد الأكياس المستخدمة",
   "enter_bag_number": "أدخل عدد الأكياس",
   "complete_dispatch": "إكمال الشحن",
-  "device_token_error": "حدث خطأ أثناء الحصول على معلومات جهازك. يرجى المحاولة لاحقًا."
-
+  "device_token_error": "حدث خطأ أثناء الحصول على معلومات جهازك. يرجى المحاولة لاحقًا.",
+  "edit": "تعديل",
+  "enter_the_new_price": "أدخل السعر الجديد",
+  "pick_all": "اختر الكل",
+  "picker_note_hint": "ملاحظتك للتحديث..."
 }

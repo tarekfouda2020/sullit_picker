@@ -21,7 +21,7 @@ class PickerNotesWidget extends StatelessWidget {
         onSubmit:onSubmit,
         contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
         fillColor: context.colors.background,
-        hint: "Your note for update...",
+        hint: Translate.of(context).picker_note_hint,
         hintColor: context.colors.textColor,
         hintTxtStyle: AppTextStyle.s14_w400(color: context.colors.textColor)
     );

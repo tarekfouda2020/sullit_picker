@@ -168,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رخصة القيادة"),
         "e_mail": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "earnings": MessageLookupByLibrary.simpleMessage("الأرباح"),
+        "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "email_placeholder":
@@ -185,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل السعر الجديد"),
         "enter_new_weight":
             MessageLookupByLibrary.simpleMessage("أدخل الوزن الجديد"),
+        "enter_the_new_price":
+            MessageLookupByLibrary.simpleMessage("أدخل السعر الجديد"),
         "enter_title": MessageLookupByLibrary.simpleMessage("أدخل العنوان"),
         "enter_user_name":
             MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم"),
@@ -295,7 +298,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تسجيل الدخول إلى الحساب"),
         "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "logoutAlert": MessageLookupByLibrary.simpleMessage(
-            "هل أنت متأكد أنك تريد الخروج?"),
+            "هل أنت متأكد أنك تريد الخروج؟"),
         "lorem_ipsum_placeholder": MessageLookupByLibrary.simpleMessage(
             "لوريم إيبسوم هو نص وهمي بسيط من الطباعة"),
         "mailValidation": MessageLookupByLibrary.simpleMessage(
@@ -415,7 +418,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رقم الهاتف مطلوب"),
         "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
         "pick": MessageLookupByLibrary.simpleMessage("اختيار"),
+        "pick_all": MessageLookupByLibrary.simpleMessage("اختر الكل"),
         "picked": MessageLookupByLibrary.simpleMessage("تم التقاطه"),
+        "picker_note_hint":
+            MessageLookupByLibrary.simpleMessage("ملاحظتك للتحديث..."),
         "pickup_address":
             MessageLookupByLibrary.simpleMessage("عنوان الاستلام"),
         "please_accept_terms": MessageLookupByLibrary.simpleMessage(

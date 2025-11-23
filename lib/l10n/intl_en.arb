@@ -375,8 +375,9 @@
   "confirm_used_bags": "Confirm number of used bags",
   "enter_bag_number": "Enter number of bags",
   "complete_dispatch": "Complete Dispatch",
-  "device_token_error": "Something went wrong while getting your device info. Please try again later."
-
-
-
+  "device_token_error": "Something went wrong while getting your device info. Please try again later.",
+  "edit": "Edit",
+  "enter_the_new_price": "Enter the new price",
+  "pick_all": "Pick All",
+  "picker_note_hint": "Your note for update..."
 }

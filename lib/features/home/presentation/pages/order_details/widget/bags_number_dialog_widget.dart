@@ -35,7 +35,7 @@ class BagsNumberDialogWidget extends StatelessWidget {
             Form(
               key: controller.bagsCountFormKey,
               child: GenericTextField(
-                controller: controller.bagsCountController ,
+                controller: controller.bagsCountController,
                   fieldTypes: FieldTypes.normal,
                   type: TextInputType.number,
                   action: TextInputAction.done,

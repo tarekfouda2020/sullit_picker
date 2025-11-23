@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bags_number_dialog_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/update_reason_dialog_widget.dart';
 
@@ -425,7 +427,7 @@ class OrderDetailsController {
   void confirmNewPrice(OrderDetailsModel oldItem, BuildContext context,{bool popTwice = true,bool  pickAll = false}){
     if(formKey.currentState!.validate()){
       double newPrice = double.parse(newPriceController.text);
-      double oldPrice = double.parse(oldItem.unitPrice);
+      // double oldPrice = double.parse(oldItem.unitPrice);
       // if(newPrice > oldPrice){
       //   AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
       //       type: ToastType.error,
@@ -436,6 +438,7 @@ class OrderDetailsController {
       int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
       OrderDetailsModel updatedItem = oldItem.copyWith(
         price: "${newPrice*oldItem.quantity}",
+        unitPrice: "$newPrice",
         newPrice: newPrice,
        pickerNotes: pickerNoteController.text,
         product: oldItem.product!.copyWith(
@@ -453,10 +456,8 @@ class OrderDetailsController {
       if(popTwice){
         Navigator.pop(context);
       }
-      if(isAllProductsPicked){
-        updateDetailsCubit();
-        getIt<OrdersHelper>().saveOrderDetails(_detailsData);
-      }
+      updateDetailsCubit();
+      getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     }
   }
 

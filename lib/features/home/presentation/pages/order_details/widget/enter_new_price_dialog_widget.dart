@@ -25,7 +25,7 @@ final bool pickAll;
     return AlertDialog(
       title: Text(
         // Translate.of(context).what_is_new_weight,
-        "Enter the new price",
+        Translate.of(context).enter_the_new_price,
         style: AppTextStyle.s18_w700(color: context.colors.textColor),
       ),
       // titlePadding: const EdgeInsets.fromLTRB(38, 25, 38, 11),
@@ -49,6 +49,7 @@ final bool pickAll;
                 Flexible(
                   child: Text(
                     orderProduct.product?.name ?? "",
+                    // "علبه اناناس قطع كثيره الطعم واللون والرائحه و هيب الديربق اه يا لالى عينى يا لالي على الى اتغرب ",
                     style: AppTextStyle.s14_w600(color: context.colors.textColor)
                         .copyWith(height: 1.2),
                     textAlign: TextAlign.start,

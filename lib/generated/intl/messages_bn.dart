@@ -135,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "driver_profile":
             MessageLookupByLibrary.simpleMessage("ড্রাইভার প্রোফাইল"),
         "earnings": MessageLookupByLibrary.simpleMessage("আয়"),
+        "edit": MessageLookupByLibrary.simpleMessage("সম্পাদনা করুন"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("প্রোফাইল সম্পাদনা করুন"),
         "email_placeholder":
@@ -150,6 +151,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("নতুন মূল্য লিখুন"),
         "enter_new_weight":
             MessageLookupByLibrary.simpleMessage("নতুন ওজন প্রবেশ করুন"),
+        "enter_the_new_price":
+            MessageLookupByLibrary.simpleMessage("নতুন মূল্য লিখুন"),
         "enter_title": MessageLookupByLibrary.simpleMessage("শিরোনাম লিখুন"),
         "enter_your_email":
             MessageLookupByLibrary.simpleMessage("আপনার ইমেল লিখুন"),
@@ -334,7 +337,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "অনুগ্রহ করে একটি বৈধ ফোন নম্বর লিখুন"),
         "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
         "pick": MessageLookupByLibrary.simpleMessage("নির্বাচন করুন"),
+        "pick_all": MessageLookupByLibrary.simpleMessage("সব বাছুন"),
         "picked": MessageLookupByLibrary.simpleMessage("পিক করা হয়েছে"),
+        "picker_note_hint":
+            MessageLookupByLibrary.simpleMessage("আপডেটের জন্য আপনার নোট..."),
         "please_define_work_type": MessageLookupByLibrary.simpleMessage(
             "অনুগ্রহ করে আপনার কাজের ধরন নির্ধারণ করুন"),
         "please_enable_location_permission":

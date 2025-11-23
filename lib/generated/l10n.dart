@@ -3809,6 +3809,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the new price`
+  String get enter_the_new_price {
+    return Intl.message(
+      'Enter the new price',
+      name: 'enter_the_new_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick All`
+  String get pick_all {
+    return Intl.message(
+      'Pick All',
+      name: 'pick_all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your note for update...`
+  String get picker_note_hint {
+    return Intl.message(
+      'Your note for update...',
+      name: 'picker_note_hint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
