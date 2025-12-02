@@ -33,12 +33,8 @@ mixin _$LangModel {
   @JsonKey(name: 'is_default', defaultValue: false)
   set isDefault(bool? value) => throw _privateConstructorUsedError;
 
-  /// Serializes this LangModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of LangModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LangModelCopyWith<LangModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,8 +62,6 @@ class _$LangModelCopyWithImpl<$Res, $Val extends LangModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LangModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,8 +120,6 @@ class __$$LangModelImplCopyWithImpl<$Res>
       _$LangModelImpl _value, $Res Function(_$LangModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LangModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -194,9 +186,7 @@ class _$LangModelImpl extends _LangModel {
     return 'LangModel(id: $id, name: $name, code: $code, logo: $logo, isDefault: $isDefault)';
   }
 
-  /// Create a copy of LangModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LangModelImplCopyWith<_$LangModelImpl> get copyWith =>
@@ -240,11 +230,8 @@ abstract class _LangModel extends LangModel {
   bool? get isDefault;
   @JsonKey(name: 'is_default', defaultValue: false)
   set isDefault(bool? value);
-
-  /// Create a copy of LangModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LangModelImplCopyWith<_$LangModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

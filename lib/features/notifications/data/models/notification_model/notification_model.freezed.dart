@@ -27,12 +27,8 @@ mixin _$NotificationModel {
   @JsonKey(name: "created_at")
   String get createdAt => throw _privateConstructorUsedError;
 
-  /// Serializes this NotificationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of NotificationModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $NotificationModelCopyWith<NotificationModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -63,8 +59,6 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of NotificationModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,8 +92,6 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
     ) as $Val);
   }
 
-  /// Create a copy of NotificationModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $NotificationDataCopyWith<$Res> get data {
@@ -136,8 +128,6 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
       $Res Function(_$NotificationModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of NotificationModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -215,14 +205,12 @@ class _$NotificationModelImpl implements _NotificationModel {
                 other.createdAt == createdAt));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, text, title, data, createdAt);
 
-  /// Create a copy of NotificationModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
@@ -260,11 +248,8 @@ abstract class _NotificationModel implements NotificationModel {
   @override
   @JsonKey(name: "created_at")
   String get createdAt;
-
-  /// Create a copy of NotificationModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -281,12 +266,8 @@ mixin _$NotificationData {
   @JsonKey(name: "order_code")
   String get orderCode => throw _privateConstructorUsedError;
 
-  /// Serializes this NotificationData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of NotificationData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $NotificationDataCopyWith<NotificationData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -313,8 +294,6 @@ class _$NotificationDataCopyWithImpl<$Res, $Val extends NotificationData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of NotificationData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -361,8 +340,6 @@ class __$$NotificationDataImplCopyWithImpl<$Res>
       $Res Function(_$NotificationDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of NotificationData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -423,13 +400,11 @@ class _$NotificationDataImpl implements _NotificationData {
                 other.orderCode == orderCode));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, type, orderId, orderCode);
 
-  /// Create a copy of NotificationData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NotificationDataImplCopyWith<_$NotificationDataImpl> get copyWith =>
@@ -462,11 +437,8 @@ abstract class _NotificationData implements NotificationData {
   @override
   @JsonKey(name: "order_code")
   String get orderCode;
-
-  /// Create a copy of NotificationData
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$NotificationDataImplCopyWith<_$NotificationDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

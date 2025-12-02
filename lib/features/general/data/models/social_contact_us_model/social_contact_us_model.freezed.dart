@@ -23,12 +23,8 @@ mixin _$SocialContactUsModel {
   String get url => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
 
-  /// Serializes this SocialContactUsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SocialContactUsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SocialContactUsModelCopyWith<SocialContactUsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +49,6 @@ class _$SocialContactUsModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SocialContactUsModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,8 +87,6 @@ class __$$SocialContactUsModelImplCopyWithImpl<$Res>
       $Res Function(_$SocialContactUsModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SocialContactUsModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -143,13 +135,11 @@ class _$SocialContactUsModelImpl extends _SocialContactUsModel {
             (identical(other.image, image) || other.image == image));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, url, image);
 
-  /// Create a copy of SocialContactUsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SocialContactUsModelImplCopyWith<_$SocialContactUsModelImpl>
@@ -178,11 +168,8 @@ abstract class _SocialContactUsModel extends SocialContactUsModel {
   String get url;
   @override
   String get image;
-
-  /// Create a copy of SocialContactUsModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SocialContactUsModelImplCopyWith<_$SocialContactUsModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

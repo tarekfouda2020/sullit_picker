@@ -290,7 +290,7 @@ class OrderDetailsController {
     List<OrderModel> assignedOrders = getIt<OrdersHelper>().getAssignedOrders();
     List<OrderModel> updatedList = (assignedOrders).map((e) => e).toList();
     updatedList.removeWhere((element) => element.id == orderId,);
-    await getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
+    await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
     await getIt<OrdersHelper>().deleteOrderDetails(orderId);
   }
 

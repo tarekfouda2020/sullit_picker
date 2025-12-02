@@ -24,12 +24,8 @@ mixin _$AvailableForOrderModel {
   String? get msg => throw _privateConstructorUsedError;
   ToggleAvailableForOrderModel? get data => throw _privateConstructorUsedError;
 
-  /// Serializes this AvailableForOrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of AvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AvailableForOrderModelCopyWith<AvailableForOrderModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,8 +52,6 @@ class _$AvailableForOrderModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,8 +70,6 @@ class _$AvailableForOrderModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of AvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ToggleAvailableForOrderModelCopyWith<$Res>? get data {
@@ -116,8 +108,6 @@ class __$$AvailableForOrderModelImplCopyWithImpl<$Res>
       $Res Function(_$AvailableForOrderModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,13 +155,11 @@ class _$AvailableForOrderModelImpl extends _AvailableForOrderModel {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, msg, data);
 
-  /// Create a copy of AvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AvailableForOrderModelImplCopyWith<_$AvailableForOrderModelImpl>
@@ -199,11 +187,8 @@ abstract class _AvailableForOrderModel extends AvailableForOrderModel {
   String? get msg;
   @override
   ToggleAvailableForOrderModel? get data;
-
-  /// Create a copy of AvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AvailableForOrderModelImplCopyWith<_$AvailableForOrderModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -218,12 +203,8 @@ mixin _$ToggleAvailableForOrderModel {
   @JsonKey(name: "is_available")
   bool get isAvailable => throw _privateConstructorUsedError;
 
-  /// Serializes this ToggleAvailableForOrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ToggleAvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ToggleAvailableForOrderModelCopyWith<ToggleAvailableForOrderModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -250,8 +231,6 @@ class _$ToggleAvailableForOrderModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ToggleAvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -288,8 +267,6 @@ class __$$ToggleAvailableForOrderModelImplCopyWithImpl<$Res>
       $Res Function(_$ToggleAvailableForOrderModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ToggleAvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -334,13 +311,11 @@ class _$ToggleAvailableForOrderModelImpl extends _ToggleAvailableForOrderModel {
                 other.isAvailable == isAvailable));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, isAvailable);
 
-  /// Create a copy of ToggleAvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ToggleAvailableForOrderModelImplCopyWith<
@@ -369,11 +344,8 @@ abstract class _ToggleAvailableForOrderModel
   @override
   @JsonKey(name: "is_available")
   bool get isAvailable;
-
-  /// Create a copy of ToggleAvailableForOrderModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ToggleAvailableForOrderModelImplCopyWith<
           _$ToggleAvailableForOrderModelImpl>
       get copyWith => throw _privateConstructorUsedError;

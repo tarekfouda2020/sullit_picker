@@ -24,12 +24,8 @@ mixin _$InstructionsModel {
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
 
-  /// Serializes this InstructionsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of InstructionsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $InstructionsModelCopyWith<InstructionsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +49,6 @@ class _$InstructionsModelCopyWithImpl<$Res, $Val extends InstructionsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of InstructionsModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,8 +92,6 @@ class __$$InstructionsModelImplCopyWithImpl<$Res>
       $Res Function(_$InstructionsModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InstructionsModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -157,13 +149,11 @@ class _$InstructionsModelImpl extends _InstructionsModel {
             (identical(other.content, content) || other.content == content));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, content);
 
-  /// Create a copy of InstructionsModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$InstructionsModelImplCopyWith<_$InstructionsModelImpl> get copyWith =>
@@ -194,11 +184,8 @@ abstract class _InstructionsModel extends InstructionsModel {
   String get title;
   @override
   String get content;
-
-  /// Create a copy of InstructionsModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$InstructionsModelImplCopyWith<_$InstructionsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

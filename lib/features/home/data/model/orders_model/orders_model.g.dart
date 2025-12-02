@@ -115,8 +115,9 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       barcode: json['barcode'] as String,
       unit: json['unit'] as String,
-      category:
-          CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
+      category: json['category'] == null
+          ? null
+          : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
       thumbnailImage: json['thumbnail_image'] as String,
       isFresh: json['is_fresh'] as bool,
       productPickedPercent: (json['picked_percent'] as num?)?.toDouble() ?? 0.0,

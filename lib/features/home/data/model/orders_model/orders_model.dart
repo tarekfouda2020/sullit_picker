@@ -155,7 +155,7 @@ class ProductModel with _$ProductModel {
     required String name,
     required String barcode,
     required String unit,
-    required CategoryModel category,
+     CategoryModel? category,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
     @JsonKey(name: 'is_fresh') required bool isFresh,
 

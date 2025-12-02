@@ -68,8 +68,8 @@ class HomeController {
     }
   }
 
-  Future<void> navigateToSideMenu(BuildContext context) async {
-    await AutoRouter.of(context).push(const ProfilePageRoute());
+  void navigateToSideMenu(BuildContext context)  {
+     AutoRouter.of(context).push(const ProfilePageRoute());
   }
 
   void navigateToNotifications(BuildContext context) {
@@ -163,4 +163,9 @@ class HomeController {
 
     return value.toString().padLeft(2, '0')[index];
   }
+
+
+  double  screenHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+
+
 }

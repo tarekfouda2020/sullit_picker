@@ -29,12 +29,8 @@ mixin _$WorkTypeModel {
   @JsonKey(name: 'is_selected', defaultValue: false)
   set selected(bool? value) => throw _privateConstructorUsedError;
 
-  /// Serializes this WorkTypeModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of WorkTypeModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $WorkTypeModelCopyWith<WorkTypeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -61,8 +57,6 @@ class _$WorkTypeModelCopyWithImpl<$Res, $Val extends WorkTypeModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of WorkTypeModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,8 +103,6 @@ class __$$WorkTypeModelImplCopyWithImpl<$Res>
       _$WorkTypeModelImpl _value, $Res Function(_$WorkTypeModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of WorkTypeModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -161,9 +153,7 @@ class _$WorkTypeModelImpl extends _WorkTypeModel {
     return 'WorkTypeModel(key: $key, label: $label, selected: $selected)';
   }
 
-  /// Create a copy of WorkTypeModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$WorkTypeModelImplCopyWith<_$WorkTypeModelImpl> get copyWith =>
@@ -199,11 +189,8 @@ abstract class _WorkTypeModel extends WorkTypeModel {
   bool? get selected;
   @JsonKey(name: 'is_selected', defaultValue: false)
   set selected(bool? value);
-
-  /// Create a copy of WorkTypeModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$WorkTypeModelImplCopyWith<_$WorkTypeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

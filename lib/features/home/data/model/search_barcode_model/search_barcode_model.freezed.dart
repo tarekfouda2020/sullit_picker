@@ -36,12 +36,8 @@ mixin _$SearchBarcodeModel {
   String get currencySymbol => throw _privateConstructorUsedError;
   VariantModel get variant => throw _privateConstructorUsedError;
 
-  /// Serializes this SearchBarcodeModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SearchBarcodeModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SearchBarcodeModelCopyWith<SearchBarcodeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -77,8 +73,6 @@ class _$SearchBarcodeModelCopyWithImpl<$Res, $Val extends SearchBarcodeModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SearchBarcodeModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -137,8 +131,6 @@ class _$SearchBarcodeModelCopyWithImpl<$Res, $Val extends SearchBarcodeModel>
     ) as $Val);
   }
 
-  /// Create a copy of SearchBarcodeModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $VariantModelCopyWith<$Res> get variant {
@@ -180,8 +172,6 @@ class __$$SearchBarcodeModelImplCopyWithImpl<$Res>
       $Res Function(_$SearchBarcodeModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SearchBarcodeModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -314,7 +304,7 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
             (identical(other.variant, variant) || other.variant == variant));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -329,9 +319,7 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
       currencySymbol,
       variant);
 
-  /// Create a copy of SearchBarcodeModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchBarcodeModelImplCopyWith<_$SearchBarcodeModelImpl> get copyWith =>
@@ -388,11 +376,8 @@ abstract class _SearchBarcodeModel implements SearchBarcodeModel {
   String get currencySymbol;
   @override
   VariantModel get variant;
-
-  /// Create a copy of SearchBarcodeModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SearchBarcodeModelImplCopyWith<_$SearchBarcodeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -423,12 +408,8 @@ mixin _$VariantModel {
   String get image => throw _privateConstructorUsedError;
   String get options => throw _privateConstructorUsedError;
 
-  /// Serializes this VariantModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of VariantModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $VariantModelCopyWith<VariantModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -464,8 +445,6 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VariantModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -566,8 +545,6 @@ class __$$VariantModelImplCopyWithImpl<$Res>
       _$VariantModelImpl _value, $Res Function(_$VariantModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VariantModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -720,7 +697,7 @@ class _$VariantModelImpl implements _VariantModel {
             (identical(other.options, options) || other.options == options));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -737,9 +714,7 @@ class _$VariantModelImpl implements _VariantModel {
       image,
       options);
 
-  /// Create a copy of VariantModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$VariantModelImplCopyWith<_$VariantModelImpl> get copyWith =>
@@ -802,11 +777,8 @@ abstract class _VariantModel implements VariantModel {
   String get image;
   @override
   String get options;
-
-  /// Create a copy of VariantModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$VariantModelImplCopyWith<_$VariantModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

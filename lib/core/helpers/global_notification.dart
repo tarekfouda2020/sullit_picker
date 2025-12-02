@@ -41,9 +41,6 @@ class GlobalNotification {
       sound: true,
     );
     if(settings.authorizationStatus==AuthorizationStatus.authorized){
-      messaging.getToken().then((token) {
-        log("$token");
-      });
       messaging.setForegroundNotificationPresentationOptions(
         alert: true,
         badge: true,

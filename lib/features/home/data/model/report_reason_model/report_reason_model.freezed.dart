@@ -29,12 +29,8 @@ mixin _$ReportReasonModel {
   @JsonKey(name: "is_selected", defaultValue: false)
   set isSelected(bool? value) => throw _privateConstructorUsedError;
 
-  /// Serializes this ReportReasonModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ReportReasonModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ReportReasonModelCopyWith<ReportReasonModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -61,8 +57,6 @@ class _$ReportReasonModelCopyWithImpl<$Res, $Val extends ReportReasonModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ReportReasonModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,8 +103,6 @@ class __$$ReportReasonModelImplCopyWithImpl<$Res>
       $Res Function(_$ReportReasonModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ReportReasonModel
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,9 +152,7 @@ class _$ReportReasonModelImpl extends _ReportReasonModel {
     return 'ReportReasonModel(key: $key, label: $label, isSelected: $isSelected)';
   }
 
-  /// Create a copy of ReportReasonModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReportReasonModelImplCopyWith<_$ReportReasonModelImpl> get copyWith =>
@@ -199,11 +189,8 @@ abstract class _ReportReasonModel extends ReportReasonModel {
   bool? get isSelected;
   @JsonKey(name: "is_selected", defaultValue: false)
   set isSelected(bool? value);
-
-  /// Create a copy of ReportReasonModel
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReportReasonModelImplCopyWith<_$ReportReasonModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

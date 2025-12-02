@@ -18,7 +18,7 @@ class NoOrdersViewWidget extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         child: ConstrainedBox(
           constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height - kToolbarHeight,
+            minHeight: MediaQuery.sizeOf(context).height - kToolbarHeight,
           ),
           child: IntrinsicHeight(
             child: Column(
