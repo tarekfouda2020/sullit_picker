@@ -809,7 +809,8 @@ class OrderDetailsController {
         },
         isError: (error) {
           AppSnackBar.showSimpleToast(
-            msg: Translate.of(ctx).something_went_wrong,
+            // msg: Translate.of(ctx).something_went_wrong,
+            msg: "Sorry we can't process this order. Thank you",
             type: ToastType.error,
           );
         },
