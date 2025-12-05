@@ -11,6 +11,7 @@ class DispatchButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      spacing: 10,
       children: [
         Expanded(
           child: AppTextButton.maxCustom(
@@ -27,10 +28,11 @@ class DispatchButtonWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text("Total Price",
-            style: AppTextStyle.s8_w400(color: context.colors.primary),
+            style: AppTextStyle.s15_w500(color: context.colors.primary),
             ),
+            Gaps.vGap5,
             DirhamPrice(amount: "${controller.getDetailsData.getOriginalTotalPrice()}",
-              textStyle: AppTextStyle.s8_w400(color: context.colors.primary),
+              textStyle: AppTextStyle.s15_w500(color: context.colors.primary),
             )
           ],
         )

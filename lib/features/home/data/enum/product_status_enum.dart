@@ -42,10 +42,10 @@ enum ProductStatusEnum {
     switch (this) {
       case ProductStatusEnum.added:
       case ProductStatusEnum.replaced:
-        return true;
-      case ProductStatusEnum.qntModified:
       case ProductStatusEnum.priceModified:
+        return true;
       case ProductStatusEnum.normal:
+      case ProductStatusEnum.qntModified:
       case ProductStatusEnum.noEdit:
         return false;
     }

@@ -22,7 +22,7 @@ class StatusViewWidget extends StatelessWidget {
         ),
       ),
       child: Text(
-        status ?? '',
+        status,
         style: AppTextStyle.s14_w700(color: context.colors.phosphorousGreen),
       ),
     );

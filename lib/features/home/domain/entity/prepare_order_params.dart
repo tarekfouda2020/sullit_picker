@@ -59,7 +59,8 @@ class PrepareOrderParams {
       ...removeDetailsJson
     ];
 
-    // log("======>>>> all data $allDetailsJsons <<<<<<======");
+    log("======>>>> all data $allDetailsJsons <<<<<<======");
+    log("======>>>> deleted data $removeDetailsJson <<<<<<======");
 
     return {
       if (allDetailsJsons.isNotEmpty) "details": jsonEncode(allDetailsJsons),

@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bags_number_dialog_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/update_reason_dialog_widget.dart';
 
@@ -8,6 +10,7 @@ import 'order_details_imports.dart';
 class OrderDetailsController {
   final ObsValue<bool> isAllPickedObs = ObsValue.withInit(false);
   final ObsValue<bool> refreshDeletedSheetObs = ObsValue.withInit(false);
+  final ObsValue<double> enteredBagsPriceObs = ObsValue.withInit(0.0);
   final BaseBloc<OrderModel> detailsCubit = BaseBloc<OrderModel>();
 
   final TextEditingController newWeightController = TextEditingController();
@@ -87,18 +90,18 @@ class OrderDetailsController {
 
   Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
-    // BuildContext ctx = getIt<GlobalContext>().context();
+    BuildContext ctx = getIt<GlobalContext>().context();
     // 62211628
     // 31610
-    // getProductWithBarcode(ctx, "31610", oldItem);
-    String? barcode = await getIt<BarcodeService>().scanBarcode();
-    if (barcode != null && barcode.isNotEmpty) {
-      BuildContext ctx = getIt<GlobalContext>().context();
-      AppSnackBar.showSuccessSnackBar(
-        Translate.of(ctx).product_scanned,
-      );
-      getProductWithBarcode(ctx, barcode, oldItem);
-    }
+    getProductWithBarcode(ctx, "31610", oldItem);
+    // String? barcode = await getIt<BarcodeService>().scanBarcode();
+    // if (barcode != null && barcode.isNotEmpty) {
+    //   BuildContext ctx = getIt<GlobalContext>().context();
+    //   AppSnackBar.showSuccessSnackBar(
+    //     Translate.of(ctx).product_scanned,
+    //   );
+    //   getProductWithBarcode(ctx, barcode, oldItem);
+    // }
   }
 
   Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
@@ -484,7 +487,7 @@ class OrderDetailsController {
     orderProduct.product!.productPickedPercent = percent;
     if(pickedQty == 0){
       orderPickedPercent(_detailsData,isReturn: true);
-      if(orderProduct.product!.replaced || orderProduct.product!.isAdded){
+      if(orderProduct.product!.productStatus!.shouldShowStatus){
 
         showConFirmReturnDialog(context,orderProduct);
         return ;
@@ -686,7 +689,10 @@ class OrderDetailsController {
     if(deletedItemsIds.contains(updatedOrder.id)){
       originalItem =  deletedItems.firstWhere((element) => element.id == updatedOrder.id && element.product!.productStatus!.isQntModified,);
       originalItem = originalItem.copyWith(
-          quantity: originalItem.quantity+updatedOrder.quantity
+          quantity: originalItem.quantity+updatedOrder.quantity,
+          product: originalItem.product!.copyWith(
+              productStatus: ProductStatusEnum.noEdit
+          )
       );
       _detailsData.ordersDetails!..removeAt(addedItemIndex)..insert(addedItemIndex,originalItem);
       _detailsData.deletedOrders!.removeWhere((element) => element.id == originalItem.id);
@@ -694,7 +700,10 @@ class OrderDetailsController {
       originalItem =  _detailsData.ordersDetails!.firstWhere((element) => element.id == updatedOrder.id && element.product!.productStatus!.isQntModified,);
       int originalItemIndex = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id && e.product!.productStatus!.isQntModified);
       originalItem = originalItem.copyWith(
-        quantity: originalItem.quantity + updatedOrder.quantity
+        quantity: originalItem.quantity + updatedOrder.quantity,
+        product: originalItem.product!.copyWith(
+          productStatus: ProductStatusEnum.noEdit
+        )
       );
       _detailsData.ordersDetails![originalItemIndex] = originalItem;
       _detailsData.ordersDetails!.removeAt(addedItemIndex);
@@ -777,7 +786,8 @@ class OrderDetailsController {
   int get getPickedItemsCount => _detailsData.ordersDetails!.where((element) => element.remainQnt == 0).length;
 
   Future<void> prepareOrder(BuildContext context) async {
-    if(bagsCountFormKey.currentState!.validate()){
+    double bagCount = double.parse(bagsCountController.text);
+    if(bagsCountFormKey.currentState!.validate() && bagCount > 0){
       Navigator.pop(context);
       getIt<LoadingHelper>().showLoadingDialog();
       final params = _prepareOrderParams();
@@ -808,7 +818,24 @@ class OrderDetailsController {
     }
   }
 
+
+
+  void  calcEnteredBagsPrice(String amount){
+    if(amount.isEmpty){
+      enteredBagsPriceObs.setValue(0.0);
+    }else{
+      int enteredBagsCount = double.parse(amount).toInt();
+      double bagPrice = _detailsData.bagPrice;
+      double price =  enteredBagsCount*bagPrice;
+      enteredBagsPriceObs.setValue(price);
+    }
+  }
+
+
+
   PrepareOrderParams _prepareOrderParams() {
+    // log("======>>>> all data ${_detailsData.ordersDetails!} <<<<<<======");
+    // log("======>>>> deleted data ${_detailsData.deletedOrders} <<<<<<======");
     double bagCount = double.parse(bagsCountController.text);
     return PrepareOrderParams(
       orderId: orderId,

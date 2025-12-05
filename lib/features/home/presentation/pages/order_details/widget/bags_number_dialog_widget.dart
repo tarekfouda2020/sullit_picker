@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
 import '../../../../../../core/helpers/export.dart';
@@ -15,7 +16,7 @@ class BagsNumberDialogWidget extends StatelessWidget {
       backgroundColor: context.colors.white,
       contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
       content: SizedBox(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.sizeOf(context).width,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -32,6 +33,33 @@ class BagsNumberDialogWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Gaps.vGap24,
+            // Row(
+            //   children: [
+            //     Text("Expected bags count: ",
+            //     style: AppTextStyle.s15_w500(color: context.colors.black),
+            //     ),
+            //     Text("${controller.getDetailsData.bagsCount}",
+            //     style: AppTextStyle.s15_w500(color: context.colors.primary),
+            //     ),
+            //   ],
+            // ),
+            // Gaps.vGap10,
+            Row(
+              children: [
+                Text("Entered Bags Price: ",
+                  style: AppTextStyle.s15_w500(color: context.colors.black),
+                ),
+                ObsValueConsumer<double>(
+                  observable: controller.enteredBagsPriceObs,
+                  builder: (context,value) {
+                    return DirhamPrice(amount: "$value",
+                      textStyle: AppTextStyle.s15_w500(color: context.colors.primary),
+                    );
+                  }
+                ),
+              ],
+            ),
+            Gaps.vGap10,
             Form(
               key: controller.bagsCountFormKey,
               child: GenericTextField(
@@ -41,6 +69,7 @@ class BagsNumberDialogWidget extends StatelessWidget {
                   action: TextInputAction.done,
                   fillColor: context.colors.background,
                   validate: (value) => value?.validateEmpty(),
+                onChange: (value) => controller.calcEnteredBagsPrice(value),
                 margin: const EdgeInsets.only(bottom: 20),
                 hint: Translate.s.enter_bag_number,
               ),
