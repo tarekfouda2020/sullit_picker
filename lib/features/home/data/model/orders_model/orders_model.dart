@@ -31,7 +31,8 @@ class OrderModel with _$OrderModel {
      required CustomerModel customer,
     required String code,
     @JsonKey(name: 'total_items') required int totalItems,
-    @JsonKey(name: 'bag_count') required int bagCount,
+    @JsonKey(name: 'bag_count') required int bagsCount,
+    @JsonKey(name: 'bag_price') required double bagPrice,
     @JsonKey(name: 'allow_replacement') required bool allowReplacement,
     required String status,
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
@@ -69,6 +70,7 @@ class OrderModel with _$OrderModel {
   }
 
   bool get isAssigned => getOrderStatus() == OrderStatusEnum.preparing;
+
   bool get isNewOrder => getOrderStatus() == OrderStatusEnum.newOrder;
 
  String? getStartPickingDate(){
@@ -96,7 +98,7 @@ class OrderDetailsModel with _$OrderDetailsModel {
     required String variation,
     required int quantity,
     required String price,
-     @JsonKey(name: "unit_price",) required String unitPrice,
+    @JsonKey(name: "unit_price",) required String unitPrice,
 
     /// return null in cancel order api
     ProductModel? product,

@@ -33,6 +33,8 @@ class OrderDetailsController {
 
   OrderModel get _detailsData => detailsCubit.data!;
 
+  OrderModel get getDetailsData => _detailsData;
+
   void updateDetailsCubit({OrderModel? data}) => detailsCubit.successState(data ?? _detailsData);
 
   void updateIsAllPickedObs(){

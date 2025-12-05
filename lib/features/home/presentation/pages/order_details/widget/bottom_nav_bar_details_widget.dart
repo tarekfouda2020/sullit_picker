@@ -2,6 +2,8 @@ import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/core/widgets/shimmers/base_shimmer_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
+import 'dispatch_button_widget.dart';
+import 'send_to_cashier_button_widget.dart';
 import 'widgets_imports.dart';
 class BottomNavBarDetailsWidget extends StatelessWidget {
   final OrderDetailsController controller;
@@ -24,26 +26,8 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                   children: [
                     Visibility(
                       visible: value,
-                      replacement: AppTextButton.maxCustom(
-                        text: Translate.of(context).send_to_cashier,
-                        onPressed: ()=> controller.sendToCashier(),
-                        textSize: 18,
-                        txtColor: controller.isAllProductsPicked
-                            ?context.colors.white
-                            :context.colors.white.withAlpha(126),
-                        bgColor: controller.isAllProductsPicked
-                            ?context.colors.appGreen
-                            :context.colors.appGreen.withAlpha(126),
-                        maxHeight: 50,
-                      ),
-                      child: AppTextButton.maxCustom(
-                        text: Translate.of(context).dispatch,
-                        onPressed: ()=> controller.showBagsCountDialog(context),
-                        textSize: 18,
-                        txtColor: context.colors.white,
-                        bgColor: context.colors.appGreen,
-                        maxHeight: 50,
-                      ),
+                      replacement: SendToCashierButtonWidget(controller: controller),
+                      child: DispatchButtonWidget(controller: controller),
                     ),
                     Gaps.vGap10,
                     if(!controller.isAllProductsPicked)

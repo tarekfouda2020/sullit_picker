@@ -44,22 +44,25 @@ class _OrderDetailsState extends State<OrderDetails> {
                 OrderDetailsHeaderWidget(data: data),
                 Gaps.vGap10,
                 Expanded(
-                  child: ListView(
-                    children: [
-                      HeaderOrderDetailsWidget(
-                        data: data,
-                        controller: controller,
-                      ),
-                      Gaps.vGap12,
-                      TimerCardDetailsWidget(data: data,controller: controller),
-                      Gaps.vGap12,
-                      ...List.generate(data.ordersDetails!.length, (index) {
-                        return PickItemWidget(
-                          orderDetails: data.ordersDetails![index],
+                  child: RefreshIndicator(
+                    onRefresh: () async => await controller.getDetails() ,
+                    child: ListView(
+                      children: [
+                        HeaderOrderDetailsWidget(
+                          data: data,
                           controller: controller,
-                        );
-                      },)
-                    ],
+                        ),
+                        Gaps.vGap12,
+                        TimerCardDetailsWidget(data: data,controller: controller),
+                        Gaps.vGap12,
+                        ...List.generate(data.ordersDetails!.length, (index) {
+                          return PickItemWidget(
+                            orderDetails: data.ordersDetails![index],
+                            controller: controller,
+                          );
+                        },)
+                      ],
+                    ),
                   ),
                 ),
               ],

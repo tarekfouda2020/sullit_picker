@@ -244,9 +244,13 @@ mixin _$OrderModel {
   @JsonKey(name: 'total_items')
   set totalItems(int value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'bag_count')
-  int get bagCount => throw _privateConstructorUsedError;
+  int get bagsCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'bag_count')
-  set bagCount(int value) => throw _privateConstructorUsedError;
+  set bagsCount(int value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bag_price')
+  double get bagPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bag_price')
+  set bagPrice(double value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'allow_replacement')
   bool get allowReplacement => throw _privateConstructorUsedError;
   @JsonKey(name: 'allow_replacement')
@@ -327,7 +331,8 @@ abstract class $OrderModelCopyWith<$Res> {
       CustomerModel customer,
       String code,
       @JsonKey(name: 'total_items') int totalItems,
-      @JsonKey(name: 'bag_count') int bagCount,
+      @JsonKey(name: 'bag_count') int bagsCount,
+      @JsonKey(name: 'bag_price') double bagPrice,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
       String status,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
@@ -364,7 +369,8 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? customer = null,
     Object? code = null,
     Object? totalItems = null,
-    Object? bagCount = null,
+    Object? bagsCount = null,
+    Object? bagPrice = null,
     Object? allowReplacement = null,
     Object? status = null,
     Object? preparationMinutes = null,
@@ -393,10 +399,14 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
               as int,
-      bagCount: null == bagCount
-          ? _value.bagCount
-          : bagCount // ignore: cast_nullable_to_non_nullable
+      bagsCount: null == bagsCount
+          ? _value.bagsCount
+          : bagsCount // ignore: cast_nullable_to_non_nullable
               as int,
+      bagPrice: null == bagPrice
+          ? _value.bagPrice
+          : bagPrice // ignore: cast_nullable_to_non_nullable
+              as double,
       allowReplacement: null == allowReplacement
           ? _value.allowReplacement
           : allowReplacement // ignore: cast_nullable_to_non_nullable
@@ -462,7 +472,8 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       CustomerModel customer,
       String code,
       @JsonKey(name: 'total_items') int totalItems,
-      @JsonKey(name: 'bag_count') int bagCount,
+      @JsonKey(name: 'bag_count') int bagsCount,
+      @JsonKey(name: 'bag_price') double bagPrice,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
       String status,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
@@ -498,7 +509,8 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? customer = null,
     Object? code = null,
     Object? totalItems = null,
-    Object? bagCount = null,
+    Object? bagsCount = null,
+    Object? bagPrice = null,
     Object? allowReplacement = null,
     Object? status = null,
     Object? preparationMinutes = null,
@@ -527,10 +539,14 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
               as int,
-      bagCount: null == bagCount
-          ? _value.bagCount
-          : bagCount // ignore: cast_nullable_to_non_nullable
+      bagsCount: null == bagsCount
+          ? _value.bagsCount
+          : bagsCount // ignore: cast_nullable_to_non_nullable
               as int,
+      bagPrice: null == bagPrice
+          ? _value.bagPrice
+          : bagPrice // ignore: cast_nullable_to_non_nullable
+              as double,
       allowReplacement: null == allowReplacement
           ? _value.allowReplacement
           : allowReplacement // ignore: cast_nullable_to_non_nullable
@@ -583,7 +599,8 @@ class _$OrderModelImpl extends _OrderModel {
       required this.customer,
       required this.code,
       @JsonKey(name: 'total_items') required this.totalItems,
-      @JsonKey(name: 'bag_count') required this.bagCount,
+      @JsonKey(name: 'bag_count') required this.bagsCount,
+      @JsonKey(name: 'bag_price') required this.bagPrice,
       @JsonKey(name: 'allow_replacement') required this.allowReplacement,
       required this.status,
       @JsonKey(name: 'preparation_minutes') required this.preparationMinutes,
@@ -615,7 +632,10 @@ class _$OrderModelImpl extends _OrderModel {
   int totalItems;
   @override
   @JsonKey(name: 'bag_count')
-  int bagCount;
+  int bagsCount;
+  @override
+  @JsonKey(name: 'bag_price')
+  double bagPrice;
   @override
   @JsonKey(name: 'allow_replacement')
   bool allowReplacement;
@@ -656,7 +676,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, bagCount: $bagCount, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   @JsonKey(ignore: true)
@@ -679,7 +699,8 @@ abstract class _OrderModel extends OrderModel {
       required CustomerModel customer,
       required String code,
       @JsonKey(name: 'total_items') required int totalItems,
-      @JsonKey(name: 'bag_count') required int bagCount,
+      @JsonKey(name: 'bag_count') required int bagsCount,
+      @JsonKey(name: 'bag_price') required double bagPrice,
       @JsonKey(name: 'allow_replacement') required bool allowReplacement,
       required String status,
       @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
@@ -716,9 +737,14 @@ abstract class _OrderModel extends OrderModel {
   set totalItems(int value);
   @override
   @JsonKey(name: 'bag_count')
-  int get bagCount;
+  int get bagsCount;
   @JsonKey(name: 'bag_count')
-  set bagCount(int value);
+  set bagsCount(int value);
+  @override
+  @JsonKey(name: 'bag_price')
+  double get bagPrice;
+  @JsonKey(name: 'bag_price')
+  set bagPrice(double value);
   @override
   @JsonKey(name: 'allow_replacement')
   bool get allowReplacement;

@@ -17,7 +17,7 @@ class EditPriceWidget extends StatelessWidget {
       child: Row(
         children: [
           Text(Translate.of(context).edit,
-            style: AppTextStyle.s16_w500(color: CupertinoColors.systemBlue),
+            style: const AppTextStyle.s16_w500(color: CupertinoColors.systemBlue),
           ),
           Gaps.hGap4,
           const Icon(CupertinoIcons.pen,color: CupertinoColors.systemBlue,size: 20,)
