@@ -27,7 +27,7 @@ class DispatchButtonWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("Total Price",
+            Text(Translate.s.total,
             style: AppTextStyle.s15_w500(color: context.colors.primary),
             ),
             Gaps.vGap5,

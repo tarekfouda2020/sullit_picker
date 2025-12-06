@@ -38,9 +38,10 @@ class OrderDetailsController {
 
   OrderModel get getDetailsData => _detailsData;
 
-  void updateDetailsCubit({OrderModel? data}) => detailsCubit.successState(data ?? _detailsData);
+  void updateDetailsCubit({OrderModel? data}) =>
+      detailsCubit.successState(data ?? _detailsData);
 
-  void updateIsAllPickedObs(){
+  void updateIsAllPickedObs() {
     isAllPickedObs.setValue(isAllProductsPicked);
   }
 
@@ -70,41 +71,48 @@ class OrderDetailsController {
         });
   }
 
-  void showReturnReasonDialog(BuildContext context,OrderDetailsModel currentItem){
+  void showReturnReasonDialog(
+      BuildContext context, OrderDetailsModel currentItem) {
     Navigator.pop(context);
-    showDialog(context: context, builder: (ctx) {
-      return UpdateReasonDialogWidget(
-        controller: this,
-        onPressSubmit:() => confirmReplaceReason(ctx,currentItem),
-      ) ;
-    },);
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return UpdateReasonDialogWidget(
+          controller: this,
+          onPressSubmit: () => confirmReplaceReason(ctx, currentItem),
+        );
+      },
+    );
   }
 
-  void confirmReplaceReason(BuildContext context,OrderDetailsModel currentItem){
-   if(replaceReasonKey.currentState!.validate()){
-     currentItem.pickerNotes = pickerNoteController.text;
-     pickerNoteController.clear();
-     scanProduct(context, currentItem);
-   }
+  void confirmReplaceReason(
+      BuildContext context, OrderDetailsModel currentItem) {
+    if (replaceReasonKey.currentState!.validate()) {
+      currentItem.pickerNotes = pickerNoteController.text;
+      pickerNoteController.clear();
+      scanProduct(context, currentItem);
+    }
   }
 
-  Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
+  Future<void> scanProduct(
+      BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
-    BuildContext ctx = getIt<GlobalContext>().context();
+    // BuildContext ctx = getIt<GlobalContext>().context();
     // 62211628
     // 31610
-    getProductWithBarcode(ctx, "31610", oldItem);
-    // String? barcode = await getIt<BarcodeService>().scanBarcode();
-    // if (barcode != null && barcode.isNotEmpty) {
-    //   BuildContext ctx = getIt<GlobalContext>().context();
-    //   AppSnackBar.showSuccessSnackBar(
-    //     Translate.of(ctx).product_scanned,
-    //   );
-    //   getProductWithBarcode(ctx, barcode, oldItem);
-    // }
+    // getProductWithBarcode(ctx, "31610", oldItem);
+    String? barcode = await getIt<BarcodeService>().scanBarcode();
+    if (barcode != null && barcode.isNotEmpty) {
+      BuildContext ctx = getIt<GlobalContext>().context();
+      AppSnackBar.showSuccessSnackBar(
+        Translate.of(ctx).product_scanned,
+      );
+      getProductWithBarcode(ctx, barcode, oldItem);
+    }
   }
 
-  Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
+  Future<void> getProductWithBarcode(
+      BuildContext context, String barcode, OrderDetailsModel oldItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     ReplacedProductParams params = _replacedProductParams(barcode);
     var result = await getIt<HomeRepositories>().searchByBarcode(params);
@@ -122,19 +130,20 @@ class OrderDetailsController {
     getIt<LoadingHelper>().dismissDialog();
   }
 
-  void updateReplacedProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
+  void updateReplacedProduct(
+      SearchBarcodeModel newData, OrderDetailsModel oldItem) {
     double newPrice = double.parse(newData.variant.mainPrice);
     double oldItemPrice = double.parse(oldItem.unitPrice);
     if (newPrice > oldItemPrice) {
       AppSnackBar.showSimpleToast(
           msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
           type: ToastType.error,
-          gravity: ToastGravity.BOTTOM
-      );
+          gravity: ToastGravity.BOTTOM);
       return;
     }
 
-    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+    int index =
+        _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
     OrderDetailsModel updatedItem = oldItem.copyWith(
       price: newData.variant.mainPrice,
       unitPrice: newData.variant.mainPrice,
@@ -146,12 +155,14 @@ class OrderDetailsController {
           pickedQuantity: 0,
           productPickedPercent: 0,
           productStatus: ProductStatusEnum.replaced,
-          barcode: newData.barcode
-      ),
+          barcode: newData.barcode),
     );
     _detailsData.ordersDetails![index] = updatedItem;
+
     /// add replaced products in a separated list
-    _detailsData.changedProducts!.addIf((OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),oldItem);
+    _detailsData.changedProducts!.addIf(
+        (OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),
+        oldItem);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     updateSameOrderInList(_detailsData);
@@ -168,8 +179,9 @@ class OrderDetailsController {
     //   );
     //   return;
     // }
-    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
-    if(oldItem.quantity > 0){
+    int index =
+        _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+    if (oldItem.quantity > 0) {
       /// using  (ProductStatusEnum.qntModified) and  (.isQntModified >> see PrepareOrderParams)
       /// to define that...this item qnt has been modified when sending in prepare order params
       /// and sending remain qnt
@@ -178,40 +190,45 @@ class OrderDetailsController {
       oldItem.product!.productStatus = ProductStatusEnum.qntModified;
       _detailsData.ordersDetails![index] = oldItem;
     }
-    List<int> existedNewVariantIds = _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toList();
-    bool isNewItemAddedBefore = existedNewVariantIds.contains(newData.variant.id);
+    List<int> existedNewVariantIds =
+        _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toList();
+    bool isNewItemAddedBefore =
+        existedNewVariantIds.contains(newData.variant.id);
 
     OrderDetailsModel updatedItem = oldItem.copyWith(
       price: newData.variant.mainPrice,
-      unitPrice:newData.variant.mainPrice,
+      unitPrice: newData.variant.mainPrice,
       addedVariantId: newData.variant.id,
       variation: "",
       product: oldItem.product!.copyWith(
           name: newData.name,
           thumbnailImage: newData.thumbnailImage,
-          barcode: newData.barcode
-      ),
+          barcode: newData.barcode),
     );
+
     /// in the last replace add it to removed list will be send as a deleted item in api-params
-    if(oldItem.quantity == 0){
+    if (oldItem.quantity == 0) {
       _detailsData.ordersDetails!.removeAt(index);
       _detailsData.deletedOrders!.add(oldItem);
     }
-    if(isNewItemAddedBefore){
+    if (isNewItemAddedBefore) {
       _updateExistItem(newData);
-    }else{
-      _addNewItem(updatedItem, index,oldItem);
+    } else {
+      _addNewItem(updatedItem, index, oldItem);
     }
+
     /// add the original one we press replace on it in qntChangedProducts list
-    _detailsData.qntChangedProducts!.addIf((OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),oldItem);
+    _detailsData.qntChangedProducts!.addIf(
+        (OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),
+        oldItem);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     updateSameOrderInList(_detailsData);
   }
 
-
   void _updateExistItem(SearchBarcodeModel newData) {
-    int newItemIndex = _detailsData.ordersDetails!.indexWhere((e) => e.addedVariantId == newData.variant.id);
+    int newItemIndex = _detailsData.ordersDetails!
+        .indexWhere((e) => e.addedVariantId == newData.variant.id);
     OrderDetailsModel existingItem = _detailsData.ordersDetails![newItemIndex];
     OrderDetailsModel newItem = existingItem.copyWith(
       quantity: existingItem.quantity + 1,
@@ -219,16 +236,14 @@ class OrderDetailsController {
     _detailsData.ordersDetails![newItemIndex] = newItem;
   }
 
-  void _addNewItem(OrderDetailsModel updatedItem, int index,OrderDetailsModel oldItem) {
+  void _addNewItem(
+      OrderDetailsModel updatedItem, int index, OrderDetailsModel oldItem) {
     updatedItem.quantity = 1;
     updatedItem.product!.pickedQuantity = 0;
     updatedItem.product!.productPickedPercent = 0;
     updatedItem.product!.productStatus = ProductStatusEnum.added;
-    _detailsData.ordersDetails!.insert(index+1,updatedItem);
+    _detailsData.ordersDetails!.insert(index + 1, updatedItem);
   }
-
-
-
 
   void showDeleteDialog(BuildContext context, int productId) {
     showDialog(
@@ -239,8 +254,6 @@ class OrderDetailsController {
       ),
     );
   }
-
-
 
   void editQuantity(BuildContext context) {
     // showDialog(context: context, builder: (context) => const WeightConfirmDialogWidget());
@@ -277,16 +290,18 @@ class OrderDetailsController {
   }
 
   Future<void> cancelOrder(BuildContext context) async {
-    var result = await getIt<HomeRepositories>().cancelOrder( orderId);
+    var result = await getIt<HomeRepositories>().cancelOrder(orderId);
     result.when(
-      isSuccess: (data) async{
+      isSuccess: (data) async {
         await removeOrder();
-        AppSnackBar.showSuccessSnackBar(Translate.of(context).order_cancelled_successfully);
+        AppSnackBar.showSuccessSnackBar(
+            Translate.of(context).order_cancelled_successfully);
         Navigator.pop(context);
         AutoRouter.of(context).maybePop(orderId);
       },
       isError: (error) {
-        AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).try_again));
+        AppSnackBar.showErrorSnackBar(
+            error: BaseError.unknown(msg: "Sorry we can't process this order. Thank you"));
       },
     );
   }
@@ -294,80 +309,91 @@ class OrderDetailsController {
   Future<void> removeOrder() async {
     List<OrderModel> assignedOrders = getIt<OrdersHelper>().getAssignedOrders();
     List<OrderModel> updatedList = (assignedOrders).map((e) => e).toList();
-    updatedList.removeWhere((element) => element.id == orderId,);
+    updatedList.removeWhere(
+      (element) => element.id == orderId,
+    );
     await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
     await getIt<OrdersHelper>().deleteOrderDetails(orderId);
-  }
 
-
-
-  void onPressPick(BuildContext context,OrderDetailsModel orderProduct,{bool pickAll = false}){
-    int qty = orderProduct.quantity;
-    if (orderProduct.product!.pickedQuantity != qty){
-      String variation = orderProduct.variation;
-      if(variation.validateIfItWeight() == true){
-        // showWeightDialog(context,orderProduct);
-        showPriceDialog(context,orderProduct,pickAll: pickAll);
-      }else{
-        pickItem(orderProduct,pickedAll: pickAll);
+    // Check if both assigned orders and new orders are empty, then set ordersList to null
+    OrdersList? currentOrdersList = getIt<OrdersHelper>().ordersListCubit.data;
+    if (currentOrdersList != null) {
+      if (updatedList.isEmpty && currentOrdersList.newOrders.isEmpty) {
+        getIt<OrdersHelper>().ordersListCubit.successState(null);
       }
     }
-
   }
 
+  void onPressPick(BuildContext context, OrderDetailsModel orderProduct,
+      {bool pickAll = false}) {
+    int qty = orderProduct.quantity;
+    if (orderProduct.product!.pickedQuantity != qty) {
+      String variation = orderProduct.variation;
+      if (variation.validateIfItWeight() == true) {
+        // showWeightDialog(context,orderProduct);
+        showPriceDialog(context, orderProduct, pickAll: pickAll);
+      } else {
+        pickItem(orderProduct, pickedAll: pickAll);
+      }
+    }
+  }
 
-  void showWeightDialog(BuildContext context,OrderDetailsModel orderProduct) {
+  void showWeightDialog(BuildContext context, OrderDetailsModel orderProduct) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return  WeightConfirmDialogWidget(orderProduct: orderProduct,controller: this,);
+        return WeightConfirmDialogWidget(
+          orderProduct: orderProduct,
+          controller: this,
+        );
       },
     );
   }
 
-  void showPriceDialog(BuildContext context,OrderDetailsModel orderProduct,{bool pickAll = false}) {
+  void showPriceDialog(BuildContext context, OrderDetailsModel orderProduct,
+      {bool pickAll = false}) {
     // OrderDetailsModel? productAfterUpdated = _detailsData.changedProducts?.firstWhereOrNull((element) => element.id == orderProduct.id);
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return  NewPriceDialogWidget(orderProduct:  orderProduct,controller: this,pickAll: pickAll,);
+        return NewPriceDialogWidget(
+          orderProduct: orderProduct,
+          controller: this,
+          pickAll: pickAll,
+        );
       },
     );
   }
 
-  void showNewWeightDialog(BuildContext context,OrderDetailsModel orderProduct) {
+  void showNewWeightDialog(
+      BuildContext context, OrderDetailsModel orderProduct) {
     showDialog(
         context: context,
-        builder: (context) =>
-         DialogNewWeightWidget(
-         orderProduct: orderProduct,
-           controller: this,
-        )
-    );
+        builder: (context) => DialogNewWeightWidget(
+              orderProduct: orderProduct,
+              controller: this,
+            ));
   }
 
-  void showNewPriceDialog(BuildContext context,OrderDetailsModel orderProduct,{bool popTwice = true,bool pickAll = false}) {
+  void showNewPriceDialog(BuildContext context, OrderDetailsModel orderProduct,
+      {bool popTwice = true, bool pickAll = false}) {
     showDialog(
         context: context,
-        builder: (context) =>
-            EnterNewPriceDialogWidget(
-              orderProduct:  orderProduct,
+        builder: (context) => EnterNewPriceDialogWidget(
+              orderProduct: orderProduct,
               controller: this,
               popTwice: popTwice,
               pickAll: pickAll,
-            )
-    );
+            ));
   }
 
-
-  void confirmNewWeight(OrderDetailsModel orderProduct, BuildContext context){
-    if(formKey.currentState!.validate()){
-
+  void confirmNewWeight(OrderDetailsModel orderProduct, BuildContext context) {
+    if (formKey.currentState!.validate()) {
       double newPrice = double.parse(newPriceController.text);
       // double oldPrice = double.parse(orderProduct.unitPrice);
 
-      double oldWeight  = getProductWeight(orderProduct);
+      double oldWeight = getProductWeight(orderProduct);
       double newWeight = double.parse(newWeightController.text);
       double minWeight = productMinimumNewWeight(orderProduct);
       String unit = getProductWeightUnit(orderProduct);
@@ -384,21 +410,22 @@ class OrderDetailsController {
       /// and can not be less than the Minimum one
       if (newWeight < minWeight || newWeight > oldWeight) {
         AppSnackBar.showSimpleToast(
-          msg: "${Translate.s.new_weight_must_be_between} ${minWeight.toStringAsFixed(2)} ${Translate.s.and} $oldWeight $unit",
+          msg:
+              "${Translate.s.new_weight_must_be_between} ${minWeight.toStringAsFixed(2)} ${Translate.s.and} $oldWeight $unit",
           type: ToastType.error,
           gravity: ToastGravity.BOTTOM,
         );
         return;
       }
 
-      int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == orderProduct.id);
+      int index = _detailsData.ordersDetails!
+          .indexWhere((e) => e.id == orderProduct.id);
       OrderDetailsModel updatedItem = orderProduct.copyWith(
         price: "$newPrice",
         newPrice: newPrice,
         variation: "$newWeight$unit",
-        product: orderProduct.product!.copyWith(
-            productStatus: ProductStatusEnum.priceModified
-        ),
+        product: orderProduct.product!
+            .copyWith(productStatus: ProductStatusEnum.priceModified),
       );
       _detailsData.ordersDetails![index] = updatedItem;
       updateDetailsCubit();
@@ -411,26 +438,27 @@ class OrderDetailsController {
     }
   }
 
-  double productMinimumNewWeight(OrderDetailsModel orderProduct){
+  double productMinimumNewWeight(OrderDetailsModel orderProduct) {
     double oldWeight = getProductWeight(orderProduct);
-    double newWeight = oldWeight-(oldWeight*0.1);
+    double newWeight = oldWeight - (oldWeight * 0.1);
     return newWeight;
   }
 
-
-  double getProductWeight(OrderDetailsModel orderProduct,){
-    return WeightInfo.extractWeight(orderProduct.variation)?.value ??0;
+  double getProductWeight(
+    OrderDetailsModel orderProduct,
+  ) {
+    return WeightInfo.extractWeight(orderProduct.variation)?.value ?? 0;
   }
 
-
-  String getProductWeightUnit(OrderDetailsModel orderProduct,){
+  String getProductWeightUnit(
+    OrderDetailsModel orderProduct,
+  ) {
     return WeightInfo.extractWeight(orderProduct.variation)?.unit ?? "";
   }
 
-
-
-  void confirmNewPrice(OrderDetailsModel oldItem, BuildContext context,{bool popTwice = true,bool  pickAll = false}){
-    if(formKey.currentState!.validate()){
+  void confirmNewPrice(OrderDetailsModel oldItem, BuildContext context,
+      {bool popTwice = true, bool pickAll = false}) {
+    if (formKey.currentState!.validate()) {
       double newPrice = double.parse(newPriceController.text);
       // double oldPrice = double.parse(oldItem.unitPrice);
       // if(newPrice > oldPrice){
@@ -440,25 +468,26 @@ class OrderDetailsController {
       //   );
       //   return ;
       // }
-      int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+      int index =
+          _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
       OrderDetailsModel updatedItem = oldItem.copyWith(
-        price: "${newPrice*oldItem.quantity}",
+        price: "${newPrice * oldItem.quantity}",
         unitPrice: "$newPrice",
         newPrice: newPrice,
-       pickerNotes: pickerNoteController.text,
-        product: oldItem.product!.copyWith(
-            productStatus: ProductStatusEnum.priceModified
-        ),
+        pickerNotes: pickerNoteController.text,
+        product: oldItem.product!
+            .copyWith(productStatus: ProductStatusEnum.priceModified),
       );
       _detailsData.ordersDetails![index] = updatedItem;
 
       /// to prevent adding the same item again with the same id
-      _detailsData.changedProducts!.addIf(!_detailsData.changedProducts!.contains(oldItem.id),oldItem);
-      pickItem(updatedItem,pickedAll: pickAll);
+      _detailsData.changedProducts!
+          .addIf(!_detailsData.changedProducts!.contains(oldItem.id), oldItem);
+      pickItem(updatedItem, pickedAll: pickAll);
       pickerNoteController.clear();
       newPriceController.clear();
       Navigator.pop(context);
-      if(popTwice){
+      if (popTwice) {
         Navigator.pop(context);
       }
       updateDetailsCubit();
@@ -466,34 +495,32 @@ class OrderDetailsController {
     }
   }
 
-
-  void pickItem(OrderDetailsModel orderProduct,{bool pickedAll = false}) {
+  void pickItem(OrderDetailsModel orderProduct, {bool pickedAll = false}) {
     int qty = orderProduct.quantity;
     if (orderProduct.product!.pickedQuantity != qty) {
-      getProductPickedPercent(orderProduct,pickedAll: pickedAll);
+      getProductPickedPercent(orderProduct, pickedAll: pickedAll);
       updateDetailsCubit();
       getIt<OrdersHelper>().saveOrderDetails(_detailsData);
       updateSameOrderInList(_detailsData);
     }
   }
 
-  void returnPickedItem(BuildContext context,OrderDetailsModel orderProduct){
+  void returnPickedItem(BuildContext context, OrderDetailsModel orderProduct) {
     int pickedQty = orderProduct.product!.pickedQuantity!;
-    if(pickedQty>0){
+    if (pickedQty > 0) {
       pickedQty = pickedQty - 1;
     }
     orderProduct.product!.pickedQuantity = pickedQty;
     double percent = (pickedQty / orderProduct.quantity) * 100;
     orderProduct.product!.productPickedPercent = percent;
-    if(pickedQty == 0){
-      orderPickedPercent(_detailsData,isReturn: true);
-      if(orderProduct.product!.productStatus!.shouldShowStatus){
-
-        showConFirmReturnDialog(context,orderProduct);
-        return ;
+    if (pickedQty == 0) {
+      orderPickedPercent(_detailsData, isReturn: true);
+      if (orderProduct.product!.productStatus!.shouldShowStatus) {
+        showConFirmReturnDialog(context, orderProduct);
+        return;
       }
     }
-    if(isAllPickedObs.getValue()){
+    if (isAllPickedObs.getValue()) {
       isAllPickedObs.setValue(false);
     }
     updateDetailsCubit();
@@ -501,19 +528,19 @@ class OrderDetailsController {
     updateSameOrderInList(_detailsData);
   }
 
-
-
-  void deleteReasonDialog(BuildContext context,int id){
+  void deleteReasonDialog(BuildContext context, int id) {
     Navigator.pop(context);
-    showDialog(context: context, builder: (ctx) {
-      return UpdateReasonDialogWidget(
-        controller: this,
-        // onPressSubmit:() => deleteProduct(ctx,id),
-        onPressSubmit:() => deleteProduct(ctx,id),
-      ) ;
-    },);
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return UpdateReasonDialogWidget(
+          controller: this,
+          // onPressSubmit:() => deleteProduct(ctx,id),
+          onPressSubmit: () => deleteProduct(ctx, id),
+        );
+      },
+    );
   }
-
 
   void deleteProduct(BuildContext context, int itemId) {
     Navigator.pop(context);
@@ -521,20 +548,21 @@ class OrderDetailsController {
       (element) => element.id == itemId,
     );
     _detailsData.ordersDetails!.remove(removedItem);
-    if((_detailsData.ordersDetails??[]).isNotEmpty){
+    if ((_detailsData.ordersDetails ?? []).isNotEmpty) {
       orderPickedPercent(_detailsData);
       updateSameOrderInList(_detailsData);
     }
     _detailsData.deletedOrders?.add(removedItem!);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
-    if((_detailsData.ordersDetails??[]).isEmpty){
-      BuildContext ctx  = getIt<GlobalContext>().context();
+    if ((_detailsData.ordersDetails ?? []).isEmpty) {
+      BuildContext ctx = getIt<GlobalContext>().context();
       cancelOrder(ctx);
     }
   }
 
-  void getProductPickedPercent(OrderDetailsModel orderProduct, {bool returnItem = false, bool pickedAll = false}) {
+  void getProductPickedPercent(OrderDetailsModel orderProduct,
+      {bool returnItem = false, bool pickedAll = false}) {
     int pickedQty = orderProduct.product!.pickedQuantity!;
     if (returnItem) {
       /// return button will be show only when pickedQty > 0
@@ -571,16 +599,18 @@ class OrderDetailsController {
     }
   }
 
-  void orderPickedPercent(OrderModel details,{bool isReturn = false}) {
-    int totalPickedQty = details.ordersDetails!.fold<int>(0, (sum, item) => sum + (item.product!.pickedQuantity ?? 0));
-    int totalQty = details.ordersDetails!.fold<int>(0, (sum, item) => sum + item.quantity);
+  void orderPickedPercent(OrderModel details, {bool isReturn = false}) {
+    int totalPickedQty = details.ordersDetails!
+        .fold<int>(0, (sum, item) => sum + (item.product!.pickedQuantity ?? 0));
+    int totalQty =
+        details.ordersDetails!.fold<int>(0, (sum, item) => sum + item.quantity);
     final percent = (totalPickedQty / totalQty) * 100;
     details.pickedPercent = percent;
-    if(isReturn){
-      if(details.totalItems < details.ordersDetails!.length ){
+    if (isReturn) {
+      if (details.totalItems < details.ordersDetails!.length) {
         details.totalItems = details.totalItems + 1;
       }
-    }else{
+    } else {
       details.totalItems = details.totalItems - 1;
     }
     updateSameOrderInList(details);
@@ -588,7 +618,8 @@ class OrderDetailsController {
 
   void updateSameOrderInList(OrderModel details) {
     /// out side list updated inside this method
-    BaseBloc<List<OrderModel>> ordersListCubit = getIt<OrdersHelper>().assignedOrdersCubit;
+    BaseBloc<List<OrderModel>> ordersListCubit =
+        getIt<OrdersHelper>().assignedOrdersCubit;
     List<OrderModel> ordersData = ordersListCubit.data!;
     for (var item in ordersData) {
       if (item.id == details.id) {
@@ -601,7 +632,8 @@ class OrderDetailsController {
   }
 
   Future<void> getDetails({bool fromRemote = true}) async {
-    String? hiveData = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
+    String? hiveData = HiveHelper.instance
+        .getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
     if (hiveData != null && hiveData.isNotEmpty) {
       initDataFromLocal();
       return;
@@ -619,9 +651,9 @@ class OrderDetailsController {
     );
   }
 
-
   Future<void> updateLocalData(OrderModel data) async {
-    String? box = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
+    String? box = HiveHelper.instance
+        .getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
     if (box == null || box.isEmpty) {
       getIt<OrdersHelper>().saveOrderDetails(data);
       updateDetailsCubit(data: data);
@@ -636,18 +668,19 @@ class OrderDetailsController {
     updateIsAllPickedObs();
   }
 
-
   /// return original order after replace it all (not reduce 1 qnt and add another one...not that my friend)
-  void returnChangedProduct(OrderDetailsModel updatedOrder ){
+  void returnChangedProduct(OrderDetailsModel updatedOrder) {
     /// after update product => save the original product in (changedProducts list with the same id)
     /// prepareOrder need orderId even if replaced it send the original id with new variant id
 
     /// update the  product(the one with status replaced, or modified) with the original one from changedProducts list
 
-
     List<OrderDetailsModel> originalItems = _detailsData.changedProducts!;
-    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id);
-    OrderDetailsModel originalItem = originalItems.firstWhere((element) => element.id == updatedOrder.id,);
+    int index =
+        _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id);
+    OrderDetailsModel originalItem = originalItems.firstWhere(
+      (element) => element.id == updatedOrder.id,
+    );
     OrderDetailsModel updatedItem = updatedOrder.copyWith(
       /// same data that changed when updated first time will also be changed here
       price: originalItem.price,
@@ -655,13 +688,12 @@ class OrderDetailsController {
       newVariantId: null,
       variation: originalItem.variation,
       product: originalItem.product!.copyWith(
-      name: originalItem.product!.name,
-      thumbnailImage: originalItem.product!.thumbnailImage,
-      pickedQuantity: 0,
-      productPickedPercent: 0,
-      productStatus: ProductStatusEnum.noEdit,
-      barcode: originalItem.product!.barcode
-      ),
+          name: originalItem.product!.name,
+          thumbnailImage: originalItem.product!.thumbnailImage,
+          pickedQuantity: 0,
+          productPickedPercent: 0,
+          productStatus: ProductStatusEnum.noEdit,
+          barcode: originalItem.product!.barcode),
     );
     _detailsData.ordersDetails![index] = updatedItem;
     _detailsData.changedProducts!.remove(originalItems);
@@ -670,7 +702,7 @@ class OrderDetailsController {
   }
 
   /// return added order after add (now this is reverse of *reduce 1 qnt and add another one*...my friend)
-  void returnAddedProduct(OrderDetailsModel updatedOrder ){
+  void returnAddedProduct(OrderDetailsModel updatedOrder) {
     /// note that updatedOrder and original item have the same id..(we will use benefit of this => in bring original one)
 
     /// after add a new product => save the original product in (qntChangedProducts list with the same id)
@@ -682,29 +714,39 @@ class OrderDetailsController {
     /// or return it if deleted
 
     List<OrderDetailsModel> deletedItems = _detailsData.deletedOrders!;
-    int addedItemIndex = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id && updatedOrder.addedVariantId == e.addedVariantId);
+    int addedItemIndex = _detailsData.ordersDetails!.indexWhere((e) =>
+        e.id == updatedOrder.id &&
+        updatedOrder.addedVariantId == e.addedVariantId);
     List<int> deletedItemsIds = deletedItems.map((e) => e.id).toList();
     OrderDetailsModel originalItem;
 
-    if(deletedItemsIds.contains(updatedOrder.id)){
-      originalItem =  deletedItems.firstWhere((element) => element.id == updatedOrder.id && element.product!.productStatus!.isQntModified,);
-      originalItem = originalItem.copyWith(
-          quantity: originalItem.quantity+updatedOrder.quantity,
-          product: originalItem.product!.copyWith(
-              productStatus: ProductStatusEnum.noEdit
-          )
+    if (deletedItemsIds.contains(updatedOrder.id)) {
+      originalItem = deletedItems.firstWhere(
+        (element) =>
+            element.id == updatedOrder.id &&
+            element.product!.productStatus!.isQntModified,
       );
-      _detailsData.ordersDetails!..removeAt(addedItemIndex)..insert(addedItemIndex,originalItem);
-      _detailsData.deletedOrders!.removeWhere((element) => element.id == originalItem.id);
-    }else{
-      originalItem =  _detailsData.ordersDetails!.firstWhere((element) => element.id == updatedOrder.id && element.product!.productStatus!.isQntModified,);
-      int originalItemIndex = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id && e.product!.productStatus!.isQntModified);
       originalItem = originalItem.copyWith(
-        quantity: originalItem.quantity + updatedOrder.quantity,
-        product: originalItem.product!.copyWith(
-          productStatus: ProductStatusEnum.noEdit
-        )
+          quantity: originalItem.quantity + updatedOrder.quantity,
+          product: originalItem.product!
+              .copyWith(productStatus: ProductStatusEnum.noEdit));
+      _detailsData.ordersDetails!
+        ..removeAt(addedItemIndex)
+        ..insert(addedItemIndex, originalItem);
+      _detailsData.deletedOrders!
+          .removeWhere((element) => element.id == originalItem.id);
+    } else {
+      originalItem = _detailsData.ordersDetails!.firstWhere(
+        (element) =>
+            element.id == updatedOrder.id &&
+            element.product!.productStatus!.isQntModified,
       );
+      int originalItemIndex = _detailsData.ordersDetails!.indexWhere((e) =>
+          e.id == updatedOrder.id && e.product!.productStatus!.isQntModified);
+      originalItem = originalItem.copyWith(
+          quantity: originalItem.quantity + updatedOrder.quantity,
+          product: originalItem.product!
+              .copyWith(productStatus: ProductStatusEnum.noEdit));
       _detailsData.ordersDetails![originalItemIndex] = originalItem;
       _detailsData.ordersDetails!.removeAt(addedItemIndex);
     }
@@ -712,41 +754,43 @@ class OrderDetailsController {
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
   }
 
-  void showConFirmReturnDialog(BuildContext context,OrderDetailsModel replacedItem){
+  void showConFirmReturnDialog(
+      BuildContext context, OrderDetailsModel replacedItem) {
     showDialog(
       context: context,
       builder: (context) {
-      return DialogActionWidget(
-        description: Translate.s.confirm_return_original_product,
-        redOnTap: () {
-          Navigator.pop(context);
-          updateDetailsCubit();
-          getIt<OrdersHelper>().saveOrderDetails(_detailsData);
-          updateSameOrderInList(_detailsData);
-        },
-        greenOnTap: () {
-          Navigator.pop(context);
-          if(isAllPickedObs.getValue()){
-            isAllPickedObs.setValue(false);
-          }
-          if(replacedItem.product!.isAdded){
-            returnAddedProduct(replacedItem);
-          }else{
-            returnChangedProduct(replacedItem);
-          }
-
-        },
-      );
-    },);
+        return DialogActionWidget(
+          description: Translate.s.confirm_return_original_product,
+          redOnTap: () {
+            Navigator.pop(context);
+            updateDetailsCubit();
+            getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+            updateSameOrderInList(_detailsData);
+          },
+          greenOnTap: () {
+            Navigator.pop(context);
+            if (isAllPickedObs.getValue()) {
+              isAllPickedObs.setValue(false);
+            }
+            if (replacedItem.product!.isAdded) {
+              returnAddedProduct(replacedItem);
+            } else {
+              returnChangedProduct(replacedItem);
+            }
+          },
+        );
+      },
+    );
   }
 
-
-  void showBagsCountDialog(BuildContext context){
-    showDialog(context: context, builder: (context) {
-      return BagsNumberDialogWidget(controller: this);
-    },);
+  void showBagsCountDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return BagsNumberDialogWidget(controller: this);
+      },
+    );
   }
-
 
   void showDeletedProductsSheet(BuildContext context) {
     AppBottomSheets.showScrollableBody(
@@ -757,12 +801,11 @@ class OrderDetailsController {
     );
   }
 
-
-  void sendToCashier(){
-    if(isAllProductsPicked){
+  void sendToCashier() {
+    if (isAllProductsPicked) {
       isAllPickedObs.setValue(true);
     }
-    for(var item in _detailsData.ordersDetails!){
+    for (var item in _detailsData.ordersDetails!) {
       item.product!.showEditPrice = true;
     }
     updateDetailsCubit();
@@ -783,21 +826,27 @@ class OrderDetailsController {
     return _detailsData.ordersDetails!.every((item) => item.remainQnt == 0);
   }
 
-  int get getPickedItemsCount => _detailsData.ordersDetails!.where((element) => element.remainQnt == 0).length;
+  int get getPickedItemsCount => _detailsData.ordersDetails!
+      .where((element) => element.remainQnt == 0)
+      .length;
 
   Future<void> prepareOrder(BuildContext context) async {
     double bagCount = double.parse(bagsCountController.text);
-    if(bagsCountFormKey.currentState!.validate() && bagCount > 0){
+    if (bagsCountFormKey.currentState!.validate() && bagCount > 0) {
       Navigator.pop(context);
       getIt<LoadingHelper>().showLoadingDialog();
       final params = _prepareOrderParams();
       final result = await getIt<HomeRepositories>().prepareOrder(params);
       BuildContext ctx = getIt<GlobalContext>().context();
       result.when(
-        isSuccess: (data) async{
-          List<OrderModel>? assigned = getIt<OrdersHelper>().assignedOrdersCubit.data;
-          List<OrderModel> updatedList = (assigned ?? <OrderModel>[]).map((e) => e).toList();
-          updatedList.removeWhere((element) => element.id == orderId,);
+        isSuccess: (data) async {
+          List<OrderModel>? assigned =
+              getIt<OrdersHelper>().assignedOrdersCubit.data;
+          List<OrderModel> updatedList =
+              (assigned ?? <OrderModel>[]).map((e) => e).toList();
+          updatedList.removeWhere(
+            (element) => element.id == orderId,
+          );
           await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
           await getIt<OrdersHelper>().getAllOrders();
           AutoRouter.of(ctx).maybePop();
@@ -819,31 +868,25 @@ class OrderDetailsController {
     }
   }
 
-
-
-  void  calcEnteredBagsPrice(String amount){
-    if(amount.isEmpty){
+  void calcEnteredBagsPrice(String amount) {
+    if (amount.isEmpty) {
       enteredBagsPriceObs.setValue(0.0);
-    }else{
+    } else {
       int enteredBagsCount = double.parse(amount).toInt();
       double bagPrice = _detailsData.bagPrice;
-      double price =  enteredBagsCount*bagPrice;
+      double price = enteredBagsCount * bagPrice;
       enteredBagsPriceObs.setValue(price);
     }
   }
-
-
 
   PrepareOrderParams _prepareOrderParams() {
     // log("======>>>> all data ${_detailsData.ordersDetails!} <<<<<<======");
     // log("======>>>> deleted data ${_detailsData.deletedOrders} <<<<<<======");
     double bagCount = double.parse(bagsCountController.text);
     return PrepareOrderParams(
-      orderId: orderId,
-      currentProductsDetails: _detailsData.ordersDetails!,
-      deletedDetails: _detailsData.deletedOrders,
-      bagCount: bagCount.toInt()
-    );
+        orderId: orderId,
+        currentProductsDetails: _detailsData.ordersDetails!,
+        deletedDetails: _detailsData.deletedOrders,
+        bagCount: bagCount.toInt());
   }
-
 }

@@ -108,8 +108,7 @@ class HomeController {
         var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
         updatedList.remove(data);
         await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
-        log('orders ==== >>>> before get all orders =====');
-       await getAllOrders();
+       await getAllOrders(setLoading: false);
         // log('orders ==== >>>> before get all orders =====');
       }
       return;
