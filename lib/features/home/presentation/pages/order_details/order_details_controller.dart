@@ -289,14 +289,16 @@ class OrderDetailsController {
     );
   }
 
-  Future<void> cancelOrder(BuildContext context) async {
+  Future<void> cancelOrder(BuildContext context,{bool fromDelete = false}) async {
     var result = await getIt<HomeRepositories>().cancelOrder(orderId);
     result.when(
       isSuccess: (data) async {
         await removeOrder();
         AppSnackBar.showSuccessSnackBar(
             Translate.of(context).order_cancelled_successfully);
-        Navigator.pop(context);
+        if(!fromDelete){
+          Navigator.pop(context);
+        }
         AutoRouter.of(context).maybePop(orderId);
       },
       isError: (error) {
@@ -547,6 +549,7 @@ class OrderDetailsController {
     OrderDetailsModel? removedItem = _detailsData.ordersDetails?.firstWhere(
       (element) => element.id == itemId,
     );
+    removedItem?.pickerNotes = pickerNoteController.text;
     _detailsData.ordersDetails!.remove(removedItem);
     if ((_detailsData.ordersDetails ?? []).isNotEmpty) {
       orderPickedPercent(_detailsData);
@@ -557,8 +560,9 @@ class OrderDetailsController {
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     if ((_detailsData.ordersDetails ?? []).isEmpty) {
       BuildContext ctx = getIt<GlobalContext>().context();
-      cancelOrder(ctx);
+      cancelOrder(ctx,fromDelete: true);
     }
+    pickerNoteController.clear();
   }
 
   void getProductPickedPercent(OrderDetailsModel orderProduct,
