@@ -122,7 +122,6 @@ class ImplHomeDataSource extends HomeDataSource {
         requestMethod: RequestMethod.post,
       toJsonFunc: (data) => OrderModel.fromJson(data),
       responseKey: (data) => data['data'],
-      showLoader: true,
     );
     return await GenericHttpImpl<OrderModel>()(model);
   }

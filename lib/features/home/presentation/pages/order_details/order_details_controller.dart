@@ -290,10 +290,12 @@ class OrderDetailsController {
   }
 
   Future<void> cancelOrder(BuildContext context,{bool fromDelete = false}) async {
+    getIt<LoadingHelper>().showLoadingDialog();
     var result = await getIt<HomeRepositories>().cancelOrder(orderId);
     result.when(
       isSuccess: (data) async {
         await removeOrder();
+        getIt<LoadingHelper>().dismissDialog();
         AppSnackBar.showSuccessSnackBar(
             Translate.of(context).order_cancelled_successfully);
         if(!fromDelete){
@@ -302,6 +304,7 @@ class OrderDetailsController {
         AutoRouter.of(context).maybePop(orderId);
       },
       isError: (error) {
+        getIt<LoadingHelper>().dismissDialog();
         AppSnackBar.showErrorSnackBar(
             error: BaseError.unknown(msg: "Sorry we can't process this order. Thank you"));
       },
