@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
@@ -8,7 +7,9 @@ import 'qnt_count_widget.dart';
 class PickItemButtonWidget extends StatelessWidget {
   final OrderDetailsController controller;
   final OrderDetailsModel data;
-  const PickItemButtonWidget({super.key, required this.controller, required this.data});
+
+  const PickItemButtonWidget(
+      {super.key, required this.controller, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,15 @@ class PickItemButtonWidget extends StatelessWidget {
       children: [
         Flexible(
           child: AppTextButton.maxCustom(
-            text: controller.isProductFullPicked(data) ? Translate.of(context).picked : Translate.of(context).pick,
-            bgColor: controller.isProductFullPicked(data) ? context.colors.softWhite : context.colors.primary,
-            txtColor: controller.isProductFullPicked(data) ? context.colors.appGreen : context.colors.white,
+            text: controller.isProductFullPicked(data)
+                ? "${Translate.of(context).picked} ${data.product!.pickedQuantity!}/${data.quantity}"
+                : "${Translate.of(context).pick} ${data.product!.pickedQuantity!}/${data.quantity}",
+            bgColor: controller.isProductFullPicked(data)
+                ? context.colors.softWhite
+                : context.colors.primary,
+            txtColor: controller.isProductFullPicked(data)
+                ? context.colors.appGreen
+                : context.colors.white,
             textSize: 16,
             maxHeight: 40,
             onPressed: () => controller.onPressPick(context, data),
@@ -32,8 +39,8 @@ class PickItemButtonWidget extends StatelessWidget {
             bgColor: controller.isProductFullPicked(data)
                 ? context.colors.softWhite
                 : ((data.product!.pickedQuantity ?? 0) > 0
-                ? context.colors.primary.withOpacity(0.4)
-                : context.colors.primary),
+                    ? context.colors.primary.withOpacity(0.4)
+                    : context.colors.primary),
             txtColor: controller.isProductFullPicked(data)
                 ? context.colors.appGreen
                 : context.colors.white,
@@ -41,7 +48,7 @@ class PickItemButtonWidget extends StatelessWidget {
             maxHeight: 40,
             onPressed: (data.product!.pickedQuantity ?? 0) > 0
                 ? null
-                : () => controller.onPressPick(context, data,pickAll: true),
+                : () => controller.onPressPick(context, data, pickAll: true),
           ),
         ),
         Gaps.hGap6,
