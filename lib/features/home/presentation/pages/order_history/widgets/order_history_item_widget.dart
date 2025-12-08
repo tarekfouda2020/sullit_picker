@@ -13,6 +13,7 @@ class OrderHistoryItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Dimens.paddingH10V16PX,
+      margin: Dimens.paddingBottom12,
       decoration: BoxDecoration(
         color: context.colors.white,
         borderRadius: Dimens.borderRadius12PX,
