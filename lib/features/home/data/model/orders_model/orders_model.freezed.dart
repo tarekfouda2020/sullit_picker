@@ -265,6 +265,18 @@ mixin _$OrderModel {
   String get startPickingAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'start_picking_at')
   set startPickingAt(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_status')
+  bool? get paymentStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_status')
+  set paymentStatus(bool? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_status_text')
+  String? get paymentStatusText => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_status_text')
+  set paymentStatusText(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_method')
+  String? get paymentMethod => throw _privateConstructorUsedError;
+  @JsonKey(name: 'payment_method')
+  set paymentMethod(String? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? get ordersDetails =>
       throw _privateConstructorUsedError;
@@ -337,6 +349,9 @@ abstract class $OrderModelCopyWith<$Res> {
       String status,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
       @JsonKey(name: 'start_picking_at') String startPickingAt,
+      @JsonKey(name: 'payment_status') bool? paymentStatus,
+      @JsonKey(name: 'payment_status_text') String? paymentStatusText,
+      @JsonKey(name: 'payment_method') String? paymentMethod,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
@@ -375,6 +390,9 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? status = null,
     Object? preparationMinutes = null,
     Object? startPickingAt = null,
+    Object? paymentStatus = freezed,
+    Object? paymentStatusText = freezed,
+    Object? paymentMethod = freezed,
     Object? ordersDetails = freezed,
     Object? deletedOrders = freezed,
     Object? changedProducts = freezed,
@@ -423,6 +441,18 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.startPickingAt
           : startPickingAt // ignore: cast_nullable_to_non_nullable
               as String,
+      paymentStatus: freezed == paymentStatus
+          ? _value.paymentStatus
+          : paymentStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      paymentStatusText: freezed == paymentStatusText
+          ? _value.paymentStatusText
+          : paymentStatusText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentMethod: freezed == paymentMethod
+          ? _value.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String?,
       ordersDetails: freezed == ordersDetails
           ? _value.ordersDetails
           : ordersDetails // ignore: cast_nullable_to_non_nullable
@@ -478,6 +508,9 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       String status,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
       @JsonKey(name: 'start_picking_at') String startPickingAt,
+      @JsonKey(name: 'payment_status') bool? paymentStatus,
+      @JsonKey(name: 'payment_status_text') String? paymentStatusText,
+      @JsonKey(name: 'payment_method') String? paymentMethod,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
@@ -515,6 +548,9 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? preparationMinutes = null,
     Object? startPickingAt = null,
+    Object? paymentStatus = freezed,
+    Object? paymentStatusText = freezed,
+    Object? paymentMethod = freezed,
     Object? ordersDetails = freezed,
     Object? deletedOrders = freezed,
     Object? changedProducts = freezed,
@@ -563,6 +599,18 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.startPickingAt
           : startPickingAt // ignore: cast_nullable_to_non_nullable
               as String,
+      paymentStatus: freezed == paymentStatus
+          ? _value.paymentStatus
+          : paymentStatus // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      paymentStatusText: freezed == paymentStatusText
+          ? _value.paymentStatusText
+          : paymentStatusText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentMethod: freezed == paymentMethod
+          ? _value.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String?,
       ordersDetails: freezed == ordersDetails
           ? _value.ordersDetails
           : ordersDetails // ignore: cast_nullable_to_non_nullable
@@ -605,6 +653,9 @@ class _$OrderModelImpl extends _OrderModel {
       required this.status,
       @JsonKey(name: 'preparation_minutes') required this.preparationMinutes,
       @JsonKey(name: 'start_picking_at') required this.startPickingAt,
+      @JsonKey(name: 'payment_status') this.paymentStatus,
+      @JsonKey(name: 'payment_status_text') this.paymentStatusText,
+      @JsonKey(name: 'payment_method') this.paymentMethod,
       @JsonKey(name: 'order_details') this.ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       this.deletedOrders,
@@ -648,6 +699,15 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey(name: 'start_picking_at')
   String startPickingAt;
   @override
+  @JsonKey(name: 'payment_status')
+  bool? paymentStatus;
+  @override
+  @JsonKey(name: 'payment_status_text')
+  String? paymentStatusText;
+  @override
+  @JsonKey(name: 'payment_method')
+  String? paymentMethod;
+  @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? ordersDetails;
 
@@ -676,7 +736,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   @JsonKey(ignore: true)
@@ -705,6 +765,9 @@ abstract class _OrderModel extends OrderModel {
       required String status,
       @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
       @JsonKey(name: 'start_picking_at') required String startPickingAt,
+      @JsonKey(name: 'payment_status') bool? paymentStatus,
+      @JsonKey(name: 'payment_status_text') String? paymentStatusText,
+      @JsonKey(name: 'payment_method') String? paymentMethod,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
@@ -763,6 +826,21 @@ abstract class _OrderModel extends OrderModel {
   String get startPickingAt;
   @JsonKey(name: 'start_picking_at')
   set startPickingAt(String value);
+  @override
+  @JsonKey(name: 'payment_status')
+  bool? get paymentStatus;
+  @JsonKey(name: 'payment_status')
+  set paymentStatus(bool? value);
+  @override
+  @JsonKey(name: 'payment_status_text')
+  String? get paymentStatusText;
+  @JsonKey(name: 'payment_status_text')
+  set paymentStatusText(String? value);
+  @override
+  @JsonKey(name: 'payment_method')
+  String? get paymentMethod;
+  @JsonKey(name: 'payment_method')
+  set paymentMethod(String? value);
   @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? get ordersDetails;

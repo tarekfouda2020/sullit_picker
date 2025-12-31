@@ -1980,10 +1980,10 @@ class S {
     );
   }
 
-  /// `UnPaid`
+  /// `Un-Paid`
   String get unpaid {
     return Intl.message(
-      'UnPaid',
+      'Un-Paid',
       name: 'unpaid',
       desc: '',
       args: [],
@@ -3770,20 +3770,20 @@ class S {
     );
   }
 
-  /// `Confirm number of used bags`
+  /// `Confirm number of bags used`
   String get confirm_used_bags {
     return Intl.message(
-      'Confirm number of used bags',
+      'Confirm number of bags used',
       name: 'confirm_used_bags',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter number of bags`
+  /// `Number of bags used`
   String get enter_bag_number {
     return Intl.message(
-      'Enter number of bags',
+      'Number of bags used',
       name: 'enter_bag_number',
       desc: '',
       args: [],

@@ -9,17 +9,19 @@ class PrepareOrderParams {
   final List<OrderDetailsModel>? deletedDetails;
   final int? bagCount;
 
-  const PrepareOrderParams(
+   PrepareOrderParams(
       {required this.orderId,
       required this.currentProductsDetails,
       this.deletedDetails,
       this.bagCount,
-      });
+      }){
+    toJson();
+  }
 
   Map<String, dynamic> toJson() {
     final List<OrderDetailsModel> currentDetails = currentProductsDetails;
     final List<OrderDetailsModel> removeData = (deletedDetails ?? []);
-
+    // log("======>>>> all data before map$currentProductsDetails <<<<<<======");
     final List<Map<String, dynamic>> currentDetailsJson = currentDetails
         .map((e) {
           /// replaced projects
@@ -59,6 +61,8 @@ class PrepareOrderParams {
       ...removeDetailsJson
     ];
 
+    log("======>>>> all data current json $currentDetailsJson <<<<<<======");
+
     log("======>>>> all data $allDetailsJsons <<<<<<======");
     log("======>>>> deleted data $removeDetailsJson <<<<<<======");
 
@@ -68,14 +72,13 @@ class PrepareOrderParams {
     };
   }
 
-  Map<String, dynamic> _actionJson(
-      PrepareOrderActionType actionType, OrderDetailsModel data) {
+  Map<String, dynamic> _actionJson(PrepareOrderActionType actionType, OrderDetailsModel data) {
     switch (actionType) {
       case PrepareOrderActionType.updatePrice:
         return {
           "id": data.id,
           "action": "update_price",
-          "price": data.newPrice,
+          "price": data.price,
           "picker_notes": data.pickerNotes!,
         };
       case PrepareOrderActionType.replace:

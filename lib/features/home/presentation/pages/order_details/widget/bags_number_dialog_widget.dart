@@ -44,22 +44,6 @@ class BagsNumberDialogWidget extends StatelessWidget {
             //   ],
             // ),
             // Gaps.vGap10,
-            Row(
-              children: [
-                Text("Entered Bags Price: ",
-                  style: AppTextStyle.s15_w500(color: context.colors.black),
-                ),
-                ObsValueConsumer<double>(
-                  observable: controller.enteredBagsPriceObs,
-                  builder: (context,value) {
-                    return DirhamPrice(amount: "$value",
-                      textStyle: AppTextStyle.s15_w500(color: context.colors.primary),
-                    );
-                  }
-                ),
-              ],
-            ),
-            Gaps.vGap10,
             Form(
               key: controller.bagsCountFormKey,
               child: GenericTextField(

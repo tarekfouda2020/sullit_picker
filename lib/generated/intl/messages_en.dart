@@ -115,7 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
             "Confirm return the original product?"),
         "confirm_used_bags":
-            MessageLookupByLibrary.simpleMessage("Confirm number of used bags"),
+            MessageLookupByLibrary.simpleMessage("Confirm number of bags used"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
         "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
@@ -180,7 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "email_required":
             MessageLookupByLibrary.simpleMessage("Email is required"),
         "enter_bag_number":
-            MessageLookupByLibrary.simpleMessage("Enter number of bags"),
+            MessageLookupByLibrary.simpleMessage("Number of bags used"),
         "enter_code": MessageLookupByLibrary.simpleMessage("Enter code"),
         "enter_code_to_reset": MessageLookupByLibrary.simpleMessage(
             "Enter your code to reset your password"),
@@ -576,7 +576,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("United Arab Emirates, Dubai"),
-        "unpaid": MessageLookupByLibrary.simpleMessage("UnPaid"),
+        "unpaid": MessageLookupByLibrary.simpleMessage("Un-Paid"),
         "update_reason":
             MessageLookupByLibrary.simpleMessage("Update Reason...?"),
         "user_didnt_respond":

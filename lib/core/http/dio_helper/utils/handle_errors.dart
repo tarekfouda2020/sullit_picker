@@ -85,6 +85,6 @@ class HandleErrors {
   void _tokenExpired() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove("user");
-    Phoenix.rebirth(getIt<BuildContext>());
+    Phoenix.rebirth(getIt<GlobalContext>().context());
   }
 }

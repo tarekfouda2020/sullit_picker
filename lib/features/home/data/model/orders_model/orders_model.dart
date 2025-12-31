@@ -37,6 +37,9 @@ class OrderModel with _$OrderModel {
     required String status,
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
+    @JsonKey(name: 'payment_status')  bool? paymentStatus,
+    @JsonKey(name: 'payment_status_text')  String? paymentStatusText,
+    @JsonKey(name: 'payment_method')  String? paymentMethod,
     @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
 
      /// all keys below used in local data

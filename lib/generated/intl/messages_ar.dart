@@ -176,7 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "email_required":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني مطلوب"),
         "enter_bag_number":
-            MessageLookupByLibrary.simpleMessage("أدخل عدد الأكياس"),
+            MessageLookupByLibrary.simpleMessage("أدخل عدد الأكياس المستخدمة"),
         "enter_code": MessageLookupByLibrary.simpleMessage("أدخل الرمز"),
         "enter_code_to_reset": MessageLookupByLibrary.simpleMessage(
             "أدخل رمزك لإعادة تعيين كلمة المرور"),

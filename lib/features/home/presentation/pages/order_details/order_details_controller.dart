@@ -871,6 +871,7 @@ class OrderDetailsController {
           );
         },
       );
+      await Future.delayed(const Duration(milliseconds:350 ));
       getIt<LoadingHelper>().dismissDialog();
     }
   }
@@ -887,7 +888,7 @@ class OrderDetailsController {
   }
 
   PrepareOrderParams _prepareOrderParams() {
-    // log("======>>>> all data ${_detailsData.ordersDetails!} <<<<<<======");
+    // log("======>>>> all data before enter params ${_detailsData.ordersDetails!} <<<<<<======");
     // log("======>>>> deleted data ${_detailsData.deletedOrders} <<<<<<======");
     double bagCount = double.parse(bagsCountController.text);
     return PrepareOrderParams(

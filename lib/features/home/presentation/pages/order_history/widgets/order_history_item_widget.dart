@@ -37,8 +37,20 @@ class OrderHistoryItemWidget extends StatelessWidget {
                   style: AppTextStyle.s19_w600(color: context.colors.primary),
                 ),
               ),
+
+              Text(
+                order.paymentStatus==true
+                    ?Translate.s.paid
+                    :Translate.s.unpaid,
+                style: AppTextStyle.s19_w600(color:
+                order.paymentStatus == true
+                    ? context.colors.green
+                    :  context.colors.primary
+                ),
+              )
             ],
           ),
+          OrderHistoryItemsWidget(title: Translate.s.payment_method, endTitle: order.paymentMethod ?? "",),
           OrderHistoryItemsWidget(title: Translate.s.status, endTitle: order.status,),
           CustomerDateWidget(customer: order.customer),
           if(order.getStartPickingDate() != null)

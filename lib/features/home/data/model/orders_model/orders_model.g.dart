@@ -37,6 +37,9 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       preparationMinutes: (json['preparation_minutes'] as num).toInt(),
       startPickingAt: json['start_picking_at'] as String,
+      paymentStatus: json['payment_status'] as bool?,
+      paymentStatusText: json['payment_status_text'] as String?,
+      paymentMethod: json['payment_method'] as String?,
       ordersDetails: (json['order_details'] as List<dynamic>?)
           ?.map((e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -71,6 +74,9 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'status': instance.status,
       'preparation_minutes': instance.preparationMinutes,
       'start_picking_at': instance.startPickingAt,
+      'payment_status': instance.paymentStatus,
+      'payment_status_text': instance.paymentStatusText,
+      'payment_method': instance.paymentMethod,
       'order_details': instance.ordersDetails,
       'deleted_orders': instance.deletedOrders,
       'changed_products': instance.changedProducts,
