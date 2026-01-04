@@ -165,8 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "آپ کے ڈیوائس کی معلومات حاصل کرتے وقت کوئی مسئلہ ہوا۔ براہِ کرم بعد میں دوبارہ کوشش کریں۔"),
         "dispatch": MessageLookupByLibrary.simpleMessage("ارسال کریں"),
         "done": MessageLookupByLibrary.simpleMessage("ہو گیا"),
-        "driver_home":
-            MessageLookupByLibrary.simpleMessage("ڈرائیور کا ہوم پیج"),
+        "driver": MessageLookupByLibrary.simpleMessage("ڈرائیور"),
         "driver_profile":
             MessageLookupByLibrary.simpleMessage("ڈرائیور کا پروفائل"),
         "driving_licensee":
@@ -247,6 +246,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "filter_by_working_store": MessageLookupByLibrary.simpleMessage(
             "کام کے اسٹور کے حساب سے فلٹر کریں"),
         "flat_no": MessageLookupByLibrary.simpleMessage("فلیٹ نمبر"),
+        "force_update_message": MessageLookupByLibrary.simpleMessage(
+            "نیا ورژن دستیاب ہے، براہ کرم ایپ استعمال جاری رکھنے کے لیے اپ ڈیٹ کریں"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("پاس ورڈ بھول گئے؟"),
         "forgot_password_question":

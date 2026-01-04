@@ -1,4 +1,5 @@
 
+import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_history/widgets/order_history_items_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/customer_date_widget.dart';
@@ -22,27 +23,21 @@ class OrderHistoryItemWidget extends StatelessWidget {
         )
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 15,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "${Translate.of(context).order_no} : ",
-                style: AppTextStyle.s17_w300(color: context.colors.black),
+                style: AppTextStyle.s16_w500(color: context.colors.black),
               ),
-              Gaps.hGap2,
-              Expanded(
-                child: Text(
-                  order.code,
-                  style: AppTextStyle.s19_w600(color: context.colors.primary),
-                ),
-              ),
-
               Text(
                 order.paymentStatus==true
                     ?Translate.s.paid
                     :Translate.s.unpaid,
-                style: AppTextStyle.s19_w600(color:
+                style: AppTextStyle.s17_w300(color:
                 order.paymentStatus == true
                     ? context.colors.green
                     :  context.colors.primary
@@ -50,8 +45,27 @@ class OrderHistoryItemWidget extends StatelessWidget {
               )
             ],
           ),
+          Text(
+            "#${order.code}",
+            style: AppTextStyle.s19_w600(color: context.colors.primary),
+          ),
+          Row(
+            children: [
+            Text("${Translate.s.total} : ",
+            style: AppTextStyle.s16_w300(color: context.colors.black),
+            ),
+              Text(order.total,
+                style: AppTextStyle.s14_w500(color: context.colors.primary),
+              ).withDirhamSymbol(
+                symbolStyle: AppTextStyle.s17_w300(color: context.colors.primary)
+              ),
+            ],
+          ),
           OrderHistoryItemsWidget(title: Translate.s.payment_method, endTitle: order.paymentMethod ?? "",),
-          OrderHistoryItemsWidget(title: Translate.s.status, endTitle: order.status,),
+          OrderHistoryItemsWidget(title: Translate.s.status, endTitle: order.statusLabel,),
+          if(order.driverInfo!=null)
+          OrderHistoryItemsWidget(title: Translate.s.driver, endTitle: order.driverInfo!.name,),
+
           CustomerDateWidget(customer: order.customer),
           if(order.getStartPickingDate() != null)
           OrderHistoryItemsWidget(title: Translate.s.start_pick_at, endTitle: order.getStartPickingDate()!),

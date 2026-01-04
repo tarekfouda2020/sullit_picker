@@ -24,7 +24,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         bgColor: context.colors.background,
       ),
       body: RefreshIndicator(
-        onRefresh: () async{},
+        onRefresh: () async => controller.getNotifications(1),
         backgroundColor: context.colors.white,
         child: PagedListView<int, NotificationModel>(
           padding: Dimens.paddingH20V12PX,

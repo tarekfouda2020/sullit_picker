@@ -49,7 +49,7 @@
   "no_internet_connection": "انٹرنیٹ کنکشن نہیں ہے",
   "internet_connected": "انٹرنیٹ سے جڑا ہوا",
   "noResults": "کوئی نتائج نہیں",
-  "driver_home": "ڈرائیور کا ہوم پیج",
+  "driver": "ڈرائیور",
   "driver_profile": "ڈرائیور کا پروفائل",
   "welcome_back": "واپسی پر خوش آمدید!",
   "online": "آن لائن",
@@ -377,5 +377,7 @@
   "edit": "ترمیم کریں",
   "enter_the_new_price": "نئی قیمت درج کریں",
   "pick_all": "سب منتخب کریں",
-  "picker_note_hint": "اپ ڈیٹ کے لیے آپ کا نوٹ..."
+  "picker_note_hint": "اپ ڈیٹ کے لیے آپ کا نوٹ...",
+  "force_update_message": "نیا ورژن دستیاب ہے، براہ کرم ایپ استعمال جاری رکھنے کے لیے اپ ڈیٹ کریں"
+
 }

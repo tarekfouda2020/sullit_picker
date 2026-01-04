@@ -30,16 +30,19 @@ class OrderModel with _$OrderModel {
     required int id,
      required CustomerModel customer,
     required String code,
-    @JsonKey(name: 'total_items') required int totalItems,
+    required String total,
+     required String status,
+     @JsonKey(name: 'total_items') required int totalItems,
     @JsonKey(name: 'bag_count') required int bagsCount,
     @JsonKey(name: 'bag_price') required double bagPrice,
     @JsonKey(name: 'allow_replacement') required bool allowReplacement,
-    required String status,
+    @JsonKey(name: 'status_label') required String statusLabel,
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
     @JsonKey(name: 'payment_status')  bool? paymentStatus,
     @JsonKey(name: 'payment_status_text')  String? paymentStatusText,
     @JsonKey(name: 'payment_method')  String? paymentMethod,
+     @JsonKey(name: 'driver') required DriverModel? driverInfo,
     @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
 
      /// all keys below used in local data
@@ -75,6 +78,8 @@ class OrderModel with _$OrderModel {
   bool get isAssigned => getOrderStatus() == OrderStatusEnum.preparing;
 
   bool get isNewOrder => getOrderStatus() == OrderStatusEnum.newOrder;
+
+  bool get isPaid => paymentStatus == true;
 
  String? getStartPickingDate(){
   try{
@@ -206,6 +211,28 @@ class CustomerModel with _$CustomerModel {
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) =>
       _$CustomerModelFromJson(json);
+
+
+  String get customerPhone{
+    BuildContext context  = getIt<GlobalContext>().context();
+    return PhoneHelper.handleFullPhone(context, phone);
+  }
+}
+
+@freezed
+class DriverModel with _$DriverModel {
+  DriverModel._();
+  factory DriverModel({
+    required int id,
+    @JsonKey(name: "avg_rate")required num rate,
+    required String name,
+    required String avatar,
+    required String email,
+    required String phone,
+  }) = _DriverModel;
+
+  factory DriverModel.fromJson(Map<String, dynamic> json) =>
+      _$DriverModelFromJson(json);
 
 
   String get customerPhone{

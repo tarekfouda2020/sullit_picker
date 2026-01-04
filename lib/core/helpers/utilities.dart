@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../constants/app_config.dart';
+
 @lazySingleton
 class Utilities {
 
@@ -84,6 +86,21 @@ class Utilities {
     );
 
     return formattedInteger;
+  }
+
+
+  void openAppInStore(){
+    String url = "";
+    if(Platform.isAndroid){
+      String id = AppConfig.instance.appId;
+      url = "https://play.google.com/store/apps/details?id=$id";
+    }
+    if(Platform.isIOS){
+      int id = int.parse(AppConfig.instance.iosAppId);
+      url = "https://apps.apple.com/us/app/id$id";
+    }
+    var uri = Uri.parse(url);
+    launchUrl(uri);
   }
 
 

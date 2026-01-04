@@ -30,16 +30,21 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
       customer:
           CustomerModel.fromJson(json['customer'] as Map<String, dynamic>),
       code: json['code'] as String,
+      total: json['total'] as String,
+      status: json['status'] as String,
       totalItems: (json['total_items'] as num).toInt(),
       bagsCount: (json['bag_count'] as num).toInt(),
       bagPrice: (json['bag_price'] as num).toDouble(),
       allowReplacement: json['allow_replacement'] as bool,
-      status: json['status'] as String,
+      statusLabel: json['status_label'] as String,
       preparationMinutes: (json['preparation_minutes'] as num).toInt(),
       startPickingAt: json['start_picking_at'] as String,
       paymentStatus: json['payment_status'] as bool?,
       paymentStatusText: json['payment_status_text'] as String?,
       paymentMethod: json['payment_method'] as String?,
+      driverInfo: json['driver'] == null
+          ? null
+          : DriverModel.fromJson(json['driver'] as Map<String, dynamic>),
       ordersDetails: (json['order_details'] as List<dynamic>?)
           ?.map((e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -67,16 +72,19 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'id': instance.id,
       'customer': instance.customer,
       'code': instance.code,
+      'total': instance.total,
+      'status': instance.status,
       'total_items': instance.totalItems,
       'bag_count': instance.bagsCount,
       'bag_price': instance.bagPrice,
       'allow_replacement': instance.allowReplacement,
-      'status': instance.status,
+      'status_label': instance.statusLabel,
       'preparation_minutes': instance.preparationMinutes,
       'start_picking_at': instance.startPickingAt,
       'payment_status': instance.paymentStatus,
       'payment_status_text': instance.paymentStatusText,
       'payment_method': instance.paymentMethod,
+      'driver': instance.driverInfo,
       'order_details': instance.ordersDetails,
       'deleted_orders': instance.deletedOrders,
       'changed_products': instance.changedProducts,
@@ -182,6 +190,26 @@ _$CustomerModelImpl _$$CustomerModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$CustomerModelImplToJson(_$CustomerModelImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'email': instance.email,
+      'phone': instance.phone,
+    };
+
+_$DriverModelImpl _$$DriverModelImplFromJson(Map<String, dynamic> json) =>
+    _$DriverModelImpl(
+      id: (json['id'] as num).toInt(),
+      rate: json['avg_rate'] as num,
+      name: json['name'] as String,
+      avatar: json['avatar'] as String,
+      email: json['email'] as String,
+      phone: json['phone'] as String,
+    );
+
+Map<String, dynamic> _$$DriverModelImplToJson(_$DriverModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'avg_rate': instance.rate,
+      'name': instance.name,
+      'avatar': instance.avatar,
       'email': instance.email,
       'phone': instance.phone,
     };

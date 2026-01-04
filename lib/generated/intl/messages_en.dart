@@ -166,7 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Something went wrong while getting your device info. Please try again later."),
         "dispatch": MessageLookupByLibrary.simpleMessage("Dispatch"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
-        "driver_home": MessageLookupByLibrary.simpleMessage("Driver Home"),
+        "driver": MessageLookupByLibrary.simpleMessage("Driver"),
         "driver_profile":
             MessageLookupByLibrary.simpleMessage("Driver Profile"),
         "driving_licensee":
@@ -247,6 +247,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "filter_by_working_store":
             MessageLookupByLibrary.simpleMessage("Filter By working store"),
         "flat_no": MessageLookupByLibrary.simpleMessage("Flat No."),
+        "force_update_message": MessageLookupByLibrary.simpleMessage(
+            "A new version available, Please update to keep using app"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "forgot_password_question":

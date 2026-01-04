@@ -239,6 +239,10 @@ mixin _$OrderModel {
   set customer(CustomerModel value) => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
   set code(String value) => throw _privateConstructorUsedError;
+  String get total => throw _privateConstructorUsedError;
+  set total(String value) => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  set status(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_items')
   int get totalItems => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_items')
@@ -255,8 +259,10 @@ mixin _$OrderModel {
   bool get allowReplacement => throw _privateConstructorUsedError;
   @JsonKey(name: 'allow_replacement')
   set allowReplacement(bool value) => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  set status(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status_label')
+  String get statusLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status_label')
+  set statusLabel(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'preparation_minutes')
   int get preparationMinutes => throw _privateConstructorUsedError;
   @JsonKey(name: 'preparation_minutes')
@@ -277,6 +283,10 @@ mixin _$OrderModel {
   String? get paymentMethod => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_method')
   set paymentMethod(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'driver')
+  DriverModel? get driverInfo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'driver')
+  set driverInfo(DriverModel? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? get ordersDetails =>
       throw _privateConstructorUsedError;
@@ -342,16 +352,19 @@ abstract class $OrderModelCopyWith<$Res> {
       {int id,
       CustomerModel customer,
       String code,
+      String total,
+      String status,
       @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'bag_count') int bagsCount,
       @JsonKey(name: 'bag_price') double bagPrice,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
-      String status,
+      @JsonKey(name: 'status_label') String statusLabel,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
       @JsonKey(name: 'start_picking_at') String startPickingAt,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
+      @JsonKey(name: 'driver') DriverModel? driverInfo,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
@@ -365,6 +378,7 @@ abstract class $OrderModelCopyWith<$Res> {
       int? preparationSeconds});
 
   $CustomerModelCopyWith<$Res> get customer;
+  $DriverModelCopyWith<$Res>? get driverInfo;
 }
 
 /// @nodoc
@@ -383,16 +397,19 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? id = null,
     Object? customer = null,
     Object? code = null,
+    Object? total = null,
+    Object? status = null,
     Object? totalItems = null,
     Object? bagsCount = null,
     Object? bagPrice = null,
     Object? allowReplacement = null,
-    Object? status = null,
+    Object? statusLabel = null,
     Object? preparationMinutes = null,
     Object? startPickingAt = null,
     Object? paymentStatus = freezed,
     Object? paymentStatusText = freezed,
     Object? paymentMethod = freezed,
+    Object? driverInfo = freezed,
     Object? ordersDetails = freezed,
     Object? deletedOrders = freezed,
     Object? changedProducts = freezed,
@@ -413,6 +430,14 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
@@ -429,9 +454,9 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.allowReplacement
           : allowReplacement // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      statusLabel: null == statusLabel
+          ? _value.statusLabel
+          : statusLabel // ignore: cast_nullable_to_non_nullable
               as String,
       preparationMinutes: null == preparationMinutes
           ? _value.preparationMinutes
@@ -453,6 +478,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String?,
+      driverInfo: freezed == driverInfo
+          ? _value.driverInfo
+          : driverInfo // ignore: cast_nullable_to_non_nullable
+              as DriverModel?,
       ordersDetails: freezed == ordersDetails
           ? _value.ordersDetails
           : ordersDetails // ignore: cast_nullable_to_non_nullable
@@ -487,6 +516,18 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       return _then(_value.copyWith(customer: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DriverModelCopyWith<$Res>? get driverInfo {
+    if (_value.driverInfo == null) {
+      return null;
+    }
+
+    return $DriverModelCopyWith<$Res>(_value.driverInfo!, (value) {
+      return _then(_value.copyWith(driverInfo: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -501,16 +542,19 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       {int id,
       CustomerModel customer,
       String code,
+      String total,
+      String status,
       @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'bag_count') int bagsCount,
       @JsonKey(name: 'bag_price') double bagPrice,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
-      String status,
+      @JsonKey(name: 'status_label') String statusLabel,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
       @JsonKey(name: 'start_picking_at') String startPickingAt,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
+      @JsonKey(name: 'driver') DriverModel? driverInfo,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
@@ -525,6 +569,8 @@ abstract class _$$OrderModelImplCopyWith<$Res>
 
   @override
   $CustomerModelCopyWith<$Res> get customer;
+  @override
+  $DriverModelCopyWith<$Res>? get driverInfo;
 }
 
 /// @nodoc
@@ -541,16 +587,19 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? customer = null,
     Object? code = null,
+    Object? total = null,
+    Object? status = null,
     Object? totalItems = null,
     Object? bagsCount = null,
     Object? bagPrice = null,
     Object? allowReplacement = null,
-    Object? status = null,
+    Object? statusLabel = null,
     Object? preparationMinutes = null,
     Object? startPickingAt = null,
     Object? paymentStatus = freezed,
     Object? paymentStatusText = freezed,
     Object? paymentMethod = freezed,
+    Object? driverInfo = freezed,
     Object? ordersDetails = freezed,
     Object? deletedOrders = freezed,
     Object? changedProducts = freezed,
@@ -571,6 +620,14 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
@@ -587,9 +644,9 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.allowReplacement
           : allowReplacement // ignore: cast_nullable_to_non_nullable
               as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
+      statusLabel: null == statusLabel
+          ? _value.statusLabel
+          : statusLabel // ignore: cast_nullable_to_non_nullable
               as String,
       preparationMinutes: null == preparationMinutes
           ? _value.preparationMinutes
@@ -611,6 +668,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String?,
+      driverInfo: freezed == driverInfo
+          ? _value.driverInfo
+          : driverInfo // ignore: cast_nullable_to_non_nullable
+              as DriverModel?,
       ordersDetails: freezed == ordersDetails
           ? _value.ordersDetails
           : ordersDetails // ignore: cast_nullable_to_non_nullable
@@ -646,16 +707,19 @@ class _$OrderModelImpl extends _OrderModel {
       {required this.id,
       required this.customer,
       required this.code,
+      required this.total,
+      required this.status,
       @JsonKey(name: 'total_items') required this.totalItems,
       @JsonKey(name: 'bag_count') required this.bagsCount,
       @JsonKey(name: 'bag_price') required this.bagPrice,
       @JsonKey(name: 'allow_replacement') required this.allowReplacement,
-      required this.status,
+      @JsonKey(name: 'status_label') required this.statusLabel,
       @JsonKey(name: 'preparation_minutes') required this.preparationMinutes,
       @JsonKey(name: 'start_picking_at') required this.startPickingAt,
       @JsonKey(name: 'payment_status') this.paymentStatus,
       @JsonKey(name: 'payment_status_text') this.paymentStatusText,
       @JsonKey(name: 'payment_method') this.paymentMethod,
+      @JsonKey(name: 'driver') required this.driverInfo,
       @JsonKey(name: 'order_details') this.ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       this.deletedOrders,
@@ -679,6 +743,10 @@ class _$OrderModelImpl extends _OrderModel {
   @override
   String code;
   @override
+  String total;
+  @override
+  String status;
+  @override
   @JsonKey(name: 'total_items')
   int totalItems;
   @override
@@ -691,7 +759,8 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey(name: 'allow_replacement')
   bool allowReplacement;
   @override
-  String status;
+  @JsonKey(name: 'status_label')
+  String statusLabel;
   @override
   @JsonKey(name: 'preparation_minutes')
   int preparationMinutes;
@@ -707,6 +776,9 @@ class _$OrderModelImpl extends _OrderModel {
   @override
   @JsonKey(name: 'payment_method')
   String? paymentMethod;
+  @override
+  @JsonKey(name: 'driver')
+  DriverModel? driverInfo;
   @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? ordersDetails;
@@ -736,7 +808,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, status: $status, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   @JsonKey(ignore: true)
@@ -758,16 +830,19 @@ abstract class _OrderModel extends OrderModel {
       {required int id,
       required CustomerModel customer,
       required String code,
+      required String total,
+      required String status,
       @JsonKey(name: 'total_items') required int totalItems,
       @JsonKey(name: 'bag_count') required int bagsCount,
       @JsonKey(name: 'bag_price') required double bagPrice,
       @JsonKey(name: 'allow_replacement') required bool allowReplacement,
-      required String status,
+      @JsonKey(name: 'status_label') required String statusLabel,
       @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
       @JsonKey(name: 'start_picking_at') required String startPickingAt,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
+      @JsonKey(name: 'driver') required DriverModel? driverInfo,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
@@ -794,6 +869,12 @@ abstract class _OrderModel extends OrderModel {
   String get code;
   set code(String value);
   @override
+  String get total;
+  set total(String value);
+  @override
+  String get status;
+  set status(String value);
+  @override
   @JsonKey(name: 'total_items')
   int get totalItems;
   @JsonKey(name: 'total_items')
@@ -814,8 +895,10 @@ abstract class _OrderModel extends OrderModel {
   @JsonKey(name: 'allow_replacement')
   set allowReplacement(bool value);
   @override
-  String get status;
-  set status(String value);
+  @JsonKey(name: 'status_label')
+  String get statusLabel;
+  @JsonKey(name: 'status_label')
+  set statusLabel(String value);
   @override
   @JsonKey(name: 'preparation_minutes')
   int get preparationMinutes;
@@ -841,6 +924,11 @@ abstract class _OrderModel extends OrderModel {
   String? get paymentMethod;
   @JsonKey(name: 'payment_method')
   set paymentMethod(String? value);
+  @override
+  @JsonKey(name: 'driver')
+  DriverModel? get driverInfo;
+  @JsonKey(name: 'driver')
+  set driverInfo(DriverModel? value);
   @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? get ordersDetails;
@@ -2045,5 +2133,251 @@ abstract class _CustomerModel extends CustomerModel {
   @override
   @JsonKey(ignore: true)
   _$$CustomerModelImplCopyWith<_$CustomerModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+DriverModel _$DriverModelFromJson(Map<String, dynamic> json) {
+  return _DriverModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$DriverModel {
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "avg_rate")
+  num get rate => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get avatar => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DriverModelCopyWith<DriverModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DriverModelCopyWith<$Res> {
+  factory $DriverModelCopyWith(
+          DriverModel value, $Res Function(DriverModel) then) =
+      _$DriverModelCopyWithImpl<$Res, DriverModel>;
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: "avg_rate") num rate,
+      String name,
+      String avatar,
+      String email,
+      String phone});
+}
+
+/// @nodoc
+class _$DriverModelCopyWithImpl<$Res, $Val extends DriverModel>
+    implements $DriverModelCopyWith<$Res> {
+  _$DriverModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? rate = null,
+    Object? name = null,
+    Object? avatar = null,
+    Object? email = null,
+    Object? phone = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as num,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatar: null == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DriverModelImplCopyWith<$Res>
+    implements $DriverModelCopyWith<$Res> {
+  factory _$$DriverModelImplCopyWith(
+          _$DriverModelImpl value, $Res Function(_$DriverModelImpl) then) =
+      __$$DriverModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      @JsonKey(name: "avg_rate") num rate,
+      String name,
+      String avatar,
+      String email,
+      String phone});
+}
+
+/// @nodoc
+class __$$DriverModelImplCopyWithImpl<$Res>
+    extends _$DriverModelCopyWithImpl<$Res, _$DriverModelImpl>
+    implements _$$DriverModelImplCopyWith<$Res> {
+  __$$DriverModelImplCopyWithImpl(
+      _$DriverModelImpl _value, $Res Function(_$DriverModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? rate = null,
+    Object? name = null,
+    Object? avatar = null,
+    Object? email = null,
+    Object? phone = null,
+  }) {
+    return _then(_$DriverModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as num,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatar: null == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DriverModelImpl extends _DriverModel {
+  _$DriverModelImpl(
+      {required this.id,
+      @JsonKey(name: "avg_rate") required this.rate,
+      required this.name,
+      required this.avatar,
+      required this.email,
+      required this.phone})
+      : super._();
+
+  factory _$DriverModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DriverModelImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  @JsonKey(name: "avg_rate")
+  final num rate;
+  @override
+  final String name;
+  @override
+  final String avatar;
+  @override
+  final String email;
+  @override
+  final String phone;
+
+  @override
+  String toString() {
+    return 'DriverModel(id: $id, rate: $rate, name: $name, avatar: $avatar, email: $email, phone: $phone)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DriverModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.phone, phone) || other.phone == phone));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, rate, name, avatar, email, phone);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DriverModelImplCopyWith<_$DriverModelImpl> get copyWith =>
+      __$$DriverModelImplCopyWithImpl<_$DriverModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DriverModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _DriverModel extends DriverModel {
+  factory _DriverModel(
+      {required final int id,
+      @JsonKey(name: "avg_rate") required final num rate,
+      required final String name,
+      required final String avatar,
+      required final String email,
+      required final String phone}) = _$DriverModelImpl;
+  _DriverModel._() : super._();
+
+  factory _DriverModel.fromJson(Map<String, dynamic> json) =
+      _$DriverModelImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  @JsonKey(name: "avg_rate")
+  num get rate;
+  @override
+  String get name;
+  @override
+  String get avatar;
+  @override
+  String get email;
+  @override
+  String get phone;
+  @override
+  @JsonKey(ignore: true)
+  _$$DriverModelImplCopyWith<_$DriverModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -550,11 +550,11 @@ class S {
     );
   }
 
-  /// `Driver Home`
-  String get driver_home {
+  /// `Driver`
+  String get driver {
     return Intl.message(
-      'Driver Home',
-      name: 'driver_home',
+      'Driver',
+      name: 'driver',
       desc: '',
       args: [],
     );
@@ -3845,6 +3845,16 @@ class S {
     return Intl.message(
       'Your note for update...',
       name: 'picker_note_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A new version available, Please update to keep using app`
+  String get force_update_message {
+    return Intl.message(
+      'A new version available, Please update to keep using app',
+      name: 'force_update_message',
       desc: '',
       args: [],
     );

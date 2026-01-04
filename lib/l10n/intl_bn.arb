@@ -48,7 +48,7 @@
   "no_internet_connection": "কোন ইন্টারনেট সংযোগ নেই",
   "internet_connected": "ইন্টারনেট সংযুক্ত",
   "noResults": "কোন ফলাফল নেই",
-  "driver_home": "ড্রাইভার হোম",
+  "driver": "ড্রাইভার",
   "driver_profile": "ড্রাইভার প্রোফাইল",
   "welcome_back": "ফিরে আসার জন্য স্বাগতম!",
   "online": "অনলাইন",
@@ -292,5 +292,6 @@
   "edit": "সম্পাদনা করুন",
   "enter_the_new_price": "নতুন মূল্য লিখুন",
   "pick_all": "সব বাছুন",
-  "picker_note_hint": "আপডেটের জন্য আপনার নোট..."
+  "picker_note_hint": "আপডেটের জন্য আপনার নোট...",
+  "force_update_message": "একটি নতুন সংস্করণ উপলব্ধ, অ্যাপটি ব্যবহার চালিয়ে যেতে দয়া করে আপডেট করুন"
 }

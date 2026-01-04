@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/orders_widget.dart';
 import 'home_imports.dart';
 @RoutePage(name: "HomePageRoute")
@@ -21,6 +22,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    getIt<DeviceIdHelper>().getDeviceId();
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) => controller.onPop(),

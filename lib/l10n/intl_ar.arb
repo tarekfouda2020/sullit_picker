@@ -49,7 +49,7 @@
   "no_internet_connection": "لا يوجد اتصال بالإنترنت",
   "internet_connected": "متصل بالإنترنت",
   "noResults": "لا توجد نتائج",
-  "driver_home": "الصفحة الرئيسية للسائق",
+  "driver": "السائق",
   "driver_profile": "ملف السائق الشخصي",
   "welcome_back": "مرحباً بعودتك!",
   "online": "متصل",
@@ -383,5 +383,7 @@
   "edit": "تعديل",
   "enter_the_new_price": "أدخل السعر الجديد",
   "pick_all": "اختر الكل",
-  "picker_note_hint": "ملاحظتك للتحديث..."
+  "picker_note_hint": "ملاحظتك للتحديث...",
+  "force_update_message": "هناك إصدار جديد متاح، يرجى التحديث للاستمرار في استخدام التطبيق"
+
 }

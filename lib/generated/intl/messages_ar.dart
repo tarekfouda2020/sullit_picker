@@ -160,8 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "حدث خطأ أثناء الحصول على معلومات جهازك. يرجى المحاولة لاحقًا."),
         "dispatch": MessageLookupByLibrary.simpleMessage("إرسال"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
-        "driver_home":
-            MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية للسائق"),
+        "driver": MessageLookupByLibrary.simpleMessage("السائق"),
         "driver_profile":
             MessageLookupByLibrary.simpleMessage("ملف السائق الشخصي"),
         "driving_licensee":
@@ -241,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "filter_by_working_store":
             MessageLookupByLibrary.simpleMessage("تصفية حسب متجر العمل"),
         "flat_no": MessageLookupByLibrary.simpleMessage("رقم الشقة"),
+        "force_update_message": MessageLookupByLibrary.simpleMessage(
+            "هناك إصدار جديد متاح، يرجى التحديث للاستمرار في استخدام التطبيق"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
         "forgot_password_question":

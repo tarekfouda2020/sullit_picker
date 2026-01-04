@@ -1,16 +1,20 @@
 import 'dart:developer';
 
+import 'package:flutter_tdd/core/constants/app_config.dart';
+import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/update_dialog_widget.dart';
+import 'package:new_version_plus/new_version_plus.dart';
 
 import 'home_imports.dart';
 
 class HomeController {
   final ObsValue<bool> hasOrders = ObsValue<bool>.withInit(false);
-  final ObsValue<bool> absorbAcceptButtonObs = ObsValue<bool>.withInit(false);
   final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
   final ObsValue<TimerEntity> timerObs = ObsValue<TimerEntity>.withInit(TimerEntity());
 
@@ -21,12 +25,26 @@ class HomeController {
   BaseBloc<OrdersList?> get ordersListCubit => getIt<OrdersHelper>().ordersListCubit;
 
   HomeController() {
+    checkForUpdate();
     getUserData();
     getAllOrders(fromRemote: false);
     getAllOrders();
   }
 
   bool popOut = false;
+
+
+
+  void checkForUpdate() async {
+    final NewVersionPlus newVersion = NewVersionPlus(
+      androidId: AppConfig.instance.appId,
+      iOSId: AppConfig.instance.iosAppId ,
+    );
+    final status = await newVersion.getVersionStatus();
+    if (status != null && status.canUpdate) {
+      showUpdateDialog();
+    }
+  }
 
   Future<void> initializeAvailableStatus(BuildContext context, {bool value = false}) async {
     bool? isAvailable = context.read<UserCubit>().state.model?.isAvailable;
@@ -95,7 +113,6 @@ class HomeController {
   }
 
   Future<void> acceptOrder(BuildContext context, OrderModel data) async {
-    absorbAcceptButtonObs.setValue(true);
     if (data.isAssigned) {
       final value = await  AutoRouter.of(context).push(OrderDetailsRouteName(id: data.id,
               targetTime: DateTime.now().add(Duration(
@@ -113,9 +130,11 @@ class HomeController {
       }
       return;
     }
+    getIt<LoadingHelper>().showLoadingDialog();
     var result = await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: data.id));
     result.when(
       isSuccess: (data) async {
+        getIt<LoadingHelper>().dismissDialog();
         data!.getOrderStatus() == OrderStatusEnum.preparing;
         var currentOrders = getIt<OrdersHelper>().assignedOrdersCubit.data ?? [];
         var updatedOrders = List<OrderModel>.from(currentOrders)..add(data);
@@ -131,10 +150,10 @@ class HomeController {
         );
       },
       isError: (error) {
+        getIt<LoadingHelper>().dismissDialog();
         AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: Translate.of(context).order_accepted_failed));
       },
     );
-    absorbAcceptButtonObs.setValue(false);
   }
 
   Future<void> getUserData() async {
@@ -165,6 +184,21 @@ class HomeController {
 
 
   double  screenHeight(BuildContext context) => MediaQuery.sizeOf(context).height;
+
+
+
+  void showUpdateDialog(){
+    BuildContext context = getIt<GlobalContext>().context();
+    showDialog(
+      barrierDismissible: false,
+      useRootNavigator: true,
+      context: context,
+      builder: (context) {
+        return const UpdateDialogWidget();
+      },
+    );
+  }
+
 
 
 }

@@ -31,8 +31,8 @@ class DeviceIdHelper{
       //     log("   5. Check that device is connected to internet");
       //   }
       // }
-
       final token = await messaging.getToken();
+      log("====>>>>>>>>>> token $token =====>>>");
       return token;
 
     } catch (e) {

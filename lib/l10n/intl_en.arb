@@ -50,7 +50,7 @@
   "no_internet_connection": "No internet connection",
   "internet_connected": "Internet connected",
   "noResults": "No Results",
-  "driver_home": "Driver Home",
+  "driver": "Driver",
   "driver_profile": "Driver Profile",
   "welcome_back": "Welcome Back!",
   "online": "Online",
@@ -379,5 +379,6 @@
   "edit": "Edit",
   "enter_the_new_price": "Enter the new price",
   "pick_all": "Pick All",
-  "picker_note_hint": "Your note for update..."
+  "picker_note_hint": "Your note for update...",
+  "force_update_message": "A new version available, Please update to keep using app"
 }

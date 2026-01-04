@@ -131,7 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "আপনার ডিভাইসের তথ্য পাওয়ার সময় একটি সমস্যা হয়েছে। দয়া করে পরে আবার চেষ্টা করুন।"),
         "dispatch": MessageLookupByLibrary.simpleMessage("প্রেরণ করুন"),
         "done": MessageLookupByLibrary.simpleMessage("সম্পন্ন"),
-        "driver_home": MessageLookupByLibrary.simpleMessage("ড্রাইভার হোম"),
+        "driver": MessageLookupByLibrary.simpleMessage("ড্রাইভার"),
         "driver_profile":
             MessageLookupByLibrary.simpleMessage("ড্রাইভার প্রোফাইল"),
         "earnings": MessageLookupByLibrary.simpleMessage("আয়"),
@@ -202,6 +202,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "filter_by_working_store": MessageLookupByLibrary.simpleMessage(
             "কাজের দোকান অনুযায়ী ফিল্টার করুন"),
         "flat_no": MessageLookupByLibrary.simpleMessage("ফ্ল্যাট নং"),
+        "force_update_message": MessageLookupByLibrary.simpleMessage(
+            "একটি নতুন সংস্করণ উপলব্ধ, অ্যাপটি ব্যবহার চালিয়ে যেতে দয়া করে আপডেট করুন"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("পাসওয়ার্ড ভুলে গেছেন?"),
         "forgot_password_question":

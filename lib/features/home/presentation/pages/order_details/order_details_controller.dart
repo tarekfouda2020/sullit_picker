@@ -841,38 +841,37 @@ class OrderDetailsController {
     double bagCount = double.parse(bagsCountController.text);
     if (bagsCountFormKey.currentState!.validate() && bagCount > 0) {
       Navigator.pop(context);
-      getIt<LoadingHelper>().showLoadingDialog();
-      final params = _prepareOrderParams();
-      final result = await getIt<HomeRepositories>().prepareOrder(params);
-      BuildContext ctx = getIt<GlobalContext>().context();
-      result.when(
-        isSuccess: (data) async {
-          List<OrderModel>? assigned =
-              getIt<OrdersHelper>().assignedOrdersCubit.data;
-          List<OrderModel> updatedList =
-              (assigned ?? <OrderModel>[]).map((e) => e).toList();
-          updatedList.removeWhere(
-            (element) => element.id == orderId,
-          );
-          await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
-          await getIt<OrdersHelper>().getAllOrders();
-          AutoRouter.of(ctx).maybePop();
-          getIt<OrdersHelper>().deleteOrderDetails(data!.id);
-          AppSnackBar.showSuccessSnackBar(
-            Translate.of(ctx).order_ready_for_delivery,
-          );
-          getIt<LoadingHelper>().dismissDialog();
-        },
-        isError: (error) {
-          AppSnackBar.showSimpleToast(
-            // msg: Translate.of(ctx).something_went_wrong,
-            msg: "Sorry we can't process this order. Thank you",
-            type: ToastType.error,
-          );
-        },
-      );
-      await Future.delayed(const Duration(milliseconds:350 ));
-      getIt<LoadingHelper>().dismissDialog();
+      // getIt<LoadingHelper>().showLoadingDialog();
+      final PrepareOrderParams params = _prepareOrderParams();
+      // final result = await getIt<HomeRepositories>().prepareOrder(params);
+      // BuildContext ctx = getIt<GlobalContext>().context();
+      // result.when(
+      //   isSuccess: (data) async {
+      //     List<OrderModel>? assigned =
+      //         getIt<OrdersHelper>().assignedOrdersCubit.data;
+      //     List<OrderModel> updatedList =
+      //         (assigned ?? <OrderModel>[]).map((e) => e).toList();
+      //     updatedList.removeWhere(
+      //       (element) => element.id == orderId,
+      //     );
+      //     await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+      //     await getIt<OrdersHelper>().getAllOrders();
+      //     AutoRouter.of(ctx).maybePop();
+      //     getIt<OrdersHelper>().deleteOrderDetails(data!.id);
+      //     AppSnackBar.showSuccessSnackBar(
+      //       Translate.of(ctx).order_ready_for_delivery,
+      //     );
+      //     getIt<LoadingHelper>().dismissDialog();
+      //   },
+      //   isError: (error) {
+      //     AppSnackBar.showSimpleToast(
+      //       // msg: Translate.of(ctx).something_went_wrong,
+      //       msg: "Sorry we can't process this order. Thank you",
+      //       type: ToastType.error,
+      //     );
+      //   },
+      // );
+      // getIt<LoadingHelper>().dismissDialog();
     }
   }
 
@@ -888,7 +887,7 @@ class OrderDetailsController {
   }
 
   PrepareOrderParams _prepareOrderParams() {
-    // log("======>>>> all data before enter params ${_detailsData.ordersDetails!} <<<<<<======");
+    log("======>>>> all data before enter params ${_detailsData.ordersDetails!} <<<<<<======");
     // log("======>>>> deleted data ${_detailsData.deletedOrders} <<<<<<======");
     double bagCount = double.parse(bagsCountController.text);
     return PrepareOrderParams(
