@@ -10,18 +10,23 @@ class OrderDetailsHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GestureDetector(
-          onTap: () => AutoRouter.of(context).maybePop(),
-          child: _buildTransform(context),
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () => AutoRouter.of(context).maybePop(),
+              child: _buildTransform(context),
+            ),
+            Gaps.hGap15,
+            Text(
+              Translate.of(context).order_no_colon,
+              style: AppTextStyle.s18_w300(color: context.colors.simiGray),
+            ),
+          ],
         ),
-        Gaps.hGap15,
-        Text(
-          Translate.of(context).order_no_colon,
-          style: AppTextStyle.s18_w300(color: context.colors.simiGray),
-        ),
-        Gaps.hGap4,
+        Gaps.vGap15,
         Text(
           data.code,
           style: AppTextStyle.s18_w600(color: context.colors.primary),
