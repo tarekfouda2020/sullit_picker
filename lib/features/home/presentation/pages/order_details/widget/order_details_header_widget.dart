@@ -19,17 +19,21 @@ class OrderDetailsHeaderWidget extends StatelessWidget {
               onTap: () => AutoRouter.of(context).maybePop(),
               child: _buildTransform(context),
             ),
-            Gaps.hGap15,
+          ],
+        ),
+        Gaps.vGap15,
+        Row(
+          children: [
             Text(
               Translate.of(context).order_no_colon,
               style: AppTextStyle.s18_w300(color: context.colors.simiGray),
             ),
+            Gaps.hGap15,
+            Text(
+              data.code,
+              style: AppTextStyle.s18_w600(color: context.colors.primary),
+            ),
           ],
-        ),
-        Gaps.vGap15,
-        Text(
-          data.code,
-          style: AppTextStyle.s18_w600(color: context.colors.primary),
         ),
       ],
     );
