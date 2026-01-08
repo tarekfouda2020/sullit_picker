@@ -16,31 +16,46 @@ import 'global_context.dart';
 
 @lazySingleton
 class GlobalNotification {
-  static final StreamController<Map<String, dynamic>> _onMessageStreamController =
-  StreamController.broadcast();
+  static final StreamController<Map<String, dynamic>>
+      _onMessageStreamController = StreamController.broadcast();
 
   late FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
 
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
 
- Future<void> setupNotification()async{
-    _flutterLocalNotificationsPlugin =FlutterLocalNotificationsPlugin();
+  /// Android notification channel with custom sound
+  static const AndroidNotificationChannel _channel = AndroidNotificationChannel(
+    'high_importance_channel', // Must match the channel ID in AndroidManifest.xml
+    'High Importance Notifications',
+    description: 'This channel is used for important notifications.',
+    importance: Importance.max,
+    sound: RawResourceAndroidNotificationSound('bell_ring'),
+    playSound: true,
+  );
+
+  Future<void> setupNotification() async {
+    _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const android = AndroidInitializationSettings("@mipmap/launcher_icon");
-    const ios =DarwinInitializationSettings();
-    const initSettings =InitializationSettings(android: android, iOS: ios);
+    const ios = DarwinInitializationSettings();
+    const initSettings = InitializationSettings(android: android, iOS: ios);
     _flutterLocalNotificationsPlugin.initialize(
       initSettings,
       // onDidReceiveBackgroundNotificationResponse:(details)=> flutterNotificationClick( details.payload),
       // onDidReceiveNotificationResponse: (details)=> flutterNotificationClick( details.payload),
     );
     await Firebase.initializeApp();
+
+    // Create the Android notification channel with custom sound
+    await _flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(_channel);
     final settings = await messaging.requestPermission(
-        provisional: true,
+      provisional: true,
       alert: true,
       badge: true,
       sound: true,
     );
-    if(settings.authorizationStatus==AuthorizationStatus.authorized){
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       messaging.setForegroundNotificationPresentationOptions(
         alert: true,
         badge: true,
@@ -52,12 +67,10 @@ class GlobalNotification {
         _showLocalNotification(message);
         _onMessageStreamController.add(message.data);
 
-
-        var orderId = int.parse(message.data["item_type_id"]??"0");
+        var orderId = int.parse(message.data["item_type_id"] ?? "0");
         var notifyType = message.data["item_type"];
 
-
-        if ( orderId == -1) {
+        if (orderId == -1) {
           StorageHelper.instance.clearSavedData();
           // AutoRouter.of(context).push(const LoginRoute());
         }
@@ -67,12 +80,13 @@ class GlobalNotification {
         log('AonMessageOpenedApp event was published!');
         flutterNotificationClick(json.encode(message.data));
       });
-      FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+      FirebaseMessaging.onBackgroundMessage(
+          _firebaseMessagingBackgroundHandler);
     }
-
   }
 
-  static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  static Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
     log("Handling a background message: ${message.messageId}");
     await Firebase.initializeApp();
     // flutterNotificationClick(json.encode(message.data));
@@ -84,47 +98,55 @@ class GlobalNotification {
 
   Future<void> _showLocalNotification(RemoteMessage? message) async {
     if (message == null) return;
-    final android = AndroidNotificationDetails(
-      "${DateTime.now()}",
-      "Default",
+    const android = AndroidNotificationDetails(
+      'high_importance_channel', // Use the same channel ID with custom sound
+      'High Importance Notifications',
+      channelDescription: 'This channel is used for important notifications.',
       priority: Priority.high,
       importance: Importance.max,
-      shortcutId: DateTime.now().toIso8601String(),
+      sound: RawResourceAndroidNotificationSound('bell_ring'),
+      playSound: true,
     );
-    const ios = DarwinNotificationDetails();
-    final platform = NotificationDetails(android: android, iOS: ios);
+    const ios = DarwinNotificationDetails(
+      sound: 'bell_ring.mp3', // Custom sound for iOS
+      presentSound: true,
+    );
+    const platform = NotificationDetails(android: android, iOS: ios);
     _flutterLocalNotificationsPlugin.show(
-        DateTime.now().microsecond, "${message.notification?.title}", "${message.notification?.body}", platform,
+        DateTime.now().microsecond,
+        "${message.notification?.title}",
+        "${message.notification?.body}",
+        platform,
         payload: json.encode(message.data));
   }
 
-  static void _handleNotificationResponse(String notifyType){
-   var type = NotificationType.notifyType(notifyType);
-   var notInOrderDetails = getIt<NotifyMethodsHelper>().notInOrderDetails() == true;
-   if(notInOrderDetails && (type.isNewOrder) ){
-     getIt<OrdersHelper>().showNewOrderAlert();
-   }else if(type.isOrderAccepted || type.isNewOrder){
-     getIt<OrdersHelper>().getAllOrders();
-   }
+  static void _handleNotificationResponse(String notifyType) {
+    var type = NotificationType.notifyType(notifyType);
+    var notInOrderDetails =
+        getIt<NotifyMethodsHelper>().notInOrderDetails() == true;
+    if (notInOrderDetails && (type.isNewOrder)) {
+      getIt<OrdersHelper>().showNewOrderAlert();
+    } else if (type.isOrderAccepted || type.isNewOrder) {
+      getIt<OrdersHelper>().getAllOrders();
+    }
   }
 
-  static void _whenNotificationClickedInBackground(String notifyType){
+  static void _whenNotificationClickedInBackground(String notifyType) {
     var type = NotificationType.notifyType(notifyType);
     BuildContext context = getIt<GlobalContext>().context();
-    if( type.isNewOrder ){
-     AutoRouter.of(context).push(const HomePageRoute());
-    }else {
+    if (type.isNewOrder) {
+      AutoRouter.of(context).push(const HomePageRoute());
+    } else {
       AutoRouter.of(context).push(const NotificationsPageRoute());
     }
   }
 
   static Future flutterNotificationClick(String? details) async {
     // log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
-    var message = json.decode(details??"");
+    var message = json.decode(details ?? "");
     // log("==========>>>>>> message when click from out side $message details <<<<<<<<<<============");
     var notifyType = message["item_type"];
     _whenNotificationClickedInBackground(notifyType);
-
   }
 }
 
