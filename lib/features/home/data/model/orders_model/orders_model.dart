@@ -39,6 +39,7 @@ class OrderModel with _$OrderModel {
     @JsonKey(name: 'status_label') required String statusLabel,
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
+    @JsonKey(name: 'delivered_at') required String deliveredAt,
     @JsonKey(name: 'payment_status')  bool? paymentStatus,
     @JsonKey(name: 'payment_status_text')  String? paymentStatusText,
     @JsonKey(name: 'payment_method')  String? paymentMethod,
@@ -62,6 +63,14 @@ class OrderModel with _$OrderModel {
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
       _$OrderModelFromJson(json);
+
+
+
+ int get getFullCount {
+   return ordersDetails?.fold(0, (previousValue, element) => (previousValue ?? 0 )+element.quantity) ?? totalItems;
+ }
+
+
 
   OrderStatusEnum getOrderStatus(){
     switch(status){
@@ -89,6 +98,16 @@ class OrderModel with _$OrderModel {
   }catch(error){
     return null;
   }
+ }
+
+ String? getDeliveredDate(){
+   try{
+     DateTime date = DateTimeHelper.convertToDateTime(strDate: deliveredAt,formatType: "yyyy-MM-dd HH:mm:ss");
+     String startDate = DateTimeHelper.formatDate(date: date, formatType: "dd-MM-yyyy - h:mm a");
+     return startDate;
+   }catch(error){
+     return null;
+   }
  }
 
  double getOriginalTotalPrice(){

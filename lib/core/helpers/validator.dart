@@ -112,6 +112,24 @@ extension Validator on String {
   }
 
 
+  String? validatePrice({required double maxPrice, String? message}) {
+    if (trim().isEmpty) {
+      return message ?? Translate.s.fillField;
+    }
+
+    final value = double.tryParse(trim());
+    if (value == null) {
+      return message ?? "Please enter a valid number";
+    }
+
+    if (value > maxPrice) {
+      return message ?? "Price must not exceed $maxPrice";
+    }
+
+    return null;
+  }
+
+
 }
 
 String? validateDropDown( dynamic model,{String? message}) {

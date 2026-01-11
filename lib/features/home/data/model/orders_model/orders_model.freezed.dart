@@ -271,6 +271,10 @@ mixin _$OrderModel {
   String get startPickingAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'start_picking_at')
   set startPickingAt(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'delivered_at')
+  String get deliveredAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'delivered_at')
+  set deliveredAt(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_status')
   bool? get paymentStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_status')
@@ -361,6 +365,7 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'status_label') String statusLabel,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
       @JsonKey(name: 'start_picking_at') String startPickingAt,
+      @JsonKey(name: 'delivered_at') String deliveredAt,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
@@ -406,6 +411,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? statusLabel = null,
     Object? preparationMinutes = null,
     Object? startPickingAt = null,
+    Object? deliveredAt = null,
     Object? paymentStatus = freezed,
     Object? paymentStatusText = freezed,
     Object? paymentMethod = freezed,
@@ -465,6 +471,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       startPickingAt: null == startPickingAt
           ? _value.startPickingAt
           : startPickingAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      deliveredAt: null == deliveredAt
+          ? _value.deliveredAt
+          : deliveredAt // ignore: cast_nullable_to_non_nullable
               as String,
       paymentStatus: freezed == paymentStatus
           ? _value.paymentStatus
@@ -551,6 +561,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       @JsonKey(name: 'status_label') String statusLabel,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
       @JsonKey(name: 'start_picking_at') String startPickingAt,
+      @JsonKey(name: 'delivered_at') String deliveredAt,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
@@ -596,6 +607,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? statusLabel = null,
     Object? preparationMinutes = null,
     Object? startPickingAt = null,
+    Object? deliveredAt = null,
     Object? paymentStatus = freezed,
     Object? paymentStatusText = freezed,
     Object? paymentMethod = freezed,
@@ -655,6 +667,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
       startPickingAt: null == startPickingAt
           ? _value.startPickingAt
           : startPickingAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      deliveredAt: null == deliveredAt
+          ? _value.deliveredAt
+          : deliveredAt // ignore: cast_nullable_to_non_nullable
               as String,
       paymentStatus: freezed == paymentStatus
           ? _value.paymentStatus
@@ -716,6 +732,7 @@ class _$OrderModelImpl extends _OrderModel {
       @JsonKey(name: 'status_label') required this.statusLabel,
       @JsonKey(name: 'preparation_minutes') required this.preparationMinutes,
       @JsonKey(name: 'start_picking_at') required this.startPickingAt,
+      @JsonKey(name: 'delivered_at') required this.deliveredAt,
       @JsonKey(name: 'payment_status') this.paymentStatus,
       @JsonKey(name: 'payment_status_text') this.paymentStatusText,
       @JsonKey(name: 'payment_method') this.paymentMethod,
@@ -768,6 +785,9 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey(name: 'start_picking_at')
   String startPickingAt;
   @override
+  @JsonKey(name: 'delivered_at')
+  String deliveredAt;
+  @override
   @JsonKey(name: 'payment_status')
   bool? paymentStatus;
   @override
@@ -808,7 +828,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   @JsonKey(ignore: true)
@@ -839,6 +859,7 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'status_label') required String statusLabel,
       @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
       @JsonKey(name: 'start_picking_at') required String startPickingAt,
+      @JsonKey(name: 'delivered_at') required String deliveredAt,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
@@ -909,6 +930,11 @@ abstract class _OrderModel extends OrderModel {
   String get startPickingAt;
   @JsonKey(name: 'start_picking_at')
   set startPickingAt(String value);
+  @override
+  @JsonKey(name: 'delivered_at')
+  String get deliveredAt;
+  @JsonKey(name: 'delivered_at')
+  set deliveredAt(String value);
   @override
   @JsonKey(name: 'payment_status')
   bool? get paymentStatus;

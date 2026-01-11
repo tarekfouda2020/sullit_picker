@@ -64,7 +64,7 @@ final bool pickAll;
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.number,
                 action: TextInputAction.next,
-                validate: (value) => value!.validateEmpty(),
+                validate: (value) => value!.validatePrice(maxPrice: double.parse(orderProduct.unitPrice)),
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 36, vertical: 11),
                 fillColor: context.colors.background,

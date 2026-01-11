@@ -42,6 +42,7 @@ class _OrderDetailsState extends State<OrderDetails> {
               children: [
                 Gaps.vGap(kToolbarHeight-20),
                 OrderDetailsHeaderWidget(data: data),
+                Gaps.vGap5,
                 Expanded(
                   child: ListView(
                     children: [

@@ -22,7 +22,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    getIt<DeviceIdHelper>().getDeviceId();
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) => controller.onPop(),

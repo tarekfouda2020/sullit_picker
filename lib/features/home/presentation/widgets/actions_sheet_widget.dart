@@ -5,7 +5,8 @@ import '../../../../core/helpers/export.dart';
 
 class CallingCustomerSheetWidget extends StatelessWidget {
   final String phoneNumber;
-  const CallingCustomerSheetWidget({super.key, required this.phoneNumber});
+  final String? title;
+  const CallingCustomerSheetWidget({super.key, required this.phoneNumber, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +23,8 @@ class CallingCustomerSheetWidget extends StatelessWidget {
         applyThemeToAll: true
       ),
       child: CupertinoActionSheet(
-        title:    Text(
-        Translate.s.contact_with_customer_using,
+        title: Text(
+          title ?? Translate.s.contact_with_customer_using,
           style: const AppTextStyle.s16_w600(color: CupertinoColors.systemGrey),
         ),
         actions: [

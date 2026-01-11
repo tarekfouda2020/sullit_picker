@@ -3,13 +3,15 @@ import 'package:flutter_tdd/features/home/presentation/widgets/actions_sheet_wid
 
 class BottomSheetsWidget {
 
-  static void showContactWithSheet(BuildContext context, String phoneNumber){
+  static void showContactWithSheet(BuildContext context, String phoneNumber,{String? title}){
 
     showCupertinoModalPopup(
       barrierDismissible: true,
       context: context,
       builder: (context) {
-      return CallingCustomerSheetWidget(phoneNumber: phoneNumber,
+      return CallingCustomerSheetWidget(
+        phoneNumber: phoneNumber,
+        title: title,
       );
     },);
 

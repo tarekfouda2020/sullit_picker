@@ -24,7 +24,7 @@ class OrderDetailsController {
 
   final GlobalKey<FormState> bagsCountFormKey = GlobalKey<FormState>();
 
-  late ShowOrdersRequester showOrdersRequester;
+  late ShowOrderRequester showOrdersRequester;
   late final int orderId;
   late final DateTime targetTime;
 
@@ -691,6 +691,7 @@ class OrderDetailsController {
     OrderDetailsModel updatedItem = updatedOrder.copyWith(
       /// same data that changed when updated first time will also be changed here
       price: originalItem.price,
+      newPrice: null,
       unitPrice: originalItem.unitPrice,
       newVariantId: null,
       variation: originalItem.variation,
@@ -700,7 +701,8 @@ class OrderDetailsController {
           pickedQuantity: 0,
           productPickedPercent: 0,
           productStatus: ProductStatusEnum.noEdit,
-          barcode: originalItem.product!.barcode),
+          barcode: originalItem.product!.barcode
+      ),
     );
     _detailsData.ordersDetails![index] = updatedItem;
     _detailsData.changedProducts!.remove(originalItems);
