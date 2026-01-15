@@ -103,5 +103,6 @@ class Res {
   static const String doneImage = "assets/images/done_image.svg";
 
   // sounds
-  static const String newOrderSound = "assets/sounds/bell_ring.mp3";
+  // static const String newOrderSound = "assets/sounds/bell_ring.mp3";
+  static const String newOrderSound = "assets/sounds/tips_alot.mp3";
 }

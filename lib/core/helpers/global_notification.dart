@@ -24,12 +24,24 @@ class GlobalNotification {
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   /// Android notification channel with custom sound
-  static const AndroidNotificationChannel _channel = AndroidNotificationChannel(
-    'high_importance_channel', // Must match the channel ID in AndroidManifest.xml
-    'High Importance Notifications',
-    description: 'This channel is used for important notifications.',
+  /// Android notification channel for order notifications with tips_alot sound
+  static const AndroidNotificationChannel _orderChannel =
+  AndroidNotificationChannel(
+    'order_notifications_channel',
+    'Order Notifications',
+    description: 'This channel is used for new order notifications.',
     importance: Importance.max,
-    sound: RawResourceAndroidNotificationSound('bell_ring'),
+    sound: RawResourceAndroidNotificationSound('tips_alot'),
+    playSound: true,
+  );
+
+  /// Android notification channel for other notifications with bell_ring sound
+  static const AndroidNotificationChannel _generalChannel =
+  AndroidNotificationChannel(
+    'general_notifications_channel',
+    'General Notifications',
+    description: 'This channel is used for general notifications.',
+    importance: Importance.max,
     playSound: true,
   );
 
@@ -45,10 +57,13 @@ class GlobalNotification {
     );
     await Firebase.initializeApp();
 
-    // Create the Android notification channel with custom sound
-    await _flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(_channel);
+    // Create the Android notification channels with custom sounds
+    final androidImplementation =
+    _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+
+    await androidImplementation?.createNotificationChannel(_orderChannel);
+    await androidImplementation?.createNotificationChannel(_generalChannel);
+
     final settings = await messaging.requestPermission(
       provisional: true,
       alert: true,
@@ -97,21 +112,44 @@ class GlobalNotification {
   }
 
   Future<void> _showLocalNotification(RemoteMessage? message) async {
-    if (message == null) return;
-    const android = AndroidNotificationDetails(
-      'high_importance_channel', // Use the same channel ID with custom sound
-      'High Importance Notifications',
-      channelDescription: 'This channel is used for important notifications.',
+    if (message == null || message.notification == null) return;
+
+    // Determine the notification type
+    String notifyType = message.data["item_type"] ?? "";
+    NotificationType type = NotificationType.notifyType(notifyType);
+
+    // Select the appropriate channel based on the type
+    AndroidNotificationChannel channel =
+    type.isNewOrder ? _orderChannel : _generalChannel;
+    // message.data == {} ? _orderChannel : _generalChannel;
+
+    final android = AndroidNotificationDetails(
+      channel.id,
+      channel.name,
+      channelDescription: channel.description,
       priority: Priority.high,
       importance: Importance.max,
-      sound: RawResourceAndroidNotificationSound('bell_ring'),
+      shortcutId: DateTime.now().toIso8601String(),
+      sound: channel.sound,
       playSound: true,
     );
-    const ios = DarwinNotificationDetails(
-      sound: 'bell_ring.mp3', // Custom sound for iOS
+
+    const newOrderIos = DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+        sound: "tips_alot"
+    );
+
+    const generalIos = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
       presentSound: true,
     );
-    const platform = NotificationDetails(android: android, iOS: ios);
+    final platform = NotificationDetails(
+        android: android,
+        iOS: type.isNewOrder ? newOrderIos : generalIos
+    );
     _flutterLocalNotificationsPlugin.show(
         DateTime.now().microsecond,
         "${message.notification?.title}",
