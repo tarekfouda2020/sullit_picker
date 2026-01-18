@@ -443,6 +443,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "please_enable_location_permission":
             MessageLookupByLibrary.simpleMessage(
                 "Please enable location permission"),
+        "please_enter_a_valid_number":
+            MessageLookupByLibrary.simpleMessage("Please enter a valid number"),
         "please_enter_valid_email":
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
         "please_select_back_id_card_image":
@@ -462,6 +464,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "previous_orders":
             MessageLookupByLibrary.simpleMessage("Previous Orders"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
+        "price_must_not_exceed":
+            MessageLookupByLibrary.simpleMessage("Price must not exceed"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage(
                 "Price should be less than or equal to"),

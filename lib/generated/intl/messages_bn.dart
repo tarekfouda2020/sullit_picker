@@ -348,6 +348,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "please_enable_location_permission":
             MessageLookupByLibrary.simpleMessage(
                 "অনুগ্রহ করে অবস্থানের অনুমতি সক্রিয় করুন"),
+        "please_enter_a_valid_number": MessageLookupByLibrary.simpleMessage(
+            "অনুগ্রহ করে একটি বৈধ সংখ্যা লিখুন"),
         "please_select_back_id_card_image":
             MessageLookupByLibrary.simpleMessage(
                 "অনুগ্রহ করে আপনার পিছনের আইডি কার্ডের ছবি নির্বাচন করুন"),
@@ -365,6 +367,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "previous_orders":
             MessageLookupByLibrary.simpleMessage("পূর্ববর্তী অর্ডারসমূহ"),
         "price": MessageLookupByLibrary.simpleMessage("মূল্য"),
+        "price_must_not_exceed":
+            MessageLookupByLibrary.simpleMessage("মূল্য এর বেশি হতে পারবে না"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage("মূল্য কম বা সমান হতে হবে"),
         "privacy_policy":

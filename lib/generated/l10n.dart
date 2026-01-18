@@ -3850,6 +3850,26 @@ class S {
     );
   }
 
+  /// `Please enter a valid number`
+  String get please_enter_a_valid_number {
+    return Intl.message(
+      'Please enter a valid number',
+      name: 'please_enter_a_valid_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price must not exceed`
+  String get price_must_not_exceed {
+    return Intl.message(
+      'Price must not exceed',
+      name: 'price_must_not_exceed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `A new version available, Please update to keep using app`
   String get force_update_message {
     return Intl.message(

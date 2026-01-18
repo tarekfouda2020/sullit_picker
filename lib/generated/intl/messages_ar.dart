@@ -433,6 +433,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى وصف المشكلة بالتفصيل..."),
         "please_enable_location_permission":
             MessageLookupByLibrary.simpleMessage("يرجى تفعيل إذن الموقع"),
+        "please_enter_a_valid_number":
+            MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم صالح"),
         "please_enter_valid_email": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال بريد إلكتروني صالح"),
         "please_select_back_id_card_image":
@@ -452,6 +454,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "previous_orders":
             MessageLookupByLibrary.simpleMessage("الطلبات السابقة"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
+        "price_must_not_exceed":
+            MessageLookupByLibrary.simpleMessage("يجب ألا يتجاوز السعر"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage(
                 "يجب أن يكون السعر أقل من أو يساوي"),

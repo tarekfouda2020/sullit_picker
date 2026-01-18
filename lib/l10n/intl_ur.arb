@@ -377,6 +377,8 @@
   "edit": "ترمیم کریں",
   "enter_the_new_price": "نئی قیمت درج کریں",
   "pick_all": "سب منتخب کریں",
+  "please_enter_a_valid_number": "براہ کرم درست نمبر درج کریں",
+  "price_must_not_exceed": "قیمت اس سے زیادہ نہیں ہونی چاہیے",
   "picker_note_hint": "اپ ڈیٹ کے لیے آپ کا نوٹ...",
   "force_update_message": "نیا ورژن دستیاب ہے، براہ کرم ایپ استعمال جاری رکھنے کے لیے اپ ڈیٹ کریں"
 

@@ -384,6 +384,8 @@
   "enter_the_new_price": "أدخل السعر الجديد",
   "pick_all": "اختر الكل",
   "picker_note_hint": "ملاحظتك للتحديث...",
+  "please_enter_a_valid_number": "يرجى إدخال رقم صالح",
+  "price_must_not_exceed": "يجب ألا يتجاوز السعر",
   "force_update_message": "هناك إصدار جديد متاح، يرجى التحديث للاستمرار في استخدام التطبيق"
 
 }

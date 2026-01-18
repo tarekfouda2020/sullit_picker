@@ -119,11 +119,11 @@ extension Validator on String {
 
     final value = double.tryParse(trim());
     if (value == null) {
-      return message ?? "Please enter a valid number";
+      return message ?? Translate.s.please_enter_a_valid_number;
     }
 
     if (value > maxPrice) {
-      return message ?? "Price must not exceed $maxPrice";
+      return message ?? "${Translate.s.price_must_not_exceed} $maxPrice";
     }
 
     return null;

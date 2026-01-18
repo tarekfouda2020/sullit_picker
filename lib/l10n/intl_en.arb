@@ -380,5 +380,7 @@
   "enter_the_new_price": "Enter the new price",
   "pick_all": "Pick All",
   "picker_note_hint": "Your note for update...",
+  "please_enter_a_valid_number": "Please enter a valid number",
+  "price_must_not_exceed": "Price must not exceed",
   "force_update_message": "A new version available, Please update to keep using app"
 }

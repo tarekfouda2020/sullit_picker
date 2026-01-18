@@ -442,6 +442,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "please_enable_location_permission":
             MessageLookupByLibrary.simpleMessage(
                 "برائے کرم لوکیشن کی اجازت فعال کریں"),
+        "please_enter_a_valid_number":
+            MessageLookupByLibrary.simpleMessage("براہ کرم درست نمبر درج کریں"),
         "please_enter_valid_email": MessageLookupByLibrary.simpleMessage(
             "برائے کرم درست ای میل درج کریں"),
         "please_select_back_id_card_image":
@@ -460,6 +462,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "برائے کرم فون نمبر کی تصدیق کریں"),
         "previous_orders": MessageLookupByLibrary.simpleMessage("پچھلے آرڈرز"),
         "price": MessageLookupByLibrary.simpleMessage("قیمت"),
+        "price_must_not_exceed": MessageLookupByLibrary.simpleMessage(
+            "قیمت اس سے زیادہ نہیں ہونی چاہیے"),
         "price_should_be_less_than_or_equal_to":
             MessageLookupByLibrary.simpleMessage("قیمت کم یا برابر ہونی چاہیے"),
         "privacy_policy":

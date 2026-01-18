@@ -57,7 +57,7 @@ class _OrderHistoryDetailsState extends State<OrderHistoryDetails> {
                 Text(
                   Translate
                       .s.something_went_wrong, // Ensure key exists
-                  style: AppTextStyle.s16_w500(color: Colors.red),
+                  style: const AppTextStyle.s16_w500(color: Colors.red),
                 ),
                 const SizedBox(height: 16),
                 AppTextButton.maxPrimary(
