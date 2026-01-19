@@ -26,7 +26,7 @@ class GlobalNotification {
   /// Android notification channel with custom sound
   /// Android notification channel for order notifications with tips_alot sound
   static const AndroidNotificationChannel _orderChannel =
-  AndroidNotificationChannel(
+      AndroidNotificationChannel(
     'order_notifications_channel',
     'Order Notifications',
     description: 'This channel is used for new order notifications.',
@@ -37,7 +37,7 @@ class GlobalNotification {
 
   /// Android notification channel for other notifications with bell_ring sound
   static const AndroidNotificationChannel _generalChannel =
-  AndroidNotificationChannel(
+      AndroidNotificationChannel(
     'general_notifications_channel',
     'General Notifications',
     description: 'This channel is used for general notifications.',
@@ -48,18 +48,22 @@ class GlobalNotification {
   Future<void> setupNotification() async {
     _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const android = AndroidInitializationSettings("@mipmap/launcher_icon");
-    const ios = DarwinInitializationSettings();
+    const ios = DarwinInitializationSettings(
+      defaultPresentAlert: true,
+      defaultPresentSound: true,
+    );
     const initSettings = InitializationSettings(android: android, iOS: ios);
     _flutterLocalNotificationsPlugin.initialize(
       initSettings,
       // onDidReceiveBackgroundNotificationResponse:(details)=> flutterNotificationClick( details.payload),
       // onDidReceiveNotificationResponse: (details)=> flutterNotificationClick( details.payload),
     );
-    await Firebase.initializeApp();
+    // Firebase is already initialized in native code (iOS) and main.dart (Android)
 
     // Create the Android notification channels with custom sounds
     final androidImplementation =
-    _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+        _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>();
 
     await androidImplementation?.createNotificationChannel(_orderChannel);
     await androidImplementation?.createNotificationChannel(_generalChannel);
@@ -82,8 +86,8 @@ class GlobalNotification {
         _showLocalNotification(message);
         _onMessageStreamController.add(message.data);
 
-        var orderId = int.parse(message.data["item_type_id"] ?? "0");
-        var notifyType = message.data["item_type"];
+      var orderId = int.parse(message.data["item_type_id"] ?? "0");
+      var notifyType = message.data["item_type"];
 
         if (orderId == -1) {
           StorageHelper.instance.clearSavedData();
@@ -112,7 +116,7 @@ class GlobalNotification {
   }
 
   Future<void> _showLocalNotification(RemoteMessage? message) async {
-    if (message == null || message.notification == null) return;
+    if (message == null) return;
 
     // Determine the notification type
     String notifyType = message.data["item_type"] ?? "";
@@ -120,7 +124,7 @@ class GlobalNotification {
 
     // Select the appropriate channel based on the type
     AndroidNotificationChannel channel =
-    type.isNewOrder ? _orderChannel : _generalChannel;
+        type.isNewOrder ? _orderChannel : _generalChannel;
     // message.data == {} ? _orderChannel : _generalChannel;
 
     final android = AndroidNotificationDetails(
@@ -132,14 +136,14 @@ class GlobalNotification {
       shortcutId: DateTime.now().toIso8601String(),
       sound: channel.sound,
       playSound: true,
+      enableVibration: type.isNewOrder,
     );
 
     const newOrderIos = DarwinNotificationDetails(
         presentAlert: true,
         presentBadge: true,
         presentSound: true,
-        sound: "tips_alot"
-    );
+        sound: "tips_alot");
 
     const generalIos = DarwinNotificationDetails(
       presentAlert: true,
@@ -147,9 +151,7 @@ class GlobalNotification {
       presentSound: true,
     );
     final platform = NotificationDetails(
-        android: android,
-        iOS: type.isNewOrder ? newOrderIos : generalIos
-    );
+        android: android, iOS: type.isNewOrder ? newOrderIos : generalIos);
     _flutterLocalNotificationsPlugin.show(
         DateTime.now().microsecond,
         "${message.notification?.title}",

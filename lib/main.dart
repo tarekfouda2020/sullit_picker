@@ -15,7 +15,7 @@ import 'core/helpers/di.dart';
 import 'core/routes/router_imports.dart';
 import 'my_app.dart';
 
-void main()async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
   await HiveHelper.instance.init();
@@ -31,7 +31,7 @@ void main()async{
   runApp(
     BlocProvider(
       create: (BuildContext context) => DeviceCubit(),
-      child:  Phoenix(child: const MyApp()),
+      child: Phoenix(child: const MyApp()),
     ),
   );
 }
