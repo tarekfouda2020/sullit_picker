@@ -197,7 +197,7 @@ class GlobalNotification {
     
     // Show the notification
     if (message.notification != null) {
-      final androidDetails = AndroidNotificationDetails(
+      const androidDetails = AndroidNotificationDetails(
         'order_notifications_channel',
         'Order Notifications',
         channelDescription: 'This channel is used for new order notifications.',
@@ -212,7 +212,7 @@ class GlobalNotification {
         presentSound: true,
       );
       
-      final platformChannelSpecifics = NotificationDetails(
+      const platformChannelSpecifics = NotificationDetails(
         android: androidDetails,
         iOS: iosDetails,
       );
@@ -247,7 +247,7 @@ class GlobalNotification {
       final title = message.data["title"] ?? "New Notification";
       final body = message.data["body"] ?? message.data["message"] ?? "You have a new notification";
       
-      final android = AndroidNotificationDetails(
+      const android = AndroidNotificationDetails(
         'general_notifications_channel',
         'General Notifications',
         channelDescription: 'This channel is used for general notifications.',
@@ -262,7 +262,7 @@ class GlobalNotification {
         presentSound: true,
       );
       
-      final platform = NotificationDetails(android: android, iOS: ios);
+      const platform = NotificationDetails(android: android, iOS: ios);
       
       await _flutterLocalNotificationsPlugin.show(
         DateTime.now().microsecond,
