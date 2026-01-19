@@ -1,4 +1,4 @@
-package system.dev
+package ua.suliitpicker.com
 
 import io.flutter.embedding.android.FlutterActivity
 
