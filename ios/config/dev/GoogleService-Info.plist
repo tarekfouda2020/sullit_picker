@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDJvHqLb4gJMCpMVbwT3ff0RZ2aLXCXiHQ</string>
+	<string>AIzaSyDp5VbZFrAPsIbH9v7LXaAma8olBuPUXDE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1041079975484</string>
+	<string>644512695362</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>system.dev</string>
+	<string>ua.suliitpicker.com</string>
 	<key>PROJECT_ID</key>
-	<string>base-ffada</string>
+	<string>suliit-c5356</string>
 	<key>STORAGE_BUCKET</key>
-	<string>base-ffada.appspot.com</string>
+	<string>suliit-c5356.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1041079975484:ios:81a87a2b6723cf60c18d39</string>
+	<string>1:644512695362:ios:124b2196ed630ef00a99db</string>
 </dict>
 </plist>
