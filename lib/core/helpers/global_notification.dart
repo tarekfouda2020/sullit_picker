@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -97,17 +96,7 @@ class GlobalNotification {
       log("FCM Token: $token");
       log("📋 Copy this token to send test notifications from Firebase Console");
       
-      // Verify APNs token for iOS
-      if (Platform.isIOS) {
-        final apnsToken = await messaging.getAPNSToken();
-        if (apnsToken != null) {
-          log("✅ APNs Token: $apnsToken");
-        } else {
-          log("⚠️ APNs Token is null - notifications may not work!");
-          log("⚠️ Make sure you're testing on a physical device, not simulator");
-        }
-      }
-      
+
       // Check for initial notification (when app opened from terminated state)
       RemoteMessage? initialMessage = await messaging.getInitialMessage();
       if (initialMessage != null) {
@@ -129,19 +118,6 @@ class GlobalNotification {
       log("✅ Setting up Firebase Messaging listeners...");
       
       FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-        log("📨 ========== FOREGROUND MESSAGE RECEIVED ==========");
-        log("📨 Message ID: ${message.messageId}");
-        log("📨 Message data: ${message.data}");
-        log("📨 Notification title: ${message.notification?.title}");
-        log("📨 Notification body: ${message.notification?.body}");
-        log("📨 Has notification payload: ${message.notification != null}");
-        log("📨 Message sent time: ${message.sentTime}");
-        log("📨 Message from: ${message.from}");
-        log("📨 Collapse key: ${message.collapseKey}");
-        log("📨 Message type: ${message.messageType}");
-        
-        // Always show local notification to ensure it appears
-        // Firebase's automatic display might not always work
         try {
           await _showLocalNotification(message);
           log("✅ Notification display completed");
@@ -161,17 +137,11 @@ class GlobalNotification {
         _handleNotificationResponse(notifyType);
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        log('📱 ========== onMessageOpenedApp event ==========');
-        log('📱 Message data: ${message.data}');
         flutterNotificationClick(json.encode(message.data));
       });
       FirebaseMessaging.onBackgroundMessage(
           _firebaseMessagingBackgroundHandler);
-      log("✅ All Firebase Messaging listeners set up successfully!");
 
-    } else {
-      log("⚠️ ⚠️ ⚠️ Notification permission NOT granted! Status: ${settings.authorizationStatus}");
-      log("⚠️ Please enable notifications in Settings → ${await _getAppName()}");
     }
   }
 
@@ -233,14 +203,9 @@ class GlobalNotification {
 
   Future<void> _showLocalNotification(RemoteMessage? message) async {
     if (message == null) {
-      log("❌ _showLocalNotification: message is null");
       return;
     }
-    
-    log("🔔 _showLocalNotification called");
-    log("🔔 Has notification payload: ${message.notification != null}");
-    
-    // For data-only messages (no notification payload), create a notification from data
+
     if (message.notification == null) {
       log("📨 Data-only message received, creating local notification");
       // Create notification from data payload
@@ -296,19 +261,20 @@ class GlobalNotification {
       playSound: true,
     );
 
-    const newOrderIos = DarwinNotificationDetails(
+    const DarwinNotificationDetails newOrderIos = DarwinNotificationDetails(
         presentAlert: true,
         presentBadge: true,
         presentSound: true,
         sound: "tips_alot"
     );
 
-    const generalIos = DarwinNotificationDetails(
+    const DarwinNotificationDetails generalIos = DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
     );
-    final platform = NotificationDetails(
+
+    final NotificationDetails platform = NotificationDetails(
         android: android,
         iOS: type.isNewOrder ? newOrderIos : generalIos
     );
@@ -332,16 +298,10 @@ class GlobalNotification {
     
     log("✅ Local notification shown successfully!");
   }
-  
-  Future<String> _getAppName() async {
-    // This is a helper to get app name for error messages
-    return "AMCOOP Picker";
-  }
 
   static void _handleNotificationResponse(String notifyType) {
     var type = NotificationType.notifyType(notifyType);
-    var notInOrderDetails =
-        getIt<NotifyMethodsHelper>().notInOrderDetails() == true;
+    var notInOrderDetails = getIt<NotifyMethodsHelper>().notInOrderDetails() == true;
     if (notInOrderDetails && (type.isNewOrder)) {
       getIt<OrdersHelper>().showNewOrderAlert();
     } else if (type.isOrderAccepted || type.isNewOrder) {
