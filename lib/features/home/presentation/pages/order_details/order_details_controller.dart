@@ -16,13 +16,15 @@ class OrderDetailsController {
   final TextEditingController newWeightController = TextEditingController();
   final TextEditingController newPriceController = TextEditingController();
   final TextEditingController pickerNoteController = TextEditingController();
-  final TextEditingController bagsCountController = TextEditingController();
+  final TextEditingController newCountController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final GlobalKey<FormState> replaceReasonKey = GlobalKey<FormState>();
 
   final GlobalKey<FormState> bagsCountFormKey = GlobalKey<FormState>();
+
+  final GlobalKey<FormState> newQntFormKey = GlobalKey<FormState>();
 
   late ShowOrderRequester showOrdersRequester;
   late final int orderId;
@@ -94,14 +96,13 @@ class OrderDetailsController {
     }
   }
 
-  Future<void> scanProduct(
-      BuildContext context, OrderDetailsModel oldItem) async {
+  Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
     // BuildContext ctx = getIt<GlobalContext>().context();
-    // 62211628
-    // 31610
+    // // 62211628
+    // // 31610
     // getProductWithBarcode(ctx, "31610", oldItem);
-    String? barcode = await getIt<BarcodeService>().scanBarcode();
+    String? barcode = await getIt<BarcodeService>().scanBarcode(context);
     if (barcode != null && barcode.isNotEmpty) {
       BuildContext ctx = getIt<GlobalContext>().context();
       AppSnackBar.showSuccessSnackBar(
@@ -179,8 +180,7 @@ class OrderDetailsController {
     //   );
     //   return;
     // }
-    int index =
-        _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
     if (oldItem.quantity > 0) {
       /// using  (ProductStatusEnum.qntModified) and  (.isQntModified >> see PrepareOrderParams)
       /// to define that...this item qnt has been modified when sending in prepare order params
@@ -190,10 +190,8 @@ class OrderDetailsController {
       oldItem.product!.productStatus = ProductStatusEnum.qntModified;
       _detailsData.ordersDetails![index] = oldItem;
     }
-    List<int> existedNewVariantIds =
-        _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toList();
-    bool isNewItemAddedBefore =
-        existedNewVariantIds.contains(newData.variant.id);
+    List<int> existedNewVariantIds = _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toList();
+    bool isNewItemAddedBefore = existedNewVariantIds.contains(newData.variant.id);
 
     OrderDetailsModel updatedItem = oldItem.copyWith(
       price: newData.variant.mainPrice,
@@ -242,7 +240,12 @@ class OrderDetailsController {
     updatedItem.product!.pickedQuantity = 0;
     updatedItem.product!.productPickedPercent = 0;
     updatedItem.product!.productStatus = ProductStatusEnum.added;
-    _detailsData.ordersDetails!.insert(index + 1, updatedItem);
+    if (index >= _detailsData.ordersDetails!.length - 1) {
+      // if last item...just add at the end
+      _detailsData.ordersDetails!.add(updatedItem);
+    } else {
+      _detailsData.ordersDetails!.insert(index + 1, updatedItem);
+    }
   }
 
   void showDeleteDialog(BuildContext context, int productId) {
@@ -255,9 +258,41 @@ class OrderDetailsController {
     );
   }
 
-  void editQuantity(BuildContext context) {
-    // showDialog(context: context, builder: (context) => const WeightConfirmDialogWidget());
+  void editQuantity(BuildContext context, OrderDetailsModel product) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return UpdateReasonDialogWidget(
+          controller: this,
+          onPressSubmit: () {
+            Navigator.pop(context);
+            _reduceProductQnt(product);
+          },
+        );
+      },
+    );
   }
+
+
+
+  void _reduceProductQnt(OrderDetailsModel product){
+    if(product.quantity > 1){
+      int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == product.id && product.addedVariantId == -1);
+      /// using  (ProductStatusEnum.qntModified) and  (.isQntModified >> see PrepareOrderParams)
+      /// to define that...this item qnt has been modified when sending in prepare order params
+      /// and sending remain qnt
+      product.quantity = product.quantity - 1;
+      // if(product.product?.productStatus?.hasNoEdit == true || product.product?.productStatus?.isNormal == true){
+      product.product!.productStatus = ProductStatusEnum.qntModified;
+      _detailsData.ordersDetails![index] = product;
+      product.pickerNotes = pickerNoteController.text;
+      pickerNoteController.clear();
+      detailsCubit.successState(_detailsData);
+      getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+      updateSameOrderInList(_detailsData);
+    }
+  }
+
 
   void showCancelOrderDialog(BuildContext context) {
     showDialog(
@@ -333,13 +368,14 @@ class OrderDetailsController {
       {bool pickAll = false}) {
     int qty = orderProduct.quantity;
     if (orderProduct.product!.pickedQuantity != qty) {
-      String variation = orderProduct.variation;
-      if (variation.validateIfItWeight() == true) {
-        // showWeightDialog(context,orderProduct);
-        showPriceDialog(context, orderProduct, pickAll: pickAll);
-      } else {
-        pickItem(orderProduct, pickedAll: pickAll);
-      }
+      pickItem(orderProduct, pickedAll: pickAll);
+      // String variation = orderProduct.variation;
+      // if (variation.validateIfItWeight() == true) {
+      //   // showWeightDialog(context,orderProduct);
+      //   showPriceDialog(context, orderProduct, pickAll: pickAll);
+      // } else {
+      //   pickItem(orderProduct, pickedAll: pickAll);
+      // }
     }
   }
 
@@ -520,7 +556,7 @@ class OrderDetailsController {
     orderProduct.product!.productPickedPercent = percent;
     if (pickedQty == 0) {
       orderPickedPercent(_detailsData, isReturn: true);
-      if (orderProduct.product!.productStatus!.shouldShowStatus) {
+      if (orderProduct.product!.productStatus!.shouldShowStatus && !orderProduct.product!.productStatus!.isQntModified) {
         showConFirmReturnDialog(context, orderProduct);
         return;
       }
@@ -840,7 +876,7 @@ class OrderDetailsController {
       .length;
 
   Future<void> prepareOrder(BuildContext context) async {
-    double bagCount = double.parse(bagsCountController.text);
+    double bagCount = double.parse(newCountController.text);
     if (bagsCountFormKey.currentState!.validate() && bagCount > 0) {
       Navigator.pop(context);
       getIt<LoadingHelper>().showLoadingDialog();
@@ -889,9 +925,9 @@ class OrderDetailsController {
   }
 
   PrepareOrderParams _prepareOrderParams() {
-    log("======>>>> all data before enter params ${_detailsData.ordersDetails!} <<<<<<======");
+    // log("======>>>> all data before enter params ${_detailsData.ordersDetails!} <<<<<<======");
     // log("======>>>> deleted data ${_detailsData.deletedOrders} <<<<<<======");
-    double bagCount = double.parse(bagsCountController.text);
+    double bagCount = double.parse(newCountController.text);
     return PrepareOrderParams(
         orderId: orderId,
         currentProductsDetails: _detailsData.ordersDetails!,

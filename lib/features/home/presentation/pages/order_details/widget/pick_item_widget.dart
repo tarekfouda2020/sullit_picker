@@ -59,11 +59,6 @@ class PickItemWidget extends StatelessWidget {
                 child: PositionedDirectional(
                   end: 0,
                   child: GestureDetector(
-                      // onTap: () {
-                      //   if(orderDetails.product!.productStatus == ProductStatusEnum.replaced ){
-                      //     controller.onPressReplace(context, orderDetails);
-                      //   }
-                      // },
                       child: StatusViewWidget(
                     status: orderDetails.product!.productStatus?.getName() ?? "",
                   )),
@@ -90,7 +85,6 @@ class PickItemWidget extends StatelessWidget {
       child: Visibility(
         visible: !controller.isProductFullPicked(orderDetails),
         child: GestureDetector(
-          // onTap: () => controller.showReplaceDialog(context),
           onTap: () => controller.onPressReplace(context, orderDetails),
           child: SvgPicture.asset(
             Res.repeatIcon,

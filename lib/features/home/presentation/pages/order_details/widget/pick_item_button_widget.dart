@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
@@ -15,6 +16,7 @@ class PickItemButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
+      spacing: 6,
       children: [
         Flexible(
           child: AppTextButton.maxCustom(
@@ -32,7 +34,7 @@ class PickItemButtonWidget extends StatelessWidget {
             onPressed: () => controller.onPressPick(context, data),
           ),
         ),
-        Gaps.hGap6,
+
         Flexible(
           child: AppTextButton.maxCustom(
             text: Translate.of(context).pick_all,
@@ -51,7 +53,7 @@ class PickItemButtonWidget extends StatelessWidget {
                 : () => controller.onPressPick(context, data, pickAll: true),
           ),
         ),
-        Gaps.hGap6,
+
         Column(
           children: [
             Text(
@@ -63,6 +65,22 @@ class PickItemButtonWidget extends StatelessWidget {
               qnt: data.remainQnt,
             ),
           ],
+        ),
+        if(!controller.isProductFullPicked(data) && (data.quantity > 1) && data.product?.productStatus?.shouldShowReduceIcon == true)
+        GestureDetector(
+          onTap: () => controller.editQuantity(context, data),
+          child: Container(
+        padding: const EdgeInsets.all(5),
+            margin: const EdgeInsets.only(bottom: 4),
+            decoration:  BoxDecoration(
+              shape: BoxShape.circle,
+              color: context.colors.primary,
+            ),
+            child: const Icon(CupertinoIcons.minus,
+              color: CupertinoColors.white,
+              size:20,
+            ),
+          ),
         )
       ],
     );

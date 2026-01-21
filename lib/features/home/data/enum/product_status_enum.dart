@@ -64,6 +64,19 @@ enum ProductStatusEnum {
     }
   }
 
+  bool get shouldShowReduceIcon {
+    switch (this) {
+      case ProductStatusEnum.replaced:
+      case ProductStatusEnum.priceModified:
+      case ProductStatusEnum.added:
+        return false;
+      case ProductStatusEnum.qntModified:
+      case ProductStatusEnum.normal:
+      case ProductStatusEnum.noEdit:
+        return true;
+    }
+  }
+
   bool get shouldShowEditPriceIcon {
     switch (this) {
       case ProductStatusEnum.added:

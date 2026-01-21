@@ -92,8 +92,8 @@ class PrepareOrderParams {
         return {
           "id": data.id,
           "action": "reduce",
-          "qty": data.remainQnt,
-          "picker_notes": "replace notes",
+          "qty": data.quantity,
+          "picker_notes": data.pickerNotes!,
         };
       case PrepareOrderActionType.remove:
         return {

@@ -1,8 +1,9 @@
 import 'package:barcode/barcode.dart';
-import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
 import 'package:injectable/injectable.dart';
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
+
+import '../../features/auth/presentation/pages/login_view/login_view_imports.dart';
 
 @lazySingleton
 class BarcodeService {
@@ -19,18 +20,23 @@ class BarcodeService {
   }
 
 
-  Future<String?> scanBarcode() async {
+  Future<String?> scanBarcode(BuildContext context) async {
     try {
-      final result = await BarcodeScanner.scan(
-        options: ScanOptions(
-          strings: {
-            'cancel': Translate.s.cancel,
-          },
+      final result = await SimpleBarcodeScanner.scanBarcode(
+        context,
+        barcodeAppBar:  const BarcodeAppBar(
+          appBarTitle: 'Scan',
+          centerTitle: false,
+          enableBackButton: true,
+          backButtonIcon: Icon(Icons.arrow_back_ios),
         ),
+        isShowFlashIcon: true,
+        delayMillis: 500,
+        cameraFace: CameraFace.back,
+        scanFormat: ScanFormat.ONLY_BARCODE,
       );
-
-      final String barcode = result.rawContent;
-      if (barcode.isEmpty) {
+      final String? barcode = result;
+      if (barcode?.isEmpty == true || barcode == null) {
         return null;
       }
       return barcode;
