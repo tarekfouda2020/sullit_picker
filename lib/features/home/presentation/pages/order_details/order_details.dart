@@ -40,7 +40,7 @@ class _OrderDetailsState extends State<OrderDetails> {
           onSuccessWidget: (data) {
             return Column(
               children: [
-                Gaps.vGap(kToolbarHeight-20),
+                Gaps.vGap(kToolbarHeight),
                 OrderDetailsHeaderWidget(data: data),
                 Gaps.vGap5,
                 Expanded(

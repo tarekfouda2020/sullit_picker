@@ -20,11 +20,11 @@ import 'package:flutter/material.dart';
 @lazySingleton
 class NotifyMethodsHelper {
 
-  bool? notInOrderDetails() {
+  bool? orderDetailsOpened() {
     try {
       final router = getIt<AppRouter>();
       final topRoute = router.current;
-     return (topRoute.name != OrderDetailsRouteName.name);
+     return (topRoute.name == OrderDetailsRouteName.name);
     } catch (e) {
      return null;
     }

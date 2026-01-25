@@ -7,6 +7,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
+import 'package:flutter_tdd/core/helpers/app_state_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/routes/router_imports.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
@@ -24,13 +25,25 @@ class MyApp extends StatefulWidget {
   State<StatefulWidget> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
+
+
   @override
   void initState() {
     getIt<FirebaseAnalyticsHelper>()
         .analytics
         .setConsent(adStorageConsentGranted: false, analyticsStorageConsentGranted: true);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
+  }
+
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    print("====>>>>>>>> state is ${state.name} =======");
+    AppStateHelper.instance.isAppOpened = state == AppLifecycleState.resumed;
+    print("====>>>>>>>> in helper ${AppStateHelper.instance.isAppOpened} =======");
   }
 
   @override

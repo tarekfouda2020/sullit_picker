@@ -23,7 +23,8 @@ class HandleErrors {
     if (response == null) {
       log("failed response Check Server");
       AppSnackBar.showSimpleToast(msg: "Check Server");
-    } else {
+    }
+    else {
       log("failed response ${response.statusCode}");
       log("failed response ${response.data}");
       var data = response.data;

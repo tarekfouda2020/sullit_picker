@@ -1,3 +1,5 @@
+import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
+
 import 'home_widgets_imports.dart';
 
 class NewOrderAlertWidget extends StatelessWidget {
@@ -26,7 +28,7 @@ class NewOrderAlertWidget extends StatelessWidget {
             ),
             Gaps.vGap38,
             AppTextButton.maxPrimary(
-              text: Translate.of(context).view_order,
+              text: _buttonText(),
               onPressed: ()=> _onPressApply(context)
             ),
             Gaps.vGap10
@@ -41,7 +43,11 @@ class NewOrderAlertWidget extends StatelessWidget {
      onPressApply.call();
   }
 
-
+String _buttonText(){
+    return getIt<NotifyMethodsHelper>().orderDetailsOpened() == true
+        ? "keep picking"
+        : Translate.s.view_order;
+}
 
 
 

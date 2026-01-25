@@ -29,7 +29,7 @@ class LoginViewController {
       FocusScope.of(context).unfocus();
       getIt<LoadingHelper>().showLoadingDialog();
       var deviceId = await getIt<DeviceIdHelper>().getDeviceId();
-      if(deviceId==null){
+      if(deviceId == null){
         await Future.delayed(const Duration(milliseconds: 500));
         AppSnackBar.showSimpleToast(msg: DeviceIdError().message,gravity:ToastGravity.BOTTOM,type: ToastType.error);
         getIt<LoadingHelper>().dismissDialog();

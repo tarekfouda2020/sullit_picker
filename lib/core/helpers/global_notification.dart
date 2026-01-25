@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_tdd/core/helpers/app_state_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
@@ -23,21 +25,22 @@ class GlobalNotification {
 
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-  /// Android notification channel with custom sound
-  /// Android notification channel for order notifications with tips_alot sound
-  static const AndroidNotificationChannel _orderChannel =
-  AndroidNotificationChannel(
-    'order_notifications_channel',
-    'Order Notifications',
-    description: 'This channel is used for new order notifications.',
-    importance: Importance.max,
-    sound: RawResourceAndroidNotificationSound('tips_alot'),
-    playSound: true,
-  );
+  static String soundName = "tips_alot";
+  static RawResourceAndroidNotificationSound androidNotificationSound(
+          {String? sound}) =>
+      RawResourceAndroidNotificationSound(sound ?? soundName);
 
-  /// Android notification channel for other notifications with bell_ring sound
+  static AndroidNotificationChannel get _orderChannel => AndroidNotificationChannel(
+        'order_notifications_channel',
+        'Order Notifications',
+        description: 'This channel is used for new order notifications.',
+        importance: Importance.max,
+        sound: androidNotificationSound(),
+        playSound: true,
+      );
+
   static const AndroidNotificationChannel _generalChannel =
-  AndroidNotificationChannel(
+      AndroidNotificationChannel(
     'general_notifications_channel',
     'General Notifications',
     description: 'This channel is used for general notifications.',
@@ -49,30 +52,27 @@ class GlobalNotification {
     log("🔔 Starting notification setup...");
     _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const android = AndroidInitializationSettings("@mipmap/launcher_icon");
-    // iOS initialization settings with proper permission requests
     const ios = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
     );
     const initSettings = InitializationSettings(android: android, iOS: ios);
-    
-    log("🔔 Initializing FlutterLocalNotificationsPlugin...");
-    final initialized = await _flutterLocalNotificationsPlugin.initialize(
+
+  await _flutterLocalNotificationsPlugin.initialize(
       initSettings,
       onDidReceiveNotificationResponse: (details) {
-        log("🔔 Notification tapped: ${details.payload}");
         flutterNotificationClick(details.payload);
       },
     );
-    log("🔔 FlutterLocalNotificationsPlugin initialized: $initialized");
-    
+
     await Firebase.initializeApp();
-    log("🔔 Firebase initialized");
+
 
     // Create the Android notification channels with custom sounds
     final androidImplementation =
-    _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+        _flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>();
 
     await androidImplementation?.createNotificationChannel(_orderChannel);
     await androidImplementation?.createNotificationChannel(_generalChannel);
@@ -83,57 +83,47 @@ class GlobalNotification {
       badge: true,
       sound: true,
     );
-    
-    log("🔔 Notification permission status: ${settings.authorizationStatus}");
-    log("🔔 Alert: ${settings.alert}, Badge: ${settings.badge}, Sound: ${settings.sound}");
-    log("🔔 Provisional: ${settings.providesAppNotificationSettings}, Announcement: ${settings.announcement}");
-    
-    // Check for both authorized and provisional status
+
     if (settings.authorizationStatus == AuthorizationStatus.authorized ||
         settings.authorizationStatus == AuthorizationStatus.provisional) {
-      log("✅ Notification permissions granted!");
+      // log("✅ Notification permissions granted!");
       final token = await messaging.getToken();
-      log("FCM Token: $token");
-      log("📋 Copy this token to send test notifications from Firebase Console");
-      
+      // log("FCM Token: $token");
 
-      // Check for initial notification (when app opened from terminated state)
-      RemoteMessage? initialMessage = await messaging.getInitialMessage();
-      if (initialMessage != null) {
-        log("📬 Initial notification received: ${initialMessage.data}");
-        flutterNotificationClick(json.encode(initialMessage.data));
-      } else {
-        log("ℹ️ No initial notification (app was not opened from notification)");
-      }
-      
-      // Enable foreground notification presentation for iOS
-      // When set to true, Firebase will automatically show notifications
-      // We'll also manually show them to ensure they appear
       messaging.setForegroundNotificationPresentationOptions(
         alert: true,
         badge: true,
         sound: true,
       );
-      log("✅ Foreground notification presentation options set");
-      log("✅ Setting up Firebase Messaging listeners...");
-      
+
       FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+        // log("_____________________Message:$message");
+        // log("_____________________Message android :${message.notification!.android}");
+        // log("_____________________Message ios :${message.notification!.apple}");
+        // log("_____________________Message android :${message.notification!.android?.channelId}");
+        // log("_____________________Message android :${message.notification!.android?.sound}");
+        // log("_____________________Message ios :${message.notification!.apple}");
+        // log("_____________________Message ios sound :${message.notification!.apple?.sound}");
+        // log("_____________________Message data:${message.data}");
+        // log("___________________notification title:${message.notification?.title}");
+        // log("___________________notification:${message.notification}");
+
         try {
           await _showLocalNotification(message);
           log("✅ Notification display completed");
         } catch (e) {
           log("❌ Error showing notification: $e");
         }
-        
+
         _onMessageStreamController.add(message.data);
 
         var orderId = int.parse(message.data["item_type_id"] ?? "0");
         var notifyType = message.data["item_type"];
-
         if (orderId == -1) {
           StorageHelper.instance.clearSavedData();
           // AutoRouter.of(context).push(const LoginRoute());
         }
+
         _handleNotificationResponse(notifyType);
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -141,21 +131,15 @@ class GlobalNotification {
       });
       FirebaseMessaging.onBackgroundMessage(
           _firebaseMessagingBackgroundHandler);
-
     }
   }
 
-
-  static Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
+  static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     log("📬 Handling a background message: ${message.messageId}");
     await Firebase.initializeApp();
-    
-    // Show notification for background messages
-    // Note: This is a static method, so we need to create a new instance
+
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    
-    // Initialize if needed (this should already be done, but just in case)
+
     const android = AndroidInitializationSettings("@mipmap/launcher_icon");
     const ios = DarwinInitializationSettings(
       requestAlertPermission: true,
@@ -164,45 +148,83 @@ class GlobalNotification {
     );
     const initSettings = InitializationSettings(android: android, iOS: ios);
     await flutterLocalNotificationsPlugin.initialize(initSettings);
-    
-    // Show the notification
-    if (message.notification != null) {
-      const androidDetails = AndroidNotificationDetails(
-        'order_notifications_channel',
-        'Order Notifications',
-        channelDescription: 'This channel is used for new order notifications.',
-        importance: Importance.max,
-        priority: Priority.high,
-        playSound: true,
-      );
-      
-      const iosDetails = DarwinNotificationDetails(
-        presentAlert: true,
-        presentBadge: true,
-        presentSound: true,
-      );
-      
-      const platformChannelSpecifics = NotificationDetails(
-        android: androidDetails,
-        iOS: iosDetails,
-      );
-      
-      await flutterLocalNotificationsPlugin.show(
-        message.hashCode,
-        message.notification?.title ?? 'Notification',
-        message.notification?.body ?? '',
-        platformChannelSpecifics,
-        payload: json.encode(message.data),
-      );
+
+    final title = message.data["title"] ?? "New Notification";
+    final body = message.data["body"] ??
+        message.data["message"] ??
+        "You have a new notification";
+
+    String notifyType = message.data["item_type"] ?? "";
+    NotificationType type = NotificationType.notifyType(notifyType);
+
+    AndroidNotificationChannel channel = type.isNewOrder ? _orderChannel : _generalChannel;
+
+    String channelId = "";
+
+    if (Platform.isAndroid && message.notification != null) {
+      channelId = message.notification!.android!.channelId ?? channel.id;
+      soundName = message.notification!.android!.sound ?? channel.sound!.sound;
     }
+
+    if (Platform.isIOS && message.notification != null) {
+      soundName = message.notification!.apple!.sound!.name!;
+      // soundName = "tips_alot.caf";
+      print("=====>>>>>>>>>> ios sound from payload $soundName   <<<<<<<<<<");
+      print("=====>>>>>>>>>> ios sound from payload ${message.notification!.apple!.sound!.name!}   <<<<<<<<<<");
+    }
+
+     final AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+      channelId,
+      channel.name,
+      channelDescription: channel.description,
+      priority: Priority.high,
+      importance: Importance.max,
+      shortcutId: DateTime.now().toIso8601String(),
+      sound: androidNotificationSound(sound: soundName),
+      playSound: true,
+    );
+
+    const DarwinNotificationDetails generalIos = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
+
+    final NotificationDetails platform = NotificationDetails(
+        android: androidDetails,
+        iOS: type.isNewOrder?newOrderIos(soundName):generalIos
+    );
+
+    await flutterLocalNotificationsPlugin.show(
+      message.hashCode,
+      title,
+      body,
+      platform,
+      payload: json.encode(message.data),
+    );
   }
 
   StreamController<Map<String, dynamic>> get notificationSubject {
     return _onMessageStreamController;
   }
 
+  static DarwinNotificationDetails  newOrderIos(String soundName) => DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+      sound: soundName
+  );
+
   Future<void> _showLocalNotification(RemoteMessage? message) async {
     if (message == null) {
+      return;
+    }
+
+    bool isAppOpened = AppStateHelper.instance.isAppOpened;
+    String notifyType = message.data["item_type"] ?? "";
+    NotificationType type = NotificationType.notifyType(notifyType);
+
+    if (isAppOpened && type.isNewOrder) {
       return;
     }
 
@@ -210,8 +232,10 @@ class GlobalNotification {
       log("📨 Data-only message received, creating local notification");
       // Create notification from data payload
       final title = message.data["title"] ?? "New Notification";
-      final body = message.data["body"] ?? message.data["message"] ?? "You have a new notification";
-      
+      final body = message.data["body"] ??
+          message.data["message"] ??
+          "You have a new notification";
+
       const android = AndroidNotificationDetails(
         'general_notifications_channel',
         'General Notifications',
@@ -220,52 +244,51 @@ class GlobalNotification {
         priority: Priority.high,
         playSound: true,
       );
-      
+
       const ios = DarwinNotificationDetails(
         presentAlert: true,
         presentBadge: true,
         presentSound: true,
       );
-      
+
       const platform = NotificationDetails(android: android, iOS: ios);
-      
+
       await _flutterLocalNotificationsPlugin.show(
-        DateTime.now().microsecond,
+        message.hashCode,
         title,
         body,
         platform,
         payload: json.encode(message.data),
       );
-      
+
       _onMessageStreamController.add(message.data);
       return;
     }
 
-    // Determine the notification type
-    String notifyType = message.data["item_type"] ?? "";
-    NotificationType type = NotificationType.notifyType(notifyType);
+    AndroidNotificationChannel channel = type.isNewOrder ? _orderChannel : _generalChannel;
 
-    // Select the appropriate channel based on the type
-    AndroidNotificationChannel channel =
-    type.isNewOrder ? _orderChannel : _generalChannel;
-    // message.data == {} ? _orderChannel : _generalChannel;
+    String channelId = "";
 
-    final android = AndroidNotificationDetails(
-      channel.id,
+    if (Platform.isAndroid && message.notification != null) {
+      channelId = message.notification!.android!.channelId ?? channel.id;
+      soundName = message.notification!.android!.sound ?? channel.sound!.sound;
+    }
+
+    if (Platform.isIOS && message.notification != null) {
+      soundName = message.notification!.apple!.sound!.name!;
+      // soundName = "tips_alot.caf";
+      print("=====>>>>>>>>>> ios sound from payload $soundName   <<<<<<<<<<");
+    }
+
+    final AndroidNotificationDetails android = AndroidNotificationDetails(
+      channelId,
       channel.name,
       channelDescription: channel.description,
       priority: Priority.high,
       importance: Importance.max,
       shortcutId: DateTime.now().toIso8601String(),
-      sound: channel.sound,
+      sound: androidNotificationSound(sound: soundName),
       playSound: true,
-    );
-
-    const DarwinNotificationDetails newOrderIos = DarwinNotificationDetails(
-        presentAlert: true,
-        presentBadge: true,
-        presentSound: true,
-        sound: "tips_alot"
     );
 
     const DarwinNotificationDetails generalIos = DarwinNotificationDetails(
@@ -276,33 +299,28 @@ class GlobalNotification {
 
     final NotificationDetails platform = NotificationDetails(
         android: android,
-        iOS: type.isNewOrder ? newOrderIos : generalIos
+        iOS: type.isNewOrder
+            ? newOrderIos(soundName)
+            :generalIos
     );
-    
-    final notificationId = DateTime.now().microsecond;
+
+    // Use message.hashCode as notification ID to prevent duplicates
+    final notificationId = message.hashCode;
     final title = "${message.notification?.title}";
     final body = "${message.notification?.body}";
-    
-    log("🔔 Showing local notification:");
-    log("🔔   ID: $notificationId");
-    log("🔔   Title: $title");
-    log("🔔   Body: $body");
-    log("🔔   Type: ${type.isNewOrder ? 'New Order' : 'General'}");
-    
+
     await _flutterLocalNotificationsPlugin.show(
-        notificationId,
-        title,
-        body,
-        platform,
+        notificationId, title, body, platform,
         payload: json.encode(message.data));
-    
+
     log("✅ Local notification shown successfully!");
   }
 
   static void _handleNotificationResponse(String notifyType) {
     var type = NotificationType.notifyType(notifyType);
-    var notInOrderDetails = getIt<NotifyMethodsHelper>().notInOrderDetails() == true;
-    if (notInOrderDetails && (type.isNewOrder)) {
+    // var notInOrderDetails = getIt<NotifyMethodsHelper>().notInOrderDetails() == true;
+    // if (notInOrderDetails && (type.isNewOrder)) {
+    if ((type.isNewOrder)) {
       getIt<OrdersHelper>().showNewOrderAlert();
     } else if (type.isOrderAccepted || type.isNewOrder) {
       getIt<OrdersHelper>().getAllOrders();

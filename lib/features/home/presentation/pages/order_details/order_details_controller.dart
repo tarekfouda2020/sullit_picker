@@ -98,22 +98,22 @@ class OrderDetailsController {
 
   Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
-    // BuildContext ctx = getIt<GlobalContext>().context();
-    // // 62211628
-    // // 31610
-    // getProductWithBarcode(ctx, "31610", oldItem);
-    String? barcode = await getIt<BarcodeService>().scanBarcode(context);
-    if (barcode != null && barcode.isNotEmpty) {
-      BuildContext ctx = getIt<GlobalContext>().context();
-      AppSnackBar.showSuccessSnackBar(
-        Translate.of(ctx).product_scanned,
-      );
-      getProductWithBarcode(ctx, barcode, oldItem);
-    }
+    BuildContext ctx = getIt<GlobalContext>().context();
+    // 62211628
+    // 31610
+    getProductWithBarcode(ctx, "31610", oldItem);
+
+    // String? barcode = await getIt<BarcodeService>().scanBarcode(context);
+    // if (barcode != null && barcode.isNotEmpty) {
+    //   BuildContext ctx = getIt<GlobalContext>().context();
+    //   AppSnackBar.showSuccessSnackBar(
+    //     Translate.of(ctx).product_scanned,
+    //   );
+    //   getProductWithBarcode(ctx, barcode, oldItem);
+    // }
   }
 
-  Future<void> getProductWithBarcode(
-      BuildContext context, String barcode, OrderDetailsModel oldItem) async {
+  Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     ReplacedProductParams params = _replacedProductParams(barcode);
     var result = await getIt<HomeRepositories>().searchByBarcode(params);
@@ -204,21 +204,31 @@ class OrderDetailsController {
           barcode: newData.barcode),
     );
 
-    /// in the last replace add it to removed list will be send as a deleted item in api-params
-    if (oldItem.quantity == 0) {
-      _detailsData.ordersDetails!.removeAt(index);
-      _detailsData.deletedOrders!.add(oldItem);
-    }
-    if (isNewItemAddedBefore) {
-      _updateExistItem(newData);
-    } else {
-      _addNewItem(updatedItem, index, oldItem);
-    }
 
-    /// add the original one we press replace on it in qntChangedProducts list
-    _detailsData.qntChangedProducts!.addIf(
-        (OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),
-        oldItem);
+
+
+    /// if order picked first the replaced after that pick one from it
+    if(oldItem.product!.pickedQuantity! > 0){
+      pickItem(oldItem);
+      print("=====>>>>>>>> after pick item ${oldItem.product!.pickedQuantity!}<<<<<");
+    }
+    // else if (oldItem.quantity == 0) {
+    //   /// in the last replace add it to removed list will be send as a deleted item in api-params
+    //   _detailsData.ordersDetails!.removeAt(index);
+    //   _detailsData.deletedOrders!.add(oldItem);
+    // }
+    print("=====>>>>>>>> picked qnt ${oldItem.product!.pickedQuantity!}<<<<<");
+    print("=====>>>>>>>> original qnt ${oldItem.quantity}<<<<<");
+    // if (isNewItemAddedBefore) {
+    //   _updateExistItem(newData);
+    // } else {
+    //   _addNewItem(updatedItem, index);
+    // }
+    //
+    // /// add the original one we press replace on it in qntChangedProducts list
+    // _detailsData.qntChangedProducts!.addIf(
+    //     (OrderDetailsModel e) => !_detailsData.changedProducts!.contains(e.id),
+    //     oldItem);
     updateDetailsCubit();
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     updateSameOrderInList(_detailsData);
@@ -234,8 +244,7 @@ class OrderDetailsController {
     _detailsData.ordersDetails![newItemIndex] = newItem;
   }
 
-  void _addNewItem(
-      OrderDetailsModel updatedItem, int index, OrderDetailsModel oldItem) {
+  void _addNewItem(OrderDetailsModel updatedItem, int index,) {
     updatedItem.quantity = 1;
     updatedItem.product!.pickedQuantity = 0;
     updatedItem.product!.productPickedPercent = 0;
@@ -538,6 +547,7 @@ class OrderDetailsController {
 
   void pickItem(OrderDetailsModel orderProduct, {bool pickedAll = false}) {
     int qty = orderProduct.quantity;
+    print("=====>>>>>>>> original qnt ${orderProduct.quantity}<<<<<");
     if (orderProduct.product!.pickedQuantity != qty) {
       getProductPickedPercent(orderProduct, pickedAll: pickedAll);
       updateDetailsCubit();
@@ -619,6 +629,9 @@ class OrderDetailsController {
     }
     orderProduct.product!.pickedQuantity = pickedQty;
     double percent = (pickedQty / orderProduct.quantity) * 100;
+    print("=====>>>>>>>> picked ${orderProduct.product!.pickedQuantity}<<<<<");
+    print("=====>>>>>>>> qnt ${orderProduct.quantity}<<<<<");
+    print("=====>>>>>>>> percent ${percent}<<<<<");
     orderProduct.product!.productPickedPercent = percent;
     if (pickedQty == orderProduct.quantity) {
       orderPickedPercent(_detailsData, isReturn: returnItem);

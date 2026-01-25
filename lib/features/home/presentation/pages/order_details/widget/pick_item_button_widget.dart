@@ -66,7 +66,7 @@ class PickItemButtonWidget extends StatelessWidget {
             ),
           ],
         ),
-        if(!controller.isProductFullPicked(data) && (data.quantity > 1) && data.product?.productStatus?.shouldShowReduceIcon == true)
+        if(!controller.isProductFullPicked(data) && data.remainQnt  > 1 && data.product?.productStatus?.shouldShowReduceIcon == true)
         GestureDetector(
           onTap: () => controller.editQuantity(context, data),
           child: Container(

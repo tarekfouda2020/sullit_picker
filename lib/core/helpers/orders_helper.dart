@@ -33,7 +33,7 @@ class OrdersHelper {
      // Prevent saving to Hive if helper is disposed (during logout)
      if (_isDisposed) return;
      
-     final jsonString = jsonEncode(data.map((e) => e.toJson()).toList());
+     final String jsonString = jsonEncode(data.map((e) => e.toJson()).toList());
      await HiveHelper.instance.addDataToBox<String>(
        HiveBoxesNames.orders,
        key: HiveBoxesKeys.assignedOrdersKey,
@@ -154,7 +154,12 @@ class OrdersHelper {
 
    Future<void> onPressApply(BuildContext context)async{
      _stopSound();
-     var notInHomePage = getIt<NotifyMethodsHelper>().notInHomePage();
+     bool? orderDetailsOpened = getIt<NotifyMethodsHelper>().orderDetailsOpened();
+     if(orderDetailsOpened == true){
+       getAllOrders();
+       return ;
+     }
+     bool? notInHomePage = getIt<NotifyMethodsHelper>().notInHomePage();
      if(notInHomePage == true){
         AutoRouter.of(context).push(const HomePageRoute());
      }else{
