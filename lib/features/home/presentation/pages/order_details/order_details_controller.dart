@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
 
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bags_number_dialog_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/update_reason_dialog_widget.dart';
@@ -96,7 +95,8 @@ class OrderDetailsController {
     }
   }
 
-  Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
+  Future<void> scanProduct(
+      BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
     BuildContext ctx = getIt<GlobalContext>().context();
     // 62211628
@@ -113,7 +113,8 @@ class OrderDetailsController {
     // }
   }
 
-  Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
+  Future<void> getProductWithBarcode(
+      BuildContext context, String barcode, OrderDetailsModel oldItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     ReplacedProductParams params = _replacedProductParams(barcode);
     var result = await getIt<HomeRepositories>().searchByBarcode(params);
@@ -170,17 +171,17 @@ class OrderDetailsController {
   }
 
   void addNewProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
-    // double newPrice = double.parse(newData.variant.mainPrice);
-    // double oldItemPrice = double.parse(oldItem.unitPrice);
-    // if (newPrice > oldItemPrice) {
-    //   AppSnackBar.showSimpleToast(
-    //       msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
-    //       type: ToastType.error,
-    //       gravity: ToastGravity.BOTTOM
-    //   );
-    //   return;
-    // }
-    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+    double newPrice = double.parse(newData.variant.mainPrice);
+    double oldItemPrice = double.parse(oldItem.unitPrice);
+    if (newPrice > oldItemPrice) {
+      AppSnackBar.showSimpleToast(
+          msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
+          type: ToastType.error,
+          gravity: ToastGravity.BOTTOM);
+      return;
+    }
+    int index =
+        _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
     if (oldItem.quantity > 0) {
       /// using  (ProductStatusEnum.qntModified) and  (.isQntModified >> see PrepareOrderParams)
       /// to define that...this item qnt has been modified when sending in prepare order params
@@ -204,26 +205,22 @@ class OrderDetailsController {
           barcode: newData.barcode),
     );
 
-
-
-
-    /// if order picked first the replaced after that pick one from it
-    if(oldItem.product!.pickedQuantity! > 0){
-      pickItem(oldItem);
-      print("=====>>>>>>>> after pick item ${oldItem.product!.pickedQuantity!}<<<<<");
+    /// if order picked first then replaced after that, recalculate the percent
+    /// We need to recalculate the percent based on the new quantity
+    /// without incrementing pickedQuantity (since we're not picking, just adjusting for replacement)
+    if (oldItem.product!.pickedQuantity! > 0) {
+      _recalculateProductPercent(oldItem);
     }
-    // else if (oldItem.quantity == 0) {
-    //   /// in the last replace add it to removed list will be send as a deleted item in api-params
-    //   _detailsData.ordersDetails!.removeAt(index);
-    //   _detailsData.deletedOrders!.add(oldItem);
-    // }
-    print("=====>>>>>>>> picked qnt ${oldItem.product!.pickedQuantity!}<<<<<");
-    print("=====>>>>>>>> original qnt ${oldItem.quantity}<<<<<");
-    // if (isNewItemAddedBefore) {
-    //   _updateExistItem(newData);
-    // } else {
-    //   _addNewItem(updatedItem, index);
-    // }
+    if (oldItem.quantity == 0) {
+      /// in the last replace add it to removed list will be send as a deleted item in api-params
+      _detailsData.ordersDetails!.removeAt(index);
+      _detailsData.deletedOrders!.add(oldItem);
+    }
+    if (isNewItemAddedBefore) {
+      _updateExistItem(newData);
+    } else {
+      _addNewItem(updatedItem, index);
+    }
     //
     // /// add the original one we press replace on it in qntChangedProducts list
     // _detailsData.qntChangedProducts!.addIf(
@@ -244,7 +241,10 @@ class OrderDetailsController {
     _detailsData.ordersDetails![newItemIndex] = newItem;
   }
 
-  void _addNewItem(OrderDetailsModel updatedItem, int index,) {
+  void _addNewItem(
+    OrderDetailsModel updatedItem,
+    int index,
+  ) {
     updatedItem.quantity = 1;
     updatedItem.product!.pickedQuantity = 0;
     updatedItem.product!.productPickedPercent = 0;
@@ -282,11 +282,11 @@ class OrderDetailsController {
     );
   }
 
+  void _reduceProductQnt(OrderDetailsModel product) {
+    if (product.quantity > 1) {
+      int index = _detailsData.ordersDetails!.indexWhere(
+          (e) => e.id == product.id && product.addedVariantId == -1);
 
-
-  void _reduceProductQnt(OrderDetailsModel product){
-    if(product.quantity > 1){
-      int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == product.id && product.addedVariantId == -1);
       /// using  (ProductStatusEnum.qntModified) and  (.isQntModified >> see PrepareOrderParams)
       /// to define that...this item qnt has been modified when sending in prepare order params
       /// and sending remain qnt
@@ -301,7 +301,6 @@ class OrderDetailsController {
       updateSameOrderInList(_detailsData);
     }
   }
-
 
   void showCancelOrderDialog(BuildContext context) {
     showDialog(
@@ -333,7 +332,8 @@ class OrderDetailsController {
     );
   }
 
-  Future<void> cancelOrder(BuildContext context,{bool fromDelete = false}) async {
+  Future<void> cancelOrder(BuildContext context,
+      {bool fromDelete = false}) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var result = await getIt<HomeRepositories>().cancelOrder(orderId);
     result.when(
@@ -342,7 +342,7 @@ class OrderDetailsController {
         getIt<LoadingHelper>().dismissDialog();
         AppSnackBar.showSuccessSnackBar(
             Translate.of(context).order_cancelled_successfully);
-        if(!fromDelete){
+        if (!fromDelete) {
           Navigator.pop(context);
         }
         AutoRouter.of(context).maybePop(orderId);
@@ -350,7 +350,8 @@ class OrderDetailsController {
       isError: (error) {
         getIt<LoadingHelper>().dismissDialog();
         AppSnackBar.showErrorSnackBar(
-            error: BaseError.unknown(msg: "Sorry we can't process this order. Thank you"));
+            error: BaseError.unknown(
+                msg: "Sorry we can't process this order. Thank you"));
       },
     );
   }
@@ -547,7 +548,6 @@ class OrderDetailsController {
 
   void pickItem(OrderDetailsModel orderProduct, {bool pickedAll = false}) {
     int qty = orderProduct.quantity;
-    print("=====>>>>>>>> original qnt ${orderProduct.quantity}<<<<<");
     if (orderProduct.product!.pickedQuantity != qty) {
       getProductPickedPercent(orderProduct, pickedAll: pickedAll);
       updateDetailsCubit();
@@ -566,7 +566,8 @@ class OrderDetailsController {
     orderProduct.product!.productPickedPercent = percent;
     if (pickedQty == 0) {
       orderPickedPercent(_detailsData, isReturn: true);
-      if (orderProduct.product!.productStatus!.shouldShowStatus && !orderProduct.product!.productStatus!.isQntModified) {
+      if (orderProduct.product!.productStatus!.shouldShowStatus &&
+          !orderProduct.product!.productStatus!.isQntModified) {
         showConFirmReturnDialog(context, orderProduct);
         return;
       }
@@ -609,7 +610,7 @@ class OrderDetailsController {
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     if ((_detailsData.ordersDetails ?? []).isEmpty) {
       BuildContext ctx = getIt<GlobalContext>().context();
-      cancelOrder(ctx,fromDelete: true);
+      cancelOrder(ctx, fromDelete: true);
     }
     pickerNoteController.clear();
   }
@@ -629,12 +630,33 @@ class OrderDetailsController {
     }
     orderProduct.product!.pickedQuantity = pickedQty;
     double percent = (pickedQty / orderProduct.quantity) * 100;
-    print("=====>>>>>>>> picked ${orderProduct.product!.pickedQuantity}<<<<<");
-    print("=====>>>>>>>> qnt ${orderProduct.quantity}<<<<<");
-    print("=====>>>>>>>> percent ${percent}<<<<<");
     orderProduct.product!.productPickedPercent = percent;
     if (pickedQty == orderProduct.quantity) {
       orderPickedPercent(_detailsData, isReturn: returnItem);
+    }
+  }
+
+
+
+
+  /// Recalculates the product percent based on current pickedQuantity and quantity
+  /// Used when quantity changes (e.g., during replacement) without picking a new item
+  /// This ensures the percent reflects the correct ratio after quantity modification
+  void _recalculateProductPercent(OrderDetailsModel orderProduct) {
+    int pickedQty = orderProduct.product!.pickedQuantity!;
+    int qty = orderProduct.quantity;
+
+    // If pickedQuantity exceeds the new quantity, cap it to the new quantity
+    if (pickedQty > qty) {
+      pickedQty = qty;
+      orderProduct.product!.pickedQuantity = pickedQty;
+    }
+
+    double percent = qty > 0 ? (pickedQty / qty) * 100 : 0;
+    orderProduct.product!.productPickedPercent = percent;
+
+    if (pickedQty == qty && qty > 0) {
+      orderPickedPercent(_detailsData);
     }
   }
 
@@ -750,8 +772,7 @@ class OrderDetailsController {
           pickedQuantity: 0,
           productPickedPercent: 0,
           productStatus: ProductStatusEnum.noEdit,
-          barcode: originalItem.product!.barcode
-      ),
+          barcode: originalItem.product!.barcode),
     );
     _detailsData.ordersDetails![index] = updatedItem;
     _detailsData.changedProducts!.remove(originalItems);
@@ -763,8 +784,6 @@ class OrderDetailsController {
   void returnAddedProduct(OrderDetailsModel updatedOrder) {
     /// note that updatedOrder and original item have the same id..(we will use benefit of this => in bring original one)
 
-    /// after add a new product => save the original product in (qntChangedProducts list with the same id)
-    /// this list is used for local changes it link between the (original item) and (items added from it)
     /// prepareOrder need orderId even if it replaced 1 by 1  you can see => (prepare order params)
 
     /// update the  product(the one with status replaced, or modified) by increase its qnt
