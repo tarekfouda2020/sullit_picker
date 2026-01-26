@@ -7,7 +7,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_tdd/core/helpers/app_state_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/storage_helper.dart';
 import 'package:flutter_tdd/features/notifications/data/enum/notification_type.dart';
@@ -87,7 +86,7 @@ class GlobalNotification {
     if (settings.authorizationStatus == AuthorizationStatus.authorized ||
         settings.authorizationStatus == AuthorizationStatus.provisional) {
       // log("✅ Notification permissions granted!");
-      final token = await messaging.getToken();
+      await messaging.getToken();
       // log("FCM Token: $token");
 
       messaging.setForegroundNotificationPresentationOptions(
@@ -169,8 +168,6 @@ class GlobalNotification {
     if (Platform.isIOS && message.notification != null) {
       soundName = message.notification!.apple!.sound!.name!;
       // soundName = "tips_alot.caf";
-      print("=====>>>>>>>>>> ios sound from payload $soundName   <<<<<<<<<<");
-      print("=====>>>>>>>>>> ios sound from payload ${message.notification!.apple!.sound!.name!}   <<<<<<<<<<");
     }
 
      final AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
@@ -193,6 +190,7 @@ class GlobalNotification {
     final NotificationDetails platform = NotificationDetails(
         android: androidDetails,
         iOS: type.isNewOrder?newOrderIos(soundName):generalIos
+        // iOS: newOrderIos(soundName)
     );
 
     await flutterLocalNotificationsPlugin.show(
@@ -277,7 +275,6 @@ class GlobalNotification {
     if (Platform.isIOS && message.notification != null) {
       soundName = message.notification!.apple!.sound!.name!;
       // soundName = "tips_alot.caf";
-      print("=====>>>>>>>>>> ios sound from payload $soundName   <<<<<<<<<<");
     }
 
     final AndroidNotificationDetails android = AndroidNotificationDetails(
@@ -299,9 +296,8 @@ class GlobalNotification {
 
     final NotificationDetails platform = NotificationDetails(
         android: android,
-        iOS: type.isNewOrder
-            ? newOrderIos(soundName)
-            :generalIos
+        iOS: type.isNewOrder ? newOrderIos(soundName) :generalIos
+        // iOS: newOrderIos(soundName)
     );
 
     // Use message.hashCode as notification ID to prevent duplicates

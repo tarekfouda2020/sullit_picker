@@ -13,6 +13,7 @@ import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_
 import 'package:flutter_tdd/features/auth/domain/entity/change_password_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/confirm_reset_password_params.dart';
+import 'package:flutter_tdd/features/auth/domain/entity/logout_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
 import 'package:injectable/injectable.dart';
@@ -65,13 +66,14 @@ class ImplAuthDataSource extends AuthDataSource{
   }
 
   @override
-  Future<MyResult<String>> logout() async{
+  Future<MyResult<String>> logout(LogoutParams params) async{
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.logout,
       responseType: ResType.type,
       requestMethod: RequestMethod.post,
       responseKey: (data) => data['msg'],
-      isFormData: true
+      isFormData: true,
+      requestBody: params.toJson()
     );
     return await GenericHttpImpl<String>()(model);
   }

@@ -138,4 +138,13 @@ class AppLightColors extends AppColors {
   @override
   Color get gray4 => const Color(0xFFB0B0B0);
 
+  @override
+  Color get gray5 => const Color(0xFFEEEEEE);
+
+  @override
+  Color get gold2 => const Color(0xFFFAC950);
+
+  @override
+  Color get offWhite => const Color(0xFFF9F9F9);
+
 }

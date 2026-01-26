@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../theme/colors/app_colors.dart';
 import 'dimens.dart';
 
 class Gaps {
@@ -73,7 +74,7 @@ class Gaps {
 
   static Widget vGap(double value) => SizedBox(height: value);
 
-  static const Widget line = Divider();
+  static  Widget line = Divider(color: AppColors.noContextInstance.borderLight,);
 
   static const Widget vLine = SizedBox(
     width: 0.6,

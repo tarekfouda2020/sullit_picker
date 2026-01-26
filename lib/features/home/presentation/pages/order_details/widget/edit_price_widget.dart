@@ -1,27 +1,29 @@
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
-
 import '../../../../../../core/helpers/export.dart';
 
 class EditPriceWidget extends StatelessWidget {
-  final OrderDetailsController controller;
-  final OrderDetailsModel model;
-  const EditPriceWidget({super.key, required this.controller, required this.model});
+  final void Function() onTap;
+
+  const EditPriceWidget({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => controller.showNewPriceDialog(context,model,popTwice: false),
-      child: Row(
-        children: [
-          Text(Translate.of(context).edit,
-            style: const AppTextStyle.s16_w500(color: CupertinoColors.systemBlue),
+      onTap: onTap,
+      child: Container(
+        width: Dimens.dp25,
+        height: Dimens.dp25,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: context.colors.softRose,
+          shape: BoxShape.circle,
+        ),
+        child: SvgPicture.asset(
+          Res.pencilIcon,
+          colorFilter: ColorFilter.mode(
+            context.colors.darkRose,
+            BlendMode.srcIn,
           ),
-          Gaps.hGap4,
-          const Icon(CupertinoIcons.pen,color: CupertinoColors.systemBlue,size: 20,)
-        ],
+        ),
       ),
     );
   }

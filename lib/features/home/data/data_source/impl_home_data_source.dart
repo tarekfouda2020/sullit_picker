@@ -164,7 +164,8 @@ class ImplHomeDataSource extends HomeDataSource {
       toJsonFunc: (data) => List<OrderModel>.from(data.map((json)=>OrderModel.fromJson(json))),
       responseKey: (data) => data['data']['orders'],
       isFormData: true,
-      showLoader: true
+      showLoader: true,
+    refresh: params.refresh
   );
   return await GenericHttpImpl<List<OrderModel>>()(model);
 

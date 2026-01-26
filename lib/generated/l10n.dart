@@ -2640,10 +2640,10 @@ class S {
     );
   }
 
-  /// `Order no`
+  /// `Order No.`
   String get order_no {
     return Intl.message(
-      'Order no',
+      'Order No.',
       name: 'order_no',
       desc: '',
       args: [],
@@ -3770,10 +3770,10 @@ class S {
     );
   }
 
-  /// `Confirm number of bags used`
+  /// `Confirm number of used bags`
   String get confirm_used_bags {
     return Intl.message(
-      'Confirm number of bags used',
+      'Confirm number of used bags',
       name: 'confirm_used_bags',
       desc: '',
       args: [],

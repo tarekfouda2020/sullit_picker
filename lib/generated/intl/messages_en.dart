@@ -115,7 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_return_original_product": MessageLookupByLibrary.simpleMessage(
             "Confirm return the original product?"),
         "confirm_used_bags":
-            MessageLookupByLibrary.simpleMessage("Confirm number of bags used"),
+            MessageLookupByLibrary.simpleMessage("Confirm number of used bags"),
         "confirm_your_password":
             MessageLookupByLibrary.simpleMessage("Confirm your password"),
         "contact_us": MessageLookupByLibrary.simpleMessage("Contact Us"),
@@ -380,7 +380,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Order completed successfully!"),
         "order_details": MessageLookupByLibrary.simpleMessage("Order Details"),
         "order_items": MessageLookupByLibrary.simpleMessage("Order Items"),
-        "order_no": MessageLookupByLibrary.simpleMessage("Order no"),
+        "order_no": MessageLookupByLibrary.simpleMessage("Order No."),
         "order_no_colon": MessageLookupByLibrary.simpleMessage("Order No. :"),
         "order_ready_for_delivery":
             MessageLookupByLibrary.simpleMessage("Order ready for delivery"),

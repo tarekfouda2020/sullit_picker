@@ -1,7 +1,7 @@
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/barcode_price_widget.dart';
-import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/edit_single_single_qnt_price_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/edit_single_qnt_price_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/product_info_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/return_item_button_widget.dart';
 import 'pick_item_button_widget.dart';
@@ -32,9 +32,7 @@ class CardItemPickWidget extends StatelessWidget {
           Column(
             spacing: 5,
             children: [
-              Divider(color: context.colors.disableGray,thickness:1.3,),
-              EditSingleSingleQntPriceWidget(model: data,controller: controller,),
-              Divider(color: context.colors.disableGray,thickness:1.3,),
+              EditSingleQntPriceWidget(model: data,controller: controller,),
               BarcodePriceWidget(data: data),
               Divider(color: context.colors.disableGray,thickness: 1.3,)
             ],

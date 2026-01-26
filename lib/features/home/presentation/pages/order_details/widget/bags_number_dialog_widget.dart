@@ -32,38 +32,35 @@ class BagsNumberDialogWidget extends StatelessWidget {
                   .copyWith(height: 1.2),
               textAlign: TextAlign.center,
             ),
-            Gaps.vGap24,
-            // Row(
-            //   children: [
-            //     Text("Expected bags count: ",
-            //     style: AppTextStyle.s15_w500(color: context.colors.black),
-            //     ),
-            //     Text("${controller.getDetailsData.bagsCount}",
-            //     style: AppTextStyle.s15_w500(color: context.colors.primary),
-            //     ),
-            //   ],
-            // ),
-            // Gaps.vGap10,
-            Form(
-              key: controller.bagsCountFormKey,
-              child: GenericTextField(
-                controller: controller.newCountController,
-                  fieldTypes: FieldTypes.normal,
-                  type: TextInputType.number,
-                  action: TextInputAction.done,
-                  fillColor: context.colors.background,
-                  validate: (value) => value?.validateEmpty(),
-                onChange: (value) => controller.calcEnteredBagsPrice(value),
-                margin: const EdgeInsets.only(bottom: 20),
-                hint: Translate.s.enter_bag_number,
-              ),
-            ),
+            Gaps.vGap12,
+            ObsValueConsumer(observable: controller.bagsCountObs, builder: (context, value) {
+              return Container(
+                height: 40,
+                width: 150,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: context.colors.primary.withAlpha(30),
+                  borderRadius: Dimens.borderRadius12PX
+                ),
+                child: Text("$value bags",
+                style: AppTextStyle.s18_w700(color: context.colors.primary),
+                ),
+              );
+            },),
+            Gaps.vGap20,
             AppTextButton.maxCustom(
                 text: Translate.s.complete_dispatch,
               textSize: 18,
               txtColor: context.colors.white,
               bgColor: context.colors.appGreen,
               onPressed: ()=> controller.prepareOrder(context),
+            ),
+            Gaps.vGap18,
+            GestureDetector(
+              onTap: () => controller.shoModifyBagsDialog(context),
+              child: Text("No edit number",
+              style: AppTextStyle.s16_w400(color: context.colors.primary),
+              ),
             )
           ],
         ),

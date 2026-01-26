@@ -7,6 +7,7 @@ import 'package:flutter_tdd/features/auth/data/models/work_type_model/work_type_
 import 'package:flutter_tdd/features/auth/domain/entity/change_password_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/confirm_reset_password_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/login_params.dart';
+import 'package:flutter_tdd/features/auth/domain/entity/logout_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/register_params.dart';
 import 'package:flutter_tdd/features/auth/domain/entity/verify_params.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
@@ -34,8 +35,8 @@ class ImplAuthRepositories  extends AuthRepositories{
   }
 
   @override
-  Future<MyResult<String>> logout() async {
-    return await dataSource.logout();
+  Future<MyResult<String>> logout(LogoutParams params) async {
+    return await dataSource.logout(params);
   }
 
   @override

@@ -6,9 +6,7 @@ import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.
 
 class ShowOrderRequester extends Requester<OrderModel>{
   final int id;
-
   ShowOrderRequester({required this.id});
-
   @override
   Future<void> request({bool fromRemote = true}) async{
     if(hasNoData){
@@ -16,22 +14,46 @@ class ShowOrderRequester extends Requester<OrderModel>{
     }
     var result = await getIt<HomeRepositories>().showOrders(_orderParams(fromRemote));
     result.when(
-      isSuccess: (data) {
-        successState(data!);
+      isSuccess: (data) async{
+        handleAllProducts(data!);
       },
       isError: (error) {
         request(fromRemote: fromRemote);
       },);
   }
 
-
-  void setLoadingState(){
-    loadingState();
-  }
-
-
   OrdersParams _orderParams(bool refresh){
     return OrdersParams(id: id, refresh: refresh);
   }
+
+  void handleAllProducts(OrderModel data){
+    final Map<int, OrderDetailsModel> currentMap = {
+      for (final item in data.ordersDetails ?? <OrderDetailsModel>[])
+        item.product!.id: item
+    };
+
+    final Map<int, ModifiedProductModel> historyMap = {
+      for (final history in data.modifiedProducts ?? <ModifiedProductModel>[])
+        history.oldProduct?.id ?? history.newProduct!.id: history
+    };
+
+    final Set<int> allProductIds = {
+      ...currentMap.keys,
+      ...historyMap.keys,
+    };
+
+    final List<OrderDisplayItem> items = allProductIds.map((id) {
+      return OrderDisplayItem(
+        current: currentMap[id],
+        history: historyMap[id],
+      );
+    }).toList();
+    data.displayItems = [
+      ...items
+    ];
+
+    successState(data);
+  }
+
 
 }

@@ -17,12 +17,12 @@ class AppDarkTheme extends AppTheme {
     // textTheme: textTheme,
     brightness: Brightness.dark,
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.all(_colorsDark.secondary),
+      fillColor: WidgetStateProperty.all(_colorsDark.secondary),
     ),
     unselectedWidgetColor: Colors.black45,
     checkboxTheme: CheckboxThemeData(
-      fillColor: MaterialStateProperty.all(_colorsDark.primary),
-      checkColor: MaterialStateProperty.all(_colorsDark.primary),
+      fillColor: WidgetStateProperty.all(_colorsDark.primary),
+      checkColor: WidgetStateProperty.all(_colorsDark.primary),
     ),
     appBarTheme: AppBarTheme(
       color: _colorsDark.appBarColor,
@@ -47,27 +47,27 @@ class AppDarkTheme extends AppTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.resolveWith(
+          foregroundColor: WidgetStateProperty.resolveWith(
                 (states) {
-              if (states.contains(MaterialState.disabled)) {
+              if (states.contains(WidgetState.disabled)) {
                 return _colorsDark.disableGray;
               }
               return _colorsDark.primary;
             },
           ),
-          backgroundColor: MaterialStateProperty.resolveWith(
+          backgroundColor: WidgetStateProperty.resolveWith(
                 (states) {
-              if (states.contains(MaterialState.disabled)) {
+              if (states.contains(WidgetState.disabled)) {
                 return _colorsDark.disableGray;
               }
               return _colorsDark.primary;
             },
           ),
-          overlayColor: MaterialStateProperty.resolveWith((states) {
+          overlayColor: WidgetStateProperty.resolveWith((states) {
             return (Colors.white).withOpacity(0.12);
           }),
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(12)),
-          shape: MaterialStateProperty.all<OutlinedBorder>(
+          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(12)),
+          shape: WidgetStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),

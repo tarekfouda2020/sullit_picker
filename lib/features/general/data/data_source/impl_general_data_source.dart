@@ -22,7 +22,7 @@ class ImlGeneralDataSource extends GeneralDataSource{
       url: ApiNames.terms,
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
-      refresh: true,
+      refresh: param,
       toJsonFunc: (json) => TermsModel.fromJson(json),
       responseKey: (data) => data['data'],
     );
@@ -35,7 +35,7 @@ class ImlGeneralDataSource extends GeneralDataSource{
       url: ApiNames.privacyPolicy,
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
-      refresh: true,
+      refresh: param,
       toJsonFunc: (json) => PrivacyPolicyModel.fromJson(json),
       responseKey: (data) => data['data'],
     );

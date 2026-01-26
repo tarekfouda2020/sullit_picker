@@ -1,4 +1,5 @@
 import 'package:flutter_tdd/core/constants/lang_code.dart';
+import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_par
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/domain/requester/languages_requester.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/profile_page/widgets/confirm_delete_dialog_widget.dart';
+import '../../../../../core/errors/device_id_error.dart';
+import '../../../../auth/domain/entity/logout_params.dart';
 import 'profile_page_imports.dart';
 import 'widgets/lang_bottom_sheet_widget.dart';
 class ProfilePageController {
@@ -79,7 +82,14 @@ class ProfilePageController {
 
   Future<void> _logout(BuildContext context) async {
     getIt<LoadingHelper>().showLoadingDialog();
-    final result = await getIt<AuthRepositories>().logout();
+    var deviceId = await getIt<DeviceIdHelper>().getDeviceId();
+    if(deviceId == null){
+      AppSnackBar.showSimpleToast(msg: DeviceIdError().message,gravity:ToastGravity.BOTTOM,type: ToastType.error);
+      getIt<LoadingHelper>().dismissDialog();
+      return ;
+    }
+    LogoutParams params =  _params(deviceId);
+    final  result = await getIt<AuthRepositories>().logout(params);
     result.when(
       isSuccess: (msg) async {
         await getIt<UserServicesHelper>().clearCashAndRoute(context);
@@ -96,6 +106,11 @@ class ProfilePageController {
       },
     );
   }
+
+  LogoutParams  _params(String deviceId)  {
+    return LogoutParams(
+      deviceToken:deviceId
+  );}
 
   void goBack(BuildContext context) {
     AutoRouter.of(context).maybePop();

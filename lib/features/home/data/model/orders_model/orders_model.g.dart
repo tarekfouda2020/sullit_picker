@@ -32,6 +32,16 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
       code: json['code'] as String,
       total: json['total'] as String,
       status: json['status'] as String,
+      subtotal: json['subtotal'] as String?,
+      shipping: json['shipping'] as String?,
+      tax: json['tax'] as String?,
+      couponDiscount: json['coupon_discount'] as String?,
+      serviceFees: json['service_fees'] as String?,
+      envFees: json['environment_fees'] as String?,
+      techFees: json['technology_fees'] as String?,
+      vatFeeAmount: json['vat_fee_amount'] as String?,
+      totalFeeAmount: json['total_fee_amount'] as String?,
+      loyaltyPointsValue: json['loyalty_points_value'] as String?,
       totalItems: (json['total_items'] as num).toInt(),
       bagsCount: (json['bag_count'] as num).toInt(),
       bagPrice: (json['bag_price'] as num).toDouble(),
@@ -48,6 +58,15 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
           : DriverModel.fromJson(json['driver'] as Map<String, dynamic>),
       ordersDetails: (json['order_details'] as List<dynamic>?)
           ?.map((e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      modifiedProducts: (json['order_detail_histories'] as List<dynamic>?)
+          ?.map((e) => ModifiedProductModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      displayItems: (json['display_items'] as List<dynamic>?)
+          ?.map((e) => OrderDisplayItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      discounts: (json['order_discounts'] as List<dynamic>?)
+          ?.map((e) => OrderDiscountModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       deletedOrders: (json['deleted_orders'] as List<dynamic>?)
               ?.map(
@@ -75,6 +94,16 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'code': instance.code,
       'total': instance.total,
       'status': instance.status,
+      'subtotal': instance.subtotal,
+      'shipping': instance.shipping,
+      'tax': instance.tax,
+      'coupon_discount': instance.couponDiscount,
+      'service_fees': instance.serviceFees,
+      'environment_fees': instance.envFees,
+      'technology_fees': instance.techFees,
+      'vat_fee_amount': instance.vatFeeAmount,
+      'total_fee_amount': instance.totalFeeAmount,
+      'loyalty_points_value': instance.loyaltyPointsValue,
       'total_items': instance.totalItems,
       'bag_count': instance.bagsCount,
       'bag_price': instance.bagPrice,
@@ -88,6 +117,9 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'payment_method': instance.paymentMethod,
       'driver': instance.driverInfo,
       'order_details': instance.ordersDetails,
+      'order_detail_histories': instance.modifiedProducts,
+      'display_items': instance.displayItems,
+      'order_discounts': instance.discounts,
       'deleted_orders': instance.deletedOrders,
       'changed_products': instance.changedProducts,
       'qnt_changed_products': instance.qntChangedProducts,
@@ -110,6 +142,7 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
       addedVariantId: (json['added_variant_id'] as num?)?.toInt() ?? -1,
       newPrice: (json['new_price'] as num?)?.toDouble() ?? 0.0,
       pickerNotes: json['picker_notes'] as String? ?? '',
+      fixedUnitPrice: (json['fixed_unit_price'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$OrderDetailsModelImplToJson(
@@ -125,6 +158,7 @@ Map<String, dynamic> _$$OrderDetailsModelImplToJson(
       'added_variant_id': instance.addedVariantId,
       'new_price': instance.newPrice,
       'picker_notes': instance.pickerNotes,
+      'fixed_unit_price': instance.fixedUnitPrice,
     };
 
 _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
@@ -187,6 +221,9 @@ _$CustomerModelImpl _$$CustomerModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       email: json['email'] as String,
       phone: json['phone'] as String,
+      customerType: json['customer_type'] as String,
+      customerTypeLabel: json['customer_type_label'] as String,
+      shareHolderNumber: json['shareholder_number'] as String?,
     );
 
 Map<String, dynamic> _$$CustomerModelImplToJson(_$CustomerModelImpl instance) =>
@@ -194,6 +231,9 @@ Map<String, dynamic> _$$CustomerModelImplToJson(_$CustomerModelImpl instance) =>
       'name': instance.name,
       'email': instance.email,
       'phone': instance.phone,
+      'customer_type': instance.customerType,
+      'customer_type_label': instance.customerTypeLabel,
+      'shareholder_number': instance.shareHolderNumber,
     };
 
 _$DriverModelImpl _$$DriverModelImplFromJson(Map<String, dynamic> json) =>
@@ -214,4 +254,87 @@ Map<String, dynamic> _$$DriverModelImplToJson(_$DriverModelImpl instance) =>
       'avatar': instance.avatar,
       'email': instance.email,
       'phone': instance.phone,
+    };
+
+_$OrderDiscountModelImpl _$$OrderDiscountModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OrderDiscountModelImpl(
+      id: (json['id'] as num).toInt(),
+      type: json['type'] as String,
+      typeLabel: json['type_label'] as String,
+      typeDescription: json['type_description'] as String,
+      discountType: json['discount_type'] as String,
+      discount: json['discount'] as String,
+      discountValue: json['discount_value'] as String,
+    );
+
+Map<String, dynamic> _$$OrderDiscountModelImplToJson(
+        _$OrderDiscountModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'type': instance.type,
+      'type_label': instance.typeLabel,
+      'type_description': instance.typeDescription,
+      'discount_type': instance.discountType,
+      'discount': instance.discount,
+      'discount_value': instance.discountValue,
+    };
+
+_$ModifiedProductModelImpl _$$ModifiedProductModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ModifiedProductModelImpl(
+      id: (json['id'] as num).toInt(),
+      action: json['action'] as String,
+      actionLabel: json['action_label'] as String,
+      notes: json['notes'] as String? ?? '',
+      oldPrice: json['old_price'] as String?,
+      newPrice: json['new_price'] as String?,
+      oldQuantity: (json['old_quantity'] as num?)?.toInt(),
+      newQuantity: (json['new_quantity'] as num?)?.toInt(),
+      oldProduct: json['old_product'] == null
+          ? null
+          : ProductModel.fromJson(json['old_product'] as Map<String, dynamic>),
+      newProduct: json['new_product'] == null
+          ? null
+          : ProductModel.fromJson(json['new_product'] as Map<String, dynamic>),
+      oldVariation: json['old_variation'] as String? ?? '',
+      newVariation: json['new_variation'] as String? ?? '',
+      createdAt: json['created_at'] as String,
+    );
+
+Map<String, dynamic> _$$ModifiedProductModelImplToJson(
+        _$ModifiedProductModelImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'action': instance.action,
+      'action_label': instance.actionLabel,
+      'notes': instance.notes,
+      'old_price': instance.oldPrice,
+      'new_price': instance.newPrice,
+      'old_quantity': instance.oldQuantity,
+      'new_quantity': instance.newQuantity,
+      'old_product': instance.oldProduct,
+      'new_product': instance.newProduct,
+      'old_variation': instance.oldVariation,
+      'new_variation': instance.newVariation,
+      'created_at': instance.createdAt,
+    };
+
+_$OrderDisplayItemImpl _$$OrderDisplayItemImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OrderDisplayItemImpl(
+      current: json['current'] == null
+          ? null
+          : OrderDetailsModel.fromJson(json['current'] as Map<String, dynamic>),
+      history: json['history'] == null
+          ? null
+          : ModifiedProductModel.fromJson(
+              json['history'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$OrderDisplayItemImplToJson(
+        _$OrderDisplayItemImpl instance) =>
+    <String, dynamic>{
+      'current': instance.current,
+      'history': instance.history,
     };

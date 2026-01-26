@@ -14,14 +14,17 @@ class PickerNotesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GenericTextField(
         controller: controller.pickerNoteController,
-        fieldTypes: FieldTypes.normal,
-        type: TextInputType.text,
+        fieldTypes: FieldTypes.rich,
+        type: TextInputType.multiline,
+        max: 5,
         action: TextInputAction.done,
+        radius: Dimens.borderRadius16PX,
         validate: (value) => value!.validateEmpty(),
         onSubmit:onSubmit,
         contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
         fillColor: context.colors.background,
-        hint: Translate.of(context).picker_note_hint,
+        // hint: Translate.of(context).picker_note_hint,
+        hint: "Modify Reason",
         hintColor: context.colors.textColor,
         hintTxtStyle: AppTextStyle.s14_w400(color: context.colors.textColor)
     );

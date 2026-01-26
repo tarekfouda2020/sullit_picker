@@ -28,11 +28,11 @@ class DispatchButtonWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(Translate.s.total,
-            style: AppTextStyle.s15_w500(color: context.colors.primary),
+            style: AppTextStyle.s14_w600(color: context.colors.black),
             ),
             Gaps.vGap5,
-            DirhamPrice(amount: "${controller.getDetailsData.getOriginalTotalPrice()}",
-              textStyle: AppTextStyle.s15_w500(color: context.colors.primary),
+            DirhamPrice(amount: controller.getDetailsData.total,
+              textStyle: AppTextStyle.s18_w700(color: context.colors.darkRose),
             )
           ],
         )

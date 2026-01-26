@@ -24,11 +24,10 @@ final bool pickAll;
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        // Translate.of(context).what_is_new_weight,
-        Translate.of(context).enter_the_new_price,
-        style: AppTextStyle.s18_w700(color: context.colors.textColor),
+        "Modify Price",
+        textAlign: TextAlign.center,
+        style: AppTextStyle.s18_w700(color: context.colors.black),
       ),
-      // titlePadding: const EdgeInsets.fromLTRB(38, 25, 38, 11),
       backgroundColor: context.colors.white,
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       content: Form(
@@ -64,9 +63,8 @@ final bool pickAll;
                 fieldTypes: FieldTypes.normal,
                 type: TextInputType.number,
                 action: TextInputAction.next,
-                validate: (value) => value!.validatePrice(maxPrice: double.parse(orderProduct.unitPrice)),
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 36, vertical: 11),
+                validate: (value) => value!.validatePrice(maxPrice: maxPrice),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 11),
                 fillColor: context.colors.background,
                 hint: Translate.s.enter_new_price,
                 hintColor: context.colors.textColor,
@@ -99,4 +97,14 @@ final bool pickAll;
       ),
     );
   }
+
+  double get maxPrice {
+    if(orderProduct.fixedUnitPrice == null  || orderProduct.fixedUnitPrice == 0.0) {
+      return double.parse(orderProduct.unitPrice);
+    }else{
+      return orderProduct.fixedUnitPrice!;
+    }
+  }
+
+
 }

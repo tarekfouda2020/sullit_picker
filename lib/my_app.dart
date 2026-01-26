@@ -41,9 +41,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    print("====>>>>>>>> state is ${state.name} =======");
     AppStateHelper.instance.isAppOpened = state == AppLifecycleState.resumed;
-    print("====>>>>>>>> in helper ${AppStateHelper.instance.isAppOpened} =======");
   }
 
   @override

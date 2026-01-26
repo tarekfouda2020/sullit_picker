@@ -13,13 +13,12 @@ class TermsConditions extends StatefulWidget {
 }
 
 class _TermsConditionsState extends State<TermsConditions> {
-  late TermsConditionsController controller;
+   final  TermsConditionsController controller = TermsConditionsController();
 
   @override
   void initState() {
-    controller = TermsConditionsController();
-    controller.getTerms();
     super.initState();
+    controller.getTerms();
   }
 
   @override
@@ -34,45 +33,48 @@ class _TermsConditionsState extends State<TermsConditions> {
           loadingBuilder: (context) => const TermsLoadingWidget(),
           successBuilder: (context, data, isLoading) {
             return SingleChildScrollView(
-              child: Html(
-                shrinkWrap: true, // Add this
-                data: getIt<Utilities>().cleanHtml(data.content),
-                onLinkTap: (url, attributes, element) => getIt<Utilities>().launchURL(url: url ?? ""),
-                style: {
-                  "body": Style(
-                      color: context.colors.black,
-                      fontSize: FontSize(16),
-                      fontWeight: FontWeight.w400,
-                      textAlign: lang == ApplicationConstants.langAR ? TextAlign.right : TextAlign.left,
-                      margin: Margins.all(0),
-                      padding: HtmlPaddings.all(0),
-                      display: Display.block),
-                  "p": Style(
-                      margin: Margins.symmetric(vertical: 8),
-                      padding: HtmlPaddings.zero,
-                      fontSize: FontSize(14),
-                      fontWeight: FontWeight.w400,
-                      color: context.colors.black,
-                      lineHeight: const LineHeight(1.4),
-                      whiteSpace: WhiteSpace.normal,
-                      display: Display.block),
-                  "ul": Style(
-                      margin: Margins.all(0),
-                      padding: HtmlPaddings.zero,
-                      fontSize: FontSize(14),
-                      fontWeight: FontWeight.w400,
-                      color: context.colors.black,
-                      display: Display.block),
-                  "li": Style(
-                      margin: Margins.all(0),
-                      fontSize: FontSize(14),
-                      fontWeight: FontWeight.w400,
-                      color: context.colors.black,
-                      display: Display.block),
-                  "b": Style(
-                    fontWeight: FontWeight.bold,
+              child: Column(
+                children: [
+                  Html(
+                    data: getIt<Utilities>().cleanHtml(data.content),
+                    onLinkTap: (url, attributes, element) => getIt<Utilities>().launchURL(url: url ?? ""),
+                    style: {
+                      "body": Style(
+                          color: context.colors.black,
+                          fontSize: FontSize(16),
+                          fontWeight: FontWeight.w400,
+                          textAlign: lang == ApplicationConstants.langAR ? TextAlign.right : TextAlign.left,
+                          margin: Margins.all(0),
+                          padding: HtmlPaddings.all(0),
+                          display: Display.block),
+                      "p": Style(
+                          margin: Margins.symmetric(vertical: 8),
+                          padding: HtmlPaddings.zero,
+                          fontSize: FontSize(14),
+                          fontWeight: FontWeight.w400,
+                          color: context.colors.black,
+                          lineHeight: const LineHeight(1.4),
+                          whiteSpace: WhiteSpace.normal,
+                          display: Display.block),
+                      "ul": Style(
+                          margin: Margins.all(0),
+                          padding: HtmlPaddings.zero,
+                          fontSize: FontSize(14),
+                          fontWeight: FontWeight.w400,
+                          color: context.colors.black,
+                          display: Display.block),
+                      "li": Style(
+                          margin: Margins.all(0),
+                          fontSize: FontSize(14),
+                          fontWeight: FontWeight.w400,
+                          color: context.colors.black,
+                          display: Display.block),
+                      "b": Style(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    },
                   ),
-                },
+                ],
               ),
             );
           },

@@ -22,7 +22,7 @@ class DialogActionWidget extends StatelessWidget {
       backgroundColor: context.colors.white,
       contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
       content: SizedBox(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.sizeOf(context).width,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

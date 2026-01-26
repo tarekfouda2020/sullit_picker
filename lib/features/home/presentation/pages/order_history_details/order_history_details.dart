@@ -1,11 +1,10 @@
-import 'package:flutter_tdd/core/requester/consumer/requester_consumer.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_history_details/order_history_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_history_details/widgets/order_history_widgets_imports.dart';
 
 import '../../../../../core/helpers/export.dart';
-import 'widgets/customer_info_section_widget.dart';
-import 'widgets/driver_section_info_widget.dart';
+
+import 'package:flutter_tdd/features/home/presentation/widgets/order_invoice_widget.dart';
 
 @RoutePage(name: "OrderHistoryDetailsPage")
 class OrderHistoryDetails extends StatefulWidget {
@@ -38,25 +37,22 @@ class _OrderHistoryDetailsState extends State<OrderHistoryDetails> {
             children: [
               OrderHistoryInfoWidget(order: data),
               Gaps.vGap24,
-              CustomerInfoSectionWidget(customer: data.customer),
+              OrderHistoryProductsWidget(
+                  products: data.displayItems ?? <OrderDisplayItem>[]),
               Gaps.vGap24,
-              if(data.driverInfo!=null)
-              DriverSectionInfoWidget(driverInfo: data.driverInfo!),
-              OrderHistoryProductsWidget(products: data.ordersDetails ?? []),
+              OrderInvoiceWidget(invoice: data.invoiceModel),
               Gaps.vGap32,
             ],
           );
         },
-        loadingBuilder: (context) =>
-        const Center(child: CircularProgressIndicator()),
+        loadingBuilder: (context) => const OrderHistoryDetailsShimmer(),
         failureBuilder: (context, error, callback) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  Translate
-                      .s.something_went_wrong, // Ensure key exists
+                  Translate.s.something_went_wrong, // Ensure key exists
                   style: const AppTextStyle.s16_w500(color: Colors.red),
                 ),
                 const SizedBox(height: 16),

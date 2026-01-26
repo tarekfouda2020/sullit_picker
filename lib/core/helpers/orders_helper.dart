@@ -72,7 +72,7 @@ class OrdersHelper {
      if (box == null || box.isEmpty) {
        return null;
      }
-     final map = jsonDecode(box) as Map<String, dynamic>;
+     final Map<String, dynamic> map = jsonDecode(box) as Map<String, dynamic>;
      return OrderModel.fromJson(map);
    }
 

@@ -9,7 +9,7 @@ class SectionTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: AppTextStyle.s18_w700(color: context.colors.black),
+      style: AppTextStyle.s14_w400(color: context.colors.textColor),
     );
   }
 }

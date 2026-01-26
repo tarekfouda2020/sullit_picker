@@ -4,11 +4,11 @@ import 'package:flutter_tdd/features/general/domain/requesters/privacy_policy_re
 
 class PrivacyPolicyController {
 
-  late  final PrivacyPolicyRequester privacyPolicyRequester;
+  final PrivacyPolicyRequester privacyPolicyRequester = PrivacyPolicyRequester();
 
   Future<void> getPrivacyPolicy() async {
-    privacyPolicyRequester = PrivacyPolicyRequester();
-    await privacyPolicyRequester.request(fromRemote: false);
+     privacyPolicyRequester.request(fromRemote: false);
+     privacyPolicyRequester.request();
   }
 
 }

@@ -17,5 +17,10 @@ extension StringExtension on String? {
     return getIt<Utilities>().formatAmount(this ?? "");
   }
 
+
+  String withDirhamIcon(){
+    return '\ue001 $this';
+  }
+
 }
 

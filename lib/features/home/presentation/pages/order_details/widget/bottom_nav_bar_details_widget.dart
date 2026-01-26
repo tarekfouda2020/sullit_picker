@@ -25,7 +25,7 @@ class BottomNavBarDetailsWidget extends StatelessWidget {
                   observable: controller.isAllPickedObs,
                   builder: (context,value) {
                     return Container(
-                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      padding: const EdgeInsets.symmetric(vertical: 20),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [

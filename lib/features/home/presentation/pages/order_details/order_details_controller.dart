@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
-
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/bags_number_dialog_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/modify_bags_count_dialog_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/update_reason_dialog_widget.dart';
 
 import 'order_details_imports.dart';
@@ -10,6 +10,7 @@ class OrderDetailsController {
   final ObsValue<bool> isAllPickedObs = ObsValue.withInit(false);
   final ObsValue<bool> refreshDeletedSheetObs = ObsValue.withInit(false);
   final ObsValue<double> enteredBagsPriceObs = ObsValue.withInit(0.0);
+  final ObsValue<int> bagsCountObs = ObsValue<int>.withInit(0);
   final BaseBloc<OrderModel> detailsCubit = BaseBloc<OrderModel>();
 
   final TextEditingController newWeightController = TextEditingController();
@@ -25,7 +26,6 @@ class OrderDetailsController {
 
   final GlobalKey<FormState> newQntFormKey = GlobalKey<FormState>();
 
-  late ShowOrderRequester showOrdersRequester;
   late final int orderId;
   late final DateTime targetTime;
 
@@ -77,6 +77,7 @@ class OrderDetailsController {
     Navigator.pop(context);
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (ctx) {
         return UpdateReasonDialogWidget(
           controller: this,
@@ -98,19 +99,19 @@ class OrderDetailsController {
   Future<void> scanProduct(
       BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
-    BuildContext ctx = getIt<GlobalContext>().context();
+    // BuildContext ctx = getIt<GlobalContext>().context();
     // 62211628
     // 31610
-    getProductWithBarcode(ctx, "31610", oldItem);
+    // getProductWithBarcode(ctx, "31610", oldItem);
 
-    // String? barcode = await getIt<BarcodeService>().scanBarcode(context);
-    // if (barcode != null && barcode.isNotEmpty) {
-    //   BuildContext ctx = getIt<GlobalContext>().context();
-    //   AppSnackBar.showSuccessSnackBar(
-    //     Translate.of(ctx).product_scanned,
-    //   );
-    //   getProductWithBarcode(ctx, barcode, oldItem);
-    // }
+    String? barcode = await getIt<BarcodeService>().scanBarcode(context);
+    if (barcode != null && barcode.isNotEmpty) {
+      BuildContext ctx = getIt<GlobalContext>().context();
+      AppSnackBar.showSuccessSnackBar(
+        Translate.of(ctx).product_scanned,
+      );
+      getProductWithBarcode(ctx, barcode, oldItem);
+    }
   }
 
   Future<void> getProductWithBarcode(
@@ -191,8 +192,10 @@ class OrderDetailsController {
       oldItem.product!.productStatus = ProductStatusEnum.qntModified;
       _detailsData.ordersDetails![index] = oldItem;
     }
-    List<int> existedNewVariantIds = _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toList();
-    bool isNewItemAddedBefore = existedNewVariantIds.contains(newData.variant.id);
+    List<int> existedNewVariantIds =
+        _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toList();
+    bool isNewItemAddedBefore =
+        existedNewVariantIds.contains(newData.variant.id);
 
     OrderDetailsModel updatedItem = oldItem.copyWith(
       price: newData.variant.mainPrice,
@@ -270,6 +273,7 @@ class OrderDetailsController {
   void editQuantity(BuildContext context, OrderDetailsModel product) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (ctx) {
         return UpdateReasonDialogWidget(
           controller: this,
@@ -511,14 +515,9 @@ class OrderDetailsController {
       {bool popTwice = true, bool pickAll = false}) {
     if (formKey.currentState!.validate()) {
       double newPrice = double.parse(newPriceController.text);
-      // double oldPrice = double.parse(oldItem.unitPrice);
-      // if(newPrice > oldPrice){
-      //   AppSnackBar.showSimpleToast(msg: "${Translate.s.price_should_be_less_than_or_equal_to} $oldPrice",
-      //       type: ToastType.error,
-      //       gravity: ToastGravity.BOTTOM
-      //   );
-      //   return ;
-      // }
+      if (oldItem.hasNoFixedPriceYet) {
+        oldItem.fixedUnitPrice = double.parse(oldItem.unitPrice);
+      }
       int index =
           _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
       OrderDetailsModel updatedItem = oldItem.copyWith(
@@ -584,6 +583,7 @@ class OrderDetailsController {
     Navigator.pop(context);
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (ctx) {
         return UpdateReasonDialogWidget(
           controller: this,
@@ -597,7 +597,7 @@ class OrderDetailsController {
   void deleteProduct(BuildContext context, int itemId) {
     Navigator.pop(context);
     OrderDetailsModel? removedItem = _detailsData.ordersDetails?.firstWhere(
-      (element) => element.id == itemId,
+      (element) => element.id == itemId ,
     );
     removedItem?.pickerNotes = pickerNoteController.text;
     _detailsData.ordersDetails!.remove(removedItem);
@@ -635,9 +635,6 @@ class OrderDetailsController {
       orderPickedPercent(_detailsData, isReturn: returnItem);
     }
   }
-
-
-
 
   /// Recalculates the product percent based on current pickedQuantity and quantity
   /// Used when quantity changes (e.g., during replacement) without picking a new item
@@ -722,6 +719,7 @@ class OrderDetailsController {
     result.when(
       isSuccess: (data) {
         updateLocalData(data!);
+        bagsCountObs.setValue(data.bagsCount);
       },
       isError: (error) {
         detailsCubit.failedState(error, () => getDetails());
@@ -743,6 +741,7 @@ class OrderDetailsController {
   Future<void> initDataFromLocal() async {
     OrderModel? data = await getIt<OrdersHelper>().getOrderDetails(orderId);
     updateDetailsCubit(data: data);
+    bagsCountObs.setValue(data?.bagsCount ?? 0);
     updateIsAllPickedObs();
   }
 
@@ -846,6 +845,8 @@ class OrderDetailsController {
           },
           greenOnTap: () {
             Navigator.pop(context);
+            replacedItem.pickerNotes = "";
+            replacedItem.fixedUnitPrice = null;
             if (isAllPickedObs.getValue()) {
               isAllPickedObs.setValue(false);
             }
@@ -908,8 +909,8 @@ class OrderDetailsController {
       .length;
 
   Future<void> prepareOrder(BuildContext context) async {
-    double bagCount = double.parse(newCountController.text);
-    if (bagsCountFormKey.currentState!.validate() && bagCount > 0) {
+    int bagCount = bagsCountObs.getValue();
+    if (bagCount > 0) {
       Navigator.pop(context);
       getIt<LoadingHelper>().showLoadingDialog();
       final PrepareOrderParams params = _prepareOrderParams();
@@ -945,6 +946,48 @@ class OrderDetailsController {
     }
   }
 
+  void shoModifyBagsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ModifyBagsCountDialogWidget(controller: this);
+      },
+    );
+  }
+
+  void changeUsedBagsCount(BuildContext context) {
+    if (bagsCountFormKey.currentState!.validate()) {
+      int newBagsCount = int.parse(newCountController.text);
+
+      // Calculate old bag fees
+      double oldBagFees = _detailsData.bagsCount * _detailsData.bagPrice;
+
+      // Calculate current Grand Total
+      double currentTotal = double.tryParse(_detailsData.total) ?? 0.0;
+
+      // Calculate Base Total (Grand Total without bags)
+      double baseTotal = currentTotal - oldBagFees;
+
+      // Calculate New Bag Fees
+      double newBagFees = newBagsCount * _detailsData.bagPrice;
+
+      // Calculate New Grand Total
+      double newTotal = baseTotal + newBagFees;
+
+      // Update Data
+      _detailsData.bagsCount = newBagsCount;
+      _detailsData.envFees = newBagFees.toStringAsFixed(2);
+      _detailsData.total = newTotal.toStringAsFixed(2);
+
+      // Update State
+      bagsCountObs.setValue(newBagsCount);
+      updateDetailsCubit();
+      getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+
+      Navigator.pop(context);
+    }
+  }
+
   void calcEnteredBagsPrice(String amount) {
     if (amount.isEmpty) {
       enteredBagsPriceObs.setValue(0.0);
@@ -959,11 +1002,13 @@ class OrderDetailsController {
   PrepareOrderParams _prepareOrderParams() {
     // log("======>>>> all data before enter params ${_detailsData.ordersDetails!} <<<<<<======");
     // log("======>>>> deleted data ${_detailsData.deletedOrders} <<<<<<======");
-    double bagCount = double.parse(newCountController.text);
+    // double bagCount = double.parse(newCountController.text);
+    int bagCount = bagsCountObs.getValue();
     return PrepareOrderParams(
         orderId: orderId,
         currentProductsDetails: _detailsData.ordersDetails!,
         deletedDetails: _detailsData.deletedOrders,
-        bagCount: bagCount.toInt());
+        bagCount: bagCount
+    );
   }
 }

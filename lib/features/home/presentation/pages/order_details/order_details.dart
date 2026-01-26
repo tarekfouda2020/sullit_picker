@@ -9,6 +9,10 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/widge
 import 'order_details_imports.dart';
 import 'widget/order_details_header_widget.dart';
 
+import 'package:flutter_tdd/features/home/presentation/widgets/order_invoice_widget.dart';
+
+import 'widget/used_bags_number_widget.dart';
+
 @RoutePage(name: "OrderDetailsRouteName")
 class OrderDetails extends StatefulWidget {
   final int id;
@@ -51,14 +55,18 @@ class _OrderDetailsState extends State<OrderDetails> {
                         controller: controller,
                       ),
                       Gaps.vGap12,
-                      TimerCardDetailsWidget(data: data,controller: controller),
+                      TimerCardDetailsWidget(
+                          data: data, controller: controller),
                       Gaps.vGap12,
                       ...List.generate(data.ordersDetails!.length, (index) {
                         return PickItemWidget(
                           orderDetails: data.ordersDetails![index],
                           controller: controller,
                         );
-                      },)
+                      }),
+                      UsedBagsNumberWidget(controller: controller),
+                      OrderInvoiceWidget(invoice: data.invoiceModel),
+                      Gaps.vGap32,
                     ],
                   ),
                 ),

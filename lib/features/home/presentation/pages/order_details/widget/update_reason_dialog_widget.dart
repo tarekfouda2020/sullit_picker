@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/picker_notes_widget.dart';
@@ -13,11 +14,22 @@ class UpdateReasonDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-        title: Text(
-       Translate.s.update_reason,
-        textAlign: TextAlign.center,
-        style: AppTextStyle.s18_w700(color: context.colors.textColor),
-    ),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Gaps.hGap10,
+            Text(
+            Translate.s.update_reason,
+            textAlign: TextAlign.center,
+            style: AppTextStyle.s18_w700(color: context.colors.black),
+                ),
+            GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(CupertinoIcons.xmark,color: context.colors.black,)
+            )
+          ],
+        ),
     // titlePadding: const EdgeInsets.fromLTRB(38, 25, 38, 11),
     backgroundColor: context.colors.white,
     contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
@@ -30,7 +42,11 @@ class UpdateReasonDialogWidget extends StatelessWidget {
           Gaps.vGap15,
           AppTextButton.maxCustom(
             text: Translate.s.submit,
-          onPressed: onPressSubmit,
+          onPressed: () {
+            if(controller.replaceReasonKey.currentState!.validate()){
+              onPressSubmit.call();
+            }
+          },
           )
         ],
       ),

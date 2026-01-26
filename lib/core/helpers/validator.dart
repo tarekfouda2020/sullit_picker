@@ -118,13 +118,27 @@ extension Validator on String {
     }
 
     final value = double.tryParse(trim());
-    if (value == null) {
+    if (value == null || !(value > 0) ) {
       return  Translate.s.please_enter_a_valid_number;
     }
 
     if (value > maxPrice) {
       return message ?? "${Translate.s.price_must_not_exceed} $maxPrice";
     }
+
+    return null;
+  }
+
+  String? validateBagsCount({String? message}) {
+    if (trim().isEmpty) {
+      return message ?? Translate.s.fillField;
+    }
+
+    final value = double.tryParse(trim());
+    if (value == null ||  (!(value > 0)  || value < 1) || contains(".")) {
+      return  Translate.s.please_enter_a_valid_number;
+    }
+
 
     return null;
   }

@@ -84,12 +84,25 @@ class AppTextStyle extends TextStyle {
       : super(color: color, fontSize: 15, fontWeight: FontWeight.w500, height: fontHeight, fontFamily: 'NotoSans');
 
   // ignore: non_constant_identifier_names
+  const AppTextStyle.s15_w700({required Color color})
+      : super(color: color, fontSize: 15, fontWeight: FontWeight.w700, height: fontHeight, fontFamily: 'NotoSans');
+
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s15_w800({required Color color})
+      : super(color: color, fontSize: 15, fontWeight: FontWeight.w800, height: fontHeight, fontFamily: 'NotoSans');
+
+  // ignore: non_constant_identifier_names
   const AppTextStyle.s16_w400({required Color color})
       : super(color: color, fontSize: 16, fontWeight: FontWeight.w400, height: fontHeight, fontFamily: 'NotoSans');
 
   // ignore: non_constant_identifier_names
+  const AppTextStyle.s16_w200({required Color color})
+      : super(color: color, fontSize: 16, fontWeight: FontWeight.w200, height: fontHeight, fontFamily: 'NotoSans');
+
+  // ignore: non_constant_identifier_names
   const AppTextStyle.s16_w300({required Color color})
       : super(color: color, fontSize: 16, fontWeight: FontWeight.w300, height: fontHeight, fontFamily: 'NotoSans');
+
   // ignore: non_constant_identifier_names
   const AppTextStyle.s17_w300({required Color color})
       : super(color: color, fontSize: 17, fontWeight: FontWeight.w300, height: fontHeight, fontFamily: 'NotoSans');
@@ -110,6 +123,7 @@ class AppTextStyle extends TextStyle {
   const AppTextStyle.s16_w800({required Color color})
       : super(color: color, fontSize: 16, fontWeight: FontWeight.w800, height: fontHeight, fontFamily: 'OpenSans');
 
+  // ignore: non_constant_identifier_names
   const AppTextStyle.s18_w300({required Color color})
       : super(color: color, fontSize: 18, fontWeight: FontWeight.w300, height: fontHeight, fontFamily: 'NotoSans');
 
@@ -132,8 +146,13 @@ class AppTextStyle extends TextStyle {
   const AppTextStyle.s18_w700({required Color color})
       : super(color: color, fontSize: 18, fontWeight: FontWeight.w700, height: fontHeight, fontFamily: 'NotoSans');
 
+  // ignore: non_constant_identifier_names
   const AppTextStyle.s18_w800({required Color color})
       : super(color: color, fontSize: 18, fontWeight: FontWeight.w800, height: fontHeight, fontFamily: 'NotoSans');
+
+  // ignore: non_constant_identifier_names
+  const AppTextStyle.s20_w300({required Color color})
+      : super(color: color, fontSize: 20, fontWeight: FontWeight.w300, height: fontHeight, fontFamily: 'NotoSans');
 
   // ignore: non_constant_identifier_names
   const AppTextStyle.s20_w400({required Color color})

@@ -10,13 +10,13 @@ class ReturnItemButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppTextButton.maxCustom(
-      text:  Translate.s.return_key ,
-      bgColor:  context.colors.primary,
-      txtColor:  context.colors.white,
+      text:  Translate.s.return_key,
+      bgColor:  context.colors.white,
+      borderColor: context.colors.primary,
+      txtColor:  context.colors.primary,
       textSize: 16,
       maxHeight: 40,
       onPressed: onPress,
-      // onPressed: () => controller.pickItem(data),
     );
   }
 }

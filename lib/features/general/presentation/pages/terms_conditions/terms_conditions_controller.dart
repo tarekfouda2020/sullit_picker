@@ -1,11 +1,11 @@
 import 'package:flutter_tdd/features/general/domain/requesters/terms_requester.dart';
 class TermsConditionsController {
 
-  late final TermsRequester termsRequester;
+   final TermsRequester termsRequester = TermsRequester();
 
   Future<void> getTerms() async {
-    termsRequester = TermsRequester();
-    await termsRequester.request(fromRemote: false);
+     termsRequester.request(fromRemote: false);
+     termsRequester.request();
   }
 
 

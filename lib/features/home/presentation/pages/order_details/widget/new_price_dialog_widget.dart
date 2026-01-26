@@ -29,7 +29,8 @@ class NewPriceDialogWidget extends StatelessWidget {
 
   String price() {
     if (pickAll) {
-      return orderProduct.price;
+      // return orderProduct.price;
+      return orderProduct.unitPrice*orderProduct.quantity;
     } else {
       return orderProduct.unitPrice;
     }

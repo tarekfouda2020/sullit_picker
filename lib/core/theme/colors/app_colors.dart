@@ -119,4 +119,10 @@ abstract class AppColors {
 
   Color get gray4;
 
+  Color get gray5;
+
+  Color get gold2;
+
+  Color get offWhite;
+
 }

@@ -19,8 +19,8 @@ class AppLightTheme extends AppTheme {
     ),
     unselectedWidgetColor: Colors.black45,
     checkboxTheme: CheckboxThemeData(
-      fillColor: MaterialStateProperty.all(_colorsLight.primary),
-      checkColor: MaterialStateProperty.all(_colorsLight.primary),
+      fillColor: WidgetStateProperty.all(_colorsLight.primary),
+      checkColor: WidgetStateProperty.all(_colorsLight.primary),
     ),
     appBarTheme: AppBarTheme(
       color: _colorsLight.appBarColor,
@@ -45,27 +45,27 @@ class AppLightTheme extends AppTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.resolveWith(
+          foregroundColor: WidgetStateProperty.resolveWith(
                 (states) {
-              if (states.contains(MaterialState.disabled)) {
+              if (states.contains(WidgetState.disabled)) {
                 return _colorsLight.disableGray;
               }
               return _colorsLight.primary;
             },
           ),
-          backgroundColor: MaterialStateProperty.resolveWith(
+          backgroundColor: WidgetStateProperty.resolveWith(
                 (states) {
-              if (states.contains(MaterialState.disabled)) {
+              if (states.contains(WidgetState.disabled)) {
                 return _colorsLight.disableGray;
               }
               return _colorsLight.primary;
             },
           ),
-          overlayColor: MaterialStateProperty.resolveWith((states) {
+          overlayColor: WidgetStateProperty.resolveWith((states) {
             return (Colors.white).withOpacity(0.12);
           }),
-          padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(12)),
-          shape: MaterialStateProperty.all<OutlinedBorder>(
+          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(12)),
+          shape: WidgetStateProperty.all<OutlinedBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),

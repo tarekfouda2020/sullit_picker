@@ -243,6 +243,40 @@ mixin _$OrderModel {
   set total(String value) => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   set status(String value) => throw _privateConstructorUsedError;
+  String? get subtotal => throw _privateConstructorUsedError;
+  set subtotal(String? value) => throw _privateConstructorUsedError;
+  String? get shipping => throw _privateConstructorUsedError;
+  set shipping(String? value) => throw _privateConstructorUsedError;
+  String? get tax => throw _privateConstructorUsedError;
+  set tax(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'coupon_discount')
+  String? get couponDiscount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'coupon_discount')
+  set couponDiscount(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'service_fees')
+  String? get serviceFees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'service_fees')
+  set serviceFees(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'environment_fees')
+  String? get envFees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'environment_fees')
+  set envFees(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'technology_fees')
+  String? get techFees => throw _privateConstructorUsedError;
+  @JsonKey(name: 'technology_fees')
+  set techFees(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vat_fee_amount')
+  String? get vatFeeAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vat_fee_amount')
+  set vatFeeAmount(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_fee_amount')
+  String? get totalFeeAmount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_fee_amount')
+  set totalFeeAmount(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'loyalty_points_value')
+  String? get loyaltyPointsValue => throw _privateConstructorUsedError;
+  @JsonKey(name: 'loyalty_points_value')
+  set loyaltyPointsValue(String? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_items')
   int get totalItems => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_items')
@@ -296,6 +330,23 @@ mixin _$OrderModel {
       throw _privateConstructorUsedError;
   @JsonKey(name: 'order_details')
   set ordersDetails(List<OrderDetailsModel>? value) =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_detail_histories')
+  List<ModifiedProductModel>? get modifiedProducts =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_detail_histories')
+  set modifiedProducts(List<ModifiedProductModel>? value) =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'display_items')
+  List<OrderDisplayItem>? get displayItems =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'display_items')
+  set displayItems(List<OrderDisplayItem>? value) =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_discounts')
+  List<OrderDiscountModel>? get discounts => throw _privateConstructorUsedError;
+  @JsonKey(name: 'order_discounts')
+  set discounts(List<OrderDiscountModel>? value) =>
       throw _privateConstructorUsedError;
 
   /// all keys below used in local data
@@ -358,6 +409,16 @@ abstract class $OrderModelCopyWith<$Res> {
       String code,
       String total,
       String status,
+      String? subtotal,
+      String? shipping,
+      String? tax,
+      @JsonKey(name: 'coupon_discount') String? couponDiscount,
+      @JsonKey(name: 'service_fees') String? serviceFees,
+      @JsonKey(name: 'environment_fees') String? envFees,
+      @JsonKey(name: 'technology_fees') String? techFees,
+      @JsonKey(name: 'vat_fee_amount') String? vatFeeAmount,
+      @JsonKey(name: 'total_fee_amount') String? totalFeeAmount,
+      @JsonKey(name: 'loyalty_points_value') String? loyaltyPointsValue,
       @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'bag_count') int bagsCount,
       @JsonKey(name: 'bag_price') double bagPrice,
@@ -371,6 +432,10 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'payment_method') String? paymentMethod,
       @JsonKey(name: 'driver') DriverModel? driverInfo,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
+      @JsonKey(name: 'order_detail_histories')
+      List<ModifiedProductModel>? modifiedProducts,
+      @JsonKey(name: 'display_items') List<OrderDisplayItem>? displayItems,
+      @JsonKey(name: 'order_discounts') List<OrderDiscountModel>? discounts,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
@@ -404,6 +469,16 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? code = null,
     Object? total = null,
     Object? status = null,
+    Object? subtotal = freezed,
+    Object? shipping = freezed,
+    Object? tax = freezed,
+    Object? couponDiscount = freezed,
+    Object? serviceFees = freezed,
+    Object? envFees = freezed,
+    Object? techFees = freezed,
+    Object? vatFeeAmount = freezed,
+    Object? totalFeeAmount = freezed,
+    Object? loyaltyPointsValue = freezed,
     Object? totalItems = null,
     Object? bagsCount = null,
     Object? bagPrice = null,
@@ -417,6 +492,9 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? paymentMethod = freezed,
     Object? driverInfo = freezed,
     Object? ordersDetails = freezed,
+    Object? modifiedProducts = freezed,
+    Object? displayItems = freezed,
+    Object? discounts = freezed,
     Object? deletedOrders = freezed,
     Object? changedProducts = freezed,
     Object? qntChangedProducts = freezed,
@@ -444,6 +522,46 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      subtotal: freezed == subtotal
+          ? _value.subtotal
+          : subtotal // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shipping: freezed == shipping
+          ? _value.shipping
+          : shipping // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tax: freezed == tax
+          ? _value.tax
+          : tax // ignore: cast_nullable_to_non_nullable
+              as String?,
+      couponDiscount: freezed == couponDiscount
+          ? _value.couponDiscount
+          : couponDiscount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serviceFees: freezed == serviceFees
+          ? _value.serviceFees
+          : serviceFees // ignore: cast_nullable_to_non_nullable
+              as String?,
+      envFees: freezed == envFees
+          ? _value.envFees
+          : envFees // ignore: cast_nullable_to_non_nullable
+              as String?,
+      techFees: freezed == techFees
+          ? _value.techFees
+          : techFees // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vatFeeAmount: freezed == vatFeeAmount
+          ? _value.vatFeeAmount
+          : vatFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalFeeAmount: freezed == totalFeeAmount
+          ? _value.totalFeeAmount
+          : totalFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      loyaltyPointsValue: freezed == loyaltyPointsValue
+          ? _value.loyaltyPointsValue
+          : loyaltyPointsValue // ignore: cast_nullable_to_non_nullable
+              as String?,
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
@@ -496,6 +614,18 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.ordersDetails
           : ordersDetails // ignore: cast_nullable_to_non_nullable
               as List<OrderDetailsModel>?,
+      modifiedProducts: freezed == modifiedProducts
+          ? _value.modifiedProducts
+          : modifiedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ModifiedProductModel>?,
+      displayItems: freezed == displayItems
+          ? _value.displayItems
+          : displayItems // ignore: cast_nullable_to_non_nullable
+              as List<OrderDisplayItem>?,
+      discounts: freezed == discounts
+          ? _value.discounts
+          : discounts // ignore: cast_nullable_to_non_nullable
+              as List<OrderDiscountModel>?,
       deletedOrders: freezed == deletedOrders
           ? _value.deletedOrders
           : deletedOrders // ignore: cast_nullable_to_non_nullable
@@ -554,6 +684,16 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       String code,
       String total,
       String status,
+      String? subtotal,
+      String? shipping,
+      String? tax,
+      @JsonKey(name: 'coupon_discount') String? couponDiscount,
+      @JsonKey(name: 'service_fees') String? serviceFees,
+      @JsonKey(name: 'environment_fees') String? envFees,
+      @JsonKey(name: 'technology_fees') String? techFees,
+      @JsonKey(name: 'vat_fee_amount') String? vatFeeAmount,
+      @JsonKey(name: 'total_fee_amount') String? totalFeeAmount,
+      @JsonKey(name: 'loyalty_points_value') String? loyaltyPointsValue,
       @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'bag_count') int bagsCount,
       @JsonKey(name: 'bag_price') double bagPrice,
@@ -567,6 +707,10 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       @JsonKey(name: 'payment_method') String? paymentMethod,
       @JsonKey(name: 'driver') DriverModel? driverInfo,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
+      @JsonKey(name: 'order_detail_histories')
+      List<ModifiedProductModel>? modifiedProducts,
+      @JsonKey(name: 'display_items') List<OrderDisplayItem>? displayItems,
+      @JsonKey(name: 'order_discounts') List<OrderDiscountModel>? discounts,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
@@ -600,6 +744,16 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? code = null,
     Object? total = null,
     Object? status = null,
+    Object? subtotal = freezed,
+    Object? shipping = freezed,
+    Object? tax = freezed,
+    Object? couponDiscount = freezed,
+    Object? serviceFees = freezed,
+    Object? envFees = freezed,
+    Object? techFees = freezed,
+    Object? vatFeeAmount = freezed,
+    Object? totalFeeAmount = freezed,
+    Object? loyaltyPointsValue = freezed,
     Object? totalItems = null,
     Object? bagsCount = null,
     Object? bagPrice = null,
@@ -613,6 +767,9 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? paymentMethod = freezed,
     Object? driverInfo = freezed,
     Object? ordersDetails = freezed,
+    Object? modifiedProducts = freezed,
+    Object? displayItems = freezed,
+    Object? discounts = freezed,
     Object? deletedOrders = freezed,
     Object? changedProducts = freezed,
     Object? qntChangedProducts = freezed,
@@ -640,6 +797,46 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      subtotal: freezed == subtotal
+          ? _value.subtotal
+          : subtotal // ignore: cast_nullable_to_non_nullable
+              as String?,
+      shipping: freezed == shipping
+          ? _value.shipping
+          : shipping // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tax: freezed == tax
+          ? _value.tax
+          : tax // ignore: cast_nullable_to_non_nullable
+              as String?,
+      couponDiscount: freezed == couponDiscount
+          ? _value.couponDiscount
+          : couponDiscount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serviceFees: freezed == serviceFees
+          ? _value.serviceFees
+          : serviceFees // ignore: cast_nullable_to_non_nullable
+              as String?,
+      envFees: freezed == envFees
+          ? _value.envFees
+          : envFees // ignore: cast_nullable_to_non_nullable
+              as String?,
+      techFees: freezed == techFees
+          ? _value.techFees
+          : techFees // ignore: cast_nullable_to_non_nullable
+              as String?,
+      vatFeeAmount: freezed == vatFeeAmount
+          ? _value.vatFeeAmount
+          : vatFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalFeeAmount: freezed == totalFeeAmount
+          ? _value.totalFeeAmount
+          : totalFeeAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      loyaltyPointsValue: freezed == loyaltyPointsValue
+          ? _value.loyaltyPointsValue
+          : loyaltyPointsValue // ignore: cast_nullable_to_non_nullable
+              as String?,
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
@@ -692,6 +889,18 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.ordersDetails
           : ordersDetails // ignore: cast_nullable_to_non_nullable
               as List<OrderDetailsModel>?,
+      modifiedProducts: freezed == modifiedProducts
+          ? _value.modifiedProducts
+          : modifiedProducts // ignore: cast_nullable_to_non_nullable
+              as List<ModifiedProductModel>?,
+      displayItems: freezed == displayItems
+          ? _value.displayItems
+          : displayItems // ignore: cast_nullable_to_non_nullable
+              as List<OrderDisplayItem>?,
+      discounts: freezed == discounts
+          ? _value.discounts
+          : discounts // ignore: cast_nullable_to_non_nullable
+              as List<OrderDiscountModel>?,
       deletedOrders: freezed == deletedOrders
           ? _value.deletedOrders
           : deletedOrders // ignore: cast_nullable_to_non_nullable
@@ -725,6 +934,16 @@ class _$OrderModelImpl extends _OrderModel {
       required this.code,
       required this.total,
       required this.status,
+      this.subtotal,
+      this.shipping,
+      this.tax,
+      @JsonKey(name: 'coupon_discount') this.couponDiscount,
+      @JsonKey(name: 'service_fees') this.serviceFees,
+      @JsonKey(name: 'environment_fees') this.envFees,
+      @JsonKey(name: 'technology_fees') this.techFees,
+      @JsonKey(name: 'vat_fee_amount') this.vatFeeAmount,
+      @JsonKey(name: 'total_fee_amount') this.totalFeeAmount,
+      @JsonKey(name: 'loyalty_points_value') this.loyaltyPointsValue,
       @JsonKey(name: 'total_items') required this.totalItems,
       @JsonKey(name: 'bag_count') required this.bagsCount,
       @JsonKey(name: 'bag_price') required this.bagPrice,
@@ -738,6 +957,9 @@ class _$OrderModelImpl extends _OrderModel {
       @JsonKey(name: 'payment_method') this.paymentMethod,
       @JsonKey(name: 'driver') required this.driverInfo,
       @JsonKey(name: 'order_details') this.ordersDetails,
+      @JsonKey(name: 'order_detail_histories') this.modifiedProducts,
+      @JsonKey(name: 'display_items') this.displayItems,
+      @JsonKey(name: 'order_discounts') this.discounts,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       this.deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
@@ -763,6 +985,33 @@ class _$OrderModelImpl extends _OrderModel {
   String total;
   @override
   String status;
+  @override
+  String? subtotal;
+  @override
+  String? shipping;
+  @override
+  String? tax;
+  @override
+  @JsonKey(name: 'coupon_discount')
+  String? couponDiscount;
+  @override
+  @JsonKey(name: 'service_fees')
+  String? serviceFees;
+  @override
+  @JsonKey(name: 'environment_fees')
+  String? envFees;
+  @override
+  @JsonKey(name: 'technology_fees')
+  String? techFees;
+  @override
+  @JsonKey(name: 'vat_fee_amount')
+  String? vatFeeAmount;
+  @override
+  @JsonKey(name: 'total_fee_amount')
+  String? totalFeeAmount;
+  @override
+  @JsonKey(name: 'loyalty_points_value')
+  String? loyaltyPointsValue;
   @override
   @JsonKey(name: 'total_items')
   int totalItems;
@@ -802,6 +1051,15 @@ class _$OrderModelImpl extends _OrderModel {
   @override
   @JsonKey(name: 'order_details')
   List<OrderDetailsModel>? ordersDetails;
+  @override
+  @JsonKey(name: 'order_detail_histories')
+  List<ModifiedProductModel>? modifiedProducts;
+  @override
+  @JsonKey(name: 'display_items')
+  List<OrderDisplayItem>? displayItems;
+  @override
+  @JsonKey(name: 'order_discounts')
+  List<OrderDiscountModel>? discounts;
 
   /// all keys below used in local data
   @override
@@ -828,7 +1086,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, serviceFees: $serviceFees, envFees: $envFees, techFees: $techFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, loyaltyPointsValue: $loyaltyPointsValue, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, modifiedProducts: $modifiedProducts, displayItems: $displayItems, discounts: $discounts, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   @JsonKey(ignore: true)
@@ -852,6 +1110,16 @@ abstract class _OrderModel extends OrderModel {
       required String code,
       required String total,
       required String status,
+      String? subtotal,
+      String? shipping,
+      String? tax,
+      @JsonKey(name: 'coupon_discount') String? couponDiscount,
+      @JsonKey(name: 'service_fees') String? serviceFees,
+      @JsonKey(name: 'environment_fees') String? envFees,
+      @JsonKey(name: 'technology_fees') String? techFees,
+      @JsonKey(name: 'vat_fee_amount') String? vatFeeAmount,
+      @JsonKey(name: 'total_fee_amount') String? totalFeeAmount,
+      @JsonKey(name: 'loyalty_points_value') String? loyaltyPointsValue,
       @JsonKey(name: 'total_items') required int totalItems,
       @JsonKey(name: 'bag_count') required int bagsCount,
       @JsonKey(name: 'bag_price') required double bagPrice,
@@ -865,6 +1133,10 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'payment_method') String? paymentMethod,
       @JsonKey(name: 'driver') required DriverModel? driverInfo,
       @JsonKey(name: 'order_details') List<OrderDetailsModel>? ordersDetails,
+      @JsonKey(name: 'order_detail_histories')
+      List<ModifiedProductModel>? modifiedProducts,
+      @JsonKey(name: 'display_items') List<OrderDisplayItem>? displayItems,
+      @JsonKey(name: 'order_discounts') List<OrderDiscountModel>? discounts,
       @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
@@ -895,6 +1167,50 @@ abstract class _OrderModel extends OrderModel {
   @override
   String get status;
   set status(String value);
+  @override
+  String? get subtotal;
+  set subtotal(String? value);
+  @override
+  String? get shipping;
+  set shipping(String? value);
+  @override
+  String? get tax;
+  set tax(String? value);
+  @override
+  @JsonKey(name: 'coupon_discount')
+  String? get couponDiscount;
+  @JsonKey(name: 'coupon_discount')
+  set couponDiscount(String? value);
+  @override
+  @JsonKey(name: 'service_fees')
+  String? get serviceFees;
+  @JsonKey(name: 'service_fees')
+  set serviceFees(String? value);
+  @override
+  @JsonKey(name: 'environment_fees')
+  String? get envFees;
+  @JsonKey(name: 'environment_fees')
+  set envFees(String? value);
+  @override
+  @JsonKey(name: 'technology_fees')
+  String? get techFees;
+  @JsonKey(name: 'technology_fees')
+  set techFees(String? value);
+  @override
+  @JsonKey(name: 'vat_fee_amount')
+  String? get vatFeeAmount;
+  @JsonKey(name: 'vat_fee_amount')
+  set vatFeeAmount(String? value);
+  @override
+  @JsonKey(name: 'total_fee_amount')
+  String? get totalFeeAmount;
+  @JsonKey(name: 'total_fee_amount')
+  set totalFeeAmount(String? value);
+  @override
+  @JsonKey(name: 'loyalty_points_value')
+  String? get loyaltyPointsValue;
+  @JsonKey(name: 'loyalty_points_value')
+  set loyaltyPointsValue(String? value);
   @override
   @JsonKey(name: 'total_items')
   int get totalItems;
@@ -961,6 +1277,21 @@ abstract class _OrderModel extends OrderModel {
   @JsonKey(name: 'order_details')
   set ordersDetails(List<OrderDetailsModel>? value);
   @override
+  @JsonKey(name: 'order_detail_histories')
+  List<ModifiedProductModel>? get modifiedProducts;
+  @JsonKey(name: 'order_detail_histories')
+  set modifiedProducts(List<ModifiedProductModel>? value);
+  @override
+  @JsonKey(name: 'display_items')
+  List<OrderDisplayItem>? get displayItems;
+  @JsonKey(name: 'display_items')
+  set displayItems(List<OrderDisplayItem>? value);
+  @override
+  @JsonKey(name: 'order_discounts')
+  List<OrderDiscountModel>? get discounts;
+  @JsonKey(name: 'order_discounts')
+  set discounts(List<OrderDiscountModel>? value);
+  @override
 
   /// all keys below used in local data
   @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
@@ -1025,44 +1356,28 @@ mixin _$OrderDetailsModel {
   String get unitPrice => throw _privateConstructorUsedError;
   @JsonKey(name: "unit_price")
   set unitPrice(String value) => throw _privateConstructorUsedError;
-
-  /// return null in cancel order api
   ProductModel? get product => throw _privateConstructorUsedError;
-
-  /// return null in cancel order api
   set product(ProductModel? value) => throw _privateConstructorUsedError;
-
-  /// have value when replace the item
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   int? get newVariantId => throw _privateConstructorUsedError;
-
-  /// have value when replace the item
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   set newVariantId(int? value) => throw _privateConstructorUsedError;
-
-  /// have value when add new item
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   int? get addedVariantId => throw _privateConstructorUsedError;
-
-  /// have value when add new item
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   set addedVariantId(int? value) => throw _privateConstructorUsedError;
-
-  /// have value when edit the item price
   @JsonKey(name: "new_price", defaultValue: 0.0)
   double? get newPrice => throw _privateConstructorUsedError;
-
-  /// have value when edit the item price
   @JsonKey(name: "new_price", defaultValue: 0.0)
   set newPrice(double? value) => throw _privateConstructorUsedError;
-
-  /// before do any edit in the product enter the note
   @JsonKey(name: "picker_notes", defaultValue: "")
   String? get pickerNotes => throw _privateConstructorUsedError;
-
-  /// before do any edit in the product enter the note
   @JsonKey(name: "picker_notes", defaultValue: "")
   set pickerNotes(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+  double? get fixedUnitPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+  set fixedUnitPrice(double? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1086,7 +1401,9 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
       @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
-      @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes});
+      @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
+      @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+      double? fixedUnitPrice});
 
   $ProductModelCopyWith<$Res>? get product;
 }
@@ -1114,6 +1431,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? addedVariantId = freezed,
     Object? newPrice = freezed,
     Object? pickerNotes = freezed,
+    Object? fixedUnitPrice = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1156,6 +1474,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.pickerNotes
           : pickerNotes // ignore: cast_nullable_to_non_nullable
               as String?,
+      fixedUnitPrice: freezed == fixedUnitPrice
+          ? _value.fixedUnitPrice
+          : fixedUnitPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 
@@ -1190,7 +1512,9 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
       @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
-      @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes});
+      @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
+      @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+      double? fixedUnitPrice});
 
   @override
   $ProductModelCopyWith<$Res>? get product;
@@ -1217,6 +1541,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? addedVariantId = freezed,
     Object? newPrice = freezed,
     Object? pickerNotes = freezed,
+    Object? fixedUnitPrice = freezed,
   }) {
     return _then(_$OrderDetailsModelImpl(
       id: null == id
@@ -1259,6 +1584,10 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
           ? _value.pickerNotes
           : pickerNotes // ignore: cast_nullable_to_non_nullable
               as String?,
+      fixedUnitPrice: freezed == fixedUnitPrice
+          ? _value.fixedUnitPrice
+          : fixedUnitPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -1276,7 +1605,9 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
       @JsonKey(name: "new_variant_id", defaultValue: -1) this.newVariantId,
       @JsonKey(name: "added_variant_id", defaultValue: -1) this.addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) this.newPrice,
-      @JsonKey(name: "picker_notes", defaultValue: "") this.pickerNotes})
+      @JsonKey(name: "picker_notes", defaultValue: "") this.pickerNotes,
+      @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+      this.fixedUnitPrice})
       : super._();
 
   factory _$OrderDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -1293,34 +1624,27 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   @override
   @JsonKey(name: "unit_price")
   String unitPrice;
-
-  /// return null in cancel order api
   @override
   ProductModel? product;
-
-  /// have value when replace the item
   @override
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   int? newVariantId;
-
-  /// have value when add new item
   @override
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   int? addedVariantId;
-
-  /// have value when edit the item price
   @override
   @JsonKey(name: "new_price", defaultValue: 0.0)
   double? newPrice;
-
-  /// before do any edit in the product enter the note
   @override
   @JsonKey(name: "picker_notes", defaultValue: "")
   String? pickerNotes;
+  @override
+  @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+  double? fixedUnitPrice;
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes)';
+    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes, fixedUnitPrice: $fixedUnitPrice)';
   }
 
   @JsonKey(ignore: true)
@@ -1349,8 +1673,9 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
       @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
-      @JsonKey(name: "picker_notes", defaultValue: "")
-      String? pickerNotes}) = _$OrderDetailsModelImpl;
+      @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
+      @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+      double? fixedUnitPrice}) = _$OrderDetailsModelImpl;
   _OrderDetailsModel._() : super._();
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
@@ -1374,48 +1699,33 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   @JsonKey(name: "unit_price")
   set unitPrice(String value);
   @override
-
-  /// return null in cancel order api
   ProductModel? get product;
-
-  /// return null in cancel order api
   set product(ProductModel? value);
   @override
-
-  /// have value when replace the item
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   int? get newVariantId;
-
-  /// have value when replace the item
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   set newVariantId(int? value);
   @override
-
-  /// have value when add new item
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   int? get addedVariantId;
-
-  /// have value when add new item
   @JsonKey(name: "added_variant_id", defaultValue: -1)
   set addedVariantId(int? value);
   @override
-
-  /// have value when edit the item price
   @JsonKey(name: "new_price", defaultValue: 0.0)
   double? get newPrice;
-
-  /// have value when edit the item price
   @JsonKey(name: "new_price", defaultValue: 0.0)
   set newPrice(double? value);
   @override
-
-  /// before do any edit in the product enter the note
   @JsonKey(name: "picker_notes", defaultValue: "")
   String? get pickerNotes;
-
-  /// before do any edit in the product enter the note
   @JsonKey(name: "picker_notes", defaultValue: "")
   set pickerNotes(String? value);
+  @override
+  @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+  double? get fixedUnitPrice;
+  @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
+  set fixedUnitPrice(double? value);
   @override
   @JsonKey(ignore: true)
   _$$OrderDetailsModelImplCopyWith<_$OrderDetailsModelImpl> get copyWith =>
@@ -1997,6 +2307,12 @@ mixin _$CustomerModel {
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "customer_type")
+  String get customerType => throw _privateConstructorUsedError;
+  @JsonKey(name: "customer_type_label")
+  String get customerTypeLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: "shareholder_number")
+  String? get shareHolderNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2010,7 +2326,13 @@ abstract class $CustomerModelCopyWith<$Res> {
           CustomerModel value, $Res Function(CustomerModel) then) =
       _$CustomerModelCopyWithImpl<$Res, CustomerModel>;
   @useResult
-  $Res call({String name, String email, String phone});
+  $Res call(
+      {String name,
+      String email,
+      String phone,
+      @JsonKey(name: "customer_type") String customerType,
+      @JsonKey(name: "customer_type_label") String customerTypeLabel,
+      @JsonKey(name: "shareholder_number") String? shareHolderNumber});
 }
 
 /// @nodoc
@@ -2029,6 +2351,9 @@ class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
     Object? name = null,
     Object? email = null,
     Object? phone = null,
+    Object? customerType = null,
+    Object? customerTypeLabel = null,
+    Object? shareHolderNumber = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -2043,6 +2368,18 @@ class _$CustomerModelCopyWithImpl<$Res, $Val extends CustomerModel>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      customerType: null == customerType
+          ? _value.customerType
+          : customerType // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerTypeLabel: null == customerTypeLabel
+          ? _value.customerTypeLabel
+          : customerTypeLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      shareHolderNumber: freezed == shareHolderNumber
+          ? _value.shareHolderNumber
+          : shareHolderNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -2055,7 +2392,13 @@ abstract class _$$CustomerModelImplCopyWith<$Res>
       __$$CustomerModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String email, String phone});
+  $Res call(
+      {String name,
+      String email,
+      String phone,
+      @JsonKey(name: "customer_type") String customerType,
+      @JsonKey(name: "customer_type_label") String customerTypeLabel,
+      @JsonKey(name: "shareholder_number") String? shareHolderNumber});
 }
 
 /// @nodoc
@@ -2072,6 +2415,9 @@ class __$$CustomerModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? email = null,
     Object? phone = null,
+    Object? customerType = null,
+    Object? customerTypeLabel = null,
+    Object? shareHolderNumber = freezed,
   }) {
     return _then(_$CustomerModelImpl(
       name: null == name
@@ -2086,6 +2432,18 @@ class __$$CustomerModelImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      customerType: null == customerType
+          ? _value.customerType
+          : customerType // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerTypeLabel: null == customerTypeLabel
+          ? _value.customerTypeLabel
+          : customerTypeLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      shareHolderNumber: freezed == shareHolderNumber
+          ? _value.shareHolderNumber
+          : shareHolderNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2094,7 +2452,12 @@ class __$$CustomerModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CustomerModelImpl extends _CustomerModel {
   _$CustomerModelImpl(
-      {required this.name, required this.email, required this.phone})
+      {required this.name,
+      required this.email,
+      required this.phone,
+      @JsonKey(name: "customer_type") required this.customerType,
+      @JsonKey(name: "customer_type_label") required this.customerTypeLabel,
+      @JsonKey(name: "shareholder_number") required this.shareHolderNumber})
       : super._();
 
   factory _$CustomerModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -2106,10 +2469,19 @@ class _$CustomerModelImpl extends _CustomerModel {
   final String email;
   @override
   final String phone;
+  @override
+  @JsonKey(name: "customer_type")
+  final String customerType;
+  @override
+  @JsonKey(name: "customer_type_label")
+  final String customerTypeLabel;
+  @override
+  @JsonKey(name: "shareholder_number")
+  final String? shareHolderNumber;
 
   @override
   String toString() {
-    return 'CustomerModel(name: $name, email: $email, phone: $phone)';
+    return 'CustomerModel(name: $name, email: $email, phone: $phone, customerType: $customerType, customerTypeLabel: $customerTypeLabel, shareHolderNumber: $shareHolderNumber)';
   }
 
   @override
@@ -2119,12 +2491,19 @@ class _$CustomerModelImpl extends _CustomerModel {
             other is _$CustomerModelImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.customerType, customerType) ||
+                other.customerType == customerType) &&
+            (identical(other.customerTypeLabel, customerTypeLabel) ||
+                other.customerTypeLabel == customerTypeLabel) &&
+            (identical(other.shareHolderNumber, shareHolderNumber) ||
+                other.shareHolderNumber == shareHolderNumber));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, email, phone);
+  int get hashCode => Object.hash(runtimeType, name, email, phone, customerType,
+      customerTypeLabel, shareHolderNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -2144,7 +2523,12 @@ abstract class _CustomerModel extends CustomerModel {
   factory _CustomerModel(
       {required final String name,
       required final String email,
-      required final String phone}) = _$CustomerModelImpl;
+      required final String phone,
+      @JsonKey(name: "customer_type") required final String customerType,
+      @JsonKey(name: "customer_type_label")
+      required final String customerTypeLabel,
+      @JsonKey(name: "shareholder_number")
+      required final String? shareHolderNumber}) = _$CustomerModelImpl;
   _CustomerModel._() : super._();
 
   factory _CustomerModel.fromJson(Map<String, dynamic> json) =
@@ -2156,6 +2540,15 @@ abstract class _CustomerModel extends CustomerModel {
   String get email;
   @override
   String get phone;
+  @override
+  @JsonKey(name: "customer_type")
+  String get customerType;
+  @override
+  @JsonKey(name: "customer_type_label")
+  String get customerTypeLabel;
+  @override
+  @JsonKey(name: "shareholder_number")
+  String? get shareHolderNumber;
   @override
   @JsonKey(ignore: true)
   _$$CustomerModelImplCopyWith<_$CustomerModelImpl> get copyWith =>
@@ -2405,5 +2798,956 @@ abstract class _DriverModel extends DriverModel {
   @override
   @JsonKey(ignore: true)
   _$$DriverModelImplCopyWith<_$DriverModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OrderDiscountModel _$OrderDiscountModelFromJson(Map<String, dynamic> json) {
+  return _OrderDiscountModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OrderDiscountModel {
+  int get id => throw _privateConstructorUsedError;
+  String get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type_label')
+  String get typeLabel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type_description')
+  String get typeDescription => throw _privateConstructorUsedError;
+  @JsonKey(name: 'discount_type')
+  String get discountType => throw _privateConstructorUsedError;
+  String get discount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'discount_value')
+  String get discountValue => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OrderDiscountModelCopyWith<OrderDiscountModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrderDiscountModelCopyWith<$Res> {
+  factory $OrderDiscountModelCopyWith(
+          OrderDiscountModel value, $Res Function(OrderDiscountModel) then) =
+      _$OrderDiscountModelCopyWithImpl<$Res, OrderDiscountModel>;
+  @useResult
+  $Res call(
+      {int id,
+      String type,
+      @JsonKey(name: 'type_label') String typeLabel,
+      @JsonKey(name: 'type_description') String typeDescription,
+      @JsonKey(name: 'discount_type') String discountType,
+      String discount,
+      @JsonKey(name: 'discount_value') String discountValue});
+}
+
+/// @nodoc
+class _$OrderDiscountModelCopyWithImpl<$Res, $Val extends OrderDiscountModel>
+    implements $OrderDiscountModelCopyWith<$Res> {
+  _$OrderDiscountModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? typeLabel = null,
+    Object? typeDescription = null,
+    Object? discountType = null,
+    Object? discount = null,
+    Object? discountValue = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeLabel: null == typeLabel
+          ? _value.typeLabel
+          : typeLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeDescription: null == typeDescription
+          ? _value.typeDescription
+          : typeDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      discountType: null == discountType
+          ? _value.discountType
+          : discountType // ignore: cast_nullable_to_non_nullable
+              as String,
+      discount: null == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as String,
+      discountValue: null == discountValue
+          ? _value.discountValue
+          : discountValue // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OrderDiscountModelImplCopyWith<$Res>
+    implements $OrderDiscountModelCopyWith<$Res> {
+  factory _$$OrderDiscountModelImplCopyWith(_$OrderDiscountModelImpl value,
+          $Res Function(_$OrderDiscountModelImpl) then) =
+      __$$OrderDiscountModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String type,
+      @JsonKey(name: 'type_label') String typeLabel,
+      @JsonKey(name: 'type_description') String typeDescription,
+      @JsonKey(name: 'discount_type') String discountType,
+      String discount,
+      @JsonKey(name: 'discount_value') String discountValue});
+}
+
+/// @nodoc
+class __$$OrderDiscountModelImplCopyWithImpl<$Res>
+    extends _$OrderDiscountModelCopyWithImpl<$Res, _$OrderDiscountModelImpl>
+    implements _$$OrderDiscountModelImplCopyWith<$Res> {
+  __$$OrderDiscountModelImplCopyWithImpl(_$OrderDiscountModelImpl _value,
+      $Res Function(_$OrderDiscountModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+    Object? typeLabel = null,
+    Object? typeDescription = null,
+    Object? discountType = null,
+    Object? discount = null,
+    Object? discountValue = null,
+  }) {
+    return _then(_$OrderDiscountModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeLabel: null == typeLabel
+          ? _value.typeLabel
+          : typeLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      typeDescription: null == typeDescription
+          ? _value.typeDescription
+          : typeDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      discountType: null == discountType
+          ? _value.discountType
+          : discountType // ignore: cast_nullable_to_non_nullable
+              as String,
+      discount: null == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as String,
+      discountValue: null == discountValue
+          ? _value.discountValue
+          : discountValue // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OrderDiscountModelImpl extends _OrderDiscountModel {
+  _$OrderDiscountModelImpl(
+      {required this.id,
+      required this.type,
+      @JsonKey(name: 'type_label') required this.typeLabel,
+      @JsonKey(name: 'type_description') required this.typeDescription,
+      @JsonKey(name: 'discount_type') required this.discountType,
+      required this.discount,
+      @JsonKey(name: 'discount_value') required this.discountValue})
+      : super._();
+
+  factory _$OrderDiscountModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrderDiscountModelImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String type;
+  @override
+  @JsonKey(name: 'type_label')
+  final String typeLabel;
+  @override
+  @JsonKey(name: 'type_description')
+  final String typeDescription;
+  @override
+  @JsonKey(name: 'discount_type')
+  final String discountType;
+  @override
+  final String discount;
+  @override
+  @JsonKey(name: 'discount_value')
+  final String discountValue;
+
+  @override
+  String toString() {
+    return 'OrderDiscountModel(id: $id, type: $type, typeLabel: $typeLabel, typeDescription: $typeDescription, discountType: $discountType, discount: $discount, discountValue: $discountValue)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrderDiscountModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.typeLabel, typeLabel) ||
+                other.typeLabel == typeLabel) &&
+            (identical(other.typeDescription, typeDescription) ||
+                other.typeDescription == typeDescription) &&
+            (identical(other.discountType, discountType) ||
+                other.discountType == discountType) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
+            (identical(other.discountValue, discountValue) ||
+                other.discountValue == discountValue));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type, typeLabel,
+      typeDescription, discountType, discount, discountValue);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderDiscountModelImplCopyWith<_$OrderDiscountModelImpl> get copyWith =>
+      __$$OrderDiscountModelImplCopyWithImpl<_$OrderDiscountModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OrderDiscountModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OrderDiscountModel extends OrderDiscountModel {
+  factory _OrderDiscountModel(
+      {required final int id,
+      required final String type,
+      @JsonKey(name: 'type_label') required final String typeLabel,
+      @JsonKey(name: 'type_description') required final String typeDescription,
+      @JsonKey(name: 'discount_type') required final String discountType,
+      required final String discount,
+      @JsonKey(name: 'discount_value')
+      required final String discountValue}) = _$OrderDiscountModelImpl;
+  _OrderDiscountModel._() : super._();
+
+  factory _OrderDiscountModel.fromJson(Map<String, dynamic> json) =
+      _$OrderDiscountModelImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get type;
+  @override
+  @JsonKey(name: 'type_label')
+  String get typeLabel;
+  @override
+  @JsonKey(name: 'type_description')
+  String get typeDescription;
+  @override
+  @JsonKey(name: 'discount_type')
+  String get discountType;
+  @override
+  String get discount;
+  @override
+  @JsonKey(name: 'discount_value')
+  String get discountValue;
+  @override
+  @JsonKey(ignore: true)
+  _$$OrderDiscountModelImplCopyWith<_$OrderDiscountModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ModifiedProductModel _$ModifiedProductModelFromJson(Map<String, dynamic> json) {
+  return _ModifiedProductModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ModifiedProductModel {
+  int get id => throw _privateConstructorUsedError;
+
+  /// reduce | add | remove | replace
+  String get action => throw _privateConstructorUsedError;
+  @JsonKey(name: 'action_label')
+  String get actionLabel => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: '')
+  String? get notes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'old_price')
+  String? get oldPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'new_price')
+  String? get newPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'old_quantity')
+  int? get oldQuantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'new_quantity')
+  int? get newQuantity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'old_product')
+  ProductModel? get oldProduct => throw _privateConstructorUsedError;
+  @JsonKey(name: 'new_product')
+  ProductModel? get newProduct => throw _privateConstructorUsedError;
+  @JsonKey(name: 'old_variation', defaultValue: '')
+  String? get oldVariation => throw _privateConstructorUsedError;
+  @JsonKey(name: 'new_variation', defaultValue: '')
+  String? get newVariation => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  String get createdAt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ModifiedProductModelCopyWith<ModifiedProductModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ModifiedProductModelCopyWith<$Res> {
+  factory $ModifiedProductModelCopyWith(ModifiedProductModel value,
+          $Res Function(ModifiedProductModel) then) =
+      _$ModifiedProductModelCopyWithImpl<$Res, ModifiedProductModel>;
+  @useResult
+  $Res call(
+      {int id,
+      String action,
+      @JsonKey(name: 'action_label') String actionLabel,
+      @JsonKey(defaultValue: '') String? notes,
+      @JsonKey(name: 'old_price') String? oldPrice,
+      @JsonKey(name: 'new_price') String? newPrice,
+      @JsonKey(name: 'old_quantity') int? oldQuantity,
+      @JsonKey(name: 'new_quantity') int? newQuantity,
+      @JsonKey(name: 'old_product') ProductModel? oldProduct,
+      @JsonKey(name: 'new_product') ProductModel? newProduct,
+      @JsonKey(name: 'old_variation', defaultValue: '') String? oldVariation,
+      @JsonKey(name: 'new_variation', defaultValue: '') String? newVariation,
+      @JsonKey(name: 'created_at') String createdAt});
+
+  $ProductModelCopyWith<$Res>? get oldProduct;
+  $ProductModelCopyWith<$Res>? get newProduct;
+}
+
+/// @nodoc
+class _$ModifiedProductModelCopyWithImpl<$Res,
+        $Val extends ModifiedProductModel>
+    implements $ModifiedProductModelCopyWith<$Res> {
+  _$ModifiedProductModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? action = null,
+    Object? actionLabel = null,
+    Object? notes = freezed,
+    Object? oldPrice = freezed,
+    Object? newPrice = freezed,
+    Object? oldQuantity = freezed,
+    Object? newQuantity = freezed,
+    Object? oldProduct = freezed,
+    Object? newProduct = freezed,
+    Object? oldVariation = freezed,
+    Object? newVariation = freezed,
+    Object? createdAt = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      action: null == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as String,
+      actionLabel: null == actionLabel
+          ? _value.actionLabel
+          : actionLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      oldPrice: freezed == oldPrice
+          ? _value.oldPrice
+          : oldPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      newPrice: freezed == newPrice
+          ? _value.newPrice
+          : newPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      oldQuantity: freezed == oldQuantity
+          ? _value.oldQuantity
+          : oldQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      newQuantity: freezed == newQuantity
+          ? _value.newQuantity
+          : newQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      oldProduct: freezed == oldProduct
+          ? _value.oldProduct
+          : oldProduct // ignore: cast_nullable_to_non_nullable
+              as ProductModel?,
+      newProduct: freezed == newProduct
+          ? _value.newProduct
+          : newProduct // ignore: cast_nullable_to_non_nullable
+              as ProductModel?,
+      oldVariation: freezed == oldVariation
+          ? _value.oldVariation
+          : oldVariation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      newVariation: freezed == newVariation
+          ? _value.newVariation
+          : newVariation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductModelCopyWith<$Res>? get oldProduct {
+    if (_value.oldProduct == null) {
+      return null;
+    }
+
+    return $ProductModelCopyWith<$Res>(_value.oldProduct!, (value) {
+      return _then(_value.copyWith(oldProduct: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductModelCopyWith<$Res>? get newProduct {
+    if (_value.newProduct == null) {
+      return null;
+    }
+
+    return $ProductModelCopyWith<$Res>(_value.newProduct!, (value) {
+      return _then(_value.copyWith(newProduct: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ModifiedProductModelImplCopyWith<$Res>
+    implements $ModifiedProductModelCopyWith<$Res> {
+  factory _$$ModifiedProductModelImplCopyWith(_$ModifiedProductModelImpl value,
+          $Res Function(_$ModifiedProductModelImpl) then) =
+      __$$ModifiedProductModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int id,
+      String action,
+      @JsonKey(name: 'action_label') String actionLabel,
+      @JsonKey(defaultValue: '') String? notes,
+      @JsonKey(name: 'old_price') String? oldPrice,
+      @JsonKey(name: 'new_price') String? newPrice,
+      @JsonKey(name: 'old_quantity') int? oldQuantity,
+      @JsonKey(name: 'new_quantity') int? newQuantity,
+      @JsonKey(name: 'old_product') ProductModel? oldProduct,
+      @JsonKey(name: 'new_product') ProductModel? newProduct,
+      @JsonKey(name: 'old_variation', defaultValue: '') String? oldVariation,
+      @JsonKey(name: 'new_variation', defaultValue: '') String? newVariation,
+      @JsonKey(name: 'created_at') String createdAt});
+
+  @override
+  $ProductModelCopyWith<$Res>? get oldProduct;
+  @override
+  $ProductModelCopyWith<$Res>? get newProduct;
+}
+
+/// @nodoc
+class __$$ModifiedProductModelImplCopyWithImpl<$Res>
+    extends _$ModifiedProductModelCopyWithImpl<$Res, _$ModifiedProductModelImpl>
+    implements _$$ModifiedProductModelImplCopyWith<$Res> {
+  __$$ModifiedProductModelImplCopyWithImpl(_$ModifiedProductModelImpl _value,
+      $Res Function(_$ModifiedProductModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? action = null,
+    Object? actionLabel = null,
+    Object? notes = freezed,
+    Object? oldPrice = freezed,
+    Object? newPrice = freezed,
+    Object? oldQuantity = freezed,
+    Object? newQuantity = freezed,
+    Object? oldProduct = freezed,
+    Object? newProduct = freezed,
+    Object? oldVariation = freezed,
+    Object? newVariation = freezed,
+    Object? createdAt = null,
+  }) {
+    return _then(_$ModifiedProductModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      action: null == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as String,
+      actionLabel: null == actionLabel
+          ? _value.actionLabel
+          : actionLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      oldPrice: freezed == oldPrice
+          ? _value.oldPrice
+          : oldPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      newPrice: freezed == newPrice
+          ? _value.newPrice
+          : newPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      oldQuantity: freezed == oldQuantity
+          ? _value.oldQuantity
+          : oldQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      newQuantity: freezed == newQuantity
+          ? _value.newQuantity
+          : newQuantity // ignore: cast_nullable_to_non_nullable
+              as int?,
+      oldProduct: freezed == oldProduct
+          ? _value.oldProduct
+          : oldProduct // ignore: cast_nullable_to_non_nullable
+              as ProductModel?,
+      newProduct: freezed == newProduct
+          ? _value.newProduct
+          : newProduct // ignore: cast_nullable_to_non_nullable
+              as ProductModel?,
+      oldVariation: freezed == oldVariation
+          ? _value.oldVariation
+          : oldVariation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      newVariation: freezed == newVariation
+          ? _value.newVariation
+          : newVariation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ModifiedProductModelImpl implements _ModifiedProductModel {
+  const _$ModifiedProductModelImpl(
+      {required this.id,
+      required this.action,
+      @JsonKey(name: 'action_label') required this.actionLabel,
+      @JsonKey(defaultValue: '') this.notes,
+      @JsonKey(name: 'old_price') this.oldPrice,
+      @JsonKey(name: 'new_price') this.newPrice,
+      @JsonKey(name: 'old_quantity') this.oldQuantity,
+      @JsonKey(name: 'new_quantity') this.newQuantity,
+      @JsonKey(name: 'old_product') this.oldProduct,
+      @JsonKey(name: 'new_product') this.newProduct,
+      @JsonKey(name: 'old_variation', defaultValue: '') this.oldVariation,
+      @JsonKey(name: 'new_variation', defaultValue: '') this.newVariation,
+      @JsonKey(name: 'created_at') required this.createdAt});
+
+  factory _$ModifiedProductModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ModifiedProductModelImplFromJson(json);
+
+  @override
+  final int id;
+
+  /// reduce | add | remove | replace
+  @override
+  final String action;
+  @override
+  @JsonKey(name: 'action_label')
+  final String actionLabel;
+  @override
+  @JsonKey(defaultValue: '')
+  final String? notes;
+  @override
+  @JsonKey(name: 'old_price')
+  final String? oldPrice;
+  @override
+  @JsonKey(name: 'new_price')
+  final String? newPrice;
+  @override
+  @JsonKey(name: 'old_quantity')
+  final int? oldQuantity;
+  @override
+  @JsonKey(name: 'new_quantity')
+  final int? newQuantity;
+  @override
+  @JsonKey(name: 'old_product')
+  final ProductModel? oldProduct;
+  @override
+  @JsonKey(name: 'new_product')
+  final ProductModel? newProduct;
+  @override
+  @JsonKey(name: 'old_variation', defaultValue: '')
+  final String? oldVariation;
+  @override
+  @JsonKey(name: 'new_variation', defaultValue: '')
+  final String? newVariation;
+  @override
+  @JsonKey(name: 'created_at')
+  final String createdAt;
+
+  @override
+  String toString() {
+    return 'ModifiedProductModel(id: $id, action: $action, actionLabel: $actionLabel, notes: $notes, oldPrice: $oldPrice, newPrice: $newPrice, oldQuantity: $oldQuantity, newQuantity: $newQuantity, oldProduct: $oldProduct, newProduct: $newProduct, oldVariation: $oldVariation, newVariation: $newVariation, createdAt: $createdAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ModifiedProductModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.action, action) || other.action == action) &&
+            (identical(other.actionLabel, actionLabel) ||
+                other.actionLabel == actionLabel) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.oldPrice, oldPrice) ||
+                other.oldPrice == oldPrice) &&
+            (identical(other.newPrice, newPrice) ||
+                other.newPrice == newPrice) &&
+            (identical(other.oldQuantity, oldQuantity) ||
+                other.oldQuantity == oldQuantity) &&
+            (identical(other.newQuantity, newQuantity) ||
+                other.newQuantity == newQuantity) &&
+            (identical(other.oldProduct, oldProduct) ||
+                other.oldProduct == oldProduct) &&
+            (identical(other.newProduct, newProduct) ||
+                other.newProduct == newProduct) &&
+            (identical(other.oldVariation, oldVariation) ||
+                other.oldVariation == oldVariation) &&
+            (identical(other.newVariation, newVariation) ||
+                other.newVariation == newVariation) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      action,
+      actionLabel,
+      notes,
+      oldPrice,
+      newPrice,
+      oldQuantity,
+      newQuantity,
+      oldProduct,
+      newProduct,
+      oldVariation,
+      newVariation,
+      createdAt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ModifiedProductModelImplCopyWith<_$ModifiedProductModelImpl>
+      get copyWith =>
+          __$$ModifiedProductModelImplCopyWithImpl<_$ModifiedProductModelImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ModifiedProductModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ModifiedProductModel implements ModifiedProductModel {
+  const factory _ModifiedProductModel(
+          {required final int id,
+          required final String action,
+          @JsonKey(name: 'action_label') required final String actionLabel,
+          @JsonKey(defaultValue: '') final String? notes,
+          @JsonKey(name: 'old_price') final String? oldPrice,
+          @JsonKey(name: 'new_price') final String? newPrice,
+          @JsonKey(name: 'old_quantity') final int? oldQuantity,
+          @JsonKey(name: 'new_quantity') final int? newQuantity,
+          @JsonKey(name: 'old_product') final ProductModel? oldProduct,
+          @JsonKey(name: 'new_product') final ProductModel? newProduct,
+          @JsonKey(name: 'old_variation', defaultValue: '')
+          final String? oldVariation,
+          @JsonKey(name: 'new_variation', defaultValue: '')
+          final String? newVariation,
+          @JsonKey(name: 'created_at') required final String createdAt}) =
+      _$ModifiedProductModelImpl;
+
+  factory _ModifiedProductModel.fromJson(Map<String, dynamic> json) =
+      _$ModifiedProductModelImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+
+  /// reduce | add | remove | replace
+  String get action;
+  @override
+  @JsonKey(name: 'action_label')
+  String get actionLabel;
+  @override
+  @JsonKey(defaultValue: '')
+  String? get notes;
+  @override
+  @JsonKey(name: 'old_price')
+  String? get oldPrice;
+  @override
+  @JsonKey(name: 'new_price')
+  String? get newPrice;
+  @override
+  @JsonKey(name: 'old_quantity')
+  int? get oldQuantity;
+  @override
+  @JsonKey(name: 'new_quantity')
+  int? get newQuantity;
+  @override
+  @JsonKey(name: 'old_product')
+  ProductModel? get oldProduct;
+  @override
+  @JsonKey(name: 'new_product')
+  ProductModel? get newProduct;
+  @override
+  @JsonKey(name: 'old_variation', defaultValue: '')
+  String? get oldVariation;
+  @override
+  @JsonKey(name: 'new_variation', defaultValue: '')
+  String? get newVariation;
+  @override
+  @JsonKey(name: 'created_at')
+  String get createdAt;
+  @override
+  @JsonKey(ignore: true)
+  _$$ModifiedProductModelImplCopyWith<_$ModifiedProductModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+OrderDisplayItem _$OrderDisplayItemFromJson(Map<String, dynamic> json) {
+  return _OrderDisplayItem.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OrderDisplayItem {
+  OrderDetailsModel? get current => throw _privateConstructorUsedError;
+  ModifiedProductModel? get history => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OrderDisplayItemCopyWith<OrderDisplayItem> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OrderDisplayItemCopyWith<$Res> {
+  factory $OrderDisplayItemCopyWith(
+          OrderDisplayItem value, $Res Function(OrderDisplayItem) then) =
+      _$OrderDisplayItemCopyWithImpl<$Res, OrderDisplayItem>;
+  @useResult
+  $Res call({OrderDetailsModel? current, ModifiedProductModel? history});
+
+  $OrderDetailsModelCopyWith<$Res>? get current;
+  $ModifiedProductModelCopyWith<$Res>? get history;
+}
+
+/// @nodoc
+class _$OrderDisplayItemCopyWithImpl<$Res, $Val extends OrderDisplayItem>
+    implements $OrderDisplayItemCopyWith<$Res> {
+  _$OrderDisplayItemCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? current = freezed,
+    Object? history = freezed,
+  }) {
+    return _then(_value.copyWith(
+      current: freezed == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as OrderDetailsModel?,
+      history: freezed == history
+          ? _value.history
+          : history // ignore: cast_nullable_to_non_nullable
+              as ModifiedProductModel?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OrderDetailsModelCopyWith<$Res>? get current {
+    if (_value.current == null) {
+      return null;
+    }
+
+    return $OrderDetailsModelCopyWith<$Res>(_value.current!, (value) {
+      return _then(_value.copyWith(current: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ModifiedProductModelCopyWith<$Res>? get history {
+    if (_value.history == null) {
+      return null;
+    }
+
+    return $ModifiedProductModelCopyWith<$Res>(_value.history!, (value) {
+      return _then(_value.copyWith(history: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$OrderDisplayItemImplCopyWith<$Res>
+    implements $OrderDisplayItemCopyWith<$Res> {
+  factory _$$OrderDisplayItemImplCopyWith(_$OrderDisplayItemImpl value,
+          $Res Function(_$OrderDisplayItemImpl) then) =
+      __$$OrderDisplayItemImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({OrderDetailsModel? current, ModifiedProductModel? history});
+
+  @override
+  $OrderDetailsModelCopyWith<$Res>? get current;
+  @override
+  $ModifiedProductModelCopyWith<$Res>? get history;
+}
+
+/// @nodoc
+class __$$OrderDisplayItemImplCopyWithImpl<$Res>
+    extends _$OrderDisplayItemCopyWithImpl<$Res, _$OrderDisplayItemImpl>
+    implements _$$OrderDisplayItemImplCopyWith<$Res> {
+  __$$OrderDisplayItemImplCopyWithImpl(_$OrderDisplayItemImpl _value,
+      $Res Function(_$OrderDisplayItemImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? current = freezed,
+    Object? history = freezed,
+  }) {
+    return _then(_$OrderDisplayItemImpl(
+      current: freezed == current
+          ? _value.current
+          : current // ignore: cast_nullable_to_non_nullable
+              as OrderDetailsModel?,
+      history: freezed == history
+          ? _value.history
+          : history // ignore: cast_nullable_to_non_nullable
+              as ModifiedProductModel?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OrderDisplayItemImpl extends _OrderDisplayItem {
+  const _$OrderDisplayItemImpl({this.current, this.history}) : super._();
+
+  factory _$OrderDisplayItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrderDisplayItemImplFromJson(json);
+
+  @override
+  final OrderDetailsModel? current;
+  @override
+  final ModifiedProductModel? history;
+
+  @override
+  String toString() {
+    return 'OrderDisplayItem(current: $current, history: $history)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrderDisplayItemImpl &&
+            (identical(other.current, current) || other.current == current) &&
+            (identical(other.history, history) || other.history == history));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, current, history);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrderDisplayItemImplCopyWith<_$OrderDisplayItemImpl> get copyWith =>
+      __$$OrderDisplayItemImplCopyWithImpl<_$OrderDisplayItemImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OrderDisplayItemImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OrderDisplayItem extends OrderDisplayItem {
+  const factory _OrderDisplayItem(
+      {final OrderDetailsModel? current,
+      final ModifiedProductModel? history}) = _$OrderDisplayItemImpl;
+  const _OrderDisplayItem._() : super._();
+
+  factory _OrderDisplayItem.fromJson(Map<String, dynamic> json) =
+      _$OrderDisplayItemImpl.fromJson;
+
+  @override
+  OrderDetailsModel? get current;
+  @override
+  ModifiedProductModel? get history;
+  @override
+  @JsonKey(ignore: true)
+  _$$OrderDisplayItemImplCopyWith<_$OrderDisplayItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

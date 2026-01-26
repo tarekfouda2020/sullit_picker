@@ -16,7 +16,7 @@ class NotificationCardWidget extends StatelessWidget {
         }
       },
       child: Container(
-        padding: const EdgeInsetsDirectional.only(start: 21,top: 16,bottom: 16),
+        padding: const EdgeInsetsDirectional.only(start: 21,top: 16,bottom: 16,end: 10),
         margin: const EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
           color: context.colors.white,
@@ -30,7 +30,7 @@ class NotificationCardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(
-                  Res.sulitLogo,
+                  Res.appIcon,
                   width: 52,
                   height: 25,
                 ),
