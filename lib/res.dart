@@ -98,6 +98,7 @@ class Res {
   static const String crownIcon = "assets/images/icons/crown_icon.svg";
   static const String redPhone = "assets/images/icons/red_phone.svg";
   static const String visaIcon = "assets/images/icons/visa_icon.svg";
+  static const String placeHolder = "assets/images/placeHolder.png";
 
   // Illustrations
   static const String noOrdersIllustration = "assets/images/illustrations/no_orders.svg";

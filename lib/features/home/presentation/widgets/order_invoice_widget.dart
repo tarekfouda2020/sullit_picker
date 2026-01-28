@@ -72,18 +72,13 @@ class OrderInvoiceWidget extends StatelessWidget {
                       text: TextSpan(
                         style:
                             AppTextStyle.s16_w700(color: context.colors.appGreen),
-                        children: [
-                          const TextSpan(text: "Grand Total "),
-                          TextSpan(
-                            text: "( Amount Charged )",
-                            style: AppTextStyle.s12_w500(
-                                color: context.colors.appGreen),
-                          ),
+                        children: const [
+                          TextSpan(text: "Grand Total"),
                         ],
                       ),
                     ),
                     Text(
-                      invoice.grandTotal,
+                      invoice.getGrandTotal().toStringAsFixed(2),
                       style: AppTextStyle.s20_w700(color: context.colors.appGreen),
                     ).withDirhamSymbol(symbolColor: context.colors.appGreen),
                   ],

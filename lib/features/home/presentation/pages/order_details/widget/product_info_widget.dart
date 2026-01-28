@@ -2,6 +2,7 @@
 import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/features/auth/presentation/pages/change_password/change_password_imports.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/product_image_widget.dart';
 
 class ProductInfoWidget extends StatelessWidget {
   final OrderDetailsModel data;

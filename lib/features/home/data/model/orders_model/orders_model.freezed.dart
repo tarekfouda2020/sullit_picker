@@ -249,6 +249,10 @@ mixin _$OrderModel {
   set shipping(String? value) => throw _privateConstructorUsedError;
   String? get tax => throw _privateConstructorUsedError;
   set tax(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tax_percentage')
+  String? get taxPercentage => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tax_percentage')
+  set taxPercentage(String? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'coupon_discount')
   String? get couponDiscount => throw _privateConstructorUsedError;
   @JsonKey(name: 'coupon_discount')
@@ -412,6 +416,7 @@ abstract class $OrderModelCopyWith<$Res> {
       String? subtotal,
       String? shipping,
       String? tax,
+      @JsonKey(name: 'tax_percentage') String? taxPercentage,
       @JsonKey(name: 'coupon_discount') String? couponDiscount,
       @JsonKey(name: 'service_fees') String? serviceFees,
       @JsonKey(name: 'environment_fees') String? envFees,
@@ -472,6 +477,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? subtotal = freezed,
     Object? shipping = freezed,
     Object? tax = freezed,
+    Object? taxPercentage = freezed,
     Object? couponDiscount = freezed,
     Object? serviceFees = freezed,
     Object? envFees = freezed,
@@ -533,6 +539,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       tax: freezed == tax
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxPercentage: freezed == taxPercentage
+          ? _value.taxPercentage
+          : taxPercentage // ignore: cast_nullable_to_non_nullable
               as String?,
       couponDiscount: freezed == couponDiscount
           ? _value.couponDiscount
@@ -687,6 +697,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       String? subtotal,
       String? shipping,
       String? tax,
+      @JsonKey(name: 'tax_percentage') String? taxPercentage,
       @JsonKey(name: 'coupon_discount') String? couponDiscount,
       @JsonKey(name: 'service_fees') String? serviceFees,
       @JsonKey(name: 'environment_fees') String? envFees,
@@ -747,6 +758,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? subtotal = freezed,
     Object? shipping = freezed,
     Object? tax = freezed,
+    Object? taxPercentage = freezed,
     Object? couponDiscount = freezed,
     Object? serviceFees = freezed,
     Object? envFees = freezed,
@@ -808,6 +820,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
       tax: freezed == tax
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
+              as String?,
+      taxPercentage: freezed == taxPercentage
+          ? _value.taxPercentage
+          : taxPercentage // ignore: cast_nullable_to_non_nullable
               as String?,
       couponDiscount: freezed == couponDiscount
           ? _value.couponDiscount
@@ -937,6 +953,7 @@ class _$OrderModelImpl extends _OrderModel {
       this.subtotal,
       this.shipping,
       this.tax,
+      @JsonKey(name: 'tax_percentage') this.taxPercentage,
       @JsonKey(name: 'coupon_discount') this.couponDiscount,
       @JsonKey(name: 'service_fees') this.serviceFees,
       @JsonKey(name: 'environment_fees') this.envFees,
@@ -991,6 +1008,9 @@ class _$OrderModelImpl extends _OrderModel {
   String? shipping;
   @override
   String? tax;
+  @override
+  @JsonKey(name: 'tax_percentage')
+  String? taxPercentage;
   @override
   @JsonKey(name: 'coupon_discount')
   String? couponDiscount;
@@ -1086,7 +1106,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, subtotal: $subtotal, shipping: $shipping, tax: $tax, couponDiscount: $couponDiscount, serviceFees: $serviceFees, envFees: $envFees, techFees: $techFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, loyaltyPointsValue: $loyaltyPointsValue, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, modifiedProducts: $modifiedProducts, displayItems: $displayItems, discounts: $discounts, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, subtotal: $subtotal, shipping: $shipping, tax: $tax, taxPercentage: $taxPercentage, couponDiscount: $couponDiscount, serviceFees: $serviceFees, envFees: $envFees, techFees: $techFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, loyaltyPointsValue: $loyaltyPointsValue, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, modifiedProducts: $modifiedProducts, displayItems: $displayItems, discounts: $discounts, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   @JsonKey(ignore: true)
@@ -1113,6 +1133,7 @@ abstract class _OrderModel extends OrderModel {
       String? subtotal,
       String? shipping,
       String? tax,
+      @JsonKey(name: 'tax_percentage') String? taxPercentage,
       @JsonKey(name: 'coupon_discount') String? couponDiscount,
       @JsonKey(name: 'service_fees') String? serviceFees,
       @JsonKey(name: 'environment_fees') String? envFees,
@@ -1176,6 +1197,11 @@ abstract class _OrderModel extends OrderModel {
   @override
   String? get tax;
   set tax(String? value);
+  @override
+  @JsonKey(name: 'tax_percentage')
+  String? get taxPercentage;
+  @JsonKey(name: 'tax_percentage')
+  set taxPercentage(String? value);
   @override
   @JsonKey(name: 'coupon_discount')
   String? get couponDiscount;
@@ -1358,8 +1384,12 @@ mixin _$OrderDetailsModel {
   set unitPrice(String value) => throw _privateConstructorUsedError;
   ProductModel? get product => throw _privateConstructorUsedError;
   set product(ProductModel? value) => throw _privateConstructorUsedError;
+
+  /// used in local data
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   int? get newVariantId => throw _privateConstructorUsedError;
+
+  /// used in local data
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   set newVariantId(int? value) => throw _privateConstructorUsedError;
   @JsonKey(name: "added_variant_id", defaultValue: -1)
@@ -1378,6 +1408,11 @@ mixin _$OrderDetailsModel {
   double? get fixedUnitPrice => throw _privateConstructorUsedError;
   @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
   set fixedUnitPrice(double? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'old_replaced_model')
+  OldReplacedModel? get oldReplacedModel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'old_replaced_model')
+  set oldReplacedModel(OldReplacedModel? value) =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1403,9 +1438,11 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
-      double? fixedUnitPrice});
+      double? fixedUnitPrice,
+      @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel});
 
   $ProductModelCopyWith<$Res>? get product;
+  $OldReplacedModelCopyWith<$Res>? get oldReplacedModel;
 }
 
 /// @nodoc
@@ -1432,6 +1469,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? newPrice = freezed,
     Object? pickerNotes = freezed,
     Object? fixedUnitPrice = freezed,
+    Object? oldReplacedModel = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1478,6 +1516,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.fixedUnitPrice
           : fixedUnitPrice // ignore: cast_nullable_to_non_nullable
               as double?,
+      oldReplacedModel: freezed == oldReplacedModel
+          ? _value.oldReplacedModel
+          : oldReplacedModel // ignore: cast_nullable_to_non_nullable
+              as OldReplacedModel?,
     ) as $Val);
   }
 
@@ -1490,6 +1532,18 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
 
     return $ProductModelCopyWith<$Res>(_value.product!, (value) {
       return _then(_value.copyWith(product: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OldReplacedModelCopyWith<$Res>? get oldReplacedModel {
+    if (_value.oldReplacedModel == null) {
+      return null;
+    }
+
+    return $OldReplacedModelCopyWith<$Res>(_value.oldReplacedModel!, (value) {
+      return _then(_value.copyWith(oldReplacedModel: value) as $Val);
     });
   }
 }
@@ -1514,10 +1568,13 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
-      double? fixedUnitPrice});
+      double? fixedUnitPrice,
+      @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel});
 
   @override
   $ProductModelCopyWith<$Res>? get product;
+  @override
+  $OldReplacedModelCopyWith<$Res>? get oldReplacedModel;
 }
 
 /// @nodoc
@@ -1542,6 +1599,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? newPrice = freezed,
     Object? pickerNotes = freezed,
     Object? fixedUnitPrice = freezed,
+    Object? oldReplacedModel = freezed,
   }) {
     return _then(_$OrderDetailsModelImpl(
       id: null == id
@@ -1588,6 +1646,10 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
           ? _value.fixedUnitPrice
           : fixedUnitPrice // ignore: cast_nullable_to_non_nullable
               as double?,
+      oldReplacedModel: freezed == oldReplacedModel
+          ? _value.oldReplacedModel
+          : oldReplacedModel // ignore: cast_nullable_to_non_nullable
+              as OldReplacedModel?,
     ));
   }
 }
@@ -1606,8 +1668,8 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
       @JsonKey(name: "added_variant_id", defaultValue: -1) this.addedVariantId,
       @JsonKey(name: "new_price", defaultValue: 0.0) this.newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "") this.pickerNotes,
-      @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
-      this.fixedUnitPrice})
+      @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0) this.fixedUnitPrice,
+      @JsonKey(name: 'old_replaced_model') this.oldReplacedModel})
       : super._();
 
   factory _$OrderDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -1626,6 +1688,8 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   String unitPrice;
   @override
   ProductModel? product;
+
+  /// used in local data
   @override
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   int? newVariantId;
@@ -1641,10 +1705,13 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   @override
   @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
   double? fixedUnitPrice;
+  @override
+  @JsonKey(name: 'old_replaced_model')
+  OldReplacedModel? oldReplacedModel;
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes, fixedUnitPrice: $fixedUnitPrice)';
+    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes, fixedUnitPrice: $fixedUnitPrice, oldReplacedModel: $oldReplacedModel)';
   }
 
   @JsonKey(ignore: true)
@@ -1675,7 +1742,9 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
-      double? fixedUnitPrice}) = _$OrderDetailsModelImpl;
+      double? fixedUnitPrice,
+      @JsonKey(name: 'old_replaced_model')
+      OldReplacedModel? oldReplacedModel}) = _$OrderDetailsModelImpl;
   _OrderDetailsModel._() : super._();
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
@@ -1702,8 +1771,12 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   ProductModel? get product;
   set product(ProductModel? value);
   @override
+
+  /// used in local data
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   int? get newVariantId;
+
+  /// used in local data
   @JsonKey(name: "new_variant_id", defaultValue: -1)
   set newVariantId(int? value);
   @override
@@ -1726,6 +1799,11 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   double? get fixedUnitPrice;
   @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
   set fixedUnitPrice(double? value);
+  @override
+  @JsonKey(name: 'old_replaced_model')
+  OldReplacedModel? get oldReplacedModel;
+  @JsonKey(name: 'old_replaced_model')
+  set oldReplacedModel(OldReplacedModel? value);
   @override
   @JsonKey(ignore: true)
   _$$OrderDetailsModelImplCopyWith<_$OrderDetailsModelImpl> get copyWith =>
@@ -3749,5 +3827,229 @@ abstract class _OrderDisplayItem extends OrderDisplayItem {
   @override
   @JsonKey(ignore: true)
   _$$OrderDisplayItemImplCopyWith<_$OrderDisplayItemImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+OldReplacedModel _$OldReplacedModelFromJson(Map<String, dynamic> json) {
+  return _OldReplacedModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$OldReplacedModel {
+  String get image => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get unitPrice => throw _privateConstructorUsedError;
+  String get qnt => throw _privateConstructorUsedError;
+  String get replaceReason => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $OldReplacedModelCopyWith<OldReplacedModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OldReplacedModelCopyWith<$Res> {
+  factory $OldReplacedModelCopyWith(
+          OldReplacedModel value, $Res Function(OldReplacedModel) then) =
+      _$OldReplacedModelCopyWithImpl<$Res, OldReplacedModel>;
+  @useResult
+  $Res call(
+      {String image,
+      String name,
+      String unitPrice,
+      String qnt,
+      String replaceReason});
+}
+
+/// @nodoc
+class _$OldReplacedModelCopyWithImpl<$Res, $Val extends OldReplacedModel>
+    implements $OldReplacedModelCopyWith<$Res> {
+  _$OldReplacedModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = null,
+    Object? name = null,
+    Object? unitPrice = null,
+    Object? qnt = null,
+    Object? replaceReason = null,
+  }) {
+    return _then(_value.copyWith(
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      unitPrice: null == unitPrice
+          ? _value.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as String,
+      qnt: null == qnt
+          ? _value.qnt
+          : qnt // ignore: cast_nullable_to_non_nullable
+              as String,
+      replaceReason: null == replaceReason
+          ? _value.replaceReason
+          : replaceReason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$OldReplacedModelImplCopyWith<$Res>
+    implements $OldReplacedModelCopyWith<$Res> {
+  factory _$$OldReplacedModelImplCopyWith(_$OldReplacedModelImpl value,
+          $Res Function(_$OldReplacedModelImpl) then) =
+      __$$OldReplacedModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String image,
+      String name,
+      String unitPrice,
+      String qnt,
+      String replaceReason});
+}
+
+/// @nodoc
+class __$$OldReplacedModelImplCopyWithImpl<$Res>
+    extends _$OldReplacedModelCopyWithImpl<$Res, _$OldReplacedModelImpl>
+    implements _$$OldReplacedModelImplCopyWith<$Res> {
+  __$$OldReplacedModelImplCopyWithImpl(_$OldReplacedModelImpl _value,
+      $Res Function(_$OldReplacedModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = null,
+    Object? name = null,
+    Object? unitPrice = null,
+    Object? qnt = null,
+    Object? replaceReason = null,
+  }) {
+    return _then(_$OldReplacedModelImpl(
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      unitPrice: null == unitPrice
+          ? _value.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as String,
+      qnt: null == qnt
+          ? _value.qnt
+          : qnt // ignore: cast_nullable_to_non_nullable
+              as String,
+      replaceReason: null == replaceReason
+          ? _value.replaceReason
+          : replaceReason // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$OldReplacedModelImpl implements _OldReplacedModel {
+  const _$OldReplacedModelImpl(
+      {required this.image,
+      required this.name,
+      required this.unitPrice,
+      required this.qnt,
+      required this.replaceReason});
+
+  factory _$OldReplacedModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OldReplacedModelImplFromJson(json);
+
+  @override
+  final String image;
+  @override
+  final String name;
+  @override
+  final String unitPrice;
+  @override
+  final String qnt;
+  @override
+  final String replaceReason;
+
+  @override
+  String toString() {
+    return 'OldReplacedModel(image: $image, name: $name, unitPrice: $unitPrice, qnt: $qnt, replaceReason: $replaceReason)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OldReplacedModelImpl &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.unitPrice, unitPrice) ||
+                other.unitPrice == unitPrice) &&
+            (identical(other.qnt, qnt) || other.qnt == qnt) &&
+            (identical(other.replaceReason, replaceReason) ||
+                other.replaceReason == replaceReason));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, image, name, unitPrice, qnt, replaceReason);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OldReplacedModelImplCopyWith<_$OldReplacedModelImpl> get copyWith =>
+      __$$OldReplacedModelImplCopyWithImpl<_$OldReplacedModelImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$OldReplacedModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _OldReplacedModel implements OldReplacedModel {
+  const factory _OldReplacedModel(
+      {required final String image,
+      required final String name,
+      required final String unitPrice,
+      required final String qnt,
+      required final String replaceReason}) = _$OldReplacedModelImpl;
+
+  factory _OldReplacedModel.fromJson(Map<String, dynamic> json) =
+      _$OldReplacedModelImpl.fromJson;
+
+  @override
+  String get image;
+  @override
+  String get name;
+  @override
+  String get unitPrice;
+  @override
+  String get qnt;
+  @override
+  String get replaceReason;
+  @override
+  @JsonKey(ignore: true)
+  _$$OldReplacedModelImplCopyWith<_$OldReplacedModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

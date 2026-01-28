@@ -31,7 +31,7 @@ class DispatchButtonWidget extends StatelessWidget {
             style: AppTextStyle.s14_w600(color: context.colors.black),
             ),
             Gaps.vGap5,
-            DirhamPrice(amount: controller.getDetailsData.total,
+            DirhamPrice(amount: controller.getDetailsData.invoiceModel.getGrandTotal().toStringAsFixed(2),
               textStyle: AppTextStyle.s18_w700(color: context.colors.darkRose),
             )
           ],

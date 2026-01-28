@@ -44,9 +44,9 @@ class _OrderDetailsState extends State<OrderDetails> {
           onSuccessWidget: (data) {
             return Column(
               children: [
-                Gaps.vGap(kToolbarHeight),
+                Gaps.vGap(controller.getHeight),
                 OrderDetailsHeaderWidget(data: data),
-                Gaps.vGap5,
+                Gaps.vGap3,
                 Expanded(
                   child: ListView(
                     children: [

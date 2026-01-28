@@ -108,6 +108,7 @@ dependencies:
   simple_barcode_scanner: ^0.3.0
   barcode: ^2.2.9
   new_version_plus: ^0.1.0
+  readmore: ^3.0.0
 #  slide_countdown: ^2.0.2
 #  webview_flutter_wkwebview: ^3.10.3
 

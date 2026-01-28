@@ -2,6 +2,7 @@ import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.d
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/barcode_price_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/edit_single_qnt_price_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/old_replaced_item_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/product_info_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/return_item_button_widget.dart';
 import 'pick_item_button_widget.dart';
@@ -29,6 +30,8 @@ class CardItemPickWidget extends StatelessWidget {
         children: [
           ProductInfoWidget(data: data),
           Gaps.vGap15,
+          if(data.product?.isAdded == true && data.oldReplacedModel != null)
+            OldReplacedItemWidget(model: data.oldReplacedModel!),
           Column(
             spacing: 5,
             children: [

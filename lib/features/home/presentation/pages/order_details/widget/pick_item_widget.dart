@@ -47,7 +47,6 @@ class PickItemWidget extends StatelessWidget {
         CardPickedRatioWidget(
           pickedPercentage: orderDetails.product!.productPickedPercent!,
           child: Stack(
-            key: GlobalKey(debugLabel: "${orderDetails.id}"),
             children: [
               CardItemPickWidget(
                 controller: controller,

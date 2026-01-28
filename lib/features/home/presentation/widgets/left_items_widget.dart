@@ -19,14 +19,19 @@ class LeftItemsWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
+          Text(
+            '${Translate.s.no_of_items} :  ',
+            style: AppTextStyle.s16_w300(color: context.colors.black),
+          ),
           Expanded(
-              child: Text(
-                '${Translate.s.no_of_items} : $numberOfItems',
-                style: AppTextStyle.s16_w300(color: context.colors.black),
-              )),
+            child: Text(
+              '$numberOfItems',
+              style: AppTextStyle.s16_w800(color: context.colors.black),
+            ),
+          ),
           Text(
             endTitle ?? '${Translate.s.picked} ${pickedPercent.toStringAsFixed(2)}%',
-            style: AppTextStyle.s14_w400(color: context.colors.black),
+            style: AppTextStyle.s14_w500(color: context.colors.black),
           )
         ],
       ),

@@ -39,6 +39,7 @@ class OrderModel with _$OrderModel {
     String? subtotal,
     String? shipping,
     String? tax,
+    @JsonKey(name: 'tax_percentage') String? taxPercentage,
     @JsonKey(name: 'coupon_discount') String? couponDiscount,
     @JsonKey(name: 'service_fees') String? serviceFees,
     @JsonKey(name: 'environment_fees') String? envFees,
@@ -158,10 +159,13 @@ class OrderModel with _$OrderModel {
         grandTotal: total,
         envFees: envFees ?? "",
         bagsCount: bagsCount,
-        total: totalFeeAmount ?? "",
+        productsTotalPrice: getOriginalTotalPrice().toStringAsFixed(2),
         discounts: discounts ?? <OrderDiscountModel>[],
         bagPrice: bagPrice,
+        taxPercentage: taxPercentage ?? ""
       );
+
+
 }
 
 @unfreezed
@@ -175,11 +179,14 @@ class OrderDetailsModel with _$OrderDetailsModel {
     required String price,
     @JsonKey(name: "unit_price") required String unitPrice,
     ProductModel? product,
+
+    /// used in local data
     @JsonKey(name: "new_variant_id", defaultValue: -1) int? newVariantId,
     @JsonKey(name: "added_variant_id", defaultValue: -1) int? addedVariantId,
     @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
     @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
     @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0) double? fixedUnitPrice,
+    @JsonKey(name: 'old_replaced_model',) OldReplacedModel? oldReplacedModel,
   }) = _OrderDetailsModel;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -191,15 +198,7 @@ class OrderDetailsModel with _$OrderDetailsModel {
     return unitPrice;
   }
 
-  // double get remainQntPrice{
-  //   var itemPrice = double.parse(price);
-  //   var singleItemPrice = (itemPrice/quantity);
-  //   if(product!.replaced){
-  //     return itemPrice*remainQnt ;
-  //   }else{
-  //     return singleItemPrice*remainQnt;
-  //   }
-  // }
+
 
   double get remainQntPrice {
     double itemPrice = double.parse(unitPrice);
@@ -212,6 +211,8 @@ class OrderDetailsModel with _$OrderDetailsModel {
 
   bool get hasNoFixedPriceYet =>
       fixedUnitPrice == null || fixedUnitPrice == 0.0;
+
+
 }
 
 @unfreezed
@@ -409,4 +410,19 @@ class OrderDisplayItem with _$OrderDisplayItem {
     }
   }
 
+}
+
+
+@freezed
+class OldReplacedModel with _$OldReplacedModel {
+  const factory OldReplacedModel({
+    required String image,
+    required String name,
+    required String unitPrice,
+    required String qnt,
+    required String replaceReason,
+  }) = _OldReplacedModel;
+
+  factory OldReplacedModel.fromJson(Map<String, dynamic> json) =>
+      _$OldReplacedModelFromJson(json);
 }

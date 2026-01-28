@@ -63,7 +63,6 @@ class CardOrderWidget extends StatelessWidget {
           CardPickedRatioWidget(
               pickedPercentage: data.pickedPercent!,
               child: LeftItemsWidget(
-                key: GlobalKey(debugLabel: "${data.id}"),
                 numberOfItems: data.totalItems,
                 pickedPercent: data.pickedPercent!,
               )),

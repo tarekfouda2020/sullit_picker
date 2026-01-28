@@ -26,7 +26,6 @@ class TimerCardDetailsWidget extends StatelessWidget {
           CardPickedRatioWidget(
               pickedPercentage: data.pickedPercent!,
               child: LeftItemsWidget(
-                key: GlobalKey(debugLabel: "${data.id}"),
                 numberOfItems: data.ordersDetails?.length ?? 0,
                 pickedPercent: data.pickedPercent!,
                 endTitle: "${(data.ordersDetails?.length ?? 0) - controller.getPickedItemsCount} ${Translate.of(context).items_left_suffix}",

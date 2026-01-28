@@ -35,6 +35,7 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
       subtotal: json['subtotal'] as String?,
       shipping: json['shipping'] as String?,
       tax: json['tax'] as String?,
+      taxPercentage: json['tax_percentage'] as String?,
       couponDiscount: json['coupon_discount'] as String?,
       serviceFees: json['service_fees'] as String?,
       envFees: json['environment_fees'] as String?,
@@ -97,6 +98,7 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'subtotal': instance.subtotal,
       'shipping': instance.shipping,
       'tax': instance.tax,
+      'tax_percentage': instance.taxPercentage,
       'coupon_discount': instance.couponDiscount,
       'service_fees': instance.serviceFees,
       'environment_fees': instance.envFees,
@@ -143,6 +145,10 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
       newPrice: (json['new_price'] as num?)?.toDouble() ?? 0.0,
       pickerNotes: json['picker_notes'] as String? ?? '',
       fixedUnitPrice: (json['fixed_unit_price'] as num?)?.toDouble() ?? 0.0,
+      oldReplacedModel: json['old_replaced_model'] == null
+          ? null
+          : OldReplacedModel.fromJson(
+              json['old_replaced_model'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$OrderDetailsModelImplToJson(
@@ -159,6 +165,7 @@ Map<String, dynamic> _$$OrderDetailsModelImplToJson(
       'new_price': instance.newPrice,
       'picker_notes': instance.pickerNotes,
       'fixed_unit_price': instance.fixedUnitPrice,
+      'old_replaced_model': instance.oldReplacedModel,
     };
 
 _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
@@ -337,4 +344,24 @@ Map<String, dynamic> _$$OrderDisplayItemImplToJson(
     <String, dynamic>{
       'current': instance.current,
       'history': instance.history,
+    };
+
+_$OldReplacedModelImpl _$$OldReplacedModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$OldReplacedModelImpl(
+      image: json['image'] as String,
+      name: json['name'] as String,
+      unitPrice: json['unitPrice'] as String,
+      qnt: json['qnt'] as String,
+      replaceReason: json['replaceReason'] as String,
+    );
+
+Map<String, dynamic> _$$OldReplacedModelImplToJson(
+        _$OldReplacedModelImpl instance) =>
+    <String, dynamic>{
+      'image': instance.image,
+      'name': instance.name,
+      'unitPrice': instance.unitPrice,
+      'qnt': instance.qnt,
+      'replaceReason': instance.replaceReason,
     };

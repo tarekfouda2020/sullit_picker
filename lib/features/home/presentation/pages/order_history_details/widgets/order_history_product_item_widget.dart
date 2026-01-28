@@ -38,7 +38,9 @@ class OrderHistoryProductItemWidget extends StatelessWidget {
                     Flexible(
                       child: Text(
                         item.name,
-                        style: AppTextStyle.s14_w600(color: context.colors.black),
+                        style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
+                          height: 1.3
+                        ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),

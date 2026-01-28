@@ -90,8 +90,6 @@ class OrderDetailsController {
   void confirmReplaceReason(
       BuildContext context, OrderDetailsModel currentItem) {
     if (replaceReasonKey.currentState!.validate()) {
-      currentItem.pickerNotes = pickerNoteController.text;
-      pickerNoteController.clear();
       scanProduct(context, currentItem);
     }
   }
@@ -100,9 +98,9 @@ class OrderDetailsController {
       BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
     // BuildContext ctx = getIt<GlobalContext>().context();
-    // 62211628
-    // 31610
-    // getProductWithBarcode(ctx, "31610", oldItem);
+    // // 71860
+    // // 31610
+    // getProductWithBarcode(ctx, "71860", oldItem);
 
     String? barcode = await getIt<BarcodeService>().scanBarcode(context);
     if (barcode != null && barcode.isNotEmpty) {
@@ -121,6 +119,8 @@ class OrderDetailsController {
     var result = await getIt<HomeRepositories>().searchByBarcode(params);
     result.when(
       isSuccess: (data) {
+        oldItem.pickerNotes = pickerNoteController.text;
+        pickerNoteController.clear();
         addNewProduct(data!, oldItem);
       },
       isError: (error) {
@@ -202,6 +202,13 @@ class OrderDetailsController {
       unitPrice: newData.variant.mainPrice,
       addedVariantId: newData.variant.id,
       variation: "",
+      oldReplacedModel: OldReplacedModel(
+        image: oldItem.product?.thumbnailImage ?? "",
+        name: oldItem.product?.name ?? "",
+        unitPrice: oldItem.unitPrice,
+        qnt: "1",
+        replaceReason: oldItem.pickerNotes ?? "",
+      ),
       product: oldItem.product!.copyWith(
           name: newData.name,
           thumbnailImage: newData.thumbnailImage,
@@ -597,7 +604,7 @@ class OrderDetailsController {
   void deleteProduct(BuildContext context, int itemId) {
     Navigator.pop(context);
     OrderDetailsModel? removedItem = _detailsData.ordersDetails?.firstWhere(
-      (element) => element.id == itemId ,
+      (element) => element.id == itemId,
     );
     removedItem?.pickerNotes = pickerNoteController.text;
     _detailsData.ordersDetails!.remove(removedItem);
@@ -1008,7 +1015,8 @@ class OrderDetailsController {
         orderId: orderId,
         currentProductsDetails: _detailsData.ordersDetails!,
         deletedDetails: _detailsData.deletedOrders,
-        bagCount: bagCount
-    );
+        bagCount: bagCount);
   }
+
+  double get getHeight => Platform.isIOS ? kToolbarHeight : kToolbarHeight - 20;
 }
