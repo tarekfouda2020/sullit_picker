@@ -104,21 +104,21 @@ class OrderDetailsController {
       BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
     BuildContext ctx = getIt<GlobalContext>().context();
-    // 71860
-    // 31610
-    AppSnackBar.showSuccessSnackBar(
-      "${Translate.of(ctx).product_scanned}, with barcode: 71860",
-    );
-    getProductWithBarcode(ctx, "71860", oldItem);
+    // // 71860
+    // // 31610
+    // AppSnackBar.showSuccessSnackBar(
+    //   "${Translate.of(ctx).product_scanned}, with barcode: 71860",
+    // );
+    // getProductWithBarcode(ctx, "71860", oldItem);
 
-    // String? barcode = await getIt<BarcodeService>().scanBarcode(context);
-    // if (barcode != null && barcode.isNotEmpty) {
-    //   BuildContext ctx = getIt<GlobalContext>().context();
-    //   AppSnackBar.showSuccessSnackBar(
-    //     "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
-    //   );
-    //   getProductWithBarcode(ctx, barcode, oldItem);
-    // }
+    String? barcode = await getIt<BarcodeService>().scanBarcode(context);
+    if (barcode != null && barcode.isNotEmpty) {
+      BuildContext ctx = getIt<GlobalContext>().context();
+      AppSnackBar.showSuccessSnackBar(
+        "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
+      );
+      getProductWithBarcode(ctx, barcode, oldItem);
+    }
   }
 
   Future<void> getProductWithBarcode(
