@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/home/data/model/available_for_order_model/available_for_order_model.dart';
+import 'package:flutter_tdd/features/home/data/model/invoice_preview_model/invoice_preview_model.dart';
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/report_reason_model/report_reason_model.dart';
@@ -31,6 +32,8 @@ abstract class HomeRepositories {
   Future<MyResult<AvailableForOrderModel>> updateAvailability();
 
   Future<MyResult<OrderModel>> prepareOrder(PrepareOrderParams params);
+
+  Future<MyResult<InvoicePreviewModel>> updateInvoice(PrepareOrderParams params);
 
   Future<MyResult<List<OrderModel>>> getPreviousOrders(GenericPaginateParams params);
 }

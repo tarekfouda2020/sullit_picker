@@ -3,7 +3,7 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/order
 
 class NewPriceDialogWidget extends StatelessWidget {
   final OrderDetailsModel orderProduct;
-
+ final BaseBloc<bool> loadingCubit;
   final OrderDetailsController controller;
   final bool pickAll;
 
@@ -11,6 +11,7 @@ class NewPriceDialogWidget extends StatelessWidget {
       {super.key,
       required this.orderProduct,
       required this.controller,
+      required this.loadingCubit,
       this.pickAll = false});
 
   @override
@@ -23,7 +24,7 @@ class NewPriceDialogWidget extends StatelessWidget {
         controller.pickItem(orderProduct, pickedAll: pickAll);
         Navigator.pop(context);
       },
-      redOnTap: () => controller.showNewPriceDialog(context, orderProduct, pickAll: pickAll),
+      redOnTap: () => controller.showNewPriceDialog(context, orderProduct,loadingCubit, pickAll: pickAll),
     );
   }
 

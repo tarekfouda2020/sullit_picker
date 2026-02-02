@@ -352,7 +352,7 @@ _$OldReplacedModelImpl _$$OldReplacedModelImplFromJson(
       image: json['image'] as String,
       name: json['name'] as String,
       unitPrice: json['unitPrice'] as String,
-      qnt: json['qnt'] as String,
+      qnt: (json['qnt'] as num).toInt(),
       replaceReason: json['replaceReason'] as String,
     );
 

@@ -3839,7 +3839,7 @@ mixin _$OldReplacedModel {
   String get image => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get unitPrice => throw _privateConstructorUsedError;
-  String get qnt => throw _privateConstructorUsedError;
+  int get qnt => throw _privateConstructorUsedError;
   String get replaceReason => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3858,7 +3858,7 @@ abstract class $OldReplacedModelCopyWith<$Res> {
       {String image,
       String name,
       String unitPrice,
-      String qnt,
+      int qnt,
       String replaceReason});
 }
 
@@ -3897,7 +3897,7 @@ class _$OldReplacedModelCopyWithImpl<$Res, $Val extends OldReplacedModel>
       qnt: null == qnt
           ? _value.qnt
           : qnt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       replaceReason: null == replaceReason
           ? _value.replaceReason
           : replaceReason // ignore: cast_nullable_to_non_nullable
@@ -3918,7 +3918,7 @@ abstract class _$$OldReplacedModelImplCopyWith<$Res>
       {String image,
       String name,
       String unitPrice,
-      String qnt,
+      int qnt,
       String replaceReason});
 }
 
@@ -3955,7 +3955,7 @@ class __$$OldReplacedModelImplCopyWithImpl<$Res>
       qnt: null == qnt
           ? _value.qnt
           : qnt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       replaceReason: null == replaceReason
           ? _value.replaceReason
           : replaceReason // ignore: cast_nullable_to_non_nullable
@@ -3984,7 +3984,7 @@ class _$OldReplacedModelImpl implements _OldReplacedModel {
   @override
   final String unitPrice;
   @override
-  final String qnt;
+  final int qnt;
   @override
   final String replaceReason;
 
@@ -4032,7 +4032,7 @@ abstract class _OldReplacedModel implements OldReplacedModel {
       {required final String image,
       required final String name,
       required final String unitPrice,
-      required final String qnt,
+      required final int qnt,
       required final String replaceReason}) = _$OldReplacedModelImpl;
 
   factory _OldReplacedModel.fromJson(Map<String, dynamic> json) =
@@ -4045,7 +4045,7 @@ abstract class _OldReplacedModel implements OldReplacedModel {
   @override
   String get unitPrice;
   @override
-  String get qnt;
+  int get qnt;
   @override
   String get replaceReason;
   @override

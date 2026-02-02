@@ -19,11 +19,12 @@ class ProductInfoWidget extends StatelessWidget {
           haveRadius: false,
           boxShape: BoxShape.circle,
         ),
-        Gaps.hGap10,
+        Gaps.hGap8,
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Gaps.vGap10,
               Text(
                 "${data.product!.name} ${data.variation} ${data.variation.validateIfItWeight() == true
                     ?""
@@ -52,7 +53,7 @@ class ProductInfoWidget extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(width: 90)
+         const SizedBox(width: 28)
       ],
     );
   }

@@ -10,9 +10,14 @@ import 'edit_price_widget.dart';
 class EditSingleQntPriceWidget extends StatelessWidget {
   final OrderDetailsModel model;
   final OrderDetailsController controller;
+  final BaseBloc<bool> loadingCubit;
 
-  const EditSingleQntPriceWidget(
-      {super.key, required this.model, required this.controller});
+  const EditSingleQntPriceWidget({
+    super.key,
+    required this.model,
+    required this.controller,
+    required this.loadingCubit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +71,12 @@ class EditSingleQntPriceWidget extends StatelessWidget {
               const Spacer(),
               if (_showEditPrice())
                 EditPriceWidget(
-                  onTap: () => controller.showNewPriceDialog(context, model,
-                      popTwice: false),
+                  onTap: () => controller.showNewPriceDialog(
+                      context,
+                      model,
+                      loadingCubit,
+                      popTwice: false
+                  ),
                 ),
             ],
           ),
@@ -92,22 +101,11 @@ class EditSingleQntPriceWidget extends StatelessWidget {
   }
 
   bool _showPickerNote() =>
-     model.pickerNotes != null &&
-        model.pickerNotes?.isNotEmpty == true &&
-        model.product?.isAdded == false;
+      model.pickerNotes != null &&
+      model.pickerNotes?.isNotEmpty == true &&
+      model.product?.isAdded == false;
 
   bool _showEditPrice() =>
       model.product!.showEditPrice == true &&
       model.product!.productStatus!.shouldShowEditPriceIcon;
-
-// String _getPrice() {
-//   if(model.product!.replaced){
-//     return " ${model.price} ${model.variation.validateIfItWeight() == true
-//         ?"/${model.variation}"
-//         :""}";
-//   }
-//   return "${model.getProductPrice} ${model.variation.validateIfItWeight() == true
-//       ?"/${model.variation}"
-//       :""}";
-// }
 }

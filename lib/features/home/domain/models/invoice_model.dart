@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import '../../data/model/orders_model/orders_model.dart';
 
-
 /// total represent products total with Vat
 class InvoiceModel {
   final String subTotal;
@@ -74,44 +73,38 @@ class InvoiceModel {
         newEnvFeesValue;
 
     return InvoiceModel(
-      subTotal: subTotal,
-      shipping: shipping,
-      tax: tax,
-      couponDiscount: couponDiscount,
-      serviceFees: serviceFees,
-      techFees: techFees,
-      vatFeeAmount: vatFeeAmount,
-      totalFeeAmount: totalFeeAmount,
-      loyaltyPointsValue: loyaltyPointsValue,
-      grandTotal: newGrandTotalVal.toStringAsFixed(2),
-      envFees: newEnvFees,
-      bagsCount: newCount,
-      productsTotalPrice: productsTotalPrice,
-      discounts: discounts,
-      bagPrice: bagPrice,
-      taxPercentage: taxPercentage
-    );
+        subTotal: subTotal,
+        shipping: shipping,
+        tax: tax,
+        couponDiscount: couponDiscount,
+        serviceFees: serviceFees,
+        techFees: techFees,
+        vatFeeAmount: vatFeeAmount,
+        totalFeeAmount: totalFeeAmount,
+        loyaltyPointsValue: loyaltyPointsValue,
+        grandTotal: newGrandTotalVal.toStringAsFixed(2),
+        envFees: newEnvFees,
+        bagsCount: newCount,
+        productsTotalPrice: productsTotalPrice,
+        discounts: discounts,
+        bagPrice: bagPrice,
+        taxPercentage: taxPercentage);
   }
-
 
   double  getGrandTotal(){
     double sub = double.parse(subTotal);
     log("=====>>>>>>>>> sub total ${getSubTotal()}<<<<<<<<<");
-    double totalDiscounts = discounts.fold(0.0, (previousValue, element) => previousValue+double.parse(element.discountValue),) ;
+    double totalDiscounts = discounts.fold(0.0, (previousValue, element) => previousValue+double.parse(element.discount),) ;
     double envFee = double.parse(envFees);
     double grandTotal = (sub-totalDiscounts) + envFee + totalVat;
     return grandTotal;
   }
 
-  
-  double getSubTotal(){
+  double getSubTotal() {
     double totalPrice = double.parse(productsTotalPrice);
     log("=====>>>>>>>>> total ${totalPrice}<<<<<<<<<");
-    double vatPercent = double.parse(taxPercentage)/100;
-    double subTotalWithoutVat = totalPrice - (totalPrice*vatPercent);
+    double vatPercent = double.parse(taxPercentage) / 100;
+    double subTotalWithoutVat = totalPrice - (totalPrice * vatPercent);
     return subTotalWithoutVat;
   }
-
-
-
 }

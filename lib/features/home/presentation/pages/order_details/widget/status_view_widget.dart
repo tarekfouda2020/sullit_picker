@@ -12,7 +12,7 @@ class StatusViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      width: 113,
+      width: 110,
       height: 33,
       decoration: BoxDecoration(
         color: context.colors.phosphorousGreen.withAlpha(35),

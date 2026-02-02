@@ -8,9 +8,14 @@ import 'qnt_count_widget.dart';
 class PickItemButtonWidget extends StatelessWidget {
   final OrderDetailsController controller;
   final OrderDetailsModel data;
+  final BaseBloc<bool> loadingCubit;
 
-  const PickItemButtonWidget(
-      {super.key, required this.controller, required this.data});
+  const PickItemButtonWidget({
+    super.key,
+    required this.controller,
+    required this.data,
+    required this.loadingCubit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,6 @@ class PickItemButtonWidget extends StatelessWidget {
             onPressed: () => controller.onPressPick(context, data),
           ),
         ),
-
         Flexible(
           child: AppTextButton.maxCustom(
             text: Translate.of(context).pick_all,
@@ -53,7 +57,6 @@ class PickItemButtonWidget extends StatelessWidget {
                 : () => controller.onPressPick(context, data, pickAll: true),
           ),
         ),
-
         Column(
           children: [
             Text(
@@ -66,22 +69,25 @@ class PickItemButtonWidget extends StatelessWidget {
             ),
           ],
         ),
-        if(!controller.isProductFullPicked(data) && data.remainQnt  > 1 && data.product?.productStatus?.shouldShowReduceIcon == true)
-        GestureDetector(
-          onTap: () => controller.editQuantity(context, data),
-          child: Container(
-        padding: const EdgeInsets.all(5),
-            margin: const EdgeInsets.only(bottom: 4),
-            decoration:  BoxDecoration(
-              shape: BoxShape.circle,
-              color: context.colors.primary,
+        if (!controller.isProductFullPicked(data) &&
+            data.remainQnt > 1 &&
+            data.product?.productStatus?.shouldShowReduceIcon == true)
+          GestureDetector(
+            onTap: () => controller.editQuantity(context, data,loadingCubit),
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(bottom: 4),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: context.colors.primary,
+              ),
+              child: const Icon(
+                CupertinoIcons.minus,
+                color: CupertinoColors.white,
+                size: 20,
+              ),
             ),
-            child: const Icon(CupertinoIcons.minus,
-              color: CupertinoColors.white,
-              size:20,
-            ),
-          ),
-        )
+          )
       ],
     );
   }

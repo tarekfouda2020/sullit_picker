@@ -1,3 +1,5 @@
+
+
 class LogoutParams {
 
   final String deviceToken;

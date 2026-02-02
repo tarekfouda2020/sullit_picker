@@ -38,7 +38,7 @@ class OrderInvoiceWidget extends StatelessWidget {
                     ...invoice.discounts.map((discount) => _buildInvoiceRow(
                           context,
                           label: discount.typeLabel,
-                          value: discount.discountValue,
+                          value: discount.discount,
                           isDiscount: true,
                         )),
                     if (invoice.envFees.isNotEmpty && invoice.envFees != "0")

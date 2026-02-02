@@ -18,6 +18,8 @@ import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_par
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 import 'package:injectable/injectable.dart';
 
+import '../model/invoice_preview_model/invoice_preview_model.dart';
+
 @Injectable(as: HomeDataSource)
 class ImplHomeDataSource extends HomeDataSource {
   @override
@@ -152,6 +154,21 @@ class ImplHomeDataSource extends HomeDataSource {
       showLoader: true
   );
   return await GenericHttpImpl<OrderModel>()(model);
+
+}
+
+@override
+Future<MyResult<InvoicePreviewModel>> updateInvoice(PrepareOrderParams params) async {
+  HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.updateInvoice(params.orderId),
+      responseType: ResType.model,
+      requestMethod: RequestMethod.post,
+      toJsonFunc: (data) => InvoicePreviewModel.fromJson(data),
+      responseKey: (data) => data['data'],
+      requestBody: params.toJson(),
+      isFormData: true,
+  );
+  return await GenericHttpImpl<InvoicePreviewModel>()(model);
 
 }
 

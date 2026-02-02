@@ -12,6 +12,7 @@ class OldReplacedItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
+      alignment: AlignmentDirectional.centerEnd,
       children: [
         Container(
           margin: const EdgeInsets.only(bottom: 13),
@@ -35,12 +36,12 @@ class OldReplacedItemWidget extends StatelessWidget {
                   ),
                   Gaps.hGap10,
                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width*.35,
+                    width: MediaQuery.sizeOf(context).width*.36,
                     child: Text(
-                     "qwertyuiopasdfghjklzxcvbnm,wertyuixecrvtbynumi",
+                     model.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyle.s14_w400(color: context.colors.textColor)
+                      style: AppTextStyle.s16_w400(color: context.colors.mediumGray)
                           .copyWith(height: 1.2,
                       ),
                     ),
@@ -58,7 +59,12 @@ class OldReplacedItemWidget extends StatelessWidget {
                         ).copyWith(
                             decoration: TextDecoration.lineThrough,
                             decorationColor: context.colors.textColor),
-                      ).withDirhamSymbol(),
+                      ).withDirhamSymbol(
+                        symbolStyle: AppTextStyle.s18_w400(
+                            color: context.colors.textColor).copyWith(
+                            decoration: TextDecoration.lineThrough,
+                            decorationColor: context.colors.textColor)
+                      ),
                       Gaps.vGap6,
                       Text(
                         "Qnt: ${model.qnt}",
@@ -88,7 +94,7 @@ class OldReplacedItemWidget extends StatelessWidget {
           ),
         ),
         PositionedDirectional(
-          top: -10,
+          top: -18,
           end: 12,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 12),

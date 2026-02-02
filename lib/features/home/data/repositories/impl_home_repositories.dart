@@ -3,6 +3,7 @@ import 'package:flutter_tdd/core/http/models/result.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/home/data/data_source/home_data_source.dart';
 import 'package:flutter_tdd/features/home/data/model/available_for_order_model/available_for_order_model.dart';
+import 'package:flutter_tdd/features/home/data/model/invoice_preview_model/invoice_preview_model.dart';
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
@@ -66,6 +67,11 @@ class ImplHomeRepositories extends HomeRepositories  {
   @override
   Future<MyResult<OrderModel>> prepareOrder(PrepareOrderParams params) async {
     return dataSource.prepareOrder(params);
+  }
+
+  @override
+  Future<MyResult<InvoicePreviewModel>> updateInvoice(PrepareOrderParams params) async {
+    return dataSource.updateInvoice(params);
   }
 
   @override

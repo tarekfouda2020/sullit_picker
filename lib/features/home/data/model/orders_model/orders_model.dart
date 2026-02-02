@@ -131,7 +131,7 @@ class OrderModel with _$OrderModel {
   String? getDeliveredDate() {
     try {
       DateTime date = DateTimeHelper.convertToDateTime(
-          strDate: deliveredAt, formatType: "yyyy-MM-dd HH:mm:ss");
+          strDate: "deliveredAt", formatType: "yyyy-MM-dd HH:mm:ss");
       String startDate = DateTimeHelper.formatDate(
           date: date, formatType: "dd-MM-yyyy - h:mm a");
       return startDate;
@@ -419,7 +419,7 @@ class OldReplacedModel with _$OldReplacedModel {
     required String image,
     required String name,
     required String unitPrice,
-    required String qnt,
+    required int qnt,
     required String replaceReason,
   }) = _OldReplacedModel;
 

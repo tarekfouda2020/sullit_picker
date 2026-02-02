@@ -11,11 +11,12 @@ import 'widgets_imports.dart';
 class CardItemPickWidget extends StatelessWidget {
   final OrderDetailsController controller;
   final OrderDetailsModel data;
-
+  final BaseBloc<bool> loadingCubit;
   const CardItemPickWidget({
     super.key,
     required this.controller,
     required this.data,
+    required this.loadingCubit,
   });
 
   @override
@@ -35,15 +36,15 @@ class CardItemPickWidget extends StatelessWidget {
           Column(
             spacing: 5,
             children: [
-              EditSingleQntPriceWidget(model: data,controller: controller,),
+              EditSingleQntPriceWidget(model: data,controller: controller,loadingCubit: loadingCubit,),
               BarcodePriceWidget(data: data),
               Divider(color: context.colors.disableGray,thickness: 1.3,)
             ],
           ),
-          PickItemButtonWidget(controller: controller,data: data),
+          PickItemButtonWidget(controller: controller,data: data,loadingCubit: loadingCubit),
           Gaps.vGap10,
           if(data.product!.pickedQuantity !> 0 || data.product!.replaced || data.product!.isAdded)
-            ReturnItemButtonWidget(onPress: () => controller.returnPickedItem(context,data)),
+            ReturnItemButtonWidget(onPress: () => controller.returnPickedItem(context,data,loadingCubit)),
           // if( data.product!.modified)
           //   ReturnItemButtonWidget(onPress:() => controller.returnPickedItem(context,data)),
           Gaps.vGap13,

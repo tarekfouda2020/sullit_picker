@@ -318,7 +318,7 @@ class GlobalNotification {
     // if (notInOrderDetails && (type.isNewOrder)) {
     if ((type.isNewOrder)) {
       getIt<OrdersHelper>().showNewOrderAlert();
-    } else if (type.isOrderAccepted || type.isNewOrder) {
+    } else if (type.isOrderAccepted || type.isOrderCanceled) {
       getIt<OrdersHelper>().getAllOrders();
     }
   }

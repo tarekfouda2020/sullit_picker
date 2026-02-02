@@ -46,7 +46,7 @@ class OrdersHelper {
      // Prevent accessing Hive if helper is disposed (during logout)
      if (_isDisposed) return [];
      
-     final jsonString = HiveHelper.instance.getDataFromBox<String>(
+     final String? jsonString = HiveHelper.instance.getDataFromBox<String>(
        HiveBoxesNames.orders,
        key: HiveBoxesKeys.assignedOrdersKey,
      );
@@ -56,11 +56,14 @@ class OrdersHelper {
      }
 
      final List<dynamic> decodedList = jsonDecode(jsonString);
-     return decodedList.map((e) => OrderModel.fromJson(e)).toList();
+     try{
+       return decodedList.map((e) => OrderModel.fromJson(e)).toList();
+     } catch(e){
+       return [];
+     }
    }
 
    Future<void> saveOrderDetails(OrderModel data) async {
-     // Prevent saving to Hive if helper is disposed (during logout)
      if (_isDisposed) return;
      
      final jsonString = jsonEncode(data.toJson());
@@ -72,8 +75,13 @@ class OrdersHelper {
      if (box == null || box.isEmpty) {
        return null;
      }
-     final Map<String, dynamic> map = jsonDecode(box) as Map<String, dynamic>;
-     return OrderModel.fromJson(map);
+    try{
+      final Map<String, dynamic> map = jsonDecode(box) as Map<String, dynamic>;
+      return OrderModel.fromJson(map);
+    }catch(e){
+       log("====>>>>>>>>>>>>error while decode data $e  <<<<<<<<<");
+       return null;
+    }
    }
 
    Future<void> deleteOrderDetails(int orderId) async {

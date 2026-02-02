@@ -35,7 +35,6 @@ class _InfoSectionShimmer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header
           Container(
             height: 45,
             padding: const EdgeInsets.all(12),
@@ -69,7 +68,6 @@ class _InfoSectionShimmer extends StatelessWidget {
                       )),
             ),
           ),
-          // Customer Info
           Container(
             padding: Dimens.paddingAll16Px,
             color: context.colors.offWhite,
