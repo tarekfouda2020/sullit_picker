@@ -75,7 +75,7 @@ class OrderModel with _$OrderModel {
     /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
     /// in replace item...if the original one qnt reduced by 1
     /// the original will added in this list
-    @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+    @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
     List<OrderDetailsModel>? qntChangedProducts,
     @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
     @JsonKey(name: 'preparation_seconds', defaultValue: 0)
@@ -416,6 +416,7 @@ class OrderDisplayItem with _$OrderDisplayItem {
 @freezed
 class OldReplacedModel with _$OldReplacedModel {
   const factory OldReplacedModel({
+    required int id,
     required String image,
     required String name,
     required String unitPrice,

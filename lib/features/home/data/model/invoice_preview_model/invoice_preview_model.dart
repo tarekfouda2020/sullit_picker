@@ -1,6 +1,8 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../orders_model/orders_model.dart';
+
 part 'invoice_preview_model.freezed.dart';
 part 'invoice_preview_model.g.dart';
 
@@ -12,6 +14,8 @@ class InvoicePreviewModel with _$InvoicePreviewModel{
   required String total,
   required String subtotal,
   required String tax,
+  @JsonKey(name: "coupon_discount") required String couponDiscount,
+  @JsonKey(name: "order_discounts") required List<OrderDiscountModel> discounts,
   }) = _InvoicePreviewModel;
 
 

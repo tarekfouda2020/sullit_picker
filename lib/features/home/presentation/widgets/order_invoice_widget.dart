@@ -41,7 +41,14 @@ class OrderInvoiceWidget extends StatelessWidget {
                           value: discount.discount,
                           isDiscount: true,
                         )),
-                    if (invoice.envFees.isNotEmpty && invoice.envFees != "0")
+                    if(invoice.haveCoupon)
+                      _buildInvoiceRow(
+                        context,
+                        label: "Voucher Discount",
+                        value: invoice.couponDiscount,
+                        isDiscount: true,
+                      ),
+                    if (invoice.haveEnvFees)
                       _buildInvoiceRow(
                         context,
                         label: "Environment Fee ( ${invoice.bagsCount}x Bags )",

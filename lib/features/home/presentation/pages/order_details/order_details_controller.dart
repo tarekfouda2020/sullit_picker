@@ -51,7 +51,8 @@ class OrderDetailsController {
     isAllPickedObs.setValue(isAllProductsPicked);
   }
 
-  void onPressReplace(BuildContext context, OrderDetailsModel item,BaseBloc<bool> loadingCubit) {
+  void onPressReplace(BuildContext context, OrderDetailsModel item,
+      BaseBloc<bool> loadingCubit) {
     if (isProductFullPicked(item)) {
       return;
     }
@@ -59,7 +60,7 @@ class OrderDetailsController {
     if (replacePermission) {
       showReplaceDialog(context, item);
     } else {
-      showDeleteDialog(context, item.id,loadingCubit);
+      showDeleteDialog(context, item.id, loadingCubit);
     }
   }
 
@@ -102,22 +103,22 @@ class OrderDetailsController {
   Future<void> scanProduct(
       BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
-    BuildContext ctx = getIt<GlobalContext>().context();
+    // BuildContext ctx = getIt<GlobalContext>().context();
     // // 71860
     // // 31610
-    AppSnackBar.showSuccessSnackBar(
-      "${Translate.of(ctx).product_scanned}, with barcode: 71860",
-    );
-    getProductWithBarcode(ctx, "71860", oldItem);
+    // AppSnackBar.showSuccessSnackBar(
+    //   "${Translate.of(ctx).product_scanned}, with barcode: 71860",
+    // );
+    // getProductWithBarcode(ctx, "71860", oldItem);
 
-    // String? barcode = await getIt<BarcodeService>().scanBarcode(context);
-    // if (barcode != null && barcode.isNotEmpty) {
-    //   BuildContext ctx = getIt<GlobalContext>().context();
-    //   AppSnackBar.showSuccessSnackBar(
-    //     "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
-    //   );
-    //   getProductWithBarcode(ctx, barcode, oldItem);
-    // }
+    String? barcode = await getIt<BarcodeService>().scanBarcode(context);
+    if (barcode != null && barcode.isNotEmpty) {
+      BuildContext ctx = getIt<GlobalContext>().context();
+      AppSnackBar.showSuccessSnackBar(
+        "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
+      );
+      getProductWithBarcode(ctx, barcode, oldItem);
+    }
   }
 
   Future<void> getProductWithBarcode(
@@ -186,7 +187,7 @@ class OrderDetailsController {
       AppSnackBar.showSimpleToast(
           msg: Translate.s.cannot_replace_higher_price(oldItemPrice.toString()),
           type: ToastType.error,
-          gravity: ToastGravity.BOTTOM);
+          gravity: ToastGravity.CENTER);
       return;
     }
     int index =
@@ -196,25 +197,33 @@ class OrderDetailsController {
       /// to define that...this item qnt has been modified when sending in prepare order params
       /// and sending remain qnt
 
-      // oldItem.quantity = oldItem.quantity - 1;
+      oldItem.quantity = oldItem.quantity - 1;
       oldItem.product!.productStatus = ProductStatusEnum.qntModified;
       _detailsData.ordersDetails![index] = oldItem;
     }
-    List<int> existedNewVariantIds =
-        _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toList();
-    bool isNewItemAddedBefore =
-        existedNewVariantIds.toSet().contains(newData.variant.id);
+    Set<int> existedNewVariantIds =
+        _detailsData.ordersDetails!.map((e) => e.addedVariantId!).toSet();
+    Set<int> replacedOldItemsIds = _detailsData.ordersDetails!
+        .where((element) => element.oldReplacedModel != null)
+        .map((e) => e.oldReplacedModel!.id)
+        .toSet();
+
+    bool isNewItemAddedBeforeAndHasTheOldItem =
+        existedNewVariantIds.contains(newData.variant.id) &&
+            replacedOldItemsIds.contains(oldItem.id);
 
     OrderDetailsModel updatedItem = oldItem.copyWith(
+      id: newData.id,
       price: newData.variant.mainPrice,
       unitPrice: newData.variant.mainPrice,
       addedVariantId: newData.variant.id,
       variation: "",
       oldReplacedModel: OldReplacedModel(
+        id: oldItem.id,
         image: oldItem.product?.thumbnailImage ?? "",
         name: oldItem.product?.name ?? "",
         unitPrice: oldItem.unitPrice,
-        qnt: isNewItemAddedBefore
+        qnt: isNewItemAddedBeforeAndHasTheOldItem
             ? (oldItem.oldReplacedModel?.qnt ?? 1) + 1
             : 1,
         replaceReason: oldItem.pickerNotes ?? "",
@@ -236,7 +245,7 @@ class OrderDetailsController {
       _detailsData.ordersDetails!.removeAt(index);
       _detailsData.deletedOrders!.add(oldItem);
     }
-    if (isNewItemAddedBefore) {
+    if (isNewItemAddedBeforeAndHasTheOldItem) {
       _updateExistItem(newData);
     } else {
       _addNewItem(updatedItem, index);
@@ -250,9 +259,7 @@ class OrderDetailsController {
     getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     updateSameOrderInList(_detailsData);
     _updateBackGroundData();
-    updateInvoice(
-      onError: () {}
-    );
+    updateInvoice();
   }
 
   void _updateExistItem(SearchBarcodeModel newData) {
@@ -281,7 +288,8 @@ class OrderDetailsController {
     }
   }
 
-  void showDeleteDialog(BuildContext context, int productId,BaseBloc<bool> loadingCubit) {
+  void showDeleteDialog(
+      BuildContext context, int productId, BaseBloc<bool> loadingCubit) {
     showDialog(
       context: context,
       builder: (context) => RemoveProductDialog(
@@ -292,7 +300,8 @@ class OrderDetailsController {
     );
   }
 
-  void editQuantity(BuildContext context, OrderDetailsModel product,BaseBloc<bool> loadingCubit) {
+  void editQuantity(BuildContext context, OrderDetailsModel product,
+      BaseBloc<bool> loadingCubit) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -301,20 +310,18 @@ class OrderDetailsController {
           controller: this,
           onPressSubmit: () {
             Navigator.pop(context);
-            onTakeAction(
-                loadingCubit,
-                _reduceProductQnt(product)
-            );
+            onTakeAction(loadingCubit, _reduceProductQnt(product));
           },
         );
       },
     );
   }
 
-  Future<void> _reduceProductQnt(OrderDetailsModel product) async{
+  Future<void> _reduceProductQnt(OrderDetailsModel product) async {
     if (product.quantity > 1) {
       int index = _detailsData.ordersDetails!.indexWhere(
           (e) => e.id == product.id && product.addedVariantId == -1);
+
       /// using  (ProductStatusEnum.qntModified) and  (.isQntModified >> see PrepareOrderParams)
       /// to define that...this item qnt has been modified when sending in prepare order params
       /// and sending remain qnt
@@ -327,11 +334,7 @@ class OrderDetailsController {
       // detailsCubit.successState(_detailsData);
       // getIt<OrdersHelper>().saveOrderDetails(_detailsData);
       // updateSameOrderInList(_detailsData);
-      await updateInvoice(
-        onError: () {
-
-        },
-      );
+      await updateInvoice();
     }
   }
 
@@ -349,7 +352,8 @@ class OrderDetailsController {
     );
   }
 
-  void showDeleteItemDialog(BuildContext context, OrderDetailsModel item,BaseBloc<bool> loadingCubit) {
+  void showDeleteItemDialog(BuildContext context, OrderDetailsModel item,
+      BaseBloc<bool> loadingCubit) {
     if (isProductFullPicked(item)) {
       return;
     }
@@ -359,7 +363,7 @@ class OrderDetailsController {
         return DialogActionWidget(
           description: Translate.of(context).are_you_sure_delete_product,
           buttonGreenTitle: Translate.of(context).delete,
-          greenOnTap: () => deleteReasonDialog(context, item.id,loadingCubit),
+          greenOnTap: () => deleteReasonDialog(context, item.id, loadingCubit),
         );
       },
     );
@@ -434,7 +438,8 @@ class OrderDetailsController {
     );
   }
 
-  void showPriceDialog(BuildContext context, OrderDetailsModel orderProduct, BaseBloc<bool> loadingCubit,
+  void showPriceDialog(BuildContext context, OrderDetailsModel orderProduct,
+      BaseBloc<bool> loadingCubit,
       {bool pickAll = false}) {
     // OrderDetailsModel? productAfterUpdated = _detailsData.changedProducts?.firstWhereOrNull((element) => element.id == orderProduct.id);
     showDialog(
@@ -444,7 +449,7 @@ class OrderDetailsController {
           orderProduct: orderProduct,
           controller: this,
           pickAll: pickAll,
-          loadingCubit:loadingCubit ,
+          loadingCubit: loadingCubit,
         );
       },
     );
@@ -460,7 +465,8 @@ class OrderDetailsController {
             ));
   }
 
-  void showNewPriceDialog(BuildContext context, OrderDetailsModel orderProduct,BaseBloc<bool> loadingCubit,
+  void showNewPriceDialog(BuildContext context, OrderDetailsModel orderProduct,
+      BaseBloc<bool> loadingCubit,
       {bool popTwice = true, bool pickAll = false}) {
     showDialog(
         context: context,
@@ -541,7 +547,8 @@ class OrderDetailsController {
     return WeightInfo.extractWeight(orderProduct.variation)?.unit ?? "";
   }
 
-  void confirmNewPrice(OrderDetailsModel oldItem, BuildContext context,BaseBloc<bool> loadingCubit,
+  void confirmNewPrice(OrderDetailsModel oldItem, BuildContext context,
+      BaseBloc<bool> loadingCubit,
       {bool popTwice = true, bool pickAll = false}) {
     if (formKey.currentState!.validate()) {
       double newPrice = double.parse(newPriceController.text);
@@ -574,9 +581,8 @@ class OrderDetailsController {
       // getIt<OrdersHelper>().saveOrderDetails(_detailsData);
       onTakeAction(
           loadingCubit,
-          updateInvoice(
-        onError: () {},
-      ));
+          updateInvoice()
+      );
     }
   }
 
@@ -590,7 +596,8 @@ class OrderDetailsController {
     }
   }
 
-  void returnPickedItem(BuildContext context, OrderDetailsModel orderProduct,BaseBloc<bool> loadingCubit) {
+  void returnPickedItem(BuildContext context, OrderDetailsModel orderProduct,
+      BaseBloc<bool> loadingCubit) {
     int pickedQty = orderProduct.product!.pickedQuantity!;
     if (pickedQty > 0) {
       pickedQty = pickedQty - 1;
@@ -602,7 +609,7 @@ class OrderDetailsController {
       orderPickedPercent(_detailsData, isReturn: true);
       if (orderProduct.product!.productStatus!.shouldShowStatus &&
           !orderProduct.product!.productStatus!.isQntModified) {
-        showConFirmReturnDialog(context, orderProduct,loadingCubit);
+        showConFirmReturnDialog(context, orderProduct, loadingCubit);
         return;
       }
     }
@@ -614,7 +621,8 @@ class OrderDetailsController {
     updateSameOrderInList(_detailsData);
   }
 
-  void deleteReasonDialog(BuildContext context, int id,BaseBloc<bool> loadingCubit) {
+  void deleteReasonDialog(
+      BuildContext context, int id, BaseBloc<bool> loadingCubit) {
     Navigator.pop(context);
     showDialog(
       context: context,
@@ -623,13 +631,14 @@ class OrderDetailsController {
         return UpdateReasonDialogWidget(
           controller: this,
           // onPressSubmit:() => deleteProduct(ctx,id),
-          onPressSubmit: () => deleteProduct(ctx, id,loadingCubit),
+          onPressSubmit: () => deleteProduct(ctx, id, loadingCubit),
         );
       },
     );
   }
 
-  Future<void> deleteProduct(BuildContext context, int itemId,BaseBloc<bool> loadingCubit)async {
+  Future<void> deleteProduct(
+      BuildContext context, int itemId, BaseBloc<bool> loadingCubit) async {
     Navigator.pop(context);
     OrderDetailsModel? removedItem = _detailsData.ordersDetails?.firstWhere(
       (element) => element.id == itemId,
@@ -651,10 +660,9 @@ class OrderDetailsController {
     _updateBackGroundData();
     // updateDetailsCubit();
     onTakeAction(
-        loadingCubit, updateInvoice(
-      onError: () {
-
-      },));
+        loadingCubit,
+        updateInvoice()
+    );
   }
 
   void getProductPickedPercent(OrderDetailsModel orderProduct,
@@ -783,7 +791,7 @@ class OrderDetailsController {
 
   Future<void> initDataFromLocal() async {
     OrderModel? data = await getIt<OrdersHelper>().getOrderDetails(orderId);
-    if(data == null){
+    if (data == null) {
       detailsCubit.loadingState();
       OrdersParams params = _orderParams(true);
       var result = await getIt<HomeRepositories>().showOrders(params);
@@ -797,17 +805,17 @@ class OrderDetailsController {
           detailsCubit.failedState(error, () => getDetails());
         },
       );
-    }else{
+    } else {
       updateDetailsCubit(data: data);
       bagsCountObs.setValue(data.bagsCount ?? 0);
       updateIsAllPickedObs();
       _backGroundModel = data;
     }
-
   }
 
   /// return original order after replace it all (not reduce 1 qnt and add another one...not that my friend)
-  void returnChangedProduct(OrderDetailsModel updatedOrder, BaseBloc<bool> loadingCubit) {
+  void returnChangedProduct(
+      OrderDetailsModel updatedOrder, BaseBloc<bool> loadingCubit) {
     /// after update product => save the original product in (changedProducts list with the same id)
     /// prepareOrder need orderId even if replaced it send the original id with new variant id
 
@@ -838,13 +846,15 @@ class OrderDetailsController {
     _detailsData.changedProducts!.remove(originalItems);
     // updateDetailsCubit();
     // getIt<OrdersHelper>().saveOrderDetails(_detailsData);
-    onTakeAction(loadingCubit, updateInvoice(
-      onError: () {},
-    ));
+    onTakeAction(
+        loadingCubit,
+        updateInvoice()
+    );
   }
 
   /// return added order after add (now this is reverse of *reduce 1 qnt and add another one*...my friend)
-  void returnAddedProduct(OrderDetailsModel updatedOrder, BaseBloc<bool> loadingCubit) {
+  void returnAddedProduct(
+      OrderDetailsModel updatedOrder, BaseBloc<bool> loadingCubit) {
     /// note that updatedOrder and original item have the same id..(we will use benefit of this => in bring original one)
 
     /// prepareOrder need orderId even if it replaced 1 by 1  you can see => (prepare order params)
@@ -854,54 +864,95 @@ class OrderDetailsController {
     /// or return it if deleted
 
     List<OrderDetailsModel> deletedItems = _detailsData.deletedOrders!;
+
+    /// Use indexWhere with proper matching criteria instead of indexOf to avoid reference equality issues
     int addedItemIndex = _detailsData.ordersDetails!.indexWhere((e) =>
-        e.id == updatedOrder.id &&
-        updatedOrder.addedVariantId == e.addedVariantId);
+        updatedOrder.oldReplacedModel != null &&
+        e.oldReplacedModel?.id == updatedOrder.oldReplacedModel!.id &&
+        e.addedVariantId == updatedOrder.addedVariantId);
+
+    /// Validate that addedItemIndex is valid before proceeding
+    if (addedItemIndex == -1) {
+      log('returnAddedProduct: Could not find added item in ordersDetails');
+      return;
+    }
+
     List<int> deletedItemsIds = deletedItems.map((e) => e.id).toList();
     OrderDetailsModel originalItem;
 
-    if (deletedItemsIds.contains(updatedOrder.id)) {
+    bool originalStillHaveReplacedInList = _detailsData.ordersDetails!.map((e) => e.id).toList()
+        .contains(updatedOrder.oldReplacedModel?.id);
+
+    if (deletedItemsIds.contains(updatedOrder.oldReplacedModel?.id)) {
+      /// The original item was fully replaced (quantity became 0) and moved to deletedOrders
       originalItem = deletedItems.firstWhere(
         (element) =>
-            element.id == updatedOrder.id &&
+            element.id == updatedOrder.oldReplacedModel?.id &&
             element.product!.productStatus!.isQntModified,
       );
       originalItem = originalItem.copyWith(
+        pickerNotes: originalStillHaveReplacedInList
+            ?updatedOrder.oldReplacedModel?.replaceReason ?? ""
+            : "",
           quantity: originalItem.quantity + updatedOrder.quantity,
           product: originalItem.product!
-              .copyWith(productStatus: ProductStatusEnum.noEdit));
+              .copyWith(productStatus: originalStillHaveReplacedInList
+              ? ProductStatusEnum.qntModified
+              : ProductStatusEnum.noEdit)
+      );
       _detailsData.ordersDetails!
         ..removeAt(addedItemIndex)
         ..insert(addedItemIndex, originalItem);
       _detailsData.deletedOrders!
           .removeWhere((element) => element.id == originalItem.id);
     } else {
-      originalItem = _detailsData.ordersDetails!.firstWhere(
-        (element) =>
-            element.id == updatedOrder.id &&
-            element.product!.productStatus!.isQntModified,
-      );
+      log('added old id is ${updatedOrder.oldReplacedModel?.id}');
+      log('products list ids ${_detailsData.ordersDetails?.map((e) => e.id).toList()}');
+      /// The original item still exists in ordersDetails (partially replaced)
       int originalItemIndex = _detailsData.ordersDetails!.indexWhere((e) =>
-          e.id == updatedOrder.id && e.product!.productStatus!.isQntModified);
+          e.id == updatedOrder.oldReplacedModel?.id &&
+          e.product!.productStatus!.isQntModified);
+
+      /// Validate that originalItemIndex is valid
+      if (originalItemIndex == -1) {
+        log('replaced old id is ${updatedOrder.oldReplacedModel?.id}');
+        log('products list ids ${_detailsData.ordersDetails?.map((e) => e.id).toList()}');
+        log('returnAddedProduct: Could not find original item in ordersDetails');
+        return;
+      }
+
+      originalItem = _detailsData.ordersDetails![originalItemIndex];
       originalItem = originalItem.copyWith(
           quantity: originalItem.quantity + updatedOrder.quantity,
           product: originalItem.product!
-              .copyWith(productStatus: ProductStatusEnum.noEdit));
-      _detailsData.ordersDetails![originalItemIndex] = originalItem;
-      _detailsData.ordersDetails!.removeAt(addedItemIndex);
+              .copyWith(
+              productStatus: originalStillHaveReplacedInList
+                  ? originalItem.product?.productStatus
+                  : ProductStatusEnum.noEdit
+          )
+      );
+
+      /// Important: Handle index shifting when removing items from the list
+      /// If addedItemIndex comes before originalItemIndex, removing it first
+      /// will shift originalItemIndex down by 1
+      if (addedItemIndex < originalItemIndex) {
+        _detailsData.ordersDetails!.removeAt(addedItemIndex);
+        _detailsData.ordersDetails![originalItemIndex - 1] = originalItem;
+      } else {
+        _detailsData.ordersDetails![originalItemIndex] = originalItem;
+        _detailsData.ordersDetails!.removeAt(addedItemIndex);
+      }
     }
     // updateDetailsCubit();
     // getIt<OrdersHelper>().saveOrderDetails(_detailsData);
     onTakeAction(
         loadingCubit,
-        updateInvoice(
-      onError: () {
-
-      },));
+        updateInvoice()
+    );
   }
 
-  void showConFirmReturnDialog(
-      BuildContext context, OrderDetailsModel replacedItem,BaseBloc<bool> loadingCubit) {
+  void showConFirmReturnDialog(BuildContext context,
+      OrderDetailsModel replacedItem, BaseBloc<bool> loadingCubit) {
     showDialog(
       context: context,
       builder: (context) {
@@ -921,9 +972,9 @@ class OrderDetailsController {
               isAllPickedObs.setValue(false);
             }
             if (replacedItem.product!.isAdded) {
-              returnAddedProduct(replacedItem,loadingCubit);
+              returnAddedProduct(replacedItem, loadingCubit);
             } else {
-              returnChangedProduct(replacedItem,loadingCubit);
+              returnChangedProduct(replacedItem, loadingCubit);
             }
           },
         );
@@ -1027,7 +1078,7 @@ class OrderDetailsController {
 
   void changeUsedBagsCount(BuildContext context) {
     if (bagsCountFormKey.currentState!.validate()) {
-      updateInvoice(onError: () {},);
+      updateInvoice();
       int newBagsCount = int.parse(newCountController.text);
 
       // Calculate old bag fees
@@ -1070,28 +1121,29 @@ class OrderDetailsController {
     }
   }
 
-  Future<void> updateInvoice({
-    required void Function() onError,
-}) async {
+  Future<void> updateInvoice() async {
     refreshInvoiceCubit.loadingState();
     PrepareOrderParams params = _updateInvoiceParams();
     var result = await getIt<HomeRepositories>().updateInvoice(params);
     result.when(
-        isSuccess: (data) {
-          if(data!=null){
-            _detailsData.tax = data.tax;
-            _detailsData.subtotal = data.subtotal;
-            _detailsData.total = data.total;
-            refreshInvoiceCubit.successState(true);
-            updateDetailsCubit();
-            getIt<OrdersHelper>().saveOrderDetails(_detailsData);
-          }
-        },
-        isError: (error) {
-          refreshInvoiceCubit.successState(false);
-          onError.call();
-          AppSnackBar.showErrorSnackBar(error: BaseError.unknown(msg: "Can not update invoice Please try again later"));
-        },
+      isSuccess: (data) {
+        if (data != null) {
+          _detailsData.tax = data.tax;
+          _detailsData.subtotal = data.subtotal;
+          _detailsData.total = data.total;
+          _detailsData.discounts = data.discounts;
+          _detailsData.couponDiscount = data.couponDiscount;
+          refreshInvoiceCubit.successState(true);
+          updateDetailsCubit();
+          getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+        }
+      },
+      isError: (error) {
+        refreshInvoiceCubit.successState(false);
+        AppSnackBar.showErrorSnackBar(
+            error: BaseError.unknown(
+                msg: "Can not update invoice Please try again later"));
+      },
     );
   }
 
@@ -1104,8 +1156,7 @@ class OrderDetailsController {
         orderId: orderId,
         currentProductsDetails: _detailsData.ordersDetails!,
         deletedDetails: _detailsData.deletedOrders,
-        bagCount: bagCount
-    );
+        bagCount: bagCount);
   }
 
   PrepareOrderParams _updateInvoiceParams() {
@@ -1114,21 +1165,18 @@ class OrderDetailsController {
         orderId: orderId,
         currentProductsDetails: _backGroundModel!.ordersDetails!,
         deletedDetails: _backGroundModel!.deletedOrders,
-        bagCount: bagCount
-    );
+        bagCount: bagCount);
   }
 
-
-
-  Future<void> onTakeAction(BaseBloc<bool> loadingCubit, Future<void> action)async{
+  Future<void> onTakeAction(
+      BaseBloc<bool> loadingCubit, Future<void> action) async {
     _updateBackGroundData();
     loadingCubit.loadingState();
     await action;
     loadingCubit.successState(true);
   }
 
-
-  void _updateBackGroundData({OrderModel? data}){
+  void _updateBackGroundData({OrderModel? data}) {
     _backGroundModel = data ?? _detailsData;
   }
 

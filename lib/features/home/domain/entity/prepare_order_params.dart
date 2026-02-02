@@ -9,14 +9,37 @@ class PrepareOrderParams {
   final List<OrderDetailsModel>? deletedDetails;
   final int? bagCount;
 
-   PrepareOrderParams(
-      {required this.orderId,
-      required this.currentProductsDetails,
-      this.deletedDetails,
-      this.bagCount,
-      }){
+  PrepareOrderParams({
+    required this.orderId,
+    required this.currentProductsDetails,
+    this.deletedDetails,
+    this.bagCount,
+  }) {
     toJson();
   }
+
+  List<OrderDetailsModel> _mergeAddedProductsById() {
+    final mergedMap = <int, OrderDetailsModel>{};
+    var list = currentProductsDetails
+        .where((e) => e.addedVariantId != null && e.addedVariantId != -1)
+        .toList();
+    for (final item in list) {
+      if (mergedMap.containsKey(item.id)) {
+        final old = mergedMap[item.id]!;
+        mergedMap[item.id] = old.copyWith(
+          quantity: old.quantity + item.quantity,
+        );
+      } else {
+        mergedMap[item.id] = item;
+      }
+    }
+
+    return mergedMap.values.toList();
+  }
+
+  List<Map<String, dynamic>> get _addedProductsJson => _mergeAddedProductsById()
+      .map((e) => _actionJson(PrepareOrderActionType.add, e))
+      .toList();
 
   Map<String, dynamic> toJson() {
     final List<OrderDetailsModel> currentDetails = currentProductsDetails;
@@ -37,28 +60,26 @@ class PrepareOrderParams {
             return _actionJson(PrepareOrderActionType.updatePrice, e);
           }
 
-        /// added item
-          if (e.addedVariantId != null && e.addedVariantId != -1) {
-            return _actionJson(PrepareOrderActionType.add, e);
-          }
-
           /// reduced item
           if (e.product!.productStatus!.isQntModified) {
             return _actionJson(PrepareOrderActionType.reduce, e);
           }
-
         })
         .where((e) => e != null)
         .cast<Map<String, dynamic>>()
         .toList();
 
     final List<Map<String, dynamic>> removeDetailsJson = removeData
-        .where((element) => !element.product!.productStatus!.isAdded,).map((e) => _actionJson(PrepareOrderActionType.remove, e))
+        .where(
+          (element) => !element.product!.productStatus!.isAdded,
+        )
+        .map((e) => _actionJson(PrepareOrderActionType.remove, e))
         .toList();
 
     final List<Map<String, dynamic>> allDetailsJsons = [
       ...currentDetailsJson,
-      ...removeDetailsJson
+      ..._addedProductsJson,
+      ...removeDetailsJson,
     ];
 
     log("======>>>> all data current json $currentDetailsJson <<<<<<======");
@@ -68,11 +89,12 @@ class PrepareOrderParams {
 
     return {
       if (allDetailsJsons.isNotEmpty) "details": jsonEncode(allDetailsJsons),
-      if (bagCount!=null && (bagCount ?? 0 ) > 0 ) "bag_count": bagCount,
+      if (bagCount != null && (bagCount ?? 0) > 0) "bag_count": bagCount,
     };
   }
 
-  Map<String, dynamic> _actionJson(PrepareOrderActionType actionType, OrderDetailsModel data) {
+  Map<String, dynamic> _actionJson(
+      PrepareOrderActionType actionType, OrderDetailsModel data) {
     switch (actionType) {
       case PrepareOrderActionType.updatePrice:
         return {

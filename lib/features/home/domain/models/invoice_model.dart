@@ -93,18 +93,24 @@ class InvoiceModel {
 
   double  getGrandTotal(){
     double sub = double.parse(subTotal);
-    log("=====>>>>>>>>> sub total ${getSubTotal()}<<<<<<<<<");
-    double totalDiscounts = discounts.fold(0.0, (previousValue, element) => previousValue+double.parse(element.discount),) ;
+    double couponDiscountValue = double.parse(couponDiscount);
+    double discountsList = discounts.fold(0.0, (previousValue, element) => previousValue+double.parse(element.discount),) ;
     double envFee = double.parse(envFees);
-    double grandTotal = (sub-totalDiscounts) + envFee + totalVat;
+    double totalDiscount = couponDiscountValue + discountsList;
+    double grandTotal = (sub-totalDiscount) + envFee + totalVat;
     return grandTotal;
   }
 
   double getSubTotal() {
     double totalPrice = double.parse(productsTotalPrice);
-    log("=====>>>>>>>>> total ${totalPrice}<<<<<<<<<");
     double vatPercent = double.parse(taxPercentage) / 100;
     double subTotalWithoutVat = totalPrice - (totalPrice * vatPercent);
     return subTotalWithoutVat;
   }
+
+
+  bool get haveCoupon => (double.tryParse(couponDiscount) ?? 0 ) > 0 == true;
+
+  bool get haveEnvFees => (double.tryParse(envFees) ?? 0 ) > 0 == true;
+
 }

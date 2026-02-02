@@ -79,7 +79,7 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
                   (e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
-      qntChangedProducts: (json['qnt_changed_products'] as List<dynamic>?)
+      qntChangedProducts: (json['added_products'] as List<dynamic>?)
               ?.map(
                   (e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -124,7 +124,7 @@ Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
       'order_discounts': instance.discounts,
       'deleted_orders': instance.deletedOrders,
       'changed_products': instance.changedProducts,
-      'qnt_changed_products': instance.qntChangedProducts,
+      'added_products': instance.qntChangedProducts,
       'picked_percent': instance.pickedPercent,
       'preparation_seconds': instance.preparationSeconds,
     };
@@ -349,6 +349,7 @@ Map<String, dynamic> _$$OrderDisplayItemImplToJson(
 _$OldReplacedModelImpl _$$OldReplacedModelImplFromJson(
         Map<String, dynamic> json) =>
     _$OldReplacedModelImpl(
+      id: (json['id'] as num).toInt(),
       image: json['image'] as String,
       name: json['name'] as String,
       unitPrice: json['unitPrice'] as String,
@@ -359,6 +360,7 @@ _$OldReplacedModelImpl _$$OldReplacedModelImplFromJson(
 Map<String, dynamic> _$$OldReplacedModelImplToJson(
         _$OldReplacedModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'image': instance.image,
       'name': instance.name,
       'unitPrice': instance.unitPrice,

@@ -23,6 +23,10 @@ mixin _$InvoicePreviewModel {
   String get total => throw _privateConstructorUsedError;
   String get subtotal => throw _privateConstructorUsedError;
   String get tax => throw _privateConstructorUsedError;
+  @JsonKey(name: "coupon_discount")
+  String get couponDiscount => throw _privateConstructorUsedError;
+  @JsonKey(name: "order_discounts")
+  List<OrderDiscountModel> get discounts => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,12 @@ abstract class $InvoicePreviewModelCopyWith<$Res> {
           InvoicePreviewModel value, $Res Function(InvoicePreviewModel) then) =
       _$InvoicePreviewModelCopyWithImpl<$Res, InvoicePreviewModel>;
   @useResult
-  $Res call({String total, String subtotal, String tax});
+  $Res call(
+      {String total,
+      String subtotal,
+      String tax,
+      @JsonKey(name: "coupon_discount") String couponDiscount,
+      @JsonKey(name: "order_discounts") List<OrderDiscountModel> discounts});
 }
 
 /// @nodoc
@@ -55,6 +64,8 @@ class _$InvoicePreviewModelCopyWithImpl<$Res, $Val extends InvoicePreviewModel>
     Object? total = null,
     Object? subtotal = null,
     Object? tax = null,
+    Object? couponDiscount = null,
+    Object? discounts = null,
   }) {
     return _then(_value.copyWith(
       total: null == total
@@ -69,6 +80,14 @@ class _$InvoicePreviewModelCopyWithImpl<$Res, $Val extends InvoicePreviewModel>
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
               as String,
+      couponDiscount: null == couponDiscount
+          ? _value.couponDiscount
+          : couponDiscount // ignore: cast_nullable_to_non_nullable
+              as String,
+      discounts: null == discounts
+          ? _value.discounts
+          : discounts // ignore: cast_nullable_to_non_nullable
+              as List<OrderDiscountModel>,
     ) as $Val);
   }
 }
@@ -81,7 +100,12 @@ abstract class _$$InvoicePreviewModelImplCopyWith<$Res>
       __$$InvoicePreviewModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String total, String subtotal, String tax});
+  $Res call(
+      {String total,
+      String subtotal,
+      String tax,
+      @JsonKey(name: "coupon_discount") String couponDiscount,
+      @JsonKey(name: "order_discounts") List<OrderDiscountModel> discounts});
 }
 
 /// @nodoc
@@ -98,6 +122,8 @@ class __$$InvoicePreviewModelImplCopyWithImpl<$Res>
     Object? total = null,
     Object? subtotal = null,
     Object? tax = null,
+    Object? couponDiscount = null,
+    Object? discounts = null,
   }) {
     return _then(_$InvoicePreviewModelImpl(
       total: null == total
@@ -112,6 +138,14 @@ class __$$InvoicePreviewModelImplCopyWithImpl<$Res>
           ? _value.tax
           : tax // ignore: cast_nullable_to_non_nullable
               as String,
+      couponDiscount: null == couponDiscount
+          ? _value.couponDiscount
+          : couponDiscount // ignore: cast_nullable_to_non_nullable
+              as String,
+      discounts: null == discounts
+          ? _value._discounts
+          : discounts // ignore: cast_nullable_to_non_nullable
+              as List<OrderDiscountModel>,
     ));
   }
 }
@@ -121,8 +155,14 @@ class __$$InvoicePreviewModelImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$InvoicePreviewModelImpl extends _InvoicePreviewModel {
   _$InvoicePreviewModelImpl(
-      {required this.total, required this.subtotal, required this.tax})
-      : super._();
+      {required this.total,
+      required this.subtotal,
+      required this.tax,
+      @JsonKey(name: "coupon_discount") required this.couponDiscount,
+      @JsonKey(name: "order_discounts")
+      required final List<OrderDiscountModel> discounts})
+      : _discounts = discounts,
+        super._();
 
   factory _$InvoicePreviewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$InvoicePreviewModelImplFromJson(json);
@@ -133,10 +173,21 @@ class _$InvoicePreviewModelImpl extends _InvoicePreviewModel {
   final String subtotal;
   @override
   final String tax;
+  @override
+  @JsonKey(name: "coupon_discount")
+  final String couponDiscount;
+  final List<OrderDiscountModel> _discounts;
+  @override
+  @JsonKey(name: "order_discounts")
+  List<OrderDiscountModel> get discounts {
+    if (_discounts is EqualUnmodifiableListView) return _discounts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_discounts);
+  }
 
   @override
   String toString() {
-    return 'InvoicePreviewModel(total: $total, subtotal: $subtotal, tax: $tax)';
+    return 'InvoicePreviewModel(total: $total, subtotal: $subtotal, tax: $tax, couponDiscount: $couponDiscount, discounts: $discounts)';
   }
 
   @override
@@ -147,12 +198,17 @@ class _$InvoicePreviewModelImpl extends _InvoicePreviewModel {
             (identical(other.total, total) || other.total == total) &&
             (identical(other.subtotal, subtotal) ||
                 other.subtotal == subtotal) &&
-            (identical(other.tax, tax) || other.tax == tax));
+            (identical(other.tax, tax) || other.tax == tax) &&
+            (identical(other.couponDiscount, couponDiscount) ||
+                other.couponDiscount == couponDiscount) &&
+            const DeepCollectionEquality()
+                .equals(other._discounts, _discounts));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, total, subtotal, tax);
+  int get hashCode => Object.hash(runtimeType, total, subtotal, tax,
+      couponDiscount, const DeepCollectionEquality().hash(_discounts));
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +229,11 @@ abstract class _InvoicePreviewModel extends InvoicePreviewModel {
   factory _InvoicePreviewModel(
       {required final String total,
       required final String subtotal,
-      required final String tax}) = _$InvoicePreviewModelImpl;
+      required final String tax,
+      @JsonKey(name: "coupon_discount") required final String couponDiscount,
+      @JsonKey(name: "order_discounts")
+      required final List<OrderDiscountModel>
+          discounts}) = _$InvoicePreviewModelImpl;
   _InvoicePreviewModel._() : super._();
 
   factory _InvoicePreviewModel.fromJson(Map<String, dynamic> json) =
@@ -185,6 +245,12 @@ abstract class _InvoicePreviewModel extends InvoicePreviewModel {
   String get subtotal;
   @override
   String get tax;
+  @override
+  @JsonKey(name: "coupon_discount")
+  String get couponDiscount;
+  @override
+  @JsonKey(name: "order_discounts")
+  List<OrderDiscountModel> get discounts;
   @override
   @JsonKey(ignore: true)
   _$$InvoicePreviewModelImplCopyWith<_$InvoicePreviewModelImpl> get copyWith =>

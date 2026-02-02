@@ -42,8 +42,11 @@ class CustomInfoWidget extends StatelessWidget {
             child: titleWidget ??
                 Text(
                   title,
-                  style: AppTextStyle.s14_w500(color: context.colors.black),
+                  style: AppTextStyle.s14_w500(color: context.colors.black).copyWith(
+                    height: 1.2
+                  ),
                 )),
+        Gaps.hGap5,
         endWidget ?? Gaps.empty
       ],
     );

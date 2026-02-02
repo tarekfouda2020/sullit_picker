@@ -376,14 +376,14 @@ mixin _$OrderModel {
   /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
   /// in replace item...if the original one qnt reduced by 1
   /// the original will added in this list
-  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get qntChangedProducts =>
       throw _privateConstructorUsedError;
 
   /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
   /// in replace item...if the original one qnt reduced by 1
   /// the original will added in this list
-  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
   set qntChangedProducts(List<OrderDetailsModel>? value) =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -445,8 +445,7 @@ abstract class $OrderModelCopyWith<$Res> {
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? changedProducts,
-      @JsonKey(
-          name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+      @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? qntChangedProducts,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
@@ -726,8 +725,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? changedProducts,
-      @JsonKey(
-          name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+      @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? qntChangedProducts,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
@@ -981,8 +979,7 @@ class _$OrderModelImpl extends _OrderModel {
       this.deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
       this.changedProducts,
-      @JsonKey(
-          name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+      @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
       this.qntChangedProducts,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) this.pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
@@ -1095,7 +1092,7 @@ class _$OrderModelImpl extends _OrderModel {
   /// in replace item...if the original one qnt reduced by 1
   /// the original will added in this list
   @override
-  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? qntChangedProducts;
   @override
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -1162,8 +1159,7 @@ abstract class _OrderModel extends OrderModel {
       List<OrderDetailsModel>? deletedOrders,
       @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? changedProducts,
-      @JsonKey(
-          name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+      @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
       List<OrderDetailsModel>? qntChangedProducts,
       @JsonKey(name: 'picked_percent', defaultValue: 0.0) double? pickedPercent,
       @JsonKey(name: 'preparation_seconds', defaultValue: 0)
@@ -1340,13 +1336,13 @@ abstract class _OrderModel extends OrderModel {
   /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
   /// in replace item...if the original one qnt reduced by 1
   /// the original will added in this list
-  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get qntChangedProducts;
 
   /// qnt_changed_products hold the replaced items(that being replaced 1 by 1)
   /// in replace item...if the original one qnt reduced by 1
   /// the original will added in this list
-  @JsonKey(name: 'qnt_changed_products', defaultValue: <OrderDetailsModel>[])
+  @JsonKey(name: 'added_products', defaultValue: <OrderDetailsModel>[])
   set qntChangedProducts(List<OrderDetailsModel>? value);
   @override
   @JsonKey(name: 'picked_percent', defaultValue: 0.0)
@@ -3836,6 +3832,7 @@ OldReplacedModel _$OldReplacedModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OldReplacedModel {
+  int get id => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get unitPrice => throw _privateConstructorUsedError;
@@ -3855,7 +3852,8 @@ abstract class $OldReplacedModelCopyWith<$Res> {
       _$OldReplacedModelCopyWithImpl<$Res, OldReplacedModel>;
   @useResult
   $Res call(
-      {String image,
+      {int id,
+      String image,
       String name,
       String unitPrice,
       int qnt,
@@ -3875,6 +3873,7 @@ class _$OldReplacedModelCopyWithImpl<$Res, $Val extends OldReplacedModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? image = null,
     Object? name = null,
     Object? unitPrice = null,
@@ -3882,6 +3881,10 @@ class _$OldReplacedModelCopyWithImpl<$Res, $Val extends OldReplacedModel>
     Object? replaceReason = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -3915,7 +3918,8 @@ abstract class _$$OldReplacedModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String image,
+      {int id,
+      String image,
       String name,
       String unitPrice,
       int qnt,
@@ -3933,6 +3937,7 @@ class __$$OldReplacedModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? image = null,
     Object? name = null,
     Object? unitPrice = null,
@@ -3940,6 +3945,10 @@ class __$$OldReplacedModelImplCopyWithImpl<$Res>
     Object? replaceReason = null,
   }) {
     return _then(_$OldReplacedModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -3968,7 +3977,8 @@ class __$$OldReplacedModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OldReplacedModelImpl implements _OldReplacedModel {
   const _$OldReplacedModelImpl(
-      {required this.image,
+      {required this.id,
+      required this.image,
       required this.name,
       required this.unitPrice,
       required this.qnt,
@@ -3977,6 +3987,8 @@ class _$OldReplacedModelImpl implements _OldReplacedModel {
   factory _$OldReplacedModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OldReplacedModelImplFromJson(json);
 
+  @override
+  final int id;
   @override
   final String image;
   @override
@@ -3990,7 +4002,7 @@ class _$OldReplacedModelImpl implements _OldReplacedModel {
 
   @override
   String toString() {
-    return 'OldReplacedModel(image: $image, name: $name, unitPrice: $unitPrice, qnt: $qnt, replaceReason: $replaceReason)';
+    return 'OldReplacedModel(id: $id, image: $image, name: $name, unitPrice: $unitPrice, qnt: $qnt, replaceReason: $replaceReason)';
   }
 
   @override
@@ -3998,6 +4010,7 @@ class _$OldReplacedModelImpl implements _OldReplacedModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OldReplacedModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.unitPrice, unitPrice) ||
@@ -4010,7 +4023,7 @@ class _$OldReplacedModelImpl implements _OldReplacedModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, image, name, unitPrice, qnt, replaceReason);
+      Object.hash(runtimeType, id, image, name, unitPrice, qnt, replaceReason);
 
   @JsonKey(ignore: true)
   @override
@@ -4029,7 +4042,8 @@ class _$OldReplacedModelImpl implements _OldReplacedModel {
 
 abstract class _OldReplacedModel implements OldReplacedModel {
   const factory _OldReplacedModel(
-      {required final String image,
+      {required final int id,
+      required final String image,
       required final String name,
       required final String unitPrice,
       required final int qnt,
@@ -4038,6 +4052,8 @@ abstract class _OldReplacedModel implements OldReplacedModel {
   factory _OldReplacedModel.fromJson(Map<String, dynamic> json) =
       _$OldReplacedModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get image;
   @override
