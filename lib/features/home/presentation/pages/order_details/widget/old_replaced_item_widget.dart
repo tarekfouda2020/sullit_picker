@@ -41,7 +41,7 @@ class OldReplacedItemWidget extends StatelessWidget {
                      model.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyle.s16_w400(color: context.colors.mediumGray)
+                      style: AppTextStyle.s14_w600(color: context.colors.mediumGray)
                           .copyWith(height: 1.2,
                       ),
                     ),

@@ -29,6 +29,8 @@ class CardItemPickWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
+          if(data.product?.productStatus?.shouldShowStatus == true)
+          Gaps.vGap15,
           ProductInfoWidget(data: data),
           Gaps.vGap15,
           if(data.product?.isAdded == true && data.oldReplacedModel != null)

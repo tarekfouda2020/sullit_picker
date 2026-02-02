@@ -40,8 +40,7 @@ class _PickItemWidgetState extends State<PickItemWidget> {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
                 child: Container(
-                  height: 330,
-
+                  height: 360,
                 ),
               )
           ),
