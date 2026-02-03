@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/storage_helper.dart';
 import 'package:flutter_tdd/features/notifications/data/enum/notification_type.dart';
 import 'package:injectable/injectable.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 import '../../features/auth/presentation/pages/login_view/login_view_imports.dart';
 import 'global_context.dart';
@@ -61,9 +63,11 @@ class GlobalNotification {
   await _flutterLocalNotificationsPlugin.initialize(
       initSettings,
       onDidReceiveNotificationResponse: (details) {
+        _cancelAllNotifications();
         flutterNotificationClick(details.payload);
       },
     );
+    _cancelAllNotifications();
 
     await Firebase.initializeApp();
 
@@ -129,6 +133,7 @@ class GlobalNotification {
         _handleNotificationResponse(notifyType);
       });
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+        _cancelAllNotifications();
         flutterNotificationClick(json.encode(message.data));
       });
       FirebaseMessaging.onBackgroundMessage(
@@ -185,6 +190,7 @@ class GlobalNotification {
       shortcutId: DateTime.now().toIso8601String(),
       sound: androidNotificationSound(sound: soundName),
       playSound: true,
+      additionalFlags: type.isNewOrder ? Int32List.fromList([4]) : null, // FLAG_INSISTENT
     );
 
     const DarwinNotificationDetails generalIos = DarwinNotificationDetails(
@@ -206,6 +212,16 @@ class GlobalNotification {
       platform,
       payload: json.encode(message.data),
     );
+
+    if (Platform.isIOS && type.isNewOrder) {
+      _scheduleRepeatNotificationsIOS(
+        flutterLocalNotificationsPlugin,
+        title,
+        body,
+        soundName,
+        message.data,
+      );
+    }
   }
 
   StreamController<Map<String, dynamic>> get notificationSubject {
@@ -216,8 +232,37 @@ class GlobalNotification {
       presentAlert: true,
       presentBadge: true,
       presentSound: true,
-      sound: soundName
+      sound: soundName,
+      interruptionLevel: InterruptionLevel.critical,
   );
+
+  static Future<void> _scheduleRepeatNotificationsIOS(
+    FlutterLocalNotificationsPlugin plugin,
+    String title,
+    String body,
+    String sound,
+    Map<String, dynamic> data,
+  ) async {
+    for (int i = 1; i <= 5; i++) {
+      await plugin.zonedSchedule(
+        1000 + i, // Repeat notification IDs starting from 1001
+        title,
+        body,
+        tz.TZDateTime.now(tz.local).add(Duration(seconds: 30 * i)),
+        NotificationDetails(iOS: newOrderIos(sound)),
+        payload: json.encode(data),
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      );
+    }
+  }
+
+  static Future<void> _cancelAllNotifications() async {
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    await flutterLocalNotificationsPlugin.cancelAll();
+  }
 
   Future<void> _showLocalNotification(RemoteMessage? message) async {
     if (message == null) {
@@ -295,6 +340,7 @@ class GlobalNotification {
       shortcutId: DateTime.now().toIso8601String(),
       sound: androidNotificationSound(sound: soundName),
       playSound: true,
+      additionalFlags: type.isNewOrder ? Int32List.fromList([4]) : null, // FLAG_INSISTENT
     );
 
     const DarwinNotificationDetails generalIos = DarwinNotificationDetails(
@@ -317,6 +363,16 @@ class GlobalNotification {
     await _flutterLocalNotificationsPlugin.show(
         notificationId, title, body, platform,
         payload: json.encode(message.data));
+
+    if (Platform.isIOS && type.isNewOrder) {
+      _scheduleRepeatNotificationsIOS(
+        _flutterLocalNotificationsPlugin,
+        title,
+        body,
+        soundName,
+        message.data,
+      );
+    }
 
     log("✅ Local notification shown successfully!");
   }
@@ -343,6 +399,7 @@ class GlobalNotification {
   }
 
   static Future flutterNotificationClick(String? details) async {
+    _cancelAllNotifications();
     // log("==========>>>>>> when notification clicked $details details <<<<<<<<<<============");
     var message = json.decode(details ?? "");
     // log("==========>>>>>> message when click from out side $message details <<<<<<<<<<============");

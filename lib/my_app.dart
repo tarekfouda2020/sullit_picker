@@ -48,9 +48,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
         || state == AppLifecycleState.paused   ;
     print("======>>>>>>>>>> state is ${state} <<<<<<<<");
     if(AppStateHelper.instance.appInBackGround){
-      print("======>>>>>>>>>> inside check ");
-      getIt<OrdersHelper>().startSound();
-      print("======>>>>>>>>>> inside check 2 ");
+      // print("======>>>>>>>>>> inside check ");
+      // getIt<OrdersHelper>().startSound();
+      // print("======>>>>>>>>>> inside check 2 ");
     }else{
       await getIt<OrdersHelper>().stopSound();
       await Future.delayed(const Duration(milliseconds: 500),
