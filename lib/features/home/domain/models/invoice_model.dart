@@ -42,7 +42,8 @@ class InvoiceModel {
   });
 
   // double get totalVat => double.parse(tax) + double.parse(vatFeeAmount);
-  double get totalVat => double.parse(tax);
+  double get getEnvVat => double.parse(envFees) * 0.05;
+  double get totalVat => double.parse(tax) + getEnvVat ;
 
   InvoiceModel updateBags(int newCount) {
     // 1. Calculate new Environment Fees

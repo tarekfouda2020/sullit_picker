@@ -13,6 +13,7 @@ import 'package:flutter_tdd/core/helpers/storage_helper.dart';
 import 'package:flutter_tdd/features/notifications/data/enum/notification_type.dart';
 import 'package:injectable/injectable.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz_data;
 
 import '../../features/auth/presentation/pages/login_view/login_view_imports.dart';
 import 'global_context.dart';
@@ -31,7 +32,8 @@ class GlobalNotification {
           {String? sound}) =>
       RawResourceAndroidNotificationSound(sound ?? soundName);
 
-  static AndroidNotificationChannel get _orderChannel => AndroidNotificationChannel(
+  static AndroidNotificationChannel get _orderChannel =>
+      AndroidNotificationChannel(
         'order_notifications_channel',
         'Order Notifications',
         description: 'This channel is used for new order notifications.',
@@ -60,7 +62,7 @@ class GlobalNotification {
     );
     const initSettings = InitializationSettings(android: android, iOS: ios);
 
-  await _flutterLocalNotificationsPlugin.initialize(
+    await _flutterLocalNotificationsPlugin.initialize(
       initSettings,
       onDidReceiveNotificationResponse: (details) {
         _cancelAllNotifications();
@@ -70,7 +72,6 @@ class GlobalNotification {
     _cancelAllNotifications();
 
     await Firebase.initializeApp();
-
 
     // Create the Android notification channels with custom sounds
     final androidImplementation =
@@ -90,7 +91,7 @@ class GlobalNotification {
     if (settings.authorizationStatus == AuthorizationStatus.authorized ||
         settings.authorizationStatus == AuthorizationStatus.provisional) {
       // log("✅ Notification permissions granted!");
-     var token =  await messaging.getToken();
+      var token = await messaging.getToken();
       log("FCM Token: $token   ");
 
       messaging.setForegroundNotificationPresentationOptions(
@@ -117,9 +118,9 @@ class GlobalNotification {
         } catch (e) {
           log("❌ Error showing notification: $e");
         }
-        if(AppStateHelper.instance.appInBackGround){
-          getIt<OrdersHelper>().stopSound();
-        }
+        // if(AppStateHelper.instance.appInBackGround){
+        //   getIt<OrdersHelper>().stopSound();
+        // }
 
         _onMessageStreamController.add(message.data);
 
@@ -141,9 +142,11 @@ class GlobalNotification {
     }
   }
 
-  static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  static Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
     log("📬 Handling a background message: ${message.messageId}");
     await Firebase.initializeApp();
+    tz_data.initializeTimeZones();
 
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -164,24 +167,30 @@ class GlobalNotification {
     String notifyType = message.data["item_type"] ?? "";
     NotificationType type = NotificationType.notifyType(notifyType);
 
-    AndroidNotificationChannel channel = type.isNewOrder ? _orderChannel : _generalChannel;
+    AndroidNotificationChannel channel =
+        type.isNewOrder ? _orderChannel : _generalChannel;
 
     String channelId = "";
 
     if (Platform.isAndroid && message.notification != null && type.isNewOrder) {
       channelId = message.notification!.android!.channelId ?? channel.id;
       soundName = message.notification!.android!.sound ?? channel.sound!.sound;
-    }else{
+    } else {
       channelId = channel.id;
       soundName = channel.sound!.sound;
     }
 
-    if (Platform.isIOS && message.notification != null && type.isNewOrder) {
-      soundName = message.notification!.apple!.sound!.name!;
-      // soundName = "tips_alot.caf";
+    if (Platform.isIOS && type.isNewOrder) {
+      String? soundNameFromPayload = message.notification?.apple?.sound?.name;
+      if (soundNameFromPayload != null && soundNameFromPayload.isNotEmpty) {
+        soundName = soundNameFromPayload;
+      } else {
+        soundName = "tips_alot.caf";
+      }
     }
 
-     final AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+    final AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
       channelId,
       channel.name,
       channelDescription: channel.description,
@@ -190,7 +199,8 @@ class GlobalNotification {
       shortcutId: DateTime.now().toIso8601String(),
       sound: androidNotificationSound(sound: soundName),
       playSound: true,
-      additionalFlags: type.isNewOrder ? Int32List.fromList([4]) : null, // FLAG_INSISTENT
+      additionalFlags:
+          type.isNewOrder ? Int32List.fromList([4]) : null, // FLAG_INSISTENT
     );
 
     const DarwinNotificationDetails generalIos = DarwinNotificationDetails(
@@ -201,9 +211,9 @@ class GlobalNotification {
 
     final NotificationDetails platform = NotificationDetails(
         android: androidDetails,
-        iOS: type.isNewOrder?newOrderIos(soundName):generalIos
+        iOS: type.isNewOrder ? newOrderIos(soundName) : generalIos
         // iOS: newOrderIos(soundName)
-    );
+        );
 
     await flutterLocalNotificationsPlugin.show(
       message.hashCode,
@@ -228,13 +238,14 @@ class GlobalNotification {
     return _onMessageStreamController;
   }
 
-  static DarwinNotificationDetails  newOrderIos(String soundName) => DarwinNotificationDetails(
-      presentAlert: true,
-      presentBadge: true,
-      presentSound: true,
-      sound: soundName,
-      interruptionLevel: InterruptionLevel.critical,
-  );
+  static DarwinNotificationDetails newOrderIos(String soundName) =>
+      DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+        sound: soundName,
+        interruptionLevel: InterruptionLevel.timeSensitive,
+      );
 
   static Future<void> _scheduleRepeatNotificationsIOS(
     FlutterLocalNotificationsPlugin plugin,
@@ -243,17 +254,23 @@ class GlobalNotification {
     String sound,
     Map<String, dynamic> data,
   ) async {
-    for (int i = 1; i <= 5; i++) {
+    /// cancel old scheduled notifications
+    await plugin.cancelAll();
+    if (sound.isEmpty) {
+      sound = "tips_alot.caf";
+    }
+
+    /// schedule new notifications
+    for (int i = 1; i <= 20; i++) {
       await plugin.zonedSchedule(
         1000 + i, // Repeat notification IDs starting from 1001
         title,
         body,
-        tz.TZDateTime.now(tz.local).add(Duration(seconds: 30 * i)),
+        tz.TZDateTime.now(tz.local).add(Duration(seconds: 4 * i)),
         NotificationDetails(iOS: newOrderIos(sound)),
         payload: json.encode(data),
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       );
     }
@@ -314,14 +331,15 @@ class GlobalNotification {
       return;
     }
 
-    AndroidNotificationChannel channel = type.isNewOrder ? _orderChannel : _generalChannel;
+    AndroidNotificationChannel channel =
+        type.isNewOrder ? _orderChannel : _generalChannel;
 
     String channelId = "";
 
     if (Platform.isAndroid && message.notification != null && type.isNewOrder) {
       channelId = message.notification!.android!.channelId ?? channel.id;
       soundName = message.notification!.android!.sound ?? channel.sound!.sound;
-    }else{
+    } else {
       channelId = channel.id;
       soundName = channel.sound!.sound;
     }
@@ -340,7 +358,8 @@ class GlobalNotification {
       shortcutId: DateTime.now().toIso8601String(),
       sound: androidNotificationSound(sound: soundName),
       playSound: true,
-      additionalFlags: type.isNewOrder ? Int32List.fromList([4]) : null, // FLAG_INSISTENT
+      additionalFlags:
+          type.isNewOrder ? Int32List.fromList([4]) : null, // FLAG_INSISTENT
     );
 
     const DarwinNotificationDetails generalIos = DarwinNotificationDetails(
@@ -351,9 +370,9 @@ class GlobalNotification {
 
     final NotificationDetails platform = NotificationDetails(
         android: android,
-        iOS: type.isNewOrder ? newOrderIos(soundName) :generalIos
+        iOS: type.isNewOrder ? newOrderIos(soundName) : generalIos
         // iOS: newOrderIos(soundName)
-    );
+        );
 
     // Use message.hashCode as notification ID to prevent duplicates
     final notificationId = message.hashCode;

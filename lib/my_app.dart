@@ -45,8 +45,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
     AppStateHelper.instance.isAppOpened = state == AppLifecycleState.resumed;
     AppStateHelper.instance.appInBackGround =
         state == AppLifecycleState.hidden
-        || state == AppLifecycleState.paused   ;
-    print("======>>>>>>>>>> state is ${state} <<<<<<<<");
+        || state == AppLifecycleState.paused;
     if(AppStateHelper.instance.appInBackGround){
       // print("======>>>>>>>>>> inside check ");
       // getIt<OrdersHelper>().startSound();
