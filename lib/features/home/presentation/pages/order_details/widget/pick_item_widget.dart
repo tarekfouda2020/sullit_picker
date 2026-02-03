@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/export.dart';
@@ -40,7 +41,7 @@ class _PickItemWidgetState extends State<PickItemWidget> {
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
                 child: Container(
-                  height: 360,
+                  height: getHeight(),
                 ),
               )
           ),
@@ -130,4 +131,17 @@ class _PickItemWidgetState extends State<PickItemWidget> {
       ),
     );
   }
+
+
+  double getHeight(){
+    if(widget.orderDetails.product!.isAdded){
+      return 450.r;
+    }
+    if(widget.orderDetails.product!.productStatus?.shouldShowStatus == true){
+      return 350.r;
+    }else{
+      return 300.r;
+    }
+  }
+
 }

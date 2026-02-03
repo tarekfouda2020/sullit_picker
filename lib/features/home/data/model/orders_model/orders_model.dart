@@ -186,6 +186,7 @@ class OrderDetailsModel with _$OrderDetailsModel {
     @JsonKey(name: "new_price", defaultValue: 0.0) double? newPrice,
     @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
     @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0) double? fixedUnitPrice,
+    @JsonKey(name: 'fixed_qnt', defaultValue: 0) int? fixedQnt,
     @JsonKey(name: 'old_replaced_model',) OldReplacedModel? oldReplacedModel,
   }) = _OrderDetailsModel;
 

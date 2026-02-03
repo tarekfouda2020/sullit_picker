@@ -160,12 +160,15 @@ class GlobalNotification {
 
     String channelId = "";
 
-    if (Platform.isAndroid && message.notification != null) {
+    if (Platform.isAndroid && message.notification != null && type.isNewOrder) {
       channelId = message.notification!.android!.channelId ?? channel.id;
       soundName = message.notification!.android!.sound ?? channel.sound!.sound;
+    }else{
+      channelId = channel.id;
+      soundName = channel.sound!.sound;
     }
 
-    if (Platform.isIOS && message.notification != null) {
+    if (Platform.isIOS && message.notification != null && type.isNewOrder) {
       soundName = message.notification!.apple!.sound!.name!;
       // soundName = "tips_alot.caf";
     }
@@ -267,9 +270,12 @@ class GlobalNotification {
 
     String channelId = "";
 
-    if (Platform.isAndroid && message.notification != null) {
+    if (Platform.isAndroid && message.notification != null && type.isNewOrder) {
       channelId = message.notification!.android!.channelId ?? channel.id;
       soundName = message.notification!.android!.sound ?? channel.sound!.sound;
+    }else{
+      channelId = channel.id;
+      soundName = channel.sound!.sound;
     }
 
     if (Platform.isIOS && message.notification != null) {

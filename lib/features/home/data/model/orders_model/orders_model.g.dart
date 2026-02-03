@@ -145,6 +145,7 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
       newPrice: (json['new_price'] as num?)?.toDouble() ?? 0.0,
       pickerNotes: json['picker_notes'] as String? ?? '',
       fixedUnitPrice: (json['fixed_unit_price'] as num?)?.toDouble() ?? 0.0,
+      fixedQnt: (json['fixed_qnt'] as num?)?.toInt() ?? 0,
       oldReplacedModel: json['old_replaced_model'] == null
           ? null
           : OldReplacedModel.fromJson(
@@ -165,6 +166,7 @@ Map<String, dynamic> _$$OrderDetailsModelImplToJson(
       'new_price': instance.newPrice,
       'picker_notes': instance.pickerNotes,
       'fixed_unit_price': instance.fixedUnitPrice,
+      'fixed_qnt': instance.fixedQnt,
       'old_replaced_model': instance.oldReplacedModel,
     };
 

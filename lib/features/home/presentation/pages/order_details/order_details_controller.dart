@@ -104,21 +104,21 @@ class OrderDetailsController {
       BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
     BuildContext ctx = getIt<GlobalContext>().context();
-    // // 71860
-    // // 31610
-    // AppSnackBar.showSuccessSnackBar(
-    //   "${Translate.of(ctx).product_scanned}, with barcode: 71860",
-    // );
-    // getProductWithBarcode(ctx, "71860", oldItem);
+    // 71860
+    // 31610
+    AppSnackBar.showSuccessSnackBar(
+      "${Translate.of(ctx).product_scanned}, with barcode: 71860",
+    );
+    getProductWithBarcode(ctx, "71860", oldItem);
 
-    String? barcode = await getIt<BarcodeService>().scanBarcode(context);
-    if (barcode != null && barcode.isNotEmpty) {
-      BuildContext ctx = getIt<GlobalContext>().context();
-      AppSnackBar.showSuccessSnackBar(
-        "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
-      );
-      getProductWithBarcode(ctx, barcode, oldItem);
-    }
+    // String? barcode = await getIt<BarcodeService>().scanBarcode(context);
+    // if (barcode != null && barcode.isNotEmpty) {
+    //   BuildContext ctx = getIt<GlobalContext>().context();
+    //   AppSnackBar.showSuccessSnackBar(
+    //     "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
+    //   );
+    //   getProductWithBarcode(ctx, barcode, oldItem);
+    // }
   }
 
   Future<void> getProductWithBarcode(
@@ -181,6 +181,9 @@ class OrderDetailsController {
   }
 
   void addNewProduct(SearchBarcodeModel newData, OrderDetailsModel oldItem) {
+    if(oldItem.fixedQnt == null || oldItem.fixedUnitPrice == 0){
+      oldItem.fixedQnt = oldItem.quantity;
+    }
     double newPrice = double.parse(newData.variant.mainPrice);
     double oldItemPrice = double.parse(oldItem.unitPrice);
     if (newPrice > oldItemPrice) {
@@ -218,6 +221,7 @@ class OrderDetailsController {
       unitPrice: newData.variant.mainPrice,
       addedVariantId: newData.variant.id,
       variation: "",
+      fixedQnt: null,
       oldReplacedModel: OldReplacedModel(
         id: oldItem.id,
         image: oldItem.product?.thumbnailImage ?? "",
@@ -301,7 +305,11 @@ class OrderDetailsController {
   }
 
   void editQuantity(BuildContext context, OrderDetailsModel product,
-      BaseBloc<bool> loadingCubit) {
+      BaseBloc<bool> loadingCubit, {bool isReduce = true}) {
+    if(isReduce == false){
+      onTakeAction(loadingCubit, increaseQnt(product));
+      return;
+    }
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -310,14 +318,28 @@ class OrderDetailsController {
           controller: this,
           onPressSubmit: () {
             Navigator.pop(context);
-            onTakeAction(loadingCubit, _reduceProductQnt(product));
+            // onTakeAction(loadingCubit, _reduceProductQnt(product));
+            onTakeAction(loadingCubit, _updateQnt(product,isReduce));
           },
         );
       },
     );
   }
 
-  Future<void> _reduceProductQnt(OrderDetailsModel product) async {
+  Future<void> _updateQnt(OrderDetailsModel product,bool isReduce)async{
+    if(isReduce){
+     await _reduceProductQnt(product);
+    }else{
+     await increaseQnt(product);
+    }
+  }
+
+
+
+  Future<void> _reduceProductQnt(OrderDetailsModel product,) async {
+    if(product.fixedQnt == null || product.fixedQnt == 0){
+      product.fixedQnt = product.quantity;
+    }
     if (product.quantity > 1) {
       int index = _detailsData.ordersDetails!.indexWhere(
           (e) => e.id == product.id && product.addedVariantId == -1);
@@ -336,6 +358,20 @@ class OrderDetailsController {
       // updateSameOrderInList(_detailsData);
       await updateInvoice();
     }
+  }
+
+  Future<void> increaseQnt(OrderDetailsModel product)async{
+    int index = _detailsData.ordersDetails!.indexWhere(
+            (e) => e.id == product.id && product.addedVariantId == -1);
+    product.quantity = product.quantity + 1;
+    product.product!.productStatus = ProductStatusEnum.qntModified;
+    product.pickerNotes = pickerNoteController.text;
+    if(product.quantity == product.fixedQnt){
+      product.product!.productStatus = ProductStatusEnum.noEdit;
+      product.pickerNotes = "";
+    }
+    _detailsData.ordersDetails![index] = product;
+    await updateInvoice();
   }
 
   void showCancelOrderDialog(BuildContext context) {
@@ -937,10 +973,19 @@ class OrderDetailsController {
       /// will shift originalItemIndex down by 1
       if (addedItemIndex < originalItemIndex) {
         _detailsData.ordersDetails!.removeAt(addedItemIndex);
+        if(originalStillHaveReplacedInList == false){
+          originalItem.product?.productStatus = ProductStatusEnum.noEdit;
+          originalItem.pickerNotes = "";
+        }
         _detailsData.ordersDetails![originalItemIndex - 1] = originalItem;
       } else {
+        if(originalItem.quantity == originalItem.fixedQnt){
+          originalItem.product?.productStatus = ProductStatusEnum.noEdit;
+          originalItem.pickerNotes = "";
+        }
         _detailsData.ordersDetails![originalItemIndex] = originalItem;
         _detailsData.ordersDetails!.removeAt(addedItemIndex);
+
       }
     }
     // updateDetailsCubit();
@@ -950,6 +995,8 @@ class OrderDetailsController {
         updateInvoice()
     );
   }
+
+
 
   void showConFirmReturnDialog(BuildContext context,
       OrderDetailsModel replacedItem, BaseBloc<bool> loadingCubit) {

@@ -66,28 +66,12 @@ class PickItemButtonWidget extends StatelessWidget {
             Gaps.vGap8,
             QntCountWidget(
               qnt: data.remainQnt,
+              controller: controller,
+                data: data,
+              loadingCubit: loadingCubit,
             ),
           ],
         ),
-        if (!controller.isProductFullPicked(data) &&
-            data.remainQnt > 1 &&
-            data.product?.productStatus?.shouldShowReduceIcon == true)
-          GestureDetector(
-            onTap: () => controller.editQuantity(context, data,loadingCubit),
-            child: Container(
-              padding: const EdgeInsets.all(5),
-              margin: const EdgeInsets.only(bottom: 4),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: context.colors.primary,
-              ),
-              child: const Icon(
-                CupertinoIcons.minus,
-                color: CupertinoColors.white,
-                size: 20,
-              ),
-            ),
-          )
       ],
     );
   }

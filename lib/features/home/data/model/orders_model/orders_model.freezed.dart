@@ -1404,6 +1404,10 @@ mixin _$OrderDetailsModel {
   double? get fixedUnitPrice => throw _privateConstructorUsedError;
   @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
   set fixedUnitPrice(double? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fixed_qnt', defaultValue: 0)
+  int? get fixedQnt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'fixed_qnt', defaultValue: 0)
+  set fixedQnt(int? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'old_replaced_model')
   OldReplacedModel? get oldReplacedModel => throw _privateConstructorUsedError;
   @JsonKey(name: 'old_replaced_model')
@@ -1435,6 +1439,7 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
       double? fixedUnitPrice,
+      @JsonKey(name: 'fixed_qnt', defaultValue: 0) int? fixedQnt,
       @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel});
 
   $ProductModelCopyWith<$Res>? get product;
@@ -1465,6 +1470,7 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? newPrice = freezed,
     Object? pickerNotes = freezed,
     Object? fixedUnitPrice = freezed,
+    Object? fixedQnt = freezed,
     Object? oldReplacedModel = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1512,6 +1518,10 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.fixedUnitPrice
           : fixedUnitPrice // ignore: cast_nullable_to_non_nullable
               as double?,
+      fixedQnt: freezed == fixedQnt
+          ? _value.fixedQnt
+          : fixedQnt // ignore: cast_nullable_to_non_nullable
+              as int?,
       oldReplacedModel: freezed == oldReplacedModel
           ? _value.oldReplacedModel
           : oldReplacedModel // ignore: cast_nullable_to_non_nullable
@@ -1565,6 +1575,7 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
       double? fixedUnitPrice,
+      @JsonKey(name: 'fixed_qnt', defaultValue: 0) int? fixedQnt,
       @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel});
 
   @override
@@ -1595,6 +1606,7 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? newPrice = freezed,
     Object? pickerNotes = freezed,
     Object? fixedUnitPrice = freezed,
+    Object? fixedQnt = freezed,
     Object? oldReplacedModel = freezed,
   }) {
     return _then(_$OrderDetailsModelImpl(
@@ -1642,6 +1654,10 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
           ? _value.fixedUnitPrice
           : fixedUnitPrice // ignore: cast_nullable_to_non_nullable
               as double?,
+      fixedQnt: freezed == fixedQnt
+          ? _value.fixedQnt
+          : fixedQnt // ignore: cast_nullable_to_non_nullable
+              as int?,
       oldReplacedModel: freezed == oldReplacedModel
           ? _value.oldReplacedModel
           : oldReplacedModel // ignore: cast_nullable_to_non_nullable
@@ -1665,6 +1681,7 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
       @JsonKey(name: "new_price", defaultValue: 0.0) this.newPrice,
       @JsonKey(name: "picker_notes", defaultValue: "") this.pickerNotes,
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0) this.fixedUnitPrice,
+      @JsonKey(name: 'fixed_qnt', defaultValue: 0) this.fixedQnt,
       @JsonKey(name: 'old_replaced_model') this.oldReplacedModel})
       : super._();
 
@@ -1702,12 +1719,15 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
   double? fixedUnitPrice;
   @override
+  @JsonKey(name: 'fixed_qnt', defaultValue: 0)
+  int? fixedQnt;
+  @override
   @JsonKey(name: 'old_replaced_model')
   OldReplacedModel? oldReplacedModel;
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes, fixedUnitPrice: $fixedUnitPrice, oldReplacedModel: $oldReplacedModel)';
+    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes, fixedUnitPrice: $fixedUnitPrice, fixedQnt: $fixedQnt, oldReplacedModel: $oldReplacedModel)';
   }
 
   @JsonKey(ignore: true)
@@ -1739,6 +1759,7 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       @JsonKey(name: "picker_notes", defaultValue: "") String? pickerNotes,
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
       double? fixedUnitPrice,
+      @JsonKey(name: 'fixed_qnt', defaultValue: 0) int? fixedQnt,
       @JsonKey(name: 'old_replaced_model')
       OldReplacedModel? oldReplacedModel}) = _$OrderDetailsModelImpl;
   _OrderDetailsModel._() : super._();
@@ -1795,6 +1816,11 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   double? get fixedUnitPrice;
   @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
   set fixedUnitPrice(double? value);
+  @override
+  @JsonKey(name: 'fixed_qnt', defaultValue: 0)
+  int? get fixedQnt;
+  @JsonKey(name: 'fixed_qnt', defaultValue: 0)
+  set fixedQnt(int? value);
   @override
   @JsonKey(name: 'old_replaced_model')
   OldReplacedModel? get oldReplacedModel;
