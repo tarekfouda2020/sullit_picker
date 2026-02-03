@@ -86,8 +86,8 @@ class GlobalNotification {
     if (settings.authorizationStatus == AuthorizationStatus.authorized ||
         settings.authorizationStatus == AuthorizationStatus.provisional) {
       // log("✅ Notification permissions granted!");
-      await messaging.getToken();
-      // log("FCM Token: $token");
+     var token =  await messaging.getToken();
+      log("FCM Token: $token   ");
 
       messaging.setForegroundNotificationPresentationOptions(
         alert: true,
@@ -112,6 +112,9 @@ class GlobalNotification {
           log("✅ Notification display completed");
         } catch (e) {
           log("❌ Error showing notification: $e");
+        }
+        if(AppStateHelper.instance.appInBackGround){
+          getIt<OrdersHelper>().stopSound();
         }
 
         _onMessageStreamController.add(message.data);

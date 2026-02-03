@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
@@ -16,194 +15,212 @@ import '../../features/auth/presentation/pages/change_password/change_password_i
 
 @lazySingleton
 class OrdersHelper {
-   final SoundEffect _player = SoundEffect();
-   Timer? _timer;
-   bool _isDisposed = false;
+  final SoundEffect _player = SoundEffect();
+  Timer? _timer;
+  bool _isDisposed = false;
 
-   final BaseBloc<List<OrderModel>> assignedOrdersCubit = BaseBloc<List<OrderModel>>([]);
-   final BaseBloc<OrdersList?> ordersListCubit = BaseBloc<OrdersList?>();
+  final BaseBloc<List<OrderModel>> assignedOrdersCubit =
+      BaseBloc<List<OrderModel>>([]);
+  final BaseBloc<OrdersList?> ordersListCubit = BaseBloc<OrdersList?>();
 
-   /// used only in home page
-   /// used in tow places i UI but only one of them will apply
-   /// so the key will be in one place >>> avoiding to Error *Multiple widgets used the same GlobalKey.*
-    GlobalKey<RefreshIndicatorState>   ordersRefreshKey() => GlobalKey<RefreshIndicatorState>();
+  /// used only in home page
+  /// used in tow places i UI but only one of them will apply
+  /// so the key will be in one place >>> avoiding to Error *Multiple widgets used the same GlobalKey.*
+  GlobalKey<RefreshIndicatorState> ordersRefreshKey() =>
+      GlobalKey<RefreshIndicatorState>();
 
+  Future<void> saveAssignedOrders(List<OrderModel> data) async {
+    // Prevent saving to Hive if helper is disposed (during logout)
+    if (_isDisposed) return;
 
-   Future<void> saveAssignedOrders(List<OrderModel> data) async {
-     // Prevent saving to Hive if helper is disposed (during logout)
-     if (_isDisposed) return;
-     
-     final String jsonString = jsonEncode(data.map((e) => e.toJson()).toList());
-     await HiveHelper.instance.addDataToBox<String>(
-       HiveBoxesNames.orders,
-       key: HiveBoxesKeys.assignedOrdersKey,
-       jsonString,
-     );
-     assignedOrdersCubit.successState(data);
-   }
+    final String jsonString = jsonEncode(data.map((e) => e.toJson()).toList());
+    await HiveHelper.instance.addDataToBox<String>(
+      HiveBoxesNames.orders,
+      key: HiveBoxesKeys.assignedOrdersKey,
+      jsonString,
+    );
+    assignedOrdersCubit.successState(data);
+  }
 
-   List<OrderModel> getAssignedOrders()  {
-     // Prevent accessing Hive if helper is disposed (during logout)
-     if (_isDisposed) return [];
-     
-     final String? jsonString = HiveHelper.instance.getDataFromBox<String>(
-       HiveBoxesNames.orders,
-       key: HiveBoxesKeys.assignedOrdersKey,
-     );
+  List<OrderModel> getAssignedOrders() {
+    // Prevent accessing Hive if helper is disposed (during logout)
+    if (_isDisposed) return [];
 
-     if (jsonString == null || jsonString.isEmpty) {
-       return [];
-     }
+    final String? jsonString = HiveHelper.instance.getDataFromBox<String>(
+      HiveBoxesNames.orders,
+      key: HiveBoxesKeys.assignedOrdersKey,
+    );
 
-     final List<dynamic> decodedList = jsonDecode(jsonString);
-     try{
-       return decodedList.map((e) => OrderModel.fromJson(e)).toList();
-     } catch(e){
-       return [];
-     }
-   }
+    if (jsonString == null || jsonString.isEmpty) {
+      return [];
+    }
 
-   Future<void> saveOrderDetails(OrderModel data) async {
-     if (_isDisposed) return;
-     
-     final jsonString = jsonEncode(data.toJson());
-     await HiveHelper.instance.addDataToBox<String>(HiveBoxesNames.orderDetails, jsonString,key: data.id);
-   }
+    final List<dynamic> decodedList = jsonDecode(jsonString);
+    try {
+      return decodedList.map((e) => OrderModel.fromJson(e)).toList();
+    } catch (e) {
+      return [];
+    }
+  }
 
-   Future<OrderModel?> getOrderDetails(int orderId) async {
-     final box = HiveHelper.instance.getDataFromBox<String>(HiveBoxesNames.orderDetails,key: orderId);
-     if (box == null || box.isEmpty) {
-       return null;
-     }
-    try{
+  Future<void> saveOrderDetails(OrderModel data) async {
+    if (_isDisposed) return;
+
+    final jsonString = jsonEncode(data.toJson());
+    await HiveHelper.instance.addDataToBox<String>(
+        HiveBoxesNames.orderDetails, jsonString,
+        key: data.id);
+  }
+
+  Future<OrderModel?> getOrderDetails(int orderId) async {
+    final box = HiveHelper.instance
+        .getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
+    if (box == null || box.isEmpty) {
+      return null;
+    }
+    try {
       final Map<String, dynamic> map = jsonDecode(box) as Map<String, dynamic>;
       return OrderModel.fromJson(map);
-    }catch(e){
-       log("====>>>>>>>>>>>>error while decode data $e  <<<<<<<<<");
-       return null;
+    } catch (e) {
+      log("====>>>>>>>>>>>>error while decode data $e  <<<<<<<<<");
+      return null;
     }
-   }
+  }
 
-   Future<void> deleteOrderDetails(int orderId) async {
-     HiveHelper.instance.deleteDataFromBox<String>(HiveBoxesNames.orderDetails,key: orderId);
-   }
+  Future<void> deleteOrderDetails(int orderId) async {
+    HiveHelper.instance
+        .deleteDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
+  }
 
+  Future<void> getAllOrders(
+      {bool fromRemote = true, bool setLoading = true}) async {
+    if (ordersListCubit.hasNoData && setLoading) {
+      ordersListCubit.loadingState();
+    }
+    var result = await getIt<HomeRepositories>().orders(fromRemote);
+    result.when(
+      isSuccess: (data) {
+        ordersListCubit.successState(data);
+        if (ordersListCubit.data != null) {
+          updateAssignedFromLocalData(data?.assignedOrders ?? <OrderModel>[]);
+          if (ordersListCubit.data!.assignedOrders.isEmpty &&
+              ordersListCubit.data!.newOrders.isEmpty) {
+            ordersListCubit.successState(null);
+          }
+        }
+      },
+      isError: (error) {
+        ordersListCubit.failedState(
+          error,
+          () => getAllOrders(),
+        );
+      },
+    );
+  }
 
+  Future<void> updateAssignedFromLocalData(List<OrderModel> data) async {
+    // Prevent accessing Hive if helper is disposed (during logout)
+    if (_isDisposed) {
+      assignedOrdersCubit.successState(data);
+      return;
+    }
 
-   Future<void> getAllOrders({bool fromRemote = true, bool setLoading = true}) async {
-     if (ordersListCubit.hasNoData && setLoading) {
-       ordersListCubit.loadingState();
-     }
-     var result = await getIt<HomeRepositories>().orders(fromRemote);
-     result.when(
-       isSuccess: (data) {
-         ordersListCubit.successState(data);
-         if (ordersListCubit.data != null) {
-           updateAssignedFromLocalData(data?.assignedOrders ?? <OrderModel>[]);
-           if (ordersListCubit.data!.assignedOrders.isEmpty && ordersListCubit.data!.newOrders.isEmpty) {
-             ordersListCubit.successState(null);
-           }
-         }
-       },
-       isError: (error) {
-         ordersListCubit.failedState(
-           error,
-               () => getAllOrders(),
-         );
-       },
-     );
-   }
+    var localData = getIt<OrdersHelper>().getAssignedOrders();
+    if (localData.isEmpty) {
+      getIt<OrdersHelper>().saveAssignedOrders(data);
+      assignedOrdersCubit.successState(data);
+    } else {
+      initDataFromLocal();
+    }
+  }
 
+  Future<void> initDataFromLocal() async {
+    // Prevent accessing Hive if helper is disposed (during logout)
+    if (_isDisposed) {
+      assignedOrdersCubit.successState([]);
+      return;
+    }
 
-   Future<void> updateAssignedFromLocalData(List<OrderModel> data) async {
-     // Prevent accessing Hive if helper is disposed (during logout)
-     if (_isDisposed) {
-       assignedOrdersCubit.successState(data);
-       return;
-     }
-     
-     var localData = getIt<OrdersHelper>().getAssignedOrders();
-     if (localData.isEmpty) {
-       getIt<OrdersHelper>().saveAssignedOrders(data);
-       assignedOrdersCubit.successState(data);
-     } else {
-       initDataFromLocal();
-     }
-   }
+    var data = getIt<OrdersHelper>().getAssignedOrders();
+    assignedOrdersCubit.successState(data);
+  }
 
-   Future<void> initDataFromLocal() async {
-     // Prevent accessing Hive if helper is disposed (during logout)
-     if (_isDisposed) {
-       assignedOrdersCubit.successState([]);
-       return;
-     }
-     
-     var data = getIt<OrdersHelper>().getAssignedOrders();
-     assignedOrdersCubit.successState(data);
-   }
+  Future<void> showNewOrderAlert() async {
+    BuildContext context = getIt<GlobalContext>().context();
+    bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
+    if (isAvailable == false) {
+      return;
+    }
+    startSound();
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => NewOrderAlertWidget(
+        onPressApply: () => onPressApply(context),
+      ),
+    );
+    stopSound();
+  }
 
+  Future<void> onPressApply(BuildContext context) async {
+    stopSound();
+    bool? orderDetailsOpened =
+        getIt<NotifyMethodsHelper>().orderDetailsOpened();
+    if (orderDetailsOpened == true) {
+      getAllOrders();
+      return;
+    }
+    bool? notInHomePage = getIt<NotifyMethodsHelper>().notInHomePage();
+    if (notInHomePage == true) {
+      AutoRouter.of(context).push(const HomePageRoute());
+    } else {
+      getAllOrders(setLoading: true);
+    }
+  }
 
-   Future<void> showNewOrderAlert() async {
-     BuildContext context = getIt<GlobalContext>().context();
-     bool isAvailable = context.read<UserCubit>().state.model!.isAvailable;
-     if(isAvailable == false){
-       return ;
-     }
-     _startSound();
-     await showDialog(
-       context: context,
-       barrierDismissible: false,
-       builder: (context) => NewOrderAlertWidget(
-         onPressApply: () => onPressApply(context),
-       ),
-     );
-     _stopSound();
-   }
+  bool _soundPlay = false;
 
-   Future<void> onPressApply(BuildContext context)async{
-     _stopSound();
-     bool? orderDetailsOpened = getIt<NotifyMethodsHelper>().orderDetailsOpened();
-     if(orderDetailsOpened == true){
-       getAllOrders();
-       return ;
-     }
-     bool? notInHomePage = getIt<NotifyMethodsHelper>().notInHomePage();
-     if(notInHomePage == true){
-        AutoRouter.of(context).push(const HomePageRoute());
-     }else{
-       getAllOrders(setLoading: true);
-     }
-   }
-
-   Future<void> _startSound({Duration interval = const Duration(seconds: 2)}) async {
+  Future<void> startSound(
+      {Duration interval = const Duration(seconds: 2)}) async {
     if (_timer != null) return;
-    await _player.initialize();
-    await _player.load("effect", Res.newOrderSound);
+    _soundPlay = true;
     _timer = Timer.periodic(interval, (_) {
       _player.play('effect', volume: 2);
     });
     _player.play('effect', volume: 2);
   }
 
-   Future<void> _stopSound() async{
-    await _player.release();
-    _timer?.cancel();
-    _timer = null;
+  Future<void> initSound() async {
+    await _player.initialize();
+    await _player.load("effect", Res.newOrderSound);
   }
 
-   /// Clean up all resources before logout
-   Future<void> cleanup() async {
+  Future<void> stopSound() async {
+    try {
+      if (_soundPlay) {
+        await _player.release();
+        _timer?.cancel();
+        _timer = null;
+      }
+      _soundPlay = false;
+    } catch (e) {
+      log("error while init sound ");
+    }
+  }
+
+  /// Clean up all resources before logout
+  Future<void> cleanup() async {
     _isDisposed = true;
     assignedOrdersCubit.successState([]);
     ordersListCubit.successState(null);
   }
 
-   /// Reset the helper after logging in with a new account
-   Future<void> reset() async {
+  /// Reset the helper after logging in with a new account
+  Future<void> reset() async {
     _isDisposed = false;
     assignedOrdersCubit.successState([]);
     ordersListCubit.successState(null);
-    
+
     // Ensure Hive boxes are open
     try {
       if (!Hive.isBoxOpen(HiveBoxesNames.orders)) {

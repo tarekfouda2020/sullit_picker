@@ -7,5 +7,6 @@ class AppStateHelper {
 
   bool isAppOpened = true;
 
+  bool appInBackGround = false;
 
 }
