@@ -82,7 +82,8 @@ enum ProductStatusEnum {
       case ProductStatusEnum.added:
       case ProductStatusEnum.replaced:
       case ProductStatusEnum.qntModified:
-        return false;
+        // return false;
+        return true;
       case ProductStatusEnum.priceModified:
       case ProductStatusEnum.normal:
       case ProductStatusEnum.noEdit:
@@ -90,5 +91,7 @@ enum ProductStatusEnum {
     }
   }
 
+
+  bool get noChangesHappen => isNormal || hasNoEdit;
 
 }

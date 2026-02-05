@@ -107,5 +107,5 @@ class EditSingleQntPriceWidget extends StatelessWidget {
 
   bool _showEditPrice() =>
       model.product!.showEditPrice == true &&
-      model.product!.productStatus!.shouldShowEditPriceIcon;
+      model.product!.productStatus!.shouldShowEditPriceIcon && controller.isProductFullPicked(model);
 }

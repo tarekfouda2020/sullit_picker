@@ -49,21 +49,22 @@ class PrepareOrderParams {
         .map((e) {
           /// replaced projects
           if (e.newVariantId != null && e.newVariantId != -1) {
-            if (e.newPrice != null && e.newPrice != 0.0) {
-              return _actionJson(PrepareOrderActionType.updatePrice, e);
-            }
+            // if (e.newPrice != null && e.newPrice != 0.0) {
+            //   return _actionJson(PrepareOrderActionType.updatePrice, e);
+            // }
             return _actionJson(PrepareOrderActionType.replace, e);
-          }
-
-          /// updated price
-          if (e.newPrice != null && e.newPrice != 0.0) {
-            return _actionJson(PrepareOrderActionType.updatePrice, e);
           }
 
           /// reduced item
           if (e.product!.productStatus!.isQntModified) {
             return _actionJson(PrepareOrderActionType.reduce, e);
           }
+
+          /// updated price
+          if (e.newPrice != null && e.newPrice != 0.0 && e.product?.productStatus?.isPriceModified == true) {
+            return _actionJson(PrepareOrderActionType.updatePrice, e);
+          }
+
         })
         .where((e) => e != null)
         .cast<Map<String, dynamic>>()
@@ -83,6 +84,7 @@ class PrepareOrderParams {
     ];
 
     log("======>>>> all data current json $currentDetailsJson <<<<<<======");
+    log("======>>>> added data json $_addedProductsJson <<<<<<======");
 
     log("======>>>> all data $allDetailsJsons <<<<<<======");
     log("======>>>> deleted data $removeDetailsJson <<<<<<======");
@@ -108,6 +110,7 @@ class PrepareOrderParams {
           "id": data.id,
           "action": "replace",
           "new_variant_id": data.newVariantId,
+          ...getPriceField(data),
           "picker_notes": data.pickerNotes!
         };
       case PrepareOrderActionType.reduce:
@@ -115,6 +118,7 @@ class PrepareOrderParams {
           "id": data.id,
           "action": "reduce",
           "qty": data.quantity,
+          ...getPriceField(data),
           "picker_notes": data.pickerNotes!,
         };
       case PrepareOrderActionType.remove:
@@ -128,9 +132,18 @@ class PrepareOrderParams {
           "action": "add",
           "variant_id": data.addedVariantId,
           "qty": data.quantity,
+          ...getPriceField(data),
           "picker_notes": data.pickerNotes!,
         };
     }
+  }
+}
+
+Map<String, dynamic> getPriceField(OrderDetailsModel data) {
+  if (data.newPrice != null && data.newPrice != 0) {
+    return {"price": data.price};
+  } else {
+    return {};
   }
 }
 

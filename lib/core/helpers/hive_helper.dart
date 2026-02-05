@@ -8,7 +8,9 @@ class HiveHelper {
 
   static final HiveHelper instance = HiveHelper._();
 
-  static bool _initialized = false;
+  static const int _defaultHiveKey = 1;
+
+   bool _initialized = false;
 
 
   Future<void> init()async{
@@ -98,22 +100,22 @@ class HiveHelper {
      }
   }
 
-  Future<void> addDataToBox<T>(String boxName, T value,{dynamic key = 1})async{
+  Future<void> addDataToBox<T, K extends Object>(String boxName, T value,{ K? key})async{
      var box = getBox<T>(boxName);
      if (box == null) return;
-     await box.put(key, value);
+     await box.put(key ?? _defaultHiveKey, value);
   }
 
-  T? getDataFromBox<T>(String boxName, {dynamic key = 1}){
+  T? getDataFromBox<T,K extends Object>(String boxName, { K? key}){
     var box = getBox<T>(boxName);
     if (box == null) return null;
-    return box.get(key);
+    return box.get(key ?? _defaultHiveKey);
   }
 
-  Future<void> deleteDataFromBox<T>(String boxName,{dynamic key = 1})async{
+  Future<void> deleteDataFromBox<T,K extends Object>(String boxName,{ K? key})async{
     var box = getBox<T>(boxName);
     if (box == null) return;
-    await box.delete(key);
+    await box.delete(key ?? _defaultHiveKey);
   }
 
 }

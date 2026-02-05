@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import '../../../../../../core/helpers/export.dart';
 import '../../../../data/model/orders_model/orders_model.dart';
@@ -26,7 +28,7 @@ class OrderHistoryHeaderWidget extends StatelessWidget {
               ),
               Gaps.hGap7,
               Text(
-                order.total,
+                getTotal(),
                 style: AppTextStyle.s18_w500(color: context.colors.primary),
               ).withDirhamSymbol(
                   symbolStyle:
@@ -60,4 +62,16 @@ class OrderHistoryHeaderWidget extends StatelessWidget {
       ],
     );
   }
+
+
+  String getTotal(){
+    try{
+      return order.invoiceModel.getGrandTotal().toStringAsFixed(2);
+    }catch(e){
+      log("=====>>>>>> error $e<<<<<====");
+      return order.total;
+    }
+  }
+
+
 }

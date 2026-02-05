@@ -34,7 +34,7 @@ class OrdersHelper {
     if (_isDisposed) return;
 
     final String jsonString = jsonEncode(data.map((e) => e.toJson()).toList());
-    await HiveHelper.instance.addDataToBox<String>(
+    await HiveHelper.instance.addDataToBox<String,String>(
       HiveBoxesNames.orders,
       key: HiveBoxesKeys.assignedOrdersKey,
       jsonString,
@@ -46,7 +46,7 @@ class OrdersHelper {
     // Prevent accessing Hive if helper is disposed (during logout)
     if (_isDisposed) return [];
 
-    final String? jsonString = HiveHelper.instance.getDataFromBox<String>(
+    final String? jsonString = HiveHelper.instance.getDataFromBox<String,String>(
       HiveBoxesNames.orders,
       key: HiveBoxesKeys.assignedOrdersKey,
     );
@@ -67,14 +67,15 @@ class OrdersHelper {
     if (_isDisposed) return;
 
     final jsonString = jsonEncode(data.toJson());
-    await HiveHelper.instance.addDataToBox<String>(
+    await HiveHelper.instance.addDataToBox<String,int>(
         HiveBoxesNames.orderDetails, jsonString,
-        key: data.id);
+        key: data.id
+    );
   }
 
   Future<OrderModel?> getOrderDetails(int orderId) async {
     final box = HiveHelper.instance
-        .getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
+        .getDataFromBox<String,int>(HiveBoxesNames.orderDetails, key: orderId);
     if (box == null || box.isEmpty) {
       return null;
     }
@@ -89,7 +90,7 @@ class OrdersHelper {
 
   Future<void> deleteOrderDetails(int orderId) async {
     HiveHelper.instance
-        .deleteDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
+        .deleteDataFromBox<String,int>(HiveBoxesNames.orderDetails, key: orderId);
   }
 
   Future<void> getAllOrders(

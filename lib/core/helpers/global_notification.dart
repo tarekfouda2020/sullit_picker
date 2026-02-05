@@ -12,8 +12,9 @@ import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/helpers/storage_helper.dart';
 import 'package:flutter_tdd/features/notifications/data/enum/notification_type.dart';
 import 'package:injectable/injectable.dart';
-import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter/widgets.dart';
 import 'package:timezone/data/latest.dart' as tz_data;
+import 'package:timezone/timezone.dart' as tz;
 
 import '../../features/auth/presentation/pages/login_view/login_view_imports.dart';
 import 'global_context.dart';
@@ -112,14 +113,25 @@ class GlobalNotification {
         // log("___________________notification title:${message.notification?.title}");
         // log("___________________notification:${message.notification}");
 
+        if (message.notification != null && AppStateHelper.instance.appInBackGround){
+          log("====<<<<<<<<<< state ${AppStateHelper.instance.appInBackGround} >>>>>>>=======");
+          _scheduleRepeatNotificationsIOS(
+            _flutterLocalNotificationsPlugin,
+            message.data["title"],
+            message.data["body"],
+            soundName,
+            message.data,
+          );
+        }
+
         try {
           await _showLocalNotification(message);
           log("✅ Notification display completed");
         } catch (e) {
           log("❌ Error showing notification: $e");
         }
-        // if(AppStateHelper.instance.appInBackGround){
-        //   getIt<OrdersHelper>().stopSound();
+        // if (AppStateHelper.instance.appInBackGround) {
+        //   getIt<OrdersHelper>().startSound();
         // }
 
         _onMessageStreamController.add(message.data);
@@ -142,11 +154,9 @@ class GlobalNotification {
     }
   }
 
-  static Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
+  static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     log("📬 Handling a background message: ${message.messageId}");
     await Firebase.initializeApp();
-    tz_data.initializeTimeZones();
 
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
@@ -180,13 +190,9 @@ class GlobalNotification {
       soundName = channel.sound!.sound;
     }
 
-    if (Platform.isIOS && type.isNewOrder) {
-      String? soundNameFromPayload = message.notification?.apple?.sound?.name;
-      if (soundNameFromPayload != null && soundNameFromPayload.isNotEmpty) {
-        soundName = soundNameFromPayload;
-      } else {
-        soundName = "tips_alot.caf";
-      }
+    if (Platform.isIOS && message.notification != null && type.isNewOrder) {
+      soundName = message.notification!.apple!.sound!.name!;
+      // soundName = "tips_alot.caf";
     }
 
     final AndroidNotificationDetails androidDetails =
@@ -201,6 +207,8 @@ class GlobalNotification {
       playSound: true,
       additionalFlags:
           type.isNewOrder ? Int32List.fromList([4]) : null, // FLAG_INSISTENT
+      category: AndroidNotificationCategory.call,
+      visibility: NotificationVisibility.public,
     );
 
     const DarwinNotificationDetails generalIos = DarwinNotificationDetails(
@@ -244,7 +252,7 @@ class GlobalNotification {
         presentBadge: true,
         presentSound: true,
         sound: soundName,
-        interruptionLevel: InterruptionLevel.timeSensitive,
+        interruptionLevel: InterruptionLevel.critical,
       );
 
   static Future<void> _scheduleRepeatNotificationsIOS(
@@ -254,23 +262,17 @@ class GlobalNotification {
     String sound,
     Map<String, dynamic> data,
   ) async {
-    /// cancel old scheduled notifications
-    await plugin.cancelAll();
-    if (sound.isEmpty) {
-      sound = "tips_alot.caf";
-    }
-
-    /// schedule new notifications
-    for (int i = 1; i <= 20; i++) {
+    for (int i = 1; i <= 5; i++) {
       await plugin.zonedSchedule(
         1000 + i, // Repeat notification IDs starting from 1001
         title,
         body,
-        tz.TZDateTime.now(tz.local).add(Duration(seconds: 4 * i)),
+        tz.TZDateTime.now(tz.local).add(Duration(seconds: 30 * i)),
         NotificationDetails(iOS: newOrderIos(sound)),
         payload: json.encode(data),
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       );
     }
@@ -286,11 +288,13 @@ class GlobalNotification {
       return;
     }
 
-    bool isAppOpened = AppStateHelper.instance.isAppOpened;
+    // bool isAppOpened = AppStateHelper.instance.isAppOpened;
+    var lifecycleState = WidgetsBinding.instance.lifecycleState;
+    bool isResumed = lifecycleState == AppLifecycleState.resumed;
     String notifyType = message.data["item_type"] ?? "";
     NotificationType type = NotificationType.notifyType(notifyType);
 
-    if (isAppOpened && type.isNewOrder) {
+    if (isResumed && type.isNewOrder) {
       return;
     }
 
@@ -360,6 +364,8 @@ class GlobalNotification {
       playSound: true,
       additionalFlags:
           type.isNewOrder ? Int32List.fromList([4]) : null, // FLAG_INSISTENT
+      category: AndroidNotificationCategory.call,
+      visibility: NotificationVisibility.public,
     );
 
     const DarwinNotificationDetails generalIos = DarwinNotificationDetails(

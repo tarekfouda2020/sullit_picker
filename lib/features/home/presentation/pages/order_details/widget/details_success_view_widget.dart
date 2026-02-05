@@ -18,11 +18,12 @@ class DetailsSuccessViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Gaps.vGap(controller.getHeight),
+        Gaps.vGap(controller.getHeight+10),
         OrderDetailsHeaderWidget(data: data),
         Gaps.vGap5,
         Expanded(
           child: ListView(
+            padding: const EdgeInsets.only(top: 20),
             children: [
               HeaderOrderDetailsWidget(
                 data: data,

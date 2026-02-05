@@ -103,22 +103,22 @@ class OrderDetailsController {
   Future<void> scanProduct(
       BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
-    BuildContext ctx = getIt<GlobalContext>().context();
-    // 71860
-    // 31610
-    AppSnackBar.showSuccessSnackBar(
-      "${Translate.of(ctx).product_scanned}, with barcode: 71860",
-    );
-    getProductWithBarcode(ctx, "71860", oldItem);
+    // BuildContext ctx = getIt<GlobalContext>().context();
+    // // 71860
+    // // 31610
+    // AppSnackBar.showSuccessSnackBar(
+    //   "${Translate.of(ctx).product_scanned}, with barcode: 71860",
+    // );
+    // getProductWithBarcode(ctx, "71860", oldItem);
 
-    // String? barcode = await getIt<BarcodeService>().scanBarcode(context);
-    // if (barcode != null && barcode.isNotEmpty) {
-    //   BuildContext ctx = getIt<GlobalContext>().context();
-    //   AppSnackBar.showSuccessSnackBar(
-    //     "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
-    //   );
-    //   getProductWithBarcode(ctx, barcode, oldItem);
-    // }
+    String? barcode = await getIt<BarcodeService>().scanBarcode(context);
+    if (barcode != null && barcode.isNotEmpty) {
+      BuildContext ctx = getIt<GlobalContext>().context();
+      AppSnackBar.showSuccessSnackBar(
+        "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
+      );
+      getProductWithBarcode(ctx, barcode, oldItem);
+    }
   }
 
   Future<void> getProductWithBarcode(
@@ -593,20 +593,29 @@ class OrderDetailsController {
       }
       int index =
           _detailsData.ordersDetails!.indexWhere((e) => e.id == oldItem.id);
+      var oldStatus = oldItem.product?.productStatus;
+      bool statusDidNotChanged = oldStatus == null || oldStatus.isNormal || oldStatus.hasNoEdit;
       OrderDetailsModel updatedItem = oldItem.copyWith(
         price: "${newPrice * oldItem.quantity}",
         unitPrice: "$newPrice",
         newPrice: newPrice,
         pickerNotes: pickerNoteController.text,
         product: oldItem.product!
-            .copyWith(productStatus: ProductStatusEnum.priceModified),
+            .copyWith(
+            productStatus: statusDidNotChanged ? ProductStatusEnum.priceModified : oldStatus
+        ),
       );
+      log('===>>>>> product status ${updatedItem.product?.productStatus?.name}<<<<<<<<===');
+      log('===>>>>> product qnt ${updatedItem.quantity}<<<<<<<<===');
+      log('===>>>>> new price ${updatedItem.newPrice}<<<<<<<<===');
+      log('===>>>>> added variant id ${updatedItem.addedVariantId}<<<<<<<<===');
       _detailsData.ordersDetails![index] = updatedItem;
 
       /// to prevent adding the same item again with the same id
       _detailsData.changedProducts!
           .addIf(!_detailsData.changedProducts!.contains(oldItem.id), oldItem);
       pickItem(updatedItem, pickedAll: pickAll);
+      log("====>>>>> ${oldItem.quantity} <<<<<<<<<<<===");
       pickerNoteController.clear();
       newPriceController.clear();
       Navigator.pop(context);
@@ -638,13 +647,20 @@ class OrderDetailsController {
     if (pickedQty > 0) {
       pickedQty = pickedQty - 1;
     }
+    orderProduct.product?.showEditPrice = false;
     orderProduct.product!.pickedQuantity = pickedQty;
     double percent = (pickedQty / orderProduct.quantity) * 100;
     orderProduct.product!.productPickedPercent = percent;
+    log("====>>>>>> status ${orderProduct.product!.productStatus!.name}<<<<<<==");
     if (pickedQty == 0) {
+      log("====>>>>>> picked qnt ${pickedQty}<<<<<<==");
       orderPickedPercent(_detailsData, isReturn: true);
-      if (orderProduct.product!.productStatus!.shouldShowStatus &&
-          !orderProduct.product!.productStatus!.isQntModified) {
+      log("====>>>>>> status ${orderProduct.product!.productStatus!.name}<<<<<<==");
+      log("====>>>>>> show status ${orderProduct.product!.productStatus!.shouldShowStatus ||
+          orderProduct.product!.productStatus!.isQntModified}<<<<<<==");
+
+      if (orderProduct.product!.productStatus!.shouldShowStatus ||
+          orderProduct.product!.productStatus!.isQntModified) {
         showConFirmReturnDialog(context, orderProduct, loadingCubit);
         return;
       }
@@ -794,7 +810,7 @@ class OrderDetailsController {
 
   Future<void> getDetails({bool fromRemote = true}) async {
     String? hiveData = HiveHelper.instance
-        .getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
+        .getDataFromBox<String,int>(HiveBoxesNames.orderDetails, key: orderId);
     if (hiveData != null && hiveData.isNotEmpty) {
       initDataFromLocal();
       return;
@@ -816,7 +832,7 @@ class OrderDetailsController {
 
   Future<void> updateLocalData(OrderModel data) async {
     String? box = HiveHelper.instance
-        .getDataFromBox<String>(HiveBoxesNames.orderDetails, key: orderId);
+        .getDataFromBox<String,int>(HiveBoxesNames.orderDetails, key: orderId);
     if (box == null || box.isEmpty) {
       getIt<OrdersHelper>().saveOrderDetails(data);
       updateDetailsCubit(data: data);
@@ -863,6 +879,8 @@ class OrderDetailsController {
     OrderDetailsModel originalItem = originalItems.firstWhere(
       (element) => element.id == updatedOrder.id,
     );
+    var oldStatus = updatedOrder.product?.productStatus;
+    bool statusDidNotChanged = oldStatus == null || oldStatus.noChangesHappen;
     OrderDetailsModel updatedItem = updatedOrder.copyWith(
       /// same data that changed when updated first time will also be changed here
       price: originalItem.price,
@@ -875,7 +893,9 @@ class OrderDetailsController {
           thumbnailImage: originalItem.product!.thumbnailImage,
           pickedQuantity: 0,
           productPickedPercent: 0,
-          productStatus: ProductStatusEnum.noEdit,
+          productStatus: statusDidNotChanged
+              ? ProductStatusEnum.noEdit
+              : originalItem.product?.productStatus ,
           barcode: originalItem.product!.barcode),
     );
     _detailsData.ordersDetails![index] = updatedItem;
@@ -1171,6 +1191,7 @@ class OrderDetailsController {
   Future<void> updateInvoice() async {
     refreshInvoiceCubit.loadingState();
     PrepareOrderParams params = _updateInvoiceParams();
+    // updateDetailsCubit();
     var result = await getIt<HomeRepositories>().updateInvoice(params);
     result.when(
       isSuccess: (data) {

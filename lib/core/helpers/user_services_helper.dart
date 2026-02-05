@@ -53,7 +53,7 @@ class UserServicesHelper {
     
     // Close and clear Hive boxes
     await HiveHelper.instance.closeAllBoxes();
-    HiveHelper.instance.deleteDataFromBox<String>(HiveBoxesNames.orders,key: HiveBoxesKeys.assignedOrdersKey,);
+    HiveHelper.instance.deleteDataFromBox<String,String>(HiveBoxesNames.orders,key: HiveBoxesKeys.assignedOrdersKey,);
     await HiveHelper.instance.deleteBox<String>(HiveBoxesNames.orderDetails);
     await HiveHelper.instance.clearHive();
     

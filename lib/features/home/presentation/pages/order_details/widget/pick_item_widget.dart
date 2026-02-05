@@ -63,8 +63,7 @@ class _PickItemWidgetState extends State<PickItemWidget> {
               ),
             ),
             Visibility(
-              visible: widget
-                  .orderDetails.product!.productStatus!.shouldShowDeleteIcon,
+              visible: widget.orderDetails.product!.productStatus!.shouldShowDeleteIcon,
               child: GestureDetector(
                 onTap: () => widget.controller
                     .showDeleteItemDialog(context, widget.orderDetails,loadingCubit),
@@ -108,6 +107,14 @@ class _PickItemWidgetState extends State<PickItemWidget> {
       ],
     );
   }
+
+  // bool get _showStatus =>
+  //    widget.orderDetails.product!.productStatus!.shouldShowStatus
+  //   || (
+  //      widget.controller.showStatusLabelInQntChangeCase(widget.orderDetails)
+  //      && widget.controller.isProductFullPicked(widget.orderDetails)
+  //    );
+
 
   Positioned _buildPositioned(BuildContext context) {
     final lang = context.read<DeviceCubit>().state.model.locale.languageCode;
