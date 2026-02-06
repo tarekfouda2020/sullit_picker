@@ -28,7 +28,7 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
             format: "yyyy-MM-dd HH:mm:ss",
           ),
           builder: (context, assignedTime) => Text(
-            '${Translate.of(context).assigned} $assignedTime',
+            '${Translate.s.assigned} $assignedTime',
             style: AppTextStyle.s14_w400(color: context.colors.textColor),
           ),
         ),
@@ -47,7 +47,8 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
               CustomerPhoneWidget(customer: data.customer),
               Gaps.line,
               CustomInfoWidget(
-                title: "Payment Method : ${data.paymentMethod ?? 'N/A'}",
+                title:
+                    "${Translate.s.payment_method} : ${data.paymentMethod ?? Translate.s.not_available}",
                 image: Res.visaIcon,
                 endWidget: Text(
                   data.isPaid ? Translate.s.paid : Translate.s.unpaid,

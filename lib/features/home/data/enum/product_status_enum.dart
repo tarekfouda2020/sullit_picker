@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/localization/translate.dart';
 
 enum ProductStatusEnum {
   noEdit,
@@ -8,23 +9,21 @@ enum ProductStatusEnum {
   added,
   normal;
 
-
-  String getName(){
-    switch(this){
+  String getName() {
+    switch (this) {
       case ProductStatusEnum.noEdit:
-       return "";
+        return "";
       case ProductStatusEnum.priceModified:
-        case ProductStatusEnum.qntModified:
-        return "Modified";
+      case ProductStatusEnum.qntModified:
+        return Translate.s.modified;
       case ProductStatusEnum.replaced:
-        return "Replaced";
-        case ProductStatusEnum.added:
-        return "Replaced";
+        return Translate.s.replaced;
+      case ProductStatusEnum.added:
+        return Translate.s.replaced;
       case ProductStatusEnum.normal:
         return "";
     }
   }
-
 
   bool get isQntModified => this == ProductStatusEnum.qntModified;
 
@@ -91,7 +90,5 @@ enum ProductStatusEnum {
     }
   }
 
-
   bool get noChangesHappen => isNormal || hasNoEdit;
-
 }

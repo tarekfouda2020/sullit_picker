@@ -38,6 +38,7 @@ class OrderDetailsController {
     orderId = id;
     targetTime = time;
     getDetails();
+    _backGroundModel?.deletedOrders;
   }
 
   OrderModel get _detailsData => detailsCubit.data!;
@@ -115,7 +116,7 @@ class OrderDetailsController {
     if (barcode != null && barcode.isNotEmpty) {
       BuildContext ctx = getIt<GlobalContext>().context();
       AppSnackBar.showSuccessSnackBar(
-        "${Translate.of(ctx).product_scanned}, with barcode: $barcode",
+        "${Translate.s.product_scanned}, ${Translate.s.with_barcode} $barcode",
       );
       getProductWithBarcode(ctx, barcode, oldItem);
     }
@@ -605,17 +606,12 @@ class OrderDetailsController {
             productStatus: statusDidNotChanged ? ProductStatusEnum.priceModified : oldStatus
         ),
       );
-      log('===>>>>> product status ${updatedItem.product?.productStatus?.name}<<<<<<<<===');
-      log('===>>>>> product qnt ${updatedItem.quantity}<<<<<<<<===');
-      log('===>>>>> new price ${updatedItem.newPrice}<<<<<<<<===');
-      log('===>>>>> added variant id ${updatedItem.addedVariantId}<<<<<<<<===');
       _detailsData.ordersDetails![index] = updatedItem;
 
       /// to prevent adding the same item again with the same id
       _detailsData.changedProducts!
           .addIf(!_detailsData.changedProducts!.contains(oldItem.id), oldItem);
       pickItem(updatedItem, pickedAll: pickAll);
-      log("====>>>>> ${oldItem.quantity} <<<<<<<<<<<===");
       pickerNoteController.clear();
       newPriceController.clear();
       Navigator.pop(context);
@@ -651,13 +647,8 @@ class OrderDetailsController {
     orderProduct.product!.pickedQuantity = pickedQty;
     double percent = (pickedQty / orderProduct.quantity) * 100;
     orderProduct.product!.productPickedPercent = percent;
-    log("====>>>>>> status ${orderProduct.product!.productStatus!.name}<<<<<<==");
     if (pickedQty == 0) {
-      log("====>>>>>> picked qnt ${pickedQty}<<<<<<==");
       orderPickedPercent(_detailsData, isReturn: true);
-      log("====>>>>>> status ${orderProduct.product!.productStatus!.name}<<<<<<==");
-      log("====>>>>>> show status ${orderProduct.product!.productStatus!.shouldShowStatus ||
-          orderProduct.product!.productStatus!.isQntModified}<<<<<<==");
 
       if (orderProduct.product!.productStatus!.shouldShowStatus ||
           orderProduct.product!.productStatus!.isQntModified) {
@@ -962,8 +953,8 @@ class OrderDetailsController {
       _detailsData.deletedOrders!
           .removeWhere((element) => element.id == originalItem.id);
     } else {
-      log('added old id is ${updatedOrder.oldReplacedModel?.id}');
-      log('products list ids ${_detailsData.ordersDetails?.map((e) => e.id).toList()}');
+      // log('added old id is ${updatedOrder.oldReplacedModel?.id}');
+      // log('products list ids ${_detailsData.ordersDetails?.map((e) => e.id).toList()}');
       /// The original item still exists in ordersDetails (partially replaced)
       int originalItemIndex = _detailsData.ordersDetails!.indexWhere((e) =>
           e.id == updatedOrder.oldReplacedModel?.id &&
@@ -971,9 +962,9 @@ class OrderDetailsController {
 
       /// Validate that originalItemIndex is valid
       if (originalItemIndex == -1) {
-        log('replaced old id is ${updatedOrder.oldReplacedModel?.id}');
-        log('products list ids ${_detailsData.ordersDetails?.map((e) => e.id).toList()}');
-        log('returnAddedProduct: Could not find original item in ordersDetails');
+        // log('replaced old id is ${updatedOrder.oldReplacedModel?.id}');
+        // log('products list ids ${_detailsData.ordersDetails?.map((e) => e.id).toList()}');
+        // log('returnAddedProduct: Could not find original item in ordersDetails');
         return;
       }
 

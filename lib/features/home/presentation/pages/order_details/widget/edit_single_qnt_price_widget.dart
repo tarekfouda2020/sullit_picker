@@ -32,7 +32,7 @@ class EditSingleQntPriceWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Item Price : ",
+                Translate.s.item_price,
                 style: AppTextStyle.s14_w300(
                   color: context.colors.simiGray,
                 ),
@@ -50,7 +50,7 @@ class EditSingleQntPriceWidget extends StatelessWidget {
                   children: [
                     Gaps.hGap10,
                     Text(
-                      "Edited - ",
+                      Translate.s.edited,
                       style: AppTextStyle.s12_w300(color: context.colors.black),
                     ),
                     DirhamPrice(
@@ -72,11 +72,8 @@ class EditSingleQntPriceWidget extends StatelessWidget {
               if (_showEditPrice())
                 EditPriceWidget(
                   onTap: () => controller.showNewPriceDialog(
-                      context,
-                      model,
-                      loadingCubit,
-                      popTwice: false
-                  ),
+                      context, model, loadingCubit,
+                      popTwice: false),
                 ),
             ],
           ),
@@ -84,12 +81,12 @@ class EditSingleQntPriceWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: ReadMoreText(
-                "Reason: ${model.pickerNotes!}",
+                "${Translate.s.reason}: ${model.pickerNotes!}",
                 trimMode: TrimMode.Line,
                 trimLines: 2,
                 colorClickableText: context.colors.primary,
-                trimCollapsedText: 'Show more',
-                trimExpandedText: 'Show less',
+                trimCollapsedText: Translate.s.show_more,
+                trimExpandedText: Translate.s.show_less,
                 style: AppTextStyle.s12_w300(color: context.colors.black)
                     .copyWith(height: 1.3),
                 moreStyle: AppTextStyle.s12_w300(color: context.colors.primary),
@@ -107,5 +104,6 @@ class EditSingleQntPriceWidget extends StatelessWidget {
 
   bool _showEditPrice() =>
       model.product!.showEditPrice == true &&
-      model.product!.productStatus!.shouldShowEditPriceIcon && controller.isProductFullPicked(model);
+      model.product!.productStatus!.shouldShowEditPriceIcon &&
+      controller.isProductFullPicked(model);
 }

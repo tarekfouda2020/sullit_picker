@@ -73,6 +73,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اضغط مرة أخرى للخروج"),
         "back_to_login":
             MessageLookupByLibrary.simpleMessage("العودة إلى تسجيل الدخول"),
+        "bags": MessageLookupByLibrary.simpleMessage("أكياس"),
+        "bags_number":
+            MessageLookupByLibrary.simpleMessage("عدد الأكياس المستخدمة"),
         "barcode": MessageLookupByLibrary.simpleMessage("الباركود : "),
         "benefits": MessageLookupByLibrary.simpleMessage("الفوائد :"),
         "benefits_policy":
@@ -170,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+        "edited": MessageLookupByLibrary.simpleMessage("تم التعديل - "),
         "email_placeholder":
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
         "email_required":
@@ -201,6 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
         "enter_your_phone":
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
+        "environment_fee": MessageLookupByLibrary.simpleMessage("رسوم البيئة"),
         "equals": MessageLookupByLibrary.simpleMessage("يساوي"),
         "error_BadRequest_Error":
             MessageLookupByLibrary.simpleMessage("طلب خاطئ"),
@@ -249,6 +254,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fresh_whole_chicken":
             MessageLookupByLibrary.simpleMessage("دجاج كامل طازج"),
         "get_started": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
+        "grand_total": MessageLookupByLibrary.simpleMessage("المجموع الكلي"),
         "hello_welcome": MessageLookupByLibrary.simpleMessage(
             "مرحباً، أهلاً وسهلاً بك معنا!"),
         "help_us_resolve":
@@ -261,8 +267,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "in_progress": MessageLookupByLibrary.simpleMessage("قيد التنفيذ"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("متصل بالإنترنت"),
+        "is_price_equal":
+            MessageLookupByLibrary.simpleMessage("هل السعر متساوي"),
         "is_weight_equals":
             MessageLookupByLibrary.simpleMessage("هل الوزن يساوي 900 جم؟"),
+        "item_price": MessageLookupByLibrary.simpleMessage("سعر العنصر : "),
         "items_left": MessageLookupByLibrary.simpleMessage("عناصر متبقية"),
         "items_left_suffix":
             MessageLookupByLibrary.simpleMessage("عناصر متبقية"),
@@ -313,6 +322,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم إرسال الرسالة بنجاح"),
         "minutes": MessageLookupByLibrary.simpleMessage("دقائق"),
         "minutes_ago": MessageLookupByLibrary.simpleMessage("منذ دقائق"),
+        "modified": MessageLookupByLibrary.simpleMessage("تم التعديل"),
+        "modify_bags_number":
+            MessageLookupByLibrary.simpleMessage("تعديل عدد الأكياس المستخدمة"),
+        "modify_price": MessageLookupByLibrary.simpleMessage("تعديل السعر"),
+        "modify_reason": MessageLookupByLibrary.simpleMessage("سبب التعديل"),
         "month": MessageLookupByLibrary.simpleMessage("شهر"),
         "months_ago": MessageLookupByLibrary.simpleMessage("منذ أشهر"),
         "must_picking_within":
@@ -322,6 +336,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال اسم صالح"),
         "name_required": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
+        "new_count_max_error": MessageLookupByLibrary.simpleMessage(
+            "الكمية الجديدة لا يمكن أن تكون أكثر من"),
         "new_order": MessageLookupByLibrary.simpleMessage("طلب جديد"),
         "new_order_alert": MessageLookupByLibrary.simpleMessage("طلب جديد!"),
         "new_order_message":
@@ -330,6 +346,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "new_password_required":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة مطلوبة"),
+        "new_product_qnt":
+            MessageLookupByLibrary.simpleMessage("كمية المنتج الجديدة"),
         "new_weight_must_be_between": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون الوزن الجديد بين"),
         "new_weight_must_not_less_than": MessageLookupByLibrary.simpleMessage(
@@ -338,6 +356,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noResults": MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
         "no_date_available":
             MessageLookupByLibrary.simpleMessage("لا توجد بيانات تاريخية"),
+        "no_edit_number": MessageLookupByLibrary.simpleMessage("تعديل العدد"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
@@ -357,6 +376,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "ليس لديك أي معاملات بعد. سيظهر تاريخ معاملاتك هنا بمجرد بدء إجراء المعاملات."),
         "no_transactions_found":
             MessageLookupByLibrary.simpleMessage("لم يتم العثور على معاملات"),
+        "not_available": MessageLookupByLibrary.simpleMessage("غير متوفر"),
         "not_available_for_receiving_orders":
             MessageLookupByLibrary.simpleMessage("غير متاح لاستقبال الطلبات"),
         "not_available_yet":
@@ -477,6 +497,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "quick_actions":
             MessageLookupByLibrary.simpleMessage("الإجراءات السريعة"),
         "quick_options": MessageLookupByLibrary.simpleMessage("خيارات سريعة"),
+        "reason": MessageLookupByLibrary.simpleMessage("السبب"),
         "receiving_from": MessageLookupByLibrary.simpleMessage("استلام من"),
         "recent_activity":
             MessageLookupByLibrary.simpleMessage("النشاط الحديث"),
@@ -488,6 +509,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "renew": MessageLookupByLibrary.simpleMessage("تجديد"),
         "repeat_new_password":
             MessageLookupByLibrary.simpleMessage("كرر كلمة المرور الجديدة"),
+        "replaced": MessageLookupByLibrary.simpleMessage("تم الاستبدال"),
+        "replaced_item": MessageLookupByLibrary.simpleMessage("عنصر مستبدل"),
         "report_a_problem":
             MessageLookupByLibrary.simpleMessage("الإبلاغ عن مشكلة"),
         "report_problem":
@@ -525,6 +548,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_new_password":
             MessageLookupByLibrary.simpleMessage("تعيين كلمة مرور جديدة"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "show_less": MessageLookupByLibrary.simpleMessage("عرض أقل"),
+        "show_more": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
         "size_more_than_mg_error": m2,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
@@ -540,6 +565,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_name": MessageLookupByLibrary.simpleMessage("اسم الشارع"),
         "submit": MessageLookupByLibrary.simpleMessage("إرسال"),
         "submit_report": MessageLookupByLibrary.simpleMessage("إرسال التقرير"),
+        "subtotal_exclusive_vat": MessageLookupByLibrary.simpleMessage(
+            "المجموع الفرعي (غير شامل ضريبة القيمة المضافة)"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("متجر سليط"),
         "supported_geographical_area":
             MessageLookupByLibrary.simpleMessage("المنطقة الجغرافية المدعومة"),
@@ -558,6 +585,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إجمالي الطلبات الفاشلة"),
         "total_orders": MessageLookupByLibrary.simpleMessage("إجمالي الطلبات"),
         "total_trips": MessageLookupByLibrary.simpleMessage("إجمالي الرحلات"),
+        "total_vat":
+            MessageLookupByLibrary.simpleMessage("إجمالي ضريبة القيمة المضافة"),
         "total_wallet_balance":
             MessageLookupByLibrary.simpleMessage("إجمالي رصيد المحفظة"),
         "transaction_no": MessageLookupByLibrary.simpleMessage("رقم المعاملة"),
@@ -602,6 +631,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "what_is_new_weight":
             MessageLookupByLibrary.simpleMessage("ما هو الوزن الجديد؟"),
         "whatsapp": MessageLookupByLibrary.simpleMessage("واتساب"),
+        "with_barcode": MessageLookupByLibrary.simpleMessage("مع الباركود:"),
         "work_as_a_freelance":
             MessageLookupByLibrary.simpleMessage("العمل كمستقل"),
         "work_at_many_stores":

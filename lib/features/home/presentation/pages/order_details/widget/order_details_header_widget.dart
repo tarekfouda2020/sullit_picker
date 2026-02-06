@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
@@ -19,7 +18,7 @@ class OrderDetailsHeaderWidget extends StatelessWidget {
         ),
         Gaps.hGap12,
         Text(
-          Translate.of(context).order_no_colon,
+          Translate.s.order_no_colon,
           style: AppTextStyle.s18_w300(color: context.colors.simiGray),
         ),
         Gaps.hGap5,
@@ -33,11 +32,14 @@ class OrderDetailsHeaderWidget extends StatelessWidget {
     );
   }
 
-
   Transform _buildTransform(BuildContext context) {
-    String lang = context.select<DeviceCubit, String>((value) => value.state.model.locale.languageCode);
+    String lang = context.select<DeviceCubit, String>(
+        (value) => value.state.model.locale.languageCode);
     return Transform.rotate(
-      angle: (lang == ApplicationConstants.langAR || lang == ApplicationConstants.langUR) ? pi : 0,
+      angle: (lang == ApplicationConstants.langAR ||
+              lang == ApplicationConstants.langUR)
+          ? pi
+          : 0,
       child: SvgPicture.asset(
         Res.arrowBack,
         colorFilter: ColorFilter.mode(context.colors.simiGray, BlendMode.srcIn),
@@ -46,7 +48,4 @@ class OrderDetailsHeaderWidget extends StatelessWidget {
       ),
     );
   }
-
-
 }
-

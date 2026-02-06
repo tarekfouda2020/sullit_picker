@@ -29,29 +29,41 @@ class CardItemPickWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          if(data.product?.productStatus?.shouldShowStatus == true)
-          Gaps.vGap15,
+          if (data.product?.productStatus?.shouldShowStatus == true)
+            Gaps.vGap15,
           ProductInfoWidget(data: data),
           Gaps.vGap15,
-          if(data.product?.isAdded == true && data.oldReplacedModel != null)
+          if (data.product?.isAdded == true && data.oldReplacedModel != null)
             OldReplacedItemWidget(model: data.oldReplacedModel!),
           Column(
             spacing: 5,
             children: [
-              EditSingleQntPriceWidget(model: data,controller: controller,loadingCubit: loadingCubit,),
+              EditSingleQntPriceWidget(
+                model: data,
+                controller: controller,
+                loadingCubit: loadingCubit,
+              ),
               BarcodePriceWidget(data: data),
-              Divider(color: context.colors.disableGray,thickness: 1.3,)
+              Divider(
+                color: context.colors.disableGray,
+                thickness: 1.3,
+              )
             ],
           ),
-          PickItemButtonWidget(controller: controller,data: data,loadingCubit: loadingCubit),
+          PickItemButtonWidget(
+              controller: controller, data: data, loadingCubit: loadingCubit),
           Gaps.vGap10,
-          if(data.product!.pickedQuantity !> 0 || data.product!.replaced || data.product!.isAdded)
-            ReturnItemButtonWidget(onPress: () => controller.returnPickedItem(context,data,loadingCubit)),
+          if (data.product!.pickedQuantity! > 0 ||
+              data.product!.replaced ||
+              data.product!.isAdded)
+    ReturnItemButtonWidget(
+                onPress: () =>
+                    controller.returnPickedItem(context, data, loadingCubit)),
           // if( data.product!.modified)
           //   ReturnItemButtonWidget(onPress:() => controller.returnPickedItem(context,data)),
           Gaps.vGap13,
           Text(
-            '${Translate.of(context).picked} ${data.product!.productPickedPercent!.toStringAsFixed(2)}%',
+            '${Translate.s.picked} ${data.product!.productPickedPercent!.toStringAsFixed(2)}%',
             style: AppTextStyle.s14_w400(color: context.colors.textColor),
           )
         ],

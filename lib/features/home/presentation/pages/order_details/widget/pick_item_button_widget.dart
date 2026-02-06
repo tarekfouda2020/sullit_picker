@@ -26,8 +26,8 @@ class PickItemButtonWidget extends StatelessWidget {
         Flexible(
           child: AppTextButton.maxCustom(
             text: controller.isProductFullPicked(data)
-                ? "${Translate.of(context).picked} ${data.product!.pickedQuantity!}/${data.quantity}"
-                : "${Translate.of(context).pick} ${data.product!.pickedQuantity!}/${data.quantity}",
+                ? "${Translate.s.picked} ${data.product!.pickedQuantity!}/${data.quantity}"
+                : "${Translate.s.pick} ${data.product!.pickedQuantity!}/${data.quantity}",
             bgColor: controller.isProductFullPicked(data)
                 ? context.colors.softWhite
                 : context.colors.primary,
@@ -41,7 +41,7 @@ class PickItemButtonWidget extends StatelessWidget {
         ),
         Flexible(
           child: AppTextButton.maxCustom(
-            text: Translate.of(context).pick_all,
+            text: Translate.s.pick_all,
             bgColor: controller.isProductFullPicked(data)
                 ? context.colors.softWhite
                 : ((data.product!.pickedQuantity ?? 0) > 0
@@ -60,14 +60,14 @@ class PickItemButtonWidget extends StatelessWidget {
         Column(
           children: [
             Text(
-              Translate.of(context).qnt,
+              Translate.s.qnt,
               style: AppTextStyle.s14_w400(color: context.colors.textColor),
             ),
             Gaps.vGap8,
             QntCountWidget(
               qnt: data.remainQnt,
               controller: controller,
-                data: data,
+              data: data,
               loadingCubit: loadingCubit,
             ),
           ],

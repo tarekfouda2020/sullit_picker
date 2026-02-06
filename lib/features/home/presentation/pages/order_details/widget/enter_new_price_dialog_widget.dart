@@ -10,15 +10,15 @@ import '../../../../../../core/helpers/export.dart';
 class EnterNewPriceDialogWidget extends StatelessWidget {
   final OrderDetailsModel orderProduct;
   final OrderDetailsController controller;
-final bool popTwice;
-final bool pickAll;
-final BaseBloc<bool> loadingCubit;
+  final bool popTwice;
+  final bool pickAll;
+  final BaseBloc<bool> loadingCubit;
   const EnterNewPriceDialogWidget({
     super.key,
     required this.orderProduct,
     required this.controller,
-     this.popTwice = true,
-     this.pickAll = false,
+    this.popTwice = true,
+    this.pickAll = false,
     required this.loadingCubit,
   });
 
@@ -26,7 +26,7 @@ final BaseBloc<bool> loadingCubit;
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        "Modify Price",
+        Translate.s.modify_price,
         textAlign: TextAlign.center,
         style: AppTextStyle.s18_w700(color: context.colors.black),
       ),
@@ -51,8 +51,9 @@ final BaseBloc<bool> loadingCubit;
                   child: Text(
                     orderProduct.product?.name ?? "",
                     // "علبه اناناس قطع كثيره الطعم واللون والرائحه و هيب الديربق اه يا لالى عينى يا لالي على الى اتغرب ",
-                    style: AppTextStyle.s14_w600(color: context.colors.textColor)
-                        .copyWith(height: 1.2),
+                    style:
+                        AppTextStyle.s14_w600(color: context.colors.textColor)
+                            .copyWith(height: 1.2),
                     textAlign: TextAlign.start,
                   ),
                 ),
@@ -66,7 +67,8 @@ final BaseBloc<bool> loadingCubit;
                 type: TextInputType.number,
                 action: TextInputAction.next,
                 validate: (value) => value!.validatePrice(maxPrice: maxPrice),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 11),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 36, vertical: 11),
                 fillColor: context.colors.background,
                 hint: Translate.s.enter_new_price,
                 hintColor: context.colors.textColor,
@@ -80,31 +82,22 @@ final BaseBloc<bool> loadingCubit;
             ),
             Gaps.vGap11,
             Flexible(
-              child : PickerNotesWidget(
-                controller: controller,
-                onSubmit: () => controller.confirmNewPrice(
-                    orderProduct,
-                    context,
-                    loadingCubit,
-                    popTwice: popTwice,
-                    pickAll: pickAll
-                )
-              ),
+              child: PickerNotesWidget(
+                  controller: controller,
+                  onSubmit: () => controller.confirmNewPrice(
+                      orderProduct, context, loadingCubit,
+                      popTwice: popTwice, pickAll: pickAll)),
             ),
             Gaps.vGap28,
             AppTextButton.maxCustom(
-              text: Translate.of(context).app_confirm,
+              text: Translate.s.app_confirm,
               txtColor: context.colors.white,
               textSize: 16,
               bgColor: context.colors.primary,
               maxHeight: 40,
               onPressed: () => controller.confirmNewPrice(
-                  orderProduct,
-                  context,
-                  loadingCubit,
-                  popTwice: popTwice,
-                  pickAll: pickAll
-              ),
+                  orderProduct, context, loadingCubit,
+                  popTwice: popTwice, pickAll: pickAll),
             ),
           ],
         ),
@@ -113,12 +106,11 @@ final BaseBloc<bool> loadingCubit;
   }
 
   double get maxPrice {
-    if(orderProduct.fixedUnitPrice == null  || orderProduct.fixedUnitPrice == 0.0) {
+    if (orderProduct.fixedUnitPrice == null ||
+        orderProduct.fixedUnitPrice == 0.0) {
       return double.parse(orderProduct.unitPrice);
-    }else{
+    } else {
       return orderProduct.fixedUnitPrice!;
     }
   }
-
-
 }

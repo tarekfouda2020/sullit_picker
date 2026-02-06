@@ -15,7 +15,7 @@ class ModifyBagsCountDialogWidget extends StatelessWidget {
       backgroundColor: context.colors.white,
       contentPadding: const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
       title: Text(
-        "Modify number of used bags",
+        Translate.s.modify_bags_number,
         textAlign: TextAlign.center,
         style: AppTextStyle.s18_w700(color: context.colors.black),
       ),
@@ -25,24 +25,24 @@ class ModifyBagsCountDialogWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Form(
-              key: controller.bagsCountFormKey,
-              child: GenericTextField(
-              fieldTypes: FieldTypes.normal,
-              controller:  controller.newCountController,
-              fillColor: context.colors.background,
-              type: TextInputType.number,
-              action: TextInputAction.done,
-              validate: (value) => value?.validateBagsCount(),
-                hint: "Enter Number of used bags",
-                margin: const EdgeInsets.only(bottom: 24),
-                onSubmit: () => controller.changeUsedBagsCount(context),
-            )),
+                key: controller.bagsCountFormKey,
+                child: GenericTextField(
+                  fieldTypes: FieldTypes.normal,
+                  controller: controller.newCountController,
+                  fillColor: context.colors.background,
+                  type: TextInputType.number,
+                  action: TextInputAction.done,
+                  validate: (value) => value?.validateBagsCount(),
+                  hint: Translate.s.enter_bag_number,
+                  margin: const EdgeInsets.only(bottom: 24),
+                  onSubmit: () => controller.changeUsedBagsCount(context),
+                )),
             AppTextButton.maxCustom(
-              text: "Confirm",
+              text: Translate.s.confirm,
               textSize: 18,
               txtColor: context.colors.white,
               bgColor: context.colors.appGreen,
-              onPressed: ()=> controller.changeUsedBagsCount(context),
+              onPressed: () => controller.changeUsedBagsCount(context),
             )
           ],
         ),

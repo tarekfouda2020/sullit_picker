@@ -18,9 +18,10 @@ class RemoveProductDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DialogActionWidget(
-      description: Translate.of(context).user_no_replace_access,
-      buttonGreenTitle: Translate.of(context).yes_remove,
-      greenOnTap: () => controller.deleteReasonDialog(context, productId,loadingCubit),
+      description: Translate.s.user_no_replace_access,
+      buttonGreenTitle: Translate.s.yes_remove,
+      greenOnTap: () =>
+          controller.deleteReasonDialog(context, productId, loadingCubit),
     );
   }
 }

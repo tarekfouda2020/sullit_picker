@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/core/helpers/validator.dart';
 import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
@@ -20,13 +19,13 @@ class PickerNotesWidget extends StatelessWidget {
         action: TextInputAction.done,
         radius: Dimens.borderRadius16PX,
         validate: (value) => value!.validateEmpty(),
-        onSubmit:onSubmit,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+        onSubmit: onSubmit,
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
         fillColor: context.colors.background,
         // hint: Translate.of(context).picker_note_hint,
-        hint: "Modify Reason",
+        hint: Translate.s.modify_reason,
         hintColor: context.colors.textColor,
-        hintTxtStyle: AppTextStyle.s14_w400(color: context.colors.textColor)
-    );
+        hintTxtStyle: AppTextStyle.s14_w400(color: context.colors.textColor));
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/features/home/domain/models/invoice_model.dart';
 
 import '../../../../../../core/helpers/export.dart';
@@ -25,16 +24,17 @@ class UpdateInvoiceShimmerWidget extends StatelessWidget {
               children: [
                 _buildInvoiceRow(
                   context,
-                  label: "Subtotal (Exclusive VAT)",
+                  label: Translate.s.subtotal_exclusive_vat,
                 ),
                 ...invoice.discounts.map((discount) => _buildInvoiceRow(
-                  context,
-                  label: discount.typeLabel,
-                )),
+                      context,
+                      label: discount.typeLabel,
+                    )),
                 if (invoice.envFees.isNotEmpty && invoice.envFees != "0")
                   _buildInvoiceRow(
                     context,
-                    label: "Environment Fee ( ${invoice.bagsCount}x Bags )",
+                    label:
+                        "${Translate.s.environment_fee} ( ${invoice.bagsCount}x ${Translate.s.bags} )",
                   ),
                 Gaps.line,
                 // _buildInvoiceRow(
@@ -45,7 +45,7 @@ class UpdateInvoiceShimmerWidget extends StatelessWidget {
                 // ),
                 _buildInvoiceRow(
                   context,
-                  label: "Total VAT",
+                  label: Translate.s.total_vat,
                 ),
               ],
             ),
@@ -55,7 +55,7 @@ class UpdateInvoiceShimmerWidget extends StatelessWidget {
             color: context.colors.appGreen.withOpacity(0.1),
             child: _buildInvoiceRow(
               context,
-             label:  "Grand Total",
+              label: Translate.s.grand_total,
             ),
           ),
         ],
@@ -63,13 +63,10 @@ class UpdateInvoiceShimmerWidget extends StatelessWidget {
     );
   }
 
-
-
-
   Widget _buildInvoiceRow(
-      BuildContext context, {
-        required String label,
-      }) {
+    BuildContext context, {
+    required String label,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -77,11 +74,10 @@ class UpdateInvoiceShimmerWidget extends StatelessWidget {
           label,
           style: AppTextStyle.s14_w400(color: context.colors.textColor),
         ),
-        const TextShimmer(lineWidthPercent: 0.3,)
+        const TextShimmer(
+          lineWidthPercent: 0.3,
+        )
       ],
     );
   }
-
-
-
 }

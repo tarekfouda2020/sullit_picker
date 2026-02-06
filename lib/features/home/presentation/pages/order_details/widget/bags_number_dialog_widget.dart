@@ -33,33 +33,37 @@ class BagsNumberDialogWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Gaps.vGap12,
-            ObsValueConsumer(observable: controller.bagsCountObs, builder: (context, value) {
-              return Container(
-                height: 40,
-                width: 150,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: context.colors.primary.withAlpha(30),
-                  borderRadius: Dimens.borderRadius12PX
-                ),
-                child: Text("$value bags",
-                style: AppTextStyle.s18_w700(color: context.colors.primary),
-                ),
-              );
-            },),
+            ObsValueConsumer(
+              observable: controller.bagsCountObs,
+              builder: (context, value) {
+                return Container(
+                  height: 40,
+                  width: 150,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: context.colors.primary.withAlpha(30),
+                      borderRadius: Dimens.borderRadius12PX),
+                  child: Text(
+                    "$value ${Translate.s.bags}",
+                    style: AppTextStyle.s18_w700(color: context.colors.primary),
+                  ),
+                );
+              },
+            ),
             Gaps.vGap20,
             AppTextButton.maxCustom(
-                text: Translate.s.complete_dispatch,
+              text: Translate.s.complete_dispatch,
               textSize: 18,
               txtColor: context.colors.white,
               bgColor: context.colors.appGreen,
-              onPressed: ()=> controller.prepareOrder(context),
+              onPressed: () => controller.prepareOrder(context),
             ),
             Gaps.vGap18,
             GestureDetector(
               onTap: () => controller.shoModifyBagsDialog(context),
-              child: Text("No edit number",
-              style: AppTextStyle.s16_w400(color: context.colors.primary),
+              child: Text(
+                Translate.s.no_edit_number,
+                style: AppTextStyle.s16_w400(color: context.colors.primary),
               ),
             )
           ],

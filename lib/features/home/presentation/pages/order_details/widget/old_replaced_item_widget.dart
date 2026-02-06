@@ -36,13 +36,15 @@ class OldReplacedItemWidget extends StatelessWidget {
                   ),
                   Gaps.hGap10,
                   SizedBox(
-                    width: MediaQuery.sizeOf(context).width*.36,
+                    width: MediaQuery.sizeOf(context).width * .36,
                     child: Text(
-                     model.name,
+                      model.name,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyle.s14_w600(color: context.colors.mediumGray)
-                          .copyWith(height: 1.2,
+                      style: AppTextStyle.s14_w600(
+                              color: context.colors.mediumGray)
+                          .copyWith(
+                        height: 1.2,
                       ),
                     ),
                   ),
@@ -50,26 +52,25 @@ class OldReplacedItemWidget extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                     Gaps.vGap25,
+                      Gaps.vGap25,
                       Text(
                         model.unitPrice,
                         style: AppTextStyle.s14_w600(
-                          color:
-                          context.colors.textColor,
+                          color: context.colors.textColor,
                         ).copyWith(
                             decoration: TextDecoration.lineThrough,
                             decorationColor: context.colors.textColor),
                       ).withDirhamSymbol(
-                        symbolStyle: AppTextStyle.s18_w400(
-                            color: context.colors.textColor).copyWith(
-                            decoration: TextDecoration.lineThrough,
-                            decorationColor: context.colors.textColor)
-                      ),
+                          symbolStyle: AppTextStyle.s18_w400(
+                                  color: context.colors.textColor)
+                              .copyWith(
+                                  decoration: TextDecoration.lineThrough,
+                                  decorationColor: context.colors.textColor)),
                       Gaps.vGap6,
                       Text(
-                        "Qnt: ${model.qnt}",
-                        style: AppTextStyle.s14_w400(
-                            color: context.colors.black),
+                        "${Translate.s.qnt}: ${model.qnt}",
+                        style:
+                            AppTextStyle.s14_w400(color: context.colors.black),
                       ),
                     ],
                   )
@@ -78,14 +79,12 @@ class OldReplacedItemWidget extends StatelessWidget {
               Gaps.vGap8,
               RichText(
                 text: TextSpan(
-                  text: "Reason : ",
-                  style: AppTextStyle.s13_w400(
-                      color: context.colors.textColor),
+                  text: "${Translate.s.reason} : ",
+                  style: AppTextStyle.s13_w400(color: context.colors.textColor),
                   children: [
                     TextSpan(
                       text: model.replaceReason,
-                      style: AppTextStyle.s13_w500(
-                          color: context.colors.black),
+                      style: AppTextStyle.s13_w500(color: context.colors.black),
                     ),
                   ],
                 ),
@@ -105,10 +104,14 @@ class OldReplacedItemWidget extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-               SvgPicture.asset(Res.repeatIcon,width: 11, height: 11,),
+                SvgPicture.asset(
+                  Res.repeatIcon,
+                  width: 11,
+                  height: 11,
+                ),
                 Gaps.hGap4,
                 Text(
-                  "Replaced item",
+                  Translate.s.replaced_item,
                   style: AppTextStyle.s12_w300(color: context.colors.black)
                       .copyWith(fontStyle: FontStyle.italic),
                 ),

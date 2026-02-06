@@ -77,6 +77,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خروج کے لیے دوبارہ دبائیں"),
         "back_to_login":
             MessageLookupByLibrary.simpleMessage("لاگ ان پر واپس جائیں"),
+        "bags": MessageLookupByLibrary.simpleMessage("تھیلے"),
+        "bags_number":
+            MessageLookupByLibrary.simpleMessage("استعمال شدہ تھیلوں کی تعداد"),
         "barcode": MessageLookupByLibrary.simpleMessage("بارکوڈ : "),
         "benefits": MessageLookupByLibrary.simpleMessage("فوائد:"),
         "benefits_policy":
@@ -175,6 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("ترمیم کریں"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("پروفائل میں تبدیلی"),
+        "edited": MessageLookupByLibrary.simpleMessage("ترمیم شدہ - "),
         "email_placeholder":
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
         "email_required":
@@ -207,6 +211,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اپنا پاس ورڈ درج کریں"),
         "enter_your_phone":
             MessageLookupByLibrary.simpleMessage("اپنا فون نمبر درج کریں"),
+        "environment_fee":
+            MessageLookupByLibrary.simpleMessage("ماحولیاتی فیس"),
         "equals": MessageLookupByLibrary.simpleMessage("برابر"),
         "error_BadRequest_Error":
             MessageLookupByLibrary.simpleMessage("غلط درخواست"),
@@ -255,6 +261,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fresh_whole_chicken":
             MessageLookupByLibrary.simpleMessage("تازہ پوری مرغی"),
         "get_started": MessageLookupByLibrary.simpleMessage("ابھی شروع کریں"),
+        "grand_total": MessageLookupByLibrary.simpleMessage("کل رقم"),
         "hello_welcome":
             MessageLookupByLibrary.simpleMessage("ہیلو، آپ کا خیر مقدم!"),
         "help_us_resolve": MessageLookupByLibrary.simpleMessage(
@@ -267,8 +274,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "in_progress": MessageLookupByLibrary.simpleMessage("جاری"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("انٹرنیٹ سے جڑا ہوا"),
+        "is_price_equal":
+            MessageLookupByLibrary.simpleMessage("کیا قیمت برابر ہے"),
         "is_weight_equals": MessageLookupByLibrary.simpleMessage(
             "کیا وزن 900 گرام کے برابر ہے؟"),
+        "item_price": MessageLookupByLibrary.simpleMessage("آئٹم کی قیمت : "),
         "items_left": MessageLookupByLibrary.simpleMessage("آئٹمز باقی"),
         "items_left_suffix": MessageLookupByLibrary.simpleMessage("آئٹمز باقی"),
         "km": MessageLookupByLibrary.simpleMessage("کلومیٹر"),
@@ -317,6 +327,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("پیغام کامیابی سے بھیجا گیا"),
         "minutes": MessageLookupByLibrary.simpleMessage("منٹ"),
         "minutes_ago": MessageLookupByLibrary.simpleMessage("منٹ پہلے"),
+        "modified": MessageLookupByLibrary.simpleMessage("ترمیم شدہ"),
+        "modify_bags_number": MessageLookupByLibrary.simpleMessage(
+            "استعمال شدہ تھیلوں کی تعداد میں ترمیم کریں"),
+        "modify_price":
+            MessageLookupByLibrary.simpleMessage("قیمت میں ترمیم کریں"),
+        "modify_reason": MessageLookupByLibrary.simpleMessage("ترمیم کی وجہ"),
         "month": MessageLookupByLibrary.simpleMessage("مہینہ"),
         "months_ago": MessageLookupByLibrary.simpleMessage("مہینے پہلے"),
         "must_picking_within":
@@ -327,6 +343,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameValidation":
             MessageLookupByLibrary.simpleMessage("برائے کرم درست نام درج کریں"),
         "name_required": MessageLookupByLibrary.simpleMessage("نام ضروری ہے"),
+        "new_count_max_error": MessageLookupByLibrary.simpleMessage(
+            "نئی تعداد اس سے زیادہ نہیں ہو سکتی"),
         "new_order": MessageLookupByLibrary.simpleMessage("نیا آرڈر"),
         "new_order_alert": MessageLookupByLibrary.simpleMessage("نیا آرڈر!"),
         "new_order_message":
@@ -334,6 +352,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("نیا پاس ورڈ"),
         "new_password_required":
             MessageLookupByLibrary.simpleMessage("نیا پاس ورڈ ضروری ہے"),
+        "new_product_qnt":
+            MessageLookupByLibrary.simpleMessage("پروڈکٹ کی نئی مقدار"),
         "new_weight_must_be_between": MessageLookupByLibrary.simpleMessage(
             "نیا وزن اس کے درمیان ہونا چاہیے"),
         "new_weight_must_not_less_than": MessageLookupByLibrary.simpleMessage(
@@ -342,6 +362,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noResults": MessageLookupByLibrary.simpleMessage("کوئی نتائج نہیں"),
         "no_date_available":
             MessageLookupByLibrary.simpleMessage("کوئی تاریخ دستیاب نہیں"),
+        "no_edit_number":
+            MessageLookupByLibrary.simpleMessage("نمبر ترمیم کریں"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("انٹرنیٹ کنکشن نہیں ہے"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
@@ -360,6 +382,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "آپ کے پاس ابھی تک کوئی لین دین نہیں ہے۔ جب آپ لین دین شروع کریں گے تو آپ کی لین دین کی تاریخ یہاں ظاہر ہوگی۔"),
         "no_transactions_found":
             MessageLookupByLibrary.simpleMessage("کوئی لین دین نہیں ملا"),
+        "not_available": MessageLookupByLibrary.simpleMessage("دستیاب نہیں"),
         "not_available_for_receiving_orders":
             MessageLookupByLibrary.simpleMessage(
                 "آرڈرز وصول کرنے کے لیے دستیاب نہیں"),
@@ -483,6 +506,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "qnt": MessageLookupByLibrary.simpleMessage("مقدار"),
         "quick_actions": MessageLookupByLibrary.simpleMessage("فوری اقدامات"),
         "quick_options": MessageLookupByLibrary.simpleMessage("فوری اختیارات"),
+        "reason": MessageLookupByLibrary.simpleMessage("وجہ"),
         "receiving_from": MessageLookupByLibrary.simpleMessage("سے وصولی"),
         "recent_activity": MessageLookupByLibrary.simpleMessage("حالیہ سرگرمی"),
         "register": MessageLookupByLibrary.simpleMessage("رجسٹر"),
@@ -493,6 +517,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "renew": MessageLookupByLibrary.simpleMessage("تجدید"),
         "repeat_new_password":
             MessageLookupByLibrary.simpleMessage("نیا پاس ورڈ دوبارہ درج کریں"),
+        "replaced": MessageLookupByLibrary.simpleMessage("تبدیل شدہ"),
+        "replaced_item": MessageLookupByLibrary.simpleMessage("تبدیل شدہ آئٹم"),
         "report_a_problem":
             MessageLookupByLibrary.simpleMessage("مسئلہ رپورٹ کریں"),
         "report_problem":
@@ -531,6 +557,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_new_password":
             MessageLookupByLibrary.simpleMessage("نیا پاس ورڈ سیٹ کریں"),
         "settings": MessageLookupByLibrary.simpleMessage("سیٹنگز"),
+        "show_less": MessageLookupByLibrary.simpleMessage("کم دکھائیں"),
+        "show_more": MessageLookupByLibrary.simpleMessage("مزید دکھائیں"),
         "size_more_than_mg_error": m2,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("کچھ خرابی ہوئی"),
@@ -546,6 +574,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_name": MessageLookupByLibrary.simpleMessage("گلی کا نام"),
         "submit": MessageLookupByLibrary.simpleMessage("جمع کریں"),
         "submit_report": MessageLookupByLibrary.simpleMessage("رپورٹ جمع کریں"),
+        "subtotal_exclusive_vat":
+            MessageLookupByLibrary.simpleMessage("ذیلی کل (بغیر واٹ)"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("سلیٹ اسٹور"),
         "supported_geographical_area":
             MessageLookupByLibrary.simpleMessage("سپورٹ شدہ جغرافیائی علاقہ"),
@@ -564,6 +594,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("کل ناکام آرڈرز"),
         "total_orders": MessageLookupByLibrary.simpleMessage("کل آرڈرز"),
         "total_trips": MessageLookupByLibrary.simpleMessage("کل سفر"),
+        "total_vat": MessageLookupByLibrary.simpleMessage("کل واٹ"),
         "total_wallet_balance":
             MessageLookupByLibrary.simpleMessage("کل والیٹ بیلنس"),
         "transaction_no": MessageLookupByLibrary.simpleMessage("لین دین نمبر"),
@@ -608,6 +639,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("سلیٹ میں خوش آمدید!"),
         "what_is_new_weight":
             MessageLookupByLibrary.simpleMessage("نیا وزن کیا ہے؟"),
+        "with_barcode":
+            MessageLookupByLibrary.simpleMessage("بار کوڈ کے ساتھ:"),
         "work_as_a_freelance":
             MessageLookupByLibrary.simpleMessage("فری لانس کے طور پر کام کریں"),
         "work_at_many_stores":

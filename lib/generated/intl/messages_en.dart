@@ -74,6 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "back_again_to_exit":
             MessageLookupByLibrary.simpleMessage("Press Back again to exit"),
         "back_to_login": MessageLookupByLibrary.simpleMessage("Back to Login"),
+        "bags": MessageLookupByLibrary.simpleMessage("bags"),
+        "bags_number":
+            MessageLookupByLibrary.simpleMessage("Number of used bags"),
         "barcode": MessageLookupByLibrary.simpleMessage("Barcode : "),
         "benefits": MessageLookupByLibrary.simpleMessage("Benefits :"),
         "benefits_policy":
@@ -175,6 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "earnings": MessageLookupByLibrary.simpleMessage("Earnings"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "edit_profile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "edited": MessageLookupByLibrary.simpleMessage("Edited - "),
         "email_placeholder":
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
         "email_required":
@@ -207,6 +211,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Your Password"),
         "enter_your_phone":
             MessageLookupByLibrary.simpleMessage("Enter your phone number"),
+        "environment_fee":
+            MessageLookupByLibrary.simpleMessage("Environment Fee"),
         "equals": MessageLookupByLibrary.simpleMessage("Equals"),
         "error_BadRequest_Error":
             MessageLookupByLibrary.simpleMessage("BAD REQUEST"),
@@ -256,6 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fresh_whole_chicken":
             MessageLookupByLibrary.simpleMessage("Fresh Whole Chicken"),
         "get_started": MessageLookupByLibrary.simpleMessage("Get Started"),
+        "grand_total": MessageLookupByLibrary.simpleMessage("Grand Total"),
         "hello_welcome": MessageLookupByLibrary.simpleMessage(
             "Hello, You are welcome with us!"),
         "help_us_resolve": MessageLookupByLibrary.simpleMessage(
@@ -268,8 +275,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "in_progress": MessageLookupByLibrary.simpleMessage("In Progress"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("Internet connected"),
+        "is_price_equal":
+            MessageLookupByLibrary.simpleMessage("is price equal"),
         "is_weight_equals":
             MessageLookupByLibrary.simpleMessage("Is the weight equals"),
+        "item_price": MessageLookupByLibrary.simpleMessage("Item Price : "),
         "items_left": MessageLookupByLibrary.simpleMessage("items left"),
         "items_left_suffix": MessageLookupByLibrary.simpleMessage("items left"),
         "km": MessageLookupByLibrary.simpleMessage("KM"),
@@ -318,6 +328,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Message sent successfully"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "minutes_ago": MessageLookupByLibrary.simpleMessage("minutes ago"),
+        "modified": MessageLookupByLibrary.simpleMessage("Modified"),
+        "modify_bags_number":
+            MessageLookupByLibrary.simpleMessage("Modify number of used bags"),
+        "modify_price": MessageLookupByLibrary.simpleMessage("Modify Price"),
+        "modify_reason": MessageLookupByLibrary.simpleMessage("Modify Reason"),
         "month": MessageLookupByLibrary.simpleMessage("month"),
         "months_ago": MessageLookupByLibrary.simpleMessage("months ago"),
         "must_picking_within":
@@ -329,6 +344,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter a valid name"),
         "name_required":
             MessageLookupByLibrary.simpleMessage("Name is required"),
+        "new_count_max_error": MessageLookupByLibrary.simpleMessage(
+            "New count can not be more than"),
         "new_order": MessageLookupByLibrary.simpleMessage("New Order"),
         "new_order_alert": MessageLookupByLibrary.simpleMessage("New Order!"),
         "new_order_message": MessageLookupByLibrary.simpleMessage(
@@ -336,6 +353,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("New Password"),
         "new_password_required":
             MessageLookupByLibrary.simpleMessage("New password is required"),
+        "new_product_qnt":
+            MessageLookupByLibrary.simpleMessage("New product qnt"),
         "new_weight_must_be_between": MessageLookupByLibrary.simpleMessage(
             "The new weight must be between"),
         "new_weight_must_not_less_than": MessageLookupByLibrary.simpleMessage(
@@ -344,6 +363,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noResults": MessageLookupByLibrary.simpleMessage("No Results"),
         "no_date_available":
             MessageLookupByLibrary.simpleMessage("No date available"),
+        "no_edit_number":
+            MessageLookupByLibrary.simpleMessage("No edit number"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("No internet connection"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
@@ -362,6 +383,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don\'t have any transactions yet. Your transaction history will appear here once you start making transactions."),
         "no_transactions_found":
             MessageLookupByLibrary.simpleMessage("No Transactions Found"),
+        "not_available": MessageLookupByLibrary.simpleMessage("Not available"),
         "not_available_for_receiving_orders":
             MessageLookupByLibrary.simpleMessage(
                 "Not available for receiving orders"),
@@ -486,6 +508,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "qnt": MessageLookupByLibrary.simpleMessage("Qnt"),
         "quick_actions": MessageLookupByLibrary.simpleMessage("Quick Actions"),
         "quick_options": MessageLookupByLibrary.simpleMessage("Quick Options"),
+        "reason": MessageLookupByLibrary.simpleMessage("Reason"),
         "receiving_from":
             MessageLookupByLibrary.simpleMessage("Receiving From"),
         "recent_activity":
@@ -498,6 +521,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "renew": MessageLookupByLibrary.simpleMessage("Renew"),
         "repeat_new_password":
             MessageLookupByLibrary.simpleMessage("Repeat new password"),
+        "replaced": MessageLookupByLibrary.simpleMessage("Replaced"),
+        "replaced_item": MessageLookupByLibrary.simpleMessage("Replaced item"),
         "report_a_problem":
             MessageLookupByLibrary.simpleMessage("Report a Problem"),
         "report_problem":
@@ -536,6 +561,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_new_password":
             MessageLookupByLibrary.simpleMessage("Set new password"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "show_less": MessageLookupByLibrary.simpleMessage("Show less"),
+        "show_more": MessageLookupByLibrary.simpleMessage("Show more"),
         "size_more_than_mg_error": m2,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),
@@ -550,6 +577,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "street_name": MessageLookupByLibrary.simpleMessage("Street Name"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "submit_report": MessageLookupByLibrary.simpleMessage("Submit Report"),
+        "subtotal_exclusive_vat":
+            MessageLookupByLibrary.simpleMessage("Subtotal (Exclusive VAT)"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("Sulite Store"),
         "supported_geographical_area":
             MessageLookupByLibrary.simpleMessage("Supported Geographical area"),
@@ -569,6 +598,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Total Failed Orders"),
         "total_orders": MessageLookupByLibrary.simpleMessage("Total Orders"),
         "total_trips": MessageLookupByLibrary.simpleMessage("Total Trips"),
+        "total_vat": MessageLookupByLibrary.simpleMessage("Total VAT"),
         "total_wallet_balance":
             MessageLookupByLibrary.simpleMessage("Total Wallet Balance"),
         "transaction_no":
@@ -614,6 +644,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "what_is_new_weight":
             MessageLookupByLibrary.simpleMessage("What is the New Weight?"),
         "whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),
+        "with_barcode": MessageLookupByLibrary.simpleMessage("with barcode:"),
         "work_as_a_freelance":
             MessageLookupByLibrary.simpleMessage("work as a freelance"),
         "work_at_many_stores":

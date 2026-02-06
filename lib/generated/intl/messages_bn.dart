@@ -66,6 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "back_again_to_exit":
             MessageLookupByLibrary.simpleMessage("প্রস্থান করতে আবার টিপুন"),
         "back_to_login": MessageLookupByLibrary.simpleMessage("লগইনে ফিরে যান"),
+        "bags": MessageLookupByLibrary.simpleMessage("ব্যাগ"),
+        "bags_number":
+            MessageLookupByLibrary.simpleMessage("ব্যবহৃত ব্যাগের সংখ্যা"),
         "barcode": MessageLookupByLibrary.simpleMessage("বারকোড : "),
         "benefits": MessageLookupByLibrary.simpleMessage("সুবিধা :"),
         "benefits_policy":
@@ -138,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("সম্পাদনা করুন"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("প্রোফাইল সম্পাদনা করুন"),
+        "edited": MessageLookupByLibrary.simpleMessage("সম্পাদিত - "),
         "email_placeholder":
             MessageLookupByLibrary.simpleMessage("mmm@info.com"),
         "enter_bag_number":
@@ -164,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("আপনার পাসওয়ার্ড লিখুন"),
         "enter_your_phone":
             MessageLookupByLibrary.simpleMessage("আপনার ফোন নম্বর লিখুন"),
+        "environment_fee": MessageLookupByLibrary.simpleMessage("পরিবেশ ফি"),
         "equals": MessageLookupByLibrary.simpleMessage("সমান"),
         "error_BadRequest_Error":
             MessageLookupByLibrary.simpleMessage("ভুল অনুরোধ"),
@@ -210,12 +215,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("পাসওয়ার্ড ভুলে গেছেন?"),
         "fresh_whole_chicken":
             MessageLookupByLibrary.simpleMessage("তাজা গোটা মুরগি"),
+        "grand_total": MessageLookupByLibrary.simpleMessage("সর্বমোট"),
         "history": MessageLookupByLibrary.simpleMessage("ইতিহাস"),
         "hours_ago": MessageLookupByLibrary.simpleMessage("ঘন্টা আগে"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("ইন্টারনেট সংযুক্ত"),
+        "is_price_equal": MessageLookupByLibrary.simpleMessage("মূল্য কি সমান"),
         "is_weight_equals":
             MessageLookupByLibrary.simpleMessage("ওজন কি 900 গ্রাম সমান?"),
+        "item_price": MessageLookupByLibrary.simpleMessage("আইটেমের মূল্য : "),
         "items_left": MessageLookupByLibrary.simpleMessage("বাকি আইটেম"),
         "items_left_suffix": MessageLookupByLibrary.simpleMessage("বাকি আইটেম"),
         "km": MessageLookupByLibrary.simpleMessage("কিমি"),
@@ -261,6 +269,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "বার্তা সফলভাবে পাঠানো হয়েছে"),
         "minutes": MessageLookupByLibrary.simpleMessage("মিনিট"),
         "minutes_ago": MessageLookupByLibrary.simpleMessage("মিনিট আগে"),
+        "modified": MessageLookupByLibrary.simpleMessage("সম্পাদিত"),
+        "modify_bags_number": MessageLookupByLibrary.simpleMessage(
+            "ব্যবহৃত ব্যাগের সংখ্যা পরিবর্তন করুন"),
+        "modify_price":
+            MessageLookupByLibrary.simpleMessage("মূল্য পরিবর্তন করুন"),
+        "modify_reason":
+            MessageLookupByLibrary.simpleMessage("পরিবর্তনের কারণ"),
         "month": MessageLookupByLibrary.simpleMessage("মাস"),
         "months_ago": MessageLookupByLibrary.simpleMessage("মাস আগে"),
         "must_picking_within":
@@ -271,10 +286,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("আমার সাবস্ক্রিপশন"),
         "nameValidation": MessageLookupByLibrary.simpleMessage(
             "অনুগ্রহ করে একটি বৈধ নাম লিখুন"),
+        "new_count_max_error": MessageLookupByLibrary.simpleMessage(
+            "নতুন সংখ্যা এর বেশি হতে পারবে না"),
         "new_order": MessageLookupByLibrary.simpleMessage("নতুন অর্ডার"),
         "new_order_alert":
             MessageLookupByLibrary.simpleMessage("নতুন অর্ডার সতর্কতা"),
         "new_password": MessageLookupByLibrary.simpleMessage("নতুন পাসওয়ার্ড"),
+        "new_product_qnt":
+            MessageLookupByLibrary.simpleMessage("পণ্যের নতুন পরিমাণ"),
         "new_weight_must_be_between":
             MessageLookupByLibrary.simpleMessage("নতুন ওজন হতে হবে এর মধ্যে"),
         "new_weight_must_not_less_than":
@@ -283,6 +302,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noResults": MessageLookupByLibrary.simpleMessage("কোন ফলাফল নেই"),
         "no_date_available":
             MessageLookupByLibrary.simpleMessage("কোনও তারিখ পাওয়া যায়নি"),
+        "no_edit_number":
+            MessageLookupByLibrary.simpleMessage("সংখ্যা পরিবর্তন করুন"),
         "no_internet_connection":
             MessageLookupByLibrary.simpleMessage("কোন ইন্টারনেট সংযোগ নেই"),
         "no_notifications_yet": MessageLookupByLibrary.simpleMessage(
@@ -297,6 +318,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "আপনার এখনও কোন লেনদেন নেই। আপনি লেনদেন শুরু করার সাথে সাথে আপনার লেনদেনের ইতিহাস এখানে দেখা যাবে।"),
         "no_transactions_found":
             MessageLookupByLibrary.simpleMessage("কোন লেনদেন পাওয়া যায়নি"),
+        "not_available": MessageLookupByLibrary.simpleMessage("উপলব্ধ নয়"),
         "not_available_for_receiving_orders":
             MessageLookupByLibrary.simpleMessage(
                 "অর্ডার গ্রহণের জন্য উপলব্ধ নয়"),
@@ -383,6 +405,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "qnt": MessageLookupByLibrary.simpleMessage("পরিমাণ"),
         "quick_actions":
             MessageLookupByLibrary.simpleMessage("দ্রুত ক্রিয়াকলাপ"),
+        "reason": MessageLookupByLibrary.simpleMessage("কারণ"),
         "receiving_from":
             MessageLookupByLibrary.simpleMessage("গ্রহণ করা হচ্ছে"),
         "recent_activity":
@@ -393,6 +416,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "renew": MessageLookupByLibrary.simpleMessage("নবায়ন"),
         "repeat_new_password": MessageLookupByLibrary.simpleMessage(
             "নতুন পাসওয়ার্ড পুনরাবৃত্তি করুন"),
+        "replaced": MessageLookupByLibrary.simpleMessage("প্রতিস্থাপিত"),
+        "replaced_item":
+            MessageLookupByLibrary.simpleMessage("প্রতিস্থাপিত আইটেম"),
         "report_a_problem":
             MessageLookupByLibrary.simpleMessage("সমস্যা রিপোর্ট করুন"),
         "reset_password_link_sent": MessageLookupByLibrary.simpleMessage(
@@ -418,6 +444,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ক্যাশিয়ারে পাঠান"),
         "set_new_password":
             MessageLookupByLibrary.simpleMessage("নতুন পাসওয়ার্ড সেট করুন"),
+        "show_less": MessageLookupByLibrary.simpleMessage("কম দেখুন"),
+        "show_more": MessageLookupByLibrary.simpleMessage("আরও দেখুন"),
         "size_more_than_mg_error": m2,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("কিছু ভুল হয়েছে"),
@@ -428,6 +456,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("স্থিতি"),
         "street_name": MessageLookupByLibrary.simpleMessage("সড়কের নাম"),
         "submit": MessageLookupByLibrary.simpleMessage("জমা দিন"),
+        "subtotal_exclusive_vat":
+            MessageLookupByLibrary.simpleMessage("উপমোট (ভ্যাট বাদে)"),
         "sulite_store": MessageLookupByLibrary.simpleMessage("সুলিত স্টোর"),
         "supported_geographical_area":
             MessageLookupByLibrary.simpleMessage("সমর্থিত ভৌগোলিক এলাকা"),
@@ -443,6 +473,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("মোট ব্যর্থ অর্ডার"),
         "total_orders": MessageLookupByLibrary.simpleMessage("মোট অর্ডার"),
         "total_trips": MessageLookupByLibrary.simpleMessage("মোট ট্রিপ"),
+        "total_vat": MessageLookupByLibrary.simpleMessage("মোট ভ্যাট"),
         "total_wallet_balance":
             MessageLookupByLibrary.simpleMessage("মোট ওয়ালেট ব্যালেন্স"),
         "transaction_no": MessageLookupByLibrary.simpleMessage("লেনদেন নং"),
@@ -478,6 +509,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("সুলিত ড্রাইভারে স্বাগতম"),
         "what_is_new_weight":
             MessageLookupByLibrary.simpleMessage("নতুন ওজন কি?"),
+        "with_barcode": MessageLookupByLibrary.simpleMessage("বারকোড সহ:"),
         "work_for": MessageLookupByLibrary.simpleMessage("কাজের জন্য"),
         "write_reason_here":
             MessageLookupByLibrary.simpleMessage("কারণ এখানে লিখুন"),

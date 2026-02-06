@@ -7,8 +7,8 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/order
 import 'widgets_imports.dart';
 
 class DialogNewWeightWidget extends StatelessWidget {
- final OrderDetailsModel orderProduct;
- final OrderDetailsController controller;
+  final OrderDetailsModel orderProduct;
+  final OrderDetailsController controller;
   const DialogNewWeightWidget(
       {super.key, required this.orderProduct, required this.controller});
 
@@ -16,7 +16,7 @@ class DialogNewWeightWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        Translate.of(context).what_is_new_weight,
+        Translate.s.what_is_new_weight,
         // "Enter the new price",
         style: AppTextStyle.s18_w700(color: context.colors.textColor),
       ),
@@ -54,16 +54,19 @@ class DialogNewWeightWidget extends StatelessWidget {
                 type: TextInputType.number,
                 action: TextInputAction.done,
                 validate: (value) => value!.validateEmpty(),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 36, vertical: 16),
                 fillColor: context.colors.background,
-                hint: Translate.of(context).enter_new_weight,
+                hint: Translate.s.enter_new_weight,
                 hintColor: context.colors.textColor,
-                hintTxtStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
+                hintTxtStyle:
+                    AppTextStyle.s14_w400(color: context.colors.textColor),
                 suffixIcon: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(controller.getProductWeightUnit(orderProduct),
-                    style: AppTextStyle.s13_w500(color: context.colors.black),
+                    Text(
+                      controller.getProductWeightUnit(orderProduct),
+                      style: AppTextStyle.s13_w500(color: context.colors.black),
                     ),
                   ],
                 ),
@@ -77,13 +80,16 @@ class DialogNewWeightWidget extends StatelessWidget {
                 type: TextInputType.number,
                 action: TextInputAction.done,
                 validate: (value) => value!.validateEmpty(),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 36, vertical: 11),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 36, vertical: 11),
                 fillColor: context.colors.background,
                 hint: Translate.s.enter_new_price,
                 hintColor: context.colors.textColor,
-                hintTxtStyle: AppTextStyle.s14_w400(color: context.colors.textColor),
-                suffixIcon: Text(""
-                ,style: AppTextStyle.s15_w500(color: context.colors.primary),
+                hintTxtStyle:
+                    AppTextStyle.s14_w400(color: context.colors.textColor),
+                suffixIcon: Text(
+                  "",
+                  style: AppTextStyle.s15_w500(color: context.colors.primary),
                 ).withDirhamSymbol(),
               ),
             ),
@@ -99,7 +105,8 @@ class DialogNewWeightWidget extends StatelessWidget {
                 Flexible(
                   child: Text(
                     "${Translate.s.new_weight_must_not_less_than} ${controller.productMinimumNewWeight(orderProduct)} ${controller.getProductWeightUnit(orderProduct)}",
-                    style: AppTextStyle.s12_w300(color: context.colors.primary).copyWith(height: 1.2),
+                    style: AppTextStyle.s12_w300(color: context.colors.primary)
+                        .copyWith(height: 1.2),
                     overflow: TextOverflow.visible,
                     textAlign: TextAlign.center,
                     maxLines: 2,
@@ -110,12 +117,13 @@ class DialogNewWeightWidget extends StatelessWidget {
             ),
             Gaps.vGap28,
             AppTextButton.maxCustom(
-              text: Translate.of(context).app_confirm,
+              text: Translate.s.app_confirm,
               txtColor: context.colors.white,
               textSize: 16,
               bgColor: context.colors.primary,
               maxHeight: 40,
-              onPressed: () => controller.confirmNewWeight(orderProduct, context),
+              onPressed: () =>
+                  controller.confirmNewWeight(orderProduct, context),
             ),
           ],
         ),

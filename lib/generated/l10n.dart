@@ -3879,6 +3879,236 @@ class S {
       args: [],
     );
   }
+
+  /// `Modify number of used bags`
+  String get modify_bags_number {
+    return Intl.message(
+      'Modify number of used bags',
+      name: 'modify_bags_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of used bags`
+  String get bags_number {
+    return Intl.message(
+      'Number of used bags',
+      name: 'bags_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `bags`
+  String get bags {
+    return Intl.message(
+      'bags',
+      name: 'bags',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No edit number`
+  String get no_edit_number {
+    return Intl.message(
+      'No edit number',
+      name: 'no_edit_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item Price : `
+  String get item_price {
+    return Intl.message(
+      'Item Price : ',
+      name: 'item_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edited - `
+  String get edited {
+    return Intl.message(
+      'Edited - ',
+      name: 'edited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify Price`
+  String get modify_price {
+    return Intl.message(
+      'Modify Price',
+      name: 'modify_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `is price equal`
+  String get is_price_equal {
+    return Intl.message(
+      'is price equal',
+      name: 'is_price_equal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Replaced item`
+  String get replaced_item {
+    return Intl.message(
+      'Replaced item',
+      name: 'replaced_item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modify Reason`
+  String get modify_reason {
+    return Intl.message(
+      'Modify Reason',
+      name: 'modify_reason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subtotal (Exclusive VAT)`
+  String get subtotal_exclusive_vat {
+    return Intl.message(
+      'Subtotal (Exclusive VAT)',
+      name: 'subtotal_exclusive_vat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Environment Fee`
+  String get environment_fee {
+    return Intl.message(
+      'Environment Fee',
+      name: 'environment_fee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total VAT`
+  String get total_vat {
+    return Intl.message(
+      'Total VAT',
+      name: 'total_vat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grand Total`
+  String get grand_total {
+    return Intl.message(
+      'Grand Total',
+      name: 'grand_total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New product qnt`
+  String get new_product_qnt {
+    return Intl.message(
+      'New product qnt',
+      name: 'new_product_qnt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New count can not be more than`
+  String get new_count_max_error {
+    return Intl.message(
+      'New count can not be more than',
+      name: 'new_count_max_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show more`
+  String get show_more {
+    return Intl.message(
+      'Show more',
+      name: 'show_more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show less`
+  String get show_less {
+    return Intl.message(
+      'Show less',
+      name: 'show_less',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `with barcode:`
+  String get with_barcode {
+    return Intl.message(
+      'with barcode:',
+      name: 'with_barcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not available`
+  String get not_available {
+    return Intl.message(
+      'Not available',
+      name: 'not_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason`
+  String get reason {
+    return Intl.message(
+      'Reason',
+      name: 'reason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modified`
+  String get modified {
+    return Intl.message(
+      'Modified',
+      name: 'modified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Replaced`
+  String get replaced {
+    return Intl.message(
+      'Replaced',
+      name: 'replaced',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

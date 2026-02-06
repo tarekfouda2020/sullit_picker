@@ -9,7 +9,8 @@ import 'widgets_imports.dart';
 class TimerCardDetailsWidget extends StatelessWidget {
   final OrderModel data;
   final OrderDetailsController controller;
-  const TimerCardDetailsWidget({super.key, required this.data, required this.controller});
+  const TimerCardDetailsWidget(
+      {super.key, required this.data, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +29,14 @@ class TimerCardDetailsWidget extends StatelessWidget {
               child: LeftItemsWidget(
                 numberOfItems: data.ordersDetails?.length ?? 0,
                 pickedPercent: data.pickedPercent!,
-                endTitle: "${(data.ordersDetails?.length ?? 0) - controller.getPickedItemsCount} ${Translate.of(context).items_left_suffix}",
-              )
-          ),
+                endTitle:
+                    "${(data.ordersDetails?.length ?? 0) - controller.getPickedItemsCount} ${Translate.s.items_left_suffix}",
+              )),
           Gaps.vGap12,
           Column(
             children: [
               Text(
-                Translate.of(context).must_picking_within,
+                Translate.s.must_picking_within,
                 style: AppTextStyle.s16_w300(color: context.colors.black),
               ),
               Gaps.vGap15,
@@ -53,7 +54,6 @@ class TimerCardDetailsWidget extends StatelessWidget {
                   _updateOrderInList();
                 },
               )
-
             ],
           )
         ],
@@ -75,5 +75,4 @@ class TimerCardDetailsWidget extends StatelessWidget {
       getIt<OrdersHelper>().saveAssignedOrders(assignedOrders);
     }
   }
-
 }

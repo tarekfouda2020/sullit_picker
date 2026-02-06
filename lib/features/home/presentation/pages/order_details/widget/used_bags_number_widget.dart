@@ -1,4 +1,3 @@
-
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 
 import '../../../../../../core/helpers/export.dart';
@@ -11,32 +10,37 @@ class UsedBagsNumberWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 12,bottom: 16),
+      padding: const EdgeInsets.only(top: 12, bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 10,
         children: [
-          Text("Number of used bags",
+          Text(
+            Translate.s.bags_number,
             style: AppTextStyle.s16_w700(color: context.colors.black),
           ),
           Container(
-            padding: const EdgeInsetsDirectional.only(start: 32,end: 22,top: 13,bottom: 13),
+            padding: const EdgeInsetsDirectional.only(
+                start: 32, end: 22, top: 13, bottom: 13),
             decoration: BoxDecoration(
                 color: context.colors.white,
                 borderRadius: Dimens.borderRadius30PX,
-                border: Border.all(color: context.colors.borderLight)
-            ),
+                border: Border.all(color: context.colors.borderLight)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ObsValueConsumer(
                   observable: controller.bagsCountObs,
                   builder: (context, value) {
-                    return Text("$value",
-                      style: AppTextStyle.s18_w800(color: context.colors.primary),
+                    return Text(
+                      "$value",
+                      style:
+                          AppTextStyle.s18_w800(color: context.colors.primary),
                     );
-                  },),
-                EditPriceWidget(onTap: () => controller.shoModifyBagsDialog(context)),
+                  },
+                ),
+                EditPriceWidget(
+                    onTap: () => controller.shoModifyBagsDialog(context)),
               ],
             ),
           )

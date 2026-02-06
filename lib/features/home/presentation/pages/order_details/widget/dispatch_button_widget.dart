@@ -3,7 +3,6 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/order
 
 import 'widgets_imports.dart';
 
-
 class DispatchButtonWidget extends StatelessWidget {
   final OrderDetailsController controller;
   const DispatchButtonWidget({super.key, required this.controller});
@@ -15,8 +14,8 @@ class DispatchButtonWidget extends StatelessWidget {
       children: [
         Expanded(
           child: AppTextButton.maxCustom(
-            text: Translate.of(context).dispatch,
-            onPressed: ()=> controller.showBagsCountDialog(context),
+            text: Translate.s.dispatch,
+            onPressed: () => controller.showBagsCountDialog(context),
             textSize: 18,
             txtColor: context.colors.white,
             bgColor: context.colors.appGreen,
@@ -27,11 +26,15 @@ class DispatchButtonWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(Translate.s.total,
-            style: AppTextStyle.s14_w600(color: context.colors.black),
+            Text(
+              Translate.s.total,
+              style: AppTextStyle.s14_w600(color: context.colors.black),
             ),
             Gaps.vGap5,
-            DirhamPrice(amount: controller.getDetailsData.invoiceModel.getGrandTotal().toStringAsFixed(2),
+            DirhamPrice(
+              amount: controller.getDetailsData.invoiceModel
+                  .getGrandTotal()
+                  .toStringAsFixed(2),
               textStyle: AppTextStyle.s18_w700(color: context.colors.darkRose),
             )
           ],

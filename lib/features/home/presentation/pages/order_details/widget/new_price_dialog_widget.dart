@@ -3,7 +3,7 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/order
 
 class NewPriceDialogWidget extends StatelessWidget {
   final OrderDetailsModel orderProduct;
- final BaseBloc<bool> loadingCubit;
+  final BaseBloc<bool> loadingCubit;
   final OrderDetailsController controller;
   final bool pickAll;
 
@@ -17,21 +17,23 @@ class NewPriceDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DialogActionWidget(
-      description: "is price equal ${price()}",
-      buttonGreenTitle: Translate.of(context).equals,
-      buttonRedTitle: Translate.of(context).less_than,
+      description: "${Translate.s.is_price_equal} ${price()}",
+      buttonGreenTitle: Translate.s.equals,
+      buttonRedTitle: Translate.s.less_than,
       greenOnTap: () {
         controller.pickItem(orderProduct, pickedAll: pickAll);
         Navigator.pop(context);
       },
-      redOnTap: () => controller.showNewPriceDialog(context, orderProduct,loadingCubit, pickAll: pickAll),
+      redOnTap: () => controller.showNewPriceDialog(
+          context, orderProduct, loadingCubit,
+          pickAll: pickAll),
     );
   }
 
   String price() {
     if (pickAll) {
       // return orderProduct.price;
-      return orderProduct.unitPrice*orderProduct.quantity;
+      return orderProduct.unitPrice * orderProduct.quantity;
     } else {
       return orderProduct.unitPrice;
     }

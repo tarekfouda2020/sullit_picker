@@ -113,7 +113,8 @@ class GlobalNotification {
         // log("___________________notification title:${message.notification?.title}");
         // log("___________________notification:${message.notification}");
 
-        if (message.notification != null && AppStateHelper.instance.appInBackGround){
+        if (message.notification != null &&
+            AppStateHelper.instance.appInBackGround) {
           log("====<<<<<<<<<< state ${AppStateHelper.instance.appInBackGround} >>>>>>>=======");
           _scheduleRepeatNotificationsIOS(
             _flutterLocalNotificationsPlugin,
@@ -154,7 +155,8 @@ class GlobalNotification {
     }
   }
 
-  static Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  static Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
     log("📬 Handling a background message: ${message.messageId}");
     await Firebase.initializeApp();
 
@@ -289,12 +291,12 @@ class GlobalNotification {
     }
 
     // bool isAppOpened = AppStateHelper.instance.isAppOpened;
-    var lifecycleState = WidgetsBinding.instance.lifecycleState;
-    bool isResumed = lifecycleState == AppLifecycleState.resumed;
+    // var lifecycleState = WidgetsBinding.instance.lifecycleState;
+    // bool isResumed = lifecycleState == AppLifecycleState.resumed;
     String notifyType = message.data["item_type"] ?? "";
     NotificationType type = NotificationType.notifyType(notifyType);
 
-    if (isResumed && type.isNewOrder) {
+    if (!AppStateHelper.instance.appInBackGround && type.isNewOrder) {
       return;
     }
 
