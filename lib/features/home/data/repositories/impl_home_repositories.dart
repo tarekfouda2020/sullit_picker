@@ -11,12 +11,13 @@ import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeRepositories)
-class ImplHomeRepositories extends HomeRepositories  {
+class ImplHomeRepositories extends HomeRepositories {
   var dataSource = getIt<HomeDataSource>();
 
   @override
@@ -25,7 +26,8 @@ class ImplHomeRepositories extends HomeRepositories  {
   }
 
   @override
-  Future<MyResult<UserModel>> updateProfileImage(UpdateProfileImageParams params) async {
+  Future<MyResult<UserModel>> updateProfileImage(
+      UpdateProfileImageParams params) async {
     return dataSource.updateProfileImage(params);
   }
 
@@ -60,7 +62,8 @@ class ImplHomeRepositories extends HomeRepositories  {
   }
 
   @override
-  Future<MyResult<SearchBarcodeModel>> searchByBarcode(ReplacedProductParams params) async {
+  Future<MyResult<SearchBarcodeModel>> searchByBarcode(
+      ReplacedProductParams params) async {
     return dataSource.searchByBarcode(params);
   }
 
@@ -70,12 +73,20 @@ class ImplHomeRepositories extends HomeRepositories  {
   }
 
   @override
-  Future<MyResult<InvoicePreviewModel>> updateInvoice(PrepareOrderParams params) async {
+  Future<MyResult<InvoicePreviewModel>> updateInvoice(
+      PrepareOrderParams params) async {
     return dataSource.updateInvoice(params);
   }
 
   @override
-  Future<MyResult<List<OrderModel>>> getPreviousOrders(GenericPaginateParams params) async {
+  Future<MyResult<List<OrderModel>>> getPreviousOrders(
+      GenericPaginateParams params) async {
     return dataSource.getPreviousOrders(params);
+  }
+
+  @override
+  Future<MyResult<String>> updateDeviceToken(
+      UpdateDeviceTokenParams params) async {
+    return dataSource.updateDeviceToken(params);
   }
 }

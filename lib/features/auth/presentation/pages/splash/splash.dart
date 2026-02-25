@@ -17,7 +17,6 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    getIt<OrdersHelper>().initSound();
     controller.manipulateSaveData(context);
   }
 

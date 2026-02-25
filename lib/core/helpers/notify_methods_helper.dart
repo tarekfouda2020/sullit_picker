@@ -1,24 +1,20 @@
-import 'dart:developer';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_tdd/core/helpers/app_snack_bar_service.dart';
+import 'package:flutter_tdd/core/constants/local_stoage_keys.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/localization/translate.dart';
+import 'package:flutter_tdd/core/helpers/global_notification.dart';
+import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/routes/router_imports.dart';
-import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
-import 'package:flutter_tdd/features/notifications/data/enum/notification_type.dart';
 import 'package:injectable/injectable.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_tdd/core/routes/router_imports.gr.dart';
-import '../../features/auth/data/models/user_model/user_model.dart';
-import '../../features/home/domain/repositories/home_repositories.dart';
-import 'orders_helper.dart';
-import 'user_services_helper.dart';
-import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../bloc/value_state_manager/value_state_manager_import.dart';
 
 @lazySingleton
 class NotifyMethodsHelper {
+
+  final ObsValue<bool> refreshNotifyStatusObs = ObsValue<bool>.withInit(false);
+
 
   bool? orderDetailsOpened() {
     try {
@@ -38,6 +34,17 @@ class NotifyMethodsHelper {
     } catch (e) {
       return null;
     }
+  }
+
+
+  Future<void> refreshNotificationStatus() async {
+    var status = await Permission.notification.status;
+    bool isGranted = status.isGranted || status.isProvisional;
+    GlobalState.instance.set(GlobalStateKeys.notificationGranted, isGranted);
+   refreshNotifyStatusObs.refresh();
+   if(isGranted){
+     getIt<GlobalNotification>().setupNotification();
+   }
   }
 
 

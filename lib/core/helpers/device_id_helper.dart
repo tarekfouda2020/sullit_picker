@@ -2,10 +2,12 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_tdd/core/constants/local_stoage_keys.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
-class DeviceIdHelper{
+class DeviceIdHelper {
   Future<String?> getDeviceId() async {
     try {
       final messaging = FirebaseMessaging.instance;
@@ -34,23 +36,29 @@ class DeviceIdHelper{
       final token = await messaging.getToken();
       log("====>>>>>>>>>> token $token =====>>>");
       return token;
-
     } catch (e) {
       log("❌ Error getting device token: $e ======== end error");
       return null;
     }
   }
 
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
+  Future<String?> getStoredToken() async {
+    return await _storage.read(key: LocalStorageKeys.deviceToken);
+  }
+
+  Future<void> saveToken(String token) async {
+    await _storage.write(key: LocalStorageKeys.deviceToken, value: token);
+  }
 
   Future<void> clearDeviceToken() async {
     try {
       await FirebaseMessaging.instance.deleteToken();
+      await _storage.delete(key: LocalStorageKeys.deviceToken);
       log("✅ FCM token deleted successfully");
     } catch (e) {
       log("⚠️ Failed to delete FCM token: $e");
     }
   }
-
-
 }

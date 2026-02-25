@@ -1,23 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_tdd/core/constants/local_stoage_keys.dart';
 import 'package:flutter_tdd/core/helpers/app_state_helper.dart';
-import 'package:flutter_tdd/core/helpers/di.dart';
-import 'package:flutter_tdd/core/helpers/orders_helper.dart';
+import 'package:flutter_tdd/core/helpers/export.dart';
 import 'package:flutter_tdd/core/helpers/storage_helper.dart';
 import 'package:flutter_tdd/features/notifications/data/enum/notification_type.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
 
-import '../../features/auth/presentation/pages/login_view/login_view_imports.dart';
-import 'global_context.dart';
 
 @lazySingleton
 class GlobalNotification {
@@ -91,6 +87,7 @@ class GlobalNotification {
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized ||
         settings.authorizationStatus == AuthorizationStatus.provisional) {
+      GlobalState.instance.set(GlobalStateKeys.notificationGranted, true);
       // log("✅ Notification permissions granted!");
       var token = await messaging.getToken();
       log("FCM Token: $token   ");
@@ -102,16 +99,16 @@ class GlobalNotification {
       );
 
       FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-        // log("_____________________Message:$message");
-        // log("_____________________Message android :${message.notification!.android}");
-        // log("_____________________Message ios :${message.notification!.apple}");
-        // log("_____________________Message android :${message.notification!.android?.channelId}");
-        // log("_____________________Message android :${message.notification!.android?.sound}");
-        // log("_____________________Message ios :${message.notification!.apple}");
-        // log("_____________________Message ios sound :${message.notification!.apple?.sound}");
-        // log("_____________________Message data:${message.data}");
-        // log("___________________notification title:${message.notification?.title}");
-        // log("___________________notification:${message.notification}");
+        log("_____________________Message:$message");
+        log("_____________________Message android :${message.notification?.android}");
+        log("_____________________Message ios :${message.notification?.apple}");
+        log("_____________________Message android :${message.notification?.android?.channelId}");
+        log("_____________________Message android :${message.notification?.android?.sound}");
+        log("_____________________Message ios :${message.notification?.apple}");
+        log("_____________________Message ios sound :${message.notification?.apple?.sound}");
+        log("_____________________Message data:${message.data}");
+        log("___________________notification title:${message.notification?.title}");
+        log("___________________notification:${message.notification}");
 
         if (message.notification != null &&
             AppStateHelper.instance.appInBackGround) {
@@ -124,10 +121,10 @@ class GlobalNotification {
             message.data,
           );
         }
+        // await _showLocalNotification(message);
 
         try {
           await _showLocalNotification(message);
-          log("✅ Notification display completed");
         } catch (e) {
           log("❌ Error showing notification: $e");
         }
@@ -152,6 +149,8 @@ class GlobalNotification {
       });
       FirebaseMessaging.onBackgroundMessage(
           _firebaseMessagingBackgroundHandler);
+    }else{
+      GlobalState.instance.set(GlobalStateKeys.notificationGranted, false);
     }
   }
 
@@ -189,7 +188,7 @@ class GlobalNotification {
       soundName = message.notification!.android!.sound ?? channel.sound!.sound;
     } else {
       channelId = channel.id;
-      soundName = channel.sound!.sound;
+      soundName = channel.sound?.sound ?? "";
     }
 
     if (Platform.isIOS && message.notification != null && type.isNewOrder) {
@@ -347,7 +346,7 @@ class GlobalNotification {
       soundName = message.notification!.android!.sound ?? channel.sound!.sound;
     } else {
       channelId = channel.id;
-      soundName = channel.sound!.sound;
+      soundName = channel.sound?.sound ?? "";
     }
 
     if (Platform.isIOS && message.notification != null) {

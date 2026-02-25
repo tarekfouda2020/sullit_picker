@@ -184,6 +184,8 @@ class OrdersHelper {
   Future<void> startSound(
       {Duration interval = const Duration(seconds: 2)}) async {
     if (_timer != null) return;
+    await _player.initialize();
+    await _player.load("effect", Res.newOrderSound);
     _soundPlay = true;
     _timer = Timer.periodic(interval, (_) {
       _player.play('effect', volume: 2);
@@ -191,10 +193,6 @@ class OrdersHelper {
     _player.play('effect', volume: 2);
   }
 
-  Future<void> initSound() async {
-    await _player.initialize();
-    await _player.load("effect", Res.newOrderSound);
-  }
 
   Future<void> stopSound() async {
     try {

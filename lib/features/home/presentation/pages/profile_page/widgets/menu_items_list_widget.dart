@@ -48,18 +48,29 @@ class MenuItemsListWidget extends StatelessWidget {
           title: Translate.of(context).privacy_policy,
           onTap: () => controller.navigateToPrivacyPolicy(context),
         ),
+        ObsValueConsumer(
+          observable: controller.refreshNotifyStatusObs,
+          builder: (context,value) {
+            return MenuItemWidget(
+              icon: Res.notificationIcon,
+              title: Translate.of(context).notifications,
+              onTap: () => controller.showNotificationDialog(context),
+              endTitle: controller.getNotificationText(),
+              iconSpace: 5,
+              endTitleSize: 11.5,
+            );
+          }
+        ),
       ],
     );
   }
 
   String get currentLang {
     var langKey = GlobalState.instance.get(ApplicationConstants.langKey);
-    if(langKey == LangCode.ar){
+    if (langKey == LangCode.ar) {
       return "AR";
-    }else{
+    } else {
       return GlobalState.instance.get(ApplicationConstants.langKey);
     }
-
   }
-
-} 
+}

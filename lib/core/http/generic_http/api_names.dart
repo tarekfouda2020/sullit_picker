@@ -1,66 +1,56 @@
 import 'package:flutter_tdd/core/constants/app_config.dart';
 
-class ApiNames{
-
+class ApiNames {
   static String baseUrl = AppConfig.instance.baseUrl;
   static String appApi = AppConfig.instance.appApi;
 
   // auth routes
-  static  String login = "${appApi}login";
-  static  String refreshToken = "${appApi}auth";
-  static  String updateUser = "${appApi}users/";
+  static String login = "${appApi}login";
+  static String refreshToken = "${appApi}auth";
+  static String updateUser = "${appApi}users/";
 
+  static String confirmResetPassword = "${appApi}password/reset";
 
-  static  String confirmResetPassword = "${appApi}password/reset";
+  static String activeAccount = "${appApi}otp/verify";
+  static String resendCode = "${appApi}ResendCode";
+  static String switchNotify = "${appApi}SwitchNotify";
+  static String resetPassword =
+      "${appApi}A2q4mG84Z9rE2B38In4HALSWTwt9eQ5Slzq56Cod";
+  static String privacyPolicy = "${appApi}privacy-policy";
+  static String updatePassword = "${appApi}update-password?_method=patch";
 
-  static  String activeAccount = "${appApi}otp/verify";
-  static  String resendCode = "${appApi}ResendCode";
-  static  String switchNotify = "${appApi}SwitchNotify";
-  static  String resetPassword = "${appApi}A2q4mG84Z9rE2B38In4HALSWTwt9eQ5Slzq56Cod";
-  static  String privacyPolicy = "${appApi}privacy-policy";
-  static  String updatePassword = "${appApi}update-password?_method=patch";
-
-
-
-  static  String passwordForgot = "${appApi}password/forgot";
-  static  String logout = "${appApi}logout";
-
-
-
+  static String passwordForgot = "${appApi}password/forgot";
+  static String logout = "${appApi}logout";
 
   ///orders
-  static  String cancelOrder(int id) => "${appApi}orders/$id/cancel";
-  static  String orders = "${appApi}orders";
-  static  String showOrders(int id) => "${appApi}orders/$id";
-  static  String acceptOrder(int id) => "${appApi}orders/$id/accept";
-  static  String searchByBarcode(String barcode) => "${appApi}products/search-by-barcode?barcode=$barcode";
-  static  String prepareOrder(int id) => "${appApi}orders/$id/prepare";
-  static  String updateInvoice(int id) => "${appApi}orders/$id/prepare-preview";
-  static  String previousOrders = "${appApi}orders/previous";
+  static String cancelOrder(int id) => "${appApi}orders/$id/cancel";
+  static String orders = "${appApi}orders";
+  static String showOrders(int id) => "${appApi}orders/$id";
+  static String acceptOrder(int id) => "${appApi}orders/$id/accept";
+  static String searchByBarcode(String barcode) =>
+      "${appApi}products/search-by-barcode?barcode=$barcode";
+  static String prepareOrder(int id) => "${appApi}orders/$id/prepare";
+  static String updateInvoice(int id) => "${appApi}orders/$id/prepare-preview";
+  static String previousOrders = "${appApi}orders/previous";
 
   ///home
-  static  String profile = "${appApi}profile";
-  static  String updateProfileImage = "${appApi}update-avatar?_method=patch";
-  static  String toggleAvailability = "${appApi}toggle-availability?_method=patch";
-
+  static String profile = "${appApi}profile";
+  static String updateProfileImage = "${appApi}update-avatar?_method=patch";
+  static String toggleAvailability =
+      "${appApi}toggle-availability?_method=patch";
 
   ///general
-  static  const String socials = "socials";
-  static  String contactUs = "${appApi}contact-us";
-  static  String terms = "${appApi}terms";
+  static const String socials = "socials";
+  static String startLink = "${appApi}general/settings";
+  static String contactUs = "${appApi}contact-us";
+  static String terms = "${appApi}terms";
   static const String getLanguages = "settings/languages";
+  static String updateDeviceToken = "update-device-token";
 
   ///wallet
-  static  String transactions = "${appApi}wallet/transactions";
-  static  String walletRecharge = "${appApi}wallet/recharge";
-
+  static String transactions = "${appApi}wallet/transactions";
+  static String walletRecharge = "${appApi}wallet/recharge";
 
   /// notifications
-static  String notifications = "${appApi}notifications";
-
-
-
-
-
-
+  static String notifications = "${appApi}notifications";
 }

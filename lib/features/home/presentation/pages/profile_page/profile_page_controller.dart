@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/constants/lang_code.dart';
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
 import 'package:flutter_tdd/features/auth/domain/repositories/auth_repositories.dart';
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
@@ -11,6 +12,10 @@ import '../../../../../core/errors/device_id_error.dart';
 import '../../../../auth/domain/entity/logout_params.dart';
 import 'profile_page_imports.dart';
 import 'widgets/lang_bottom_sheet_widget.dart';
+import 'widgets/notification_settings_dialog_widget.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_tdd/core/constants/local_stoage_keys.dart';
+
 class ProfilePageController {
   final LanguagesRequester langRequester = LanguagesRequester();
 
@@ -18,18 +23,19 @@ class ProfilePageController {
 
   final ObsValue<bool> showAllStores = ObsValue<bool>.withInit(false);
 
+   ObsValue<bool> get refreshNotifyStatusObs => getIt<NotifyMethodsHelper>().refreshNotifyStatusObs;
 
   File? pickedImage;
 
   Future<void> getLanguages() async {
     langRequester.request(fromRemote: false);
-     langRequester.request();
+    langRequester.request();
     // setDefaultLang();
   }
 
   Future<void> selectImage(BuildContext context) async {
-    List<File>? result =
-        await getIt<AppFileService>().pickFile(context, fileType: FileType.image, allowMultiple: false);
+    List<File>? result = await getIt<AppFileService>()
+        .pickFile(context, fileType: FileType.image, allowMultiple: false);
     if (result != null) {
       pickedImage = result.first;
       updateUserImage(context);
@@ -45,8 +51,6 @@ class ProfilePageController {
   void navigateToPreviousOrders(BuildContext context) {
     AutoRouter.of(context).push(const OrderHistoryPageRoute());
   }
-
-
 
   void navigateToContactUs(BuildContext context) {
     AutoRouter.of(context).push(const ContactUsPageRoute());
@@ -64,8 +68,6 @@ class ProfilePageController {
     AutoRouter.of(context).push(const NotificationsPageRoute());
   }
 
-
-
   void logout(BuildContext context) {
     showDialog(
       context: context,
@@ -78,24 +80,27 @@ class ProfilePageController {
     );
   }
 
-
-
   Future<void> _logout(BuildContext context) async {
     getIt<LoadingHelper>().showLoadingDialog();
     var deviceId = await getIt<DeviceIdHelper>().getDeviceId();
-    if(deviceId == null){
-      AppSnackBar.showSimpleToast(msg: DeviceIdError().message,gravity:ToastGravity.BOTTOM,type: ToastType.error);
+    if (deviceId == null) {
+      AppSnackBar.showSimpleToast(
+          msg: DeviceIdError().message,
+          gravity: ToastGravity.BOTTOM,
+          type: ToastType.error);
       getIt<LoadingHelper>().dismissDialog();
-      return ;
+      return;
     }
-    LogoutParams params =  _params(deviceId);
-    final  result = await getIt<AuthRepositories>().logout(params);
+    LogoutParams params = _params(deviceId);
+    final result = await getIt<AuthRepositories>().logout(params);
     result.when(
       isSuccess: (msg) async {
         await getIt<UserServicesHelper>().clearCashAndRoute(context);
         getIt<LoadingHelper>().dismissDialog();
         AppSnackBar.showSimpleToast(
-            msg: msg ?? Translate.s.logged_out_successfully, type: ToastType.success, gravity: ToastGravity.BOTTOM);
+            msg: msg ?? Translate.s.logged_out_successfully,
+            type: ToastType.success,
+            gravity: ToastGravity.BOTTOM);
       },
       isError: (error) {
         getIt<LoadingHelper>().dismissDialog();
@@ -107,15 +112,13 @@ class ProfilePageController {
     );
   }
 
-  LogoutParams  _params(String deviceId)  {
-    return LogoutParams(
-      deviceToken:deviceId
-  );}
+  LogoutParams _params(String deviceId) {
+    return LogoutParams(deviceToken: deviceId);
+  }
 
   void goBack(BuildContext context) {
     AutoRouter.of(context).maybePop();
   }
-
 
   Future<void> getUserData() async {
     BuildContext context = getIt<GlobalContext>().context();
@@ -170,7 +173,8 @@ class ProfilePageController {
   }
 
   void setDefaultLang() async {
-    String? currentLang = GlobalState.instance.get(ApplicationConstants.langKey);
+    String? currentLang =
+        GlobalState.instance.get(ApplicationConstants.langKey);
     List<LangModel> languages = langRequester.data!;
     for (var lang in languages) {
       if (lang.code == (currentLang ?? ApplicationConstants.langEN)) {
@@ -180,7 +184,28 @@ class ProfilePageController {
     langRequester.refresh();
   }
 
+  String getNotificationText() {
+    bool isGranted =
+        GlobalState.instance.get(GlobalStateKeys.notificationGranted) ?? false;
+    return isGranted
+        ? Translate.s.notifications_enabled
+        : Translate.s.notifications_disabled;
+  }
 
+  Future<void> showNotificationDialog(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (context) => NotificationSettingsDialogWidget(
+        statusText: getNotificationText(),
+        onSettingsPressed: () => openSettings(context),
+      ),
+    );
+  }
+
+  Future<void> openSettings(BuildContext context) async {
+     openAppSettings();
+
+  }
 
   UpdateProfileImageParams _updateParams() {
     return UpdateProfileImageParams(image: pickedImage!);

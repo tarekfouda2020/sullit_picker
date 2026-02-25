@@ -14,6 +14,7 @@ import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 import 'package:injectable/injectable.dart';
@@ -35,7 +36,8 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
-  Future<MyResult<UserModel>> updateProfileImage(UpdateProfileImageParams params) async {
+  Future<MyResult<UserModel>> updateProfileImage(
+      UpdateProfileImageParams params) async {
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.updateProfileImage,
         responseType: ResType.model,
@@ -44,8 +46,7 @@ class ImplHomeDataSource extends HomeDataSource {
         responseKey: (data) => data['data'],
         requestBody: params.toJson(),
         isFormData: true,
-        showLoader: true
-    );
+        showLoader: true);
     return await GenericHttpImpl<UserModel>()(model);
   }
 
@@ -75,17 +76,15 @@ class ImplHomeDataSource extends HomeDataSource {
     return await GenericHttpImpl<List<LangModel>>()(model);
   }
 
-
   @override
-  Future<MyResult<AvailableForOrderModel>> updateAvailability()async {
+  Future<MyResult<AvailableForOrderModel>> updateAvailability() async {
     HttpRequestModel model = HttpRequestModel(
         url: ApiNames.toggleAvailability,
         responseType: ResType.model,
         requestMethod: RequestMethod.post,
         responseKey: (data) => data,
         toJsonFunc: (data) => AvailableForOrderModel.fromJson(data),
-        showLoader: true
-    );
+        showLoader: true);
     return await GenericHttpImpl<AvailableForOrderModel>()(model);
   }
 
@@ -96,22 +95,21 @@ class ImplHomeDataSource extends HomeDataSource {
         responseType: ResType.model,
         requestMethod: RequestMethod.get,
         responseKey: (data) => data['data'],
-        toJsonFunc: (data) =>  OrderModel.fromJson(data),
+        toJsonFunc: (data) => OrderModel.fromJson(data),
         showLoader: true,
-        refresh: params.refresh
-    );
+        refresh: params.refresh);
     return await GenericHttpImpl<OrderModel>()(model);
   }
 
   @override
   Future<MyResult<OrderModel>> acceptOrder(OrdersParams params) async {
     HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.acceptOrder(params.id),
-        responseType: ResType.model,
-        requestMethod: RequestMethod.post,
-        responseKey: (data) => data['data'],
-        toJsonFunc: (data) =>  OrderModel.fromJson(data),
-        // refresh: params.refresh
+      url: ApiNames.acceptOrder(params.id),
+      responseType: ResType.model,
+      requestMethod: RequestMethod.post,
+      responseKey: (data) => data['data'],
+      toJsonFunc: (data) => OrderModel.fromJson(data),
+      // refresh: params.refresh
     );
     return await GenericHttpImpl<OrderModel>()(model);
   }
@@ -119,9 +117,9 @@ class ImplHomeDataSource extends HomeDataSource {
   @override
   Future<MyResult<OrderModel>> cancelOrder(int id) async {
     HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.cancelOrder(id),
-        responseType: ResType.model,
-        requestMethod: RequestMethod.post,
+      url: ApiNames.cancelOrder(id),
+      responseType: ResType.model,
+      requestMethod: RequestMethod.post,
       toJsonFunc: (data) => OrderModel.fromJson(data),
       responseKey: (data) => data['data'],
     );
@@ -129,11 +127,12 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
-  Future<MyResult<SearchBarcodeModel>> searchByBarcode(ReplacedProductParams params) async {
+  Future<MyResult<SearchBarcodeModel>> searchByBarcode(
+      ReplacedProductParams params) async {
     HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.searchByBarcode(params.barcode),
-        responseType: ResType.model,
-        requestMethod: RequestMethod.get,
+      url: ApiNames.searchByBarcode(params.barcode),
+      responseType: ResType.model,
+      requestMethod: RequestMethod.get,
       toJsonFunc: (data) => SearchBarcodeModel.fromJson(data),
       responseKey: (data) => data['data'],
       refresh: params.refresh,
@@ -143,23 +142,22 @@ class ImplHomeDataSource extends HomeDataSource {
 
   @override
   Future<MyResult<OrderModel>> prepareOrder(PrepareOrderParams params) async {
-  HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.prepareOrder(params.orderId),
-      responseType: ResType.model,
-      requestMethod: RequestMethod.post,
-      toJsonFunc: (data) => OrderModel.fromJson(data),
-      responseKey: (data) => data['data'],
-      requestBody: params.toJson(),
-      isFormData: true,
-      showLoader: true
-  );
-  return await GenericHttpImpl<OrderModel>()(model);
+    HttpRequestModel model = HttpRequestModel(
+        url: ApiNames.prepareOrder(params.orderId),
+        responseType: ResType.model,
+        requestMethod: RequestMethod.post,
+        toJsonFunc: (data) => OrderModel.fromJson(data),
+        responseKey: (data) => data['data'],
+        requestBody: params.toJson(),
+        isFormData: true,
+        showLoader: true);
+    return await GenericHttpImpl<OrderModel>()(model);
+  }
 
-}
-
-@override
-Future<MyResult<InvoicePreviewModel>> updateInvoice(PrepareOrderParams params) async {
-  HttpRequestModel model = HttpRequestModel(
+  @override
+  Future<MyResult<InvoicePreviewModel>> updateInvoice(
+      PrepareOrderParams params) async {
+    HttpRequestModel model = HttpRequestModel(
       url: ApiNames.updateInvoice(params.orderId),
       responseType: ResType.model,
       requestMethod: RequestMethod.post,
@@ -167,24 +165,36 @@ Future<MyResult<InvoicePreviewModel>> updateInvoice(PrepareOrderParams params) a
       responseKey: (data) => data['data'],
       requestBody: params.toJson(),
       isFormData: true,
-  );
-  return await GenericHttpImpl<InvoicePreviewModel>()(model);
+    );
+    return await GenericHttpImpl<InvoicePreviewModel>()(model);
+  }
 
-}
+  @override
+  Future<MyResult<List<OrderModel>>> getPreviousOrders(
+      GenericPaginateParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+        url: ApiNames.previousOrders + params.paramsToQuery(),
+        responseType: ResType.model,
+        requestMethod: RequestMethod.get,
+        toJsonFunc: (data) => List<OrderModel>.from(
+            data.map((json) => OrderModel.fromJson(json))),
+        responseKey: (data) => data['data']['orders'],
+        isFormData: true,
+        showLoader: true,
+        refresh: params.refresh);
+    return await GenericHttpImpl<List<OrderModel>>()(model);
+  }
 
-@override
-  Future<MyResult<List<OrderModel>>> getPreviousOrders(GenericPaginateParams params) async {
-  HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.previousOrders+params.paramsToQuery(),
-      responseType: ResType.model,
-      requestMethod: RequestMethod.get,
-      toJsonFunc: (data) => List<OrderModel>.from(data.map((json)=>OrderModel.fromJson(json))),
-      responseKey: (data) => data['data']['orders'],
-      isFormData: true,
-      showLoader: true,
-    refresh: params.refresh
-  );
-  return await GenericHttpImpl<List<OrderModel>>()(model);
-
-}
+  @override
+  Future<MyResult<String>> updateDeviceToken(UpdateDeviceTokenParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.updateDeviceToken,
+      responseType: ResType.type,
+      requestMethod: RequestMethod.post,
+      responseKey: (data) => data['key'],
+      requestBody: params.toJson(),
+      showErrorMessage: false
+    );
+    return await GenericHttpImpl<String>()(model);
+  }
 }

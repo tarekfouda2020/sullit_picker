@@ -17,12 +17,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @lazySingleton
 class HandleErrors {
+  final bool showError;
+
+  HandleErrors({this.showError = true});
   void catchError(
       {Response? response,
       required Function(dynamic) errorFunc}) {
     if (response == null) {
       log("failed response Check Server");
-      AppSnackBar.showSimpleToast(msg: "Check Server");
+      showSnackBarError( "Check Server");
+      // AppSnackBar.showSimpleToast(msg: "Check Server");
     }
     else {
       log("failed response ${response.statusCode}");
@@ -37,16 +41,19 @@ class HandleErrors {
         switch (response.statusCode) {
           case 503:
           case 404:
-            AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
+          showSnackBarError( message);
+            // AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
             if (message == "Not Authorized") {
               _tokenExpired();
             }
             break;
           case 500:
-            AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
+            showSnackBarError( message);
+            // AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
             break;
           case 502:
-            AppSnackBar.showErrorSnackBar(error: CustomError(msg: "check your request"));
+            showSnackBarError( "check your request");
+            // AppSnackBar.showErrorSnackBar(error: CustomError(msg: "check your request"));
             break;
           case 422:
           case 400:
@@ -55,10 +62,10 @@ class HandleErrors {
               log("response errors $errors");
               List<String> lst = List<String>.from(data["errors"].map((e) => e["msg"]));
               for (var e in lst) {
-                AppSnackBar.showErrorSnackBar(error: CustomError(msg: e));
+                showSnackBarError(e);
               }
             } else {
-              AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
+              showSnackBarError(message);
             }
             break;
           case 401:
@@ -68,7 +75,7 @@ class HandleErrors {
             break;
         }
       } catch (e) {
-        AppSnackBar.showErrorSnackBar(error: CustomError(msg: e.toString()));
+        showSnackBarError(e.toString());
       }
     }
   }
@@ -88,4 +95,14 @@ class HandleErrors {
     prefs.remove("user");
     Phoenix.rebirth(getIt<GlobalContext>().context());
   }
+
+
+
+  void showSnackBarError(String message){
+    if(showError){
+      AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
+    }
+  }
+
+
 }

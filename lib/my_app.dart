@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tdd/core/bloc/device_cubit/device_cubit.dart';
 import 'package:flutter_tdd/core/helpers/app_state_helper.dart';
 import 'package:flutter_tdd/core/helpers/di.dart';
+import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
 import 'package:flutter_tdd/core/routes/router_imports.dart';
 import 'package:flutter_tdd/core/theme/themes/app_dark_theme.dart';
@@ -42,20 +43,20 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async{
     super.didChangeAppLifecycleState(state);
-    AppStateHelper.instance.isAppOpened = state == AppLifecycleState.resumed;
+    bool resumed = state == AppLifecycleState.resumed;
+    AppStateHelper.instance.isAppOpened = resumed;
     AppStateHelper.instance.appInBackGround =
         state == AppLifecycleState.hidden
         || state == AppLifecycleState.paused;
-    print("state is $state ");
+    if(resumed){
+      getIt<NotifyMethodsHelper>().refreshNotificationStatus();
+    }
     if(AppStateHelper.instance.appInBackGround){
       // print("======>>>>>>>>>> inside check ");
       // getIt<OrdersHelper>().startSound();
       // print("======>>>>>>>>>> inside check 2 ");
     }else{
-      await getIt<OrdersHelper>().stopSound();
-      await Future.delayed(const Duration(milliseconds: 500),
-      () => getIt<OrdersHelper>().initSound()
-      );
+
     }
   }
 

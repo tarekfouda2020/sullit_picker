@@ -382,6 +382,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_available_yet":
             MessageLookupByLibrary.simpleMessage("غير متاح بعد"),
         "notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
+        "notifications_description": MessageLookupByLibrary.simpleMessage(
+            "للتحكم بإشعارات التطبيق، الرجاء الذهاب إلى الإعدادات > الإشعارات لتطبيق \'AMCOOP Picker\'"),
+        "notifications_disabled":
+            MessageLookupByLibrary.simpleMessage("الإشعارات غير مفعلة"),
+        "notifications_enabled":
+            MessageLookupByLibrary.simpleMessage("الإشعارات مفعلة"),
         "offline": MessageLookupByLibrary.simpleMessage("غير متصل"),
         "one_hour_ago": MessageLookupByLibrary.simpleMessage("منذ ساعة واحدة"),
         "online": MessageLookupByLibrary.simpleMessage("متصل"),

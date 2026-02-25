@@ -10,11 +10,15 @@ class MenuItemWidget extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final String? endTitle;
+  final double? endTitleSize;
+  final int? iconSpace;
   const MenuItemWidget({
     super.key,
     required this.icon,
     required this.title,
     required this.onTap,
+     this.iconSpace,
+     this.endTitleSize,
     this.endTitle,
   });
 
@@ -34,7 +38,7 @@ class MenuItemWidget extends StatelessWidget {
         ),
         child : Row(
           children: [
-            SvgPicture.asset(icon),
+            SvgPicture.asset(icon,colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn),),
             Gaps.hGap15,
             Expanded(
               child: Text(
@@ -44,9 +48,11 @@ class MenuItemWidget extends StatelessWidget {
             ),
             if(endTitle != null)
               Text(endTitle!,
-                style: AppTextStyle.s14_w700(color: context.colors.black),
+                style: AppTextStyle.s14_w700(color: context.colors.black).copyWith(
+                  fontSize: endTitleSize
+                ),
               ),
-            Gaps.hGap25,
+            Gaps.hGap(iconSpace ?? 25),
             Icon(
               Icons.arrow_forward_ios,
               color: context.colors.black,

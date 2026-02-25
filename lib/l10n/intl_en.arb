@@ -405,5 +405,8 @@
   "not_available": "Not available",
   "reason": "Reason",
   "modified": "Modified",
-  "replaced": "Replaced"
+  "replaced": "Replaced",
+  "notifications_enabled": "Notifications Enabled",
+  "notifications_disabled": "Notifications Disabled",
+  "notifications_description": "To control app notifications, please go to Settings > Notifications for 'AMCOOP Picker' app"
 }

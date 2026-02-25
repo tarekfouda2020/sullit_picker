@@ -390,6 +390,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_available_yet":
             MessageLookupByLibrary.simpleMessage("Not available yet"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "notifications_description": MessageLookupByLibrary.simpleMessage(
+            "To control app notifications, please go to Settings > Notifications for \'AMCOOP Picker\' app"),
+        "notifications_disabled":
+            MessageLookupByLibrary.simpleMessage("Notifications Disabled"),
+        "notifications_enabled":
+            MessageLookupByLibrary.simpleMessage("Notifications Enabled"),
         "offline": MessageLookupByLibrary.simpleMessage("Offline"),
         "one_hour_ago": MessageLookupByLibrary.simpleMessage("1 Hour Ago"),
         "online": MessageLookupByLibrary.simpleMessage("Online"),

@@ -10,13 +10,14 @@ import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 
 abstract class HomeDataSource {
-
   Future<MyResult<UserModel>> getProfile();
 
-  Future<MyResult<UserModel>> updateProfileImage(UpdateProfileImageParams params);
+  Future<MyResult<UserModel>> updateProfileImage(
+      UpdateProfileImageParams params);
 
   Future<MyResult<OrdersList?>> orders(bool params);
 
@@ -26,7 +27,8 @@ abstract class HomeDataSource {
 
   Future<MyResult<OrderModel>> cancelOrder(int id);
 
-  Future<MyResult<SearchBarcodeModel>> searchByBarcode(ReplacedProductParams params);
+  Future<MyResult<SearchBarcodeModel>> searchByBarcode(
+      ReplacedProductParams params);
 
   Future<MyResult<List<LangModel>>> getLanguages(bool params);
 
@@ -34,8 +36,11 @@ abstract class HomeDataSource {
 
   Future<MyResult<OrderModel>> prepareOrder(PrepareOrderParams params);
 
-  Future<MyResult<InvoicePreviewModel>> updateInvoice(PrepareOrderParams params);
+  Future<MyResult<InvoicePreviewModel>> updateInvoice(
+      PrepareOrderParams params);
 
-  Future<MyResult<List<OrderModel>>> getPreviousOrders(GenericPaginateParams params);
+  Future<MyResult<List<OrderModel>>> getPreviousOrders(
+      GenericPaginateParams params);
 
+  Future<MyResult<String>> updateDeviceToken(UpdateDeviceTokenParams params);
 }

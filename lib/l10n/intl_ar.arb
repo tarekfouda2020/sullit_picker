@@ -409,5 +409,8 @@
   "with_barcode": "مع الباركود:",
   "reason": "السبب",
   "modified": "تم التعديل",
-  "replaced": "تم الاستبدال"
+  "replaced": "تم الاستبدال",
+  "notifications_enabled": "الإشعارات مفعلة",
+  "notifications_disabled": "الإشعارات غير مفعلة",
+  "notifications_description": "للتحكم بإشعارات التطبيق، الرجاء الذهاب إلى الإعدادات > الإشعارات لتطبيق 'AMCOOP Picker'"
 }

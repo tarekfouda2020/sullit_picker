@@ -4109,6 +4109,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Notifications Enabled`
+  String get notifications_enabled {
+    return Intl.message(
+      'Notifications Enabled',
+      name: 'notifications_enabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications Disabled`
+  String get notifications_disabled {
+    return Intl.message(
+      'Notifications Disabled',
+      name: 'notifications_disabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To control app notifications, please go to Settings > Notifications for 'AMCOOP Picker' app`
+  String get notifications_description {
+    return Intl.message(
+      'To control app notifications, please go to Settings > Notifications for \'AMCOOP Picker\' app',
+      name: 'notifications_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
