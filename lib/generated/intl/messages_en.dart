@@ -159,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delivered": MessageLookupByLibrary.simpleMessage("Delivered"),
         "delivered_time":
             MessageLookupByLibrary.simpleMessage("Delivered Time"),
+        "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
         "delivery_address":
             MessageLookupByLibrary.simpleMessage("Delivery Address"),
         "delivery_fee": MessageLookupByLibrary.simpleMessage("Delivery Fee"),
@@ -410,9 +411,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "order_items": MessageLookupByLibrary.simpleMessage("Order Items"),
         "order_no": MessageLookupByLibrary.simpleMessage("Order No."),
         "order_no_colon": MessageLookupByLibrary.simpleMessage("Order No. :"),
+        "order_processing_error": MessageLookupByLibrary.simpleMessage(
+            "Sorry we can\'t process this order. Thank you"),
         "order_ready_for_delivery":
             MessageLookupByLibrary.simpleMessage("Order ready for delivery"),
+        "order_ready_for_pick_up":
+            MessageLookupByLibrary.simpleMessage("Ready for Pick up"),
         "order_status": MessageLookupByLibrary.simpleMessage("Order Status"),
+        "order_type": MessageLookupByLibrary.simpleMessage("Order Type"),
         "order_value": MessageLookupByLibrary.simpleMessage("Order Value"),
         "orders_history":
             MessageLookupByLibrary.simpleMessage("Orders History"),
@@ -457,6 +463,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
         "pick": MessageLookupByLibrary.simpleMessage("Pick"),
         "pick_all": MessageLookupByLibrary.simpleMessage("Pick All"),
+        "pick_up": MessageLookupByLibrary.simpleMessage("Pick Up"),
         "picked": MessageLookupByLibrary.simpleMessage("Picked"),
         "picker_note_hint":
             MessageLookupByLibrary.simpleMessage("Your note for update..."),

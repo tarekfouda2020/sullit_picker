@@ -343,6 +343,7 @@
   "weight_minimum": "يجب ألا يقل الوزن الجديد عن 750 جم",
   "fresh_whole_chicken": "دجاج كامل طازج",
   "order_ready_for_delivery": "الطلب جاهز للتوصيل",
+  "order_ready_for_pick_up": "الطلب جاهز للاستلام",
   "no_of_items": "عدد العناصر",
   "unavailable": "غير متاح",
   "logoutAlert": "هل أنت متأكد أنك تريد الخروج؟",
@@ -412,5 +413,9 @@
   "replaced": "تم الاستبدال",
   "notifications_enabled": "الإشعارات مفعلة",
   "notifications_disabled": "الإشعارات غير مفعلة",
+  "order_type": "نوع الطلب",
+  "delivery": "توصيل",
+  "pick_up": "استلام",
+  "order_processing_error": "عذرًا، لا يمكننا معالجة هذا الطلب. شكرًا لك",
   "notifications_description": "للتحكم بإشعارات التطبيق، الرجاء الذهاب إلى الإعدادات > الإشعارات لتطبيق 'AMCOOP Picker'"
 }

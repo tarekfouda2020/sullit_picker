@@ -340,6 +340,7 @@
   "weight_minimum": "The new weight must not less than 750 gm",
   "fresh_whole_chicken": "Fresh Whole Chicken",
   "order_ready_for_delivery": "Order ready for delivery",
+  "order_ready_for_pick_up": "Ready for Pick up",
   "no_of_items": "No. of Items ",
   "unavailable": "Unavailable",
   "logoutAlert": "Are you sure you want to logout?",
@@ -408,5 +409,9 @@
   "replaced": "Replaced",
   "notifications_enabled": "Notifications Enabled",
   "notifications_disabled": "Notifications Disabled",
+  "order_type": "Order Type",
+  "delivery": "Delivery",
+  "pick_up": "Pick Up",
+  "order_processing_error": "Sorry we can't process this order. Thank you",
   "notifications_description": "To control app notifications, please go to Settings > Notifications for 'AMCOOP Picker' app"
 }

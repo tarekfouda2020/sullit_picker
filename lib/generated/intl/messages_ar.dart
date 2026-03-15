@@ -153,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("المنتجات المحذوفة"),
         "delivered": MessageLookupByLibrary.simpleMessage("تم التوصيل"),
         "delivered_time": MessageLookupByLibrary.simpleMessage("وقت التوصيل"),
+        "delivery": MessageLookupByLibrary.simpleMessage("توصيل"),
         "delivery_address":
             MessageLookupByLibrary.simpleMessage("عنوان التوصيل"),
         "delivery_fee": MessageLookupByLibrary.simpleMessage("رسوم التوصيل"),
@@ -402,9 +403,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "order_items": MessageLookupByLibrary.simpleMessage("عناصر الطلب"),
         "order_no": MessageLookupByLibrary.simpleMessage("رقم الطلب:"),
         "order_no_colon": MessageLookupByLibrary.simpleMessage("رقم الطلب :"),
+        "order_processing_error": MessageLookupByLibrary.simpleMessage(
+            "عذرًا، لا يمكننا معالجة هذا الطلب. شكرًا لك"),
         "order_ready_for_delivery":
             MessageLookupByLibrary.simpleMessage("الطلب جاهز للتوصيل"),
+        "order_ready_for_pick_up":
+            MessageLookupByLibrary.simpleMessage("الطلب جاهز للاستلام"),
         "order_status": MessageLookupByLibrary.simpleMessage("حالة الطلب"),
+        "order_type": MessageLookupByLibrary.simpleMessage("نوع الطلب"),
         "order_value": MessageLookupByLibrary.simpleMessage("قيمة الطلب"),
         "orders_history": MessageLookupByLibrary.simpleMessage("تاريخ الطلبات"),
         "other": MessageLookupByLibrary.simpleMessage("أخرى"),
@@ -446,6 +452,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
         "pick": MessageLookupByLibrary.simpleMessage("اختيار"),
         "pick_all": MessageLookupByLibrary.simpleMessage("اختر الكل"),
+        "pick_up": MessageLookupByLibrary.simpleMessage("استلام"),
         "picked": MessageLookupByLibrary.simpleMessage("تم التقاطه"),
         "picker_note_hint":
             MessageLookupByLibrary.simpleMessage("ملاحظتك للتحديث..."),

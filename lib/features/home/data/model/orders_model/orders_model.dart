@@ -5,6 +5,7 @@ import 'package:flutter_tdd/core/helpers/export.dart';
 import 'package:flutter_tdd/core/helpers/phone_helper.dart';
 import 'package:flutter_tdd/features/home/data/enum/customer_type.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
+import 'package:flutter_tdd/features/home/data/enum/order_type_enum.dart';
 import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
 import 'package:flutter_tdd/features/home/domain/models/invoice_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -55,6 +56,8 @@ class OrderModel with _$OrderModel {
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
     @JsonKey(name: 'delivered_at') required String deliveredAt,
+    @JsonKey(name: 'shipping_type')  String? shippingType,
+    @JsonKey(name: 'shipping_type_label')  String? shippingTypeLabel,
     @JsonKey(name: 'payment_status') bool? paymentStatus,
     @JsonKey(name: 'payment_status_text') String? paymentStatusText,
     @JsonKey(name: 'payment_method') String? paymentMethod,
@@ -94,10 +97,6 @@ class OrderModel with _$OrderModel {
   }
 
 
-
-
-
-
   OrderStatusEnum getOrderStatus() {
     switch (status) {
       case 'preparing':
@@ -109,6 +108,22 @@ class OrderModel with _$OrderModel {
         return OrderStatusEnum.newOrder;
     }
   }
+
+  OrderTypeEnum? getOrderType() {
+    switch (shippingType) {
+      case 'pickup_point':
+        return OrderTypeEnum.pickupPoint;
+      case 'self_delivery':
+      case 'app_driver':
+        return OrderTypeEnum.delivery;
+      default : null;
+    }
+    return null;
+  }
+
+  bool get orderDelivery => getOrderType() == OrderTypeEnum.delivery;
+
+  bool get orderPickUp => getOrderType() == OrderTypeEnum.pickupPoint;
 
   bool get isAssigned => getOrderStatus() == OrderStatusEnum.preparing;
 

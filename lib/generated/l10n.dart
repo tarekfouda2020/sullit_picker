@@ -3450,6 +3450,16 @@ class S {
     );
   }
 
+  /// `Ready for Pick up`
+  String get order_ready_for_pick_up {
+    return Intl.message(
+      'Ready for Pick up',
+      name: 'order_ready_for_pick_up',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No. of Items `
   String get no_of_items {
     return Intl.message(
@@ -4125,6 +4135,46 @@ class S {
     return Intl.message(
       'Notifications Disabled',
       name: 'notifications_disabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Type`
+  String get order_type {
+    return Intl.message(
+      'Order Type',
+      name: 'order_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery`
+  String get delivery {
+    return Intl.message(
+      'Delivery',
+      name: 'delivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick Up`
+  String get pick_up {
+    return Intl.message(
+      'Pick Up',
+      name: 'pick_up',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry we can't process this order. Thank you`
+  String get order_processing_error {
+    return Intl.message(
+      'Sorry we can\'t process this order. Thank you',
+      name: 'order_processing_error',
       desc: '',
       args: [],
     );

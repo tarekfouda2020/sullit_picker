@@ -158,6 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delivered": MessageLookupByLibrary.simpleMessage("ڈیلیور شدہ"),
         "delivered_time":
             MessageLookupByLibrary.simpleMessage("ڈیلیوری کا وقت"),
+        "delivery": MessageLookupByLibrary.simpleMessage("ڈیلیوری"),
         "delivery_address":
             MessageLookupByLibrary.simpleMessage("ڈیلیوری کا پتہ"),
         "delivery_fee": MessageLookupByLibrary.simpleMessage("ڈیلیوری فیس"),
@@ -389,6 +390,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "not_available_yet":
             MessageLookupByLibrary.simpleMessage("ابھی دستیاب نہیں"),
         "notifications": MessageLookupByLibrary.simpleMessage("اطلاعات"),
+        "notifications_description": MessageLookupByLibrary.simpleMessage(
+            "ایپ کی اطلاعات کو کنٹرول کرنے کے لیے، براہِ کرم سیٹنگز > نوٹیفیکیشنز میں جا کر \'AMCOOP Picker\' ایپ کو منتخب کریں"),
+        "notifications_disabled":
+            MessageLookupByLibrary.simpleMessage("اطلاعات غیر فعال ہیں"),
+        "notifications_enabled":
+            MessageLookupByLibrary.simpleMessage("اطلاعات فعال ہیں"),
         "offline": MessageLookupByLibrary.simpleMessage("آف لائن"),
         "one_hour_ago": MessageLookupByLibrary.simpleMessage("ایک گھنٹہ پہلے"),
         "online": MessageLookupByLibrary.simpleMessage("آن لائن"),
@@ -404,9 +411,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "order_items": MessageLookupByLibrary.simpleMessage("آرڈر کے آئٹمز"),
         "order_no": MessageLookupByLibrary.simpleMessage("آرڈر نمبر"),
         "order_no_colon": MessageLookupByLibrary.simpleMessage("آرڈر نمبر :"),
+        "order_processing_error": MessageLookupByLibrary.simpleMessage(
+            "معذرت، ہم اس آرڈر کو پروسیس نہیں کر سکتے۔ شکریہ"),
         "order_ready_for_delivery":
             MessageLookupByLibrary.simpleMessage("آرڈر ڈیلیوری کے لیے تیار ہے"),
         "order_status": MessageLookupByLibrary.simpleMessage("آرڈر کی حالت"),
+        "order_type": MessageLookupByLibrary.simpleMessage("آرڈر کی قسم"),
         "order_value": MessageLookupByLibrary.simpleMessage("آرڈر کی قیمت"),
         "orders_history":
             MessageLookupByLibrary.simpleMessage("آرڈرز کی تاریخ"),
@@ -452,6 +462,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_placeholder": MessageLookupByLibrary.simpleMessage("0000000"),
         "pick": MessageLookupByLibrary.simpleMessage("منتخب کریں"),
         "pick_all": MessageLookupByLibrary.simpleMessage("سب منتخب کریں"),
+        "pick_up": MessageLookupByLibrary.simpleMessage("پک اپ"),
         "picked": MessageLookupByLibrary.simpleMessage("چن لیا گیا"),
         "picker_note_hint":
             MessageLookupByLibrary.simpleMessage("اپ ڈیٹ کے لیے آپ کا نوٹ..."),

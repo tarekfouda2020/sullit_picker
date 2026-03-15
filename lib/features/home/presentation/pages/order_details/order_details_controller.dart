@@ -1109,14 +1109,16 @@ class OrderDetailsController {
           AutoRouter.of(ctx).maybePop();
           getIt<OrdersHelper>().deleteOrderDetails(data!.id);
           AppSnackBar.showSuccessSnackBar(
-            Translate.of(ctx).order_ready_for_delivery,
+            _detailsData.orderDelivery
+                ?Translate.s.order_ready_for_delivery
+                :Translate.s.order_ready_for_pick_up,
           );
           getIt<LoadingHelper>().dismissDialog();
         },
         isError: (error) {
           AppSnackBar.showSimpleToast(
             // msg: Translate.of(ctx).something_went_wrong,
-            msg: "Sorry we can't process this order. Thank you",
+            msg: Translate.s.order_processing_error,
             type: ToastType.error,
           );
         },

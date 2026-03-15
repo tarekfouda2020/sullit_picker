@@ -49,6 +49,22 @@ class CardOrderWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              if(data.getOrderType() != null)
+              Row(
+                children: [
+                  Text(
+                    "Order Type : ",
+                    style: AppTextStyle.s17_w300(color: context.colors.simiGray),
+                  ),
+                  Gaps.hGap2,
+                  Expanded(
+                    child: Text(
+                      data.getOrderType()!.getLabel(),
+                      style: AppTextStyle.s19_w600(color: context.colors.primary),
+                    ),
+                  ),
+                ],
+              ),
               CustomerDateWidget(customer: data.customer),
             ],
           ),

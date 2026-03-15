@@ -403,5 +403,13 @@
   "not_available": "دستیاب نہیں",
   "reason": "وجہ",
   "modified": "ترمیم شدہ",
-  "replaced": "تبدیل شدہ"
+  "replaced": "تبدیل شدہ",
+  "order_type": "آرڈر کی قسم",
+  "delivery": "ڈیلیوری",
+  "pick_up": "پک اپ",
+  "order_ready_for_pick_up": "پک اپ کے لیے تیار",
+  "notifications_enabled": "اطلاعات فعال ہیں",
+  "notifications_disabled": "اطلاعات غیر فعال ہیں",
+  "order_processing_error": "معذرت، ہم اس آرڈر کو پروسیس نہیں کر سکتے۔ شکریہ",
+  "notifications_description": "ایپ کی اطلاعات کو کنٹرول کرنے کے لیے، براہِ کرم سیٹنگز > نوٹیفیکیشنز میں جا کر 'AMCOOP Picker' ایپ کو منتخب کریں"
 }

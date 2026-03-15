@@ -59,6 +59,19 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              Gaps.line,
+              if(data.getOrderType()!=null)
+              CustomInfoWidget(
+                title:
+                "${Translate.s.order_type} :",
+                image: Res.deliveryIcon,
+                endWidget: Text(
+                  data.getOrderType()!.getLabel(),
+                  style: AppTextStyle.s15_w800(
+                    color: context.colors.primary,
+                  ),
+                ),
+              )
             ],
           ),
         ),
