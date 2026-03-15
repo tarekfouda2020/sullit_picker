@@ -415,6 +415,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "معذرت، ہم اس آرڈر کو پروسیس نہیں کر سکتے۔ شکریہ"),
         "order_ready_for_delivery":
             MessageLookupByLibrary.simpleMessage("آرڈر ڈیلیوری کے لیے تیار ہے"),
+        "order_ready_for_pick_up":
+            MessageLookupByLibrary.simpleMessage("پک اپ کے لیے تیار"),
         "order_status": MessageLookupByLibrary.simpleMessage("آرڈر کی حالت"),
         "order_type": MessageLookupByLibrary.simpleMessage("آرڈر کی قسم"),
         "order_value": MessageLookupByLibrary.simpleMessage("آرڈر کی قیمت"),
