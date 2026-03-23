@@ -1,0 +1,4 @@
+{
+    "tfa.dashboard.includeSecondaryModels": true,
+    "tfa.dashboard.viewMode": "models"
+}

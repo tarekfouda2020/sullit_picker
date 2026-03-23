@@ -39,7 +39,7 @@ class HomeController {
     final String? oldToken = await helper.getStoredToken();
     final String? newToken = await helper.getDeviceId();
 
-    if (newToken != null) {
+    if (newToken != null && newToken.isNotEmpty) {
       if (oldToken != null && oldToken != newToken) {
         var params = _updateDeviceTokenParams(newToken: newToken,oldToken:oldToken);
         final result = await getIt<HomeRepositories>().updateDeviceToken(params);
