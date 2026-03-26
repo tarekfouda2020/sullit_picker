@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
+
 import '../../data/model/orders_model/orders_model.dart';
 
 /// total represent products total with Vat
@@ -93,24 +95,24 @@ class InvoiceModel {
   }
 
   double  getGrandTotal(){
-    double sub = double.parse(subTotal);
-    double couponDiscountValue = double.parse(couponDiscount);
-    double discountsList = discounts.fold(0.0, (previousValue, element) => previousValue+double.parse(element.discount),) ;
-    double envFee = double.parse(envFees);
+    double sub = double.parse(subTotal.cleanNumber());
+    double couponDiscountValue = double.parse(couponDiscount.cleanNumber());
+    double discountsList = discounts.fold(0.0, (previousValue, element) => previousValue+double.parse(element.discount.cleanNumber()),) ;
+    double envFee = double.parse(envFees.cleanNumber());
     double totalDiscount = couponDiscountValue + discountsList;
     double grandTotal = (sub-totalDiscount) + envFee + totalVat;
     return grandTotal;
   }
 
   double getSubTotal() {
-    double totalPrice = double.parse(productsTotalPrice);
+    double totalPrice = double.parse(productsTotalPrice.cleanNumber());
     double vatPercent = double.parse(taxPercentage) / 100;
     double subTotalWithoutVat = totalPrice - (totalPrice * vatPercent);
     return subTotalWithoutVat;
   }
 
 
-  bool get haveCoupon => (double.tryParse(couponDiscount) ?? 0 ) > 0 == true;
+  bool get haveCoupon => (double.tryParse(couponDiscount.cleanNumber()) ?? 0 ) > 0 == true;
 
   bool get haveEnvFees => (double.tryParse(envFees) ?? 0 ) > 0 == true;
 

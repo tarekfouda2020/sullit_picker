@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
@@ -38,7 +39,7 @@ class EditSingleQntPriceWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                model.unitPrice,
+                model.unitPrice.formatAmount(),
                 style: AppTextStyle.s18_w800(
                   color: context.colors.primary,
                 ),

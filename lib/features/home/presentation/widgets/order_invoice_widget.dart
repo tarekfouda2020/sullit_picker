@@ -1,3 +1,4 @@
+import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/export.dart';
 import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/features/home/domain/models/invoice_model.dart';
@@ -85,7 +86,7 @@ class OrderInvoiceWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      invoice.getGrandTotal().toStringAsFixed(2),
+                      invoice.getGrandTotal().toStringAsFixed(2).formatAmount(),
                       style: AppTextStyle.s20_w700(color: context.colors.appGreen),
                     ).withDirhamSymbol(symbolColor: context.colors.appGreen),
                   ],

@@ -17,6 +17,9 @@ extension StringExtension on String? {
     return getIt<Utilities>().formatAmount(this ?? "");
   }
 
+  String  cleanNumber(){
+    return (this ?? "").replaceAll(",", "");
+  }
 
   String withDirhamIcon(){
     return '\ue001 $this';
