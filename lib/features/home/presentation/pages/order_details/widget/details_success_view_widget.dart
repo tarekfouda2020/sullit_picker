@@ -2,6 +2,7 @@ import 'package:flutter_tdd/features/home/presentation/pages/order_details/widge
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/pick_item_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/timer_card_details_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/used_bags_number_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/user_notes_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/order_invoice_widget.dart';
 import '../../../../../../core/bloc/base_bloc/base_bloc_builder.dart';
 import '../order_details_controller.dart';
@@ -28,6 +29,11 @@ class DetailsSuccessViewWidget extends StatelessWidget {
               HeaderOrderDetailsWidget(
                 data: data,
                 controller: controller,
+              ),
+              Gaps.vGap12,
+              Visibility(
+                  visible: data.pickerNotes.isNotEmpty,
+                  child: UserNotesWidget(notes: data.pickerNotes,)
               ),
               Gaps.vGap12,
               TimerCardDetailsWidget(

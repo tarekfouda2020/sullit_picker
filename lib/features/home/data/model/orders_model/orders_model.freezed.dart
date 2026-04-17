@@ -301,6 +301,10 @@ mixin _$OrderModel {
   String get statusLabel => throw _privateConstructorUsedError;
   @JsonKey(name: 'status_label')
   set statusLabel(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'picker_notes')
+  String get pickerNotes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'picker_notes')
+  set pickerNotes(String value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'preparation_minutes')
   int get preparationMinutes => throw _privateConstructorUsedError;
   @JsonKey(name: 'preparation_minutes')
@@ -371,12 +375,12 @@ mixin _$OrderModel {
   set deletedOrders(List<OrderDetailsModel>? value) =>
       throw _privateConstructorUsedError;
 
-  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
+  /// changed_products hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get changedProducts =>
       throw _privateConstructorUsedError;
 
-  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
+  /// changed_products hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   set changedProducts(List<OrderDetailsModel>? value) =>
       throw _privateConstructorUsedError;
@@ -437,6 +441,7 @@ abstract class $OrderModelCopyWith<$Res> {
       @JsonKey(name: 'bag_price') double bagPrice,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
       @JsonKey(name: 'status_label') String statusLabel,
+      @JsonKey(name: 'picker_notes') String pickerNotes,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
       @JsonKey(name: 'start_picking_at') String startPickingAt,
       @JsonKey(name: 'delivered_at') String deliveredAt,
@@ -499,6 +504,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
     Object? bagPrice = null,
     Object? allowReplacement = null,
     Object? statusLabel = null,
+    Object? pickerNotes = null,
     Object? preparationMinutes = null,
     Object? startPickingAt = null,
     Object? deliveredAt = null,
@@ -602,6 +608,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       statusLabel: null == statusLabel
           ? _value.statusLabel
           : statusLabel // ignore: cast_nullable_to_non_nullable
+              as String,
+      pickerNotes: null == pickerNotes
+          ? _value.pickerNotes
+          : pickerNotes // ignore: cast_nullable_to_non_nullable
               as String,
       preparationMinutes: null == preparationMinutes
           ? _value.preparationMinutes
@@ -729,6 +739,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       @JsonKey(name: 'bag_price') double bagPrice,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
       @JsonKey(name: 'status_label') String statusLabel,
+      @JsonKey(name: 'picker_notes') String pickerNotes,
       @JsonKey(name: 'preparation_minutes') int preparationMinutes,
       @JsonKey(name: 'start_picking_at') String startPickingAt,
       @JsonKey(name: 'delivered_at') String deliveredAt,
@@ -791,6 +802,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
     Object? bagPrice = null,
     Object? allowReplacement = null,
     Object? statusLabel = null,
+    Object? pickerNotes = null,
     Object? preparationMinutes = null,
     Object? startPickingAt = null,
     Object? deliveredAt = null,
@@ -895,6 +907,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.statusLabel
           : statusLabel // ignore: cast_nullable_to_non_nullable
               as String,
+      pickerNotes: null == pickerNotes
+          ? _value.pickerNotes
+          : pickerNotes // ignore: cast_nullable_to_non_nullable
+              as String,
       preparationMinutes: null == preparationMinutes
           ? _value.preparationMinutes
           : preparationMinutes // ignore: cast_nullable_to_non_nullable
@@ -996,6 +1012,7 @@ class _$OrderModelImpl extends _OrderModel {
       @JsonKey(name: 'bag_price') required this.bagPrice,
       @JsonKey(name: 'allow_replacement') required this.allowReplacement,
       @JsonKey(name: 'status_label') required this.statusLabel,
+      @JsonKey(name: 'picker_notes') required this.pickerNotes,
       @JsonKey(name: 'preparation_minutes') required this.preparationMinutes,
       @JsonKey(name: 'start_picking_at') required this.startPickingAt,
       @JsonKey(name: 'delivered_at') required this.deliveredAt,
@@ -1079,6 +1096,9 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey(name: 'status_label')
   String statusLabel;
   @override
+  @JsonKey(name: 'picker_notes')
+  String pickerNotes;
+  @override
   @JsonKey(name: 'preparation_minutes')
   int preparationMinutes;
   @override
@@ -1123,7 +1143,7 @@ class _$OrderModelImpl extends _OrderModel {
   @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? deletedOrders;
 
-  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
+  /// changed_products hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @override
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? changedProducts;
@@ -1143,7 +1163,7 @@ class _$OrderModelImpl extends _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, subtotal: $subtotal, shipping: $shipping, tax: $tax, taxPercentage: $taxPercentage, couponDiscount: $couponDiscount, serviceFees: $serviceFees, envFees: $envFees, techFees: $techFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, loyaltyPointsValue: $loyaltyPointsValue, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, shippingType: $shippingType, shippingTypeLabel: $shippingTypeLabel, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, modifiedProducts: $modifiedProducts, displayItems: $displayItems, discounts: $discounts, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
+    return 'OrderModel(id: $id, customer: $customer, code: $code, total: $total, status: $status, subtotal: $subtotal, shipping: $shipping, tax: $tax, taxPercentage: $taxPercentage, couponDiscount: $couponDiscount, serviceFees: $serviceFees, envFees: $envFees, techFees: $techFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, loyaltyPointsValue: $loyaltyPointsValue, totalItems: $totalItems, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, pickerNotes: $pickerNotes, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, shippingType: $shippingType, shippingTypeLabel: $shippingTypeLabel, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, modifiedProducts: $modifiedProducts, displayItems: $displayItems, discounts: $discounts, deletedOrders: $deletedOrders, changedProducts: $changedProducts, qntChangedProducts: $qntChangedProducts, pickedPercent: $pickedPercent, preparationSeconds: $preparationSeconds)';
   }
 
   @JsonKey(ignore: true)
@@ -1183,6 +1203,7 @@ abstract class _OrderModel extends OrderModel {
       @JsonKey(name: 'bag_price') required double bagPrice,
       @JsonKey(name: 'allow_replacement') required bool allowReplacement,
       @JsonKey(name: 'status_label') required String statusLabel,
+      @JsonKey(name: 'picker_notes') required String pickerNotes,
       @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
       @JsonKey(name: 'start_picking_at') required String startPickingAt,
       @JsonKey(name: 'delivered_at') required String deliveredAt,
@@ -1301,6 +1322,11 @@ abstract class _OrderModel extends OrderModel {
   @JsonKey(name: 'status_label')
   set statusLabel(String value);
   @override
+  @JsonKey(name: 'picker_notes')
+  String get pickerNotes;
+  @JsonKey(name: 'picker_notes')
+  set pickerNotes(String value);
+  @override
   @JsonKey(name: 'preparation_minutes')
   int get preparationMinutes;
   @JsonKey(name: 'preparation_minutes')
@@ -1376,11 +1402,11 @@ abstract class _OrderModel extends OrderModel {
   set deletedOrders(List<OrderDetailsModel>? value);
   @override
 
-  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
+  /// changed_products hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   List<OrderDetailsModel>? get changedProducts;
 
-  /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
+  /// changed_products hold the replaced items(that being replaced all) and modified items( only where there price edited)
   @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
   set changedProducts(List<OrderDetailsModel>? value);
   @override

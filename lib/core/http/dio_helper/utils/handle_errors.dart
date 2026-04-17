@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_tdd/core/errors/custom_error.dart';
 import 'package:flutter_tdd/core/errors/not_found_error.dart';
@@ -17,9 +16,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @lazySingleton
 class HandleErrors {
-  final bool showError;
+  // final bool showError;
 
-  HandleErrors({this.showError = true});
+  HandleErrors();
   void catchError(
       {Response? response,
       required Function(dynamic) errorFunc}) {
@@ -99,7 +98,7 @@ class HandleErrors {
 
 
   void showSnackBarError(String message){
-    if(showError){
+    if(true){
       AppSnackBar.showErrorSnackBar(error: CustomError(msg: message));
     }
   }

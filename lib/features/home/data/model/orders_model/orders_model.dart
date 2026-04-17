@@ -53,6 +53,7 @@ class OrderModel with _$OrderModel {
     @JsonKey(name: 'bag_price') required double bagPrice,
     @JsonKey(name: 'allow_replacement') required bool allowReplacement,
     @JsonKey(name: 'status_label') required String statusLabel,
+    @JsonKey(name: 'picker_notes') required String pickerNotes,
     @JsonKey(name: 'preparation_minutes') required int preparationMinutes,
     @JsonKey(name: 'start_picking_at') required String startPickingAt,
     @JsonKey(name: 'delivered_at') required String deliveredAt,
@@ -71,7 +72,7 @@ class OrderModel with _$OrderModel {
     @JsonKey(name: 'deleted_orders', defaultValue: <OrderDetailsModel>[])
     List<OrderDetailsModel>? deletedOrders,
 
-    /// changed_orders hold the replaced items(that being replaced all) and modified items( only where there price edited)
+    /// changed_products hold the replaced items(that being replaced all) and modified items( only where there price edited)
     @JsonKey(name: 'changed_products', defaultValue: <OrderDetailsModel>[])
     List<OrderDetailsModel>? changedProducts,
 

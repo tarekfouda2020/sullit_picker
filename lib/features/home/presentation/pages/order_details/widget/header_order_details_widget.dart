@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
 import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/user_notes_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/custom_info_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/customer_name_type_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/customer_phone_widget.dart';
@@ -71,7 +72,8 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
                     color: context.colors.primary,
                   ),
                 ),
-              )
+              ),
+
             ],
           ),
         ),
