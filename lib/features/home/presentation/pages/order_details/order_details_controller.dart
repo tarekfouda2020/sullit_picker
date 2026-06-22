@@ -101,16 +101,15 @@ class OrderDetailsController {
     }
   }
 
-  Future<void> scanProduct(
-      BuildContext context, OrderDetailsModel oldItem) async {
+  Future<void> scanProduct(BuildContext context, OrderDetailsModel oldItem) async {
     Navigator.pop(context);
     // BuildContext ctx = getIt<GlobalContext>().context();
-    // // 71860
+    // // 21680
     // // 31610
     // AppSnackBar.showSuccessSnackBar(
-    //   "${Translate.of(ctx).product_scanned}, with barcode: 71860",
+    //   "${Translate.of(ctx).product_scanned}, with barcode: 21680",
     // );
-    // getProductWithBarcode(ctx, "71860", oldItem);
+    // getProductWithBarcode(ctx, "21680", oldItem);
 
     String? barcode = await getIt<BarcodeService>().scanBarcode(context);
     if (barcode != null && barcode.isNotEmpty) {
@@ -122,8 +121,7 @@ class OrderDetailsController {
     }
   }
 
-  Future<void> getProductWithBarcode(
-      BuildContext context, String barcode, OrderDetailsModel oldItem) async {
+  Future<void> getProductWithBarcode(BuildContext context, String barcode, OrderDetailsModel oldItem) async {
     getIt<LoadingHelper>().showLoadingDialog();
     ReplacedProductParams params = _replacedProductParams(barcode);
     var result = await getIt<HomeRepositories>().searchByBarcode(params);
@@ -650,8 +648,10 @@ class OrderDetailsController {
     if (pickedQty == 0) {
       orderPickedPercent(_detailsData, isReturn: true);
 
-      if (orderProduct.product!.productStatus!.shouldShowStatus ||
-          orderProduct.product!.productStatus!.isQntModified) {
+      if (orderProduct.product!.productStatus!.shouldShowStatus) {
+        // if
+        // } (orderProduct.product!.productStatus!.shouldShowStatus ||
+        //   orderProduct.product!.productStatus!.isQntModified) {
         showConFirmReturnDialog(context, orderProduct, loadingCubit);
         return;
       }
@@ -865,8 +865,7 @@ class OrderDetailsController {
     /// update the  product(the one with status replaced, or modified) with the original one from changedProducts list
 
     List<OrderDetailsModel> originalItems = _detailsData.changedProducts!;
-    int index =
-        _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id);
+    int index = _detailsData.ordersDetails!.indexWhere((e) => e.id == updatedOrder.id);
     OrderDetailsModel originalItem = originalItems.firstWhere(
       (element) => element.id == updatedOrder.id,
     );
