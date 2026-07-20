@@ -3,7 +3,7 @@ import 'package:flutter_tdd/features/home/presentation/pages/home/home_controlle
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/have_orders_view_widget.dart';
 
 import '../../../../../../core/helpers/export.dart';
-import '../../../../data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'no_orders_view_widget.dart';
 
 class HomeSuccessViewWidget extends StatelessWidget {

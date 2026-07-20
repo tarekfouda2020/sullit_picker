@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import '../../../../../../core/helpers/export.dart';
-import '../../../../data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 
 class OrderHistoryHeaderWidget extends StatelessWidget {
   final OrderModel order;

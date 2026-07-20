@@ -3210,6 +3210,36 @@ class S {
     );
   }
 
+  /// `Prescription Order`
+  String get prescription_order {
+    return Intl.message(
+      'Prescription Order',
+      name: 'prescription_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan Barcode`
+  String get scan_barcode {
+    return Intl.message(
+      'Scan Barcode',
+      name: 'scan_barcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No products scanned yet`
+  String get no_products_scanned_yet {
+    return Intl.message(
+      'No products scanned yet',
+      name: 'no_products_scanned_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Send to cashier`
   String get send_to_cashier {
     return Intl.message(

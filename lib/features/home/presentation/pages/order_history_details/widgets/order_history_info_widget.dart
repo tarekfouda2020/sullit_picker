@@ -1,6 +1,6 @@
 import 'package:flutter_tdd/core/extensions/string_helper_extension.dart';
 import 'package:flutter_tdd/core/helpers/export.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_history/widgets/customer_history_item_widget.dart';
 import 'driver_section_info_widget.dart';
 import 'order_info_row_widget.dart';

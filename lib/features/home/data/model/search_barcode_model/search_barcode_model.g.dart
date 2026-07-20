@@ -19,6 +19,9 @@ _$SearchBarcodeModelImpl _$$SearchBarcodeModelImplFromJson(
       discount: json['discount'] as String,
       currencySymbol: json['currency_symbol'] as String,
       variant: VariantModel.fromJson(json['variant'] as Map<String, dynamic>),
+      variants: (json['variants'] as List<dynamic>?)
+          ?.map((e) => VariantModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$SearchBarcodeModelImplToJson(
@@ -34,6 +37,7 @@ Map<String, dynamic> _$$SearchBarcodeModelImplToJson(
       'discount': instance.discount,
       'currency_symbol': instance.currencySymbol,
       'variant': instance.variant,
+      'variants': instance.variants,
     };
 
 _$VariantModelImpl _$$VariantModelImplFromJson(Map<String, dynamic> json) =>
@@ -50,6 +54,7 @@ _$VariantModelImpl _$$VariantModelImplFromJson(Map<String, dynamic> json) =>
       hasDiscount: json['has_discount'] as bool,
       image: json['image'] as String,
       options: json['options'] as String,
+      isSelected: json['is_selected'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$VariantModelImplToJson(_$VariantModelImpl instance) =>
@@ -66,4 +71,5 @@ Map<String, dynamic> _$$VariantModelImplToJson(_$VariantModelImpl instance) =>
       'has_discount': instance.hasDiscount,
       'image': instance.image,
       'options': instance.options,
+      'is_selected': instance.isSelected,
     };

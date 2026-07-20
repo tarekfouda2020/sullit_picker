@@ -1,7 +1,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 
 part 'invoice_preview_model.freezed.dart';
 part 'invoice_preview_model.g.dart';

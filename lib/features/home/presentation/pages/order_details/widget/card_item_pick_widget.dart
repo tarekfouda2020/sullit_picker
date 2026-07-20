@@ -1,4 +1,4 @@
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/barcode_price_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/edit_single_qnt_price_widget.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter_tdd/features/home/presentation/widgets/custom_info_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/customer_name_type_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/customer_phone_widget.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_history_details/widgets/section_title_widget.dart';
 
 import '../../../../../../core/helpers/export.dart';

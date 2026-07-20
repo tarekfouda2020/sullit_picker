@@ -1,5 +1,5 @@
 import 'package:flutter_tdd/core/helpers/export.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_history_details/widgets/order_history_product_item_widget.dart';
 
 import '../../../../domain/entity/order_display_item.dart';

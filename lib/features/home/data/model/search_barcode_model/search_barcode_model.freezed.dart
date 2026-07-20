@@ -35,6 +35,7 @@ mixin _$SearchBarcodeModel {
   @JsonKey(name: 'currency_symbol')
   String get currencySymbol => throw _privateConstructorUsedError;
   VariantModel get variant => throw _privateConstructorUsedError;
+  List<VariantModel>? get variants => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +59,8 @@ abstract class $SearchBarcodeModelCopyWith<$Res> {
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String discount,
       @JsonKey(name: 'currency_symbol') String currencySymbol,
-      VariantModel variant});
+      VariantModel variant,
+      List<VariantModel>? variants});
 
   $VariantModelCopyWith<$Res> get variant;
 }
@@ -86,6 +88,7 @@ class _$SearchBarcodeModelCopyWithImpl<$Res, $Val extends SearchBarcodeModel>
     Object? discount = null,
     Object? currencySymbol = null,
     Object? variant = null,
+    Object? variants = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -128,6 +131,10 @@ class _$SearchBarcodeModelCopyWithImpl<$Res, $Val extends SearchBarcodeModel>
           ? _value.variant
           : variant // ignore: cast_nullable_to_non_nullable
               as VariantModel,
+      variants: freezed == variants
+          ? _value.variants
+          : variants // ignore: cast_nullable_to_non_nullable
+              as List<VariantModel>?,
     ) as $Val);
   }
 
@@ -158,7 +165,8 @@ abstract class _$$SearchBarcodeModelImplCopyWith<$Res>
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String discount,
       @JsonKey(name: 'currency_symbol') String currencySymbol,
-      VariantModel variant});
+      VariantModel variant,
+      List<VariantModel>? variants});
 
   @override
   $VariantModelCopyWith<$Res> get variant;
@@ -185,6 +193,7 @@ class __$$SearchBarcodeModelImplCopyWithImpl<$Res>
     Object? discount = null,
     Object? currencySymbol = null,
     Object? variant = null,
+    Object? variants = freezed,
   }) {
     return _then(_$SearchBarcodeModelImpl(
       id: null == id
@@ -227,6 +236,10 @@ class __$$SearchBarcodeModelImplCopyWithImpl<$Res>
           ? _value.variant
           : variant // ignore: cast_nullable_to_non_nullable
               as VariantModel,
+      variants: freezed == variants
+          ? _value._variants
+          : variants // ignore: cast_nullable_to_non_nullable
+              as List<VariantModel>?,
     ));
   }
 }
@@ -245,7 +258,9 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
       @JsonKey(name: 'has_discount') required this.hasDiscount,
       required this.discount,
       @JsonKey(name: 'currency_symbol') required this.currencySymbol,
-      required this.variant});
+      required this.variant,
+      final List<VariantModel>? variants})
+      : _variants = variants;
 
   factory _$SearchBarcodeModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchBarcodeModelImplFromJson(json);
@@ -275,10 +290,19 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
   final String currencySymbol;
   @override
   final VariantModel variant;
+  final List<VariantModel>? _variants;
+  @override
+  List<VariantModel>? get variants {
+    final value = _variants;
+    if (value == null) return null;
+    if (_variants is EqualUnmodifiableListView) return _variants;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'SearchBarcodeModel(id: $id, name: $name, barcode: $barcode, thumbnailImage: $thumbnailImage, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, currencySymbol: $currencySymbol, variant: $variant)';
+    return 'SearchBarcodeModel(id: $id, name: $name, barcode: $barcode, thumbnailImage: $thumbnailImage, priceHighLowDiscount: $priceHighLowDiscount, priceHighLow: $priceHighLow, hasDiscount: $hasDiscount, discount: $discount, currencySymbol: $currencySymbol, variant: $variant, variants: $variants)';
   }
 
   @override
@@ -301,7 +325,8 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
                 other.discount == discount) &&
             (identical(other.currencySymbol, currencySymbol) ||
                 other.currencySymbol == currencySymbol) &&
-            (identical(other.variant, variant) || other.variant == variant));
+            (identical(other.variant, variant) || other.variant == variant) &&
+            const DeepCollectionEquality().equals(other._variants, _variants));
   }
 
   @JsonKey(ignore: true)
@@ -317,7 +342,8 @@ class _$SearchBarcodeModelImpl implements _SearchBarcodeModel {
       hasDiscount,
       discount,
       currencySymbol,
-      variant);
+      variant,
+      const DeepCollectionEquality().hash(_variants));
 
   @JsonKey(ignore: true)
   @override
@@ -346,7 +372,8 @@ abstract class _SearchBarcodeModel implements SearchBarcodeModel {
       @JsonKey(name: 'has_discount') required final bool hasDiscount,
       required final String discount,
       @JsonKey(name: 'currency_symbol') required final String currencySymbol,
-      required final VariantModel variant}) = _$SearchBarcodeModelImpl;
+      required final VariantModel variant,
+      final List<VariantModel>? variants}) = _$SearchBarcodeModelImpl;
 
   factory _SearchBarcodeModel.fromJson(Map<String, dynamic> json) =
       _$SearchBarcodeModelImpl.fromJson;
@@ -376,6 +403,8 @@ abstract class _SearchBarcodeModel implements SearchBarcodeModel {
   String get currencySymbol;
   @override
   VariantModel get variant;
+  @override
+  List<VariantModel>? get variants;
   @override
   @JsonKey(ignore: true)
   _$$SearchBarcodeModelImplCopyWith<_$SearchBarcodeModelImpl> get copyWith =>
@@ -407,6 +436,8 @@ mixin _$VariantModel {
   bool get hasDiscount => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get options => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_selected', defaultValue: false)
+  bool? get isSelected => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -432,7 +463,8 @@ abstract class $VariantModelCopyWith<$Res> {
       @JsonKey(name: 'currency_symbol') String currencySymbol,
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String image,
-      String options});
+      String options,
+      @JsonKey(name: 'is_selected', defaultValue: false) bool? isSelected});
 }
 
 /// @nodoc
@@ -460,6 +492,7 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
     Object? hasDiscount = null,
     Object? image = null,
     Object? options = null,
+    Object? isSelected = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -510,6 +543,10 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as String,
+      isSelected: freezed == isSelected
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -534,7 +571,8 @@ abstract class _$$VariantModelImplCopyWith<$Res>
       @JsonKey(name: 'currency_symbol') String currencySymbol,
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String image,
-      String options});
+      String options,
+      @JsonKey(name: 'is_selected', defaultValue: false) bool? isSelected});
 }
 
 /// @nodoc
@@ -560,6 +598,7 @@ class __$$VariantModelImplCopyWithImpl<$Res>
     Object? hasDiscount = null,
     Object? image = null,
     Object? options = null,
+    Object? isSelected = freezed,
   }) {
     return _then(_$VariantModelImpl(
       id: null == id
@@ -610,6 +649,10 @@ class __$$VariantModelImplCopyWithImpl<$Res>
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as String,
+      isSelected: freezed == isSelected
+          ? _value.isSelected
+          : isSelected // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -629,7 +672,9 @@ class _$VariantModelImpl implements _VariantModel {
       @JsonKey(name: 'currency_symbol') required this.currencySymbol,
       @JsonKey(name: 'has_discount') required this.hasDiscount,
       required this.image,
-      required this.options});
+      required this.options,
+      @JsonKey(name: 'is_selected', defaultValue: false)
+      this.isSelected = false});
 
   factory _$VariantModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$VariantModelImplFromJson(json);
@@ -665,10 +710,13 @@ class _$VariantModelImpl implements _VariantModel {
   final String image;
   @override
   final String options;
+  @override
+  @JsonKey(name: 'is_selected', defaultValue: false)
+  final bool? isSelected;
 
   @override
   String toString() {
-    return 'VariantModel(id: $id, name: $name, sku: $sku, strokedPrice: $strokedPrice, calculablePrice: $calculablePrice, mainPrice: $mainPrice, originalPrice: $originalPrice, currentStock: $currentStock, currencySymbol: $currencySymbol, hasDiscount: $hasDiscount, image: $image, options: $options)';
+    return 'VariantModel(id: $id, name: $name, sku: $sku, strokedPrice: $strokedPrice, calculablePrice: $calculablePrice, mainPrice: $mainPrice, originalPrice: $originalPrice, currentStock: $currentStock, currencySymbol: $currencySymbol, hasDiscount: $hasDiscount, image: $image, options: $options, isSelected: $isSelected)';
   }
 
   @override
@@ -694,7 +742,9 @@ class _$VariantModelImpl implements _VariantModel {
             (identical(other.hasDiscount, hasDiscount) ||
                 other.hasDiscount == hasDiscount) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.options, options) || other.options == options));
+            (identical(other.options, options) || other.options == options) &&
+            (identical(other.isSelected, isSelected) ||
+                other.isSelected == isSelected));
   }
 
   @JsonKey(ignore: true)
@@ -712,7 +762,8 @@ class _$VariantModelImpl implements _VariantModel {
       currencySymbol,
       hasDiscount,
       image,
-      options);
+      options,
+      isSelected);
 
   @JsonKey(ignore: true)
   @override
@@ -741,7 +792,9 @@ abstract class _VariantModel implements VariantModel {
       @JsonKey(name: 'currency_symbol') required final String currencySymbol,
       @JsonKey(name: 'has_discount') required final bool hasDiscount,
       required final String image,
-      required final String options}) = _$VariantModelImpl;
+      required final String options,
+      @JsonKey(name: 'is_selected', defaultValue: false)
+      final bool? isSelected}) = _$VariantModelImpl;
 
   factory _VariantModel.fromJson(Map<String, dynamic> json) =
       _$VariantModelImpl.fromJson;
@@ -777,6 +830,9 @@ abstract class _VariantModel implements VariantModel {
   String get image;
   @override
   String get options;
+  @override
+  @JsonKey(name: 'is_selected', defaultValue: false)
+  bool? get isSelected;
   @override
   @JsonKey(ignore: true)
   _$$VariantModelImplCopyWith<_$VariantModelImpl> get copyWith =>

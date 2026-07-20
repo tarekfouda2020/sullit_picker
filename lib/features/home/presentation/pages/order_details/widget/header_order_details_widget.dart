@@ -1,5 +1,5 @@
 import 'package:flutter_tdd/core/helpers/date_time_helper.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/order_details/widget/user_notes_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/widgets/custom_info_widget.dart';
@@ -43,6 +43,16 @@ class HeaderOrderDetailsWidget extends StatelessWidget {
           child: Column(
             spacing: 12,
             children: [
+              if(data.getOrderDate()!= null)...[
+                CustomInfoWidget(
+                  title: "placed at : ${data.getOrderDate()}",
+                  isSvg: false,
+                  icon: Icons.access_time,
+                  iconSize: 20,
+                  image: "",
+                ),
+                Gaps.line,
+              ],
               CustomerNameTypeWidget(customer: data.customer),
               Gaps.line,
               CustomerPhoneWidget(customer: data.customer),

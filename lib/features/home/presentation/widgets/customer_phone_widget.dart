@@ -1,5 +1,5 @@
 import '../../../../core/helpers/export.dart';
-import '../../data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'custom_info_widget.dart';
 import 'custom_phone_icon_widget.dart';
 

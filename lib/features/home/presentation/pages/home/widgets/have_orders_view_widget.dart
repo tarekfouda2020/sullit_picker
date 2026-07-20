@@ -1,5 +1,5 @@
 import 'package:flutter_tdd/core/bloc/base_bloc/base_bloc_builder.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/home_controller.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/card_order_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/home_refresh_indocator_widget.dart';

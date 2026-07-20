@@ -40,4 +40,4 @@ This project is a starting point for a Flutter application.
 - dart run lib/env/env_specific_handlers/dev_handler.dart
 
 
-- flutter build apk --release --no-tree-shake-icons --flavor stage -t lib/main.dart --dart-define-from-file=.run/json/stage.json
+flutter build ipa --release --no-tree-shake-icons --flavor prod -t lib/main.dart --dart-define-from-file=.run/json/prod.json

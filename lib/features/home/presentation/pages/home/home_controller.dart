@@ -3,7 +3,7 @@ import 'package:flutter_tdd/core/constants/app_config.dart';
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/timer_entity.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
@@ -155,21 +155,14 @@ class HomeController {
 
   Future<void> acceptOrder(BuildContext context, OrderModel data) async {
     if (data.isAssigned) {
-      final value = await AutoRouter.of(context).push(OrderDetailsRouteName(
-          id: data.id,
-          targetTime: DateTime.now().add(Duration(
-            minutes: data.preparationMinutes,
-            seconds: data.preparationSeconds ?? 0,
-          ))));
-      if (value != null && value as int == data.id) {
-        var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
-        updatedList.remove(data);
-        await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
-        await getAllOrders(setLoading: false);
-        // log('orders ==== >>>> before get all orders =====');
-      }
+        await _routeToOrderDetails(context, data);
       return;
     }
+    if(data.isPharm){
+      AutoRouter.of(context).push(const PrescriptionOrderRoute());
+      return ;
+    }
+
     getIt<LoadingHelper>().showLoadingDialog();
     var result =
         await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: data.id));
@@ -197,6 +190,22 @@ class HomeController {
                 msg: Translate.of(context).order_accepted_failed));
       },
     );
+  }
+
+  Future<void> _routeToOrderDetails(BuildContext context, OrderModel data) async {
+        final value = await AutoRouter.of(context).push(OrderDetailsRouteName(
+        id: data.id,
+        targetTime: DateTime.now().add(Duration(
+          minutes: data.preparationMinutes,
+          seconds: data.preparationSeconds ?? 0,
+        ))));
+    if (value != null && value as int == data.id) {
+      var updatedList = List.of(assignedOrdersCubit.data ?? <OrderModel>[]);
+      updatedList.remove(data);
+      await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+      await getAllOrders(setLoading: false);
+      // log('orders ==== >>>> before get all orders =====');
+    }
   }
 
   Future<void> getUserData() async {

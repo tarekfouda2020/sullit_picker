@@ -32,21 +32,19 @@ class _NotificationsPageState extends State<NotificationsPage> {
           builderDelegate: PagedChildBuilderDelegate<NotificationModel>(
             itemBuilder: (context, notify, index) =>  NotificationCardWidget(model:notify),
             firstPageProgressIndicatorBuilder: (context) {
-              return SingleChildScrollView(
-                child: Column(
-                  spacing: 15,
-                  children: List.generate(4, (index) {
-                    return BaseShimmerWidget(
-                        child: Container(
-                          height: 80,
-                          decoration:  BoxDecoration(
-                              borderRadius: Dimens.borderRadius30PX,
-                              color:  context.colors.white
-                          ),
-                        )
-                    );
-                  },),
-                ),
+              return Column(
+                spacing: 15,
+                children: List.generate(4, (index) {
+                  return BaseShimmerWidget(
+                      child: Container(
+                        height: 80,
+                        decoration:  BoxDecoration(
+                            borderRadius: Dimens.borderRadius30PX,
+                            color:  context.colors.white
+                        ),
+                      )
+                  );
+                },),
               );
             },
             newPageProgressIndicatorBuilder: (context) => Center(

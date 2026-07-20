@@ -4,7 +4,7 @@ import 'dart:developer';
 
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
-import 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/new_order_alert_dialog_widget.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -33,7 +33,8 @@ class OrdersHelper {
     // Prevent saving to Hive if helper is disposed (during logout)
     if (_isDisposed) return;
 
-    final String jsonString = jsonEncode(data.map((e) => e.toJson()).toList());
+    final String jsonString =
+        jsonEncode(data.map((e) => e.toFlatJson()).toList());
     await HiveHelper.instance.addDataToBox<String,String>(
       HiveBoxesNames.orders,
       key: HiveBoxesKeys.assignedOrdersKey,
@@ -66,7 +67,7 @@ class OrdersHelper {
   Future<void> saveOrderDetails(OrderModel data) async {
     if (_isDisposed) return;
 
-    final jsonString = jsonEncode(data.toJson());
+    final String jsonString = jsonEncode(data.toFlatJson());
     await HiveHelper.instance.addDataToBox<String,int>(
         HiveBoxesNames.orderDetails, jsonString,
         key: data.id
@@ -74,7 +75,7 @@ class OrdersHelper {
   }
 
   Future<OrderModel?> getOrderDetails(int orderId) async {
-    final box = HiveHelper.instance
+    final String? box = HiveHelper.instance
         .getDataFromBox<String,int>(HiveBoxesNames.orderDetails, key: orderId);
     if (box == null || box.isEmpty) {
       return null;

@@ -8,7 +8,7 @@ export 'package:flutter_tdd/core/helpers/loading_helper.dart';
 export 'package:flutter_tdd/core/helpers/weight_info.dart';
 export 'package:flutter_tdd/features/auth/presentation/pages/forget_password/forget_password_imports.dart';
 export 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
-export 'package:flutter_tdd/features/home/data/model/orders_model/orders_model.dart';
+export 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 export 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
 export 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 export 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';

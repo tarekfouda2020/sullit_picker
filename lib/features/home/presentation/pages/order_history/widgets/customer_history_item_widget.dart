@@ -3,7 +3,7 @@ import 'package:flutter_tdd/features/home/presentation/widgets/customer_name_typ
 import 'package:flutter_tdd/features/home/presentation/widgets/customer_phone_widget.dart';
 
 import '../../../../../../core/helpers/export.dart';
-import '../../../../data/model/orders_model/orders_model.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 
 class CustomerHistoryItemWidget extends StatelessWidget {
   final OrderModel order;

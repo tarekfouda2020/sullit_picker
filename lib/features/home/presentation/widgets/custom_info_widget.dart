@@ -9,7 +9,8 @@ class CustomInfoWidget extends StatelessWidget {
   final String title;
   final String image;
   final CrossAxisAlignment? crossAxisAlignment;
-
+ final bool isSvg;
+ final IconData? icon;
   const CustomInfoWidget({
     super.key,
     this.titleWidget,
@@ -18,7 +19,9 @@ class CustomInfoWidget extends StatelessWidget {
     this.endWidget,
     this.iconSize,
     required this.image,
-    this.crossAxisAlignment
+    this.crossAxisAlignment,
+    this.isSvg = true,
+    this.icon,
   });
 
   @override
@@ -32,10 +35,17 @@ class CustomInfoWidget extends StatelessWidget {
           height: 26,
           decoration: BoxDecoration(
               color: context.colors.gray5, shape: BoxShape.circle),
-          child: SvgPicture.asset(image,
-              width: iconSize,
-              height: iconSize,
-              colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn)),
+          child: Visibility(
+            visible: isSvg ,
+              replacement: Icon(icon,
+              size: iconSize,
+              color: context.colors.primary,
+              ),
+              child: SvgPicture.asset(image,
+                  width: iconSize,
+                  height: iconSize,
+                  colorFilter: ColorFilter.mode(context.colors.primary, BlendMode.srcIn))
+          ),
         ),
         Gaps.hGap8,
         Expanded(

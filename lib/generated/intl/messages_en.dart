@@ -379,6 +379,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No Orders Available"),
         "no_plans_found":
             MessageLookupByLibrary.simpleMessage("No Plans Found"),
+        "no_products_scanned_yet":
+            MessageLookupByLibrary.simpleMessage("No products scanned yet"),
         "no_terms_yet": MessageLookupByLibrary.simpleMessage("No Terms Yet"),
         "no_transactions_description": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any transactions yet. Your transaction history will appear here once you start making transactions."),
@@ -496,6 +498,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Verify your Email"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "Please Verify your phone number"),
+        "prescription_order":
+            MessageLookupByLibrary.simpleMessage("Prescription Order"),
         "previous_orders":
             MessageLookupByLibrary.simpleMessage("Previous Orders"),
         "price": MessageLookupByLibrary.simpleMessage("Price"),
@@ -556,6 +560,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "return_key": MessageLookupByLibrary.simpleMessage("Return"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "scan_barcode": MessageLookupByLibrary.simpleMessage("Scan Barcode"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
         "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),

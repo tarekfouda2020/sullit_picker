@@ -16,6 +16,7 @@ class SearchBarcodeModel with _$SearchBarcodeModel {
     required String discount,
     @JsonKey(name: 'currency_symbol') required String currencySymbol,
     required VariantModel variant,
+     List<VariantModel>? variants,
   }) = _SearchBarcodeModel;
 
   factory SearchBarcodeModel.fromJson(Map<String, dynamic> json) =>
@@ -37,6 +38,7 @@ class VariantModel with _$VariantModel {
     @JsonKey(name: 'has_discount') required bool hasDiscount,
     required String image,
     required String options,
+    @JsonKey(name: 'is_selected', defaultValue: false) @Default(false) bool?  isSelected,
   }) = _VariantModel;
 
   factory VariantModel.fromJson(Map<String, dynamic> json) =>

@@ -7,4 +7,5 @@ final List<AutoRoute>  homeRoutes = [
   AutoRoute(page: OrderDetailsRouteName.page),
   AutoRoute(page: OrderHistoryPageRoute.page),
   AutoRoute(page: OrderHistoryDetailsPage.page),
+  AutoRoute(page: PrescriptionOrderRoute.page),
 ];
