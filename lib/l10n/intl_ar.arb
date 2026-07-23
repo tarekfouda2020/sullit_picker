@@ -417,5 +417,19 @@
   "delivery": "توصيل",
   "pick_up": "استلام",
   "order_processing_error": "عذرًا، لا يمكننا معالجة هذا الطلب. شكرًا لك",
-  "notifications_description": "للتحكم بإشعارات التطبيق، الرجاء الذهاب إلى الإعدادات > الإشعارات لتطبيق 'AMCOOP Picker'"
+  "notifications_description": "للتحكم بإشعارات التطبيق، الرجاء الذهاب إلى الإعدادات > الإشعارات لتطبيق 'AMCOOP Picker'",
+  "unit_price": "سعر الوحدة",
+  "insurance_discount": "خصم التأمين",
+  "enter_insurance_discount": "أدخل قيمة خصم التأمين",
+  "insurance_coverage": "نسبة تغطية التأمين %",
+  "enter_insurance_coverage": "أدخل نسبة التغطية (0-100)",
+  "instructions": "التعليمات",
+  "enter_instructions": "أدخل تعليمات المنتج",
+  "please_enter_insurance_coverage_for_all_items": "يرجى إدخال نسبة تغطية التأمين لجميع المنتجات الممسوحة",
+  "prescription_attachments": "الوصفة الطبية",
+  "insurance_attachments": "التأمين",
+  "insurance_company": "شركة التأمين",
+  "identity_document": "الهوية",
+  "attachments": "المرفقات",
+  "only_stock_available": "المخزون المتاح {stock} فقط"
 }

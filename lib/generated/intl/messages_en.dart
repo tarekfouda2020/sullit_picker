@@ -25,7 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(days) => "Expired with in ${days} Days";
 
-  static String m2(MB, files) =>
+  static String m2(stock) => "Only ${stock} available in stock";
+
+  static String m3(MB, files) =>
       "Files size must be less than ${MB} MB, ${files}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -64,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "attach_driving_licensee":
             MessageLookupByLibrary.simpleMessage("Attach Driving licensee"),
         "attach_id": MessageLookupByLibrary.simpleMessage("Attach ID"),
+        "attachments": MessageLookupByLibrary.simpleMessage("Attachments"),
         "available": MessageLookupByLibrary.simpleMessage("Available"),
         "available_for_delivery":
             MessageLookupByLibrary.simpleMessage("Available for Delivery"),
@@ -191,6 +194,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your code to reset your password"),
         "enter_email_to_recover": MessageLookupByLibrary.simpleMessage(
             "Enter your e-mail to recover the password"),
+        "enter_instructions":
+            MessageLookupByLibrary.simpleMessage("Enter product instructions"),
+        "enter_insurance_coverage": MessageLookupByLibrary.simpleMessage(
+            "Enter coverage percentage (0-100)"),
+        "enter_insurance_discount": MessageLookupByLibrary.simpleMessage(
+            "Enter insurance discount amount"),
         "enter_new_price":
             MessageLookupByLibrary.simpleMessage("Enter new price"),
         "enter_new_weight":
@@ -273,7 +282,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "how_you_want_to_work":
             MessageLookupByLibrary.simpleMessage("How you want to work ?"),
         "id": MessageLookupByLibrary.simpleMessage("ID"),
+        "identity_document": MessageLookupByLibrary.simpleMessage("Identity"),
         "in_progress": MessageLookupByLibrary.simpleMessage("In Progress"),
+        "instructions": MessageLookupByLibrary.simpleMessage("Instructions"),
+        "insurance_attachments":
+            MessageLookupByLibrary.simpleMessage("Insurance"),
+        "insurance_company":
+            MessageLookupByLibrary.simpleMessage("Insurance Company"),
+        "insurance_coverage":
+            MessageLookupByLibrary.simpleMessage("Insurance Coverage %"),
+        "insurance_discount":
+            MessageLookupByLibrary.simpleMessage("Insurance Discount"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("Internet connected"),
         "is_price_equal":
@@ -402,6 +421,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "offline": MessageLookupByLibrary.simpleMessage("Offline"),
         "one_hour_ago": MessageLookupByLibrary.simpleMessage("1 Hour Ago"),
         "online": MessageLookupByLibrary.simpleMessage("Online"),
+        "only_stock_available": m2,
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "order_accepted_failed":
             MessageLookupByLibrary.simpleMessage("Order accepted failed"),
@@ -482,6 +502,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Please enable location permission"),
         "please_enter_a_valid_number":
             MessageLookupByLibrary.simpleMessage("Please enter a valid number"),
+        "please_enter_insurance_coverage_for_all_items":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter insurance coverage for all scanned items"),
         "please_enter_valid_email":
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
         "please_select_back_id_card_image":
@@ -498,6 +521,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Verify your Email"),
         "please_verify_phone_number": MessageLookupByLibrary.simpleMessage(
             "Please Verify your phone number"),
+        "prescription_attachments":
+            MessageLookupByLibrary.simpleMessage("Prescription"),
         "prescription_order":
             MessageLookupByLibrary.simpleMessage("Prescription Order"),
         "previous_orders":
@@ -581,7 +606,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "show_less": MessageLookupByLibrary.simpleMessage("Show less"),
         "show_more": MessageLookupByLibrary.simpleMessage("Show more"),
-        "size_more_than_mg_error": m2,
+        "size_more_than_mg_error": m3,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "start_delivering":
@@ -628,6 +653,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "try_again": MessageLookupByLibrary.simpleMessage("Try Again"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
         "unavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
+        "unit_price": MessageLookupByLibrary.simpleMessage("Unit Price"),
         "united_arab_emirates_dubai":
             MessageLookupByLibrary.simpleMessage("United Arab Emirates, Dubai"),
         "unpaid": MessageLookupByLibrary.simpleMessage("Un-Paid"),

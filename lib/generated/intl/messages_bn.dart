@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(days) => "${days} দিনের মধ্যে মেয়াদ শেষ";
 
-  static String m2(MB, files) =>
+  static String m3(MB, files) =>
       "ফাইলগুলির আকার ${MB} MB এর কম হতে হবে, ${files}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -446,7 +446,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("নতুন পাসওয়ার্ড সেট করুন"),
         "show_less": MessageLookupByLibrary.simpleMessage("কম দেখুন"),
         "show_more": MessageLookupByLibrary.simpleMessage("আরও দেখুন"),
-        "size_more_than_mg_error": m2,
+        "size_more_than_mg_error": m3,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("কিছু ভুল হয়েছে"),
         "start_delivering":

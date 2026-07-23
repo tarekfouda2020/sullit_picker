@@ -416,5 +416,19 @@
   "delivery": "Delivery",
   "pick_up": "Pick Up",
   "order_processing_error": "Sorry we can't process this order. Thank you",
-  "notifications_description": "To control app notifications, please go to Settings > Notifications for 'AMCOOP Picker' app"
+  "notifications_description": "To control app notifications, please go to Settings > Notifications for 'AMCOOP Picker' app",
+  "unit_price": "Unit Price",
+  "insurance_discount": "Insurance Discount",
+  "enter_insurance_discount": "Enter insurance discount amount",
+  "insurance_coverage": "Insurance Coverage %",
+  "enter_insurance_coverage": "Enter coverage percentage (0-100)",
+  "instructions": "Instructions",
+  "enter_instructions": "Enter product instructions",
+  "please_enter_insurance_coverage_for_all_items": "Please enter insurance coverage for all scanned items",
+  "prescription_attachments": "Prescription",
+  "insurance_attachments": "Insurance",
+  "insurance_company": "Insurance Company",
+  "identity_document": "Identity",
+  "attachments": "Attachments",
+  "only_stock_available": "Only {stock} available in stock"
 }

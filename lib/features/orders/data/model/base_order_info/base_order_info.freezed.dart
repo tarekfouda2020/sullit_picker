@@ -76,24 +76,24 @@ mixin _$BaseOrderInfo {
   String get shopType => throw _privateConstructorUsedError;
   @JsonKey(name: 'shop_type')
   set shopType(String value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_pending_review')
-  bool get isPendingReview => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_pending_review')
-  set isPendingReview(bool value) => throw _privateConstructorUsedError;
-  @JsonKey(name: 'awaiting_customer_completion')
-  bool get awaitingCustomerCompletion => throw _privateConstructorUsedError;
-  @JsonKey(name: 'awaiting_customer_completion')
-  set awaitingCustomerCompletion(bool value) =>
+  @JsonKey(name: 'is_pending_review', defaultValue: null)
+  bool? get isPendingReview => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_pending_review', defaultValue: null)
+  set isPendingReview(bool? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+  bool? get awaitingCustomerCompletion => throw _privateConstructorUsedError;
+  @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+  set awaitingCustomerCompletion(bool? value) =>
       throw _privateConstructorUsedError;
-  @JsonKey(name: 'requires_prescription_review')
-  bool get requiresPrescriptionReview => throw _privateConstructorUsedError;
-  @JsonKey(name: 'requires_prescription_review')
-  set requiresPrescriptionReview(bool value) =>
+  @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+  bool? get requiresPrescriptionReview => throw _privateConstructorUsedError;
+  @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+  set requiresPrescriptionReview(bool? value) =>
       throw _privateConstructorUsedError;
-  @JsonKey(name: 'insurance_applied')
-  bool get insuranceApplied => throw _privateConstructorUsedError;
-  @JsonKey(name: 'insurance_applied')
-  set insuranceApplied(bool value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_applied', defaultValue: null)
+  bool? get insuranceApplied => throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_applied', defaultValue: null)
+  set insuranceApplied(bool? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'bag_count')
   int get bagsCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'bag_count')
@@ -203,12 +203,14 @@ abstract class $BaseOrderInfoCopyWith<$Res> {
       @JsonKey(name: 'loyalty_points_value') String? loyaltyPointsValue,
       @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'shop_type') String shopType,
-      @JsonKey(name: 'is_pending_review') bool isPendingReview,
-      @JsonKey(name: 'awaiting_customer_completion')
-      bool awaitingCustomerCompletion,
-      @JsonKey(name: 'requires_prescription_review')
-      bool requiresPrescriptionReview,
-      @JsonKey(name: 'insurance_applied') bool insuranceApplied,
+      @JsonKey(name: 'is_pending_review', defaultValue: null)
+      bool? isPendingReview,
+      @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: 'insurance_applied', defaultValue: null)
+      bool? insuranceApplied,
       @JsonKey(name: 'bag_count') int bagsCount,
       @JsonKey(name: 'bag_price') double bagPrice,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
@@ -264,10 +266,10 @@ class _$BaseOrderInfoCopyWithImpl<$Res, $Val extends BaseOrderInfo>
     Object? loyaltyPointsValue = freezed,
     Object? totalItems = null,
     Object? shopType = null,
-    Object? isPendingReview = null,
-    Object? awaitingCustomerCompletion = null,
-    Object? requiresPrescriptionReview = null,
-    Object? insuranceApplied = null,
+    Object? isPendingReview = freezed,
+    Object? awaitingCustomerCompletion = freezed,
+    Object? requiresPrescriptionReview = freezed,
+    Object? insuranceApplied = freezed,
     Object? bagsCount = null,
     Object? bagPrice = null,
     Object? allowReplacement = null,
@@ -360,22 +362,22 @@ class _$BaseOrderInfoCopyWithImpl<$Res, $Val extends BaseOrderInfo>
           ? _value.shopType
           : shopType // ignore: cast_nullable_to_non_nullable
               as String,
-      isPendingReview: null == isPendingReview
+      isPendingReview: freezed == isPendingReview
           ? _value.isPendingReview
           : isPendingReview // ignore: cast_nullable_to_non_nullable
-              as bool,
-      awaitingCustomerCompletion: null == awaitingCustomerCompletion
+              as bool?,
+      awaitingCustomerCompletion: freezed == awaitingCustomerCompletion
           ? _value.awaitingCustomerCompletion
           : awaitingCustomerCompletion // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requiresPrescriptionReview: null == requiresPrescriptionReview
+              as bool?,
+      requiresPrescriptionReview: freezed == requiresPrescriptionReview
           ? _value.requiresPrescriptionReview
           : requiresPrescriptionReview // ignore: cast_nullable_to_non_nullable
-              as bool,
-      insuranceApplied: null == insuranceApplied
+              as bool?,
+      insuranceApplied: freezed == insuranceApplied
           ? _value.insuranceApplied
           : insuranceApplied // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       bagsCount: null == bagsCount
           ? _value.bagsCount
           : bagsCount // ignore: cast_nullable_to_non_nullable
@@ -499,12 +501,14 @@ abstract class _$$BaseOrderInfoImplCopyWith<$Res>
       @JsonKey(name: 'loyalty_points_value') String? loyaltyPointsValue,
       @JsonKey(name: 'total_items') int totalItems,
       @JsonKey(name: 'shop_type') String shopType,
-      @JsonKey(name: 'is_pending_review') bool isPendingReview,
-      @JsonKey(name: 'awaiting_customer_completion')
-      bool awaitingCustomerCompletion,
-      @JsonKey(name: 'requires_prescription_review')
-      bool requiresPrescriptionReview,
-      @JsonKey(name: 'insurance_applied') bool insuranceApplied,
+      @JsonKey(name: 'is_pending_review', defaultValue: null)
+      bool? isPendingReview,
+      @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: 'insurance_applied', defaultValue: null)
+      bool? insuranceApplied,
       @JsonKey(name: 'bag_count') int bagsCount,
       @JsonKey(name: 'bag_price') double bagPrice,
       @JsonKey(name: 'allow_replacement') bool allowReplacement,
@@ -560,10 +564,10 @@ class __$$BaseOrderInfoImplCopyWithImpl<$Res>
     Object? loyaltyPointsValue = freezed,
     Object? totalItems = null,
     Object? shopType = null,
-    Object? isPendingReview = null,
-    Object? awaitingCustomerCompletion = null,
-    Object? requiresPrescriptionReview = null,
-    Object? insuranceApplied = null,
+    Object? isPendingReview = freezed,
+    Object? awaitingCustomerCompletion = freezed,
+    Object? requiresPrescriptionReview = freezed,
+    Object? insuranceApplied = freezed,
     Object? bagsCount = null,
     Object? bagPrice = null,
     Object? allowReplacement = null,
@@ -656,22 +660,22 @@ class __$$BaseOrderInfoImplCopyWithImpl<$Res>
           ? _value.shopType
           : shopType // ignore: cast_nullable_to_non_nullable
               as String,
-      isPendingReview: null == isPendingReview
+      isPendingReview: freezed == isPendingReview
           ? _value.isPendingReview
           : isPendingReview // ignore: cast_nullable_to_non_nullable
-              as bool,
-      awaitingCustomerCompletion: null == awaitingCustomerCompletion
+              as bool?,
+      awaitingCustomerCompletion: freezed == awaitingCustomerCompletion
           ? _value.awaitingCustomerCompletion
           : awaitingCustomerCompletion // ignore: cast_nullable_to_non_nullable
-              as bool,
-      requiresPrescriptionReview: null == requiresPrescriptionReview
+              as bool?,
+      requiresPrescriptionReview: freezed == requiresPrescriptionReview
           ? _value.requiresPrescriptionReview
           : requiresPrescriptionReview // ignore: cast_nullable_to_non_nullable
-              as bool,
-      insuranceApplied: null == insuranceApplied
+              as bool?,
+      insuranceApplied: freezed == insuranceApplied
           ? _value.insuranceApplied
           : insuranceApplied // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       bagsCount: null == bagsCount
           ? _value.bagsCount
           : bagsCount // ignore: cast_nullable_to_non_nullable
@@ -770,12 +774,14 @@ class _$BaseOrderInfoImpl extends _BaseOrderInfo {
       @JsonKey(name: 'loyalty_points_value') this.loyaltyPointsValue,
       @JsonKey(name: 'total_items') required this.totalItems,
       @JsonKey(name: 'shop_type') required this.shopType,
-      @JsonKey(name: 'is_pending_review') required this.isPendingReview,
-      @JsonKey(name: 'awaiting_customer_completion')
-      required this.awaitingCustomerCompletion,
-      @JsonKey(name: 'requires_prescription_review')
-      required this.requiresPrescriptionReview,
-      @JsonKey(name: 'insurance_applied') required this.insuranceApplied,
+      @JsonKey(name: 'is_pending_review', defaultValue: null)
+      this.isPendingReview,
+      @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+      this.awaitingCustomerCompletion,
+      @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+      this.requiresPrescriptionReview,
+      @JsonKey(name: 'insurance_applied', defaultValue: null)
+      this.insuranceApplied,
       @JsonKey(name: 'bag_count') required this.bagsCount,
       @JsonKey(name: 'bag_price') required this.bagPrice,
       @JsonKey(name: 'allow_replacement') required this.allowReplacement,
@@ -846,17 +852,17 @@ class _$BaseOrderInfoImpl extends _BaseOrderInfo {
   @JsonKey(name: 'shop_type')
   String shopType;
   @override
-  @JsonKey(name: 'is_pending_review')
-  bool isPendingReview;
+  @JsonKey(name: 'is_pending_review', defaultValue: null)
+  bool? isPendingReview;
   @override
-  @JsonKey(name: 'awaiting_customer_completion')
-  bool awaitingCustomerCompletion;
+  @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+  bool? awaitingCustomerCompletion;
   @override
-  @JsonKey(name: 'requires_prescription_review')
-  bool requiresPrescriptionReview;
+  @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+  bool? requiresPrescriptionReview;
   @override
-  @JsonKey(name: 'insurance_applied')
-  bool insuranceApplied;
+  @JsonKey(name: 'insurance_applied', defaultValue: null)
+  bool? insuranceApplied;
   @override
   @JsonKey(name: 'bag_count')
   int bagsCount;
@@ -951,12 +957,14 @@ abstract class _BaseOrderInfo extends BaseOrderInfo {
       @JsonKey(name: 'loyalty_points_value') String? loyaltyPointsValue,
       @JsonKey(name: 'total_items') required int totalItems,
       @JsonKey(name: 'shop_type') required String shopType,
-      @JsonKey(name: 'is_pending_review') required bool isPendingReview,
-      @JsonKey(name: 'awaiting_customer_completion')
-      required bool awaitingCustomerCompletion,
-      @JsonKey(name: 'requires_prescription_review')
-      required bool requiresPrescriptionReview,
-      @JsonKey(name: 'insurance_applied') required bool insuranceApplied,
+      @JsonKey(name: 'is_pending_review', defaultValue: null)
+      bool? isPendingReview,
+      @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+      bool? awaitingCustomerCompletion,
+      @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+      bool? requiresPrescriptionReview,
+      @JsonKey(name: 'insurance_applied', defaultValue: null)
+      bool? insuranceApplied,
       @JsonKey(name: 'bag_count') required int bagsCount,
       @JsonKey(name: 'bag_price') required double bagPrice,
       @JsonKey(name: 'allow_replacement') required bool allowReplacement,
@@ -1057,25 +1065,25 @@ abstract class _BaseOrderInfo extends BaseOrderInfo {
   @JsonKey(name: 'shop_type')
   set shopType(String value);
   @override
-  @JsonKey(name: 'is_pending_review')
-  bool get isPendingReview;
-  @JsonKey(name: 'is_pending_review')
-  set isPendingReview(bool value);
+  @JsonKey(name: 'is_pending_review', defaultValue: null)
+  bool? get isPendingReview;
+  @JsonKey(name: 'is_pending_review', defaultValue: null)
+  set isPendingReview(bool? value);
   @override
-  @JsonKey(name: 'awaiting_customer_completion')
-  bool get awaitingCustomerCompletion;
-  @JsonKey(name: 'awaiting_customer_completion')
-  set awaitingCustomerCompletion(bool value);
+  @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+  bool? get awaitingCustomerCompletion;
+  @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+  set awaitingCustomerCompletion(bool? value);
   @override
-  @JsonKey(name: 'requires_prescription_review')
-  bool get requiresPrescriptionReview;
-  @JsonKey(name: 'requires_prescription_review')
-  set requiresPrescriptionReview(bool value);
+  @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+  bool? get requiresPrescriptionReview;
+  @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+  set requiresPrescriptionReview(bool? value);
   @override
-  @JsonKey(name: 'insurance_applied')
-  bool get insuranceApplied;
-  @JsonKey(name: 'insurance_applied')
-  set insuranceApplied(bool value);
+  @JsonKey(name: 'insurance_applied', defaultValue: null)
+  bool? get insuranceApplied;
+  @JsonKey(name: 'insurance_applied', defaultValue: null)
+  set insuranceApplied(bool? value);
   @override
   @JsonKey(name: 'bag_count')
   int get bagsCount;

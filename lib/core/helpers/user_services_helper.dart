@@ -55,12 +55,14 @@ class UserServicesHelper {
     await HiveHelper.instance.closeAllBoxes();
     HiveHelper.instance.deleteDataFromBox<String,String>(HiveBoxesNames.orders,key: HiveBoxesKeys.assignedOrdersKey,);
     await HiveHelper.instance.deleteBox<String>(HiveBoxesNames.orderDetails);
+    await HiveHelper.instance.deleteBox<String>(HiveBoxesNames.prescriptionOrderDetails);
     await HiveHelper.instance.clearHive();
-    
+
     // Reinitialize Hive for the next login
     await HiveHelper.instance.init();
     await HiveHelper.instance.openBox<String>(HiveBoxesNames.orderDetails);
     await HiveHelper.instance.openBox<String>(HiveBoxesNames.orders);
+    await HiveHelper.instance.openBox<String>(HiveBoxesNames.prescriptionOrderDetails);
     
     context.read<UserCubit>().onUpdateUserData(null);
     AutoRouter.of(context).push(const SplashRoute());

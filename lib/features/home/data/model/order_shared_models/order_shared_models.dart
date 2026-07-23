@@ -30,6 +30,13 @@ class OrderDetailsModel with _$OrderDetailsModel {
     @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0) double? fixedUnitPrice,
     @JsonKey(name: 'fixed_qnt', defaultValue: 0) int? fixedQnt,
     @JsonKey(name: 'old_replaced_model',) OldReplacedModel? oldReplacedModel,
+    @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null) String? insuranceCoveragePercentageApi,
+    @JsonKey(name: 'instructions', defaultValue: null) String? instructionsApi,
+
+    /// prescription order local fields
+    @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null) double? insuranceCoveragePercentage,
+    @JsonKey(name: 'instructions_local', defaultValue: null) String? instructions,
+    @JsonKey(name: 'current_stock', defaultValue: null) int? currentStock,
   }) = _OrderDetailsModel;
 
   factory OrderDetailsModel.fromJson(Map<String, dynamic> json) =>

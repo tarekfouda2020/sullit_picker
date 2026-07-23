@@ -5,6 +5,8 @@ import 'dart:developer';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
+import 'package:flutter_tdd/features/home/data/model/order_shared_models/order_shared_models.dart';
+import 'package:flutter_tdd/features/home/data/model/prescription_order_details/pharmacy_order_model.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/new_order_alert_dialog_widget.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -92,6 +94,44 @@ class OrdersHelper {
   Future<void> deleteOrderDetails(int orderId) async {
     HiveHelper.instance
         .deleteDataFromBox<String,int>(HiveBoxesNames.orderDetails, key: orderId);
+  }
+
+  Future<void> savePrescriptionOrderState({
+    required int orderId,
+    required PharmacyOrderModel order,
+    required List<OrderDetailsModel> details,
+    required String? insuranceDiscount,
+    required String? bagsCount,
+  }) async {
+    if (_isDisposed) return;
+    final json = jsonEncode({
+      'order': order.toFlatJson(),
+      'details': details.map((e) => e.toJson()).toList(),
+      'insurance_discount': insuranceDiscount,
+      'bags_count': bagsCount,
+    });
+    await HiveHelper.instance.addDataToBox<String, int>(
+      HiveBoxesNames.prescriptionOrderDetails,
+      json,
+      key: orderId,
+    );
+  }
+
+  Map<String, dynamic>? getPrescriptionOrderState(int orderId) {
+    if (_isDisposed) return null;
+    final String? json = HiveHelper.instance
+        .getDataFromBox<String, int>(HiveBoxesNames.prescriptionOrderDetails, key: orderId);
+    if (json == null || json.isEmpty) return null;
+    try {
+      return jsonDecode(json) as Map<String, dynamic>;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<void> deletePrescriptionOrderState(int orderId) async {
+    HiveHelper.instance
+        .deleteDataFromBox<String, int>(HiveBoxesNames.prescriptionOrderDetails, key: orderId);
   }
 
   Future<void> getAllOrders(
@@ -228,6 +268,9 @@ class OrdersHelper {
       }
       if (!Hive.isBoxOpen(HiveBoxesNames.orderDetails)) {
         await HiveHelper.instance.openBox<String>(HiveBoxesNames.orderDetails);
+      }
+      if (!Hive.isBoxOpen(HiveBoxesNames.prescriptionOrderDetails)) {
+        await HiveHelper.instance.openBox<String>(HiveBoxesNames.prescriptionOrderDetails);
       }
     } catch (e) {
       log('⚠️ Failed to open Hive boxes during reset: $e');

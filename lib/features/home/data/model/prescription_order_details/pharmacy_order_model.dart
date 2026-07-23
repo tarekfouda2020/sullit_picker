@@ -59,13 +59,13 @@ class PharmacyOrderModel with _$PharmacyOrderModel {
 
   String get shopType => base.shopType;
 
-  bool get isPendingReview => base.isPendingReview;
+  bool get isPendingReview => base.isPendingReview ?? false;
 
-  bool get awaitingCustomerCompletion => base.awaitingCustomerCompletion;
+  bool get awaitingCustomerCompletion => base.awaitingCustomerCompletion ?? false;
 
-  bool get requiresPrescriptionReview => base.requiresPrescriptionReview;
+  bool get requiresPrescriptionReview => base.requiresPrescriptionReview ?? false;
 
-  bool get insuranceApplied => base.insuranceApplied;
+  bool get insuranceApplied => base.insuranceApplied ?? false;
 
   double get bagPrice => base.bagPrice;
 

@@ -27,6 +27,13 @@ _$OrderDetailsModelImpl _$$OrderDetailsModelImplFromJson(
           ? null
           : OldReplacedModel.fromJson(
               json['old_replaced_model'] as Map<String, dynamic>),
+      insuranceCoveragePercentageApi:
+          json['insurance_coverage_percentage'] as String?,
+      instructionsApi: json['instructions'] as String?,
+      insuranceCoveragePercentage:
+          (json['insurance_coverage_percentage_local'] as num?)?.toDouble(),
+      instructions: json['instructions_local'] as String?,
+      currentStock: (json['current_stock'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$OrderDetailsModelImplToJson(
@@ -45,6 +52,12 @@ Map<String, dynamic> _$$OrderDetailsModelImplToJson(
       'fixed_unit_price': instance.fixedUnitPrice,
       'fixed_qnt': instance.fixedQnt,
       'old_replaced_model': instance.oldReplacedModel,
+      'insurance_coverage_percentage': instance.insuranceCoveragePercentageApi,
+      'instructions': instance.instructionsApi,
+      'insurance_coverage_percentage_local':
+          instance.insuranceCoveragePercentage,
+      'instructions_local': instance.instructions,
+      'current_stock': instance.currentStock,
     };
 
 _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>

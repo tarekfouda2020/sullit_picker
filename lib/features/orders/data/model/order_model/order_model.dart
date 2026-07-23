@@ -68,13 +68,13 @@ class OrderModel with _$OrderModel {
 
   String get shopType => base.shopType;
 
-  bool get isPendingReview => base.isPendingReview;
+  bool get isPendingReview => base.isPendingReview  == true;
 
-  bool get awaitingCustomerCompletion => base.awaitingCustomerCompletion;
+  bool get awaitingCustomerCompletion => base.awaitingCustomerCompletion == true;
 
-  bool get requiresPrescriptionReview => base.requiresPrescriptionReview;
+  bool get requiresPrescriptionReview => base.requiresPrescriptionReview == true;
 
-  bool get insuranceApplied => base.insuranceApplied;
+  bool get insuranceApplied => base.insuranceApplied == true;
 
   double get bagPrice => base.bagPrice;
 
@@ -180,10 +180,7 @@ class OrderModel with _$OrderModel {
   }
 }
 
-/// Fields mutated in place elsewhere in the app (order_details_controller.dart,
-/// card_order_widget.dart, timer_card_details_widget.dart, show_orders_requester.dart).
-/// Kept as an extension (not class members) because freezed forbids
-/// getter/setter pairs inside a @freezed / @unfreezed class body.
+
 extension OrderModelMutableFields on OrderModel {
   String get total => base.total;
 

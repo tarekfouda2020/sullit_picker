@@ -49,7 +49,7 @@ _$VariantModelImpl _$$VariantModelImplFromJson(Map<String, dynamic> json) =>
       calculablePrice: json['calculable_price'] as String,
       mainPrice: json['main_price'] as String,
       originalPrice: json['original_price'] as String,
-      currentStock: (json['current_stock'] as num).toInt(),
+      currentStock: (json['current_stock'] as num?)?.toInt() ?? null,
       currencySymbol: json['currency_symbol'] as String,
       hasDiscount: json['has_discount'] as bool,
       image: json['image'] as String,

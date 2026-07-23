@@ -31,6 +31,8 @@ class ApiNames {
       "${appApi}products/search-by-barcode?barcode=$barcode";
   static String prepareOrder(int id) => "${appApi}orders/$id/prepare";
   static String updateInvoice(int id) => "${appApi}orders/$id/prepare-preview";
+  static String acceptPrescriptionPreview(int id) => "${appApi}orders/$id/accept-prescription-preview";
+  static String acceptPrescription(int id) => "${appApi}orders/$id/accept-prescription";
   static String previousOrders = "${appApi}orders/previous";
 
   ///home

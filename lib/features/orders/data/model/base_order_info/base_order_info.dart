@@ -34,12 +34,13 @@ class BaseOrderInfo with _$BaseOrderInfo {
     @JsonKey(name: 'loyalty_points_value') String? loyaltyPointsValue,
     @JsonKey(name: 'total_items') required int totalItems,
     @JsonKey(name: 'shop_type') required String shopType,
-    @JsonKey(name: 'is_pending_review') required bool isPendingReview,
-    @JsonKey(name: 'awaiting_customer_completion')
-    required bool awaitingCustomerCompletion,
-    @JsonKey(name: 'requires_prescription_review')
-    required bool requiresPrescriptionReview,
-    @JsonKey(name: 'insurance_applied') required bool insuranceApplied,
+    @JsonKey(name: 'is_pending_review', defaultValue: null) bool? isPendingReview,
+    @JsonKey(name: 'awaiting_customer_completion', defaultValue: null)
+    bool? awaitingCustomerCompletion,
+    @JsonKey(name: 'requires_prescription_review', defaultValue: null)
+    bool? requiresPrescriptionReview,
+    @JsonKey(name: 'insurance_applied', defaultValue: null)
+    bool? insuranceApplied,
     @JsonKey(name: 'bag_count') required int bagsCount,
     @JsonKey(name: 'bag_price') required double bagPrice,
     @JsonKey(name: 'allow_replacement') required bool allowReplacement,

@@ -10,6 +10,10 @@ import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
+import 'package:flutter_tdd/features/home/data/model/accept_prescription_preview_model/accept_prescription_preview_model.dart';
+import 'package:flutter_tdd/features/home/data/model/prescription_order_details/pharmacy_order_model.dart';
+import 'package:flutter_tdd/features/orders/domain/params/prescription_preview_params.dart';
+import 'package:flutter_tdd/features/orders/domain/params/accept_prescription_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
@@ -88,5 +92,22 @@ class ImplHomeRepositories extends HomeRepositories {
   Future<MyResult<String>> updateDeviceToken(
       UpdateDeviceTokenParams params) async {
     return dataSource.updateDeviceToken(params);
+  }
+
+  @override
+  Future<MyResult<AcceptPrescriptionPreviewModel>> acceptPrescriptionPreview(
+      PrescriptionPreviewParams params) async {
+    return dataSource.acceptPrescriptionPreview(params);
+  }
+
+  @override
+  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id) async {
+    return dataSource.getPharmacyOrder(id);
+  }
+
+  @override
+  Future<MyResult<String>> acceptPrescription(
+      AcceptPrescriptionParams params) async {
+    return dataSource.acceptPrescription(params);
   }
 }

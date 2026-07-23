@@ -429,7 +429,7 @@ mixin _$VariantModel {
   @JsonKey(name: 'original_price')
   String get originalPrice => throw _privateConstructorUsedError;
   @JsonKey(name: 'current_stock')
-  int get currentStock => throw _privateConstructorUsedError;
+  int? get currentStock => throw _privateConstructorUsedError;
   @JsonKey(name: 'currency_symbol')
   String get currencySymbol => throw _privateConstructorUsedError;
   @JsonKey(name: 'has_discount')
@@ -459,7 +459,7 @@ abstract class $VariantModelCopyWith<$Res> {
       @JsonKey(name: 'calculable_price') String calculablePrice,
       @JsonKey(name: 'main_price') String mainPrice,
       @JsonKey(name: 'original_price') String originalPrice,
-      @JsonKey(name: 'current_stock') int currentStock,
+      @JsonKey(name: 'current_stock') int? currentStock,
       @JsonKey(name: 'currency_symbol') String currencySymbol,
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String image,
@@ -487,7 +487,7 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
     Object? calculablePrice = null,
     Object? mainPrice = null,
     Object? originalPrice = null,
-    Object? currentStock = null,
+    Object? currentStock = freezed,
     Object? currencySymbol = null,
     Object? hasDiscount = null,
     Object? image = null,
@@ -523,10 +523,10 @@ class _$VariantModelCopyWithImpl<$Res, $Val extends VariantModel>
           ? _value.originalPrice
           : originalPrice // ignore: cast_nullable_to_non_nullable
               as String,
-      currentStock: null == currentStock
+      currentStock: freezed == currentStock
           ? _value.currentStock
           : currentStock // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       currencySymbol: null == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -567,7 +567,7 @@ abstract class _$$VariantModelImplCopyWith<$Res>
       @JsonKey(name: 'calculable_price') String calculablePrice,
       @JsonKey(name: 'main_price') String mainPrice,
       @JsonKey(name: 'original_price') String originalPrice,
-      @JsonKey(name: 'current_stock') int currentStock,
+      @JsonKey(name: 'current_stock') int? currentStock,
       @JsonKey(name: 'currency_symbol') String currencySymbol,
       @JsonKey(name: 'has_discount') bool hasDiscount,
       String image,
@@ -593,7 +593,7 @@ class __$$VariantModelImplCopyWithImpl<$Res>
     Object? calculablePrice = null,
     Object? mainPrice = null,
     Object? originalPrice = null,
-    Object? currentStock = null,
+    Object? currentStock = freezed,
     Object? currencySymbol = null,
     Object? hasDiscount = null,
     Object? image = null,
@@ -629,10 +629,10 @@ class __$$VariantModelImplCopyWithImpl<$Res>
           ? _value.originalPrice
           : originalPrice // ignore: cast_nullable_to_non_nullable
               as String,
-      currentStock: null == currentStock
+      currentStock: freezed == currentStock
           ? _value.currentStock
           : currentStock // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       currencySymbol: null == currencySymbol
           ? _value.currencySymbol
           : currencySymbol // ignore: cast_nullable_to_non_nullable
@@ -668,7 +668,7 @@ class _$VariantModelImpl implements _VariantModel {
       @JsonKey(name: 'calculable_price') required this.calculablePrice,
       @JsonKey(name: 'main_price') required this.mainPrice,
       @JsonKey(name: 'original_price') required this.originalPrice,
-      @JsonKey(name: 'current_stock') required this.currentStock,
+      @JsonKey(name: 'current_stock') this.currentStock = null,
       @JsonKey(name: 'currency_symbol') required this.currencySymbol,
       @JsonKey(name: 'has_discount') required this.hasDiscount,
       required this.image,
@@ -699,7 +699,7 @@ class _$VariantModelImpl implements _VariantModel {
   final String originalPrice;
   @override
   @JsonKey(name: 'current_stock')
-  final int currentStock;
+  final int? currentStock;
   @override
   @JsonKey(name: 'currency_symbol')
   final String currencySymbol;
@@ -788,7 +788,7 @@ abstract class _VariantModel implements VariantModel {
       @JsonKey(name: 'calculable_price') required final String calculablePrice,
       @JsonKey(name: 'main_price') required final String mainPrice,
       @JsonKey(name: 'original_price') required final String originalPrice,
-      @JsonKey(name: 'current_stock') required final int currentStock,
+      @JsonKey(name: 'current_stock') final int? currentStock,
       @JsonKey(name: 'currency_symbol') required final String currencySymbol,
       @JsonKey(name: 'has_discount') required final bool hasDiscount,
       required final String image,
@@ -819,7 +819,7 @@ abstract class _VariantModel implements VariantModel {
   String get originalPrice;
   @override
   @JsonKey(name: 'current_stock')
-  int get currentStock;
+  int? get currentStock;
   @override
   @JsonKey(name: 'currency_symbol')
   String get currencySymbol;

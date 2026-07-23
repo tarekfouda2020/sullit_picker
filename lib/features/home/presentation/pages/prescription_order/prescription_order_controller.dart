@@ -1,34 +1,410 @@
 part of 'prescription_order_imports.dart';
 
 class PrescriptionOrderController {
+  final int orderId;
+
+  PrescriptionOrderController({required this.orderId}) {
+    _loadOrder();
+  }
+
   final List<OrderDetailsModel> ordersDetails = [];
-  final BaseBloc<List<OrderDetailsModel>> ordersDetailsCubit =
-      BaseBloc<List<OrderDetailsModel>>([]);
+  final BaseBloc<List<OrderDetailsModel>> ordersProductsCubit =
+  BaseBloc<List<OrderDetailsModel>>([]);
   late ObsValue<List<VariantModel>> variantsObs;
 
-  InvoiceModel get invoice => InvoiceModel(
-        subTotal: "99",
-        shipping: "3",
-        tax: "9",
-        couponDiscount: "9",
-        serviceFees: "9",
-        techFees: "9",
-        vatFeeAmount: "9",
-        totalFeeAmount: "9",
-        loyaltyPointsValue: "9",
-        grandTotal: "9",
-        envFees: "9",
-        bagsCount: 9,
-        productsTotalPrice: "9",
-        discounts: [],
-        taxPercentage: "9",
+  final ObsValue<String?> insuranceDiscountObs = ObsValue.withInit(null);
+  final ObsValue<String?> bagsCountObs = ObsValue.withInit(null);
+
+  final TextEditingController insuranceDiscountController = TextEditingController();
+  final GlobalKey<FormState> insuranceDiscountFormKey = GlobalKey<FormState>();
+
+  final TextEditingController bagsCountController = TextEditingController();
+  final GlobalKey<FormState> bagsCountFormKey = GlobalKey<FormState>();
+
+  final TextEditingController itemCoverageController = TextEditingController();
+  final GlobalKey<FormState> itemCoverageFormKey = GlobalKey<FormState>();
+
+  final TextEditingController itemInstructionsController = TextEditingController();
+  final GlobalKey<FormState> itemInstructionsFormKey = GlobalKey<FormState>();
+
+  final BaseBloc<PharmacyOrderModel> orderCubit =
+      BaseBloc<PharmacyOrderModel>(null);
+
+  Future<void> _loadOrder() async {
+    final local = getIt<OrdersHelper>().getPrescriptionOrderState(orderId);
+    if (local != null) {
+      _restoreFromLocal(local);
+      return;
+    }
+    orderCubit.loadingState();
+    ordersProductsCubit.loadingState();
+    final result = await getIt<HomeRepositories>().getPharmacyOrder(orderId);
+    result.when(
+      isSuccess: (data) {
+        orderCubit.successState(data!);
+        ordersProductsCubit.successState([]);
+        _saveLocal();
+      },
+      isError: (error) {
+        orderCubit.failedState(error, _loadOrder);
+        ordersProductsCubit.failedState(error, _loadOrder);
+      },
+    );
+  }
+
+  void _restoreFromLocal(Map<String, dynamic> local) {
+    final order = PharmacyOrderModel.fromJson(local['order'] as Map<String, dynamic>);
+    final details = (local['details'] as List)
+        .map((e) => OrderDetailsModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+    insuranceDiscountObs.setValue(local['insurance_discount'] as String?);
+    bagsCountObs.setValue(local['bags_count'] as String?);
+    ordersDetails.clear();
+    ordersDetails.addAll(details);
+    orderCubit.successState(order);
+    ordersProductsCubit.successState(List.of(ordersDetails));
+  }
+
+  void _saveLocal() {
+    final order = orderCubit.data;
+    if (order == null) return;
+    getIt<OrdersHelper>().savePrescriptionOrderState(
+      orderId: orderId,
+      order: order,
+      details: List.of(ordersDetails),
+      insuranceDiscount: insuranceDiscountObs.getValue(),
+      bagsCount: bagsCountObs.getValue(),
+    );
+  }
+
+
+
+  bool get _hasMissingInsuranceCoverage =>
+      ordersDetails.any((item) => item.insuranceCoveragePercentage == null);
+
+  bool get requiresInsurance {
+    final order = orderCubit.data;
+    if (order == null) return false;
+    return order.awaitingCustomerCompletion && order.requiresPrescriptionReview;
+  }
+
+  void onCompleteOrderPressed(BuildContext context) {
+    if (requiresInsurance && _hasMissingInsuranceCoverage) {
+      AppSnackBar.showSimpleToast(
+        msg: Translate.s.please_enter_insurance_coverage_for_all_items,
+        type: ToastType.error,
       );
+      return;
+    }
+
+    if (requiresInsurance && insuranceDiscountObs.getValue() == null) {
+      _openInsuranceDiscountDialog(context, cascade: true);
+      return;
+    }
+
+    final bool hasBothValues =
+        insuranceDiscountObs.getValue() != null && bagsCountObs.getValue() != null;
+    if (hasBothValues) {
+      _callAcceptPrescriptionPreviewApi(context);
+    } else if(insuranceDiscountObs.getValue() == null){
+      _openInsuranceDiscountDialog(context, cascade: true);
+    }else if(bagsCountObs.getValue() == null){
+      _openBagsCountDialog(context, cascade: true);
+    }
+  }
+
+  void _openInsuranceDiscountDialog(BuildContext context, {bool cascade = false}) {
+    insuranceDiscountController.text = insuranceDiscountObs.getValue() ?? '';
+    showDialog(
+      context: context,
+      builder: (_) => InsuranceDiscountDialogWidget(
+        discountController: insuranceDiscountController,
+        formKey: insuranceDiscountFormKey,
+        onConfirm: () => _submitInsuranceDiscount(context, cascade: cascade),
+      ),
+    );
+  }
+
+  void _submitInsuranceDiscount(BuildContext context, {bool cascade = false}) {
+    if (insuranceDiscountFormKey.currentState?.validate() != true) return;
+    insuranceDiscountObs.setValue(insuranceDiscountController.text.trim());
+    _saveLocal();
+    Navigator.pop(context);
+    if (cascade) _openBagsCountDialog(context, cascade: true);
+  }
+
+  void _openBagsCountDialog(BuildContext context, {bool cascade = false}) {
+    bagsCountController.text = bagsCountObs.getValue() ?? '';
+    showDialog(
+      context: context,
+      builder: (_) => PrescriptionBagsCountDialogWidget(
+        bagsCountController: bagsCountController,
+        formKey: bagsCountFormKey,
+        onConfirm: () => _submitBagsCount(context, cascade: cascade),
+      ),
+    );
+  }
+
+  void _submitBagsCount(BuildContext context, {bool cascade = false}) {
+    if (bagsCountFormKey.currentState?.validate() != true) return;
+    bagsCountObs.setValue(bagsCountController.text.trim());
+    _saveLocal();
+    Navigator.pop(context);
+    if (cascade) _callAcceptPrescriptionPreviewApi(context);
+  }
+
+  void editInsuranceDiscount(BuildContext context) =>
+      _openInsuranceDiscountDialog(context, cascade: false);
+
+  void editBagsCount(BuildContext context) =>
+      _openBagsCountDialog(context, cascade: false);
+
+  Future<void> _callAcceptPrescriptionPreviewApi(BuildContext context) async {
+     PrescriptionPreviewParams params = _prescriptionPreviewParams();
+    var result = await getIt<HomeRepositories>().acceptPrescriptionPreview(params);
+    result.when(
+      isSuccess: (data) {
+        if (data != null) _showInvoiceSheet(context, data);
+      },
+      isError: (error) {},
+    );
+  }
+
+  PrescriptionPreviewParams _prescriptionPreviewParams() {
+    return PrescriptionPreviewParams(
+    orderId: orderId,
+    insuranceDiscount:
+        double.tryParse(insuranceDiscountObs.getValue() ?? '0') ?? 0.0,
+    bagsQnt: int.tryParse(bagsCountObs.getValue() ?? '0') ?? 0,
+    details: _orderItems(),
+  );
+  }
+
+  List<PrescriptionPreviewItemParams> _orderItems() {
+    return ordersDetails
+      .map((item) => PrescriptionPreviewItemParams(
+            variantId: item.addedVariantId ?? item.id,
+            qnt: item.quantity,
+            instructions: item.instructions,
+            insuranceCoveragePercentage: item.insuranceCoveragePercentage,
+          ))
+      .toList();
+  }
+
+  void _showInvoiceSheet(BuildContext context, AcceptPrescriptionPreviewModel invoice) {
+    final int bagsCount = int.tryParse(bagsCountObs.getValue() ?? '0') ?? 0;
+    final double bagPrice = orderCubit.data?.bagPrice ?? 0.0;
+    AppBottomSheets.showScrollableBodyFixedHeaderSheet(
+      context: context,
+      builder: (sheetContext) => PrescriptionInvoiceSheetWidget(
+        invoice: invoice,
+        bagsCount: bagsCount,
+        bagPrice: bagPrice,
+        onConfirm: () => _callAcceptPrescriptionApi(context, sheetContext),
+      ),
+    );
+  }
+
+  Future<void> _callAcceptPrescriptionApi(
+      BuildContext pageContext, BuildContext sheetContext) async {
+    final params = _acceptPrescriptionParams();
+    log("===>>>> params is ${params.toJson()}");
+    final result = await getIt<HomeRepositories>().acceptPrescription(params);
+    result.when(
+      isSuccess: (_) {
+        getIt<OrdersHelper>().deletePrescriptionOrderState(orderId);
+        Navigator.pop(sheetContext);
+        Navigator.pop(pageContext);
+        getIt<OrdersHelper>().getAllOrders(fromRemote: true, setLoading: false);
+      },
+      isError: (error) {},
+    );
+  }
+
+  AcceptPrescriptionParams _acceptPrescriptionParams() {
+    return AcceptPrescriptionParams(
+      orderId: orderId,
+      bagCount: int.tryParse(bagsCountObs.getValue() ?? '0') ?? 0,
+      insuranceDiscount: requiresInsurance
+          ? double.tryParse(insuranceDiscountObs.getValue() ?? '0')
+          : null,
+      details: ordersDetails
+          .map((item) => AcceptPrescriptionItemParams(
+                variantId: item.addedVariantId ?? item.id,
+                qty: item.quantity,
+                instructions: item.instructions,
+                insuranceCoveragePercentage:
+                    item.insuranceCoveragePercentage ?? 0,
+                price: double.tryParse(item.unitPrice),
+              ))
+          .toList(),
+    );
+  }
+
+
+
+  void showItemInsuranceCoverageDialog(BuildContext context, OrderDetailsModel item) {
+    itemCoverageController.text = item.insuranceCoveragePercentage?.toString() ?? '';
+    showDialog(
+      context: context,
+      builder: (_) => ItemInsuranceCoverageDialogWidget(
+        coverageController: itemCoverageController,
+        formKey: itemCoverageFormKey,
+        onConfirm: () => _submitItemCoverage(context, item),
+      ),
+    );
+  }
+
+  void _submitItemCoverage(BuildContext context, OrderDetailsModel item) {
+    if (itemCoverageFormKey.currentState?.validate() != true) return;
+    final value = double.tryParse(itemCoverageController.text.trim());
+    final index = ordersDetails.indexWhere((e) => e.addedVariantId == item.addedVariantId);
+    if (index != -1) {
+      ordersDetails[index] = ordersDetails[index].copyWith(insuranceCoveragePercentage: value);
+      _refresh();
+    }
+    Navigator.pop(context);
+  }
+
+  void showItemInstructionsDialog(BuildContext context, OrderDetailsModel item) {
+    itemInstructionsController.text = item.instructions ?? '';
+    showDialog(
+      context: context,
+      builder: (_) => ItemInstructionsDialogWidget(
+        instructionsController: itemInstructionsController,
+        formKey: itemInstructionsFormKey,
+        onConfirm: () => _submitItemInstructions(context, item),
+      ),
+    );
+  }
+
+  void _submitItemInstructions(BuildContext context, OrderDetailsModel item) {
+    if (itemInstructionsFormKey.currentState?.validate() != true) return;
+    final value = itemInstructionsController.text.trim();
+    final index = ordersDetails.indexWhere((e) => e.addedVariantId == item.addedVariantId);
+    if (index != -1) {
+      ordersDetails[index] = ordersDetails[index].copyWith(instructions: value.isEmpty ? null : value);
+      _refresh();
+    }
+    Navigator.pop(context);
+  }
+
+  void showCustomerSheet(BuildContext context, CustomerModel customer) {
+    AppBottomSheets.showScrollableBodyFixedHeaderSheet(
+      context: context,
+      builder: (sheetContext) =>
+          PrescriptionCustomerSheetWidget(customer: customer),
+    );
+  }
+
+  int attachmentCount(PharmacyOrderModel order) {
+    int count = 0;
+    if (order.prescriptionAttachments?.isNotEmpty == true) count++;
+    if (order.insuranceAttachments?.isNotEmpty == true) count++;
+    if (order.insuranceCompany != null) count++;
+    if (order.identityDocumentFile != null) count++;
+    return count;
+  }
+
+  void showAttachmentsSheet(BuildContext context) {
+    final order = orderCubit.data;
+    if (order == null) return;
+    final items = _buildAttachmentItems(context, order);
+    if (items.isEmpty) return;
+    AppBottomSheets.showScrollableBodyFixedHeaderSheet(
+      context: context,
+      builder: (sheetContext) => PrescriptionAttachmentsSheetWidget(items: items),
+    );
+  }
+
+  List<AttachmentRowItem> _buildAttachmentItems(BuildContext context, PharmacyOrderModel order) {
+    final items = <AttachmentRowItem>[];
+
+    if (order.prescriptionAttachments?.isNotEmpty == true) {
+      items.add(AttachmentRowItem(
+        icon: Icons.description_outlined,
+        label: Translate.s.prescription_attachments,
+        onTap: () => _openAttachmentImages(
+          context,
+          Translate.s.prescription_attachments,
+          order.prescriptionAttachments!
+              .where((a) => a.type == 'image')
+              .map((a) => a.url)
+              .toList(),
+        ),
+      ));
+    }
+
+    if (order.insuranceAttachments?.isNotEmpty == true) {
+      items.add(AttachmentRowItem(
+        icon: Icons.shield_outlined,
+        label: Translate.s.insurance_attachments,
+        onTap: () => _openAttachmentImages(
+          context,
+          Translate.s.insurance_attachments,
+          order.insuranceAttachments!
+              .where((a) => a.type == 'image')
+              .map((a) => a.url)
+              .toList(),
+        ),
+      ));
+    }
+
+    if (order.insuranceCompany != null) {
+      items.add(AttachmentRowItem(
+        icon: Icons.business_outlined,
+        label: Translate.s.insurance_company,
+        onTap: () => _showInsuranceCompanySheet(context, order.insuranceCompany!),
+      ));
+    }
+
+    if (order.identityDocumentFile != null) {
+      items.add(AttachmentRowItem(
+        icon: Icons.badge_outlined,
+        label: Translate.s.identity_document,
+        onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: order.identityDocumentFile!)),
+      ));
+    }
+
+    return items;
+  }
+
+  void _openAttachmentImages(BuildContext context, String title, List<String> imageUrls) {
+    if (imageUrls.isEmpty) return;
+    if (imageUrls.length == 1) {
+      AutoRouter.of(context).push(ImageZoomRoute(image: imageUrls.first));
+    } else {
+      AppBottomSheets.showScrollableBodyFixedHeaderSheet(
+        context: context,
+        builder: (sheetContext) => PrescriptionImageViewerSheetWidget(
+          title: title,
+          urls: imageUrls,
+        ),
+      );
+    }
+  }
+
+  void _showInsuranceCompanySheet(BuildContext context, InsuranceCompanyModel company) {
+    AppBottomSheets.showScrollableBodyFixedHeaderSheet(
+      context: context,
+      builder: (sheetContext) =>
+          PrescriptionInsuranceCompanySheetWidget(company: company),
+    );
+  }
+
+  void dispose() {
+    insuranceDiscountController.dispose();
+    bagsCountController.dispose();
+    itemCoverageController.dispose();
+    itemInstructionsController.dispose();
+  }
 
   Future<void> scanAndAddProduct(BuildContext context) async {
-    // final String? barcode = await getIt<BarcodeService>().scanBarcode(context);
-    // if (barcode == null || barcode.isEmpty) return;
+    final String? barcode = await getIt<BarcodeService>().scanBarcode(context);
+    if (barcode == null || barcode.isEmpty) return;
 
-    await _searchAndAddByBarcode(context, "11135");
+    // await _searchAndAddByBarcode(context, "11135");
+    await _searchAndAddByBarcode(context, barcode);
   }
 
   Future<void> _searchAndAddByBarcode(
@@ -53,9 +429,7 @@ class PrescriptionOrderController {
     );
   }
 
-  /// same product can come back with several variants (pack sizes, etc) --
-  /// when there's more than one, let the picker choose which ones to add
-  /// instead of silently assuming the first.
+
   void _handleScannedProduct(BuildContext context, SearchBarcodeModel data) {
     final variants = data.variants;
     if (variants != null && variants.length > 1) {
@@ -119,6 +493,7 @@ class PrescriptionOrderController {
       newVariantId: variant.id,
       addedVariantId: variant.id,
       pickerNotes: "",
+      currentStock: variant.currentStock,
       product: ProductModel(
         id: data.id,
         name: data.name,
@@ -136,6 +511,14 @@ class PrescriptionOrderController {
 
   void updateQuantity(OrderDetailsModel item, int newQuantity) {
     if (newQuantity < 1) return;
+    final stock = item.currentStock;
+    if (stock != null && newQuantity > stock) {
+      AppSnackBar.showSimpleToast(
+        msg: Translate.s.only_stock_available(stock.toString()),
+        type: ToastType.error,
+      );
+      return;
+    }
     final index =
         ordersDetails.indexWhere((e) => e.addedVariantId == item.addedVariantId);
     if (index == -1) return;
@@ -148,5 +531,8 @@ class PrescriptionOrderController {
     _refresh();
   }
 
-  void _refresh() => ordersDetailsCubit.successState(List.of(ordersDetails));
+  void _refresh() {
+    ordersProductsCubit.successState(List.of(ordersDetails));
+    _saveLocal();
+  }
 }

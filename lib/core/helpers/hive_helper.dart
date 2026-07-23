@@ -127,6 +127,8 @@ class HiveBoxesNames{
 
   static const String orders = "orders";
 
+  static const String prescriptionOrderDetails = "prescriptionOrderDetails";
+
 }
 
 class HiveBoxesKeys{

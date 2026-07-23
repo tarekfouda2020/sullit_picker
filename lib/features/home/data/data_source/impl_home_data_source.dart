@@ -15,6 +15,10 @@ import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
+import 'package:flutter_tdd/features/home/data/model/accept_prescription_preview_model/accept_prescription_preview_model.dart';
+import 'package:flutter_tdd/features/home/data/model/prescription_order_details/pharmacy_order_model.dart';
+import 'package:flutter_tdd/features/orders/domain/params/prescription_preview_params.dart';
+import 'package:flutter_tdd/features/orders/domain/params/accept_prescription_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 import 'package:injectable/injectable.dart';
@@ -135,6 +139,7 @@ class ImplHomeDataSource extends HomeDataSource {
       requestMethod: RequestMethod.get,
       toJsonFunc: (data) => SearchBarcodeModel.fromJson(data),
       responseKey: (data) => data['data'],
+      errorFunc: (data)=> data['message'],
       refresh: params.refresh,
     );
     return await GenericHttpImpl<SearchBarcodeModel>()(model);
@@ -196,5 +201,49 @@ class ImplHomeDataSource extends HomeDataSource {
       showErrorMessage: false
     );
     return await GenericHttpImpl<String>()(model);
+  }
+
+  @override
+  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.showOrders(id),
+      responseType: ResType.model,
+      requestMethod: RequestMethod.get,
+      responseKey: (data) => data['data'],
+      toJsonFunc: (data) => PharmacyOrderModel.fromJson(data),
+      refresh: true,
+    );
+    return await GenericHttpImpl<PharmacyOrderModel>()(model);
+  }
+
+  @override
+  Future<MyResult<String>> acceptPrescription(
+      AcceptPrescriptionParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.acceptPrescription(params.orderId),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.type,
+      responseKey: (data) => data['key'],
+      requestBody: params.toJson(),
+      isFormData: true,
+    );
+    return await GenericHttpImpl<String>()(model);
+  }
+
+  @override
+  Future<MyResult<AcceptPrescriptionPreviewModel>> acceptPrescriptionPreview(
+      PrescriptionPreviewParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.acceptPrescriptionPreview(params.orderId),
+      requestMethod: RequestMethod.post,
+      responseType: ResType.model,
+      responseKey: (data) => data['data'],
+      requestBody: params.toJson(),
+      isFormData: true,
+      showLoader: true,
+      refresh: true,
+      toJsonFunc: (data) => AcceptPrescriptionPreviewModel.fromJson(data),
+    );
+    return await GenericHttpImpl<AcceptPrescriptionPreviewModel>()(model);
   }
 }

@@ -4219,6 +4219,146 @@ class S {
       args: [],
     );
   }
+
+  /// `Unit Price`
+  String get unit_price {
+    return Intl.message(
+      'Unit Price',
+      name: 'unit_price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Discount`
+  String get insurance_discount {
+    return Intl.message(
+      'Insurance Discount',
+      name: 'insurance_discount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter insurance discount amount`
+  String get enter_insurance_discount {
+    return Intl.message(
+      'Enter insurance discount amount',
+      name: 'enter_insurance_discount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Coverage %`
+  String get insurance_coverage {
+    return Intl.message(
+      'Insurance Coverage %',
+      name: 'insurance_coverage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter coverage percentage (0-100)`
+  String get enter_insurance_coverage {
+    return Intl.message(
+      'Enter coverage percentage (0-100)',
+      name: 'enter_insurance_coverage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instructions`
+  String get instructions {
+    return Intl.message(
+      'Instructions',
+      name: 'instructions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter product instructions`
+  String get enter_instructions {
+    return Intl.message(
+      'Enter product instructions',
+      name: 'enter_instructions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter insurance coverage for all scanned items`
+  String get please_enter_insurance_coverage_for_all_items {
+    return Intl.message(
+      'Please enter insurance coverage for all scanned items',
+      name: 'please_enter_insurance_coverage_for_all_items',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prescription`
+  String get prescription_attachments {
+    return Intl.message(
+      'Prescription',
+      name: 'prescription_attachments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance`
+  String get insurance_attachments {
+    return Intl.message(
+      'Insurance',
+      name: 'insurance_attachments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insurance Company`
+  String get insurance_company {
+    return Intl.message(
+      'Insurance Company',
+      name: 'insurance_company',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Identity`
+  String get identity_document {
+    return Intl.message(
+      'Identity',
+      name: 'identity_document',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attachments`
+  String get attachments {
+    return Intl.message(
+      'Attachments',
+      name: 'attachments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Only {stock} available in stock`
+  String only_stock_available(Object stock) {
+    return Intl.message(
+      'Only $stock available in stock',
+      name: 'only_stock_available',
+      desc: '',
+      args: [stock],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

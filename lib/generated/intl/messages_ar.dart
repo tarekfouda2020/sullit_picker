@@ -24,7 +24,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(days) => "تنتهي خلال ${days} يوم";
 
-  static String m2(MB, files) =>
+  static String m2(stock) => "المخزون المتاح ${stock} فقط";
+
+  static String m3(MB, files) =>
       "يجب أن يكون حجم الملفات أقل من ${MB} ميجابايت، ${files}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -62,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "attach_driving_licensee":
             MessageLookupByLibrary.simpleMessage("إرفاق رخصة القيادة"),
         "attach_id": MessageLookupByLibrary.simpleMessage("إرفاق الهوية"),
+        "attachments": MessageLookupByLibrary.simpleMessage("المرفقات"),
         "available": MessageLookupByLibrary.simpleMessage("متاح"),
         "available_for_delivery":
             MessageLookupByLibrary.simpleMessage("متاح للتوصيل"),
@@ -186,6 +189,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "أدخل رمزك لإعادة تعيين كلمة المرور"),
         "enter_email_to_recover": MessageLookupByLibrary.simpleMessage(
             "أدخل بريدك الإلكتروني لاستعادة كلمة المرور"),
+        "enter_instructions":
+            MessageLookupByLibrary.simpleMessage("أدخل تعليمات المنتج"),
+        "enter_insurance_coverage":
+            MessageLookupByLibrary.simpleMessage("أدخل نسبة التغطية (0-100)"),
+        "enter_insurance_discount":
+            MessageLookupByLibrary.simpleMessage("أدخل قيمة خصم التأمين"),
         "enter_new_price":
             MessageLookupByLibrary.simpleMessage("أدخل السعر الجديد"),
         "enter_new_weight":
@@ -265,7 +274,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "how_you_want_to_work":
             MessageLookupByLibrary.simpleMessage("كيف تريد أن تعمل؟"),
         "id": MessageLookupByLibrary.simpleMessage("الهوية"),
+        "identity_document": MessageLookupByLibrary.simpleMessage("الهوية"),
         "in_progress": MessageLookupByLibrary.simpleMessage("قيد التنفيذ"),
+        "instructions": MessageLookupByLibrary.simpleMessage("التعليمات"),
+        "insurance_attachments":
+            MessageLookupByLibrary.simpleMessage("التأمين"),
+        "insurance_company":
+            MessageLookupByLibrary.simpleMessage("شركة التأمين"),
+        "insurance_coverage":
+            MessageLookupByLibrary.simpleMessage("نسبة تغطية التأمين %"),
+        "insurance_discount":
+            MessageLookupByLibrary.simpleMessage("خصم التأمين"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("متصل بالإنترنت"),
         "is_price_equal":
@@ -392,6 +411,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "offline": MessageLookupByLibrary.simpleMessage("غير متصل"),
         "one_hour_ago": MessageLookupByLibrary.simpleMessage("منذ ساعة واحدة"),
         "online": MessageLookupByLibrary.simpleMessage("متصل"),
+        "only_stock_available": m2,
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "order_accepted_failed":
             MessageLookupByLibrary.simpleMessage("فشل قبول الطلب"),
@@ -468,6 +488,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى تفعيل إذن الموقع"),
         "please_enter_a_valid_number":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم صالح"),
+        "please_enter_insurance_coverage_for_all_items":
+            MessageLookupByLibrary.simpleMessage(
+                "يرجى إدخال نسبة تغطية التأمين لجميع المنتجات الممسوحة"),
         "please_enter_valid_email": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال بريد إلكتروني صالح"),
         "please_select_back_id_card_image":
@@ -484,6 +507,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى التحقق من البريد الإلكتروني"),
         "please_verify_phone_number":
             MessageLookupByLibrary.simpleMessage("يرجى التحقق من رقم الهاتف"),
+        "prescription_attachments":
+            MessageLookupByLibrary.simpleMessage("الوصفة الطبية"),
         "previous_orders":
             MessageLookupByLibrary.simpleMessage("الطلبات السابقة"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
@@ -563,7 +588,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "show_less": MessageLookupByLibrary.simpleMessage("عرض أقل"),
         "show_more": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
-        "size_more_than_mg_error": m2,
+        "size_more_than_mg_error": m3,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
         "start_delivering":
@@ -610,6 +635,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "try_again": MessageLookupByLibrary.simpleMessage("حاول مرة أخرى"),
         "type": MessageLookupByLibrary.simpleMessage("النوع"),
         "unavailable": MessageLookupByLibrary.simpleMessage("غير متاح"),
+        "unit_price": MessageLookupByLibrary.simpleMessage("سعر الوحدة"),
         "united_arab_emirates_dubai": MessageLookupByLibrary.simpleMessage(
             "الإمارات العربية المتحدة، دبي"),
         "unpaid": MessageLookupByLibrary.simpleMessage("غير مدفوع"),

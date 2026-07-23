@@ -67,6 +67,33 @@ mixin _$OrderDetailsModel {
   @JsonKey(name: 'old_replaced_model')
   set oldReplacedModel(OldReplacedModel? value) =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+  String? get insuranceCoveragePercentageApi =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+  set insuranceCoveragePercentageApi(String? value) =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'instructions', defaultValue: null)
+  String? get instructionsApi => throw _privateConstructorUsedError;
+  @JsonKey(name: 'instructions', defaultValue: null)
+  set instructionsApi(String? value) => throw _privateConstructorUsedError;
+
+  /// prescription order local fields
+  @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+  double? get insuranceCoveragePercentage => throw _privateConstructorUsedError;
+
+  /// prescription order local fields
+  @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+  set insuranceCoveragePercentage(double? value) =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'instructions_local', defaultValue: null)
+  String? get instructions => throw _privateConstructorUsedError;
+  @JsonKey(name: 'instructions_local', defaultValue: null)
+  set instructions(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'current_stock', defaultValue: null)
+  int? get currentStock => throw _privateConstructorUsedError;
+  @JsonKey(name: 'current_stock', defaultValue: null)
+  set currentStock(int? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -94,7 +121,16 @@ abstract class $OrderDetailsModelCopyWith<$Res> {
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
       double? fixedUnitPrice,
       @JsonKey(name: 'fixed_qnt', defaultValue: 0) int? fixedQnt,
-      @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel});
+      @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel,
+      @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+      String? insuranceCoveragePercentageApi,
+      @JsonKey(name: 'instructions', defaultValue: null)
+      String? instructionsApi,
+      @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+      double? insuranceCoveragePercentage,
+      @JsonKey(name: 'instructions_local', defaultValue: null)
+      String? instructions,
+      @JsonKey(name: 'current_stock', defaultValue: null) int? currentStock});
 
   $ProductModelCopyWith<$Res>? get product;
   $OldReplacedModelCopyWith<$Res>? get oldReplacedModel;
@@ -126,6 +162,11 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
     Object? fixedUnitPrice = freezed,
     Object? fixedQnt = freezed,
     Object? oldReplacedModel = freezed,
+    Object? insuranceCoveragePercentageApi = freezed,
+    Object? instructionsApi = freezed,
+    Object? insuranceCoveragePercentage = freezed,
+    Object? instructions = freezed,
+    Object? currentStock = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -180,6 +221,26 @@ class _$OrderDetailsModelCopyWithImpl<$Res, $Val extends OrderDetailsModel>
           ? _value.oldReplacedModel
           : oldReplacedModel // ignore: cast_nullable_to_non_nullable
               as OldReplacedModel?,
+      insuranceCoveragePercentageApi: freezed == insuranceCoveragePercentageApi
+          ? _value.insuranceCoveragePercentageApi
+          : insuranceCoveragePercentageApi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instructionsApi: freezed == instructionsApi
+          ? _value.instructionsApi
+          : instructionsApi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      insuranceCoveragePercentage: freezed == insuranceCoveragePercentage
+          ? _value.insuranceCoveragePercentage
+          : insuranceCoveragePercentage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      instructions: freezed == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currentStock: freezed == currentStock
+          ? _value.currentStock
+          : currentStock // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
@@ -230,7 +291,16 @@ abstract class _$$OrderDetailsModelImplCopyWith<$Res>
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
       double? fixedUnitPrice,
       @JsonKey(name: 'fixed_qnt', defaultValue: 0) int? fixedQnt,
-      @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel});
+      @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel,
+      @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+      String? insuranceCoveragePercentageApi,
+      @JsonKey(name: 'instructions', defaultValue: null)
+      String? instructionsApi,
+      @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+      double? insuranceCoveragePercentage,
+      @JsonKey(name: 'instructions_local', defaultValue: null)
+      String? instructions,
+      @JsonKey(name: 'current_stock', defaultValue: null) int? currentStock});
 
   @override
   $ProductModelCopyWith<$Res>? get product;
@@ -262,6 +332,11 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
     Object? fixedUnitPrice = freezed,
     Object? fixedQnt = freezed,
     Object? oldReplacedModel = freezed,
+    Object? insuranceCoveragePercentageApi = freezed,
+    Object? instructionsApi = freezed,
+    Object? insuranceCoveragePercentage = freezed,
+    Object? instructions = freezed,
+    Object? currentStock = freezed,
   }) {
     return _then(_$OrderDetailsModelImpl(
       id: null == id
@@ -316,6 +391,26 @@ class __$$OrderDetailsModelImplCopyWithImpl<$Res>
           ? _value.oldReplacedModel
           : oldReplacedModel // ignore: cast_nullable_to_non_nullable
               as OldReplacedModel?,
+      insuranceCoveragePercentageApi: freezed == insuranceCoveragePercentageApi
+          ? _value.insuranceCoveragePercentageApi
+          : insuranceCoveragePercentageApi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instructionsApi: freezed == instructionsApi
+          ? _value.instructionsApi
+          : instructionsApi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      insuranceCoveragePercentage: freezed == insuranceCoveragePercentage
+          ? _value.insuranceCoveragePercentage
+          : insuranceCoveragePercentage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      instructions: freezed == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currentStock: freezed == currentStock
+          ? _value.currentStock
+          : currentStock // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -336,7 +431,15 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
       @JsonKey(name: "picker_notes", defaultValue: "") this.pickerNotes,
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0) this.fixedUnitPrice,
       @JsonKey(name: 'fixed_qnt', defaultValue: 0) this.fixedQnt,
-      @JsonKey(name: 'old_replaced_model') this.oldReplacedModel})
+      @JsonKey(name: 'old_replaced_model') this.oldReplacedModel,
+      @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+      this.insuranceCoveragePercentageApi,
+      @JsonKey(name: 'instructions', defaultValue: null) this.instructionsApi,
+      @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+      this.insuranceCoveragePercentage,
+      @JsonKey(name: 'instructions_local', defaultValue: null)
+      this.instructions,
+      @JsonKey(name: 'current_stock', defaultValue: null) this.currentStock})
       : super._();
 
   factory _$OrderDetailsModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -378,10 +481,27 @@ class _$OrderDetailsModelImpl extends _OrderDetailsModel {
   @override
   @JsonKey(name: 'old_replaced_model')
   OldReplacedModel? oldReplacedModel;
+  @override
+  @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+  String? insuranceCoveragePercentageApi;
+  @override
+  @JsonKey(name: 'instructions', defaultValue: null)
+  String? instructionsApi;
+
+  /// prescription order local fields
+  @override
+  @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+  double? insuranceCoveragePercentage;
+  @override
+  @JsonKey(name: 'instructions_local', defaultValue: null)
+  String? instructions;
+  @override
+  @JsonKey(name: 'current_stock', defaultValue: null)
+  int? currentStock;
 
   @override
   String toString() {
-    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes, fixedUnitPrice: $fixedUnitPrice, fixedQnt: $fixedQnt, oldReplacedModel: $oldReplacedModel)';
+    return 'OrderDetailsModel(id: $id, variation: $variation, quantity: $quantity, price: $price, unitPrice: $unitPrice, product: $product, newVariantId: $newVariantId, addedVariantId: $addedVariantId, newPrice: $newPrice, pickerNotes: $pickerNotes, fixedUnitPrice: $fixedUnitPrice, fixedQnt: $fixedQnt, oldReplacedModel: $oldReplacedModel, insuranceCoveragePercentageApi: $insuranceCoveragePercentageApi, instructionsApi: $instructionsApi, insuranceCoveragePercentage: $insuranceCoveragePercentage, instructions: $instructions, currentStock: $currentStock)';
   }
 
   @JsonKey(ignore: true)
@@ -414,8 +534,17 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
       @JsonKey(name: 'fixed_unit_price', defaultValue: 0.0)
       double? fixedUnitPrice,
       @JsonKey(name: 'fixed_qnt', defaultValue: 0) int? fixedQnt,
-      @JsonKey(name: 'old_replaced_model')
-      OldReplacedModel? oldReplacedModel}) = _$OrderDetailsModelImpl;
+      @JsonKey(name: 'old_replaced_model') OldReplacedModel? oldReplacedModel,
+      @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+      String? insuranceCoveragePercentageApi,
+      @JsonKey(name: 'instructions', defaultValue: null)
+      String? instructionsApi,
+      @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+      double? insuranceCoveragePercentage,
+      @JsonKey(name: 'instructions_local', defaultValue: null)
+      String? instructions,
+      @JsonKey(name: 'current_stock', defaultValue: null)
+      int? currentStock}) = _$OrderDetailsModelImpl;
   _OrderDetailsModel._() : super._();
 
   factory _OrderDetailsModel.fromJson(Map<String, dynamic> json) =
@@ -480,6 +609,35 @@ abstract class _OrderDetailsModel extends OrderDetailsModel {
   OldReplacedModel? get oldReplacedModel;
   @JsonKey(name: 'old_replaced_model')
   set oldReplacedModel(OldReplacedModel? value);
+  @override
+  @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+  String? get insuranceCoveragePercentageApi;
+  @JsonKey(name: 'insurance_coverage_percentage', defaultValue: null)
+  set insuranceCoveragePercentageApi(String? value);
+  @override
+  @JsonKey(name: 'instructions', defaultValue: null)
+  String? get instructionsApi;
+  @JsonKey(name: 'instructions', defaultValue: null)
+  set instructionsApi(String? value);
+  @override
+
+  /// prescription order local fields
+  @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+  double? get insuranceCoveragePercentage;
+
+  /// prescription order local fields
+  @JsonKey(name: 'insurance_coverage_percentage_local', defaultValue: null)
+  set insuranceCoveragePercentage(double? value);
+  @override
+  @JsonKey(name: 'instructions_local', defaultValue: null)
+  String? get instructions;
+  @JsonKey(name: 'instructions_local', defaultValue: null)
+  set instructions(String? value);
+  @override
+  @JsonKey(name: 'current_stock', defaultValue: null)
+  int? get currentStock;
+  @JsonKey(name: 'current_stock', defaultValue: null)
+  set currentStock(int? value);
   @override
   @JsonKey(ignore: true)
   _$$OrderDetailsModelImplCopyWith<_$OrderDetailsModelImpl> get copyWith =>

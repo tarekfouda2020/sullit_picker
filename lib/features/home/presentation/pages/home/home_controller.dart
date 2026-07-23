@@ -100,13 +100,15 @@ class HomeController {
     List<OrderModel> localAssignedOrders =
         getIt<OrdersHelper>().getAssignedOrders();
     if (remoteData != null) {
-      List<OrderModel> remoteAssignedOrders = remoteData.assignedOrders;
-      Set<int> remoteAssignedIds =
-          remoteAssignedOrders.map((e) => e.id).toSet();
-      localAssignedOrders
-          .removeWhere((element) => !remoteAssignedIds.contains(element.id));
+      final Map<int, OrderModel> localById = {
+        for (final OrderModel o in localAssignedOrders) o.id: o
+      };
+      // keep local version when exists (preserves picker state), add remote otherwise
+      final List<OrderModel> merged = remoteData.assignedOrders
+          .map((remote) => localById[remote.id] ?? remote)
+          .toList();
       getIt<OrdersHelper>().ordersListCubit.successState(remoteData);
-      getIt<OrdersHelper>().saveAssignedOrders(localAssignedOrders);
+      getIt<OrdersHelper>().saveAssignedOrders(merged);
     } else {
       getIt<OrdersHelper>().saveAssignedOrders([]);
     }
@@ -154,14 +156,16 @@ class HomeController {
   }
 
   Future<void> acceptOrder(BuildContext context, OrderModel data) async {
+    if(data.isPharm && data.isPendingReview){
+      AutoRouter.of(context).push(PrescriptionOrderRoute(orderId: data.id));
+      return ;
+    }
+
     if (data.isAssigned) {
         await _routeToOrderDetails(context, data);
       return;
     }
-    if(data.isPharm){
-      AutoRouter.of(context).push(const PrescriptionOrderRoute());
-      return ;
-    }
+
 
     getIt<LoadingHelper>().showLoadingDialog();
     var result =

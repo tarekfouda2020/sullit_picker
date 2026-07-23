@@ -33,7 +33,7 @@ class VariantModel with _$VariantModel {
     @JsonKey(name: 'calculable_price') required String calculablePrice,
     @JsonKey(name: 'main_price') required String mainPrice,
     @JsonKey(name: 'original_price') required String originalPrice,
-    @JsonKey(name: 'current_stock') required int currentStock,
+    @JsonKey(name: 'current_stock') @Default(null) int? currentStock,
     @JsonKey(name: 'currency_symbol') required String currencySymbol,
     @JsonKey(name: 'has_discount') required bool hasDiscount,
     required String image,
