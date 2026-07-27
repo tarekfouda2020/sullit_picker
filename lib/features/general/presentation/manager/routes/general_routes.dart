@@ -6,4 +6,5 @@ final List<AutoRoute>  generalRoutes = [
   AdaptiveRoute(page: TermsConditionsPageRoute.page),
   AdaptiveRoute(page: ContactUsPageRoute.page),
   AdaptiveRoute(page: ImageZoomRoute.page),
+  AdaptiveRoute(page: PdfViewRoute.page),
 ];

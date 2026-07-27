@@ -62,6 +62,7 @@ class _PickItemWidgetState extends State<PickItemWidget> {
                 style: AppTextStyle.s18_w500(color: context.colors.simiGray),
               ),
             ),
+            if(widget.controller.showActions)
             Visibility(
               visible: widget.orderDetails.product!.productStatus!.shouldShowDeleteIcon,
               child: GestureDetector(
@@ -77,6 +78,7 @@ class _PickItemWidgetState extends State<PickItemWidget> {
           ],
         ),
         Gaps.vGap12,
+
         CardPickedRatioWidget(
           pickedPercentage: widget.orderDetails.product!.productPickedPercent!,
           child: Stack(
@@ -86,6 +88,7 @@ class _PickItemWidgetState extends State<PickItemWidget> {
                 data: widget.orderDetails,
                 loadingCubit: loadingCubit,
               ),
+              if(widget.controller.showActions)
               Visibility(
                 visible: widget
                     .orderDetails.product!.productStatus!.shouldShowStatus,

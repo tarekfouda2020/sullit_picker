@@ -9,7 +9,6 @@ import 'package:flutter_tdd/features/home/data/data_source/home_data_source.dart
 import 'package:flutter_tdd/features/home/data/model/available_for_order_model/available_for_order_model.dart';
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
-import 'package:flutter_tdd/features/home/data/model/report_reason_model/report_reason_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
@@ -21,6 +20,7 @@ import 'package:flutter_tdd/features/orders/domain/params/prescription_preview_p
 import 'package:flutter_tdd/features/orders/domain/params/accept_prescription_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/product_search_params.dart';
 import 'package:injectable/injectable.dart';
 
 import '../model/invoice_preview_model/invoice_preview_model.dart';
@@ -231,6 +231,23 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
+  Future<MyResult<List<SearchBarcodeModel>>> searchProducts(
+      ProductSearchParams params) async {
+    HttpRequestModel model = HttpRequestModel(
+      url: ApiNames.searchProducts,
+      responseType: ResType.list,
+      requestMethod: RequestMethod.get,
+      requestBody: params.toJson(),
+      refresh: params.paginParams.refresh,
+      responseKey: (data) => data['data']['products'],
+      toJsonFunc: (data) => List<SearchBarcodeModel>.from(
+          data.map((item) => SearchBarcodeModel.fromJson(item))
+      ),
+    );
+    return await GenericHttpImpl<List<SearchBarcodeModel>>()(model);
+  }
+
+  @override
   Future<MyResult<AcceptPrescriptionPreviewModel>> acceptPrescriptionPreview(
       PrescriptionPreviewParams params) async {
     HttpRequestModel model = HttpRequestModel(
@@ -240,8 +257,6 @@ class ImplHomeDataSource extends HomeDataSource {
       responseKey: (data) => data['data'],
       requestBody: params.toJson(),
       isFormData: true,
-      showLoader: true,
-      refresh: true,
       toJsonFunc: (data) => AcceptPrescriptionPreviewModel.fromJson(data),
     );
     return await GenericHttpImpl<AcceptPrescriptionPreviewModel>()(model);

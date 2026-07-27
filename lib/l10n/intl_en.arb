@@ -319,6 +319,12 @@
   "prescription_order": "Prescription Order",
   "scan_barcode": "Scan Barcode",
   "no_products_scanned_yet": "No products scanned yet",
+  "search_products": "Search for products",
+  "no_search_results": "No results found",
+  "save_image": "Save Image",
+  "share_image": "Share Image",
+  "image_saved_successfully": "Image saved to gallery",
+  "failed_to_save_image": "Failed to save image",
   "send_to_cashier": "Send to cashier",
   "dispatch": "Dispatch",
   "cancel_order": "Cancel Order",
@@ -430,5 +436,12 @@
   "insurance_company": "Insurance Company",
   "identity_document": "Identity",
   "attachments": "Attachments",
-  "only_stock_available": "Only {stock} available in stock"
+  "only_stock_available": "Only {stock} available in stock",
+  "please_add_items_first": "Please add items to the order first",
+  "awaiting_customer_confirmation": "Awaiting customer to confirm the order",
+  "dispatch_order": "Dispatch Order",
+  "save_pdf": "Save PDF",
+  "share_pdf": "Share PDF",
+  "pdf_saved_successfully": "PDF saved successfully",
+  "failed_to_save_pdf": "Failed to save PDF"
 }

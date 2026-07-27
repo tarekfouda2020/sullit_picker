@@ -63,6 +63,10 @@ class PharmacyOrderModel with _$PharmacyOrderModel {
 
   bool get awaitingCustomerCompletion => base.awaitingCustomerCompletion ?? false;
 
+  bool get isPaid => base.paymentStatus == true;
+
+  bool get isCashOnDelivery => paymentMethodKey == 'cash_on_delivery';
+
   bool get requiresPrescriptionReview => base.requiresPrescriptionReview ?? false;
 
   bool get insuranceApplied => base.insuranceApplied ?? false;

@@ -72,6 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("متاح لاستقبال الطلبات"),
         "available_for_rides":
             MessageLookupByLibrary.simpleMessage("متاح للرحلات"),
+        "awaiting_customer_confirmation": MessageLookupByLibrary.simpleMessage(
+            "في انتظار تأكيد العميل للطلب"),
         "back_again_to_exit":
             MessageLookupByLibrary.simpleMessage("اضغط مرة أخرى للخروج"),
         "back_to_login":
@@ -166,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "device_token_error": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ أثناء الحصول على معلومات جهازك. يرجى المحاولة لاحقًا."),
         "dispatch": MessageLookupByLibrary.simpleMessage("إرسال"),
+        "dispatch_order": MessageLookupByLibrary.simpleMessage("إرسال الطلب"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
         "driver": MessageLookupByLibrary.simpleMessage("السائق"),
         "driver_profile":
@@ -248,6 +251,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "failed_orders":
             MessageLookupByLibrary.simpleMessage("الطلبات الفاشلة"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("سبب الفشل"),
+        "failed_to_save_image":
+            MessageLookupByLibrary.simpleMessage("فشل حفظ الصورة"),
+        "failed_to_save_pdf":
+            MessageLookupByLibrary.simpleMessage("فشل حفظ PDF"),
         "failed_to_update_location":
             MessageLookupByLibrary.simpleMessage("فشل في تحديث الموقع"),
         "failureActions": MessageLookupByLibrary.simpleMessage("إجراءات الفشل"),
@@ -275,6 +282,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كيف تريد أن تعمل؟"),
         "id": MessageLookupByLibrary.simpleMessage("الهوية"),
         "identity_document": MessageLookupByLibrary.simpleMessage("الهوية"),
+        "image_saved_successfully":
+            MessageLookupByLibrary.simpleMessage("تم حفظ الصورة في المعرض"),
         "in_progress": MessageLookupByLibrary.simpleMessage("قيد التنفيذ"),
         "instructions": MessageLookupByLibrary.simpleMessage("التعليمات"),
         "insurance_attachments":
@@ -390,6 +399,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا توجد طلبات متاحة"),
         "no_plans_found":
             MessageLookupByLibrary.simpleMessage("لم يتم العثور على خطط"),
+        "no_search_results":
+            MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
         "no_terms_yet":
             MessageLookupByLibrary.simpleMessage("لا توجد شروط بعد"),
         "no_transactions_description": MessageLookupByLibrary.simpleMessage(
@@ -462,6 +473,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "payment_method": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
         "payment_successful":
             MessageLookupByLibrary.simpleMessage("تم الدفع بنجاح"),
+        "pdf_saved_successfully":
+            MessageLookupByLibrary.simpleMessage("تم حفظ PDF بنجاح"),
         "pending": MessageLookupByLibrary.simpleMessage("في الانتظار"),
         "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
         "phoneValidation":
@@ -480,6 +493,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عنوان الاستلام"),
         "please_accept_terms": MessageLookupByLibrary.simpleMessage(
             "يرجى قبول الشروط والأحكام للمتابعة"),
+        "please_add_items_first": MessageLookupByLibrary.simpleMessage(
+            "يرجى إضافة منتجات للطلب أولاً"),
         "please_define_work_type":
             MessageLookupByLibrary.simpleMessage("يرجى تحديد نوع العمل"),
         "please_describe_problem": MessageLookupByLibrary.simpleMessage(
@@ -569,8 +584,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
         "return_key": MessageLookupByLibrary.simpleMessage("إرجاع"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
+        "save_image": MessageLookupByLibrary.simpleMessage("حفظ الصورة"),
+        "save_pdf": MessageLookupByLibrary.simpleMessage("حفظ PDF"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "search_hint": MessageLookupByLibrary.simpleMessage("بحث..."),
+        "search_products":
+            MessageLookupByLibrary.simpleMessage("ابحث عن منتجات"),
         "seconds": MessageLookupByLibrary.simpleMessage("ثواني"),
         "seconds_ago": MessageLookupByLibrary.simpleMessage("منذ ثوانٍ"),
         "select_country": MessageLookupByLibrary.simpleMessage("اختر الدولة"),
@@ -586,6 +605,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_new_password":
             MessageLookupByLibrary.simpleMessage("تعيين كلمة مرور جديدة"),
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "share_image": MessageLookupByLibrary.simpleMessage("مشاركة الصورة"),
+        "share_pdf": MessageLookupByLibrary.simpleMessage("مشاركة PDF"),
         "show_less": MessageLookupByLibrary.simpleMessage("عرض أقل"),
         "show_more": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
         "size_more_than_mg_error": m3,

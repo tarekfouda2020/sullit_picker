@@ -29,6 +29,7 @@ class ApiNames {
   static String acceptOrder(int id) => "${appApi}orders/$id/accept";
   static String searchByBarcode(String barcode) =>
       "${appApi}products/search-by-barcode?barcode=$barcode";
+  static String searchProducts = "${appApi}products";
   static String prepareOrder(int id) => "${appApi}orders/$id/prepare";
   static String updateInvoice(int id) => "${appApi}orders/$id/prepare-preview";
   static String acceptPrescriptionPreview(int id) => "${appApi}orders/$id/accept-prescription-preview";

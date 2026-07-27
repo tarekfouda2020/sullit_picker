@@ -23,6 +23,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool? showBack;
   final bool? centerTitle;
   final Color? bgColor;
+  final Color? backColor;
   final Color? shadowColor;
   final bool? removeBgColorInScroll;
   final void Function()? onPressBack;
@@ -36,6 +37,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showBack = true,
     this.centerTitle,
     this.bgColor,
+    this.backColor,
     this.leadingWidth,
     this.onPressBack,
     this.elevation,
@@ -66,7 +68,11 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
             child: IconButton(
               icon: Transform.rotate(
                 angle: lang == ApplicationConstants.langAR ? pi : 0,
-                  child: SvgPicture.asset(Res.shortArrow)),
+                  child: SvgPicture.asset(Res.shortArrow,
+                   colorFilter: backColor!= null
+                       ? ColorFilter.mode(backColor!, BlendMode.srcIn)
+                       :null,
+                  )),
               onPressed: onPressBack ?? () => AutoRouter.of(context).maybePop(),
             ),
           ),

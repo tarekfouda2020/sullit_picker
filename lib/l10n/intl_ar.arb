@@ -431,5 +431,18 @@
   "insurance_company": "شركة التأمين",
   "identity_document": "الهوية",
   "attachments": "المرفقات",
-  "only_stock_available": "المخزون المتاح {stock} فقط"
+  "only_stock_available": "المخزون المتاح {stock} فقط",
+  "search_products": "ابحث عن منتجات",
+  "no_search_results": "لا توجد نتائج",
+  "save_image": "حفظ الصورة",
+  "share_image": "مشاركة الصورة",
+  "image_saved_successfully": "تم حفظ الصورة في المعرض",
+  "failed_to_save_image": "فشل حفظ الصورة",
+  "please_add_items_first": "يرجى إضافة منتجات للطلب أولاً",
+  "awaiting_customer_confirmation": "في انتظار تأكيد العميل للطلب",
+  "dispatch_order": "إرسال الطلب",
+  "save_pdf": "حفظ PDF",
+  "share_pdf": "مشاركة PDF",
+  "pdf_saved_successfully": "تم حفظ PDF بنجاح",
+  "failed_to_save_pdf": "فشل حفظ PDF"
 }

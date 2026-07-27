@@ -15,8 +15,11 @@ class Get extends DioHelper {
   @override
   Future<MyResult<Response>> call(RequestBodyModel params) async {
     try {
-      var response = await dio.get(params.url,
-          options: getIt<DioOptions>()(forceRefresh: params.forceRefresh));
+      var response = await dio.get(
+          params.url,
+          queryParameters: params.body,
+          options: getIt<DioOptions>()(forceRefresh: params.forceRefresh)
+      );
       return getIt<HandleErrors>().statusError(response, params.errorFunc);
     } on DioException catch (e) {
       getIt<HandleErrors>().catchError(errorFunc: params.errorFunc, response: e.response);

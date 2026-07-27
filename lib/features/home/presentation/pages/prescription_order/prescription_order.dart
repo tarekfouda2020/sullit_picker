@@ -41,39 +41,41 @@ class _PrescriptionOrderState extends State<PrescriptionOrder> {
             getCount: controller.attachmentCount,
           ),
           Gaps.vGap10,
+          PrescriptionSearchHintLoaderWidget(controller: controller),
           Expanded(
               child: BaseBlocBuilder<List<OrderDetailsModel>>(
                 bloc: controller.ordersProductsCubit,
                 onLoadingWidget: (_) => const PrescriptionProductsShimmerWidget(),
-                onSuccessWidget: (items) => items.isEmpty
-                    ? _buildEmptyState(context)
-                    : ListView.builder(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        itemCount: items.length,
-                        itemBuilder: (context, index) {
-                          OrderDetailsModel item = items[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: ScannedProductItemWidget(
-                              data: item,
-                              onIncrement: () => controller.updateQuantity(
-                                  item, item.quantity + 1),
-                              onDecrement: () => controller.updateQuantity(
-                                  item, item.quantity - 1),
-                              onRemove: () => controller.removeItem(item),
-                              onInsuranceCoverage: () => controller.showItemInsuranceCoverageDialog(context, item),
-                              onInstructions: () => controller.showItemInstructionsDialog(context, item),
-                            ),
-                          );
-                        },
-                      ),
+                onSuccessWidget: (items) {
+                  final bool readOnly = !controller.isEditing;
+                  return items.isEmpty
+                      ? _buildEmptyState(context)
+                      : ListView.builder(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          itemCount: items.length,
+                          itemBuilder: (context, index) {
+                            OrderDetailsModel item = items[index];
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: ScannedProductItemWidget(
+                                data: item,
+                                readOnly: readOnly,
+                                onIncrement: () => controller.updateQuantity(
+                                    item, item.quantity + 1),
+                                onDecrement: () => controller.updateQuantity(
+                                    item, item.quantity - 1),
+                                onRemove: () => controller.removeItem(item),
+                                onInsuranceCoverage: () => controller.showItemInsuranceCoverageDialog(context, item),
+                                onInstructions: () => controller.showItemInstructionsDialog(context, item),
+                              ),
+                            );
+                          },
+                        );
+                },
               ),
             ),
             Gaps.vGap20,
-            PrescrptionBottomNavWidget(
-              onScanProduct: () => controller.scanAndAddProduct(context),
-              onConfirmOrder: () => controller.onCompleteOrderPressed(context),
-            ),
+            PrescriptionBottomNavLoaderWidget(controller: controller),
             Gaps.vGap10,
 
           ],

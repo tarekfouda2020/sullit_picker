@@ -1,8 +1,4 @@
-import 'package:auto_route/annotations.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_tdd/core/constants/dimens.dart';
-import 'package:photo_view/photo_view.dart';
+part of 'image_zoom_imports.dart';
 
 @RoutePage(name: "ImageZoomRoute")
 class ImageZoom extends StatefulWidget {
@@ -15,6 +11,9 @@ class ImageZoom extends StatefulWidget {
 }
 
 class _ImageZoomState extends State<ImageZoom> {
+
+  final ImageZoomController controller = ImageZoomController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,19 +22,27 @@ class _ImageZoomState extends State<ImageZoom> {
         backgroundColor: Colors.black,
         elevation: 0,
         leading: InkWell(
+          onTap: () => Navigator.of(context).pop(),
           child: Icon(
             Icons.arrow_back_ios,
             size: Dimens.dp20.sp,
             color: Colors.white,
           ),
-          onTap: () => Navigator.of(context).pop(),
         ),
+        actions: [
+          ImageZoomSaveButtonWidget(controller: controller),
+          ImageZoomShareButtonWidget(controller: controller),
+        ],
       ),
-      body: Container(
-        alignment: Alignment.center,
-        child: PhotoView(
-          backgroundDecoration: const BoxDecoration(color: Colors.black87),
-          imageProvider: NetworkImage(widget.image),
+      body: RepaintBoundary(
+        key: controller.repaintKey,
+        child: Container(
+          color: Colors.black87,
+          alignment: Alignment.center,
+          child: PhotoView(
+            backgroundDecoration: const BoxDecoration(color: Colors.black87),
+            imageProvider: NetworkImage(widget.image),
+          ),
         ),
       ),
     );

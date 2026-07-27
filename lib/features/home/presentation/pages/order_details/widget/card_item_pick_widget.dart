@@ -44,12 +44,14 @@ class CardItemPickWidget extends StatelessWidget {
                 loadingCubit: loadingCubit,
               ),
               BarcodePriceWidget(data: data),
+              if(controller.showActions)
               Divider(
                 color: context.colors.disableGray,
                 thickness: 1.3,
               )
             ],
           ),
+          if(controller.showActions)
           PickItemButtonWidget(
               controller: controller, data: data, loadingCubit: loadingCubit),
           Gaps.vGap10,
@@ -61,7 +63,9 @@ class CardItemPickWidget extends StatelessWidget {
                     controller.returnPickedItem(context, data, loadingCubit)),
           // if( data.product!.modified)
           //   ReturnItemButtonWidget(onPress:() => controller.returnPickedItem(context,data)),
+          if(controller.showActions)
           Gaps.vGap13,
+          if(controller.showActions)
           Text(
             '${Translate.s.picked} ${data.product!.productPickedPercent!.toStringAsFixed(2)}%',
             style: AppTextStyle.s14_w400(color: context.colors.textColor),

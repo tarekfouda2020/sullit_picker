@@ -12,4 +12,10 @@ class GenericPaginateParams {
   });
 
   String paramsToQuery() => "?paginate=$pageSize&page=$currentPage";
+
+
+    Map<String, dynamic> toJson() => {
+      'paginate': pageSize,
+      'page': currentPage,
+    };
 }

@@ -14,6 +14,7 @@ class ScannedProductItemWidget extends StatelessWidget {
   final VoidCallback onRemove;
   final VoidCallback onInsuranceCoverage;
   final VoidCallback onInstructions;
+  final bool readOnly;
 
   const ScannedProductItemWidget({
     super.key,
@@ -23,6 +24,7 @@ class ScannedProductItemWidget extends StatelessWidget {
     required this.onRemove,
     required this.onInsuranceCoverage,
     required this.onInstructions,
+    this.readOnly = false,
   });
 
   @override
@@ -39,14 +41,15 @@ class ScannedProductItemWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(child: ProductInfoWidget(data: data)),
-              GestureDetector(
-                onTap: onRemove,
-                child: const Icon(
-                  CupertinoIcons.trash,
-                  color: CupertinoColors.systemRed,
-                  size: 20,
+              if (!readOnly)
+                GestureDetector(
+                  onTap: onRemove,
+                  child: const Icon(
+                    CupertinoIcons.trash,
+                    color: CupertinoColors.systemRed,
+                    size: 20,
+                  ),
                 ),
-              ),
             ],
           ),
           Gaps.vGap10,
@@ -71,24 +74,31 @@ class ScannedProductItemWidget extends StatelessWidget {
           style: AppTextStyle.s14_w300(color: context.colors.simiGray),
         ),
         const Spacer(),
-        _buildStepperButton(
-          context,
-          icon: CupertinoIcons.minus,
-          onTap: onDecrement,
-        ),
-        SizedBox(
-          width: 40,
-          child: Text(
+        if (readOnly)
+          Text(
             "${data.quantity}",
-            textAlign: TextAlign.center,
             style: AppTextStyle.s16_w600(color: context.colors.black),
+          )
+        else ...[
+          _buildStepperButton(
+            context,
+            icon: CupertinoIcons.minus,
+            onTap: onDecrement,
           ),
-        ),
-        _buildStepperButton(
-          context,
-          icon: CupertinoIcons.add,
-          onTap: onIncrement,
-        ),
+          SizedBox(
+            width: 40,
+            child: Text(
+              "${data.quantity}",
+              textAlign: TextAlign.center,
+              style: AppTextStyle.s16_w600(color: context.colors.black),
+            ),
+          ),
+          _buildStepperButton(
+            context,
+            icon: CupertinoIcons.add,
+            onTap: onIncrement,
+          ),
+        ],
       ],
     );
   }
@@ -146,7 +156,7 @@ class ScannedProductItemWidget extends StatelessWidget {
   }) {
     final Color color = filled ? context.colors.primary : context.colors.simiGray;
     return GestureDetector(
-      onTap: onTap,
+      onTap: readOnly ? null : onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(

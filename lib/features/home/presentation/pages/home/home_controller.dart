@@ -156,9 +156,9 @@ class HomeController {
   }
 
   Future<void> acceptOrder(BuildContext context, OrderModel data) async {
-    if(data.isPharm && data.isPendingReview){
+    if (data.isPharm && data.requiresPrescriptionReview == true) {
       AutoRouter.of(context).push(PrescriptionOrderRoute(orderId: data.id));
-      return ;
+      return;
     }
 
     if (data.isAssigned) {

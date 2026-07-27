@@ -3240,6 +3240,66 @@ class S {
     );
   }
 
+  /// `Search for products`
+  String get search_products {
+    return Intl.message(
+      'Search for products',
+      name: 'search_products',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No results found`
+  String get no_search_results {
+    return Intl.message(
+      'No results found',
+      name: 'no_search_results',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Image`
+  String get save_image {
+    return Intl.message(
+      'Save Image',
+      name: 'save_image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share Image`
+  String get share_image {
+    return Intl.message(
+      'Share Image',
+      name: 'share_image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Image saved to gallery`
+  String get image_saved_successfully {
+    return Intl.message(
+      'Image saved to gallery',
+      name: 'image_saved_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save image`
+  String get failed_to_save_image {
+    return Intl.message(
+      'Failed to save image',
+      name: 'failed_to_save_image',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Send to cashier`
   String get send_to_cashier {
     return Intl.message(
@@ -4357,6 +4417,76 @@ class S {
       name: 'only_stock_available',
       desc: '',
       args: [stock],
+    );
+  }
+
+  /// `Please add items to the order first`
+  String get please_add_items_first {
+    return Intl.message(
+      'Please add items to the order first',
+      name: 'please_add_items_first',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Awaiting customer to confirm the order`
+  String get awaiting_customer_confirmation {
+    return Intl.message(
+      'Awaiting customer to confirm the order',
+      name: 'awaiting_customer_confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dispatch Order`
+  String get dispatch_order {
+    return Intl.message(
+      'Dispatch Order',
+      name: 'dispatch_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save PDF`
+  String get save_pdf {
+    return Intl.message(
+      'Save PDF',
+      name: 'save_pdf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share PDF`
+  String get share_pdf {
+    return Intl.message(
+      'Share PDF',
+      name: 'share_pdf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PDF saved successfully`
+  String get pdf_saved_successfully {
+    return Intl.message(
+      'PDF saved successfully',
+      name: 'pdf_saved_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save PDF`
+  String get failed_to_save_pdf {
+    return Intl.message(
+      'Failed to save PDF',
+      name: 'failed_to_save_pdf',
+      desc: '',
+      args: [],
     );
   }
 }

@@ -45,6 +45,12 @@ class OrderDetailsController {
 
   OrderModel get getDetailsData => _detailsData;
 
+  bool get showActions =>
+      _detailsData.awaitingCustomerCompletion == false
+          && _detailsData.isPendingReview == false;
+
+  bool get _isPharmOrder => _detailsData.isPharm;
+
   void updateDetailsCubit({OrderModel? data}) =>
       detailsCubit.successState(data ?? _detailsData);
 
@@ -1040,12 +1046,16 @@ class OrderDetailsController {
   }
 
   void showBagsCountDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return BagsNumberDialogWidget(controller: this);
-      },
-    );
+    if(_isPharmOrder){
+      prepareOrder(context,doPop: false);
+    }else{
+      showDialog(
+        context: context,
+        builder: (context) {
+          return BagsNumberDialogWidget(controller: this);
+        },
+      );
+    }
   }
 
   void showDeletedProductsSheet(BuildContext context) {
@@ -1058,6 +1068,13 @@ class OrderDetailsController {
   }
 
   void sendToCashier() {
+    if(_isPharmOrder){
+      isAllPickedObs.setValue(true);
+      getIt<OrdersHelper>().saveOrderDetails(_detailsData);
+      return;
+    }
+
+
     if (isAllProductsPicked) {
       isAllPickedObs.setValue(true);
     }
@@ -1086,10 +1103,12 @@ class OrderDetailsController {
       .where((element) => element.remainQnt == 0)
       .length;
 
-  Future<void> prepareOrder(BuildContext context) async {
+  Future<void> prepareOrder(BuildContext context,{bool doPop = true}) async {
     int bagCount = bagsCountObs.getValue();
     if (bagCount > 0) {
+    if(doPop){
       Navigator.pop(context);
+    }
       getIt<LoadingHelper>().showLoadingDialog();
       final PrepareOrderParams params = _prepareOrderParams();
       final result = await getIt<HomeRepositories>().prepareOrder(params);

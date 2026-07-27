@@ -16,6 +16,7 @@ import 'package:flutter_tdd/features/orders/domain/params/accept_prescription_pa
 import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/product_search_params.dart';
 
 abstract class HomeDataSource {
   Future<MyResult<UserModel>> getProfile();
@@ -54,4 +55,7 @@ abstract class HomeDataSource {
   Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id);
 
   Future<MyResult<String>> acceptPrescription(AcceptPrescriptionParams params);
+
+  Future<MyResult<List<SearchBarcodeModel>>> searchProducts(
+      ProductSearchParams params);
 }

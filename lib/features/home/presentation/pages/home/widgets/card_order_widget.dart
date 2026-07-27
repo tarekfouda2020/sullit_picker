@@ -101,7 +101,7 @@ class CardOrderWidget extends StatelessWidget {
           ),
           Gaps.vGap24,
           AppTextButton.maxCustom(
-            text: data.isNewOrder ? Translate.s.start_pick : Translate.s.continue_picking,
+            text: getText(),
             maxHeight: 44,
             textSize: 18,
             onPressed: () => controller.acceptOrder(context, data),
@@ -112,7 +112,14 @@ class CardOrderWidget extends StatelessWidget {
   }
 
 
-
+String getText() {
+  if (data.isPharm) {
+    if (data.isPendingReview) return "Attend Order";
+    if (data.isPaid) return "Confirm Order";
+    return Translate.s.order_details;
+  }
+  return data.isNewOrder ? Translate.s.start_pick : Translate.s.continue_picking;
+}
 
 
 }

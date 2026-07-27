@@ -18,6 +18,7 @@ import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_par
 import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/product_search_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeRepositories)
@@ -109,5 +110,11 @@ class ImplHomeRepositories extends HomeRepositories {
   Future<MyResult<String>> acceptPrescription(
       AcceptPrescriptionParams params) async {
     return dataSource.acceptPrescription(params);
+  }
+
+  @override
+  Future<MyResult<List<SearchBarcodeModel>>> searchProducts(
+      ProductSearchParams params) async {
+    return dataSource.searchProducts(params);
   }
 }

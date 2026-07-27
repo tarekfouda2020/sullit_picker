@@ -9,7 +9,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i20;
-import 'package:flutter/cupertino.dart' as _i25;
 import 'package:flutter/material.dart' as _i21;
 import 'package:flutter_tdd/core/helpers/export.dart' as _i24;
 import 'package:flutter_tdd/features/auth/presentation/pages/active_account/active_account_imports.dart'
@@ -32,8 +31,10 @@ import 'package:flutter_tdd/features/auth/presentation/pages/splash/splash.dart'
     as _i18;
 import 'package:flutter_tdd/features/general/presentation/pages/contact_us/contact_us.dart'
     as _i4;
-import 'package:flutter_tdd/features/general/presentation/pages/image_zoom/image_zoom.dart'
+import 'package:flutter_tdd/features/general/presentation/pages/image_zoom/image_zoom_imports.dart'
     as _i7;
+import 'package:flutter_tdd/features/general/presentation/pages/pdf_view/pdf_view_imports.dart'
+    as _i25;
 import 'package:flutter_tdd/features/general/presentation/pages/privacy_policy/privacy_policy.dart'
     as _i14;
 import 'package:flutter_tdd/features/general/presentation/pages/terms_conditions/terms_conditions.dart'
@@ -197,6 +198,16 @@ abstract class $AppRouter extends _i20.RootStackRouter {
       return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i19.TermsConditions(),
+      );
+    },
+    PdfViewRoute.name: (routeData) {
+      final args = routeData.argsAs<PdfViewRouteArgs>();
+      return _i20.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i25.PdfViewPage(
+          key: args.key,
+          url: args.url,
+        ),
       );
     },
   };
@@ -504,7 +515,7 @@ class OrderHistoryDetailsPageArgs {
 class PrescriptionOrderRoute
     extends _i20.PageRouteInfo<PrescriptionOrderRouteArgs> {
   PrescriptionOrderRoute({
-    _i25.Key? key,
+    _i24.Key? key,
     required int orderId,
     List<_i20.PageRouteInfo>? children,
   }) : super(
@@ -528,7 +539,7 @@ class PrescriptionOrderRouteArgs {
     required this.orderId,
   });
 
-  final _i25.Key? key;
+  final _i24.Key? key;
 
   final int orderId;
 
@@ -606,6 +617,44 @@ class SplashRoute extends _i20.PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i25.PdfViewPage]
+class PdfViewRoute extends _i20.PageRouteInfo<PdfViewRouteArgs> {
+  PdfViewRoute({
+    _i21.Key? key,
+    required String url,
+    List<_i20.PageRouteInfo>? children,
+  }) : super(
+          PdfViewRoute.name,
+          args: PdfViewRouteArgs(
+            key: key,
+            url: url,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'PdfViewRoute';
+
+  static const _i20.PageInfo<PdfViewRouteArgs> page =
+      _i20.PageInfo<PdfViewRouteArgs>(name);
+}
+
+class PdfViewRouteArgs {
+  const PdfViewRouteArgs({
+    this.key,
+    required this.url,
+  });
+
+  final _i21.Key? key;
+
+  final String url;
+
+  @override
+  String toString() {
+    return 'PdfViewRouteArgs{key: $key, url: $url}';
+  }
 }
 
 /// generated route for

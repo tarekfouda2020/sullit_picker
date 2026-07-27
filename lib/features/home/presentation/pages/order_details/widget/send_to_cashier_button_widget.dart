@@ -12,10 +12,10 @@ class SendToCashierButtonWidget extends StatelessWidget {
       text: Translate.s.send_to_cashier,
       onPressed: () => controller.sendToCashier(),
       textSize: 18,
-      txtColor: controller.isAllProductsPicked
+      txtColor: controller.isAllProductsPicked || !controller.showActions
           ? context.colors.white
           : context.colors.white.withAlpha(126),
-      bgColor: controller.isAllProductsPicked
+      bgColor: controller.isAllProductsPicked || !controller.showActions
           ? context.colors.appGreen
           : context.colors.appGreen.withAlpha(126),
       maxHeight: 50,

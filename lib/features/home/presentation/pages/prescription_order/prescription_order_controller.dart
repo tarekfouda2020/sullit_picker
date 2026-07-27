@@ -5,6 +5,10 @@ class PrescriptionOrderController {
 
   PrescriptionOrderController({required this.orderId}) {
     _loadOrder();
+    loadSearchProducts(1,refresh: false);
+    _searchPagingController.addPageRequestListener((pageKey) {
+      loadSearchProducts(pageKey,refresh: true);
+    },);
   }
 
   final List<OrderDetailsModel> ordersDetails = [];
@@ -27,8 +31,14 @@ class PrescriptionOrderController {
   final TextEditingController itemInstructionsController = TextEditingController();
   final GlobalKey<FormState> itemInstructionsFormKey = GlobalKey<FormState>();
 
-  final BaseBloc<PharmacyOrderModel> orderCubit =
-      BaseBloc<PharmacyOrderModel>(null);
+  final TextEditingController productSearchController = TextEditingController();
+  final PagingController<int, SearchBarcodeModel> _searchPagingController = PagingController(firstPageKey: 1);
+
+  final BaseBloc<PharmacyOrderModel> orderCubit = BaseBloc<PharmacyOrderModel>(null);
+
+
+  PagingController<int, SearchBarcodeModel> get searchPagingController =>
+      _searchPagingController;
 
   Future<void> _loadOrder() async {
     final local = getIt<OrdersHelper>().getPrescriptionOrderState(orderId);
@@ -42,7 +52,13 @@ class PrescriptionOrderController {
     result.when(
       isSuccess: (data) {
         orderCubit.successState(data!);
-        ordersProductsCubit.successState([]);
+        if (!data.isPendingReview) {
+          final apiItems = data.ordersDetails ?? [];
+          ordersDetails.addAll(apiItems);
+          ordersProductsCubit.successState(List.of(ordersDetails));
+        } else {
+          ordersProductsCubit.successState([]);
+        }
         _saveLocal();
       },
       isError: (error) {
@@ -63,6 +79,36 @@ class PrescriptionOrderController {
     ordersDetails.addAll(details);
     orderCubit.successState(order);
     ordersProductsCubit.successState(List.of(ordersDetails));
+
+    if (!order.isPendingReview) {
+      _refreshFromApiInBackground();
+    }
+  }
+
+  Future<void> _refreshFromApiInBackground() async {
+    final result = await getIt<HomeRepositories>().getPharmacyOrder(orderId);
+    result.when(
+      isSuccess: (data) {
+        if (data == null) return;
+        final apiItems = data.ordersDetails ?? [];
+        ordersDetails.clear();
+        ordersDetails.addAll(apiItems);
+        orderCubit.successState(data);
+        ordersProductsCubit.successState(List.of(ordersDetails));
+        _saveLocal();
+        _updateHomeListItem(data);
+      },
+      isError: (_) {},
+    );
+  }
+
+  void _updateHomeListItem(PharmacyOrderModel updated) {
+    final helper = getIt<OrdersHelper>();
+    final current = helper.getAssignedOrders();
+    final deepJson = jsonDecode(jsonEncode(updated.toFlatJson())) as Map<String, dynamic>;
+    final updatedOrder = OrderModel.fromJson(deepJson);
+    final merged = current.map((o) => o.id == orderId ? updatedOrder : o).toList();
+    helper.saveAssignedOrders(merged);
   }
 
   void _saveLocal() {
@@ -79,6 +125,20 @@ class PrescriptionOrderController {
 
 
 
+  bool get isEditing => orderCubit.data?.isPendingReview == true;
+
+  bool get isAwaitingCustomer =>
+      (orderCubit.data!.awaitingCustomerCompletion) &&
+      !(orderCubit.data!.isPendingReview );
+
+  bool get canDispatch {
+    final order = orderCubit.data;
+    if (order == null) return false;
+    return !order.isPendingReview &&
+        !order.awaitingCustomerCompletion &&
+        (order.isPaid || order.isCashOnDelivery);
+  }
+
   bool get _hasMissingInsuranceCoverage =>
       ordersDetails.any((item) => item.insuranceCoveragePercentage == null);
 
@@ -88,7 +148,47 @@ class PrescriptionOrderController {
     return order.awaitingCustomerCompletion && order.requiresPrescriptionReview;
   }
 
+  Future<void> dispatchOrder(BuildContext context) async {
+    getIt<LoadingHelper>().showLoadingDialog();
+    final params = PrepareOrderParams(
+      orderId: orderId,
+      currentProductsDetails: [],
+      deletedDetails: [],
+      bagCount: orderCubit.data?.bagsCount,
+    );
+    final result = await getIt<HomeRepositories>().prepareOrder(params);
+    getIt<LoadingHelper>().dismissDialog();
+    final BuildContext ctx = getIt<GlobalContext>().context();
+    result.when(
+      isSuccess: (_) async {
+        getIt<OrdersHelper>().deletePrescriptionOrderState(orderId);
+        await getIt<OrdersHelper>().getAllOrders(fromRemote: true, setLoading: false);
+        AutoRouter.of(ctx).maybePop();
+        AppSnackBar.showSuccessSnackBar(
+          orderCubit.data?.orderDelivery == true
+              ? Translate.s.order_ready_for_delivery
+              : Translate.s.order_ready_for_pick_up,
+        );
+      },
+      isError: (_) {
+        AppSnackBar.showSimpleToast(
+          msg: Translate.s.order_processing_error,
+          type: ToastType.error,
+        );
+      },
+    );
+  }
+
   void onCompleteOrderPressed(BuildContext context) {
+    if (!isEditing) return;
+    if (ordersDetails.isEmpty) {
+      AppSnackBar.showSimpleToast(
+        msg: Translate.s.please_add_items_first,
+        type: ToastType.error,
+      );
+      return;
+    }
+
     if (requiresInsurance && _hasMissingInsuranceCoverage) {
       AppSnackBar.showSimpleToast(
         msg: Translate.s.please_enter_insurance_coverage_for_all_items,
@@ -160,8 +260,10 @@ class PrescriptionOrderController {
       _openBagsCountDialog(context, cascade: false);
 
   Future<void> _callAcceptPrescriptionPreviewApi(BuildContext context) async {
+    getIt<LoadingHelper>().showLoadingDialog();
      PrescriptionPreviewParams params = _prescriptionPreviewParams();
     var result = await getIt<HomeRepositories>().acceptPrescriptionPreview(params);
+    getIt<LoadingHelper>().dismissDialog();
     result.when(
       isSuccess: (data) {
         if (data != null) _showInvoiceSheet(context, data);
@@ -328,7 +430,6 @@ class PrescriptionOrderController {
           context,
           Translate.s.prescription_attachments,
           order.prescriptionAttachments!
-              .where((a) => a.type == 'image')
               .map((a) => a.url)
               .toList(),
         ),
@@ -362,17 +463,25 @@ class PrescriptionOrderController {
       items.add(AttachmentRowItem(
         icon: Icons.badge_outlined,
         label: Translate.s.identity_document,
-        onTap: () => AutoRouter.of(context).push(ImageZoomRoute(image: order.identityDocumentFile!)),
+        onTap: () => _openAttachment(context, order.identityDocumentFile!),
       ));
     }
 
     return items;
   }
 
+  void _openAttachment(BuildContext context, String url) {
+    if (url.toLowerCase().endsWith('.pdf')) {
+      AutoRouter.of(context).push(PdfViewRoute(url: url));
+    } else {
+      AutoRouter.of(context).push(ImageZoomRoute(image: url));
+    }
+  }
+
   void _openAttachmentImages(BuildContext context, String title, List<String> imageUrls) {
     if (imageUrls.isEmpty) return;
     if (imageUrls.length == 1) {
-      AutoRouter.of(context).push(ImageZoomRoute(image: imageUrls.first));
+      _openAttachment(context, imageUrls.first);
     } else {
       AppBottomSheets.showScrollableBodyFixedHeaderSheet(
         context: context,
@@ -397,9 +506,62 @@ class PrescriptionOrderController {
     bagsCountController.dispose();
     itemCoverageController.dispose();
     itemInstructionsController.dispose();
+    productSearchController.dispose();
+    _searchPagingController.dispose();
+  }
+
+  void showProductSearchSheet(BuildContext context) {
+    if (!isEditing) return;
+    AppBottomSheets.showScrollableBodyFixedHeaderSheet(
+      context: context,
+      builder: (sheetCtx) =>
+          PrescriptionSearchProductSheetWidget(controller: this),
+    );
+  }
+
+  Future<void> loadSearchProducts(int page,{bool refresh = true}) async {
+    final params = _productSearchParams(page, refresh);
+    final result = await getIt<HomeRepositories>().searchProducts(params);
+    result.when(
+      isSuccess: (data) {
+        final list = data ?? <SearchBarcodeModel>[];
+        final isLast = list.length < ApplicationConstants.paginationLimit;
+        if (page == 1) _searchPagingController.itemList = [];
+        if (isLast) {
+          _searchPagingController.appendLastPage(list);
+        } else {
+          _searchPagingController.appendPage(list, page + 1);
+        }
+      },
+      isError: (error) {
+        _searchPagingController.error = error;
+      },
+    );
+  }
+
+  ProductSearchParams _productSearchParams(int page, bool refresh) {
+    var text = productSearchController.text.trim();
+    return ProductSearchParams(
+    text: text,
+    paginParams: GenericPaginateParams(currentPage: page, refresh: refresh),
+  );
+  }
+
+  void onProductSearchChanged(String text) {
+    DebounceHelper.instance.startSearch(
+      value: text,
+      onSearch: (_) => _searchPagingController.refresh(),
+    );
+  }
+
+  void onSelectSearchProduct(BuildContext sheetContext, SearchBarcodeModel data) {
+    Navigator.pop(sheetContext);
+    final BuildContext ctx = getIt<GlobalContext>().context();
+    _handleScannedProduct(ctx, data);
   }
 
   Future<void> scanAndAddProduct(BuildContext context) async {
+    if (!isEditing) return;
     final String? barcode = await getIt<BarcodeService>().scanBarcode(context);
     if (barcode == null || barcode.isEmpty) return;
 

@@ -74,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Available For Receiving Orders"),
         "available_for_rides":
             MessageLookupByLibrary.simpleMessage("Available for rides"),
+        "awaiting_customer_confirmation": MessageLookupByLibrary.simpleMessage(
+            "Awaiting customer to confirm the order"),
         "back_again_to_exit":
             MessageLookupByLibrary.simpleMessage("Press Back again to exit"),
         "back_to_login": MessageLookupByLibrary.simpleMessage("Back to Login"),
@@ -172,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "device_token_error": MessageLookupByLibrary.simpleMessage(
             "Something went wrong while getting your device info. Please try again later."),
         "dispatch": MessageLookupByLibrary.simpleMessage("Dispatch"),
+        "dispatch_order":
+            MessageLookupByLibrary.simpleMessage("Dispatch Order"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "driver": MessageLookupByLibrary.simpleMessage("Driver"),
         "driver_profile":
@@ -254,6 +258,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "expired_within_days": m1,
         "failed_orders": MessageLookupByLibrary.simpleMessage("Failed Orders"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("Failed Reason"),
+        "failed_to_save_image":
+            MessageLookupByLibrary.simpleMessage("Failed to save image"),
+        "failed_to_save_pdf":
+            MessageLookupByLibrary.simpleMessage("Failed to save PDF"),
         "failed_to_update_location":
             MessageLookupByLibrary.simpleMessage("Failed to update location"),
         "failureActions":
@@ -283,6 +291,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("How you want to work ?"),
         "id": MessageLookupByLibrary.simpleMessage("ID"),
         "identity_document": MessageLookupByLibrary.simpleMessage("Identity"),
+        "image_saved_successfully":
+            MessageLookupByLibrary.simpleMessage("Image saved to gallery"),
         "in_progress": MessageLookupByLibrary.simpleMessage("In Progress"),
         "instructions": MessageLookupByLibrary.simpleMessage("Instructions"),
         "insurance_attachments":
@@ -400,6 +410,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No Plans Found"),
         "no_products_scanned_yet":
             MessageLookupByLibrary.simpleMessage("No products scanned yet"),
+        "no_search_results":
+            MessageLookupByLibrary.simpleMessage("No results found"),
         "no_terms_yet": MessageLookupByLibrary.simpleMessage("No Terms Yet"),
         "no_transactions_description": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any transactions yet. Your transaction history will appear here once you start making transactions."),
@@ -475,6 +487,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Payment Method"),
         "payment_successful": MessageLookupByLibrary.simpleMessage(
             "Payment completed successfully"),
+        "pdf_saved_successfully":
+            MessageLookupByLibrary.simpleMessage("PDF saved successfully"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "phoneValidation": MessageLookupByLibrary.simpleMessage(
@@ -493,6 +507,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Pickup Address"),
         "please_accept_terms": MessageLookupByLibrary.simpleMessage(
             "Please accept the Terms & Conditions to continue"),
+        "please_add_items_first": MessageLookupByLibrary.simpleMessage(
+            "Please add items to the order first"),
         "please_define_work_type": MessageLookupByLibrary.simpleMessage(
             "Please Define your Work Type"),
         "please_describe_problem": MessageLookupByLibrary.simpleMessage(
@@ -585,9 +601,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "return_key": MessageLookupByLibrary.simpleMessage("Return"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "save_image": MessageLookupByLibrary.simpleMessage("Save Image"),
+        "save_pdf": MessageLookupByLibrary.simpleMessage("Save PDF"),
         "scan_barcode": MessageLookupByLibrary.simpleMessage("Scan Barcode"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
+        "search_products":
+            MessageLookupByLibrary.simpleMessage("Search for products"),
         "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),
         "seconds_ago": MessageLookupByLibrary.simpleMessage("seconds ago"),
         "select_country":
@@ -604,6 +624,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "set_new_password":
             MessageLookupByLibrary.simpleMessage("Set new password"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "share_image": MessageLookupByLibrary.simpleMessage("Share Image"),
+        "share_pdf": MessageLookupByLibrary.simpleMessage("Share PDF"),
         "show_less": MessageLookupByLibrary.simpleMessage("Show less"),
         "show_more": MessageLookupByLibrary.simpleMessage("Show more"),
         "size_more_than_mg_error": m3,
