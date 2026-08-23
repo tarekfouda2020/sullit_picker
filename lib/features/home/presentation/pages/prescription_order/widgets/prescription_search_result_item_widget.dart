@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_tdd/core/helpers/export.dart';
+import 'package:flutter_tdd/core/widgets/dirham_currency_symbol.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
 
 class PrescriptionSearchResultItemWidget extends StatelessWidget {
@@ -41,13 +42,15 @@ class PrescriptionSearchResultItemWidget extends StatelessWidget {
                     item.name,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTextStyle.s14_w600(color: context.colors.black),
+                    style: AppTextStyle.s14_w600(color: context.colors.black).copyWith(
+                      height: 1.3
+                    ),
                   ),
                   Gaps.vGap4,
                   Text(
                     item.variant.mainPrice,
                     style: AppTextStyle.s13_w400(color: context.colors.primary),
-                  ),
+                  ).withDirhamSymbol(),
                 ],
               ),
             ),

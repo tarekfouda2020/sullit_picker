@@ -18,7 +18,7 @@ class LoadingHelper {
 
   final int _loadingTimeOutInSecond = 15;
 
-  void showLoadingDialog({bool dismissOnTap = false}) {
+  void showLoadingDialog({bool dismissOnTap = false, bool useDefaultTime = true}) {
     if (!EasyLoading.isShow) {
       EasyLoading().indicatorWidget = const LoadingDialogOverly();
       EasyLoading().contentPadding = EdgeInsets.zero;
@@ -26,9 +26,11 @@ class LoadingHelper {
         maskType: EasyLoadingMaskType.clear,
         dismissOnTap: dismissOnTap,
       );
-      Future.delayed(Duration(seconds: _loadingTimeOutInSecond), () {
-        dismissDialog();
-      });
+      if(useDefaultTime){
+        Future.delayed(Duration(seconds: _loadingTimeOutInSecond), () {
+          dismissDialog();
+        });
+      }
     }
   }
 

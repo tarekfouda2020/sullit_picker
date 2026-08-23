@@ -3390,6 +3390,16 @@ class S {
     );
   }
 
+  /// `Order accepted successfully`
+  String get order_accepted_successfully {
+    return Intl.message(
+      'Order accepted successfully',
+      name: 'order_accepted_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No`
   String get no {
     return Intl.message(
@@ -3860,6 +3870,16 @@ class S {
     );
   }
 
+  /// `Cancel Reason`
+  String get cancel_reason {
+    return Intl.message(
+      'Cancel Reason',
+      name: 'cancel_reason',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Submit`
   String get submit {
     return Intl.message(
@@ -4070,10 +4090,10 @@ class S {
     );
   }
 
-  /// `Modify Reason`
+  /// `Modification Reason`
   String get modify_reason {
     return Intl.message(
-      'Modify Reason',
+      'Modification Reason',
       name: 'modify_reason',
       desc: '',
       args: [],
@@ -4445,6 +4465,16 @@ class S {
     return Intl.message(
       'Dispatch Order',
       name: 'dispatch_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ready for Preparation`
+  String get ready_for_preparation {
+    return Intl.message(
+      'Ready for Preparation',
+      name: 'ready_for_preparation',
       desc: '',
       args: [],
     );

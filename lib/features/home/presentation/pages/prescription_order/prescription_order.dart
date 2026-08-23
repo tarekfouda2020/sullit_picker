@@ -28,6 +28,7 @@ class _PrescriptionOrderState extends State<PrescriptionOrder> {
             bagsCountObs: controller.bagsCountObs,
             onEditInsuranceDiscount: () => controller.editInsuranceDiscount(context),
             onEditBagsCount: () => controller.editBagsCount(context),
+            orderCubit: controller.orderCubit,
           ),
           Gaps.vGap10,
           PrescriptionCustomerCardWidget(
@@ -50,27 +51,25 @@ class _PrescriptionOrderState extends State<PrescriptionOrder> {
                   final bool readOnly = !controller.isEditing;
                   return items.isEmpty
                       ? _buildEmptyState(context)
-                      : ListView.builder(
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          itemCount: items.length,
-                          itemBuilder: (context, index) {
-                            OrderDetailsModel item = items[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 12),
-                              child: ScannedProductItemWidget(
-                                data: item,
-                                readOnly: readOnly,
-                                onIncrement: () => controller.updateQuantity(
-                                    item, item.quantity + 1),
-                                onDecrement: () => controller.updateQuantity(
-                                    item, item.quantity - 1),
-                                onRemove: () => controller.removeItem(item),
-                                onInsuranceCoverage: () => controller.showItemInsuranceCoverageDialog(context, item),
-                                onInstructions: () => controller.showItemInstructionsDialog(context, item),
-                              ),
-                            );
-                          },
-                        );
+                      : RefreshIndicator(
+                    onRefresh: () async => await controller.loadOrder(setLoading: true) ,
+                      backgroundColor: context.colors.white,
+                      child: ListView.builder(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            itemCount: items.length,
+                            itemBuilder: (context, index) {
+                              OrderDetailsModel item = items[index];
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: ScannedProductItemWidget(
+                                  data: item,
+                                  controller: controller,
+                                  readOnly: readOnly,
+                                ),
+                              );
+                            },
+                          ),
+                      );
                 },
               ),
             ),

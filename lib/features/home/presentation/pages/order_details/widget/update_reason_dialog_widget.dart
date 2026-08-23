@@ -7,8 +7,9 @@ import '../../../../../../core/helpers/export.dart';
 
 class UpdateReasonDialogWidget extends StatelessWidget {
   final OrderDetailsController controller;
- final void Function() onPressSubmit;
-  const UpdateReasonDialogWidget({super.key, required this.controller, required this.onPressSubmit});
+  final void Function() onPressSubmit;
+  final String? title;
+  const UpdateReasonDialogWidget({super.key, required this.controller, required this.onPressSubmit, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class UpdateReasonDialogWidget extends StatelessWidget {
           children: [
             Gaps.hGap10,
             Text(
-            Translate.s.update_reason,
+            title ?? Translate.s.update_reason,
             textAlign: TextAlign.center,
             style: AppTextStyle.s18_w700(color: context.colors.black),
                 ),

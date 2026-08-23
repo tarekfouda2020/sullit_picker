@@ -36,6 +36,7 @@ class ItemInstructionsDialogWidget extends StatelessWidget {
               child: GenericTextField(
                 fieldTypes: FieldTypes.rich,
                 max: 4,
+                 textHeight: 1.35,
                 controller: instructionsController,
                 fillColor: context.colors.background,
                 type: TextInputType.multiline,

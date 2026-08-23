@@ -91,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancel_order": MessageLookupByLibrary.simpleMessage("Cancel Order"),
+        "cancel_reason": MessageLookupByLibrary.simpleMessage("Cancel Reason"),
         "cancelled": MessageLookupByLibrary.simpleMessage("Cancelled"),
         "cannot_replace_higher_price": m0,
         "cash": MessageLookupByLibrary.simpleMessage("Cash"),
@@ -362,7 +363,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "modify_bags_number":
             MessageLookupByLibrary.simpleMessage("Modify number of used bags"),
         "modify_price": MessageLookupByLibrary.simpleMessage("Modify Price"),
-        "modify_reason": MessageLookupByLibrary.simpleMessage("Modify Reason"),
+        "modify_reason":
+            MessageLookupByLibrary.simpleMessage("Modification Reason"),
         "month": MessageLookupByLibrary.simpleMessage("month"),
         "months_ago": MessageLookupByLibrary.simpleMessage("months ago"),
         "must_picking_within":
@@ -437,6 +439,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "order_accepted_failed":
             MessageLookupByLibrary.simpleMessage("Order accepted failed"),
+        "order_accepted_successfully":
+            MessageLookupByLibrary.simpleMessage("Order accepted successfully"),
         "order_cancelled_successfully": MessageLookupByLibrary.simpleMessage(
             "Order cancelled successfully"),
         "order_completed_successfully": MessageLookupByLibrary.simpleMessage(
@@ -566,6 +570,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "qnt": MessageLookupByLibrary.simpleMessage("Qnt"),
         "quick_actions": MessageLookupByLibrary.simpleMessage("Quick Actions"),
         "quick_options": MessageLookupByLibrary.simpleMessage("Quick Options"),
+        "ready_for_preparation":
+            MessageLookupByLibrary.simpleMessage("Ready for Preparation"),
         "reason": MessageLookupByLibrary.simpleMessage("Reason"),
         "receiving_from":
             MessageLookupByLibrary.simpleMessage("Receiving From"),

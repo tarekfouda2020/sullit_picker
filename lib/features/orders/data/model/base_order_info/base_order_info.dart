@@ -52,6 +52,7 @@ class BaseOrderInfo with _$BaseOrderInfo {
     @JsonKey(name: 'delivered_at') required String deliveredAt,
     @JsonKey(name: 'shipping_type') String? shippingType,
     @JsonKey(name: 'shipping_type_label') String? shippingTypeLabel,
+    @JsonKey(name: 'shipping_address') String? shippingAddress,
     @JsonKey(name: 'payment_status') bool? paymentStatus,
     @JsonKey(name: 'payment_status_text') String? paymentStatusText,
     @JsonKey(name: 'payment_method') String? paymentMethod,

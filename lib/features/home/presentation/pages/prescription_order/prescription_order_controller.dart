@@ -4,7 +4,7 @@ class PrescriptionOrderController {
   final int orderId;
 
   PrescriptionOrderController({required this.orderId}) {
-    _loadOrder();
+    loadOrder();
     loadSearchProducts(1,refresh: false);
     _searchPagingController.addPageRequestListener((pageKey) {
       loadSearchProducts(pageKey,refresh: true);
@@ -35,25 +35,34 @@ class PrescriptionOrderController {
   final PagingController<int, SearchBarcodeModel> _searchPagingController = PagingController(firstPageKey: 1);
 
   final BaseBloc<PharmacyOrderModel> orderCubit = BaseBloc<PharmacyOrderModel>(null);
+  final BaseBloc<bool> acceptedCubit = BaseBloc<bool>(false);
 
 
   PagingController<int, SearchBarcodeModel> get searchPagingController =>
       _searchPagingController;
 
-  Future<void> _loadOrder() async {
+  Future<void> loadOrder({bool setLoading = true}) async {
     final local = getIt<OrdersHelper>().getPrescriptionOrderState(orderId);
     if (local != null) {
       _restoreFromLocal(local);
-      return;
+    }else if(setLoading){
+      orderCubit.loadingState();
+      ordersProductsCubit.loadingState();
     }
-    orderCubit.loadingState();
-    ordersProductsCubit.loadingState();
-    final result = await getIt<HomeRepositories>().getPharmacyOrder(orderId);
+    _getData(fromRemote: false);
+    _getData();
+  }
+
+
+  Future<void> _getData({bool fromRemote = true}) async{
+    final result = await getIt<HomeRepositories>().getPharmacyOrder(orderId,fromRemote: fromRemote);
     result.when(
       isSuccess: (data) {
         orderCubit.successState(data!);
+        _syncAcceptedState(data);
         if (!data.isPendingReview) {
-          final apiItems = data.ordersDetails ?? [];
+          final apiItems = _syncApiFields(data.ordersDetails ?? []);
+          ordersDetails.clear();
           ordersDetails.addAll(apiItems);
           ordersProductsCubit.successState(List.of(ordersDetails));
         } else {
@@ -62,8 +71,8 @@ class PrescriptionOrderController {
         _saveLocal();
       },
       isError: (error) {
-        orderCubit.failedState(error, _loadOrder);
-        ordersProductsCubit.failedState(error, _loadOrder);
+        orderCubit.failedState(error, loadOrder);
+        ordersProductsCubit.failedState(error, loadOrder);
       },
     );
   }
@@ -78,6 +87,7 @@ class PrescriptionOrderController {
     ordersDetails.clear();
     ordersDetails.addAll(details);
     orderCubit.successState(order);
+    _syncAcceptedState(order);
     ordersProductsCubit.successState(List.of(ordersDetails));
 
     if (!order.isPendingReview) {
@@ -90,10 +100,11 @@ class PrescriptionOrderController {
     result.when(
       isSuccess: (data) {
         if (data == null) return;
-        final apiItems = data.ordersDetails ?? [];
+        final apiItems = _syncApiFields(data.ordersDetails ?? []);
         ordersDetails.clear();
         ordersDetails.addAll(apiItems);
         orderCubit.successState(data);
+        _syncAcceptedState(data);
         ordersProductsCubit.successState(List.of(ordersDetails));
         _saveLocal();
         _updateHomeListItem(data);
@@ -102,13 +113,35 @@ class PrescriptionOrderController {
     );
   }
 
+  void _removeHomeListItem() {
+    final helper = getIt<OrdersHelper>();
+    final current = helper.getAssignedOrders();
+    current.removeWhere((o) => o.id == orderId);
+    helper.saveAssignedOrders(current);
+  }
+
   void _updateHomeListItem(PharmacyOrderModel updated) {
     final helper = getIt<OrdersHelper>();
     final current = helper.getAssignedOrders();
+    final index = current.indexWhere((o) => o.id == orderId);
+    if (index == -1) return;
     final deepJson = jsonDecode(jsonEncode(updated.toFlatJson())) as Map<String, dynamic>;
-    final updatedOrder = OrderModel.fromJson(deepJson);
-    final merged = current.map((o) => o.id == orderId ? updatedOrder : o).toList();
-    helper.saveAssignedOrders(merged);
+    current[index] = OrderModel.fromJson(deepJson);
+    helper.saveAssignedOrders(current);
+  }
+
+  void _addToHomeListIfAbsent(PharmacyOrderModel updated) {
+    final helper = getIt<OrdersHelper>();
+    final current = helper.getAssignedOrders();
+    final index = current.indexWhere((o) => o.id == orderId);
+    final deepJson = jsonDecode(jsonEncode(updated.toFlatJson())) as Map<String, dynamic>;
+    final item = OrderModel.fromJson(deepJson);
+    if (index == -1) {
+      current.add(item);
+    } else {
+      current[index] = item;
+    }
+    helper.saveAssignedOrders(current);
   }
 
   void _saveLocal() {
@@ -148,27 +181,36 @@ class PrescriptionOrderController {
     return order.awaitingCustomerCompletion && order.requiresPrescriptionReview;
   }
 
-  Future<void> dispatchOrder(BuildContext context) async {
+  List<OrderDetailsModel> _syncApiFields(List<OrderDetailsModel> items) {
+    return items.map((item) {
+      final coverage = item.insuranceCoveragePercentageApi != null
+          ? double.tryParse(item.insuranceCoveragePercentageApi!)
+          : null;
+      return item.copyWith(
+        insuranceCoveragePercentage: item.insuranceCoveragePercentage ?? coverage,
+        instructions: item.instructions ?? item.instructionsApi,
+      );
+    }).toList();
+  }
+
+  void _syncAcceptedState(PharmacyOrderModel order) {
+    acceptedCubit.successState(order.isPreparing);
+  }
+
+  Future<void> acceptOrderForDispatch(BuildContext context) async {
     getIt<LoadingHelper>().showLoadingDialog();
-    final params = PrepareOrderParams(
-      orderId: orderId,
-      currentProductsDetails: [],
-      deletedDetails: [],
-      bagCount: orderCubit.data?.bagsCount,
-    );
-    final result = await getIt<HomeRepositories>().prepareOrder(params);
+    final result = await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: orderId));
     getIt<LoadingHelper>().dismissDialog();
-    final BuildContext ctx = getIt<GlobalContext>().context();
     result.when(
-      isSuccess: (_) async {
-        getIt<OrdersHelper>().deletePrescriptionOrderState(orderId);
-        await getIt<OrdersHelper>().getAllOrders(fromRemote: true, setLoading: false);
-        AutoRouter.of(ctx).maybePop();
-        AppSnackBar.showSuccessSnackBar(
-          orderCubit.data?.orderDelivery == true
-              ? Translate.s.order_ready_for_delivery
-              : Translate.s.order_ready_for_pick_up,
-        );
+      isSuccess: (_) {
+        acceptedCubit.successState(true);
+        final order = orderCubit.data;
+        if (order != null) {
+          order.base.status = 'preparing';
+          orderCubit.successState(order);
+          _saveLocal();
+        }
+        AppSnackBar.showSuccessSnackBar(Translate.s.order_accepted_successfully);
       },
       isError: (_) {
         AppSnackBar.showSimpleToast(
@@ -177,6 +219,44 @@ class PrescriptionOrderController {
         );
       },
     );
+  }
+
+  Future<void> dispatchOrder(BuildContext context) async {
+    getIt<LoadingHelper>().showLoadingDialog(useDefaultTime: false);
+    PrepareOrderParams params = _dispatchOrderParams();
+    var result = await getIt<HomeRepositories>().prepareOrder(params);
+     BuildContext ctx = getIt<GlobalContext>().context();
+    result.when(
+      isSuccess: (_) async {
+        getIt<OrdersHelper>().deletePrescriptionOrderState(orderId);
+        getIt<OrdersHelper>().deleteOrderDetails(orderId);
+        _removeHomeListItem();
+         getIt<OrdersHelper>().getAllOrders(fromRemote: true, setLoading: false);
+        getIt<LoadingHelper>().dismissDialog();
+        AutoRouter.of(ctx).maybePop();
+        AppSnackBar.showSuccessSnackBar(
+          orderCubit.data?.orderDelivery == true
+              ? Translate.s.order_ready_for_delivery
+              : Translate.s.order_ready_for_pick_up,
+        );
+      },
+      isError: (_) {
+        getIt<LoadingHelper>().dismissDialog();
+        AppSnackBar.showSimpleToast(
+          msg: Translate.s.order_processing_error,
+          type: ToastType.error,
+        );
+      },
+    );
+  }
+
+  PrepareOrderParams _dispatchOrderParams() {
+    return PrepareOrderParams(
+    orderId: orderId,
+    currentProductsDetails: [],
+    deletedDetails: [],
+    bagCount: orderCubit.data?.bagsCount,
+  );
   }
 
   void onCompleteOrderPressed(BuildContext context) {
@@ -309,14 +389,19 @@ class PrescriptionOrderController {
 
   Future<void> _callAcceptPrescriptionApi(
       BuildContext pageContext, BuildContext sheetContext) async {
-    final params = _acceptPrescriptionParams();
-    log("===>>>> params is ${params.toJson()}");
+    AcceptPrescriptionParams params = _acceptPrescriptionParams();
     final result = await getIt<HomeRepositories>().acceptPrescription(params);
     result.when(
       isSuccess: (_) {
-        getIt<OrdersHelper>().deletePrescriptionOrderState(orderId);
         Navigator.pop(sheetContext);
-        Navigator.pop(pageContext);
+        final order = orderCubit.data;
+        if (order != null) {
+          order.base.awaitingCustomerCompletion = true;
+          order.base.isPendingReview = false;
+          orderCubit.successState(order);
+          _addToHomeListIfAbsent(order);
+        }
+        _refreshFromApiInBackground();
         getIt<OrdersHelper>().getAllOrders(fromRemote: true, setLoading: false);
       },
       isError: (error) {},
@@ -368,6 +453,14 @@ class PrescriptionOrderController {
     Navigator.pop(context);
   }
 
+  void showApiInstructionsDialog(BuildContext context, OrderDetailsModel item) {
+    final text = item.instructions ?? item.instructionsApi ?? '';
+    showDialog(
+      context: context,
+      builder: (_) => ProductInstructionsDialogWidget(text: text),
+    );
+  }
+
   void showItemInstructionsDialog(BuildContext context, OrderDetailsModel item) {
     itemInstructionsController.text = item.instructions ?? '';
     showDialog(
@@ -395,7 +488,7 @@ class PrescriptionOrderController {
     AppBottomSheets.showScrollableBodyFixedHeaderSheet(
       context: context,
       builder: (sheetContext) =>
-          PrescriptionCustomerSheetWidget(customer: customer),
+          PrescriptionCustomerSheetWidget(customer: customer,controller: this),
     );
   }
 

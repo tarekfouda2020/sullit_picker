@@ -17,6 +17,7 @@ import 'package:flutter_tdd/features/home/domain/entity/update_profile_image_par
 import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/product_search_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/cancel_order_params.dart';
 
 abstract class HomeRepositories {
   Future<MyResult<UserModel>> getProfile();
@@ -30,7 +31,7 @@ abstract class HomeRepositories {
 
   Future<MyResult<OrderModel>> acceptOrder(OrdersParams params);
 
-  Future<MyResult<OrderModel>> cancelOrder(int id);
+  Future<MyResult<OrderModel>> cancelOrder(CancelOrderParams params);
 
   Future<MyResult<SearchBarcodeModel>> searchByBarcode(
       ReplacedProductParams params);
@@ -52,7 +53,7 @@ abstract class HomeRepositories {
   Future<MyResult<AcceptPrescriptionPreviewModel>> acceptPrescriptionPreview(
       PrescriptionPreviewParams params);
 
-  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id);
+  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id,{bool fromRemote = true});
 
   Future<MyResult<String>> acceptPrescription(AcceptPrescriptionParams params);
 

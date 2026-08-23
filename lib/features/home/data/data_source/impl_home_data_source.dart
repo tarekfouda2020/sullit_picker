@@ -13,6 +13,7 @@ import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/cancel_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:flutter_tdd/features/home/data/model/accept_prescription_preview_model/accept_prescription_preview_model.dart';
 import 'package:flutter_tdd/features/home/data/model/prescription_order_details/pharmacy_order_model.dart';
@@ -119,11 +120,12 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
-  Future<MyResult<OrderModel>> cancelOrder(int id) async {
+  Future<MyResult<OrderModel>> cancelOrder(CancelOrderParams params) async {
     HttpRequestModel model = HttpRequestModel(
-      url: ApiNames.cancelOrder(id),
+      url: ApiNames.cancelOrder(params.id),
       responseType: ResType.model,
       requestMethod: RequestMethod.post,
+      requestBody: params.toJson(),
       toJsonFunc: (data) => OrderModel.fromJson(data),
       responseKey: (data) => data['data'],
     );
@@ -204,14 +206,14 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
-  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id) async {
+  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id,{bool fromRemote = true}) async {
     HttpRequestModel model = HttpRequestModel(
       url: ApiNames.showOrders(id),
       responseType: ResType.model,
       requestMethod: RequestMethod.get,
       responseKey: (data) => data['data'],
       toJsonFunc: (data) => PharmacyOrderModel.fromJson(data),
-      refresh: true,
+      refresh: fromRemote,
     );
     return await GenericHttpImpl<PharmacyOrderModel>()(model);
   }
@@ -226,6 +228,7 @@ class ImplHomeDataSource extends HomeDataSource {
       responseKey: (data) => data['key'],
       requestBody: params.toJson(),
       isFormData: true,
+      showLoader: true
     );
     return await GenericHttpImpl<String>()(model);
   }
@@ -257,6 +260,7 @@ class ImplHomeDataSource extends HomeDataSource {
       responseKey: (data) => data['data'],
       requestBody: params.toJson(),
       isFormData: true,
+      showLoader: true,
       toJsonFunc: (data) => AcceptPrescriptionPreviewModel.fromJson(data),
     );
     return await GenericHttpImpl<AcceptPrescriptionPreviewModel>()(model);

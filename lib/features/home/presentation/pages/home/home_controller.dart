@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter_tdd/core/constants/app_config.dart';
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
+import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/loading_helper.dart';
 import 'package:flutter_tdd/features/home/data/enum/order_status_enum.dart';
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
@@ -17,6 +18,26 @@ class HomeController {
   final ObsValue<bool> availableForOrdersObs = ObsValue<bool>.withInit(false);
   final ObsValue<TimerEntity> timerObs =
       ObsValue<TimerEntity>.withInit(TimerEntity());
+  final ObsValue<bool> showScrollTopObs = ObsValue<bool>.withInit(false);
+  final ScrollController scrollController = ScrollController();
+
+  void initScrollListener() {
+    scrollController.addListener(() {
+      showScrollTopObs.setValue(scrollController.offset > 500);
+    });
+  }
+
+  void scrollToTop() {
+    scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeOut,
+    );
+  }
+
+  void disposeScrollController() {
+    scrollController.dispose();
+  }
 
   // final BaseBloc<OrdersModel?> ordersCubit = BaseBloc<OrdersModel?>();
 
@@ -157,6 +178,14 @@ class HomeController {
 
   Future<void> acceptOrder(BuildContext context, OrderModel data) async {
     if (data.isPharm && data.requiresPrescriptionReview == true) {
+      if(data.awaitingCustomerCompletion == true){
+        try{
+          getIt<OrdersHelper>().deleteOrderDetails(data.id);
+          getIt<OrdersHelper>().deletePrescriptionOrderState(data.id);
+        }catch(e){
+          log('error deleting order details');
+        }
+      }
       AutoRouter.of(context).push(PrescriptionOrderRoute(orderId: data.id));
       return;
     }
@@ -168,8 +197,7 @@ class HomeController {
 
 
     getIt<LoadingHelper>().showLoadingDialog();
-    var result =
-        await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: data.id));
+    var result = await getIt<HomeRepositories>().acceptOrder(OrdersParams(id: data.id));
     result.when(
       isSuccess: (data) async {
         getIt<LoadingHelper>().dismissDialog();

@@ -1,5 +1,6 @@
 import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/orders_widget.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/scroll_to_top_button_widget.dart';
 import 'home_imports.dart';
 @RoutePage(name: "HomePageRoute")
 class HomePage extends StatefulWidget {
@@ -17,6 +18,13 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     controller.initializeAvailableStatus(context);
+    controller.initScrollListener();
+  }
+
+  @override
+  void dispose() {
+    controller.disposeScrollController();
+    super.dispose();
   }
 
 
@@ -35,6 +43,7 @@ class _HomePageState extends State<HomePage> {
           showBack: false,
         ),
         body: OrdersWidget(controller: controller),
+        floatingActionButton: ScrollToTopButtonWidget(controller: controller),
       ),
     );
   }

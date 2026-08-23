@@ -30,30 +30,28 @@ class HaveOrdersViewWidget extends StatelessWidget {
         Gaps.vGap10,
         Expanded(
           child: HomeRefreshIndicatorWidget(
-            onRefresh: () async => await controller.getAllOrders() ,
-            child: ListView(
-              children: [
+            onRefresh: () async => await controller.getAllOrders(),
+            child: CustomScrollView(
+              controller: controller.scrollController,
+              slivers: [
                 BaseBlocBuilder(
                   bloc: controller.assignedOrdersCubit,
-                  onSuccessWidget: (assigned) {
-                  return Column(
-                    children: List.generate(assigned.length,
-                        (index) {
-                      return CardOrderWidget(
-                        controller: controller,
-                        data: assigned[index],
-                      );
-                    },),
-                  );
-                },),
-                ...List.generate(data.newOrders.length,
-                      (index) {
-                    return CardOrderWidget(
+                  onSuccessWidget: (assigned) => SliverList.builder(
+                    itemCount: assigned.length,
+                    itemBuilder: (_, index) => CardOrderWidget(
                       controller: controller,
-                      data: data.newOrders[index],
-                    );
-                  },),
-                Gaps.vGap20,
+                      data: assigned[index],
+                    ),
+                  ),
+                ),
+                SliverList.builder(
+                  itemCount: data.newOrders.length,
+                  itemBuilder: (_, index) => CardOrderWidget(
+                    controller: controller,
+                    data: data.newOrders[index],
+                  ),
+                ),
+                SliverToBoxAdapter(child: Gaps.vGap20),
               ],
             ),
           ),

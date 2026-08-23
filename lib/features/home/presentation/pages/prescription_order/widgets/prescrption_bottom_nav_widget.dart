@@ -6,15 +6,19 @@ import '../../../../../../core/helpers/export.dart';
 class PrescrptionBottomNavWidget extends StatelessWidget {
   final VoidCallback? onScanProduct;
   final VoidCallback? onConfirmOrder;
+  final VoidCallback? onAccept;
   final VoidCallback? onDispatch;
   final bool isAwaitingCustomer;
+  final bool isAccepted;
 
   const PrescrptionBottomNavWidget({
     super.key,
     this.onScanProduct,
     this.onConfirmOrder,
+    this.onAccept,
     this.onDispatch,
     this.isAwaitingCustomer = false,
+    this.isAccepted = false,
   });
 
   @override
@@ -36,10 +40,10 @@ class PrescrptionBottomNavWidget extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     if (isAwaitingCustomer) return _buildAwaitingBanner(context);
-    if (onDispatch != null) {
+    if (onAccept != null || onDispatch != null) {
       return AppTextButton.maxCustom(
-        text: Translate.s.dispatch_order,
-        onPressed: onDispatch!,
+        text: isAccepted ? Translate.s.dispatch_order : Translate.s.ready_for_preparation,
+        onPressed: isAccepted ? onDispatch! : onAccept!,
         bgColor: context.colors.appGreen,
         txtColor: context.colors.white,
         textSize: 18,

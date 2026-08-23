@@ -19,6 +19,7 @@ import 'package:flutter_tdd/features/home/domain/entity/update_device_token_para
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/notifications/domain/entity/generic_pagin_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/product_search_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/cancel_order_params.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: HomeRepositories)
@@ -62,8 +63,8 @@ class ImplHomeRepositories extends HomeRepositories {
   }
 
   @override
-  Future<MyResult<OrderModel>> cancelOrder(int id) async {
-    return dataSource.cancelOrder(id);
+  Future<MyResult<OrderModel>> cancelOrder(CancelOrderParams params) async {
+    return dataSource.cancelOrder(params);
   }
 
   @override
@@ -102,8 +103,8 @@ class ImplHomeRepositories extends HomeRepositories {
   }
 
   @override
-  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id) async {
-    return dataSource.getPharmacyOrder(id);
+  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id,{bool fromRemote = true}) async {
+    return dataSource.getPharmacyOrder(id,fromRemote: fromRemote);
   }
 
   @override

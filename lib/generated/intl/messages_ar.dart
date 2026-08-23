@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "cancel_order": MessageLookupByLibrary.simpleMessage("إلغاء الطلب"),
+        "cancel_reason": MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
         "cancelled": MessageLookupByLibrary.simpleMessage("ملغي"),
         "cannot_replace_higher_price": m0,
         "cash": MessageLookupByLibrary.simpleMessage("نقداً"),
@@ -426,6 +427,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "or": MessageLookupByLibrary.simpleMessage("أو"),
         "order_accepted_failed":
             MessageLookupByLibrary.simpleMessage("فشل قبول الطلب"),
+        "order_accepted_successfully":
+            MessageLookupByLibrary.simpleMessage("تم قبول الطلب بنجاح"),
         "order_cancelled_successfully":
             MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب بنجاح"),
         "order_completed_successfully":
@@ -550,6 +553,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "quick_actions":
             MessageLookupByLibrary.simpleMessage("الإجراءات السريعة"),
         "quick_options": MessageLookupByLibrary.simpleMessage("خيارات سريعة"),
+        "ready_for_preparation":
+            MessageLookupByLibrary.simpleMessage("جاهز للتحضير"),
         "reason": MessageLookupByLibrary.simpleMessage("السبب"),
         "receiving_from": MessageLookupByLibrary.simpleMessage("استلام من"),
         "recent_activity":

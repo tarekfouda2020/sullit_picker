@@ -138,6 +138,10 @@ mixin _$BaseOrderInfo {
   String? get shippingTypeLabel => throw _privateConstructorUsedError;
   @JsonKey(name: 'shipping_type_label')
   set shippingTypeLabel(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: 'shipping_address')
+  String? get shippingAddress => throw _privateConstructorUsedError;
+  @JsonKey(name: 'shipping_address')
+  set shippingAddress(String? value) => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_status')
   bool? get paymentStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_status')
@@ -222,6 +226,7 @@ abstract class $BaseOrderInfoCopyWith<$Res> {
       @JsonKey(name: 'delivered_at') String deliveredAt,
       @JsonKey(name: 'shipping_type') String? shippingType,
       @JsonKey(name: 'shipping_type_label') String? shippingTypeLabel,
+      @JsonKey(name: 'shipping_address') String? shippingAddress,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
@@ -281,6 +286,7 @@ class _$BaseOrderInfoCopyWithImpl<$Res, $Val extends BaseOrderInfo>
     Object? deliveredAt = null,
     Object? shippingType = freezed,
     Object? shippingTypeLabel = freezed,
+    Object? shippingAddress = freezed,
     Object? paymentStatus = freezed,
     Object? paymentStatusText = freezed,
     Object? paymentMethod = freezed,
@@ -422,6 +428,10 @@ class _$BaseOrderInfoCopyWithImpl<$Res, $Val extends BaseOrderInfo>
           ? _value.shippingTypeLabel
           : shippingTypeLabel // ignore: cast_nullable_to_non_nullable
               as String?,
+      shippingAddress: freezed == shippingAddress
+          ? _value.shippingAddress
+          : shippingAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
       paymentStatus: freezed == paymentStatus
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
@@ -520,6 +530,7 @@ abstract class _$$BaseOrderInfoImplCopyWith<$Res>
       @JsonKey(name: 'delivered_at') String deliveredAt,
       @JsonKey(name: 'shipping_type') String? shippingType,
       @JsonKey(name: 'shipping_type_label') String? shippingTypeLabel,
+      @JsonKey(name: 'shipping_address') String? shippingAddress,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
@@ -579,6 +590,7 @@ class __$$BaseOrderInfoImplCopyWithImpl<$Res>
     Object? deliveredAt = null,
     Object? shippingType = freezed,
     Object? shippingTypeLabel = freezed,
+    Object? shippingAddress = freezed,
     Object? paymentStatus = freezed,
     Object? paymentStatusText = freezed,
     Object? paymentMethod = freezed,
@@ -720,6 +732,10 @@ class __$$BaseOrderInfoImplCopyWithImpl<$Res>
           ? _value.shippingTypeLabel
           : shippingTypeLabel // ignore: cast_nullable_to_non_nullable
               as String?,
+      shippingAddress: freezed == shippingAddress
+          ? _value.shippingAddress
+          : shippingAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
       paymentStatus: freezed == paymentStatus
           ? _value.paymentStatus
           : paymentStatus // ignore: cast_nullable_to_non_nullable
@@ -793,6 +809,7 @@ class _$BaseOrderInfoImpl extends _BaseOrderInfo {
       @JsonKey(name: 'delivered_at') required this.deliveredAt,
       @JsonKey(name: 'shipping_type') this.shippingType,
       @JsonKey(name: 'shipping_type_label') this.shippingTypeLabel,
+      @JsonKey(name: 'shipping_address') this.shippingAddress,
       @JsonKey(name: 'payment_status') this.paymentStatus,
       @JsonKey(name: 'payment_status_text') this.paymentStatusText,
       @JsonKey(name: 'payment_method') this.paymentMethod,
@@ -897,6 +914,9 @@ class _$BaseOrderInfoImpl extends _BaseOrderInfo {
   @JsonKey(name: 'shipping_type_label')
   String? shippingTypeLabel;
   @override
+  @JsonKey(name: 'shipping_address')
+  String? shippingAddress;
+  @override
   @JsonKey(name: 'payment_status')
   bool? paymentStatus;
   @override
@@ -920,7 +940,7 @@ class _$BaseOrderInfoImpl extends _BaseOrderInfo {
 
   @override
   String toString() {
-    return 'BaseOrderInfo(id: $id, customer: $customer, code: $code, total: $total, status: $status, subtotal: $subtotal, shipping: $shipping, tax: $tax, taxPercentage: $taxPercentage, couponDiscount: $couponDiscount, serviceFees: $serviceFees, envFees: $envFees, techFees: $techFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, loyaltyPointsValue: $loyaltyPointsValue, totalItems: $totalItems, shopType: $shopType, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, pickerNotes: $pickerNotes, orderDate: $orderDate, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, shippingType: $shippingType, shippingTypeLabel: $shippingTypeLabel, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, modifiedProducts: $modifiedProducts, discounts: $discounts)';
+    return 'BaseOrderInfo(id: $id, customer: $customer, code: $code, total: $total, status: $status, subtotal: $subtotal, shipping: $shipping, tax: $tax, taxPercentage: $taxPercentage, couponDiscount: $couponDiscount, serviceFees: $serviceFees, envFees: $envFees, techFees: $techFees, vatFeeAmount: $vatFeeAmount, totalFeeAmount: $totalFeeAmount, loyaltyPointsValue: $loyaltyPointsValue, totalItems: $totalItems, shopType: $shopType, isPendingReview: $isPendingReview, awaitingCustomerCompletion: $awaitingCustomerCompletion, requiresPrescriptionReview: $requiresPrescriptionReview, insuranceApplied: $insuranceApplied, bagsCount: $bagsCount, bagPrice: $bagPrice, allowReplacement: $allowReplacement, statusLabel: $statusLabel, pickerNotes: $pickerNotes, orderDate: $orderDate, preparationMinutes: $preparationMinutes, startPickingAt: $startPickingAt, deliveredAt: $deliveredAt, shippingType: $shippingType, shippingTypeLabel: $shippingTypeLabel, shippingAddress: $shippingAddress, paymentStatus: $paymentStatus, paymentStatusText: $paymentStatusText, paymentMethod: $paymentMethod, driverInfo: $driverInfo, ordersDetails: $ordersDetails, modifiedProducts: $modifiedProducts, discounts: $discounts)';
   }
 
   @JsonKey(ignore: true)
@@ -976,6 +996,7 @@ abstract class _BaseOrderInfo extends BaseOrderInfo {
       @JsonKey(name: 'delivered_at') required String deliveredAt,
       @JsonKey(name: 'shipping_type') String? shippingType,
       @JsonKey(name: 'shipping_type_label') String? shippingTypeLabel,
+      @JsonKey(name: 'shipping_address') String? shippingAddress,
       @JsonKey(name: 'payment_status') bool? paymentStatus,
       @JsonKey(name: 'payment_status_text') String? paymentStatusText,
       @JsonKey(name: 'payment_method') String? paymentMethod,
@@ -1139,6 +1160,11 @@ abstract class _BaseOrderInfo extends BaseOrderInfo {
   String? get shippingTypeLabel;
   @JsonKey(name: 'shipping_type_label')
   set shippingTypeLabel(String? value);
+  @override
+  @JsonKey(name: 'shipping_address')
+  String? get shippingAddress;
+  @JsonKey(name: 'shipping_address')
+  set shippingAddress(String? value);
   @override
   @JsonKey(name: 'payment_status')
   bool? get paymentStatus;

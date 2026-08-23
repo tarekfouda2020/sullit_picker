@@ -12,6 +12,7 @@ import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dar
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/data/model/accept_prescription_preview_model/accept_prescription_preview_model.dart';
 import 'package:flutter_tdd/features/home/data/model/prescription_order_details/pharmacy_order_model.dart';
+import 'package:flutter_tdd/features/home/presentation/pages/order_details/order_details_imports.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/prescription_order/widgets/prescrption_bottom_nav_widget.dart';
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/orders/domain/params/prescription_preview_params.dart';
@@ -40,6 +41,7 @@ import 'widgets/prescription_search_hint_widget.dart';
 import 'widgets/prescription_search_hint_loader_widget.dart';
 import 'widgets/prescription_bottom_nav_loader_widget.dart';
 import 'widgets/prescription_search_product_sheet_widget.dart';
+import 'widgets/product_instructions_dialog_widget.dart';
 
 part 'prescription_order_controller.dart';
 part 'prescription_order.dart';

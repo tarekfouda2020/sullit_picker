@@ -380,14 +380,35 @@ class OrderDetailsController {
   }
 
   void showCancelOrderDialog(BuildContext context) {
+    if (_isPharmOrder) {
+      _showCancelReasonDialog(context);
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return DialogActionWidget(
+            description: Translate.of(context).are_you_sure_cancel_order,
+            buttonGreenTitle: Translate.of(context).app_confirm,
+            buttonRedTitle: Translate.of(context).no,
+            greenOnTap: () => cancelOrder(context),
+          );
+        },
+      );
+    }
+  }
+
+  void _showCancelReasonDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) {
-        return DialogActionWidget(
-          description: Translate.of(context).are_you_sure_cancel_order,
-          buttonGreenTitle: Translate.of(context).app_confirm,
-          buttonRedTitle: Translate.of(context).no,
-          greenOnTap: () => cancelOrder(context),
+      barrierDismissible: false,
+      builder: (ctx) {
+        return UpdateReasonDialogWidget(
+          controller: this,
+          title: Translate.s.cancel_reason,
+          onPressSubmit: () {
+            Navigator.pop(ctx);
+            cancelOrder(context, cancelReason: pickerNoteController.text);
+          },
         );
       },
     );
@@ -411,9 +432,11 @@ class OrderDetailsController {
   }
 
   Future<void> cancelOrder(BuildContext context,
-      {bool fromDelete = false}) async {
+      {bool fromDelete = false, String? cancelReason}) async {
+    pickerNoteController.clear();
     getIt<LoadingHelper>().showLoadingDialog();
-    var result = await getIt<HomeRepositories>().cancelOrder(orderId);
+    final params = CancelOrderParams(id: orderId, cancelReason: cancelReason);
+    var result = await getIt<HomeRepositories>().cancelOrder(params);
     result.when(
       isSuccess: (data) async {
         await removeOrder();
@@ -1109,7 +1132,7 @@ class OrderDetailsController {
     if(doPop){
       Navigator.pop(context);
     }
-      getIt<LoadingHelper>().showLoadingDialog();
+      getIt<LoadingHelper>().showLoadingDialog(useDefaultTime: false);
       final PrepareOrderParams params = _prepareOrderParams();
       final result = await getIt<HomeRepositories>().prepareOrder(params);
       BuildContext ctx = getIt<GlobalContext>().context();

@@ -39,6 +39,7 @@ class GenericTextField extends StatelessWidget {
  final String? fontFamily;
  final TextDirection? textDirection;
   final double? hintSize;
+  final double? textHeight;
 
   const GenericTextField(
       {super.key,  this.label,
@@ -56,6 +57,7 @@ class GenericTextField extends StatelessWidget {
       this.max,
       this.maxLength,
       this.suffixWidget,
+      this.textHeight,
       this.prefixWidget,
       this.textColor,
       this.fillColor,
@@ -119,7 +121,10 @@ class GenericTextField extends StatelessWidget {
       onEditingComplete: onSubmit,
       onChanged: onChange,
       validator: (value) => validate(value),
-      style: AppTextStyle.s14_w400(color: textColor??context.colors.black).copyWith(fontFamily: fontFamily),
+      style: AppTextStyle.s14_w400(color: textColor??context.colors.black).copyWith(
+          fontFamily: fontFamily,
+        height: textHeight
+      ),
       decoration: CustomInputDecoration(
         labelTxt: label,
         hintStr: hint,

@@ -9,6 +9,7 @@ import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/cancel_order_params.dart';
 import 'package:flutter_tdd/features/home/data/model/accept_prescription_preview_model/accept_prescription_preview_model.dart';
 import 'package:flutter_tdd/features/home/data/model/prescription_order_details/pharmacy_order_model.dart';
 import 'package:flutter_tdd/features/orders/domain/params/prescription_preview_params.dart';
@@ -30,7 +31,7 @@ abstract class HomeDataSource {
 
   Future<MyResult<OrderModel>> acceptOrder(OrdersParams params);
 
-  Future<MyResult<OrderModel>> cancelOrder(int id);
+  Future<MyResult<OrderModel>> cancelOrder(CancelOrderParams params);
 
   Future<MyResult<SearchBarcodeModel>> searchByBarcode(
       ReplacedProductParams params);
@@ -52,7 +53,7 @@ abstract class HomeDataSource {
   Future<MyResult<AcceptPrescriptionPreviewModel>> acceptPrescriptionPreview(
       PrescriptionPreviewParams params);
 
-  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id);
+  Future<MyResult<PharmacyOrderModel>> getPharmacyOrder(int id,{bool fromRemote = true});
 
   Future<MyResult<String>> acceptPrescription(AcceptPrescriptionParams params);
 

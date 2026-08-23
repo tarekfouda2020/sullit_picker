@@ -18,17 +18,24 @@ class PrescriptionBottomNavLoaderWidget extends StatelessWidget {
     return BaseBlocBuilder<PharmacyOrderModel>(
       bloc: controller.orderCubit,
       onLoadingWidget: (_) => const _BottomNavShimmerWidget(),
-      onSuccessWidget: (_) => PrescrptionBottomNavWidget(
-        isAwaitingCustomer: controller.isAwaitingCustomer,
-        onScanProduct: controller.isEditing
-            ? () => controller.scanAndAddProduct(context)
-            : null,
-        onConfirmOrder: controller.isEditing
-            ? () => controller.onCompleteOrderPressed(context)
-            : null,
-        onDispatch: controller.canDispatch
-            ? () => controller.dispatchOrder(context)
-            : null,
+      onSuccessWidget: (_) => BaseBlocBuilder<bool>(
+        bloc: controller.acceptedCubit,
+        onSuccessWidget: (isAccepted) => PrescrptionBottomNavWidget(
+          isAwaitingCustomer: controller.isAwaitingCustomer,
+          isAccepted: isAccepted ,
+          onScanProduct: controller.isEditing
+              ? () => controller.scanAndAddProduct(context)
+              : null,
+          onConfirmOrder: controller.isEditing
+              ? () => controller.onCompleteOrderPressed(context)
+              : null,
+          onAccept: controller.canDispatch && !(isAccepted ?? false)
+              ? () => controller.acceptOrderForDispatch(context)
+              : null,
+          onDispatch: controller.canDispatch && (isAccepted ?? false)
+              ? () => controller.dispatchOrder(context)
+              : null,
+        ),
       ),
     );
   }

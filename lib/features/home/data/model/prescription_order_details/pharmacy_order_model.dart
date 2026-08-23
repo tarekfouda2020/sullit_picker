@@ -45,6 +45,8 @@ class PharmacyOrderModel with _$PharmacyOrderModel {
 
   String get status => base.status;
 
+  bool get isPreparing => base.isAssigned;
+
   String? get taxPercentage => base.taxPercentage;
 
   String? get serviceFees => base.serviceFees;

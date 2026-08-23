@@ -25,22 +25,31 @@ class PrescriptionCustomerCardWidget extends StatelessWidget {
   }
 
   Widget _buildCard(BuildContext context, CustomerModel customer) {
-    return GestureDetector(
-      onTap: () => onTap(customer),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-        decoration: BoxDecoration(
-          color: context.colors.white,
-          borderRadius: Dimens.borderRadius8PX,
-          border: Border.all(color: context.colors.borderLight),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 12,
+      children: [
+        Text("Order Number : ${orderCubit.data!.code}",
+          style: AppTextStyle.s14_w500(color: context.colors.primary),
         ),
-        child: Row(
-          children: [
-            Expanded(child: CustomerNameTypeWidget(customer: customer)),
-            Icon(Icons.chevron_right, color: context.colors.simiGray),
-          ],
+        GestureDetector(
+          onTap: () => onTap(customer),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+            decoration: BoxDecoration(
+              color: context.colors.white,
+              borderRadius: Dimens.borderRadius8PX,
+              border: Border.all(color: context.colors.borderLight),
+            ),
+            child: Row(
+              children: [
+                Expanded(child: CustomerNameTypeWidget(customer: customer)),
+                Icon(Icons.chevron_right, color: context.colors.simiGray),
+              ],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
