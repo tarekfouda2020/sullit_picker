@@ -446,5 +446,22 @@
   "save_pdf": "Save PDF",
   "share_pdf": "Share PDF",
   "pdf_saved_successfully": "PDF saved successfully",
-  "failed_to_save_pdf": "Failed to save PDF"
+  "failed_to_save_pdf": "Failed to save PDF",
+  "in_store_scanner": "In store Scanner",
+  "search_by_barcode_no": "Search By Barcode no.",
+  "search_by_order_number": "Search By Order Number",
+  "start_matching": "Start Matching",
+  "matching_results": "Matching Results",
+  "percent_matched": "{percent}% Matched",
+  "missed_items": "Missed Items",
+  "extra_items": "Extra Items",
+  "rescan": "Rescan",
+  "confirm_order": "Confirm Order",
+  "item_not_in_order_add_extra": "This item is not in the order. Add as extra?",
+  "in_store_one_order_only": "You can scan one in-store order at a time",
+  "invalid_order_id": "Invalid order number",
+  "in_store_order_unavailable": "This order is no longer available",
+  "in_store_order_items_updated": "Order items changed. Scan again.",
+  "cannot_scan_more_than_order_qty": "Cannot scan more than the ordered quantity",
+  "all_products_scanned": "All products scanned"
 }

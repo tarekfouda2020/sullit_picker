@@ -26,7 +26,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(stock) => "المخزون المتاح ${stock} فقط";
 
-  static String m3(MB, files) =>
+  static String m3(percent) => "${percent}٪ متطابق";
+
+  static String m4(MB, files) =>
       "يجب أن يكون حجم الملفات أقل من ${MB} ميجابايت، ${files}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -41,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "ago": MessageLookupByLibrary.simpleMessage("منذ"),
         "agree": MessageLookupByLibrary.simpleMessage("موافق"),
+        "all_products_scanned":
+            MessageLookupByLibrary.simpleMessage("تم مسح جميع المنتجات"),
         "and": MessageLookupByLibrary.simpleMessage("و"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
@@ -93,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel_reason": MessageLookupByLibrary.simpleMessage("سبب الإلغاء"),
         "cancelled": MessageLookupByLibrary.simpleMessage("ملغي"),
         "cannot_replace_higher_price": m0,
+        "cannot_scan_more_than_order_qty": MessageLookupByLibrary.simpleMessage(
+            "لا يمكن مسح كمية أكبر من كمية الطلب"),
         "cash": MessageLookupByLibrary.simpleMessage("نقداً"),
         "cash_on_delivery":
             MessageLookupByLibrary.simpleMessage("الدفع عند الاستلام"),
@@ -115,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "يرجى إدخال كلمة المرور المطابقة"),
         "confirm_new_password":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور الجديدة"),
+        "confirm_order": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "confirm_password_required":
@@ -249,6 +256,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
         "estimated_time": MessageLookupByLibrary.simpleMessage("الوقت المقدر"),
         "expired_within_days": m1,
+        "extra_items": MessageLookupByLibrary.simpleMessage("عناصر إضافية"),
         "failed_orders":
             MessageLookupByLibrary.simpleMessage("الطلبات الفاشلة"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("سبب الفشل"),
@@ -286,6 +294,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "image_saved_successfully":
             MessageLookupByLibrary.simpleMessage("تم حفظ الصورة في المعرض"),
         "in_progress": MessageLookupByLibrary.simpleMessage("قيد التنفيذ"),
+        "in_store_one_order_only": MessageLookupByLibrary.simpleMessage(
+            "يمكن مسح طلب واحد داخل المتجر في كل مرة"),
+        "in_store_order_items_updated": MessageLookupByLibrary.simpleMessage(
+            "تم تغيير عناصر الطلب. أعد المسح."),
+        "in_store_order_unavailable":
+            MessageLookupByLibrary.simpleMessage("هذا الطلب لم يعد متاحاً"),
+        "in_store_scanner":
+            MessageLookupByLibrary.simpleMessage("ماسح داخل المتجر"),
         "instructions": MessageLookupByLibrary.simpleMessage("التعليمات"),
         "insurance_attachments":
             MessageLookupByLibrary.simpleMessage("التأمين"),
@@ -297,10 +313,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خصم التأمين"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("متصل بالإنترنت"),
+        "invalid_order_id":
+            MessageLookupByLibrary.simpleMessage("رقم الطلب غير صالح"),
         "is_price_equal":
             MessageLookupByLibrary.simpleMessage("هل السعر متساوي"),
         "is_weight_equals":
             MessageLookupByLibrary.simpleMessage("هل الوزن يساوي 900 جم؟"),
+        "item_not_in_order_add_extra": MessageLookupByLibrary.simpleMessage(
+            "هذا المنتج غير موجود في الطلب. هل تريد إضافته كعنصر إضافي؟"),
         "item_price": MessageLookupByLibrary.simpleMessage("سعر العنصر : "),
         "items_left": MessageLookupByLibrary.simpleMessage("عناصر متبقية"),
         "items_left_suffix":
@@ -347,11 +367,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عطل في المحرك"),
         "manage_subscription_plan":
             MessageLookupByLibrary.simpleMessage("إدارة خطة اشتراكك"),
+        "matching_results":
+            MessageLookupByLibrary.simpleMessage("نتائج المطابقة"),
         "maybe_later": MessageLookupByLibrary.simpleMessage("ربما لاحقاً"),
         "message_sent_successfully":
             MessageLookupByLibrary.simpleMessage("تم إرسال الرسالة بنجاح"),
         "minutes": MessageLookupByLibrary.simpleMessage("دقائق"),
         "minutes_ago": MessageLookupByLibrary.simpleMessage("منذ دقائق"),
+        "missed_items": MessageLookupByLibrary.simpleMessage("العناصر الفائتة"),
         "modified": MessageLookupByLibrary.simpleMessage("تم التعديل"),
         "modify_bags_number":
             MessageLookupByLibrary.simpleMessage("تعديل عدد الأكياس المستخدمة"),
@@ -479,6 +502,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pdf_saved_successfully":
             MessageLookupByLibrary.simpleMessage("تم حفظ PDF بنجاح"),
         "pending": MessageLookupByLibrary.simpleMessage("في الانتظار"),
+        "percent_matched": m3,
         "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
         "phoneValidation":
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم هاتف صالح"),
@@ -573,6 +597,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الإبلاغ عن مشكلة"),
         "report_problem":
             MessageLookupByLibrary.simpleMessage("الإبلاغ عن مشكلة"),
+        "rescan": MessageLookupByLibrary.simpleMessage("إعادة المسح"),
         "reset_password_description": MessageLookupByLibrary.simpleMessage(
             "أدخل البريد الإلكتروني المرتبط بحسابك وسنرسل لك رابط لإعادة تعيين كلمة المرور"),
         "reset_password_link_sent": MessageLookupByLibrary.simpleMessage(
@@ -592,6 +617,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "save_image": MessageLookupByLibrary.simpleMessage("حفظ الصورة"),
         "save_pdf": MessageLookupByLibrary.simpleMessage("حفظ PDF"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "search_by_barcode_no":
+            MessageLookupByLibrary.simpleMessage("البحث برقم الباركود"),
+        "search_by_order_number":
+            MessageLookupByLibrary.simpleMessage("البحث برقم الطلب"),
         "search_hint": MessageLookupByLibrary.simpleMessage("بحث..."),
         "search_products":
             MessageLookupByLibrary.simpleMessage("ابحث عن منتجات"),
@@ -614,11 +643,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "share_pdf": MessageLookupByLibrary.simpleMessage("مشاركة PDF"),
         "show_less": MessageLookupByLibrary.simpleMessage("عرض أقل"),
         "show_more": MessageLookupByLibrary.simpleMessage("عرض المزيد"),
-        "size_more_than_mg_error": m3,
+        "size_more_than_mg_error": m4,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
         "start_delivering":
             MessageLookupByLibrary.simpleMessage("ابدأ التوصيل"),
+        "start_matching": MessageLookupByLibrary.simpleMessage("بدء المطابقة"),
         "start_pick": MessageLookupByLibrary.simpleMessage("ابدأ الالتقاط"),
         "start_pick_at":
             MessageLookupByLibrary.simpleMessage("بدأ الالتقاط في"),

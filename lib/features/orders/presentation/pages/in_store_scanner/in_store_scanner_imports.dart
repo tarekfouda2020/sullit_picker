@@ -1,0 +1,31 @@
+library in_store_scanner;
+
+import 'package:flutter_tdd/core/helpers/export.dart';
+import 'package:flutter_tdd/core/helpers/loading_helper.dart';
+import 'package:flutter_tdd/core/widgets/GenericTextField.dart';
+import 'package:flutter_tdd/core/widgets/dirham_price_widget.dart';
+import 'package:flutter_tdd/features/home/data/enum/product_status_enum.dart';
+import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
+import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
+import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
+import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
+import 'package:flutter_tdd/features/orders/domain/models/in_store_order_session.dart';
+import 'package:flutter_tdd/features/orders/domain/models/matching_product_item.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+
+part 'in_store_scanner.dart';
+part 'in_store_scanner_controller.dart';
+part 'widgets/widgets_imports.dart';
+part 'widgets/order_number_badge_widget.dart';
+part 'widgets/scanner_widget.dart';
+part 'widgets/scanner_search_field_widget.dart';
+part 'widgets/scanner_status_bar_widget.dart';
+part 'widgets/start_matching_button_widget.dart';
+part 'widgets/matching_results_dialog_widget.dart';
+part 'widgets/matching_results_sheet_widget.dart';
+part 'widgets/matching_results_sheet_header_widget.dart';
+part 'widgets/matching_mismatch_section_widget.dart';
+part 'widgets/matching_mismatch_item_card_widget.dart';
+part 'widgets/matching_results_sheet_footer_widget.dart';
+part 'widgets/extra_item_confirm_dialog_widget.dart';

@@ -77,6 +77,7 @@ class ProductModel with _$ProductModel {
     CategoryModel? category,
     @JsonKey(name: 'thumbnail_image') required String thumbnailImage,
     @JsonKey(name: 'is_fresh') required bool isFresh,
+    @JsonKey(name: 'variant_id') int? variantId,
 
     /// used in local data
     @JsonKey(name: 'picked_percent', defaultValue: 0.0)

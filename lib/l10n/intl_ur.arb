@@ -411,5 +411,22 @@
   "notifications_enabled": "اطلاعات فعال ہیں",
   "notifications_disabled": "اطلاعات غیر فعال ہیں",
   "order_processing_error": "معذرت، ہم اس آرڈر کو پروسیس نہیں کر سکتے۔ شکریہ",
-  "notifications_description": "ایپ کی اطلاعات کو کنٹرول کرنے کے لیے، براہِ کرم سیٹنگز > نوٹیفیکیشنز میں جا کر 'AMCOOP Picker' ایپ کو منتخب کریں"
+  "notifications_description": "ایپ کی اطلاعات کو کنٹرول کرنے کے لیے، براہِ کرم سیٹنگز > نوٹیفیکیشنز میں جا کر 'AMCOOP Picker' ایپ کو منتخب کریں",
+  "in_store_scanner": "ان اسٹور اسکینر",
+  "search_by_barcode_no": "بار کوڈ نمبر سے تلاش کریں",
+  "search_by_order_number": "آرڈر نمبر سے تلاش کریں",
+  "start_matching": "میچنگ شروع کریں",
+  "matching_results": "میچنگ نتائج",
+  "percent_matched": "{percent}% میچ ہو گیا",
+  "missed_items": "چھوٹے ہوئے آئٹمز",
+  "extra_items": "اضافی آئٹمز",
+  "rescan": "دوبارہ اسکین",
+  "confirm_order": "آرڈر کی تصدیق",
+  "item_not_in_order_add_extra": "یہ آئٹم آرڈر میں نہیں ہے۔ کیا اسے اضافی شامل کریں؟",
+  "in_store_one_order_only": "ایک وقت میں صرف ایک ان اسٹور آرڈر اسکین کر سکتے ہیں",
+  "invalid_order_id": "آرڈر نمبر غلط ہے",
+  "in_store_order_unavailable": "یہ آرڈر اب دستیاب نہیں",
+  "in_store_order_items_updated": "آرڈر آئٹمز بدل گئے۔ دوبارہ اسکین کریں۔",
+  "cannot_scan_more_than_order_qty": "آرڈر کی مقدار سے زیادہ اسکین نہیں کر سکتے",
+  "all_products_scanned": "تمام پروڈکٹس اسکین ہو گئے"
 }

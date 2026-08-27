@@ -71,6 +71,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
           : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
       thumbnailImage: json['thumbnail_image'] as String,
       isFresh: json['is_fresh'] as bool,
+      variantId: (json['variant_id'] as num?)?.toInt(),
       productPickedPercent: (json['picked_percent'] as num?)?.toDouble() ?? 0.0,
       pickedQuantity: (json['picked_quantity'] as num?)?.toInt() ?? 0,
       productStatus: $enumDecodeNullable(
@@ -88,6 +89,7 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
       'category': instance.category,
       'thumbnail_image': instance.thumbnailImage,
       'is_fresh': instance.isFresh,
+      'variant_id': instance.variantId,
       'picked_percent': instance.productPickedPercent,
       'picked_quantity': instance.pickedQuantity,
       'product_status': _$ProductStatusEnumEnumMap[instance.productStatus],

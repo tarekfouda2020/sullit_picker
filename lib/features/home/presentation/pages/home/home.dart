@@ -43,7 +43,33 @@ class _HomePageState extends State<HomePage> {
           showBack: false,
         ),
         body: OrdersWidget(controller: controller),
-        floatingActionButton: ScrollToTopButtonWidget(controller: controller),
+        floatingActionButton: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ScrollToTopButtonWidget(controller: controller),
+            Gaps.vGap12,
+            GestureDetector(
+              onTap: () => AutoRouter.of(context).push(const InStoreScannerRoute()),
+              child: Container(
+                width: 60,
+                height: 60,
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: context.colors.primary,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: context.colors.primary.withValues(alpha: 0.3),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: SvgPicture.asset(Res.scanIcon),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

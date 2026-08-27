@@ -14,6 +14,7 @@ export 'package:flutter_tdd/core/widgets/bottom_sheet_views/app_bottom_sheets.da
 export 'package:flutter_tdd/core/localization/translate.dart';
 export 'package:flutter_tdd/core/bloc/base_bloc/base_bloc.dart';
 export 'package:flutter_tdd/core/helpers/orders_helper.dart';
+export 'package:flutter_tdd/core/helpers/in_store_orders_helper.dart';
 export 'package:flutter_tdd/core/constants/dimens.dart';
 export 'package:flutter_tdd/core/theme/colors/colors_extension.dart';
 export 'dart:io';

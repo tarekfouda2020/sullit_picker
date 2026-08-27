@@ -11,6 +11,7 @@ import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/update_dialog_widget.dart';
 import 'package:flutter_tdd/features/home/domain/entity/update_device_token_params.dart';
 import 'package:new_version_plus/new_version_plus.dart';
+import '../order_details/order_details_imports.dart';
 import 'home_imports.dart';
 
 class HomeController {

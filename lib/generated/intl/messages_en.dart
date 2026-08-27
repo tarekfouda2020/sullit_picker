@@ -27,7 +27,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(stock) => "Only ${stock} available in stock";
 
-  static String m3(MB, files) =>
+  static String m3(percent) => "${percent}% Matched";
+
+  static String m4(MB, files) =>
       "Files size must be less than ${MB} MB, ${files}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -43,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "ago": MessageLookupByLibrary.simpleMessage("ago"),
         "agree": MessageLookupByLibrary.simpleMessage("Agree"),
+        "all_products_scanned":
+            MessageLookupByLibrary.simpleMessage("All products scanned"),
         "and": MessageLookupByLibrary.simpleMessage("and"),
         "app_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "app_confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -94,6 +98,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel_reason": MessageLookupByLibrary.simpleMessage("Cancel Reason"),
         "cancelled": MessageLookupByLibrary.simpleMessage("Cancelled"),
         "cannot_replace_higher_price": m0,
+        "cannot_scan_more_than_order_qty": MessageLookupByLibrary.simpleMessage(
+            "Cannot scan more than the ordered quantity"),
         "cash": MessageLookupByLibrary.simpleMessage("Cash"),
         "cash_on_delivery":
             MessageLookupByLibrary.simpleMessage("Cash on Delivery"),
@@ -117,6 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter the password identical"),
         "confirm_new_password":
             MessageLookupByLibrary.simpleMessage("Confirm New Password"),
+        "confirm_order": MessageLookupByLibrary.simpleMessage("Confirm Order"),
         "confirm_password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm_password_required": MessageLookupByLibrary.simpleMessage(
@@ -257,6 +264,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "estimated_time":
             MessageLookupByLibrary.simpleMessage("Estimated Time"),
         "expired_within_days": m1,
+        "extra_items": MessageLookupByLibrary.simpleMessage("Extra Items"),
         "failed_orders": MessageLookupByLibrary.simpleMessage("Failed Orders"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("Failed Reason"),
         "failed_to_save_image":
@@ -295,6 +303,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "image_saved_successfully":
             MessageLookupByLibrary.simpleMessage("Image saved to gallery"),
         "in_progress": MessageLookupByLibrary.simpleMessage("In Progress"),
+        "in_store_one_order_only": MessageLookupByLibrary.simpleMessage(
+            "You can scan one in-store order at a time"),
+        "in_store_order_items_updated": MessageLookupByLibrary.simpleMessage(
+            "Order items changed. Scan again."),
+        "in_store_order_unavailable": MessageLookupByLibrary.simpleMessage(
+            "This order is no longer available"),
+        "in_store_scanner":
+            MessageLookupByLibrary.simpleMessage("In store Scanner"),
         "instructions": MessageLookupByLibrary.simpleMessage("Instructions"),
         "insurance_attachments":
             MessageLookupByLibrary.simpleMessage("Insurance"),
@@ -306,10 +322,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Insurance Discount"),
         "internet_connected":
             MessageLookupByLibrary.simpleMessage("Internet connected"),
+        "invalid_order_id":
+            MessageLookupByLibrary.simpleMessage("Invalid order number"),
         "is_price_equal":
             MessageLookupByLibrary.simpleMessage("is price equal"),
         "is_weight_equals":
             MessageLookupByLibrary.simpleMessage("Is the weight equals"),
+        "item_not_in_order_add_extra": MessageLookupByLibrary.simpleMessage(
+            "This item is not in the order. Add as extra?"),
         "item_price": MessageLookupByLibrary.simpleMessage("Item Price : "),
         "items_left": MessageLookupByLibrary.simpleMessage("items left"),
         "items_left_suffix": MessageLookupByLibrary.simpleMessage("items left"),
@@ -354,11 +374,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("A malfunction in the Motor"),
         "manage_subscription_plan": MessageLookupByLibrary.simpleMessage(
             "Manage your subscription plan"),
+        "matching_results":
+            MessageLookupByLibrary.simpleMessage("Matching Results"),
         "maybe_later": MessageLookupByLibrary.simpleMessage("Maybe Later"),
         "message_sent_successfully":
             MessageLookupByLibrary.simpleMessage("Message sent successfully"),
         "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
         "minutes_ago": MessageLookupByLibrary.simpleMessage("minutes ago"),
+        "missed_items": MessageLookupByLibrary.simpleMessage("Missed Items"),
         "modified": MessageLookupByLibrary.simpleMessage("Modified"),
         "modify_bags_number":
             MessageLookupByLibrary.simpleMessage("Modify number of used bags"),
@@ -494,6 +517,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pdf_saved_successfully":
             MessageLookupByLibrary.simpleMessage("PDF saved successfully"),
         "pending": MessageLookupByLibrary.simpleMessage("Pending"),
+        "percent_matched": m3,
         "phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "phoneValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid phone number"),
@@ -591,6 +615,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Report a Problem"),
         "report_problem":
             MessageLookupByLibrary.simpleMessage("Report Problem"),
+        "rescan": MessageLookupByLibrary.simpleMessage("Rescan"),
         "reset_password_description": MessageLookupByLibrary.simpleMessage(
             "Enter the email associated with your account and we\'ll send you a link to reset your password"),
         "reset_password_link_sent": MessageLookupByLibrary.simpleMessage(
@@ -611,6 +636,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "save_pdf": MessageLookupByLibrary.simpleMessage("Save PDF"),
         "scan_barcode": MessageLookupByLibrary.simpleMessage("Scan Barcode"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "search_by_barcode_no":
+            MessageLookupByLibrary.simpleMessage("Search By Barcode no."),
+        "search_by_order_number":
+            MessageLookupByLibrary.simpleMessage("Search By Order Number"),
         "search_hint": MessageLookupByLibrary.simpleMessage("Search..."),
         "search_products":
             MessageLookupByLibrary.simpleMessage("Search for products"),
@@ -634,11 +663,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "share_pdf": MessageLookupByLibrary.simpleMessage("Share PDF"),
         "show_less": MessageLookupByLibrary.simpleMessage("Show less"),
         "show_more": MessageLookupByLibrary.simpleMessage("Show more"),
-        "size_more_than_mg_error": m3,
+        "size_more_than_mg_error": m4,
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "start_delivering":
             MessageLookupByLibrary.simpleMessage("Start Delivering"),
+        "start_matching":
+            MessageLookupByLibrary.simpleMessage("Start Matching"),
         "start_pick": MessageLookupByLibrary.simpleMessage("Start Pick"),
         "start_pick_at": MessageLookupByLibrary.simpleMessage("Start pick at"),
         "start_receiving_orders": MessageLookupByLibrary.simpleMessage(

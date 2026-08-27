@@ -11,6 +11,7 @@ import 'package:flutter_tdd/core/helpers/global_context.dart';
 import 'package:flutter_tdd/core/helpers/global_state.dart';
 import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/orders_helper.dart';
+import 'package:flutter_tdd/core/helpers/in_store_orders_helper.dart';
 import 'package:flutter_tdd/core/http/dio_helper/utils/cache_manager.dart';
 import 'package:flutter_tdd/features/auth/data/models/user_model/user_model.dart';
 import 'package:flutter_tdd/features/auth/presentation/manager/user_cubit/user_cubit.dart';
@@ -28,6 +29,7 @@ class UserServicesHelper {
     
     // Reset OrdersHelper for new login to ensure clean state
     await getIt<OrdersHelper>().reset();
+    await getIt<InStoreOrdersHelper>().reset();
     
     var userData = json.encode(data?.toJson());
     GlobalState.instance.set(ApplicationConstants.keyToken, data?.token);
@@ -45,6 +47,7 @@ class UserServicesHelper {
 
     // Clean up OrdersHelper before clearing Hive to prevent timer-related crashes
     await getIt<OrdersHelper>().cleanup();
+    await getIt<InStoreOrdersHelper>().cleanup();
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove("user");
     await preferences.remove(ApplicationConstants.keyToken);
@@ -56,6 +59,7 @@ class UserServicesHelper {
     HiveHelper.instance.deleteDataFromBox<String,String>(HiveBoxesNames.orders,key: HiveBoxesKeys.assignedOrdersKey,);
     await HiveHelper.instance.deleteBox<String>(HiveBoxesNames.orderDetails);
     await HiveHelper.instance.deleteBox<String>(HiveBoxesNames.prescriptionOrderDetails);
+    await HiveHelper.instance.deleteBox<String>(HiveBoxesNames.inStoreOrder);
     await HiveHelper.instance.clearHive();
 
     // Reinitialize Hive for the next login
@@ -63,6 +67,7 @@ class UserServicesHelper {
     await HiveHelper.instance.openBox<String>(HiveBoxesNames.orderDetails);
     await HiveHelper.instance.openBox<String>(HiveBoxesNames.orders);
     await HiveHelper.instance.openBox<String>(HiveBoxesNames.prescriptionOrderDetails);
+    await HiveHelper.instance.openBox<String>(HiveBoxesNames.inStoreOrder);
     
     context.read<UserCubit>().onUpdateUserData(null);
     AutoRouter.of(context).push(const SplashRoute());

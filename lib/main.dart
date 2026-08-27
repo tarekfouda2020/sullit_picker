@@ -22,6 +22,7 @@ void main() async {
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.orderDetails);
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.orders);
   await HiveHelper.instance.openBox<String>(HiveBoxesNames.prescriptionOrderDetails);
+  await HiveHelper.instance.openBox<String>(HiveBoxesNames.inStoreOrder);
   await Firebase.initializeApp();
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   getIt.registerSingleton(SharedPreferences.getInstance());

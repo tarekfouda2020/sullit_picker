@@ -7,6 +7,7 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
    ...authRoutes,
     ...homeRoutes,
+    ...ordersRoutes,
     ...generalRoutes,
 
     // Profile Routes

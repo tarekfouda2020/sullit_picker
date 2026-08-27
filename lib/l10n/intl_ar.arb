@@ -447,5 +447,22 @@
   "save_pdf": "حفظ PDF",
   "share_pdf": "مشاركة PDF",
   "pdf_saved_successfully": "تم حفظ PDF بنجاح",
-  "failed_to_save_pdf": "فشل حفظ PDF"
+  "failed_to_save_pdf": "فشل حفظ PDF",
+  "in_store_scanner": "ماسح داخل المتجر",
+  "search_by_barcode_no": "البحث برقم الباركود",
+  "search_by_order_number": "البحث برقم الطلب",
+  "start_matching": "بدء المطابقة",
+  "matching_results": "نتائج المطابقة",
+  "percent_matched": "{percent}٪ متطابق",
+  "missed_items": "العناصر الفائتة",
+  "extra_items": "عناصر إضافية",
+  "rescan": "إعادة المسح",
+  "confirm_order": "تأكيد الطلب",
+  "item_not_in_order_add_extra": "هذا المنتج غير موجود في الطلب. هل تريد إضافته كعنصر إضافي؟",
+  "in_store_one_order_only": "يمكن مسح طلب واحد داخل المتجر في كل مرة",
+  "invalid_order_id": "رقم الطلب غير صالح",
+  "in_store_order_unavailable": "هذا الطلب لم يعد متاحاً",
+  "in_store_order_items_updated": "تم تغيير عناصر الطلب. أعد المسح.",
+  "cannot_scan_more_than_order_qty": "لا يمكن مسح كمية أكبر من كمية الطلب",
+  "all_products_scanned": "تم مسح جميع المنتجات"
 }

@@ -4519,6 +4519,176 @@ class S {
       args: [],
     );
   }
+
+  /// `In store Scanner`
+  String get in_store_scanner {
+    return Intl.message(
+      'In store Scanner',
+      name: 'in_store_scanner',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search By Barcode no.`
+  String get search_by_barcode_no {
+    return Intl.message(
+      'Search By Barcode no.',
+      name: 'search_by_barcode_no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search By Order Number`
+  String get search_by_order_number {
+    return Intl.message(
+      'Search By Order Number',
+      name: 'search_by_order_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Matching`
+  String get start_matching {
+    return Intl.message(
+      'Start Matching',
+      name: 'start_matching',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Matching Results`
+  String get matching_results {
+    return Intl.message(
+      'Matching Results',
+      name: 'matching_results',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{percent}% Matched`
+  String percent_matched(Object percent) {
+    return Intl.message(
+      '$percent% Matched',
+      name: 'percent_matched',
+      desc: '',
+      args: [percent],
+    );
+  }
+
+  /// `Missed Items`
+  String get missed_items {
+    return Intl.message(
+      'Missed Items',
+      name: 'missed_items',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Extra Items`
+  String get extra_items {
+    return Intl.message(
+      'Extra Items',
+      name: 'extra_items',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rescan`
+  String get rescan {
+    return Intl.message(
+      'Rescan',
+      name: 'rescan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Order`
+  String get confirm_order {
+    return Intl.message(
+      'Confirm Order',
+      name: 'confirm_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This item is not in the order. Add as extra?`
+  String get item_not_in_order_add_extra {
+    return Intl.message(
+      'This item is not in the order. Add as extra?',
+      name: 'item_not_in_order_add_extra',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can scan one in-store order at a time`
+  String get in_store_one_order_only {
+    return Intl.message(
+      'You can scan one in-store order at a time',
+      name: 'in_store_one_order_only',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid order number`
+  String get invalid_order_id {
+    return Intl.message(
+      'Invalid order number',
+      name: 'invalid_order_id',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This order is no longer available`
+  String get in_store_order_unavailable {
+    return Intl.message(
+      'This order is no longer available',
+      name: 'in_store_order_unavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order items changed. Scan again.`
+  String get in_store_order_items_updated {
+    return Intl.message(
+      'Order items changed. Scan again.',
+      name: 'in_store_order_items_updated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cannot scan more than the ordered quantity`
+  String get cannot_scan_more_than_order_qty {
+    return Intl.message(
+      'Cannot scan more than the ordered quantity',
+      name: 'cannot_scan_more_than_order_qty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All products scanned`
+  String get all_products_scanned {
+    return Intl.message(
+      'All products scanned',
+      name: 'all_products_scanned',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

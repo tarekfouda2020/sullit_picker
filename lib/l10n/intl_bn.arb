@@ -318,5 +318,22 @@
   "not_available": "উপলব্ধ নয়",
   "reason": "কারণ",
   "modified": "সম্পাদিত",
-  "replaced": "প্রতিস্থাপিত"
+  "replaced": "প্রতিস্থাপিত",
+  "in_store_scanner": "ইন স্টোর স্ক্যানার",
+  "search_by_barcode_no": "বারকোড নম্বর দিয়ে খুঁজুন",
+  "search_by_order_number": "অর্ডার নম্বর দিয়ে খুঁজুন",
+  "start_matching": "ম্যাচিং শুরু করুন",
+  "matching_results": "ম্যাচিং ফলাফল",
+  "percent_matched": "{percent}% মিলেছে",
+  "missed_items": "মিসড আইটেম",
+  "extra_items": "অতিরিক্ত আইটেম",
+  "rescan": "আবার স্ক্যান",
+  "confirm_order": "অর্ডার নিশ্চিত করুন",
+  "item_not_in_order_add_extra": "এই আইটেমটি অর্ডারে নেই। অতিরিক্ত হিসেবে যোগ করবেন?",
+  "in_store_one_order_only": "একবারে শুধু একটি ইন-স্টোর অর্ডার স্ক্যান করা যাবে",
+  "invalid_order_id": "অর্ডার নম্বর সঠিক নয়",
+  "in_store_order_unavailable": "এই অর্ডারটি আর উপলব্ধ নেই",
+  "in_store_order_items_updated": "অর্ডার আইটেম বদলেছে। আবার স্ক্যান করুন।",
+  "cannot_scan_more_than_order_qty": "অর্ডারের পরিমাণের বেশি স্ক্যান করা যাবে না",
+  "all_products_scanned": "সব পণ্য স্ক্যান করা হয়েছে"
 }

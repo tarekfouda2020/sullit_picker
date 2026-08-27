@@ -15,7 +15,7 @@ class ScrollToTopButtonWidget extends StatelessWidget {
       builder: (context, show) {
         if (!show) return const SizedBox.shrink();
         return GestureDetector(
-          onTap: controller.scrollToTop,
+          onTap: () => controller.scrollToTop(),
           child: Container(
             width: 40,
             height: 40,

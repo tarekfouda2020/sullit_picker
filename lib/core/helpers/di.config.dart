@@ -16,6 +16,7 @@ import 'package:flutter_tdd/core/helpers/firebase_analytics_helper.dart'
     as _i279;
 import 'package:flutter_tdd/core/helpers/global_context.dart' as _i769;
 import 'package:flutter_tdd/core/helpers/global_notification.dart' as _i443;
+import 'package:flutter_tdd/core/helpers/in_store_orders_helper.dart' as _i762;
 import 'package:flutter_tdd/core/helpers/loading_helper.dart' as _i934;
 import 'package:flutter_tdd/core/helpers/location_service.dart' as _i320;
 import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart' as _i431;
@@ -123,6 +124,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i690.UserServicesHelper());
     gh.lazySingleton<_i752.OrdersHelper>(() => _i752.OrdersHelper());
     gh.lazySingleton<_i177.DeviceIdHelper>(() => _i177.DeviceIdHelper());
+    gh.lazySingleton<_i762.InStoreOrdersHelper>(
+        () => _i762.InStoreOrdersHelper());
     gh.factory<_i1071.NotificationDataSource>(
         () => _i603.ImplNotificationDataSource());
     gh.factory<_i674.AuthRepositories>(() => _i988.ImplAuthRepositories());

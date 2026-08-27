@@ -8,6 +8,7 @@ class Res {
   static const String facebook = "assets/images/facebook.svg";
   static const String google = "assets/images/google.svg";
   static const String icon = "assets/images/icon.png";
+  static const String scanIcon = "assets/images/icons/scan_icon.svg";
   static const String logo = "assets/images/logo.png";
   static const String logoSvg = "assets/images/logoSvg.svg";
   static const String appLogo = "assets/images/app_logo.svg";
