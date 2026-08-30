@@ -1,7 +1,7 @@
-import 'package:flutter_tdd/core/helpers/device_id_helper.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/orders_widget.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/scroll_to_top_button_widget.dart';
 import 'home_imports.dart';
+
 @RoutePage(name: "HomePageRoute")
 class HomePage extends StatefulWidget {
   // final bool fromLogin;
@@ -47,27 +47,27 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ScrollToTopButtonWidget(controller: controller),
-            Gaps.vGap12,
-            GestureDetector(
-              onTap: () => AutoRouter.of(context).push(const InStoreScannerRoute()),
-              child: Container(
-                width: 60,
-                height: 60,
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: context.colors.primary,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: context.colors.primary.withValues(alpha: 0.3),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: SvgPicture.asset(Res.scanIcon),
-              ),
-            )
+            // Gaps.vGap12,
+            // GestureDetector(
+            //   onTap: () => AutoRouter.of(context).push(const InStoreScannerRoute()),
+            //   child: Container(
+            //     width: 60,
+            //     height: 60,
+            //     padding: const EdgeInsets.all(15),
+            //     decoration: BoxDecoration(
+            //       color: context.colors.primary,
+            //       shape: BoxShape.circle,
+            //       boxShadow: [
+            //         BoxShadow(
+            //           color: context.colors.primary.withValues(alpha: 0.3),
+            //           blurRadius: 8,
+            //           offset: const Offset(0, 3),
+            //         ),
+            //       ],
+            //     ),
+            //     child: SvgPicture.asset(Res.scanIcon),
+            //   ),
+            // )
           ],
         ),
       ),
