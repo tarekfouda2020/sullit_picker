@@ -35,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height * 0.8,
+                minHeight: MediaQuery.sizeOf(context).height * 0.8,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

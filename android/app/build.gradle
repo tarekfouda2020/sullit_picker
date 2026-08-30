@@ -22,8 +22,8 @@ if (flutterVersionName == null) {
 }
 
 def dartEnvironmentVariables = [
-        APP_APP_NAME_EN: 'OSOS',
-        APP_APP_NAME_AR: 'أسس',
+        APP_APP_NAME_EN: 'Sahlashop Picker',
+        APP_APP_NAME_AR: 'Sahlashop Picker',
         APP_ID         : 'ua.suliitpicker.com',
 ]
 if (project.hasProperty('dart-defines')) {
@@ -100,7 +100,7 @@ android {
             signingConfig signingConfigs.release
             applicationVariants.all { variant ->
                 variant.outputs.all {
-                    def appName = "OSOS_V_"
+                    def appName = "Sahlashop_Picker_V_"
                     def newName = "${appName}${defaultConfig.versionName}_${defaultConfig.versionCode}.apk"
                     outputFileName = newName
                 }

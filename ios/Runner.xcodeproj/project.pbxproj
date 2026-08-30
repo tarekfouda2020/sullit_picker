@@ -549,7 +549,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -741,7 +741,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -773,7 +773,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -861,7 +861,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -968,7 +968,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1075,7 +1075,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1179,7 +1179,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1280,7 +1280,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1381,7 +1381,7 @@
 				DEVELOPMENT_TEAM = RGY2X9J248;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "MCOOP Picker";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sahlashop Picker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
