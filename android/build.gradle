@@ -35,6 +35,14 @@ subprojects {
                     && !details.requested.name.contains('multidex') ) {
                 details.useVersion "27.1.1"
             }
+            // 16 KB pages: CameraX 1.3.4 + ML Kit 17.2.0 ship 4 KB ELF .so (Play reject).
+            if (details.requested.group == 'androidx.camera') {
+                details.useVersion '1.5.0'
+            }
+            if (details.requested.group == 'com.google.mlkit'
+                    && details.requested.name == 'barcode-scanning') {
+                details.useVersion '17.3.0'
+            }
         }
     }
 }

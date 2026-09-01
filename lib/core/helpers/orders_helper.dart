@@ -6,6 +6,7 @@ import 'package:flutter_tdd/core/helpers/hive_helper.dart';
 import 'package:flutter_tdd/core/helpers/notify_methods_helper.dart';
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/data/model/prescription_order_details/pharmacy_order_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/get_orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 import 'package:flutter_tdd/features/home/presentation/pages/home/widgets/new_order_alert_dialog_widget.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -138,7 +139,9 @@ class OrdersHelper {
     if (ordersListCubit.hasNoData && setLoading) {
       ordersListCubit.loadingState();
     }
-    var result = await getIt<HomeRepositories>().orders(fromRemote);
+    var result = await getIt<HomeRepositories>().orders(
+      GetOrdersParams(fromRemote: fromRemote),
+    );
     result.when(
       isSuccess: (data) {
         ordersListCubit.successState(data);

@@ -21,39 +21,33 @@ class ScannerWidget extends StatelessWidget {
               child: ObsValueConsumer<bool>(
                 observable: controller.cameraClosedObs,
                 builder: (context, cameraClosed) {
-                  return Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      MobileScanner(
-                        controller: controller.scannerController,
-                        onDetect: (BarcodeCapture capture) {
-                          if (cameraClosed) return;
-                          final barcode = controller.detectBarcode(capture);
-                          if (barcode == null) return;
-                          if (!context.mounted) return;
-                          controller.onBarcodeAccepted(context, barcode);
-                        },
-                        errorBuilder: (context, error, _) {
-                          return ColoredBox(
-                            color: context.colors.simiGray,
-                            child: Center(
-                              child: Padding(
-                                padding: Dimens.paddingAll16Px,
-                                child: Text(
-                                  error.errorDetails?.message ??
-                                      Translate.s.something_went_wrong,
-                                  textAlign: TextAlign.center,
-                                  style: AppTextStyle.s14_w400(
-                                    color: context.colors.white,
-                                  ),
-                                ),
+                  return MobileScanner(
+                    controller: controller.scannerController,
+                    onDetect: (BarcodeCapture capture) {
+                      if (cameraClosed) return;
+                      String? barcode = controller.detectBarcode(capture);
+                      if (barcode == null) return;
+                      if (!context.mounted) return;
+                      controller.onBarcodeAccepted(context, barcode);
+                    },
+                    errorBuilder: (context, error, _) {
+                      return ColoredBox(
+                        color: context.colors.simiGray,
+                        child: Center(
+                          child: Padding(
+                            padding: Dimens.paddingAll16Px,
+                            child: Text(
+                              error.errorDetails?.message ??
+                                  Translate.s.something_went_wrong,
+                              textAlign: TextAlign.center,
+                              style: AppTextStyle.s14_w400(
+                                color: context.colors.white,
                               ),
                             ),
-                          );
-                        },
-                      ),
-
-                    ],
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),

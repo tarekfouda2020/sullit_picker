@@ -250,7 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("انٹرنیٹ کنکشن نہیں ہے"),
         "estimated_time": MessageLookupByLibrary.simpleMessage("تخمینی وقت"),
         "expired_within_days": m1,
-        "extra_items": MessageLookupByLibrary.simpleMessage("اضافی آئٹمز"),
+        "extra_items": MessageLookupByLibrary.simpleMessage("شامل کردہ آئٹمز"),
         "failed_orders": MessageLookupByLibrary.simpleMessage("ناکام آرڈرز"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("ناکامی کی وجہ"),
         "failed_to_update_location": MessageLookupByLibrary.simpleMessage(
@@ -298,7 +298,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "is_weight_equals": MessageLookupByLibrary.simpleMessage(
             "کیا وزن 900 گرام کے برابر ہے؟"),
         "item_not_in_order_add_extra": MessageLookupByLibrary.simpleMessage(
-            "یہ آئٹم آرڈر میں نہیں ہے۔ کیا اسے اضافی شامل کریں؟"),
+            "یہ آئٹم آرڈر میں نہیں ہے اور شامل کر دیا گیا ہے"),
         "item_price": MessageLookupByLibrary.simpleMessage("آئٹم کی قیمت : "),
         "items_left": MessageLookupByLibrary.simpleMessage("آئٹمز باقی"),
         "items_left_suffix": MessageLookupByLibrary.simpleMessage("آئٹمز باقی"),

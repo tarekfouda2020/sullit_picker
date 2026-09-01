@@ -7,6 +7,7 @@ import 'package:flutter_tdd/features/home/data/model/invoice_preview_model/invoi
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/get_orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
@@ -43,7 +44,7 @@ class ImplHomeRepositories extends HomeRepositories {
   }
 
   @override
-  Future<MyResult<OrdersList?>> orders(bool params) async {
+  Future<MyResult<OrdersList?>> orders(GetOrdersParams params) async {
     return dataSource.orders(params);
   }
 

@@ -6,6 +6,7 @@ class ScannerSearchFieldWidget extends StatelessWidget {
   final VoidCallback onSubmit;
   final Color? fillColor;
   final Color? borderColor;
+  final TextInputType type;
 
   const ScannerSearchFieldWidget({
     super.key,
@@ -14,6 +15,7 @@ class ScannerSearchFieldWidget extends StatelessWidget {
     required this.onSubmit,
     this.fillColor,
     this.borderColor,
+    this.type = TextInputType.text,
   });
 
   @override
@@ -32,6 +34,11 @@ class ScannerSearchFieldWidget extends StatelessWidget {
         horizontal: Dimens.dp16,
         vertical: Dimens.dp10,
       ),
+      fieldTypes: FieldTypes.normal,
+      type: type,
+      action: TextInputAction.search,
+      onSubmit: onSubmit,
+      validate: (value) => value?.noValidate(),
       suffixIcon: IconButton(
         icon: Icon(
           Icons.search_rounded,
@@ -39,11 +46,6 @@ class ScannerSearchFieldWidget extends StatelessWidget {
         ),
         onPressed: onSubmit,
       ),
-      fieldTypes: FieldTypes.normal,
-      type: TextInputType.number,
-      action: TextInputAction.search,
-      onSubmit: onSubmit,
-      validate: (value) => null,
     );
   }
 }

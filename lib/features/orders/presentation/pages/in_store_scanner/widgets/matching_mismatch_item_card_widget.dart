@@ -47,12 +47,33 @@ class MatchingMismatchItemCardWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  item.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppTextStyle.s14_w600(color: context.colors.black)
-                      .copyWith(height: 1.2),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        item.name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyle.s14_w600(color: context.colors.black)
+                            .copyWith(height: 1.2),
+                      ),
+                    ),
+                    Gaps.hGap8,
+                    Container(
+                      padding: Dimens.paddingH16V10PX,
+                      decoration: BoxDecoration(
+                        color: context.colors.primary.withValues(alpha: 0.12),
+                        borderRadius: Dimens.borderRadius30PX,
+                      ),
+                      child: Text(
+                        '${Translate.s.qnt} : ${item.qnt}',
+                        style: AppTextStyle.s14_w700(
+                          color: context.colors.primary,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Gaps.vGap8,
                 Container(

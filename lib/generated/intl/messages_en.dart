@@ -264,7 +264,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "estimated_time":
             MessageLookupByLibrary.simpleMessage("Estimated Time"),
         "expired_within_days": m1,
-        "extra_items": MessageLookupByLibrary.simpleMessage("Extra Items"),
+        "extra_items": MessageLookupByLibrary.simpleMessage("Added Items"),
         "failed_orders": MessageLookupByLibrary.simpleMessage("Failed Orders"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("Failed Reason"),
         "failed_to_save_image":
@@ -329,7 +329,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "is_weight_equals":
             MessageLookupByLibrary.simpleMessage("Is the weight equals"),
         "item_not_in_order_add_extra": MessageLookupByLibrary.simpleMessage(
-            "This item is not in the order. Add as extra?"),
+            "This item is not in order and has been added"),
         "item_price": MessageLookupByLibrary.simpleMessage("Item Price : "),
         "items_left": MessageLookupByLibrary.simpleMessage("items left"),
         "items_left_suffix": MessageLookupByLibrary.simpleMessage("items left"),

@@ -17,7 +17,7 @@ class MatchingMismatchSectionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '$title ( ${items.length} )',
+          '$title ( ${items.fold<int>(0, (sum, e) => sum + e.qnt)} )',
           style: AppTextStyle.s16_w700(color: context.colors.black),
         ),
         Gaps.vGap12,

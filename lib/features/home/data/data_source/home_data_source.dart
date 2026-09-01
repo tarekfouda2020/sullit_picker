@@ -6,6 +6,7 @@ import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart'
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/data/model/report_reason_model/report_reason_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/get_orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
@@ -25,7 +26,7 @@ abstract class HomeDataSource {
   Future<MyResult<UserModel>> updateProfileImage(
       UpdateProfileImageParams params);
 
-  Future<MyResult<OrdersList?>> orders(bool params);
+  Future<MyResult<OrdersList?>> orders(GetOrdersParams params);
 
   Future<MyResult<OrderModel>> showOrders(OrdersParams params);
 

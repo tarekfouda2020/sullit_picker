@@ -4590,10 +4590,10 @@ class S {
     );
   }
 
-  /// `Extra Items`
+  /// `Added Items`
   String get extra_items {
     return Intl.message(
-      'Extra Items',
+      'Added Items',
       name: 'extra_items',
       desc: '',
       args: [],
@@ -4620,10 +4620,10 @@ class S {
     );
   }
 
-  /// `This item is not in the order. Add as extra?`
+  /// `This item is not in order and has been added`
   String get item_not_in_order_add_extra {
     return Intl.message(
-      'This item is not in the order. Add as extra?',
+      'This item is not in order and has been added',
       name: 'item_not_in_order_add_extra',
       desc: '',
       args: [],

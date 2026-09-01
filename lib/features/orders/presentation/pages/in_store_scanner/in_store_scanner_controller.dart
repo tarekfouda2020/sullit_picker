@@ -12,8 +12,9 @@ class InStoreScannerController {
   final ObsValue<List<MatchingProductItem>> extraItemsObs =
       ObsValue<List<MatchingProductItem>>.withInit(const []);
   final TextEditingController barcodeTextController = TextEditingController();
-  final TextEditingController orderNumberTextController =
-      TextEditingController();
+  final TextEditingController orderNumberTextController = TextEditingController();
+  final TextEditingController missingReasonController = TextEditingController();
+  final GlobalKey<FormState> missingReasonFormKey = GlobalKey<FormState>();
   final MobileScannerController scannerController = MobileScannerController(
     autoStart: false,
   );
@@ -70,14 +71,14 @@ class InStoreScannerController {
     if (productScanModeObs.getValue()) {
       await _handleProductScan(context, sku);
     } else {
-      await _acceptOrderById(context, sku);
+      await _acceptOrderFromQr(context, sku);
     }
   }
 
   void submitOrderNumber(BuildContext context) {
-    final orderNumber = orderNumberTextController.text.trim();
+    var orderNumber = orderNumberTextController.text.trim();
     if (orderNumber.isEmpty) return;
-    _acceptOrderById(context, orderNumber);
+    _searchAndShowOrders(context, orderNumber);
   }
 
   void submitBarcodeText(BuildContext context) {
@@ -118,6 +119,26 @@ class InStoreScannerController {
   }
 
   Future<void> confirmOrder(BuildContext context) async {
+    _computeMatching();
+    if (missedItemsObs.getValue().isNotEmpty) {
+      missingReasonController.clear();
+      showDialog(
+        context: context,
+        builder: (dialogContext) => MissingItemsReasonDialogWidget(
+          notesController: missingReasonController,
+          formKey: missingReasonFormKey,
+          onSubmit: () {
+            Navigator.of(dialogContext).pop();
+            _dispatchAfterConfirm(context);
+          },
+        ),
+      );
+      return;
+    }
+    await _dispatchAfterConfirm(context);
+  }
+
+  Future<void> _dispatchAfterConfirm(BuildContext context) async {
     AutoRouter.of(context).maybePop();
     await _dispatchOrder();
   }
@@ -132,6 +153,7 @@ class InStoreScannerController {
   Future<void> dispose() async {
     barcodeTextController.dispose();
     orderNumberTextController.dispose();
+    missingReasonController.dispose();
     try {
       await scannerController.stop();
     } catch (e, stack) {
@@ -143,7 +165,15 @@ class InStoreScannerController {
 
 
 
-  Future<void> _acceptOrderById(BuildContext context, String raw) async {
+  Future<void> acceptSearchedOrder(
+    BuildContext context,
+    OrderModel order,
+  ) async {
+    AutoRouter.of(context).maybePop();
+    await _acceptOrder(context, order.id);
+  }
+
+  Future<void> _acceptOrderFromQr(BuildContext context, String raw) async {
     if (_isBusy) {
       await resetScanDelayed();
       return;
@@ -163,6 +193,76 @@ class InStoreScannerController {
         type: ToastType.error,
       );
       await resetScanDelayed();
+      return;
+    }
+    await _acceptOrder(context, id);
+    await resetScanDelayed();
+  }
+
+  Future<void> _searchAndShowOrders(BuildContext context, String raw) async {
+    if (_isBusy) {
+      await resetScanDelayed();
+      return;
+    }
+    if (productScanModeObs.getValue() || _order != null) {
+      AppSnackBar.showSimpleToast(
+        msg: Translate.s.in_store_one_order_only,
+        type: ToastType.info,
+      );
+      await resetScanDelayed();
+      return;
+    }
+    final query = raw.trim();
+    if (query.isEmpty) {
+      AppSnackBar.showSimpleToast(
+        msg: Translate.s.invalid_order_id,
+        type: ToastType.error,
+      );
+      await resetScanDelayed();
+      return;
+    }
+    _isBusy = true;
+    getIt<LoadingHelper>().showLoadingDialog();
+    final search = await getIt<HomeRepositories>().orders(
+      GetOrdersParams(search: query),
+    );
+    getIt<LoadingHelper>().dismissDialog();
+    final newOrders = search.data?.newOrders ?? [];
+    if (newOrders.isEmpty) {
+      AppSnackBar.showSimpleToast(
+        msg: Translate.s.no_orders_found,
+        type: ToastType.error,
+      );
+      _isBusy = false;
+      await resetScanDelayed();
+      return;
+    }
+    _isBusy = false;
+    if (!context.mounted) return;
+    _showSearchOrdersSheet(context, newOrders);
+    await resetScanDelayed();
+  }
+
+  void _showSearchOrdersSheet(BuildContext context, List<OrderModel> orders) {
+    AppBottomSheets.showScrollableBody(
+      context: context,
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.sizeOf(context).height * 0.92,
+      ),
+      builder: (context) => SearchOrdersSheetWidget(
+        controller: this,
+        orders: orders,
+      ),
+    );
+  }
+
+  Future<void> _acceptOrder(BuildContext context, int id) async {
+    if (_isBusy) return;
+    if (productScanModeObs.getValue() || _order != null) {
+      AppSnackBar.showSimpleToast(
+        msg: Translate.s.in_store_one_order_only,
+        type: ToastType.info,
+      );
       return;
     }
     _isBusy = true;
@@ -187,13 +287,11 @@ class InStoreScannerController {
         error: BaseError.unknown(msg: Translate.s.order_accepted_failed),
       );
       _isBusy = false;
-      await resetScanDelayed();
       return;
     }
     await _onOrderAccepted(order);
     AppSnackBar.showSuccessSnackBar(Translate.s.order_accepted_successfully);
     _isBusy = false;
-    await resetScanDelayed();
   }
 
   Future<void> _onOrderAccepted(OrderModel data) async {
@@ -234,13 +332,12 @@ class InStoreScannerController {
       await resetScanDelayed();
       return;
     }
-    await _applyScannedProduct(context, data);
+    await _applyScannedProduct(data);
     _isBusy = false;
     await resetScanDelayed();
   }
 
   Future<void> _applyScannedProduct(
-    BuildContext context,
     SearchBarcodeModel data,
   ) async {
     final nextLine = _nextUnfilledMatchingLine(data);
@@ -264,23 +361,6 @@ class InStoreScannerController {
       _toastAllProductsScannedIfDone();
       return;
     }
-    if (_hasMatchingOrderLine(data)) {
-      AppSnackBar.showSimpleToast(
-        msg: Translate.s.cannot_scan_more_than_order_qty,
-        type: ToastType.info,
-      );
-      return;
-    }
-    final extraIndex = _indexOfScanned(
-      productId: data.id,
-      variantId: data.variant.id,
-      barcode: data.barcode,
-      isExtra: true,
-    );
-    if (extraIndex == -1) {
-      final shouldAdd = await _confirmExtraItem(context);
-      if (!shouldAdd) return;
-    }
     _addOrIncrementScan(
       InStoreScannedItem(
         productId: data.id,
@@ -294,8 +374,9 @@ class InStoreScannerController {
       ),
     );
     await _persist();
-    await _recalcProgress();
-    _toastProductScanned(data.barcode);
+    AppSnackBar.showWarningSnackBar(
+      message: Translate.s.item_not_in_order_add_extra,
+    );
   }
 
   void _toastProductScanned(String barcode) {
@@ -309,17 +390,6 @@ class InStoreScannerController {
     if (expectedTotal <= 0) return;
     if (_expectedPickedQty() < expectedTotal) return;
     AppSnackBar.showSuccessSnackBar(Translate.s.all_products_scanned);
-  }
-
-  Future<bool> _confirmExtraItem(BuildContext context) async {
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (context) => ExtraItemConfirmDialogWidget(
-        onYes: () => Navigator.pop(context, true),
-        onNo: () => Navigator.pop(context, false),
-      ),
-    );
-    return result == true;
   }
 
   Future<void> _refreshOrderInBackground(BuildContext context) async {
@@ -359,7 +429,7 @@ class InStoreScannerController {
     final order = _order;
     if (order == null) return;
     _computeMatching();
-    final params = _prepareOrderParams(order);
+    PrepareOrderParams params = _prepareOrderParams(order);
     final result = await getIt<HomeRepositories>().prepareOrder(params);
     if (!result.isSuccess) {
       AppSnackBar.showSimpleToast(
@@ -371,7 +441,7 @@ class InStoreScannerController {
     final assigned = getIt<OrdersHelper>().assignedOrdersCubit.data;
     final updatedList = (assigned ?? <OrderModel>[]).toList();
     updatedList.removeWhere((element) => element.id == order.id);
-    await getIt<OrdersHelper>().saveAssignedOrders(updatedList);
+     getIt<OrdersHelper>().saveAssignedOrders(updatedList);
     await getIt<OrdersHelper>().getAllOrders();
     await getIt<InStoreOrdersHelper>().deleteSession();
     await getIt<OrdersHelper>().deleteOrderDetails(order.id);
@@ -386,47 +456,26 @@ class InStoreScannerController {
 
   PrepareOrderParams _prepareOrderParams(OrderModel order) {
     final lines = order.ordersDetails ?? [];
-    final current = <OrderDetailsModel>[];
-    final deleted = <OrderDetailsModel>[];
-    for (final line in lines) {
-      final take = _scannedQtyForLine(line.id);
+    List<OrderDetailsModel> current = <OrderDetailsModel>[];
+    List<OrderDetailsModel> deleted = <OrderDetailsModel>[];
+    String notes = missingReasonController.text.trim();
+    for (OrderDetailsModel line in lines) {
+      int take = _scannedQtyForLine(line.id);
       if (take <= 0) {
-        deleted.add(line.copyWith(pickerNotes: line.pickerNotes ?? ''));
+        deleted.add(line.copyWith(pickerNotes: notes));
         continue;
       }
       if (take < line.quantity) {
         current.add(
           line.copyWith(
             quantity: take,
-            pickerNotes: line.pickerNotes ?? '',
+            pickerNotes: notes,
             product: line.product!.copyWith(
               productStatus: ProductStatusEnum.qntModified,
             ),
           ),
         );
       }
-    }
-    for (final extra in _scanned.where((e) => e.isExtra)) {
-      current.add(
-        OrderDetailsModel(
-          id: extra.variantId,
-          variation: '',
-          quantity: extra.qnt,
-          price: extra.price,
-          unitPrice: extra.price,
-          addedVariantId: extra.variantId,
-          pickerNotes: '',
-          product: ProductModel(
-            id: extra.variantId,
-            name: extra.name,
-            barcode: extra.barcode,
-            unit: '',
-            thumbnailImage: extra.imageUrl,
-            isFresh: false,
-            productStatus: ProductStatusEnum.added,
-          ),
-        ),
-      );
     }
     return PrepareOrderParams(
       orderId: order.id,
@@ -448,6 +497,7 @@ class InStoreScannerController {
             imageUrl: line.product?.thumbnailImage ?? '',
             price: line.unitPrice,
             barcode: line.product?.barcode ?? '',
+            qnt: line.quantity - take,
           ),
         );
       }
@@ -459,6 +509,7 @@ class InStoreScannerController {
           imageUrl: item.imageUrl,
           price: item.price,
           barcode: item.barcode,
+          qnt: item.qnt,
         ),
       );
     }
@@ -535,11 +586,6 @@ class InStoreScannerController {
     return _scanVariants(data).any((v) => _norm(v.name) == variation);
   }
 
-  bool _hasMatchingOrderLine(SearchBarcodeModel data) {
-    return (_order?.ordersDetails ?? <OrderDetailsModel>[])
-        .any((line) => _lineMatchesScan(line, data));
-  }
-
   OrderDetailsModel? _nextUnfilledMatchingLine(SearchBarcodeModel data) {
     for (final line in _order?.ordersDetails ?? <OrderDetailsModel>[]) {
       if (!_lineMatchesScan(line, data)) continue;
@@ -578,7 +624,9 @@ class InStoreScannerController {
   }
 
   Future<void> _recalcProgress({bool syncCamera = true}) async {
-    final itemsCount = _scanned.fold<int>(0, (sum, e) => sum + e.qnt);
+    final itemsCount = _scanned
+        .where((e) => !e.isExtra)
+        .fold<int>(0, (sum, e) => sum + e.qnt);
     itemsCountObs.setValue(itemsCount);
     final expectedTotal = _expectedTotalQty();
     final percent = expectedTotal == 0

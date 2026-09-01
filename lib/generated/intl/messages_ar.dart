@@ -256,7 +256,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
         "estimated_time": MessageLookupByLibrary.simpleMessage("الوقت المقدر"),
         "expired_within_days": m1,
-        "extra_items": MessageLookupByLibrary.simpleMessage("عناصر إضافية"),
+        "extra_items": MessageLookupByLibrary.simpleMessage("العناصر المضافة"),
         "failed_orders":
             MessageLookupByLibrary.simpleMessage("الطلبات الفاشلة"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("سبب الفشل"),
@@ -320,7 +320,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "is_weight_equals":
             MessageLookupByLibrary.simpleMessage("هل الوزن يساوي 900 جم؟"),
         "item_not_in_order_add_extra": MessageLookupByLibrary.simpleMessage(
-            "هذا المنتج غير موجود في الطلب. هل تريد إضافته كعنصر إضافي؟"),
+            "هذا المنتج غير موجود في الطلب وتمت إضافته"),
         "item_price": MessageLookupByLibrary.simpleMessage("سعر العنصر : "),
         "items_left": MessageLookupByLibrary.simpleMessage("عناصر متبقية"),
         "items_left_suffix":

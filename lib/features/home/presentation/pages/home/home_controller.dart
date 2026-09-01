@@ -116,8 +116,7 @@ class HomeController {
 
   Future<void> getAllOrders(
       {bool fromRemote = true, bool setLoading = true}) async {
-    await getIt<OrdersHelper>()
-        .getAllOrders(setLoading: setLoading, fromRemote: fromRemote);
+    await getIt<OrdersHelper>().getAllOrders(setLoading: setLoading, fromRemote: fromRemote);
     OrdersList? remoteData = getIt<OrdersHelper>().ordersListCubit.data;
     List<OrderModel> localAssignedOrders =
         getIt<OrdersHelper>().getAssignedOrders();

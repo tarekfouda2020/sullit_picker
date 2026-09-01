@@ -1,6 +1,7 @@
 import 'package:flutter_tdd/core/helpers/di.dart';
 import 'package:flutter_tdd/core/requester/requester.dart';
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/get_orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/repositories/home_repositories.dart';
 
 class GetOrdersRequester extends Requester<OrdersList?>{
@@ -10,7 +11,9 @@ class GetOrdersRequester extends Requester<OrdersList?>{
     if(hasNoData){
       loadingState();
     }
-    var result = await getIt<HomeRepositories>().orders(fromRemote);
+    var result = await getIt<HomeRepositories>().orders(
+      GetOrdersParams(fromRemote: fromRemote),
+    );
     result.when(
       isSuccess: (data) {
         successState(data);

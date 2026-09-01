@@ -204,7 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_socket":
             MessageLookupByLibrary.simpleMessage("কোন ইন্টারনেট সংযোগ নেই"),
         "expired_within_days": m1,
-        "extra_items": MessageLookupByLibrary.simpleMessage("অতিরিক্ত আইটেম"),
+        "extra_items": MessageLookupByLibrary.simpleMessage("যোগ করা আইটেম"),
         "failed_orders": MessageLookupByLibrary.simpleMessage("ব্যর্থ অর্ডার"),
         "failed_reason": MessageLookupByLibrary.simpleMessage("ব্যর্থতার কারণ"),
         "failed_to_update_location":
@@ -243,7 +243,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "is_weight_equals":
             MessageLookupByLibrary.simpleMessage("ওজন কি 900 গ্রাম সমান?"),
         "item_not_in_order_add_extra": MessageLookupByLibrary.simpleMessage(
-            "এই আইটেমটি অর্ডারে নেই। অতিরিক্ত হিসেবে যোগ করবেন?"),
+            "এই আইটেমটি অর্ডারে নেই এবং যোগ করা হয়েছে"),
         "item_price": MessageLookupByLibrary.simpleMessage("আইটেমের মূল্য : "),
         "items_left": MessageLookupByLibrary.simpleMessage("বাকি আইটেম"),
         "items_left_suffix": MessageLookupByLibrary.simpleMessage("বাকি আইটেম"),

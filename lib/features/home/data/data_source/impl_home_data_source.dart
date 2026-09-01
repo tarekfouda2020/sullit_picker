@@ -10,6 +10,7 @@ import 'package:flutter_tdd/features/home/data/model/available_for_order_model/a
 import 'package:flutter_tdd/features/home/data/model/lang_model/lang_model.dart';
 import 'package:flutter_tdd/features/orders/data/model/order_model/order_model.dart';
 import 'package:flutter_tdd/features/home/data/model/search_barcode_model/search_barcode_model.dart';
+import 'package:flutter_tdd/features/home/domain/entity/get_orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/orders_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/prepare_order_params.dart';
 import 'package:flutter_tdd/features/home/domain/entity/replaced_product_params.dart';
@@ -56,15 +57,15 @@ class ImplHomeDataSource extends HomeDataSource {
   }
 
   @override
-  Future<MyResult<OrdersList?>> orders(bool params) async {
+  Future<MyResult<OrdersList?>> orders(GetOrdersParams params) async {
     HttpRequestModel model = HttpRequestModel(
-        url: ApiNames.orders,
+        url: ApiNames.orders + params.queryParams(),
         responseType: ResType.model,
         requestMethod: RequestMethod.get,
         responseKey: (data) => data['data'],
         toJsonFunc: (data) => data != null ? OrdersList.fromJson(data) : null,
         showLoader: true,
-        refresh: params);
+        refresh: params.fromRemote);
     return await GenericHttpImpl<OrdersList?>()(model);
   }
 
